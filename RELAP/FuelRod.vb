@@ -1,5 +1,5 @@
-﻿'    Tank Calculation Routines 
-'    Copyright 2008 Daniel Wagner O. de Medeiros
+﻿'    Fuel Rod Calculation Routines 
+'    Copyright 2013 Sarah 
 '
 '    This file is part of RELAP.
 '
@@ -13,8 +13,7 @@
 '    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 '    GNU General Public License for more details.
 '
-'    You should have received a copy of the GNU General Public License
-'    along with RELAP.  If not, see <http://www.gnu.org/licenses/>.
+'    
 
 Imports Microsoft.Msdn.Samples.GraphicObjects
 'Imports RELAP.RELAP.Flowsheet.FlowSheetSolver
