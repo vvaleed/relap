@@ -1,5 +1,5 @@
 ﻿'    Tank Calculation Routines 
-'    Copyright 2008 Daniel Wagner O. de Medeiros
+'    Copyright 2013 Sarah
 '
 '    This file is part of RELAP.
 '
