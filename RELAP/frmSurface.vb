@@ -1,4 +1,4 @@
-﻿Imports Microsoft.MSDN.Samples.GraphicObjects
+﻿Imports Microsoft.Msdn.Samples.GraphicObjects
 Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports PropertyGridEx
@@ -162,7 +162,7 @@ Public Class frmSurface
 
         If e.KeyCode = Keys.Delete Then
             Call Me.ChildParent.DeleteSelectedObject(sender, e)
-     
+
 
         End If
 
@@ -566,7 +566,7 @@ Public Class frmSurface
                     gobj.TipoObjeto = TipoObjeto.Nenhum Then
 
 
-                 
+
 
                 ElseIf gobj.TipoObjeto = TipoObjeto.GO_TabelaRapida Then
 
@@ -601,9 +601,9 @@ Public Class frmSurface
 
     End Sub
 
-   
 
-   
+
+
 
     Private Sub CMS_Sel_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMS_Sel.Opened
 
@@ -1999,7 +1999,7 @@ Public Class frmSurface
 
     End Function
 
- 
+   
 
     Private Sub ExcluirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExcluirToolStripMenuItem.Click
         Call Me.ChildParent.DeleteSelectedObject(sender, e)
@@ -2048,6 +2048,45 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
                 ChildParent.Collections.CLCS_TankCollection.Add(myTank.Name, myCOTK)
+            Case TipoObjeto.FuelRod
+                Dim myTank As New FuelRodGraphic(mpx, mpy, 50, 50, 0)
+                myTank.LineWidth = 2
+                myTank.Fill = True
+                myTank.FillColor = fillclr
+                myTank.LineColor = lineclr
+                myTank.Tag = "FUELROD-" & Format(ChildParent.Collections.ObjectCounter("FuelRod"), "00#")
+                ChildParent.Collections.UpdateCounter("FuelRod")
+                If tag <> "" Then myTank.Tag = tag
+                gObj = myTank
+                gObj.Name = "TQ-" & Guid.NewGuid.ToString
+                ChildParent.Collections.FuelRodCollection.Add(gObj.Name, myTank)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.FuelRod = New RELAP.SimulationObjects.UnitOps.FuelRod(myTank.Name, "FuelRod")
+                myCOTK.GraphicObject = myTank
+                ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
+                ChildParent.Collections.CLCS_FuelRodCollection.Add(myTank.Name, myCOTK)
+            Case TipoObjeto.Simulator
+                Dim myTank As New SimulatorGraphic(mpx, mpy, 50, 50, 0)
+                myTank.LineWidth = 2
+                myTank.Fill = True
+                myTank.FillColor = fillclr
+                myTank.LineColor = lineclr
+                myTank.Tag = "Simulator-" & Format(ChildParent.Collections.ObjectCounter("Simulator"), "00#")
+                ChildParent.Collections.UpdateCounter("Simulator")
+                If tag <> "" Then myTank.Tag = tag
+                gObj = myTank
+                gObj.Name = "TQ-" & Guid.NewGuid.ToString
+                ChildParent.Collections.SimulatorCollection.Add(gObj.Name, myTank)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Simulator = New RELAP.SimulationObjects.UnitOps.Simulator(myTank.Name, "Simulator")
+                myCOTK.GraphicObject = myTank
+                ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
+                ChildParent.Collections.CLCS_SimulatorCollection.Add(myTank.Name, myCOTK)
+
 
 
         End Select
@@ -2098,6 +2137,10 @@ Public Class frmSurface
             Dim mpy = mousePT.Y
             Dim text As String = ChildParent.FormObjListView.DataGridView1.Rows(obj.Index).Cells(0).Value.ToString.TrimEnd(" ")
             Select Case text
+                Case "FuelRod"
+                    tobj = TipoObjeto.FuelRod
+                Case "Simulator"
+                    tobj = TipoObjeto.Simulator
                 Case "Ajuste"
                     tobj = TipoObjeto.OT_Ajuste
                 Case "Especificao"
@@ -2174,7 +2217,7 @@ Public Class frmSurface
 
         Dim ts As TimeSpan = Date.Now - calcstart
 
-        ' Me.LabelTime.Text = Format(ts.Hours, "0#") & ":" & Format(ts.Minutes, "0#") & ":" & Format(ts.Seconds, "0#") & "." & Format(ts.Milliseconds, "####")
+        '  Me.LabelTime.Text = Format(ts.Hours, "0#") & ":" & Format(ts.Minutes, "0#") & ":" & Format(ts.Seconds, "0#") & "." & Format(ts.Milliseconds, "####")
 
     End Sub
 
@@ -2303,9 +2346,5 @@ Public Class frmSurface
 
     End Sub
 
-   
-  
-    Private Sub CMS_ItemsToConnect_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles CMS_ItemsToConnect.Opening
 
-    End Sub
 End Class
