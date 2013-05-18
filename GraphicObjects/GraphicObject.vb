@@ -17,6 +17,7 @@ Namespace GraphicObjects
 
     Public Enum TipoObjeto
 
+        Simulator
         NodeIn
         NodeOut
         NodeEn

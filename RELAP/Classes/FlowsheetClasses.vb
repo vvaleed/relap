@@ -16,7 +16,7 @@
 '    You should have received a copy of the GNU General Public License
 '    along with RELAP.  If not, see <http://www.gnu.org/licenses/>.
 
-Imports Microsoft.Msdn.Samples.GraphicObjects
+Imports Microsoft.MSDN.Samples.GraphicObjects
 Imports RELAP.RELAP.ClassesBasicasTermodinamica
 'Imports RELAP.RELAP.SimulationObjects
 
@@ -44,6 +44,7 @@ Namespace RELAP.FormClasses
         Public HeaterCollection As Dictionary(Of String, HeaterGraphic)
         Public TankCollection As Dictionary(Of String, TankGraphic)
         Public FuelRodCollection As Dictionary(Of String, FuelRodGraphic)
+        Public SimulatorCollection As Dictionary(Of String, SimulatorGraphic)
         Public ConnectorCollection As Dictionary(Of String, ConnectorGraphic)
         Public TPSeparatorCollection As Dictionary(Of String, TPVesselGraphic)
         Public TurbineCollection As Dictionary(Of String, TurbineGraphic)
@@ -73,8 +74,11 @@ Namespace RELAP.FormClasses
         Public ObjectCollection As Dictionary(Of String, SimulationObjects_BaseClass)
 
         'These are collections for holding the actual unit operations instances.
-
+        Public CLCS_FuelRodCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
         Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
+        Public CLCS_SimulatorCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
+
+
         Sub New()
 
             'Creates all the graphic collections.
@@ -91,6 +95,7 @@ Namespace RELAP.FormClasses
             HeaterCollection = New Dictionary(Of String, HeaterGraphic)
             TankCollection = New Dictionary(Of String, TankGraphic)
             FuelRodCollection = New Dictionary(Of String, FuelRodGraphic)
+            SimulatorCollection = New Dictionary(Of String, SimulatorGraphic)
             ConnectorCollection = New Dictionary(Of String, ConnectorGraphic)
             TPSeparatorCollection = New Dictionary(Of String, TPVesselGraphic)
             TurbineCollection = New Dictionary(Of String, TurbineGraphic)
@@ -121,8 +126,9 @@ Namespace RELAP.FormClasses
 
             '  CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
             CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
+            CLCS_FuelRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
+            CLCS_SimulatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
 
-           
 
         End Sub
 
@@ -133,7 +139,8 @@ Namespace RELAP.FormClasses
             With Me.ObjectCounter
 
                 .Add("TANK", Me.TankCollection.Count)
-
+                .Add("FuelRod", Me.TankCollection.Count)
+                .Add("Simulator", Me.TankCollection.Count)
             End With
 
         End Sub
@@ -149,8 +156,8 @@ Namespace RELAP.FormClasses
     <System.Serializable()> Public Class ClsFormOptions
 
         Public AvailableUnitSystems As New Dictionary(Of String, RELAP.SistemasDeUnidades.Unidades)
-       
-       
+
+
 
         Public SelectedComponents As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
         Public NotSelectedComponents As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
@@ -161,7 +168,7 @@ Namespace RELAP.FormClasses
         Public ReactionSets As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ReactionSet)
         Public SimulationMode As String = ""
 
-        
+
         Public SelectedUnitSystem As RELAP.SistemasDeUnidades.Unidades
 
         Public NumberFormat As String = "#0.0####"
