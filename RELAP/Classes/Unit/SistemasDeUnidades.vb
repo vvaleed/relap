@@ -26,7 +26,7 @@ Namespace RELAP.SistemasDeUnidades
                 heat_transf_coeff, force, accel, spec_vol, reac_rate, velocity, foulingfactor, angle As String
 
         Public molar_enthalpy, molar_entropy As String
-
+        Public burnup As String
         Public tdp_idealGasHeatCapacity As String
         Public tdp_surfaceTension As String
         Public tdp_thermalConductivityOfLiquid As String
@@ -34,7 +34,7 @@ Namespace RELAP.SistemasDeUnidades
         Public tdp_vaporPressure As String
         Public tdp_viscosityOfLiquid As String
         Public tdp_viscosityOfVapor As String
-
+        Public resistance As String
         Public pdp_boilingPointTemperature As String
         Public pdp_meltingTemperature As String
 
@@ -73,6 +73,9 @@ Namespace RELAP.SistemasDeUnidades
         Public tpmp_kvalue As String
         Public tpmp_logKvalue As String
         Public tpmp_surfaceTension As String
+        Public mass As String
+        Public conductance As String
+        Public powerdensity As String
 
 
         Public Sub New()
@@ -96,6 +99,7 @@ Namespace RELAP.SistemasDeUnidades
                 .distance = "m"
                 .force = "N"
                 .heat_transf_coeff = "W/[m2.K]"
+                .resistance = "Ohm"
                 .mass_conc = "kg/m3"
                 .molar_conc = "mol/m3"
                 .molar_volume = "m3/kmol"
@@ -108,7 +112,7 @@ Namespace RELAP.SistemasDeUnidades
                 .molar_entropy = "kJ/[kmol.K]"
                 .velocity = "m/s"
                 .foulingfactor = "K.m2/W"
-
+                .burnup = "W.sec/kg"
                 .pdp_boilingPointTemperature = "K"
                 .pdp_meltingTemperature = "K"
                 .spmp_activity = "Pa"
