@@ -112,6 +112,8 @@ Imports RELAP.RELAP.FormClasses
 
     Private Sub FormChild_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
         My.Application.ActiveSimulation = Me
+       
+
     End Sub
 
     Private Sub FormChild2_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
@@ -202,8 +204,7 @@ Imports RELAP.RELAP.FormClasses
         Me.StatusBarTextProvider1.InstanceStatusBar = My.Forms.FormMain.ToolStripStatusLabel1
 
         Me.TSTBZoom.Text = Format(Me.FormSurface.FlowsheetDesignSurface.Zoom, "#%")
-
-       
+      
 
         If Not Me.m_IsLoadedFromFile Then
 
@@ -242,7 +243,7 @@ Imports RELAP.RELAP.FormClasses
 
             Try
                 FormObjListView.DockState = Docking.DockState.DockRight
-                FormInitialSettings.DockState = Docking.DockState.DockLeft
+                FormInitialSettings.DockState = Docking.DockState.DockLeftAutoHide
                 'FormWatch.DockState = Docking.DockState.DockRight
                 'FormWatch.DockState = Docking.DockState.DockBottom
                 'FormCOReports.DockState = Docking.DockState.DockLeft
@@ -254,7 +255,7 @@ Imports RELAP.RELAP.FormClasses
             Catch ex As Exception
 
             End Try
-
+            
             dckPanel.BringToFront()
 
             dckPanel.UpdateDockWindowZOrder(DockStyle.Fill, True)
@@ -267,7 +268,7 @@ Imports RELAP.RELAP.FormClasses
 
             Me.Invalidate()
             Application.DoEvents()
-
+          
         Else
 
             If Me.Collections.AdjustCollection Is Nothing Then
@@ -290,6 +291,7 @@ Imports RELAP.RELAP.FormClasses
 
         'load plugins
         'CreatePluginsList()
+       
 
     End Sub
 
@@ -332,7 +334,12 @@ Imports RELAP.RELAP.FormClasses
         End If
 
         ' Me.FormLog.Grid1.Sort(Me.FormLog.Grid1.Columns(1), ListSortDirection.Descending)
-
+        cboProblemType.SelectedIndex = 0
+        cboProblemOption.SelectedIndex = 0
+        cboInputCheck.SelectedIndex = 0
+        ToolStripComboBoxUnitSystem.SelectedIndex = 0
+        cboOutputUnits.SelectedIndex = 0
+        Me.WindowState = FormWindowState.Maximized
         My.Application.ActiveSimulation = Me
 
     End Sub
@@ -597,7 +604,7 @@ Imports RELAP.RELAP.FormClasses
     'End Sub
 
     Public Sub UpdateStatusLabel(ByVal message As String)
-        Me.FormSurface.LabelCalculator.Text = message
+        'Me.FormSurface.LabelCalculator.Text = message
     End Sub
 
     Public Sub CheckCollections()

@@ -1999,13 +1999,7 @@ Public Class frmSurface
 
     End Function
 
-    Private Sub LabelSimMode_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LabelCalculator.TextChanged
-        If Me.LabelCalculator.Text.Contains(RELAP.App.GetLocalString("Calculando")) Then
-            Me.PictureBox3.Image = My.Resources.weather_lightning
-        Else
-            Me.PictureBox3.Image = My.Resources.tick
-        End If
-    End Sub
+ 
 
     Private Sub ExcluirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExcluirToolStripMenuItem.Click
         Call Me.ChildParent.DeleteSelectedObject(sender, e)
@@ -2180,7 +2174,7 @@ Public Class frmSurface
 
         Dim ts As TimeSpan = Date.Now - calcstart
 
-        Me.LabelTime.Text = Format(ts.Hours, "0#") & ":" & Format(ts.Minutes, "0#") & ":" & Format(ts.Seconds, "0#") & "." & Format(ts.Milliseconds, "####")
+        ' Me.LabelTime.Text = Format(ts.Hours, "0#") & ":" & Format(ts.Minutes, "0#") & ":" & Format(ts.Seconds, "0#") & "." & Format(ts.Milliseconds, "####")
 
     End Sub
 
@@ -2310,4 +2304,8 @@ Public Class frmSurface
     End Sub
 
    
+  
+    Private Sub CMS_ItemsToConnect_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles CMS_ItemsToConnect.Opening
+
+    End Sub
 End Class

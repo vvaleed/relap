@@ -27,13 +27,9 @@ Partial Class frmSurface
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.LabelCalculator = New System.Windows.Forms.Label()
-        Me.LabelTime = New System.Windows.Forms.Label()
         Me.SpinningProgress1 = New CircularProgress.SpinningProgress.SpinningProgress()
         Me.PanelSimultAdjust = New System.Windows.Forms.Panel()
-        Me.LabelSimultAdjInfo = New System.Windows.Forms.Label()
         Me.PicSimultAdjust = New System.Windows.Forms.PictureBox()
-        Me.LabelSimultAdjustStatus = New System.Windows.Forms.Label()
         Me.CMS_NoSel = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -65,7 +61,6 @@ Partial Class frmSurface
         Me.TabelaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MostrarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfigurarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.PreviewDialog = New System.Windows.Forms.PrintPreviewDialog()
         Me.designSurfacePrintDocument = New System.Drawing.Printing.PrintDocument()
         Me.CMS_ItemsToConnect = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -91,7 +86,6 @@ Partial Class frmSurface
         Me.TableLayoutPanel1.Controls.Add(Me.FlowsheetDesignSurface, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.ToolTip1.SetToolTip(Me.TableLayoutPanel1, resources.GetString("TableLayoutPanel1.ToolTip"))
         '
         'FlowsheetDesignSurface
         '
@@ -114,7 +108,6 @@ Partial Class frmSurface
         Me.FlowsheetDesignSurface.SnapToGrid = False
         Me.FlowsheetDesignSurface.SurfaceBounds = New System.Drawing.Rectangle(0, 0, 10000, 7000)
         Me.FlowsheetDesignSurface.SurfaceMargins = New System.Drawing.Rectangle(0, 0, 10000, 7000)
-        Me.ToolTip1.SetToolTip(Me.FlowsheetDesignSurface, resources.GetString("FlowsheetDesignSurface.ToolTip"))
         Me.FlowsheetDesignSurface.Zoom = 1.0!
         '
         'TableLayoutPanel2
@@ -124,17 +117,13 @@ Partial Class frmSurface
         Me.TableLayoutPanel2.Controls.Add(Me.SpinningProgress1, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.PanelSimultAdjust, 2, 0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.ToolTip1.SetToolTip(Me.TableLayoutPanel2, resources.GetString("TableLayoutPanel2.ToolTip"))
         '
         'Panel2
         '
         resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Controls.Add(Me.PictureBox3)
         Me.Panel2.Controls.Add(Me.PictureBox4)
-        Me.Panel2.Controls.Add(Me.LabelCalculator)
-        Me.Panel2.Controls.Add(Me.LabelTime)
         Me.Panel2.Name = "Panel2"
-        Me.ToolTip1.SetToolTip(Me.Panel2, resources.GetString("Panel2.ToolTip"))
         '
         'PictureBox3
         '
@@ -142,7 +131,6 @@ Partial Class frmSurface
         Me.PictureBox3.Image = Global.RELAP.My.Resources.Resources.tick
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PictureBox3, resources.GetString("PictureBox3.ToolTip"))
         '
         'PictureBox4
         '
@@ -150,51 +138,21 @@ Partial Class frmSurface
         Me.PictureBox4.Image = Global.RELAP.My.Resources.Resources.clock
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PictureBox4, resources.GetString("PictureBox4.ToolTip"))
-        '
-        'LabelCalculator
-        '
-        resources.ApplyResources(Me.LabelCalculator, "LabelCalculator")
-        Me.LabelCalculator.ForeColor = System.Drawing.Color.DimGray
-        Me.LabelCalculator.MinimumSize = New System.Drawing.Size(100, 0)
-        Me.LabelCalculator.Name = "LabelCalculator"
-        Me.ToolTip1.SetToolTip(Me.LabelCalculator, resources.GetString("LabelCalculator.ToolTip"))
-        '
-        'LabelTime
-        '
-        resources.ApplyResources(Me.LabelTime, "LabelTime")
-        Me.LabelTime.ForeColor = System.Drawing.Color.DimGray
-        Me.LabelTime.MinimumSize = New System.Drawing.Size(100, 0)
-        Me.LabelTime.Name = "LabelTime"
-        Me.ToolTip1.SetToolTip(Me.LabelTime, resources.GetString("LabelTime.ToolTip"))
         '
         'SpinningProgress1
         '
         resources.ApplyResources(Me.SpinningProgress1, "SpinningProgress1")
         Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
-        Me.SpinningProgress1.BehindTransistionSegmentIsActive = False
         Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
         Me.SpinningProgress1.Name = "SpinningProgress1"
-        Me.ToolTip1.SetToolTip(Me.SpinningProgress1, resources.GetString("SpinningProgress1.ToolTip"))
-        Me.SpinningProgress1.TransistionSegment = 7
+        Me.SpinningProgress1.TransistionSegment = 9
         Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
         '
         'PanelSimultAdjust
         '
         resources.ApplyResources(Me.PanelSimultAdjust, "PanelSimultAdjust")
-        Me.PanelSimultAdjust.Controls.Add(Me.LabelSimultAdjInfo)
         Me.PanelSimultAdjust.Controls.Add(Me.PicSimultAdjust)
-        Me.PanelSimultAdjust.Controls.Add(Me.LabelSimultAdjustStatus)
         Me.PanelSimultAdjust.Name = "PanelSimultAdjust"
-        Me.ToolTip1.SetToolTip(Me.PanelSimultAdjust, resources.GetString("PanelSimultAdjust.ToolTip"))
-        '
-        'LabelSimultAdjInfo
-        '
-        resources.ApplyResources(Me.LabelSimultAdjInfo, "LabelSimultAdjInfo")
-        Me.LabelSimultAdjInfo.ForeColor = System.Drawing.Color.OrangeRed
-        Me.LabelSimultAdjInfo.MinimumSize = New System.Drawing.Size(100, 0)
-        Me.LabelSimultAdjInfo.Name = "LabelSimultAdjInfo"
-        Me.ToolTip1.SetToolTip(Me.LabelSimultAdjInfo, resources.GetString("LabelSimultAdjInfo.ToolTip"))
         '
         'PicSimultAdjust
         '
@@ -202,22 +160,12 @@ Partial Class frmSurface
         Me.PicSimultAdjust.Image = Global.RELAP.My.Resources.Resources.lightning1
         Me.PicSimultAdjust.Name = "PicSimultAdjust"
         Me.PicSimultAdjust.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicSimultAdjust, resources.GetString("PicSimultAdjust.ToolTip"))
-        '
-        'LabelSimultAdjustStatus
-        '
-        resources.ApplyResources(Me.LabelSimultAdjustStatus, "LabelSimultAdjustStatus")
-        Me.LabelSimultAdjustStatus.ForeColor = System.Drawing.Color.OrangeRed
-        Me.LabelSimultAdjustStatus.MinimumSize = New System.Drawing.Size(100, 0)
-        Me.LabelSimultAdjustStatus.Name = "LabelSimultAdjustStatus"
-        Me.ToolTip1.SetToolTip(Me.LabelSimultAdjustStatus, resources.GetString("LabelSimultAdjustStatus.ToolTip"))
         '
         'CMS_NoSel
         '
         resources.ApplyResources(Me.CMS_NoSel, "CMS_NoSel")
         Me.CMS_NoSel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem3, Me.ToolStripSeparator1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem})
         Me.CMS_NoSel.Name = "ContextMenuStrip1"
-        Me.ToolTip1.SetToolTip(Me.CMS_NoSel, resources.GetString("CMS_NoSel.ToolTip"))
         '
         'ToolStripMenuItem3
         '
@@ -277,7 +225,6 @@ Partial Class frmSurface
         resources.ApplyResources(Me.CMS_Sel, "CMS_Sel")
         Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.ToolStripSeparator3, Me.RecalcularToolStripMenuItem, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
         Me.CMS_Sel.Name = "CMS_Sel"
-        Me.ToolTip1.SetToolTip(Me.CMS_Sel, resources.GetString("CMS_Sel.ToolTip"))
         '
         'TSMI_Label
         '
@@ -397,18 +344,11 @@ Partial Class frmSurface
         Me.ConfigurarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
         '
-        'ToolTip1
-        '
-        Me.ToolTip1.IsBalloon = True
-        Me.ToolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.ToolTip1.ToolTipTitle = "INFORMACAO"
-        '
         'PreviewDialog
         '
         resources.ApplyResources(Me.PreviewDialog, "PreviewDialog")
         Me.PreviewDialog.Document = Me.designSurfacePrintDocument
         Me.PreviewDialog.Name = "PrintPreviewDialog1"
-        Me.ToolTip1.SetToolTip(Me.PreviewDialog, resources.GetString("PreviewDialog.ToolTip"))
         Me.PreviewDialog.UseAntiAlias = True
         '
         'designSurfacePrintDocument
@@ -419,13 +359,11 @@ Partial Class frmSurface
         '
         resources.ApplyResources(Me.CMS_ItemsToConnect, "CMS_ItemsToConnect")
         Me.CMS_ItemsToConnect.Name = "CMS_ItemsToConnect"
-        Me.ToolTip1.SetToolTip(Me.CMS_ItemsToConnect, resources.GetString("CMS_ItemsToConnect.ToolTip"))
         '
         'CMS_ItemsToDisconnect
         '
         resources.ApplyResources(Me.CMS_ItemsToDisconnect, "CMS_ItemsToDisconnect")
         Me.CMS_ItemsToDisconnect.Name = "CMS_ItemsToConnect"
-        Me.ToolTip1.SetToolTip(Me.CMS_ItemsToDisconnect, resources.GetString("CMS_ItemsToDisconnect.ToolTip"))
         '
         'pageSetup
         '
@@ -454,11 +392,9 @@ Partial Class frmSurface
         Me.Name = "frmSurface"
         Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document
         Me.TabText = Me.Text
-        Me.ToolTip1.SetToolTip(Me, resources.GetString("$this.ToolTip"))
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSimultAdjust.ResumeLayout(False)
@@ -481,7 +417,6 @@ Partial Class frmSurface
     Public WithEvents ToolStripMenuItem7 As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents TSMI_Label As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Public WithEvents TabelaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents MostrarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ConfigurarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -515,10 +450,6 @@ Partial Class frmSurface
     Public WithEvents Panel2 As System.Windows.Forms.Panel
     Public WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Public WithEvents PictureBox4 As System.Windows.Forms.PictureBox
-    Public WithEvents LabelTime As System.Windows.Forms.Label
-    Public WithEvents LabelCalculator As System.Windows.Forms.Label
     Public WithEvents PanelSimultAdjust As System.Windows.Forms.Panel
     Public WithEvents PicSimultAdjust As System.Windows.Forms.PictureBox
-    Public WithEvents LabelSimultAdjustStatus As System.Windows.Forms.Label
-    Public WithEvents LabelSimultAdjInfo As System.Windows.Forms.Label
 End Class
