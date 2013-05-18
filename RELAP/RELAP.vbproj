@@ -229,6 +229,7 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
+    <Compile Include="FuelRod.vb" />
     <Compile Include="Language\RELAP.Designer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -248,6 +249,7 @@
     <Compile Include="Settings.vb" />
     <Compile Include="SharedFunctions.vb" />
     <Compile Include="Classes\Unit\SistemasDeUnidades.vb" />
+    <Compile Include="Simulator.vb" />
     <Compile Include="Tank.vb" />
   </ItemGroup>
   <ItemGroup>
