@@ -1631,7 +1631,7 @@ Public Class FormMain
         Finally
             fs7.Close()
         End Try
-        Dim fs8 As New FileStream(rndfolder & "8.bin", FileMode.Create)
+        ' Dim fs8 As New FileStream(rndfolder & "8.bin", FileMode.Create)
         'Try
         '    mySerializer.Serialize(fs8, form.FormLog.GridDT)
         'Catch ex As System.Runtime.Serialization.SerializationException
@@ -1641,7 +1641,7 @@ Public Class FormMain
         '    fs8.Close()
         'End Try
         'form.FormSpreadsheet.CopyToDT()
-        Dim fs9 As New FileStream(rndfolder & "9.bin", FileMode.Create)
+        ' Dim fs9 As New FileStream(rndfolder & "9.bin", FileMode.Create)
         'Try
         '    mySerializer.Serialize(fs9, form.FormSpreadsheet.dt1)
         'Catch ex As System.Runtime.Serialization.SerializationException
@@ -1650,7 +1650,7 @@ Public Class FormMain
         'Finally
         '    fs9.Close()
         'End Try
-        Dim fs10 As New FileStream(rndfolder & "10.bin", FileMode.Create)
+        'Dim fs10 As New FileStream(rndfolder & "10.bin", FileMode.Create)
         'Try
         '    mySerializer.Serialize(fs10, form.FormSpreadsheet.dt2)
         'Catch ex As System.Runtime.Serialization.SerializationException
@@ -1659,7 +1659,7 @@ Public Class FormMain
         'Finally
         '    fs10.Close()
         'End Try
-        Dim fs11 As New FileStream(rndfolder & "11.bin", FileMode.Create)
+        ' Dim fs11 As New FileStream(rndfolder & "11.bin", FileMode.Create)
         'Try
         '    mySerializer.Serialize(fs11, form.FormWatch.items)
         'Catch ex As System.Runtime.Serialization.SerializationException
@@ -1904,7 +1904,7 @@ sim:                Dim myStream As System.IO.FileStream
                     '                    End If
                 Case 4
                     Select Case Path.GetExtension(Me.OpenFileDialog1.FileName).ToLower()
-                        Case ".RELAP"
+                        Case ".relap"
                             GoTo sim
 
                     End Select

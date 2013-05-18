@@ -289,7 +289,7 @@
     <value>3, 0</value>
   </data>
   <data name="ToolStrip4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>466, 25</value>
+    <value>435, 25</value>
   </data>
   <data name="ToolStrip4.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -319,7 +319,7 @@
     <value>None</value>
   </data>
   <data name="lbl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 24</value>
+    <value>81, 22</value>
   </data>
   <data name="lbl1.Text" xml:space="preserve">
     <value>Problem Type</value>
@@ -343,10 +343,10 @@
     <value>CMPCOMS</value>
   </data>
   <data name="cboProblemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 27</value>
+    <value>121, 25</value>
   </data>
   <data name="lbl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 24</value>
+    <value>92, 22</value>
   </data>
   <data name="lbl2.Text" xml:space="preserve">
     <value>Problem Option</value>
@@ -358,10 +358,10 @@
     <value>TRANSNT</value>
   </data>
   <data name="cboProblemOption.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 27</value>
+    <value>121, 25</value>
   </data>
   <data name="lbll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 24</value>
+    <value>71, 22</value>
   </data>
   <data name="lbll.Text" xml:space="preserve">
     <value>Input Check</value>
@@ -373,28 +373,28 @@
     <value>INP-CHK</value>
   </data>
   <data name="cboInputCheck.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 27</value>
+    <value>121, 25</value>
   </data>
   <data name="ToolStripLabel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 24</value>
+    <value>116, 22</value>
   </data>
   <data name="ToolStripLabel3.Text" xml:space="preserve">
     <value>Sistema de Unidades</value>
   </data>
   <data name="ToolStripComboBoxUnitSystem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 27</value>
+    <value>121, 25</value>
   </data>
   <data name="lbl3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
+    <value>75, 22</value>
   </data>
   <data name="lbl3.Text" xml:space="preserve">
     <value>Output Units</value>
   </data>
   <data name="cboOutputUnits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 27</value>
+    <value>121, 25</value>
   </data>
   <data name="ToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 27</value>
+    <value>6, 25</value>
   </data>
   <data name="ToolStripLabel6.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -404,6 +404,9 @@
   </data>
   <data name="ToolStripLabel6.Text" xml:space="preserve">
     <value>Formatação dos Números</value>
+  </data>
+  <data name="ToolStripLabel6.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="ToolStripComboBoxNumberFormatting.Items" xml:space="preserve">
     <value>Fixed</value>
@@ -493,19 +496,25 @@
     <value>#.#######</value>
   </data>
   <data name="ToolStripComboBoxNumberFormatting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
+    <value>121, 27</value>
+  </data>
+  <data name="ToolStripComboBoxNumberFormatting.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="ToolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 27</value>
+    <value>6, 25</value>
   </data>
   <data name="ToolStripLabel7.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="ToolStripLabel7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 15</value>
+    <value>134, 24</value>
   </data>
   <data name="ToolStripLabel7.Text" xml:space="preserve">
     <value>Formatação das Frações</value>
+  </data>
+  <data name="ToolStripLabel7.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="ToolStripComboBoxNumberFractionFormatting.Items" xml:space="preserve">
     <value>Fixed</value>
@@ -595,13 +604,16 @@
     <value>#.#######</value>
   </data>
   <data name="ToolStripComboBoxNumberFractionFormatting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
+    <value>121, 25</value>
+  </data>
+  <data name="ToolStripComboBoxNumberFractionFormatting.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="ToolStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
   </data>
   <data name="ToolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1226, 27</value>
+    <value>1074, 25</value>
   </data>
   <data name="ToolStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -625,7 +637,7 @@
     <value>0, 0</value>
   </data>
   <data name="ToolStripPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1229, 27</value>
+    <value>1229, 25</value>
   </data>
   <data name="&gt;&gt;ToolStripPanel1.Name" xml:space="preserve">
     <value>ToolStripPanel1</value>
@@ -1378,10 +1390,10 @@
     <value>Tahoma, 11world</value>
   </data>
   <data name="dckPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+    <value>0, 25</value>
   </data>
   <data name="dckPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1229, 475</value>
+    <value>1229, 477</value>
   </data>
   <data name="dckPanel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
