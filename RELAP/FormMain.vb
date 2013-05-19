@@ -2536,7 +2536,7 @@ sim:                Dim myStream As System.IO.FileStream
      
      
 
-        filename = Nothing
+        ' filename = Nothing
 
         ''Dim allcomp As String = Nothing
         ''For Each item As Control In Me.Controls
@@ -2641,7 +2641,7 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*          COPY RIGHT @ PIEAS PAKISTAN")
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*======================================================================")
-            generate.WriteLine(("*FILE :" & filename & "   ") + DateTime.Now)
+            generate.WriteLine(("*FILE :" & SaveFileDialog1.FileName & "   ") + DateTime.Now)
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*======================================================================")
@@ -2727,11 +2727,11 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Time Dependent Volume" + Format(univID, "###"))
+                generate.WriteLine("*         Component Time Dependent Volume" & univID.ToString("D3"))
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine(Format(univID.ToString, "###") & "0000 " + kvp.Value.Name & " tmdpvol")
+                generate.WriteLine(univID.ToString("D3") & "0000 " + kvp.Value.Name & " tmdpvol")
 
-                output = ((((((((Format(univID.ToString, "###") & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
+                output = ((((((((univID.ToString("D3") & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
                 generate.WriteLine(output)
 
                 ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
