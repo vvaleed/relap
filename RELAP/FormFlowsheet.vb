@@ -1392,8 +1392,8 @@ Imports RELAP.RELAP.FormClasses
                         Exit Sub
                     ElseIf Not gObjFrom.TipoObjeto = TipoObjeto.MaterialStream And Not gObjFrom.TipoObjeto = TipoObjeto.EnergyStream Then
                         If Not gObjTo.TipoObjeto = TipoObjeto.EnergyStream And Not gObjTo.TipoObjeto = TipoObjeto.MaterialStream Then
-                            VDialog.Show(RELAP.App.GetLocalString("Nopossvelrealizaress"), RELAP.App.GetLocalString("Erro"), MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            'VDialog.Show(RELAP.App.GetLocalString("Nopossvelrealizaress"), RELAP.App.GetLocalString("Erro"), MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            'Exit Sub
                         End If
                     ElseIf gObjFrom.TipoObjeto = TipoObjeto.MaterialStream And gObjTo.TipoObjeto = TipoObjeto.EnergyStream Then
                         VDialog.Show(RELAP.App.GetLocalString("Nopossvelrealizaress"), RELAP.App.GetLocalString("Erro"), MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1466,6 +1466,12 @@ Imports RELAP.RELAP.FormClasses
                             Case TipoObjeto.Cooler
                                 GoTo 100
                             Case TipoObjeto.Pipe
+                                GoTo 100
+                            Case TipoObjeto.Tank
+                                GoTo 100
+                            Case TipoObjeto.FuelRod
+                                GoTo 100
+                            Case TipoObjeto.Simulator
                                 GoTo 100
                             Case TipoObjeto.Expander
                                 GoTo 100
