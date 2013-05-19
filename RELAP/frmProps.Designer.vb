@@ -187,7 +187,7 @@ Partial Class frmProps
         Me.PGEx1.ToolStrip.Size = CType(resources.GetObject("PGEx1.ToolStrip.Size"), System.Drawing.Size)
         Me.PGEx1.ToolStrip.TabIndex = CType(resources.GetObject("PGEx1.ToolStrip.TabIndex"), Integer)
         Me.PGEx1.ToolStrip.TabStop = True
-        Me.PGEx1.ToolStrip.Text = resources.GetString("PGEx1.ToolStrip.Text")
+        Me.PGEx1.ToolStrip.Text = "PropertyGrid Toolbar"
         Me.PGEx1.ToolStrip.Visible = CType(resources.GetObject("PGEx1.ToolStrip.Visible"), Boolean)
         '
         'TSObj
@@ -276,7 +276,7 @@ Partial Class frmProps
         Me.PGEx2.ToolStrip.Size = CType(resources.GetObject("PGEx2.ToolStrip.Size"), System.Drawing.Size)
         Me.PGEx2.ToolStrip.TabIndex = CType(resources.GetObject("PGEx2.ToolStrip.TabIndex"), Integer)
         Me.PGEx2.ToolStrip.TabStop = True
-        Me.PGEx2.ToolStrip.Text = resources.GetString("PGEx2.ToolStrip.Text")
+        Me.PGEx2.ToolStrip.Text = "PropertyGrid Toolbar"
         Me.PGEx2.ToolStrip.Visible = CType(resources.GetObject("PGEx2.ToolStrip.Visible"), Boolean)
         '
         'TableLayoutPanel6
