@@ -247,7 +247,7 @@
     <value>0, 0</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Objeto selecionado</value>
+    <value>PropertyGrid Toolbar</value>
   </data>
   <data name="PGEx1.DocCommentTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left</value>
@@ -365,7 +365,7 @@
     <value>False</value>
   </data>
   <data name="$this.TabText" xml:space="preserve">
-    <value>Objeto selecionado</value>
+    <value>PropertyGrid Toolbar</value>
   </data>
   <data name="Label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -898,10 +898,10 @@
   <data name="&gt;&gt;LblStatusObj.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
     <value>en-AU</value>
-  </metadata>
+  </data>
 </root>
