@@ -2726,6 +2726,7 @@ sim:                Dim myStream As System.IO.FileStream
             'End If
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
                 '  MsgBox(kvp.Key)
+                kvp.Value.FlowArea.cardno()
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Time Dependent Volume '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")

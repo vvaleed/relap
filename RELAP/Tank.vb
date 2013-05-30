@@ -30,6 +30,14 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
 
+        Structure RelapProperty
+            Public value As String
+            Public cardno As String
+            Public wordno As String
+        End Structure
+
+
+
         Private m_ThermalStratificationModel As Boolean
         Public Property ThermalStratificationModel() As Boolean
             Get
