@@ -2223,6 +2223,8 @@ Public Class frmProps
                 If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
                 bb.Volume = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.volume, e.ChangedItem.Value)
 
+            ElseIf e.ChangedItem.Label.Contains("Azimuthal Angle") Then
+                bb.Azimuthalangle = e.ChangedItem.Value
             End If
 
             'If ChildParent.Options.CalculatorActivated Then
