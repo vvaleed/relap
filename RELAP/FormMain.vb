@@ -2727,9 +2727,9 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Time Dependent Volume" & univID.ToString("D3"))
+                generate.WriteLine("*         Component Time Dependent Volume '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine(univID.ToString("D3") & "0000 " + kvp.Value.Name & " tmdpvol")
+                generate.WriteLine(univID.ToString("D3") & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpvol")
 
                 output = ((((((((univID.ToString("D3") & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
                 generate.WriteLine(output)
