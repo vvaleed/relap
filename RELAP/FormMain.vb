@@ -2534,7 +2534,7 @@ sim:                Dim myStream As System.IO.FileStream
 
 
      
-     
+        univID = 0
 
         ' filename = Nothing
 
