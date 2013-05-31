@@ -229,7 +229,8 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
-    <Compile Include="FuelRod.vb" />
+    <Compile Include="objects\SingleJunction.vb" />
+    <Compile Include="objects\FuelRod.vb" />
     <Compile Include="Language\RELAP.Designer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -249,8 +250,8 @@
     <Compile Include="Settings.vb" />
     <Compile Include="SharedFunctions.vb" />
     <Compile Include="Classes\Unit\SistemasDeUnidades.vb" />
-    <Compile Include="Simulator.vb" />
-    <Compile Include="Tank.vb" />
+    <Compile Include="objects\Simulator.vb" />
+    <Compile Include="objects\Tank.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.de.resx">
@@ -262,9 +263,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlowsheet.de.resx">
       <DependentUpon>FormFlowsheet.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlowsheet.en-US.resx">
       <DependentUpon>FormFlowsheet.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlowsheet.en.resx">
       <DependentUpon>FormFlowsheet.vb</DependentUpon>
