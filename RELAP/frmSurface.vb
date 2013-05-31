@@ -2048,6 +2048,25 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
                 ChildParent.Collections.CLCS_TankCollection.Add(myTank.Name, myCOTK)
+            Case TipoObjeto.Cooler
+                Dim myCooler As New CoolerGraphic(mpx, mpy, 50, 50, 0)
+                myCooler.LineWidth = 2
+                myCooler.Fill = True
+                myCooler.FillColor = fillclr
+                myCooler.LineColor = lineclr
+                myCooler.Tag = "SNGLJUN-" & Format(ChildParent.Collections.ObjectCounter("SingleJunction"), "00#")
+                ChildParent.Collections.UpdateCounter("SingleJunction")
+                If tag <> "" Then myCooler.Tag = tag
+                gObj = myCooler
+                gObj.Name = "SNGLJUN-" & Guid.NewGuid.ToString
+                ChildParent.Collections.CoolerCollection.Add(gObj.Name, myCooler)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.cooler = New RELAP.SimulationObjects.UnitOps.cooler(myCooler.Name, "Resfriador")
+                myCOTK.GraphicObject = myCooler
+                ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
+                ChildParent.Collections.CLCS_CoolerCollection.Add(myCooler.Name, myCOTK)
             Case TipoObjeto.FuelRod
                 Dim myTank As New FuelRodGraphic(mpx, mpy, 50, 50, 0)
                 myTank.LineWidth = 2
