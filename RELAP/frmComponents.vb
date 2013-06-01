@@ -16,7 +16,7 @@
             '.Rows.Add(New Object() {"Divisor", Me.ImageList2.Images(4), "Divisor"})
             .Rows.Add(New Object() {"Resfriador", Me.ImageList2.Images(1), "Single Junction"})
             '.Rows.Add(New Object() {"Aquecedor", Me.ImageList2.Images(2), "Aquecedor"})
-            '.Rows.Add(New Object() {"Tubulao", Me.ImageList2.Images(5), "Tubulao"})
+            .Rows.Add(New Object() {"Tubulao", Me.ImageList2.Images(5), "Pipe"})
             '.Rows.Add(New Object() {"Vlvula", Me.ImageList2.Images(15), "Vlvula"})
             '.Rows.Add(New Object() {"Bomba", Me.ImageList2.Images(6), "Bomba"})
             '.Rows.Add(New Object() {"CompressorAdiabtico", Me.ImageList2.Images(0), "CompressorAdiabtico"})
