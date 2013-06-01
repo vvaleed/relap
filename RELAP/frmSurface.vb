@@ -2086,6 +2086,25 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myPipe
                 ChildParent.Collections.ObjectCollection.Add(myPipe.Name, myCOTK)
                 ChildParent.Collections.CLCS_PipeCollection.Add(myPipe.Name, myCOTK)
+            Case TipoObjeto.Valve
+                Dim myValve As New ValveGraphic(mpx, mpy, 50, 50, 0)
+                myValve.LineWidth = 2
+                myValve.Fill = True
+                myValve.FillColor = fillclr
+                myValve.LineColor = lineclr
+                myValve.Tag = "VALVE-" & Format(ChildParent.Collections.ObjectCounter("Valve"), "00#")
+                ChildParent.Collections.UpdateCounter("Valve")
+                If tag <> "" Then myValve.Tag = tag
+                gObj = myValve
+                gObj.Name = "VALVE-" & Guid.NewGuid.ToString
+                ChildParent.Collections.ValveCollection.Add(gObj.Name, myValve)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Valve = New RELAP.SimulationObjects.UnitOps.Valve(myValve.Name, "Valve")
+                myCOTK.GraphicObject = myValve
+                ChildParent.Collections.ObjectCollection.Add(myValve.Name, myCOTK)
+                ChildParent.Collections.CLCS_ValveCollection.Add(myValve.Name, myCOTK)
             Case TipoObjeto.FuelRod
                 Dim myTank As New FuelRodGraphic(mpx, mpy, 50, 50, 0)
                 myTank.LineWidth = 2
