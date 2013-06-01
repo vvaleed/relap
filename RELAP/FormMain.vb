@@ -2534,7 +2534,7 @@ sim:                Dim myStream As System.IO.FileStream
 
 
      
-        univID = 0
+        univID = 1
 
         ' filename = Nothing
 
@@ -2733,6 +2733,32 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(univID.ToString("D3") & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpvol")
 
                 output = ((((((((univID.ToString("D3") & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
+                generate.WriteLine(output)
+
+                ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
+                'generate.WriteLine(output)
+
+                'For k As Integer = 0 To Convert.ToInt32(Class1.tmdpvol(i, 1).counter) - 1
+                '    If k < 10 Then
+                '        generate.WriteLine((Format(univID, "###") + "020" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
+                '    Else
+                '        generate.WriteLine((Format(univID, "###") + "02" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
+
+                '    End If
+
+                'Next
+                univID = univID + 1
+                '  MsgBox(kvp.Value.ComponentName)
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.cooler) In ChildParent.Collections.CLCS_CoolerCollection
+                '  MsgBox(kvp.Key)
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Single Junction '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(univID.ToString("D3") & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
+
+                output = (((((univID.ToString("D3") & "0101 " & kvp.Value.FromComponent & " ") & kvp.Value.ToComponent & " ") & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0000000"
                 generate.WriteLine(output)
 
                 ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
