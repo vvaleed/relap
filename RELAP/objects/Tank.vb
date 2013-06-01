@@ -38,53 +38,73 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
 
-        Private m_ThermalStratificationModel As Boolean
+        Private m_t As Boolean
         Public Property ThermalStratificationModel() As Boolean
             Get
-                Return m_ThermalStratificationModel
+                Return m_t
             End Get
             Set(ByVal value As Boolean)
-                m_ThermalStratificationModel = value
+                m_t = value
             End Set
         End Property
 
-        Private m_LevelTrackingModel As Boolean
+        Private m_l As Boolean
         Public Property LevelTrackingModel() As Boolean
             Get
-                Return m_LevelTrackingModel
+                Return m_l
             End Get
             Set(ByVal value As Boolean)
-                m_LevelTrackingModel = value
+                m_l = value
             End Set
         End Property
 
-        Private m_InterphaseFriction As Boolean
+        Private m_p As Boolean
+        Public Property PModel() As Boolean
+            Get
+                Return m_p
+            End Get
+            Set(ByVal value As Boolean)
+                m_p = value
+            End Set
+        End Property
+
+        Private m_v As Boolean
+        Public Property VModel() As Boolean
+            Get
+                Return m_v
+            End Get
+            Set(ByVal value As Boolean)
+                m_v = value
+            End Set
+        End Property
+
+        Private m_b As Boolean
         Public Property InterphaseFriction() As Boolean
             Get
-                Return m_InterphaseFriction
+                Return m_b
             End Get
             Set(ByVal value As Boolean)
-                m_InterphaseFriction = value
+                m_b = value
             End Set
         End Property
 
-        Private m_ComputeWallFriction As Boolean
+        Private m_f As Boolean
         Public Property ComputeWallFriction() As Boolean
             Get
-                Return m_ComputeWallFriction
+                Return m_f
             End Get
             Set(ByVal value As Boolean)
-                m_ComputeWallFriction = value
+                m_f = value
             End Set
         End Property
 
-        Private m_EquilibriumTemp As Boolean
+        Private m_e As Boolean
         Public Property EquilibriumTemperature() As Boolean
             Get
-                Return m_EquilibriumTemp
+                Return m_e
             End Get
             Set(ByVal value As Boolean)
-                m_EquilibriumTemp = value
+                m_e = value
             End Set
         End Property
 
@@ -102,6 +122,25 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private m_LengthofVolume As Double
+        Public Property LengthofVolume() As Double
+            Get
+                Return m_LengthofVolume
+            End Get
+            Set(ByVal value As Double)
+                m_LengthofVolume = value
+            End Set
+        End Property
+
+        Private m_VolumeofVolume As Double
+        Public Property VolumeofVolume() As Double
+            Get
+                Return m_VolumeofVolume
+            End Get
+            Set(ByVal value As Double)
+                m_VolumeofVolume = value
+            End Set
+        End Property
 
         Private m_HydraulicDiameter As Double
         Public Property HydraulicDiameter() As Double
@@ -153,15 +192,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_LengthofVolume As Double
-        Public Property LengthofVolume() As Double
-            Get
-                Return m_LengthofVolume
-            End Get
-            Set(ByVal value As Double)
-                m_LengthofVolume = value
-            End Set
-        End Property
+
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
@@ -454,6 +485,12 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
+                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Volume of Volume", su.volume), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Volume of Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
                 valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Azimuthal Angle", True)
                 With .Item(.Item.Count - 1)
@@ -486,36 +523,46 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("TKVol"), su.volume), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), RELAP.App.GetLocalString("TKVol"), True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(RELAP.App.GetLocalString("TKVol"), su.volume), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), RELAP.App.GetLocalString("TKVol"), True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
+                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2. Volume Control Flags", "Thermal Stratification Model", True)
+                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "2. Volume Control Flags", "Level Tracking Model", True)
+                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", True, "Volume Control Flags", "Mixture Level Tracking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "2. Volume Control Flags", "Interphase Friction Model", True)
+                .Item.Add(("P Model"), Me, "PModel", True, "Volume Control Flags", "P Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "2. Volume Control Flags", "Compute Wall Friction", True)
+                .Item.Add(("V Model"), Me, "VModel", True, "Volume Control Flags", "V Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2. Volume Control Flags", "Equilibrium Temperature", True)
+                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", True, "Volume Control Flags", "Interphase Friction Model", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", True, "Volume Control Flags", "Compute Wall Friction", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", True, "Volume Control Flags", "Equilibrium Temperature", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
