@@ -22,7 +22,7 @@ Namespace RELAP.SistemasDeUnidades
 
         Public nome As String
 
-        Public area, distance, time, volume, molar_volume, diameter, thickness, molar_conc, mass_conc, _
+        Public no_unit, area, distance, time, volume, molar_volume, diameter, thickness, molar_conc, mass_conc, _
                 heat_transf_coeff, force, accel, spec_vol, reac_rate, velocity, foulingfactor, angle As String
 
         Public molar_enthalpy, molar_entropy As String
@@ -92,6 +92,7 @@ Namespace RELAP.SistemasDeUnidades
             With Me
 
                 .nome = RELAP.App.GetLocalString("SistemaSI")
+                .no_unit = ""
                 .angle = "deg"
                 .accel = "m2/s"
                 .area = "m2"
