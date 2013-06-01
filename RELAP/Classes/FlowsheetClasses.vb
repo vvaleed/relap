@@ -78,6 +78,7 @@ Namespace RELAP.FormClasses
         Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
         Public CLCS_CoolerCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.cooler)
         Public CLCS_PipeCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
+        Public CLCS_ValveCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
         Public CLCS_SimulatorCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
 
 
@@ -130,6 +131,7 @@ Namespace RELAP.FormClasses
             CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
             CLCS_CoolerCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.cooler)
             CLCS_PipeCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
+            CLCS_ValveCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
             CLCS_FuelRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
             CLCS_SimulatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
 
@@ -145,6 +147,7 @@ Namespace RELAP.FormClasses
                 .Add("TANK", Me.TankCollection.Count)
                 .Add("SingleJunction", Me.CoolerCollection.Count)
                 .Add("Pipe", Me.PipeCollection.Count)
+                .Add("Valve", Me.ValveCollection.Count)
                 .Add("FuelRod", Me.TankCollection.Count)
                 .Add("Simulator", Me.TankCollection.Count)
             End With
