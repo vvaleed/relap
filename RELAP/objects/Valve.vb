@@ -21,7 +21,7 @@ Imports Microsoft.Msdn.Samples.GraphicObjects
 
 Namespace RELAP.SimulationObjects.UnitOps
 
-    <System.Serializable()> Public Class cooler
+    <System.Serializable()> Public Class Valve
 
         Inherits SimulationObjects_UnitOpBaseClass
 
