@@ -30,6 +30,76 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
 
+        Private m_EnterVelocityOrMassFlowRate As Boolean
+        Public Property EnterVelocityOrMassFlowRate() As Boolean
+            Get
+                Return m_EnterVelocityOrMassFlowRate
+            End Get
+            Set(ByVal value As Boolean)
+                m_EnterVelocityOrMassFlowRate = value
+            End Set
+        End Property
+
+        Private m_InitialLiquidVelocity As Double
+        Public Property InitialLiquidVelocity() As Double
+            Get
+                Return m_InitialLiquidVelocity
+            End Get
+            Set(ByVal value As Double)
+                m_InitialLiquidVelocity = value
+            End Set
+        End Property
+
+        Private m_InitialVaporVelocity As Double
+        Public Property InitialVaporVelocity() As Double
+            Get
+                Return m_InitialVaporVelocity
+            End Get
+            Set(ByVal value As Double)
+                m_InitialVaporVelocity = value
+            End Set
+        End Property
+
+        Private m_InterphaseVelocity As Double
+        Public Property InterphaseVelocity() As Double
+            Get
+                Return m_InterphaseVelocity
+            End Get
+            Set(ByVal value As Double)
+                m_InterphaseVelocity = value
+            End Set
+        End Property
+
+        Private m_InitialLiquidMassFlowRate As Double
+        Public Property InitialLiquidMassFlowRate() As Double
+            Get
+                Return m_InitialLiquidMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                m_InitialLiquidMassFlowRate = value
+            End Set
+        End Property
+
+        Private m_InitialVaporMassFlowRate As Double
+        Public Property InitialVaporMassFlowRate() As Double
+            Get
+                Return m_InitialVaporMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                m_InitialVaporMassFlowRate = value
+            End Set
+        End Property
+
+        Private m_InterphaseMassFlowRate As Double
+        Public Property InterphaseMassFlowRate() As Double
+            Get
+                Return m_InterphaseMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                m_InterphaseMassFlowRate = value
+            End Set
+        End Property
+
         Private m_ThermalStratificationModel As Boolean
         Public Property ThermalStratificationModel() As Boolean
             Get
@@ -489,29 +559,78 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
+                .Item.Add(("True for Mass Flow rate"), Me, "EnterVelocityOrMassFlowRate", False, "Single Junction Initial Conditions", "True for Mass Flow rate", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Liquid Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialVaporVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Vapor Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Vapor Velocity", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InterphaseVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Interphase Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Interphase Velocity", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Liquid Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Vapor Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InterphaseMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Interphase Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Interphase Mass Flow Rate", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+
                 ' valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2. Volume Control Flags", "Thermal Stratification Model", True)
+                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "2. Volume Control Flags", "Level Tracking Model", True)
+                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "Volume Control Flags", "Level Tracking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "2. Volume Control Flags", "Interphase Friction Model", True)
+                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "Volume Control Flags", "Interphase Friction Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "2. Volume Control Flags", "Compute Wall Friction", True)
+                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "Volume Control Flags", "Compute Wall Friction", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2. Volume Control Flags", "Equilibrium Temperature", True)
+                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "Volume Control Flags", "Equilibrium Temperature", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)

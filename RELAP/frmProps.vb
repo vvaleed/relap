@@ -2262,6 +2262,27 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Reverse Flow Energy Loss Coefficient") Then
                 sjn.RflowLossCo = e.ChangedItem.Value
 
+            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate") Then
+                sjn.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity") Then
+                sjn.InitialLiquidVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity") Then
+                sjn.InitialVaporVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity") Then
+                sjn.InterphaseVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate") Then
+                sjn.InitialLiquidMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate") Then
+                sjn.InitialVaporMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Interphase Mass Flow Rate") Then
+                sjn.InterphaseMassFlowRate = e.ChangedItem.Value
+
             End If
 
             'If ChildParent.Options.CalculatorActivated Then
