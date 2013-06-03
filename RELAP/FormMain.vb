@@ -2630,6 +2630,9 @@ sim:                Dim myStream As System.IO.FileStream
 
         ' input file generation code
 
+        If frmInitialSettings.optWater.Checked = True Then
+
+        End If
 
         SaveFileDialog1.Filter = "RELAP CODE File (*.i)|*.i"
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then

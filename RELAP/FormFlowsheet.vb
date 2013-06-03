@@ -1379,6 +1379,13 @@ Imports RELAP.RELAP.FormClasses
 
             'Next
 
+            ' karwai by waleed and afnan
+            If gObjTo.TipoObjeto = TipoObjeto.Cooler Then
+
+            End If
+            Dim waleed As String
+            waleed = gObjTo.Description
+
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
             Dim InConSlot, OutConSlot As New ConnectionPoint
@@ -1402,6 +1409,7 @@ Imports RELAP.RELAP.FormClasses
                         VDialog.Show(RELAP.App.GetLocalString("Nopossvelrealizaress"), RELAP.App.GetLocalString("Erro"), MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
+
                     If gObjTo.IsEnergyStream = False Then
                         If Not gObjFrom.IsEnergyStream Then
                             If tidx = -1 Then

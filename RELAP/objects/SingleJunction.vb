@@ -502,19 +502,19 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FromComponent), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("From Component", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "From Component", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FromComponent), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("From Component", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "From Component", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.ToComponent), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("To Component", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "To component", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.ToComponent), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("To Component", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "To component", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Junction Flow Area", su.area), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Junction Flow Area", True)
