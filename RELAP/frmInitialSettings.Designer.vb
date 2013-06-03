@@ -25,9 +25,9 @@ Partial Class frmInitialSettings
         Me.chklistboxCondensibleGases = New System.Windows.Forms.CheckedListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.optDefaultFluid = New System.Windows.Forms.RadioButton()
-        Me.optWater = New System.Windows.Forms.RadioButton()
         Me.optHeavyWater = New System.Windows.Forms.RadioButton()
+        Me.optWater = New System.Windows.Forms.RadioButton()
+        Me.optDefaultFluid = New System.Windows.Forms.RadioButton()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -64,16 +64,16 @@ Partial Class frmInitialSettings
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fluid"
         '
-        'optDefaultFluid
+        'optHeavyWater
         '
-        Me.optDefaultFluid.AutoSize = True
-        Me.optDefaultFluid.Location = New System.Drawing.Point(7, 20)
-        Me.optDefaultFluid.Name = "optDefaultFluid"
-        Me.optDefaultFluid.Size = New System.Drawing.Size(84, 17)
-        Me.optDefaultFluid.TabIndex = 0
-        Me.optDefaultFluid.TabStop = True
-        Me.optDefaultFluid.Text = "Default Fluid"
-        Me.optDefaultFluid.UseVisualStyleBackColor = True
+        Me.optHeavyWater.AutoSize = True
+        Me.optHeavyWater.Location = New System.Drawing.Point(7, 66)
+        Me.optHeavyWater.Name = "optHeavyWater"
+        Me.optHeavyWater.Size = New System.Drawing.Size(88, 17)
+        Me.optHeavyWater.TabIndex = 0
+        Me.optHeavyWater.TabStop = True
+        Me.optHeavyWater.Text = "Heavy Water"
+        Me.optHeavyWater.UseVisualStyleBackColor = True
         '
         'optWater
         '
@@ -86,16 +86,16 @@ Partial Class frmInitialSettings
         Me.optWater.Text = "Water"
         Me.optWater.UseVisualStyleBackColor = True
         '
-        'optHeavyWater
+        'optDefaultFluid
         '
-        Me.optHeavyWater.AutoSize = True
-        Me.optHeavyWater.Location = New System.Drawing.Point(7, 66)
-        Me.optHeavyWater.Name = "optHeavyWater"
-        Me.optHeavyWater.Size = New System.Drawing.Size(88, 17)
-        Me.optHeavyWater.TabIndex = 0
-        Me.optHeavyWater.TabStop = True
-        Me.optHeavyWater.Text = "Heavy Water"
-        Me.optHeavyWater.UseVisualStyleBackColor = True
+        Me.optDefaultFluid.AutoSize = True
+        Me.optDefaultFluid.Location = New System.Drawing.Point(7, 20)
+        Me.optDefaultFluid.Name = "optDefaultFluid"
+        Me.optDefaultFluid.Size = New System.Drawing.Size(84, 17)
+        Me.optDefaultFluid.TabIndex = 0
+        Me.optDefaultFluid.TabStop = True
+        Me.optDefaultFluid.Text = "Default Fluid"
+        Me.optDefaultFluid.UseVisualStyleBackColor = True
         '
         'CheckBox1
         '
