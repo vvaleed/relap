@@ -229,6 +229,7 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
+    <Compile Include="objects\Pipe.vb" />
     <Compile Include="objects\SingleJunction.vb" />
     <Compile Include="objects\FuelRod.vb" />
     <Compile Include="Language\RELAP.Designer.vb" />
@@ -247,6 +248,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="objects\Valve.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SharedFunctions.vb" />
     <Compile Include="Classes\Unit\SistemasDeUnidades.vb" />
