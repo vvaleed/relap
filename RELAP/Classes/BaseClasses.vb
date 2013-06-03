@@ -1076,6 +1076,16 @@ Imports System.Runtime.InteropServices
         End Set
     End Property
 
+    Private _uid As String
+    Public Property UID() As String
+        Get
+            Return _uid
+        End Get
+        Set(ByVal value As String)
+            _uid = value
+        End Set
+    End Property
+
     Public Property Nome() As String
         Get
             Return m_ComponentName
@@ -1114,8 +1124,16 @@ Imports System.Runtime.InteropServices
 
     Sub CreateNew()
         Me.m_annotation = New RELAP.Outros.Annotation
+        Dim temp As Integer
+        temp = frmSurface.uid
+        temp = temp + 1
+        frmSurface.uid = temp
+
+        Me._uid = temp.ToString("D3")
+        '  Me._uid = Int(Me._uid).ToString("D3")
         Me.m_nodeitems = New System.Collections.Generic.Dictionary(Of Integer, RELAP.Outros.NodeItem)
         Me.m_qtnodeitems = New System.Collections.Generic.Dictionary(Of Integer, RELAP.Outros.NodeItem)
+
     End Sub
 
     Public Function Clone() As Object Implements System.ICloneable.Clone
@@ -2124,6 +2142,9 @@ End Class
 
 #End Region
 
+    Public Sub New()
+
+    End Sub
 End Class
 
 <System.Serializable()> Public MustInherit Class SimulationObjects_SpecialOpBaseClass

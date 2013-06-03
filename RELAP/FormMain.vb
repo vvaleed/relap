@@ -2746,9 +2746,9 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Time Dependent Volume '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine(univID.ToString("D3") & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpvol")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpvol")
 
-                output = ((((((((univID.ToString("D3") & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
+                output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
                 generate.WriteLine(output)
 
                 ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
@@ -2772,15 +2772,15 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Single Junction '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine(univID.ToString("D3") & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
 
-                output = (((((univID.ToString("D3") & "0101 " & kvp.Value.FromComponent & " ") & kvp.Value.ToComponent & " ") & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0000100"
+                output = (((((kvp.Value.UID & "0101 " & kvp.Value.FromComponent & " ") & kvp.Value.ToComponent & " ") & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0000100"
                 generate.WriteLine(output)
 
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then
-                    output = (((univID.ToString("D3") & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
+                    output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
                 ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
-                    output = (((univID.ToString("D3") & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseMassFlowRate
+                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseMassFlowRate
                 End If
                 generate.WriteLine(output)
 

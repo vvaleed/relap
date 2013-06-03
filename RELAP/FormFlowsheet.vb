@@ -53,6 +53,7 @@ Imports RELAP.RELAP.FormClasses
     Public FormSurface As New frmSurface
     Public FormProps As New frmProps
     Public FormInitialSettings As New frmInitialSettings
+    'Public FormEBT As New frmebt
     'Public FormObjList As New frmObjList
     'Public FormLog As New frmLog
     'Public FormMatList As New frmMatList
