@@ -58,6 +58,101 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private m_pressure As Double
+        Public Property Pressure() As Double
+            Get
+                Return m_pressure
+            End Get
+            Set(ByVal value As Double)
+                m_pressure = value
+            End Set
+        End Property
+
+
+        Private m_temperature As Double
+        Public Property Temperature() As Double
+            Get
+                Return m_temperature
+            End Get
+            Set(ByVal value As Double)
+                m_temperature = value
+            End Set
+        End Property
+
+        Private m_liquidspecificinternalenergy As Double
+        Public Property LiquidSpecificInternalEnergy() As Double
+            Get
+                Return m_liquidspecificinternalenergy
+            End Get
+            Set(ByVal value As Double)
+                m_liquidspecificinternalenergy = value
+            End Set
+        End Property
+
+
+        Private _vapourspecificinternalEnergy As Double
+        Public Property VapourSpecificInternalEnergy() As Double
+            Get
+                Return _vapourspecificinternalEnergy
+            End Get
+            Set(ByVal value As Double)
+                _vapourspecificinternalEnergy = value
+            End Set
+        End Property
+
+        Private _voidFraction As Double
+        Public Property VoidFraction() As Double
+            Get
+                Return _voidFraction
+            End Get
+            Set(ByVal value As Double)
+                _voidFraction = value
+            End Set
+        End Property
+
+        Private _staticquality As Double
+        Public Property StaticQuality() As Double
+            Get
+                Return _staticquality
+            End Get
+            Set(ByVal value As Double)
+                _staticquality = value
+            End Set
+        End Property
+
+        Private _noncondensablequality As Double
+        Public Property NonCondensableQuality() As Double
+            Get
+                Return _noncondensablequality
+            End Get
+            Set(ByVal value As Double)
+                _noncondensablequality = value
+            End Set
+        End Property
+
+
+
+        Private _liquidtemperature As Double
+        Public Property LiquidTemperature() As Double
+            Get
+                Return _liquidtemperature
+            End Get
+            Set(ByVal value As Double)
+                _liquidtemperature = value
+            End Set
+        End Property
+
+
+        Private _vapourtemperature As Double
+        Public Property VapourTemperature() As Double
+            Get
+                Return _vapourtemperature
+            End Get
+            Set(ByVal value As Double)
+                _vapourtemperature = value
+            End Set
+        End Property
+
         Private m_p As Boolean
         Public Property PModel() As Boolean
             Get
@@ -107,7 +202,6 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_e = value
             End Set
         End Property
-
 
 
 
@@ -542,6 +636,24 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
+                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.Temperature), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.LiquidTemperature), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Liquid Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.VapourTemperature), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Vapour Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
                 .Item.Add(("P Model"), Me, "PModel", True, "Volume Control Flags", "P Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
@@ -552,6 +664,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
+
                 .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", True, "Volume Control Flags", "Interphase Friction Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
@@ -568,7 +681,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Boolean)
                 End With
 
-
+               
+               
 
 
             End With

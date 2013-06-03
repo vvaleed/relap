@@ -185,19 +185,19 @@
     <value>243, 6</value>
   </data>
   <data name="ToolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="ToolStripMenuItem6.Text" xml:space="preserve">
     <value>90 °</value>
   </data>
   <data name="BToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="BToolStripMenuItem.Text" xml:space="preserve">
     <value>180 °</value>
   </data>
   <data name="ToolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="ToolStripMenuItem7.Text" xml:space="preserve">
     <value>270 °</value>
