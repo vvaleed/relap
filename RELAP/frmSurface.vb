@@ -282,14 +282,7 @@ Public Class frmSurface
                                 ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_MasterTable Then
                                     CType(Me.FlowsheetDesignSurface.SelectedObject, RELAP.GraphicObjects.MasterTableGraphic).PopulateGrid(PGEx1, ChildParent)
                                 Else
-                                    If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Tank Or Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
-                                        Dim frm As New frmebt
-                                        frm.Show()
-
-
-                                    Else
-                                        'frmebt.Visible = False
-                                    End If
+                                     
                                     ChildParent.Collections.ObjectCollection(Me.FlowsheetDesignSurface.SelectedObject.Name).PopulatePropertyGrid(PGEx1, ChildParent.Options.SelectedUnitSystem)
                                 End If
                                 ChildParent.FormProps.ResumeLayout()
