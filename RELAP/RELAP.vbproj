@@ -229,6 +229,7 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
+    <Compile Include="objects\Shroud.vb" />
     <Compile Include="objects\Pipe.vb" />
     <Compile Include="objects\SingleJunction.vb" />
     <Compile Include="objects\FuelRod.vb" />
