@@ -30,6 +30,9 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
 
+
+      
+
         Private m_ThermalStratificationModel As Boolean
         Public Property ThermalStratificationModel() As Boolean
             Get

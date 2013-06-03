@@ -19,7 +19,7 @@ Public Class frmSurface
     Public PGEx1 As PropertyGridEx.PropertyGridEx
 
     Public m_startobj, m_endobj As GraphicObject
-
+    Public uid As String
     Public m_qt As RELAP.GraphicObjects.QuickTableGraphic
 
     Public ticks As Integer
@@ -66,7 +66,7 @@ Public Class frmSurface
     End Sub
 
     Private Sub frmSurface_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        uid = 0
         ChildParent = Me.ParentForm
         PGEx1 = Me.ChildParent.FormProps.PGEx1
         PGEx2 = Me.ChildParent.FormProps.PGEx2
@@ -282,7 +282,13 @@ Public Class frmSurface
                                 ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_MasterTable Then
                                     CType(Me.FlowsheetDesignSurface.SelectedObject, RELAP.GraphicObjects.MasterTableGraphic).PopulateGrid(PGEx1, ChildParent)
                                 Else
-                                     
+                                    If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Tank Or Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
+                                        'Dim frm As New frmebt
+                                        'frm.Show()
+
+                                    Else
+                                        'frmebt.Visible = False
+                                    End If
                                     ChildParent.Collections.ObjectCollection(Me.FlowsheetDesignSurface.SelectedObject.Name).PopulatePropertyGrid(PGEx1, ChildParent.Options.SelectedUnitSystem)
                                 End If
                                 ChildParent.FormProps.ResumeLayout()
