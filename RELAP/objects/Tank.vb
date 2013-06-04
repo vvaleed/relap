@@ -626,12 +626,12 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
+                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", False, "Volume Control Flags", "Thermal Stratification Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", True, "Volume Control Flags", "Mixture Level Tracking Model", True)
+                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", False, "Volume Control Flags", "Mixture Level Tracking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
@@ -654,28 +654,28 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                .Item.Add(("P Model"), Me, "PModel", True, "Volume Control Flags", "P Model", True)
+                .Item.Add(("P Model"), Me, "PModel", False, "Volume Control Flags", "P Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("V Model"), Me, "VModel", True, "Volume Control Flags", "V Model", True)
+                .Item.Add(("V Model"), Me, "VModel", False, "Volume Control Flags", "V Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", True, "Volume Control Flags", "Interphase Friction Model", True)
+                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "Volume Control Flags", "Interphase Friction Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", True, "Volume Control Flags", "Compute Wall Friction", True)
+                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "Volume Control Flags", "Compute Wall Friction", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", True, "Volume Control Flags", "Equilibrium Temperature", True)
+                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "Volume Control Flags", "Equilibrium Temperature", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
