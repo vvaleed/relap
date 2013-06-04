@@ -150,23 +150,23 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_from As Double
-        Public Property FromComponent() As Double
+        Private m_from As String
+        Public Property FromComponent() As String
             Get
                 Return m_from
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_from = value
             End Set
         End Property
 
 
-        Private m_to As Double
-        Public Property ToComponent() As Double
+        Private m_to As String
+        Public Property ToComponent() As String
             Get
                 Return m_to
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_to = value
             End Set
         End Property
@@ -237,7 +237,11 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
+
             Me.m_ComponentDescription = descricao
+            Me.m_InitialLiquidMassFlowRate = 0.0
+            Me.m_InitialVaporMassFlowRate = 0.0
+            Me.m_EnterVelocityOrMassFlowRate = True
             Me.FillNodeItems()
             Me.QTFillNodeItems()
         End Sub

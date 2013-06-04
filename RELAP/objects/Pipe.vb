@@ -233,7 +233,12 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
+            Me.m_NumberOfVoulmes = 5.0
             Me.m_ComponentDescription = descricao
+            Me.m_LengthofVolume = 5.0
+            Me.m_VerticalAngle = -90.0
+            Me.m_FlowArea = 1.0
+
             Me.FillNodeItems()
             Me.QTFillNodeItems()
         End Sub

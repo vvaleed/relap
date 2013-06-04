@@ -402,6 +402,7 @@ Public Class frmSurface
 
             If Not m_startobj Is Nothing And Not m_endobj Is Nothing Then
                 If m_startobj.Name <> m_endobj.Name Then Call ChildParent.ConnectObject(Me.m_startobj, Me.m_endobj)
+
             End If
         End If
 
