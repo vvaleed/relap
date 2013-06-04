@@ -647,24 +647,24 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.Temperature), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.LiquidTemperature), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Liquid Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.VapourTemperature), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Vapour Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.Temperature), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.LiquidTemperature), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Liquid Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.VapourTemperature), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Vapour Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
                 .Item.Add(("P Model"), Me, "PModel", False, "Volume Control Flags", "P Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
