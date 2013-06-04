@@ -53,7 +53,7 @@ Imports RELAP.RELAP.FormClasses
     Public FormSurface As New frmSurface
     Public FormProps As New frmProps
     Public FormInitialSettings As New frmInitialSettings
-    'Public FormEBT As New frmebt
+    Public FormEBT As New frmEBT
     'Public FormObjList As New frmObjList
     'Public FormLog As New frmLog
     'Public FormMatList As New frmMatList
@@ -241,10 +241,12 @@ Imports RELAP.RELAP.FormClasses
             '  FormSpreadsheet.Show(dckPanel)
             FormSurface.Show(dckPanel)
             frmInitialSettings.Show(dckPanel)
+            frmEBT.Show(dckPanel)
 
             Try
                 FormObjListView.DockState = Docking.DockState.DockRight
                 frmInitialSettings.DockState = Docking.DockState.DockLeftAutoHide
+                frmEBT.DockState = Docking.DockState.DockLeftAutoHide
                 'FormWatch.DockState = Docking.DockState.DockRight
                 'FormWatch.DockState = Docking.DockState.DockBottom
                 'FormCOReports.DockState = Docking.DockState.DockLeft
