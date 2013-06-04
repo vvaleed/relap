@@ -2291,7 +2291,7 @@ Public Class frmProps
             If e.ChangedItem.Label.Contains("Average Burnup") Then
                 fr.AverageBurnup = e.ChangedItem.Value
             End If
-            If e.ChangedItem.Label.Contains("Number of Rods") Then
+            If e.ChangedItem.Label.Contains("No. of rods") Then
                 fr.NumberOfRods = e.ChangedItem.Value
             End If
             If e.ChangedItem.Label.Contains("Average Burnup") Then
