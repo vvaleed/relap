@@ -2284,6 +2284,31 @@ Public Class frmProps
                 sjn.InterphaseMassFlowRate = e.ChangedItem.Value
 
             End If
+        ElseIf sobj.TipoObjeto = TipoObjeto.FuelRod Then
+
+
+            Dim fr As RELAP.SimulationObjects.UnitOps.FuelRod = ChildParent.Collections.CLCS_FuelRodCollection.Item(sobj.Name)
+            If e.ChangedItem.Label.Contains("Average Burnup") Then
+                fr.AverageBurnup = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Number of Rods") Then
+                fr.NumberOfRods = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Average Burnup") Then
+                fr.AverageBurnup = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Average Burnup") Then
+                fr.AverageBurnup = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Average Burnup") Then
+                fr.AverageBurnup = e.ChangedItem.Value
+            End If
+
+
+
+
+
+
 
             'If ChildParent.Options.CalculatorActivated Then
 
