@@ -2699,6 +2699,24 @@ sim:                Dim myStream As System.IO.FileStream
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                Dim temp As Int16
+                temp = kvp.Value.UID
+                Dim CID As String
+                CID = temp.ToString("D2")
+                generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
+
+                output = "40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup
+                generate.WriteLine(output)
+                output = "40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume
+                generate.WriteLine(output)
+                output = "40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow
+                generate.WriteLine(output)
+                
+            Next kvp
             generate.Close()
             MsgBox("File Saved")
 
