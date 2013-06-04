@@ -295,6 +295,17 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me.m_flowarea = 20.0
+            Me.m_LengthofVolume = 0.0
+            Me.m_VolumeofVolume = 1000000.0
+            Me.m_Azimuthalangle = 0.0
+            Me.m_InclinationAngle = -90.0
+            Me.m_ElevationChange = -50000.0
+            Me.m_WallRoughness = 0.0
+            Me.m_HydraulicDiameter = 0
+
+            '& kvkvp.Value.HydraulicDiameter & " ") & "0000000"
+
         End Sub
 
         Public Property Volume() As Double

@@ -2536,97 +2536,7 @@ sim:                Dim myStream As System.IO.FileStream
      
         univID = 1
 
-        ' filename = Nothing
-
-        ''Dim allcomp As String = Nothing
-        ''For Each item As Control In Me.Controls
-        ''    If item.Name.Length > 3 Then
-        ''        If item.Name.Substring(0, 3) = "Gro" Then
-        ''            allcomp = allcomp + item.Name
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.sngl_vol(i).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.sngl_vol(i).gbname) = False Then
-        ''            Class1.sngl_vol(i).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.singjunc(i).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.singjunc(i).gbname) = False Then
-        ''            Class1.singjunc(i).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.pipeannulus(i, 1).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.pipeannulus(i, 1).gbname) = False Then
-        ''            Class1.pipeannulus(i, 1).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.annulus(i, 1).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.annulus(i, 1).gbname) = False Then
-        ''            Class1.annulus(i, 1).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.pump(i, 1).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.pump(i, 1).gbname) = False Then
-        ''            Class1.pump(i, 1).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.tmdpjun(i, 1).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.tmdpjun(i, 1).gbname) = False Then
-        ''            Class1.tmdpjun(i, 1).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.tmdpvol(i, 1).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.tmdpvol(i, 1).gbname) = False Then
-        ''            Class1.tmdpvol(i, 1).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.valve(i).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.valve(i).gbname) = False Then
-        ''            Class1.valve(i).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.accum(i).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.accum(i).gbname) = False Then
-        ''            Class1.accum(i).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
-        ''For i As Integer = 0 To 99
-        ''    If Class1.branch(i, 1).gbname IsNot Nothing Then
-        ''        If allcomp.Contains(Class1.branch(i, 1).gbname) = False Then
-        ''            Class1.branch(i, 1).gbname = Nothing
-        ''        End If
-        ''    End If
-        ''Next
-
+      
 
         ' input file generation code
 
@@ -2656,20 +2566,20 @@ sim:                Dim myStream As System.IO.FileStream
 
             ' card 100
             output = ChildParent.cboProblemType.SelectedItem
-   
+
             output = output & " " & ChildParent.cboProblemOption.SelectedItem
-         
+
             output = "100 " & output
             generate.WriteLine(output)
 
             ' card 101
             generate.WriteLine("101 " & ChildParent.cboInputCheck.SelectedItem)
-         
+
 
 
             ' card 102 unit selection
             output = ChildParent.ToolStripComboBoxUnitSystem.SelectedItem & " " & ChildParent.cboOutputUnits.SelectedItem
-          
+
             generate.WriteLine("102 " & output)
 
             ' 110  noncondensible gas
@@ -2751,21 +2661,11 @@ sim:                Dim myStream As System.IO.FileStream
                 output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.Volume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
                 generate.WriteLine(output)
 
-                ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
-                'generate.WriteLine(output)
-
-                'For k As Integer = 0 To Convert.ToInt32(Class1.tmdpvol(i, 1).counter) - 1
-                '    If k < 10 Then
-                '        generate.WriteLine((Format(univID, "###") + "020" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
-                '    Else
-                '        generate.WriteLine((Format(univID, "###") + "02" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
-
-                '    End If
-
-                'Next
+               
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp
+
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.cooler) In ChildParent.Collections.CLCS_CoolerCollection
                 '  MsgBox(kvp.Key)
@@ -2799,8 +2699,9 @@ sim:                Dim myStream As System.IO.FileStream
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp
-            MsgBox("File Saved")
             generate.Close()
+            MsgBox("File Saved")
+
             Exit Sub
             ' 105 mass fraction of gas
             If Class1.initial.cbair = "True" Or Class1.initial.cbargon = "True" And Class1.initial.cbcrypton = "True" Or Class1.initial.cbhelium = "True" Or Class1.initial.cbhydrogen = "True" Or Class1.initial.cbnitrogen = "True" Or Class1.initial.cbsf6 = "True" Or Class1.initial.cbxenon = "True" Then

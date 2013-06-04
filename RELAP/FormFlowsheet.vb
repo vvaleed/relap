@@ -1381,11 +1381,24 @@ Imports RELAP.RELAP.FormClasses
             'Next
 
             ' karwai by waleed and afnan
+
+            
             If gObjTo.TipoObjeto = TipoObjeto.Cooler Then
 
+
+                Me.Collections.CLCS_CoolerCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+
+
+                '  gObjTo.
             End If
-            Dim waleed As String
-            waleed = gObjTo.Description
+            If gObjFrom.TipoObjeto = TipoObjeto.Cooler Then
+
+
+                Me.Collections.CLCS_CoolerCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+
+                '  gObjTo.
+            End If
+          
 
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
