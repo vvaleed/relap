@@ -248,33 +248,35 @@ Public Class frmSurface
                         ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
                     Else
                         '   Dim nodes = ChildParent.FormObjList.TreeViewObj.Nodes.Find(e.SelectedObject.Tag, True)
-                        ChildParent.FormProps.LblNomeObj.Text = e.SelectedObject.Tag
-                        ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString(ChildParent.Collections.ObjectCollection.Item(e.SelectedObject.Name).Descricao)
-                        If e.SelectedObject.Active = False Then
-                            ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
-                            ChildParent.FormProps.LblStatusObj.ForeColor = Color.DimGray
-                        Else
-                            Select Case Me.FlowsheetDesignSurface.SelectedObject.Status
-                                Case Status.Calculated
-                                    ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-                                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
-                                Case Status.Calculating
-                                    ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculando")
-                                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.YellowGreen
-                                Case Status.ErrorCalculating
-                                    ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("NoCalculado")
-                                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.Red
-                                Case Status.Inactive
-                                    ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
-                                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.Gray
-                                Case Status.Idle
-                                    ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-                                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
-                            End Select
+                        If Me.FlowsheetDesignSurface.SelectedObjects.Count < 2 Then
+                            ChildParent.FormProps.LblNomeObj.Text = e.SelectedObject.Tag
+                            ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString(ChildParent.Collections.ObjectCollection.Item(e.SelectedObject.Name).Descricao)
+                            If e.SelectedObject.Active = False Then
+                                ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
+                                ChildParent.FormProps.LblStatusObj.ForeColor = Color.DimGray
+                            Else
+                                Select Case Me.FlowsheetDesignSurface.SelectedObject.Status
+                                    Case Status.Calculated
+                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
+                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
+                                    Case Status.Calculating
+                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculando")
+                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.YellowGreen
+                                    Case Status.ErrorCalculating
+                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("NoCalculado")
+                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.Red
+                                    Case Status.Inactive
+                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
+                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.Gray
+                                    Case Status.Idle
+                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
+                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
+                                End Select
+                            End If
                         End If
-                    End If
-                    If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
-                        If Me.FlowsheetDesignSurface.SelectedObject.IsConnector = False Then
+                        End If
+                        If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
+                        If Me.FlowsheetDesignSurface.SelectedObject.IsConnector = False And Me.FlowsheetDesignSurface.SelectedObjects.Count < 2 Then
                             ChildParent.PopulatePGEx2(Me.FlowsheetDesignSurface.SelectedObject)
                             Try
                                 If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Tabela Then
@@ -300,19 +302,19 @@ Public Class frmSurface
                         Else
                             Me.FlowsheetDesignSurface.SelectedObject = Nothing
                         End If
-                    Else
-                        PGEx2.SelectedObject = Nothing
-                        PGEx1.SelectedObject = Nothing
-                    End If
-                    PGEx2.Refresh()
-                    PGEx1.Refresh()
+                        Else
+                            PGEx2.SelectedObject = Nothing
+                            PGEx1.SelectedObject = Nothing
+                        End If
+                        PGEx2.Refresh()
+                        PGEx1.Refresh()
                 Else
-                    ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Nenhumselecionado")
-                    ChildParent.FormProps.LblTipoObj.Text = "-"
-                    ChildParent.FormProps.LblStatusObj.Text = "-"
-                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
-                    'ChildParent.FormObjList.TreeViewObj.CollapseAll()
-                    'ChildParent.FormObjList.TreeViewObj.SelectedNode = Nothing
+                        ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Nenhumselecionado")
+                        ChildParent.FormProps.LblTipoObj.Text = "-"
+                        ChildParent.FormProps.LblStatusObj.Text = "-"
+                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                        'ChildParent.FormObjList.TreeViewObj.CollapseAll()
+                        'ChildParent.FormObjList.TreeViewObj.SelectedNode = Nothing
                 End If
             Else
                 PGEx2.SelectedObject = Nothing
@@ -528,7 +530,10 @@ Public Class frmSurface
             'PGEx1.Refresh()
 
         ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
-
+            If FlowsheetDesignSurface.SelectedObjects.Count > 1 Then
+                '                MsgBox(FlowsheetDesignSurface.SelectedObjects.Count)
+                CMS_MultiSelect.Show(MousePosition)
+            End If
             If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
 
                 Me.CMS_Sel.Items("TSMI_Label").Text = Me.FlowsheetDesignSurface.SelectedObject.Tag

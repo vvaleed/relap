@@ -16,6 +16,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -354,6 +358,9 @@
       <DependentUpon>frmSurface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurface.en-US.resx">
+      <DependentUpon>frmSurface.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSurface.en-ZW.resx">
       <DependentUpon>frmSurface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurface.es.resx">
