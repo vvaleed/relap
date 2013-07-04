@@ -762,46 +762,47 @@ Imports System.Runtime.Serialization
     Private Sub GraphicsSurface_MouseUp(ByVal sender As Object, _
             ByVal e As MouseEventArgs) Handles MyBase.MouseUp
         draggingfs = False
-        If dragging And SnapToGrid Then
-            Dim horizGridSize As Integer = ConvertToHPixels(GridSize / 100) * Me.Zoom
-            Dim vertGridSize As Integer = ConvertToVPixels(GridSize / 100) * Me.Zoom
-            Dim bounds As Rectangle = ConvertToPixels(SurfaceBounds)
-            bounds = ZoomRectangle(bounds)
-            Dim oc As Point
-            Dim nlh, nlv, snapx, snapy As Integer
-            nlh = bounds.Width / horizGridSize
-            nlv = bounds.Height / vertGridSize
-            For Each go As GraphicObject In Me.SelectedObjects.Values
-                oc = New Point(go.X + go.Width / 2, go.Y + go.Height / 2)
-                snapx = Math.Round(oc.X / horizGridSize) * horizGridSize - go.Width / 2
-                snapy = Math.Round(oc.Y / vertGridSize) * vertGridSize - go.Height / 2
-                go.SetPosition(New Point(snapx, snapy))
-            Next
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            If dragging And SnapToGrid Then
+                Dim horizGridSize As Integer = ConvertToHPixels(GridSize / 100) * Me.Zoom
+                Dim vertGridSize As Integer = ConvertToVPixels(GridSize / 100) * Me.Zoom
+                Dim bounds As Rectangle = ConvertToPixels(SurfaceBounds)
+                bounds = ZoomRectangle(bounds)
+                Dim oc As Point
+                Dim nlh, nlv, snapx, snapy As Integer
+                nlh = bounds.Width / horizGridSize
+                nlv = bounds.Height / vertGridSize
+                For Each go As GraphicObject In Me.SelectedObjects.Values
+                    oc = New Point(go.X + go.Width / 2, go.Y + go.Height / 2)
+                    snapx = Math.Round(oc.X / horizGridSize) * horizGridSize - go.Width / 2
+                    snapy = Math.Round(oc.Y / vertGridSize) * vertGridSize - go.Height / 2
+                    go.SetPosition(New Point(snapx, snapy))
+                Next
+            End If
+            dragging = False
+            rotating = False
+            If selectionDragging Then
+                'TODO: Rewrite to handle multiple selections
+                'really just need to change from m_SelectedObject to a collection
+                'add each found object in this loop, removing the Exit For
+                Dim zoomedSelection As Rectangle = DeZoomRectangle(selectionRect)
+                Dim graphicObj As GraphicObject
+                For Each graphicObj In Me.drawingObjects
+                    If graphicObj.HitTest(zoomedSelection) Then
+                        'Me.SelectedObject = graphicObj
+                        Exit For
+                    End If
+                Next
+                For Each graphicObj In Me.drawingObjects
+                    If graphicObj.HitTest(zoomedSelection) Then
+                        If Not Me.SelectedObjects.ContainsKey(graphicObj.Name) Then Me.SelectedObjects.Add(graphicObj.Name, graphicObj)
+                    End If
+                Next
+                selectionDragging = False
+                justselected = True
+                Me.Invalidate()
+            End If
         End If
-        dragging = False
-        rotating = False
-        If selectionDragging Then
-            'TODO: Rewrite to handle multiple selections
-            'really just need to change from m_SelectedObject to a collection
-            'add each found object in this loop, removing the Exit For
-            Dim zoomedSelection As Rectangle = DeZoomRectangle(selectionRect)
-            Dim graphicObj As GraphicObject
-            For Each graphicObj In Me.drawingObjects
-                If graphicObj.HitTest(zoomedSelection) Then
-                    Me.SelectedObject = graphicObj
-                    Exit For
-                End If
-            Next
-            For Each graphicObj In Me.drawingObjects
-                If graphicObj.HitTest(zoomedSelection) Then
-                    If Not Me.SelectedObjects.ContainsKey(graphicObj.Name) Then Me.SelectedObjects.Add(graphicObj.Name, graphicObj)
-                End If
-            Next
-            selectionDragging = False
-            justselected = True
-            Me.Invalidate()
-        End If
-
 
     End Sub
 

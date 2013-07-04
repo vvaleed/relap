@@ -18,6 +18,7 @@ Imports System.Runtime.Serialization
 Public Class SelectionChangedEventArgs
     Inherits EventArgs
     Private m_SelectedObject As GraphicObject
+    Public m_SelectedObjects As New Collections.Generic.Dictionary(Of String, GraphicObject)
 
     Public Sub New(ByVal selectedObject As GraphicObject)
         m_SelectedObject = selectedObject
@@ -26,6 +27,11 @@ Public Class SelectionChangedEventArgs
     Public ReadOnly Property SelectedObject() As GraphicObject
         Get
             Return m_SelectedObject
+        End Get
+    End Property
+    Public ReadOnly Property SelectedObjects() As Generic.Dictionary(Of String, GraphicObject)
+        Get
+            Return m_SelectedObjects
         End Get
     End Property
 End Class

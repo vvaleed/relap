@@ -118,6 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="SpinningProgress1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 2</value>
+  </data>
+  <data name="PicSimultAdjust.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 0</value>
+  </data>
+  <data name="PanelSimultAdjust.Location" type="System.Drawing.Point, System.Drawing">
+    <value>686, 0</value>
+  </data>
+  <data name="PanelSimultAdjust.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 40</value>
+  </data>
   <data name="PreviewDialog.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAQAAAAAADoAgAAJgAAABAQEAAAAAAAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAIAC

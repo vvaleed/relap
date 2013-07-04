@@ -69,6 +69,8 @@ Partial Class frmSurface
         Me.setupPrint = New System.Windows.Forms.PrintDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.CMS_MultiSelect = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.MenuItemGroupComponents = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -78,23 +80,36 @@ Partial Class frmSurface
         CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMS_NoSel.SuspendLayout()
         Me.CMS_Sel.SuspendLayout()
+        Me.CMS_MultiSelect.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
         '
-        resources.ApplyResources(Me.TableLayoutPanel1, "TableLayoutPanel1")
+        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.FlowsheetDesignSurface, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(929, 474)
+        Me.TableLayoutPanel1.TabIndex = 3
         '
         'FlowsheetDesignSurface
         '
-        resources.ApplyResources(Me.FlowsheetDesignSurface, "FlowsheetDesignSurface")
         Me.FlowsheetDesignSurface.AllowDrop = True
+        Me.FlowsheetDesignSurface.AutoScroll = True
+        Me.FlowsheetDesignSurface.AutoScrollMinSize = New System.Drawing.Size(9600, 6720)
         Me.FlowsheetDesignSurface.BackColor = System.Drawing.Color.White
+        Me.FlowsheetDesignSurface.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowsheetDesignSurface.GridColor = System.Drawing.Color.GhostWhite
         Me.FlowsheetDesignSurface.GridLineWidth = 1
         Me.FlowsheetDesignSurface.GridSize = 25.0!
+        Me.FlowsheetDesignSurface.Location = New System.Drawing.Point(3, 3)
         Me.FlowsheetDesignSurface.MarginColor = System.Drawing.SystemColors.Control
         Me.FlowsheetDesignSurface.MarginLineWidth = 1
         Me.FlowsheetDesignSurface.MaximumSize = New System.Drawing.Size(10000, 7000)
@@ -105,251 +120,331 @@ Partial Class frmSurface
         Me.FlowsheetDesignSurface.SelectedObject = Nothing
         Me.FlowsheetDesignSurface.SelectRectangle = True
         Me.FlowsheetDesignSurface.ShowGrid = False
+        Me.FlowsheetDesignSurface.Size = New System.Drawing.Size(923, 428)
         Me.FlowsheetDesignSurface.SnapToGrid = False
         Me.FlowsheetDesignSurface.SurfaceBounds = New System.Drawing.Rectangle(0, 0, 10000, 7000)
         Me.FlowsheetDesignSurface.SurfaceMargins = New System.Drawing.Rectangle(0, 0, 10000, 7000)
+        Me.FlowsheetDesignSurface.TabIndex = 0
         Me.FlowsheetDesignSurface.Zoom = 1.0!
         '
         'TableLayoutPanel2
         '
-        resources.ApplyResources(Me.TableLayoutPanel2, "TableLayoutPanel2")
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Panel2, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.SpinningProgress1, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.PanelSimultAdjust, 2, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 434)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(929, 40)
+        Me.TableLayoutPanel2.TabIndex = 4
         '
         'Panel2
         '
-        resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Controls.Add(Me.PictureBox3)
         Me.Panel2.Controls.Add(Me.PictureBox4)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(443, 40)
+        Me.Panel2.TabIndex = 13
         '
         'PictureBox3
         '
-        resources.ApplyResources(Me.PictureBox3, "PictureBox3")
         Me.PictureBox3.Image = Global.RELAP.My.Resources.Resources.tick
+        Me.PictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PictureBox3.Location = New System.Drawing.Point(3, 2)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(0)
         Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox3.TabIndex = 12
         Me.PictureBox3.TabStop = False
         '
         'PictureBox4
         '
-        resources.ApplyResources(Me.PictureBox4, "PictureBox4")
         Me.PictureBox4.Image = Global.RELAP.My.Resources.Resources.clock
+        Me.PictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PictureBox4.Location = New System.Drawing.Point(3, 20)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(0)
         Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox4.TabIndex = 11
         Me.PictureBox4.TabStop = False
+        Me.PictureBox4.Visible = False
         '
         'SpinningProgress1
         '
-        resources.ApplyResources(Me.SpinningProgress1, "SpinningProgress1")
         Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
+        Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
+        Me.SpinningProgress1.Location = New System.Drawing.Point(445, 2)
+        Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
         Me.SpinningProgress1.Name = "SpinningProgress1"
-        Me.SpinningProgress1.TransistionSegment = 9
+        Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
+        Me.SpinningProgress1.TabIndex = 11
+        Me.SpinningProgress1.TransistionSegment = 5
         Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
+        Me.SpinningProgress1.Visible = False
         '
         'PanelSimultAdjust
         '
-        resources.ApplyResources(Me.PanelSimultAdjust, "PanelSimultAdjust")
         Me.PanelSimultAdjust.Controls.Add(Me.PicSimultAdjust)
+        Me.PanelSimultAdjust.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelSimultAdjust.Location = New System.Drawing.Point(686, 0)
+        Me.PanelSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
         Me.PanelSimultAdjust.Name = "PanelSimultAdjust"
+        Me.PanelSimultAdjust.Size = New System.Drawing.Size(243, 40)
+        Me.PanelSimultAdjust.TabIndex = 14
+        Me.PanelSimultAdjust.Visible = False
         '
         'PicSimultAdjust
         '
-        resources.ApplyResources(Me.PicSimultAdjust, "PicSimultAdjust")
+        Me.PicSimultAdjust.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicSimultAdjust.Image = Global.RELAP.My.Resources.Resources.lightning1
+        Me.PicSimultAdjust.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PicSimultAdjust.Location = New System.Drawing.Point(199, 0)
+        Me.PicSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
         Me.PicSimultAdjust.Name = "PicSimultAdjust"
+        Me.PicSimultAdjust.Size = New System.Drawing.Size(42, 40)
+        Me.PicSimultAdjust.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PicSimultAdjust.TabIndex = 12
         Me.PicSimultAdjust.TabStop = False
         '
         'CMS_NoSel
         '
-        resources.ApplyResources(Me.CMS_NoSel, "CMS_NoSel")
         Me.CMS_NoSel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem3, Me.ToolStripSeparator1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem})
         Me.CMS_NoSel.Name = "ContextMenuStrip1"
+        Me.CMS_NoSel.Size = New System.Drawing.Size(290, 98)
         '
         'ToolStripMenuItem3
         '
-        resources.ApplyResources(Me.ToolStripMenuItem3, "ToolStripMenuItem3")
+        Me.ToolStripMenuItem3.Enabled = False
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(289, 22)
+        Me.ToolStripMenuItem3.Text = "Flowsheet"
         '
         'ToolStripSeparator1
         '
-        resources.ApplyResources(Me.ToolStripSeparator1, "ToolStripSeparator1")
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(286, 6)
         '
         'ToolStripMenuItem2
         '
-        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
         Me.ToolStripMenuItem2.Image = Global.RELAP.My.Resources.Resources.page_white_paint
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(289, 22)
+        Me.ToolStripMenuItem2.Text = "Configure Style"
         '
         'ToolStripMenuItem5
         '
-        resources.ApplyResources(Me.ToolStripMenuItem5, "ToolStripMenuItem5")
         Me.ToolStripMenuItem5.Image = Global.RELAP.My.Resources.Resources.printer
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(289, 22)
+        Me.ToolStripMenuItem5.Text = "Print"
         '
         'CopiarParaAÁreaDeTransferênciaToolStripMenuItem
         '
-        resources.ApplyResources(Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem, "CopiarParaAÁreaDeTransferênciaToolStripMenuItem")
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem4, Me.ToolStripMenuItem8, Me.ToolStripMenuItem10})
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.images
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Name = "CopiarParaAÁreaDeTransferênciaToolStripMenuItem"
+        Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Size = New System.Drawing.Size(289, 22)
+        Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Text = "Capture Snapshot and Send to Clipboard"
         '
         'ToolStripMenuItem1
         '
-        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         Me.ToolStripMenuItem1.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem1.Text = "50%"
         '
         'ToolStripMenuItem4
         '
-        resources.ApplyResources(Me.ToolStripMenuItem4, "ToolStripMenuItem4")
         Me.ToolStripMenuItem4.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem4.Text = "100%"
         '
         'ToolStripMenuItem8
         '
-        resources.ApplyResources(Me.ToolStripMenuItem8, "ToolStripMenuItem8")
         Me.ToolStripMenuItem8.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
+        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem8.Text = "200%"
         '
         'ToolStripMenuItem10
         '
-        resources.ApplyResources(Me.ToolStripMenuItem10, "ToolStripMenuItem10")
         Me.ToolStripMenuItem10.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem10.Name = "ToolStripMenuItem10"
+        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem10.Text = "300%"
         '
         'CMS_Sel
         '
-        resources.ApplyResources(Me.CMS_Sel, "CMS_Sel")
         Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.ToolStripSeparator3, Me.RecalcularToolStripMenuItem, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
         Me.CMS_Sel.Name = "CMS_Sel"
+        Me.CMS_Sel.Size = New System.Drawing.Size(247, 276)
         '
         'TSMI_Label
         '
-        resources.ApplyResources(Me.TSMI_Label, "TSMI_Label")
+        Me.TSMI_Label.Enabled = False
         Me.TSMI_Label.Name = "TSMI_Label"
+        Me.TSMI_Label.Size = New System.Drawing.Size(246, 22)
+        Me.TSMI_Label.Text = "ToolStripMenuItem1"
         '
         'ToolStripSeparator3
         '
-        resources.ApplyResources(Me.ToolStripSeparator3, "ToolStripSeparator3")
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(243, 6)
         '
         'RecalcularToolStripMenuItem
         '
-        resources.ApplyResources(Me.RecalcularToolStripMenuItem, "RecalcularToolStripMenuItem")
         Me.RecalcularToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.arrow_refresh
         Me.RecalcularToolStripMenuItem.Name = "RecalcularToolStripMenuItem"
+        Me.RecalcularToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.RecalcularToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.RecalcularToolStripMenuItem.Text = "Recalculate"
+        Me.RecalcularToolStripMenuItem.Visible = False
         '
         'EditCompTSMI
         '
-        resources.ApplyResources(Me.EditCompTSMI, "EditCompTSMI")
         Me.EditCompTSMI.Image = Global.RELAP.My.Resources.Resources.Lab_icon
         Me.EditCompTSMI.Name = "EditCompTSMI"
+        Me.EditCompTSMI.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.EditCompTSMI.Size = New System.Drawing.Size(246, 22)
+        Me.EditCompTSMI.Text = "Edit Stream Composition"
         '
         'ToolStripSeparator6
         '
-        resources.ApplyResources(Me.ToolStripSeparator6, "ToolStripSeparator6")
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(243, 6)
+        Me.ToolStripSeparator6.Visible = False
         '
         'ConectarAToolStripMenuItem
         '
-        resources.ApplyResources(Me.ConectarAToolStripMenuItem, "ConectarAToolStripMenuItem")
         Me.ConectarAToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.connect
         Me.ConectarAToolStripMenuItem.Name = "ConectarAToolStripMenuItem"
+        Me.ConectarAToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ConectarAToolStripMenuItem.Text = "Connect to..."
         '
         'DesconectarDeToolStripMenuItem
         '
-        resources.ApplyResources(Me.DesconectarDeToolStripMenuItem, "DesconectarDeToolStripMenuItem")
         Me.DesconectarDeToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.disconnect
         Me.DesconectarDeToolStripMenuItem.Name = "DesconectarDeToolStripMenuItem"
+        Me.DesconectarDeToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.DesconectarDeToolStripMenuItem.Text = "Disconnect from..."
         '
         'ToolStripSeparator4
         '
-        resources.ApplyResources(Me.ToolStripSeparator4, "ToolStripSeparator4")
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(243, 6)
         '
         'TSMI_Girar
         '
-        resources.ApplyResources(Me.TSMI_Girar, "TSMI_Girar")
         Me.TSMI_Girar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem6, Me.BToolStripMenuItem, Me.ToolStripMenuItem7})
         Me.TSMI_Girar.Image = Global.RELAP.My.Resources.Resources.arrow_rotate_clockwise
         Me.TSMI_Girar.Name = "TSMI_Girar"
+        Me.TSMI_Girar.Size = New System.Drawing.Size(246, 22)
+        Me.TSMI_Girar.Text = "Rotate"
         '
         'ToolStripMenuItem6
         '
-        resources.ApplyResources(Me.ToolStripMenuItem6, "ToolStripMenuItem6")
         Me.ToolStripMenuItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(100, 22)
+        Me.ToolStripMenuItem6.Text = "90 °"
         '
         'BToolStripMenuItem
         '
-        resources.ApplyResources(Me.BToolStripMenuItem, "BToolStripMenuItem")
         Me.BToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.BToolStripMenuItem.Name = "BToolStripMenuItem"
+        Me.BToolStripMenuItem.Size = New System.Drawing.Size(100, 22)
+        Me.BToolStripMenuItem.Text = "180 °"
         '
         'ToolStripMenuItem7
         '
-        resources.ApplyResources(Me.ToolStripMenuItem7, "ToolStripMenuItem7")
         Me.ToolStripMenuItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(100, 22)
+        Me.ToolStripMenuItem7.Text = "270 °"
         '
         'HorizontalmenteToolStripMenuItem
         '
-        resources.ApplyResources(Me.HorizontalmenteToolStripMenuItem, "HorizontalmenteToolStripMenuItem")
         Me.HorizontalmenteToolStripMenuItem.CheckOnClick = True
         Me.HorizontalmenteToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.shape_flip_horizontal
         Me.HorizontalmenteToolStripMenuItem.Name = "HorizontalmenteToolStripMenuItem"
+        Me.HorizontalmenteToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.HorizontalmenteToolStripMenuItem.Text = "Invert Horizontally"
         '
         'ToolStripSeparator2
         '
-        resources.ApplyResources(Me.ToolStripSeparator2, "ToolStripSeparator2")
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(243, 6)
         '
         'ClonarToolStripMenuItem
         '
-        resources.ApplyResources(Me.ClonarToolStripMenuItem, "ClonarToolStripMenuItem")
         Me.ClonarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.sheep
+        Me.ClonarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White
         Me.ClonarToolStripMenuItem.Name = "ClonarToolStripMenuItem"
+        Me.ClonarToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ClonarToolStripMenuItem.Text = "Clone"
+        Me.ClonarToolStripMenuItem.ToolTipText = "Creates an exact copy of the selected object."
         '
         'ExcluirToolStripMenuItem
         '
-        resources.ApplyResources(Me.ExcluirToolStripMenuItem, "ExcluirToolStripMenuItem")
         Me.ExcluirToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cross
         Me.ExcluirToolStripMenuItem.Name = "ExcluirToolStripMenuItem"
+        Me.ExcluirToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ExcluirToolStripMenuItem.Text = "Delete"
         '
         'ToolStripSeparator5
         '
-        resources.ApplyResources(Me.ToolStripSeparator5, "ToolStripSeparator5")
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(243, 6)
         '
         'TabelaToolStripMenuItem
         '
-        resources.ApplyResources(Me.TabelaToolStripMenuItem, "TabelaToolStripMenuItem")
         Me.TabelaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MostrarToolStripMenuItem, Me.ConfigurarToolStripMenuItem})
         Me.TabelaToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table
         Me.TabelaToolStripMenuItem.Name = "TabelaToolStripMenuItem"
+        Me.TabelaToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.TabelaToolStripMenuItem.Text = "Table"
         '
         'MostrarToolStripMenuItem
         '
-        resources.ApplyResources(Me.MostrarToolStripMenuItem, "MostrarToolStripMenuItem")
         Me.MostrarToolStripMenuItem.CheckOnClick = True
         Me.MostrarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table_go
         Me.MostrarToolStripMenuItem.Name = "MostrarToolStripMenuItem"
+        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.MostrarToolStripMenuItem.Text = "Show"
         '
         'ConfigurarToolStripMenuItem
         '
-        resources.ApplyResources(Me.ConfigurarToolStripMenuItem, "ConfigurarToolStripMenuItem")
         Me.ConfigurarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.ConfigurarToolStripMenuItem.Text = "Configure..."
         '
         'PreviewDialog
         '
-        resources.ApplyResources(Me.PreviewDialog, "PreviewDialog")
+        Me.PreviewDialog.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PreviewDialog.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PreviewDialog.ClientSize = New System.Drawing.Size(400, 300)
         Me.PreviewDialog.Document = Me.designSurfacePrintDocument
+        Me.PreviewDialog.Enabled = True
+        Me.PreviewDialog.Icon = CType(resources.GetObject("PreviewDialog.Icon"), System.Drawing.Icon)
         Me.PreviewDialog.Name = "PrintPreviewDialog1"
         Me.PreviewDialog.UseAntiAlias = True
+        Me.PreviewDialog.Visible = False
         '
         'designSurfacePrintDocument
         '
@@ -357,13 +452,13 @@ Partial Class frmSurface
         '
         'CMS_ItemsToConnect
         '
-        resources.ApplyResources(Me.CMS_ItemsToConnect, "CMS_ItemsToConnect")
         Me.CMS_ItemsToConnect.Name = "CMS_ItemsToConnect"
+        Me.CMS_ItemsToConnect.Size = New System.Drawing.Size(61, 4)
         '
         'CMS_ItemsToDisconnect
         '
-        resources.ApplyResources(Me.CMS_ItemsToDisconnect, "CMS_ItemsToDisconnect")
         Me.CMS_ItemsToDisconnect.Name = "CMS_ItemsToConnect"
+        Me.CMS_ItemsToDisconnect.Size = New System.Drawing.Size(61, 4)
         '
         'pageSetup
         '
@@ -382,16 +477,32 @@ Partial Class frmSurface
         'Timer2
         '
         '
+        'CMS_MultiSelect
+        '
+        Me.CMS_MultiSelect.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuItemGroupComponents})
+        Me.CMS_MultiSelect.Name = "CMS_MultiSelect"
+        Me.CMS_MultiSelect.Size = New System.Drawing.Size(180, 26)
+        '
+        'MenuItemGroupComponents
+        '
+        Me.MenuItemGroupComponents.Name = "MenuItemGroupComponents"
+        Me.MenuItemGroupComponents.Size = New System.Drawing.Size(179, 22)
+        Me.MenuItemGroupComponents.Text = "Group Components"
+        '
         'frmSurface
         '
-        resources.ApplyResources(Me, "$this")
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(929, 474)
         Me.CloseButton = False
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.DoubleBuffered = True
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSurface"
         Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document
         Me.TabText = Me.Text
+        Me.Text = "Flowsheet"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
@@ -401,6 +512,7 @@ Partial Class frmSurface
         CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMS_NoSel.ResumeLayout(False)
         Me.CMS_Sel.ResumeLayout(False)
+        Me.CMS_MultiSelect.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -452,4 +564,6 @@ Partial Class frmSurface
     Public WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Public WithEvents PanelSimultAdjust As System.Windows.Forms.Panel
     Public WithEvents PicSimultAdjust As System.Windows.Forms.PictureBox
+    Friend WithEvents CMS_MultiSelect As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents MenuItemGroupComponents As System.Windows.Forms.ToolStripMenuItem
 End Class
