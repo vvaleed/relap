@@ -20,22 +20,21 @@ Partial Class FormFlowsheet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFlowsheet))
-        Dim DockPanelSkin1 As WeifenLuo.WinFormsUI.Docking.DockPanelSkin = New WeifenLuo.WinFormsUI.Docking.DockPanelSkin()
-        Dim AutoHideStripSkin1 As WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin = New WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin()
-        Dim DockPanelGradient1 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
-        Dim TabGradient1 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPaneStripSkin1 As WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin = New WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin()
-        Dim DockPaneStripGradient1 As WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient()
-        Dim TabGradient2 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPanelGradient2 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
-        Dim TabGradient3 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPaneStripToolWindowGradient1 As WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient()
-        Dim TabGradient4 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim TabGradient5 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPanelGradient3 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
-        Dim TabGradient6 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim TabGradient7 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPanelSkin2 As WeifenLuo.WinFormsUI.Docking.DockPanelSkin = New WeifenLuo.WinFormsUI.Docking.DockPanelSkin()
+        Dim AutoHideStripSkin2 As WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin = New WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin()
+        Dim DockPanelGradient4 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
+        Dim TabGradient8 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPaneStripSkin2 As WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin = New WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin()
+        Dim DockPaneStripGradient2 As WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient()
+        Dim TabGradient9 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPanelGradient5 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
+        Dim TabGradient10 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPaneStripToolWindowGradient2 As WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient()
+        Dim TabGradient11 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim TabGradient12 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPanelGradient6 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
+        Dim TabGradient13 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim TabGradient14 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
         Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
         Me.TSBtabela = New System.Windows.Forms.ToolStripButton()
@@ -76,11 +75,6 @@ Partial Class FormFlowsheet
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ConfiguraçõesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComponentesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExibirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExibirSaídaDoConsoleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExibirListaDeItensACalcularToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PainelDeVariáveisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InserirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CorrentesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIMaterialStream = New System.Windows.Forms.ToolStripMenuItem()
@@ -119,32 +113,8 @@ Partial Class FormFlowsheet
         Me.TSMIEnergyRecycle = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIAdjust = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMISpecification = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SuplementosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PontoCríticoRealToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PropriedadesDosComponentesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AnáliseDePetróleosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DiagramaDeFasesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DiagramaDeFasesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DiagramaBinárioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PropriedadesEspeciaisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PSVSizingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FlashVesselSizingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PropriedadesDePetróleosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OtimizaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AnáliseDeSensibilidadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MultivariateOptimizerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ResultadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GerarRelatórioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArquivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FerramentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GeradorDeHipotéticosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GerenciadorDeReaçõesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
@@ -154,6 +124,7 @@ Partial Class FormFlowsheet
         Me.dckPanel = New WeifenLuo.WinFormsUI.Docking.DockPanel()
         Me.OpenFileName = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.tsmiGroupComponents = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip4.SuspendLayout()
         Me.ToolStripPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -453,11 +424,11 @@ Partial Class FormFlowsheet
         '
         Me.MenuStrip1.AllowItemReorder = True
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraçõesToolStripMenuItem, Me.ExibirToolStripMenuItem, Me.InserirToolStripMenuItem, Me.SuplementosToolStripMenuItem, Me.OtimizaToolStripMenuItem, Me.ResultadosToolStripMenuItem, Me.ArquivoToolStripMenuItem, Me.FerramentasToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraçõesToolStripMenuItem, Me.InserirToolStripMenuItem, Me.ArquivoToolStripMenuItem, Me.tsmiGroupComponents})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.ShowItemToolTips = True
-        Me.MenuStrip1.Size = New System.Drawing.Size(448, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(373, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         Me.MenuStrip1.Visible = False
@@ -482,43 +453,6 @@ Partial Class FormFlowsheet
         Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, "Opens the configuration window for the active simulation")
         Me.ComponentesToolStripMenuItem.Text = "Simulation Settings"
-        '
-        'ExibirToolStripMenuItem
-        '
-        Me.ExibirToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExibirSaídaDoConsoleToolStripMenuItem, Me.ExibirListaDeItensACalcularToolStripMenuItem, Me.PainelDeVariáveisToolStripMenuItem, Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem})
-        Me.ExibirToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
-        Me.ExibirToolStripMenuItem.MergeIndex = 3
-        Me.ExibirToolStripMenuItem.Name = "ExibirToolStripMenuItem"
-        Me.ExibirToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.ExibirToolStripMenuItem.Text = "&View"
-        '
-        'ExibirSaídaDoConsoleToolStripMenuItem
-        '
-        Me.ExibirSaídaDoConsoleToolStripMenuItem.CheckOnClick = True
-        Me.ExibirSaídaDoConsoleToolStripMenuItem.Name = "ExibirSaídaDoConsoleToolStripMenuItem"
-        Me.ExibirSaídaDoConsoleToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
-        Me.ExibirSaídaDoConsoleToolStripMenuItem.Text = "Console Output"
-        '
-        'ExibirListaDeItensACalcularToolStripMenuItem
-        '
-        Me.ExibirListaDeItensACalcularToolStripMenuItem.CheckOnClick = True
-        Me.ExibirListaDeItensACalcularToolStripMenuItem.Name = "ExibirListaDeItensACalcularToolStripMenuItem"
-        Me.ExibirListaDeItensACalcularToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
-        Me.ExibirListaDeItensACalcularToolStripMenuItem.Text = "Calculation Queue"
-        '
-        'PainelDeVariáveisToolStripMenuItem
-        '
-        Me.PainelDeVariáveisToolStripMenuItem.CheckOnClick = True
-        Me.PainelDeVariáveisToolStripMenuItem.Name = "PainelDeVariáveisToolStripMenuItem"
-        Me.PainelDeVariáveisToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
-        Me.PainelDeVariáveisToolStripMenuItem.Text = "Watch Panel"
-        '
-        'ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem
-        '
-        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.CheckOnClick = True
-        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.Name = "ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem"
-        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
-        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.Text = "CAPE-OPEN Object Reports"
         '
         'InserirToolStripMenuItem
         '
@@ -818,158 +752,6 @@ Partial Class FormFlowsheet
         Me.TSMISpecification.Size = New System.Drawing.Size(168, 22)
         Me.TSMISpecification.Text = "Specification"
         '
-        'SuplementosToolStripMenuItem
-        '
-        Me.SuplementosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PontoCríticoRealToolStripMenuItem, Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem, Me.PropriedadesDosComponentesToolStripMenuItem, Me.AnáliseDePetróleosToolStripMenuItem, Me.DiagramaDeFasesToolStripMenuItem, Me.DiagramaDeFasesToolStripMenuItem1, Me.DiagramaBinárioToolStripMenuItem, Me.PropriedadesEspeciaisToolStripMenuItem, Me.PSVSizingToolStripMenuItem, Me.FlashVesselSizingToolStripMenuItem, Me.PropriedadesDePetróleosToolStripMenuItem})
-        Me.SuplementosToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
-        Me.SuplementosToolStripMenuItem.MergeIndex = 3
-        Me.SuplementosToolStripMenuItem.Name = "SuplementosToolStripMenuItem"
-        Me.SuplementosToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.SuplementosToolStripMenuItem.Text = "&Utilities"
-        '
-        'PontoCríticoRealToolStripMenuItem
-        '
-        Me.PontoCríticoRealToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog1
-        Me.PontoCríticoRealToolStripMenuItem.Name = "PontoCríticoRealToolStripMenuItem"
-        Me.PontoCríticoRealToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PontoCríticoRealToolStripMenuItem, "Utility for the calculation of the true critical point of a mixture")
-        Me.PontoCríticoRealToolStripMenuItem.Text = "True Critical Point"
-        '
-        'HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem
-        '
-        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
-        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Name = "HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem"
-        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem, "Utility for calculation of thermodynamic equilibrium of natural gas hydrates")
-        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Text = "Hydrate Dissociation Utility"
-        '
-        'PropriedadesDosComponentesToolStripMenuItem
-        '
-        Me.PropriedadesDosComponentesToolStripMenuItem.Image = CType(resources.GetObject("PropriedadesDosComponentesToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.PropriedadesDosComponentesToolStripMenuItem.Name = "PropriedadesDosComponentesToolStripMenuItem"
-        Me.PropriedadesDosComponentesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesDosComponentesToolStripMenuItem, "Utility for viewing pure Component properties")
-        Me.PropriedadesDosComponentesToolStripMenuItem.Text = "Pure Component Properties"
-        '
-        'AnáliseDePetróleosToolStripMenuItem
-        '
-        Me.AnáliseDePetróleosToolStripMenuItem.Enabled = False
-        Me.AnáliseDePetróleosToolStripMenuItem.Image = CType(resources.GetObject("AnáliseDePetróleosToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AnáliseDePetróleosToolStripMenuItem.Name = "AnáliseDePetróleosToolStripMenuItem"
-        Me.AnáliseDePetróleosToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.AnáliseDePetróleosToolStripMenuItem, "Utility Analysis Petroleum (characterization and determination of properties and " & _
-        "composition PNA)")
-        Me.AnáliseDePetróleosToolStripMenuItem.Text = "Petroleum Analysis"
-        Me.AnáliseDePetróleosToolStripMenuItem.Visible = False
-        '
-        'DiagramaDeFasesToolStripMenuItem
-        '
-        Me.DiagramaDeFasesToolStripMenuItem.Image = CType(resources.GetObject("DiagramaDeFasesToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.DiagramaDeFasesToolStripMenuItem.Name = "DiagramaDeFasesToolStripMenuItem"
-        Me.DiagramaDeFasesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaDeFasesToolStripMenuItem, "Utility to calculate the PT diagram of the limit of thermodynamic stability of a " & _
-        "stream of matter")
-        Me.DiagramaDeFasesToolStripMenuItem.Text = "Stability Analysis"
-        Me.DiagramaDeFasesToolStripMenuItem.Visible = False
-        '
-        'DiagramaDeFasesToolStripMenuItem1
-        '
-        Me.DiagramaDeFasesToolStripMenuItem1.Image = Global.RELAP.My.Resources.Resources.cog
-        Me.DiagramaDeFasesToolStripMenuItem1.Name = "DiagramaDeFasesToolStripMenuItem1"
-        Me.DiagramaDeFasesToolStripMenuItem1.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaDeFasesToolStripMenuItem1, "Utility for phase envelope construction")
-        Me.DiagramaDeFasesToolStripMenuItem1.Text = "Phase Envelope"
-        '
-        'DiagramaBinárioToolStripMenuItem
-        '
-        Me.DiagramaBinárioToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog1
-        Me.DiagramaBinárioToolStripMenuItem.Name = "DiagramaBinárioToolStripMenuItem"
-        Me.DiagramaBinárioToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaBinárioToolStripMenuItem, "Utility for binary envelope construction")
-        Me.DiagramaBinárioToolStripMenuItem.Text = "Binary Envelope"
-        '
-        'PropriedadesEspeciaisToolStripMenuItem
-        '
-        Me.PropriedadesEspeciaisToolStripMenuItem.Enabled = False
-        Me.PropriedadesEspeciaisToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
-        Me.PropriedadesEspeciaisToolStripMenuItem.Name = "PropriedadesEspeciaisToolStripMenuItem"
-        Me.PropriedadesEspeciaisToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesEspeciaisToolStripMenuItem, "Utility for viewing special properties of a stream of matter (coefciente JT, soun" & _
-        "d speed, coefficient of isothermal compressibility, etc.).-")
-        Me.PropriedadesEspeciaisToolStripMenuItem.Text = "Special Properties"
-        Me.PropriedadesEspeciaisToolStripMenuItem.Visible = False
-        '
-        'PSVSizingToolStripMenuItem
-        '
-        Me.PSVSizingToolStripMenuItem.Image = CType(resources.GetObject("PSVSizingToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.PSVSizingToolStripMenuItem.Name = "PSVSizingToolStripMenuItem"
-        Me.PSVSizingToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PSVSizingToolStripMenuItem, "Utility for Pressure Safety Valve (PSV) sizing")
-        Me.PSVSizingToolStripMenuItem.Text = "PSV Sizing"
-        '
-        'FlashVesselSizingToolStripMenuItem
-        '
-        Me.FlashVesselSizingToolStripMenuItem.Image = CType(resources.GetObject("FlashVesselSizingToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.FlashVesselSizingToolStripMenuItem.Name = "FlashVesselSizingToolStripMenuItem"
-        Me.FlashVesselSizingToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.FlashVesselSizingToolStripMenuItem, "Utility for Separator Vessel sizing")
-        Me.FlashVesselSizingToolStripMenuItem.Text = "Flash Vessel Sizing"
-        '
-        'PropriedadesDePetróleosToolStripMenuItem
-        '
-        Me.PropriedadesDePetróleosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
-        Me.PropriedadesDePetróleosToolStripMenuItem.Name = "PropriedadesDePetróleosToolStripMenuItem"
-        Me.PropriedadesDePetróleosToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesDePetróleosToolStripMenuItem, "Utility for viewing some petroleum ""cold flow properties"", like pour and freezing" & _
-        " points.")
-        Me.PropriedadesDePetróleosToolStripMenuItem.Text = "Petroleum Cold Flow Properties"
-        '
-        'OtimizaToolStripMenuItem
-        '
-        Me.OtimizaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnáliseDeSensibilidadeToolStripMenuItem, Me.MultivariateOptimizerToolStripMenuItem})
-        Me.OtimizaToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
-        Me.OtimizaToolStripMenuItem.MergeIndex = 4
-        Me.OtimizaToolStripMenuItem.Name = "OtimizaToolStripMenuItem"
-        Me.OtimizaToolStripMenuItem.Size = New System.Drawing.Size(88, 20)
-        Me.OtimizaToolStripMenuItem.Text = "&Optimization"
-        '
-        'AnáliseDeSensibilidadeToolStripMenuItem
-        '
-        Me.AnáliseDeSensibilidadeToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.chart_curve
-        Me.AnáliseDeSensibilidadeToolStripMenuItem.Name = "AnáliseDeSensibilidadeToolStripMenuItem"
-        Me.AnáliseDeSensibilidadeToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.AnáliseDeSensibilidadeToolStripMenuItem.Size = New System.Drawing.Size(269, 22)
-        Me.AnáliseDeSensibilidadeToolStripMenuItem.Text = "Sensitivity Analysis"
-        '
-        'MultivariateOptimizerToolStripMenuItem
-        '
-        Me.MultivariateOptimizerToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.arrow_switch
-        Me.MultivariateOptimizerToolStripMenuItem.Name = "MultivariateOptimizerToolStripMenuItem"
-        Me.MultivariateOptimizerToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.MultivariateOptimizerToolStripMenuItem.Size = New System.Drawing.Size(269, 22)
-        Me.MultivariateOptimizerToolStripMenuItem.Text = "Multivariate Optimizer"
-        '
-        'ResultadosToolStripMenuItem
-        '
-        Me.ResultadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GerarRelatórioToolStripMenuItem})
-        Me.ResultadosToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
-        Me.ResultadosToolStripMenuItem.MergeIndex = 5
-        Me.ResultadosToolStripMenuItem.Name = "ResultadosToolStripMenuItem"
-        Me.ResultadosToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
-        Me.ResultadosToolStripMenuItem.Text = "&Results"
-        '
-        'GerarRelatórioToolStripMenuItem
-        '
-        Me.GerarRelatórioToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.report
-        Me.GerarRelatórioToolStripMenuItem.Name = "GerarRelatórioToolStripMenuItem"
-        Me.GerarRelatórioToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.GerarRelatórioToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GerarRelatórioToolStripMenuItem, "Creates a report with results from active simulation")
-        Me.GerarRelatórioToolStripMenuItem.Text = "Build Report"
-        '
         'ArquivoToolStripMenuItem
         '
         Me.ArquivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseToolStripMenuItem})
@@ -988,54 +770,6 @@ Partial Class FormFlowsheet
         Me.CloseToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.CloseToolStripMenuItem.Text = "Close Active Simulation"
-        '
-        'FerramentasToolStripMenuItem
-        '
-        Me.FerramentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem, Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem, Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem, Me.GeradorDeHipotéticosToolStripMenuItem, Me.CriadorDeComponenteDoUsuárioToolStripMenuItem, Me.GerenciadorDeReaçõesToolStripMenuItem})
-        Me.FerramentasToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
-        Me.FerramentasToolStripMenuItem.MergeIndex = 3
-        Me.FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
-        Me.FerramentasToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
-        Me.FerramentasToolStripMenuItem.Text = "&Tools"
-        '
-        'CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem
-        '
-        Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem.Name = "CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem"
-        Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
-        Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem.Text = "Petroleum Characterization (C7+ Bulk Properties)"
-        '
-        'CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem
-        '
-        Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem.Name = "CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem"
-        Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
-        Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem.Text = "Petroleum Characterization (Distillation Curves)"
-        '
-        'GerenciadorDeAmostrasDePetróleoToolStripMenuItem
-        '
-        Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem.Name = "GerenciadorDeAmostrasDePetróleoToolStripMenuItem"
-        Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
-        Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem.Text = "Petroleum Assay Manager"
-        '
-        'GeradorDeHipotéticosToolStripMenuItem
-        '
-        Me.GeradorDeHipotéticosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.lightning
-        Me.GeradorDeHipotéticosToolStripMenuItem.Name = "GeradorDeHipotéticosToolStripMenuItem"
-        Me.GeradorDeHipotéticosToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
-        Me.GeradorDeHipotéticosToolStripMenuItem.Text = "Hypothetical Component Generator"
-        '
-        'CriadorDeComponenteDoUsuárioToolStripMenuItem
-        '
-        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.lightning
-        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Name = "CriadorDeComponenteDoUsuárioToolStripMenuItem"
-        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
-        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Text = "User Component Generator"
-        '
-        'GerenciadorDeReaçõesToolStripMenuItem
-        '
-        Me.GerenciadorDeReaçõesToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.wi0124_16
-        Me.GerenciadorDeReaçõesToolStripMenuItem.Name = "GerenciadorDeReaçõesToolStripMenuItem"
-        Me.GerenciadorDeReaçõesToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
-        Me.GerenciadorDeReaçõesToolStripMenuItem.Text = "Reactions Manager"
         '
         'ToolStripMenuItem1
         '
@@ -1075,52 +809,52 @@ Partial Class FormFlowsheet
         Me.dckPanel.Location = New System.Drawing.Point(0, 25)
         Me.dckPanel.Name = "dckPanel"
         Me.dckPanel.Size = New System.Drawing.Size(1229, 477)
-        DockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight
-        DockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight
-        AutoHideStripSkin1.DockStripGradient = DockPanelGradient1
-        TabGradient1.EndColor = System.Drawing.SystemColors.Control
-        TabGradient1.StartColor = System.Drawing.SystemColors.Control
-        TabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark
-        AutoHideStripSkin1.TabGradient = TabGradient1
-        AutoHideStripSkin1.TextFont = New System.Drawing.Font("Tahoma", 8.25!)
-        DockPanelSkin1.AutoHideStripSkin = AutoHideStripSkin1
-        TabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight
-        TabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight
-        TabGradient2.TextColor = System.Drawing.SystemColors.ControlText
-        DockPaneStripGradient1.ActiveTabGradient = TabGradient2
-        DockPanelGradient2.EndColor = System.Drawing.SystemColors.Control
-        DockPanelGradient2.StartColor = System.Drawing.SystemColors.Control
-        DockPaneStripGradient1.DockStripGradient = DockPanelGradient2
-        TabGradient3.EndColor = System.Drawing.SystemColors.ControlLight
-        TabGradient3.StartColor = System.Drawing.SystemColors.ControlLight
-        TabGradient3.TextColor = System.Drawing.SystemColors.ControlText
-        DockPaneStripGradient1.InactiveTabGradient = TabGradient3
-        DockPaneStripSkin1.DocumentGradient = DockPaneStripGradient1
-        DockPaneStripSkin1.TextFont = New System.Drawing.Font("Tahoma", 8.25!)
-        TabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption
-        TabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
-        TabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption
-        TabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText
-        DockPaneStripToolWindowGradient1.ActiveCaptionGradient = TabGradient4
-        TabGradient5.EndColor = System.Drawing.SystemColors.Control
-        TabGradient5.StartColor = System.Drawing.SystemColors.Control
-        TabGradient5.TextColor = System.Drawing.SystemColors.ControlText
-        DockPaneStripToolWindowGradient1.ActiveTabGradient = TabGradient5
-        DockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight
-        DockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight
-        DockPaneStripToolWindowGradient1.DockStripGradient = DockPanelGradient3
-        TabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption
-        TabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
-        TabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption
-        TabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText
-        DockPaneStripToolWindowGradient1.InactiveCaptionGradient = TabGradient6
-        TabGradient7.EndColor = System.Drawing.Color.Transparent
-        TabGradient7.StartColor = System.Drawing.Color.Transparent
-        TabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark
-        DockPaneStripToolWindowGradient1.InactiveTabGradient = TabGradient7
-        DockPaneStripSkin1.ToolWindowGradient = DockPaneStripToolWindowGradient1
-        DockPanelSkin1.DockPaneStripSkin = DockPaneStripSkin1
-        Me.dckPanel.Skin = DockPanelSkin1
+        DockPanelGradient4.EndColor = System.Drawing.SystemColors.ControlLight
+        DockPanelGradient4.StartColor = System.Drawing.SystemColors.ControlLight
+        AutoHideStripSkin2.DockStripGradient = DockPanelGradient4
+        TabGradient8.EndColor = System.Drawing.SystemColors.Control
+        TabGradient8.StartColor = System.Drawing.SystemColors.Control
+        TabGradient8.TextColor = System.Drawing.SystemColors.ControlDarkDark
+        AutoHideStripSkin2.TabGradient = TabGradient8
+        AutoHideStripSkin2.TextFont = New System.Drawing.Font("Tahoma", 8.25!)
+        DockPanelSkin2.AutoHideStripSkin = AutoHideStripSkin2
+        TabGradient9.EndColor = System.Drawing.SystemColors.ControlLightLight
+        TabGradient9.StartColor = System.Drawing.SystemColors.ControlLightLight
+        TabGradient9.TextColor = System.Drawing.SystemColors.ControlText
+        DockPaneStripGradient2.ActiveTabGradient = TabGradient9
+        DockPanelGradient5.EndColor = System.Drawing.SystemColors.Control
+        DockPanelGradient5.StartColor = System.Drawing.SystemColors.Control
+        DockPaneStripGradient2.DockStripGradient = DockPanelGradient5
+        TabGradient10.EndColor = System.Drawing.SystemColors.ControlLight
+        TabGradient10.StartColor = System.Drawing.SystemColors.ControlLight
+        TabGradient10.TextColor = System.Drawing.SystemColors.ControlText
+        DockPaneStripGradient2.InactiveTabGradient = TabGradient10
+        DockPaneStripSkin2.DocumentGradient = DockPaneStripGradient2
+        DockPaneStripSkin2.TextFont = New System.Drawing.Font("Tahoma", 8.25!)
+        TabGradient11.EndColor = System.Drawing.SystemColors.ActiveCaption
+        TabGradient11.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
+        TabGradient11.StartColor = System.Drawing.SystemColors.GradientActiveCaption
+        TabGradient11.TextColor = System.Drawing.SystemColors.ActiveCaptionText
+        DockPaneStripToolWindowGradient2.ActiveCaptionGradient = TabGradient11
+        TabGradient12.EndColor = System.Drawing.SystemColors.Control
+        TabGradient12.StartColor = System.Drawing.SystemColors.Control
+        TabGradient12.TextColor = System.Drawing.SystemColors.ControlText
+        DockPaneStripToolWindowGradient2.ActiveTabGradient = TabGradient12
+        DockPanelGradient6.EndColor = System.Drawing.SystemColors.ControlLight
+        DockPanelGradient6.StartColor = System.Drawing.SystemColors.ControlLight
+        DockPaneStripToolWindowGradient2.DockStripGradient = DockPanelGradient6
+        TabGradient13.EndColor = System.Drawing.SystemColors.InactiveCaption
+        TabGradient13.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
+        TabGradient13.StartColor = System.Drawing.SystemColors.GradientInactiveCaption
+        TabGradient13.TextColor = System.Drawing.SystemColors.InactiveCaptionText
+        DockPaneStripToolWindowGradient2.InactiveCaptionGradient = TabGradient13
+        TabGradient14.EndColor = System.Drawing.Color.Transparent
+        TabGradient14.StartColor = System.Drawing.Color.Transparent
+        TabGradient14.TextColor = System.Drawing.SystemColors.ControlDarkDark
+        DockPaneStripToolWindowGradient2.InactiveTabGradient = TabGradient14
+        DockPaneStripSkin2.ToolWindowGradient = DockPaneStripToolWindowGradient2
+        DockPanelSkin2.DockPaneStripSkin = DockPaneStripSkin2
+        Me.dckPanel.Skin = DockPanelSkin2
         Me.dckPanel.TabIndex = 9
         '
         'SaveFileDialog1
@@ -1128,6 +862,14 @@ Partial Class FormFlowsheet
         Me.SaveFileDialog1.DefaultExt = "png"
         Me.SaveFileDialog1.Filter = "PNG Image|*.png"
         Me.SaveFileDialog1.Title = "Save Flowsheet as Image"
+        '
+        'tsmiGroupComponents
+        '
+        Me.tsmiGroupComponents.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.tsmiGroupComponents.Name = "tsmiGroupComponents"
+        Me.tsmiGroupComponents.Size = New System.Drawing.Size(127, 20)
+        Me.tsmiGroupComponents.Text = "Group Components"
+        Me.tsmiGroupComponents.Visible = False
         '
         'FormFlowsheet
         '
@@ -1161,17 +903,7 @@ Partial Class FormFlowsheet
     Public WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Public WithEvents ConfiguraçõesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ComponentesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents SuplementosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents PontoCríticoRealToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents ResultadosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents GerarRelatórioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents bgCalc As System.ComponentModel.BackgroundWorker
-    Public WithEvents PropriedadesDosComponentesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents AnáliseDePetróleosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents DiagramaDeFasesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents OtimizaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents AnáliseDeSensibilidadeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents StatusBarTextProvider1 As EWSoftware.StatusBarText.StatusBarTextProvider
     Public WithEvents OpenFileName As System.Windows.Forms.OpenFileDialog
     Public WithEvents ToolStrip4 As System.Windows.Forms.ToolStrip
@@ -1187,15 +919,8 @@ Partial Class FormFlowsheet
     Public WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripButton11 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripButton10 As System.Windows.Forms.ToolStripButton
-    Public WithEvents DiagramaDeFasesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents PropriedadesEspeciaisToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents DiagramaBinárioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ArquivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents PSVSizingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents FlashVesselSizingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents PropriedadesDePetróleosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents MultivariateOptimizerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents dckPanel As WeifenLuo.WinFormsUI.Docking.DockPanel
     Public WithEvents InserirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents CorrentesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -1233,12 +958,6 @@ Partial Class FormFlowsheet
     Public WithEvents TSMIEnergyRecycle As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMIAdjust As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMISpecification As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents FerramentasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents GeradorDeHipotéticosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents CriadorDeComponenteDoUsuárioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents GerenciadorDeReaçõesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Public WithEvents ToolStripLabel3 As System.Windows.Forms.ToolStripLabel
     Public WithEvents ToolStripComboBoxUnitSystem As System.Windows.Forms.ToolStripComboBox
@@ -1253,16 +972,10 @@ Partial Class FormFlowsheet
     Friend WithEvents ToolStripButton16 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton17 As System.Windows.Forms.ToolStripButton
     Friend WithEvents TSMICOUO As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ExibirSaídaDoConsoleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ExibirListaDeItensACalcularToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents ExibirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PainelDeVariáveisToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripButton18 As System.Windows.Forms.ToolStripButton
     Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
     Friend WithEvents ToolStripButton19 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripButton20 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents GerenciadorDeAmostrasDePetróleoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents cboProblemType As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents cboProblemOption As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents cboInputCheck As System.Windows.Forms.ToolStripComboBox
@@ -1271,4 +984,5 @@ Partial Class FormFlowsheet
     Public WithEvents lbll As System.Windows.Forms.ToolStripLabel
     Friend WithEvents lbl1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents lbl2 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents tsmiGroupComponents As System.Windows.Forms.ToolStripMenuItem
 End Class
