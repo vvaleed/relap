@@ -613,6 +613,7 @@ Imports RELAP.RELAP.FormClasses
     Public Sub CheckCollections()
 
         'Creates all the graphic collections.
+        If Collections.GroupCollection Is Nothing Then Collections.GroupCollection = New Dictionary(Of String, ShapeGraphic)
         If Collections.MixerCollection Is Nothing Then Collections.MixerCollection = New Dictionary(Of String, NodeInGraphic)
         If Collections.SplitterCollection Is Nothing Then Collections.SplitterCollection = New Dictionary(Of String, NodeOutGraphic)
         If Collections.MaterialStreamCollection Is Nothing Then Collections.MaterialStreamCollection = New Dictionary(Of String, MaterialStreamGraphic)
@@ -651,7 +652,7 @@ Imports RELAP.RELAP.FormClasses
         If Collections.ObjectCollection Is Nothing Then Collections.ObjectCollection = New Dictionary(Of String, SimulationObjects_BaseClass)
 
         'Creates all the actual unit operations collections.
-      
+
     End Sub
 
 #End Region
@@ -2111,4 +2112,25 @@ Imports RELAP.RELAP.FormClasses
     '#End Region
 
    
+    Private Sub tsmiGroupComponents_Click(sender As Object, e As EventArgs) Handles tsmiGroupComponents.Click
+
+        For Each gObj In FormSurface.FlowsheetDesignSurface.SelectedObjects.Values
+
+            gObj.X = 0
+            gObj.Y = 0
+
+
+            Collections.UpdateCounter("GROUP")
+            'GetFlowsheetGraphicObject(gObj.Tag)
+            Collections.GroupCollection.Add(gObj.Name, gObj)
+            'Collections.TankCollection.Add(gObj.Name, gObj)
+            'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+            'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+            'OBJETO RELAP
+            Dim myCOTK As RELAP.SimulationObjects.UnitOps.Tank = New RELAP.SimulationObjects.UnitOps.Tank(gObj.Name, "Tanque")
+            myCOTK.GraphicObject = gObj
+            Collections.ObjectCollection.Add(gObj.Name, myCOTK)
+            Collections.CLCS_GroupCollection.Add(gObj.Name, myCOTK)
+        Next
+    End Sub
 End Class

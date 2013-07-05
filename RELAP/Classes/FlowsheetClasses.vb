@@ -31,6 +31,7 @@ Namespace RELAP.FormClasses
     <System.Serializable()> Public Class ClsObjectCollections
 
         'Declares collections for holding graphic elements of the flowsheet.
+        Public GroupCollection As Dictionary(Of String, ShapeGraphic)
         Public MixerCollection As Dictionary(Of String, NodeInGraphic)
         Public SplitterCollection As Dictionary(Of String, NodeOutGraphic)
         Public MaterialStreamCollection As Dictionary(Of String, MaterialStreamGraphic)
@@ -75,6 +76,7 @@ Namespace RELAP.FormClasses
 
         'These are collections for holding the actual unit operations instances.
         Public CLCS_FuelRodCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
+        Public CLCS_GroupCollection As Dictionary(Of String, SimulationObjects_UnitOpBaseClass)
         Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
         Public CLCS_CoolerCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.cooler)
         Public CLCS_PipeCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
@@ -85,6 +87,7 @@ Namespace RELAP.FormClasses
         Sub New()
 
             'Creates all the graphic collections.
+            GroupCollection = New Dictionary(Of String, ShapeGraphic)
             MixerCollection = New Dictionary(Of String, NodeInGraphic)
             SplitterCollection = New Dictionary(Of String, NodeOutGraphic)
             MaterialStreamCollection = New Dictionary(Of String, MaterialStreamGraphic)

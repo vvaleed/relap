@@ -545,13 +545,13 @@ Public Class frmSurface
             End If
 
         End If
-        Dim frm As FormMain = Me.ParentForm.ParentForm
+        Dim frm As FormFlowsheet = Me.ParentForm
         If Me.FlowsheetDesignSurface.SelectedObjects.Count > 1 Then
 
-            frm.GroupComponentsToolStripMenuItem.Visible = True
+            frm.tsmiGroupComponents.Visible = True
 
         Else
-            frm.GroupComponentsToolStripMenuItem.Visible = False
+            frm.tsmiGroupComponents.Visible = False
         End If
 
     End Sub
