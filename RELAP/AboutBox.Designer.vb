@@ -89,9 +89,9 @@ Partial Class AboutBox
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(17, 127)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(54, 13)
+        Me.Label2.Size = New System.Drawing.Size(49, 13)
         Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Websites:"
+        Me.Label2.Text = "Website:"
         '
         'LinkLabel2
         '
@@ -99,10 +99,10 @@ Partial Class AboutBox
         Me.LinkLabel2.BackColor = System.Drawing.Color.Transparent
         Me.LinkLabel2.Location = New System.Drawing.Point(138, 127)
         Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(166, 13)
+        Me.LinkLabel2.Size = New System.Drawing.Size(130, 13)
         Me.LinkLabel2.TabIndex = 7
         Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "http://www.pieas.edu.pk/RELAP"
+        Me.LinkLabel2.Text = "http://relap.codeplex.com"
         '
         'LabelLicense
         '
@@ -203,7 +203,7 @@ Partial Class AboutBox
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(574, 467)
+        Me.ClientSize = New System.Drawing.Size(570, 463)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label3)

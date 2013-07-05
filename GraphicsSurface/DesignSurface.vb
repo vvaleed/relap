@@ -563,8 +563,10 @@ Imports System.Runtime.Serialization
             If My.Computer.Keyboard.CtrlKeyDown Then
                 If Not Me.SelectedObjects.ContainsKey(Me.SelectedObject.Name) Then
                     Me.SelectedObjects.Add(Me.SelectedObject.Name, Me.SelectedObject)
+                    Me.SelectedObject = Nothing
                 Else
                     Me.SelectedObjects.Remove(Me.SelectedObject.Name)
+                    Me.SelectedObject = Nothing
                 End If
                 justselected = True
             Else
@@ -802,6 +804,7 @@ Imports System.Runtime.Serialization
                 justselected = True
                 Me.Invalidate()
             End If
+           
         End If
 
     End Sub
