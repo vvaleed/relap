@@ -63,6 +63,7 @@ Partial Class FormMain
         Me.DeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DonateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GroupComponentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.NewToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -104,7 +105,7 @@ Partial Class FormMain
         'MenuStrip1
         '
         Me.MenuStrip1.AllowItemReorder = True
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VerToolStripMenuItem, Me.WindowsMenu, Me.GenerateInputFileToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VerToolStripMenuItem, Me.WindowsMenu, Me.GenerateInputFileToolStripMenuItem, Me.HelpToolStripMenuItem, Me.GroupComponentsToolStripMenuItem})
         resources.ApplyResources(Me.MenuStrip1, "MenuStrip1")
         Me.MenuStrip1.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -326,6 +327,13 @@ Partial Class FormMain
         Me.AboutToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.information
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         resources.ApplyResources(Me.AboutToolStripMenuItem, "AboutToolStripMenuItem")
+        '
+        'GroupComponentsToolStripMenuItem
+        '
+        Me.GroupComponentsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
+        resources.ApplyResources(Me.GroupComponentsToolStripMenuItem, "GroupComponentsToolStripMenuItem")
+        Me.GroupComponentsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.GroupComponentsToolStripMenuItem.Name = "GroupComponentsToolStripMenuItem"
         '
         'ToolStrip1
         '
@@ -686,5 +694,6 @@ Partial Class FormMain
     Friend WithEvents SaveStudyDlg As System.Windows.Forms.SaveFileDialog
     Friend WithEvents SaveRegStudyDlg As System.Windows.Forms.SaveFileDialog
     Friend WithEvents GenerateInputFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GroupComponentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

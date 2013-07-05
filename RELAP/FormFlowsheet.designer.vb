@@ -162,242 +162,305 @@ Partial Class FormFlowsheet
         '
         'ToolStrip4
         '
-        resources.ApplyResources(Me.ToolStrip4, "ToolStrip4")
+        Me.ToolStrip4.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel4, Me.TSBtabela, Me.TSBTexto, Me.ToolStripButton19, Me.ToolStripButton12, Me.ToolStripSeparator5, Me.ToolStripButton1, Me.TSTBZoom, Me.ToolStripButton2, Me.ToolStripButton20, Me.ToolStripSeparator6, Me.ToolStripButton18, Me.ToolStripButton6, Me.ToolStripButton11, Me.ToolStripButton10, Me.ToolStripSeparator4, Me.ToolStripButton16, Me.ToolStripButton17})
+        Me.ToolStrip4.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip4.Name = "ToolStrip4"
+        Me.ToolStrip4.Size = New System.Drawing.Size(421, 25)
+        Me.ToolStrip4.TabIndex = 4
+        Me.ToolStrip4.Text = "Flowchart"
+        Me.ToolStrip4.Visible = False
         '
         'ToolStripLabel4
         '
-        resources.ApplyResources(Me.ToolStripLabel4, "ToolStripLabel4")
+        Me.ToolStripLabel4.Enabled = False
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
+        Me.ToolStripLabel4.Size = New System.Drawing.Size(55, 22)
+        Me.ToolStripLabel4.Text = "PFD Area"
         '
         'TSBtabela
         '
         Me.TSBtabela.CheckOnClick = True
         Me.TSBtabela.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.TSBtabela.Image = Global.RELAP.My.Resources.Resources.picture
-        resources.ApplyResources(Me.TSBtabela, "TSBtabela")
+        Me.TSBtabela.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TSBtabela.Name = "TSBtabela"
+        Me.TSBtabela.Size = New System.Drawing.Size(23, 22)
+        Me.TSBtabela.Text = "Insert Image"
+        Me.TSBtabela.ToolTipText = "Insert Image"
         '
         'TSBTexto
         '
         Me.TSBTexto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.TSBTexto.Image = Global.RELAP.My.Resources.Resources.font
-        resources.ApplyResources(Me.TSBTexto, "TSBTexto")
+        Me.TSBTexto.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TSBTexto.Name = "TSBTexto"
+        Me.TSBTexto.Size = New System.Drawing.Size(23, 22)
+        Me.TSBTexto.Text = "Insert Text"
+        Me.TSBTexto.ToolTipText = "Insert Text"
         '
         'ToolStripButton19
         '
         Me.ToolStripButton19.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton19.Image = Global.RELAP.My.Resources.Resources.table
-        resources.ApplyResources(Me.ToolStripButton19, "ToolStripButton19")
+        Me.ToolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton19.Name = "ToolStripButton19"
+        Me.ToolStripButton19.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton19.Text = "Master Property Table"
         '
         'ToolStripButton12
         '
         Me.ToolStripButton12.CheckOnClick = True
         Me.ToolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton12.Image = Global.RELAP.My.Resources.Resources.shape_square
-        resources.ApplyResources(Me.ToolStripButton12, "ToolStripButton12")
+        Me.ToolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton12.Name = "ToolStripButton12"
+        Me.ToolStripButton12.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton12.Text = "Insert Rectangle"
+        Me.ToolStripButton12.ToolTipText = "Insert Rectangle"
+        Me.ToolStripButton12.Visible = False
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        resources.ApplyResources(Me.ToolStripSeparator5, "ToolStripSeparator5")
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton1
         '
         Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton1.Image = Global.RELAP.My.Resources.Resources.zoom_out
-        resources.ApplyResources(Me.ToolStripButton1, "ToolStripButton1")
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Unzoom flowsheet"
         '
         'TSTBZoom
         '
         Me.TSTBZoom.BackColor = System.Drawing.SystemColors.Control
         Me.TSTBZoom.Name = "TSTBZoom"
-        resources.ApplyResources(Me.TSTBZoom, "TSTBZoom")
+        Me.TSTBZoom.Size = New System.Drawing.Size(35, 25)
+        Me.TSTBZoom.Text = "100%"
+        Me.TSTBZoom.ToolTipText = "Zoom level flowchart"
         '
         'ToolStripButton2
         '
         Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton2.Image = Global.RELAP.My.Resources.Resources.zoom_in
-        resources.ApplyResources(Me.ToolStripButton2, "ToolStripButton2")
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Zoom flowsheet"
         '
         'ToolStripButton20
         '
         Me.ToolStripButton20.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton20.Image = Global.RELAP.My.Resources.Resources.zoom
-        resources.ApplyResources(Me.ToolStripButton20, "ToolStripButton20")
+        Me.ToolStripButton20.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton20.Name = "ToolStripButton20"
+        Me.ToolStripButton20.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton20.Text = "Zoom All"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        resources.ApplyResources(Me.ToolStripSeparator6, "ToolStripSeparator6")
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton18
         '
         Me.ToolStripButton18.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton18.Image = Global.RELAP.My.Resources.Resources.images
-        resources.ApplyResources(Me.ToolStripButton18, "ToolStripButton18")
+        Me.ToolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton18.Name = "ToolStripButton18"
+        Me.ToolStripButton18.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton18.Text = "Save as Image"
         '
         'ToolStripButton6
         '
         Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton6, "ToolStripButton6")
+        Me.ToolStripButton6.Enabled = False
         Me.ToolStripButton6.Image = Global.RELAP.My.Resources.Resources.page_gear
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton6.Text = "Configure Page"
         '
         'ToolStripButton11
         '
         Me.ToolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton11.Image = Global.RELAP.My.Resources.Resources.printer
-        resources.ApplyResources(Me.ToolStripButton11, "ToolStripButton11")
+        Me.ToolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton11.Name = "ToolStripButton11"
+        Me.ToolStripButton11.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton11.Text = "Configure Printer"
         '
         'ToolStripButton10
         '
         Me.ToolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton10.Image = Global.RELAP.My.Resources.Resources.printer_add
-        resources.ApplyResources(Me.ToolStripButton10, "ToolStripButton10")
+        Me.ToolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton10.Name = "ToolStripButton10"
+        Me.ToolStripButton10.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton10.Text = "View and Print Flowsheet"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        resources.ApplyResources(Me.ToolStripSeparator4, "ToolStripSeparator4")
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton16
         '
         Me.ToolStripButton16.CheckOnClick = True
         Me.ToolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton16.Image = Global.RELAP.My.Resources.Resources.shading
-        resources.ApplyResources(Me.ToolStripButton16, "ToolStripButton16")
+        Me.ToolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton16.Name = "ToolStripButton16"
+        Me.ToolStripButton16.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton16.Text = "Snap Objects to Grid"
         '
         'ToolStripButton17
         '
         Me.ToolStripButton17.CheckOnClick = True
         Me.ToolStripButton17.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton17.Image = Global.RELAP.My.Resources.Resources.connect
-        resources.ApplyResources(Me.ToolStripButton17, "ToolStripButton17")
+        Me.ToolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton17.Name = "ToolStripButton17"
+        Me.ToolStripButton17.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton17.Text = "Quick Connect Mode"
         '
         'ToolStripPanel1
         '
-        Me.ToolStripPanel1.Controls.Add(Me.ToolStrip4)
         Me.ToolStripPanel1.Controls.Add(Me.ToolStrip1)
-        resources.ApplyResources(Me.ToolStripPanel1, "ToolStripPanel1")
+        Me.ToolStripPanel1.Controls.Add(Me.ToolStrip4)
+        Me.ToolStripPanel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ToolStripPanel1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripPanel1.Name = "ToolStripPanel1"
         Me.ToolStripPanel1.Orientation = System.Windows.Forms.Orientation.Horizontal
         Me.ToolStripPanel1.RowMargin = New System.Windows.Forms.Padding(3, 0, 0, 0)
+        Me.ToolStripPanel1.Size = New System.Drawing.Size(1229, 25)
         '
         'ToolStrip1
         '
-        resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl1, Me.cboProblemType, Me.lbl2, Me.cboProblemOption, Me.lbll, Me.cboInputCheck, Me.ToolStripLabel3, Me.ToolStripComboBoxUnitSystem, Me.lbl3, Me.cboOutputUnits, Me.ToolStripSeparator2, Me.ToolStripLabel6, Me.ToolStripComboBoxNumberFormatting, Me.ToolStripSeparator3, Me.ToolStripLabel7, Me.ToolStripComboBoxNumberFractionFormatting})
+        Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1047, 25)
+        Me.ToolStrip1.TabIndex = 9
         '
         'lbl1
         '
         Me.lbl1.Name = "lbl1"
-        resources.ApplyResources(Me.lbl1, "lbl1")
+        Me.lbl1.Size = New System.Drawing.Size(81, 22)
+        Me.lbl1.Text = "Problem Type"
         '
         'cboProblemType
         '
-        Me.cboProblemType.Items.AddRange(New Object() {resources.GetString("cboProblemType.Items"), resources.GetString("cboProblemType.Items1"), resources.GetString("cboProblemType.Items2"), resources.GetString("cboProblemType.Items3"), resources.GetString("cboProblemType.Items4"), resources.GetString("cboProblemType.Items5")})
+        Me.cboProblemType.Items.AddRange(New Object() {"NEW", "RESTART", "PLOT", "IN-COND", "STRIP", "CMPCOMS"})
         Me.cboProblemType.Name = "cboProblemType"
-        resources.ApplyResources(Me.cboProblemType, "cboProblemType")
+        Me.cboProblemType.Size = New System.Drawing.Size(121, 25)
         '
         'lbl2
         '
         Me.lbl2.Name = "lbl2"
-        resources.ApplyResources(Me.lbl2, "lbl2")
+        Me.lbl2.Size = New System.Drawing.Size(92, 22)
+        Me.lbl2.Text = "Problem Option"
         '
         'cboProblemOption
         '
-        Me.cboProblemOption.Items.AddRange(New Object() {resources.GetString("cboProblemOption.Items"), resources.GetString("cboProblemOption.Items1")})
+        Me.cboProblemOption.Items.AddRange(New Object() {"STDY-ST", "TRANSNT"})
         Me.cboProblemOption.Name = "cboProblemOption"
-        resources.ApplyResources(Me.cboProblemOption, "cboProblemOption")
+        Me.cboProblemOption.Size = New System.Drawing.Size(121, 25)
         '
         'lbll
         '
         Me.lbll.Name = "lbll"
-        resources.ApplyResources(Me.lbll, "lbll")
+        Me.lbll.Size = New System.Drawing.Size(71, 22)
+        Me.lbll.Text = "Input Check"
         '
         'cboInputCheck
         '
-        Me.cboInputCheck.Items.AddRange(New Object() {resources.GetString("cboInputCheck.Items"), resources.GetString("cboInputCheck.Items1")})
+        Me.cboInputCheck.Items.AddRange(New Object() {"RUN", "INP-CHK"})
         Me.cboInputCheck.Name = "cboInputCheck"
-        resources.ApplyResources(Me.cboInputCheck, "cboInputCheck")
+        Me.cboInputCheck.Size = New System.Drawing.Size(121, 25)
         '
         'ToolStripLabel3
         '
         Me.ToolStripLabel3.Name = "ToolStripLabel3"
-        resources.ApplyResources(Me.ToolStripLabel3, "ToolStripLabel3")
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(89, 22)
+        Me.ToolStripLabel3.Text = "System of Units"
         '
         'ToolStripComboBoxUnitSystem
         '
         Me.ToolStripComboBoxUnitSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ToolStripComboBoxUnitSystem.Name = "ToolStripComboBoxUnitSystem"
-        resources.ApplyResources(Me.ToolStripComboBoxUnitSystem, "ToolStripComboBoxUnitSystem")
+        Me.ToolStripComboBoxUnitSystem.Size = New System.Drawing.Size(121, 25)
         '
         'lbl3
         '
         Me.lbl3.Name = "lbl3"
-        resources.ApplyResources(Me.lbl3, "lbl3")
+        Me.lbl3.Size = New System.Drawing.Size(75, 22)
+        Me.lbl3.Text = "Output Units"
         '
         'cboOutputUnits
         '
         Me.cboOutputUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboOutputUnits.Name = "cboOutputUnits"
-        resources.ApplyResources(Me.cboOutputUnits, "cboOutputUnits")
+        Me.cboOutputUnits.Size = New System.Drawing.Size(121, 25)
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        resources.ApplyResources(Me.ToolStripSeparator2, "ToolStripSeparator2")
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripLabel6
         '
-        resources.ApplyResources(Me.ToolStripLabel6, "ToolStripLabel6")
+        Me.ToolStripLabel6.Enabled = False
         Me.ToolStripLabel6.Name = "ToolStripLabel6"
+        Me.ToolStripLabel6.Size = New System.Drawing.Size(113, 24)
+        Me.ToolStripLabel6.Text = "Number Formatting"
+        Me.ToolStripLabel6.Visible = False
         '
         'ToolStripComboBoxNumberFormatting
         '
         Me.ToolStripComboBoxNumberFormatting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ToolStripComboBoxNumberFormatting.Items.AddRange(New Object() {resources.GetString("ToolStripComboBoxNumberFormatting.Items"), resources.GetString("ToolStripComboBoxNumberFormatting.Items1"), resources.GetString("ToolStripComboBoxNumberFormatting.Items2"), resources.GetString("ToolStripComboBoxNumberFormatting.Items3"), resources.GetString("ToolStripComboBoxNumberFormatting.Items4"), resources.GetString("ToolStripComboBoxNumberFormatting.Items5"), resources.GetString("ToolStripComboBoxNumberFormatting.Items6"), resources.GetString("ToolStripComboBoxNumberFormatting.Items7"), resources.GetString("ToolStripComboBoxNumberFormatting.Items8"), resources.GetString("ToolStripComboBoxNumberFormatting.Items9"), resources.GetString("ToolStripComboBoxNumberFormatting.Items10"), resources.GetString("ToolStripComboBoxNumberFormatting.Items11"), resources.GetString("ToolStripComboBoxNumberFormatting.Items12"), resources.GetString("ToolStripComboBoxNumberFormatting.Items13"), resources.GetString("ToolStripComboBoxNumberFormatting.Items14"), resources.GetString("ToolStripComboBoxNumberFormatting.Items15"), resources.GetString("ToolStripComboBoxNumberFormatting.Items16"), resources.GetString("ToolStripComboBoxNumberFormatting.Items17"), resources.GetString("ToolStripComboBoxNumberFormatting.Items18"), resources.GetString("ToolStripComboBoxNumberFormatting.Items19"), resources.GetString("ToolStripComboBoxNumberFormatting.Items20"), resources.GetString("ToolStripComboBoxNumberFormatting.Items21"), resources.GetString("ToolStripComboBoxNumberFormatting.Items22"), resources.GetString("ToolStripComboBoxNumberFormatting.Items23"), resources.GetString("ToolStripComboBoxNumberFormatting.Items24"), resources.GetString("ToolStripComboBoxNumberFormatting.Items25"), resources.GetString("ToolStripComboBoxNumberFormatting.Items26"), resources.GetString("ToolStripComboBoxNumberFormatting.Items27"), resources.GetString("ToolStripComboBoxNumberFormatting.Items28")})
+        Me.ToolStripComboBoxNumberFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFormatting.Name = "ToolStripComboBoxNumberFormatting"
-        resources.ApplyResources(Me.ToolStripComboBoxNumberFormatting, "ToolStripComboBoxNumberFormatting")
+        Me.ToolStripComboBoxNumberFormatting.Size = New System.Drawing.Size(121, 27)
+        Me.ToolStripComboBoxNumberFormatting.Visible = False
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        resources.ApplyResources(Me.ToolStripSeparator3, "ToolStripSeparator3")
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripLabel7
         '
-        resources.ApplyResources(Me.ToolStripLabel7, "ToolStripLabel7")
+        Me.ToolStripLabel7.Enabled = False
         Me.ToolStripLabel7.Name = "ToolStripLabel7"
+        Me.ToolStripLabel7.Size = New System.Drawing.Size(112, 24)
+        Me.ToolStripLabel7.Text = "Fraction Formatting"
+        Me.ToolStripLabel7.Visible = False
         '
         'ToolStripComboBoxNumberFractionFormatting
         '
         Me.ToolStripComboBoxNumberFractionFormatting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ToolStripComboBoxNumberFractionFormatting.Items.AddRange(New Object() {resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items1"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items2"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items3"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items4"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items5"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items6"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items7"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items8"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items9"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items10"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items11"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items12"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items13"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items14"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items15"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items16"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items17"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items18"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items19"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items20"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items21"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items22"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items23"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items24"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items25"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items26"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items27"), resources.GetString("ToolStripComboBoxNumberFractionFormatting.Items28")})
+        Me.ToolStripComboBoxNumberFractionFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFractionFormatting.Name = "ToolStripComboBoxNumberFractionFormatting"
-        resources.ApplyResources(Me.ToolStripComboBoxNumberFractionFormatting, "ToolStripComboBoxNumberFractionFormatting")
+        Me.ToolStripComboBoxNumberFractionFormatting.Size = New System.Drawing.Size(121, 25)
+        Me.ToolStripComboBoxNumberFractionFormatting.Visible = False
         '
         'MenuStrip1
         '
         Me.MenuStrip1.AllowItemReorder = True
-        resources.ApplyResources(Me.MenuStrip1, "MenuStrip1")
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraçõesToolStripMenuItem, Me.ExibirToolStripMenuItem, Me.InserirToolStripMenuItem, Me.SuplementosToolStripMenuItem, Me.OtimizaToolStripMenuItem, Me.ResultadosToolStripMenuItem, Me.ArquivoToolStripMenuItem, Me.FerramentasToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.ShowItemToolTips = True
+        Me.MenuStrip1.Size = New System.Drawing.Size(448, 24)
+        Me.MenuStrip1.TabIndex = 6
+        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.MenuStrip1.Visible = False
         '
         'ConfiguraçõesToolStripMenuItem
         '
@@ -405,7 +468,8 @@ Partial Class FormFlowsheet
         Me.ConfiguraçõesToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly
         Me.ConfiguraçõesToolStripMenuItem.MergeIndex = 0
         Me.ConfiguraçõesToolStripMenuItem.Name = "ConfiguraçõesToolStripMenuItem"
-        resources.ApplyResources(Me.ConfiguraçõesToolStripMenuItem, "ConfiguraçõesToolStripMenuItem")
+        Me.ConfiguraçõesToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.ConfiguraçõesToolStripMenuItem.Text = "&Settings"
         '
         'ComponentesToolStripMenuItem
         '
@@ -413,8 +477,11 @@ Partial Class FormFlowsheet
         Me.ComponentesToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.ComponentesToolStripMenuItem.MergeIndex = 0
         Me.ComponentesToolStripMenuItem.Name = "ComponentesToolStripMenuItem"
-        resources.ApplyResources(Me.ComponentesToolStripMenuItem, "ComponentesToolStripMenuItem")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, resources.GetString("ComponentesToolStripMenuItem.StatusBarText"))
+        Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, "Opens the configuration window for the active simulation")
+        Me.ComponentesToolStripMenuItem.Text = "Simulation Settings"
         '
         'ExibirToolStripMenuItem
         '
@@ -422,31 +489,36 @@ Partial Class FormFlowsheet
         Me.ExibirToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.ExibirToolStripMenuItem.MergeIndex = 3
         Me.ExibirToolStripMenuItem.Name = "ExibirToolStripMenuItem"
-        resources.ApplyResources(Me.ExibirToolStripMenuItem, "ExibirToolStripMenuItem")
+        Me.ExibirToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ExibirToolStripMenuItem.Text = "&View"
         '
         'ExibirSaídaDoConsoleToolStripMenuItem
         '
         Me.ExibirSaídaDoConsoleToolStripMenuItem.CheckOnClick = True
         Me.ExibirSaídaDoConsoleToolStripMenuItem.Name = "ExibirSaídaDoConsoleToolStripMenuItem"
-        resources.ApplyResources(Me.ExibirSaídaDoConsoleToolStripMenuItem, "ExibirSaídaDoConsoleToolStripMenuItem")
+        Me.ExibirSaídaDoConsoleToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.ExibirSaídaDoConsoleToolStripMenuItem.Text = "Console Output"
         '
         'ExibirListaDeItensACalcularToolStripMenuItem
         '
         Me.ExibirListaDeItensACalcularToolStripMenuItem.CheckOnClick = True
         Me.ExibirListaDeItensACalcularToolStripMenuItem.Name = "ExibirListaDeItensACalcularToolStripMenuItem"
-        resources.ApplyResources(Me.ExibirListaDeItensACalcularToolStripMenuItem, "ExibirListaDeItensACalcularToolStripMenuItem")
+        Me.ExibirListaDeItensACalcularToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.ExibirListaDeItensACalcularToolStripMenuItem.Text = "Calculation Queue"
         '
         'PainelDeVariáveisToolStripMenuItem
         '
         Me.PainelDeVariáveisToolStripMenuItem.CheckOnClick = True
         Me.PainelDeVariáveisToolStripMenuItem.Name = "PainelDeVariáveisToolStripMenuItem"
-        resources.ApplyResources(Me.PainelDeVariáveisToolStripMenuItem, "PainelDeVariáveisToolStripMenuItem")
+        Me.PainelDeVariáveisToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.PainelDeVariáveisToolStripMenuItem.Text = "Watch Panel"
         '
         'ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem
         '
         Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.CheckOnClick = True
         Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.Name = "ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem"
-        resources.ApplyResources(Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem, "ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem")
+        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.ExibirRelatóriosDosObjetosCAPEOPENToolStripMenuItem.Text = "CAPE-OPEN Object Reports"
         '
         'InserirToolStripMenuItem
         '
@@ -454,229 +526,297 @@ Partial Class FormFlowsheet
         Me.InserirToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.InserirToolStripMenuItem.MergeIndex = 2
         Me.InserirToolStripMenuItem.Name = "InserirToolStripMenuItem"
-        resources.ApplyResources(Me.InserirToolStripMenuItem, "InserirToolStripMenuItem")
+        Me.InserirToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.InserirToolStripMenuItem.Text = "&Insert"
         '
         'CorrentesToolStripMenuItem
         '
         Me.CorrentesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIMaterialStream, Me.TSMIEnergyStream})
         Me.CorrentesToolStripMenuItem.Name = "CorrentesToolStripMenuItem"
-        resources.ApplyResources(Me.CorrentesToolStripMenuItem, "CorrentesToolStripMenuItem")
+        Me.CorrentesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.CorrentesToolStripMenuItem.Text = "Streams"
         '
         'TSMIMaterialStream
         '
         Me.TSMIMaterialStream.Image = Global.RELAP.My.Resources.Resources.arrow_right
-        resources.ApplyResources(Me.TSMIMaterialStream, "TSMIMaterialStream")
+        Me.TSMIMaterialStream.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIMaterialStream.Name = "TSMIMaterialStream"
+        Me.TSMIMaterialStream.Size = New System.Drawing.Size(157, 22)
+        Me.TSMIMaterialStream.Text = "Material Stream"
         '
         'TSMIEnergyStream
         '
         Me.TSMIEnergyStream.Image = Global.RELAP.My.Resources.Resources.arrow_right2
-        resources.ApplyResources(Me.TSMIEnergyStream, "TSMIEnergyStream")
+        Me.TSMIEnergyStream.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIEnergyStream.Name = "TSMIEnergyStream"
+        Me.TSMIEnergyStream.Size = New System.Drawing.Size(157, 22)
+        Me.TSMIEnergyStream.Text = "Energy Stream"
         '
         'OperaçõesUnitáriasToolStripMenuItem
         '
         Me.OperaçõesUnitáriasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIMixer, Me.TSMISplitter, Me.TSMICompressor, Me.TSMIExpander, Me.TSMIPump, Me.TSMIPipe, Me.TSMIValve, Me.TSMISeparator, Me.TSMIHeater, Me.TSMICooler, Me.TSMIOrificePlate, Me.TSMIComponentSeparator, Me.TSMIHeatExchanger, Me.TSMITank, Me.TSMICUO, Me.TSMICOUO})
         Me.OperaçõesUnitáriasToolStripMenuItem.Name = "OperaçõesUnitáriasToolStripMenuItem"
-        resources.ApplyResources(Me.OperaçõesUnitáriasToolStripMenuItem, "OperaçõesUnitáriasToolStripMenuItem")
+        Me.OperaçõesUnitáriasToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.OperaçõesUnitáriasToolStripMenuItem.Text = "Unit Operations"
         '
         'TSMIMixer
         '
         Me.TSMIMixer.Image = Global.RELAP.My.Resources.Resources.node_in_copy
-        resources.ApplyResources(Me.TSMIMixer, "TSMIMixer")
+        Me.TSMIMixer.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIMixer.Name = "TSMIMixer"
+        Me.TSMIMixer.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIMixer.Text = "Mixer"
         '
         'TSMISplitter
         '
         Me.TSMISplitter.Image = Global.RELAP.My.Resources.Resources.node_out_copy
-        resources.ApplyResources(Me.TSMISplitter, "TSMISplitter")
+        Me.TSMISplitter.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMISplitter.Name = "TSMISplitter"
+        Me.TSMISplitter.Size = New System.Drawing.Size(220, 22)
+        Me.TSMISplitter.Text = "Splitter"
         '
         'TSMICompressor
         '
         Me.TSMICompressor.Image = Global.RELAP.My.Resources.Resources.compressor_copy
-        resources.ApplyResources(Me.TSMICompressor, "TSMICompressor")
+        Me.TSMICompressor.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMICompressor.Name = "TSMICompressor"
+        Me.TSMICompressor.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICompressor.Text = "Adiabatic Compressor"
         '
         'TSMIExpander
         '
         Me.TSMIExpander.Image = Global.RELAP.My.Resources.Resources.turbina_copy
-        resources.ApplyResources(Me.TSMIExpander, "TSMIExpander")
+        Me.TSMIExpander.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIExpander.Name = "TSMIExpander"
+        Me.TSMIExpander.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIExpander.Text = "Adiabatic Expander"
         '
         'TSMIPump
         '
         Me.TSMIPump.Image = Global.RELAP.My.Resources.Resources.pump_copy
-        resources.ApplyResources(Me.TSMIPump, "TSMIPump")
+        Me.TSMIPump.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIPump.Name = "TSMIPump"
+        Me.TSMIPump.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIPump.Text = "Adiabatic Pump"
         '
         'TSMIPipe
         '
         Me.TSMIPipe.Image = Global.RELAP.My.Resources.Resources.pipe_copy
-        resources.ApplyResources(Me.TSMIPipe, "TSMIPipe")
+        Me.TSMIPipe.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIPipe.Name = "TSMIPipe"
+        Me.TSMIPipe.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIPipe.Text = "Pipe Segment"
         '
         'TSMIValve
         '
         Me.TSMIValve.Image = Global.RELAP.My.Resources.Resources.valve_copy
-        resources.ApplyResources(Me.TSMIValve, "TSMIValve")
+        Me.TSMIValve.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIValve.Name = "TSMIValve"
+        Me.TSMIValve.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIValve.Text = "Valve (Isenthalpic)"
         '
         'TSMISeparator
         '
         Me.TSMISeparator.Image = Global.RELAP.My.Resources.Resources.vessel_copy
-        resources.ApplyResources(Me.TSMISeparator, "TSMISeparator")
+        Me.TSMISeparator.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMISeparator.Name = "TSMISeparator"
+        Me.TSMISeparator.Size = New System.Drawing.Size(220, 22)
+        Me.TSMISeparator.Text = "Separator (Vessel)"
         '
         'TSMIHeater
         '
         Me.TSMIHeater.Image = Global.RELAP.My.Resources.Resources.heater_copy
-        resources.ApplyResources(Me.TSMIHeater, "TSMIHeater")
+        Me.TSMIHeater.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIHeater.Name = "TSMIHeater"
+        Me.TSMIHeater.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIHeater.Text = "Heater"
         '
         'TSMICooler
         '
         Me.TSMICooler.Image = Global.RELAP.My.Resources.Resources.cooler_copy
-        resources.ApplyResources(Me.TSMICooler, "TSMICooler")
+        Me.TSMICooler.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMICooler.Name = "TSMICooler"
+        Me.TSMICooler.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICooler.Text = "Cooler"
         '
         'TSMIOrificePlate
         '
         Me.TSMIOrificePlate.Image = Global.RELAP.My.Resources.Resources.orifice2
-        resources.ApplyResources(Me.TSMIOrificePlate, "TSMIOrificePlate")
+        Me.TSMIOrificePlate.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIOrificePlate.Name = "TSMIOrificePlate"
+        Me.TSMIOrificePlate.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIOrificePlate.Text = "Orifice Plate"
         '
         'TSMIComponentSeparator
         '
         Me.TSMIComponentSeparator.Image = Global.RELAP.My.Resources.Resources.comp_separator
-        resources.ApplyResources(Me.TSMIComponentSeparator, "TSMIComponentSeparator")
+        Me.TSMIComponentSeparator.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIComponentSeparator.Name = "TSMIComponentSeparator"
+        Me.TSMIComponentSeparator.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIComponentSeparator.Text = "Component Separator"
         '
         'TSMIHeatExchanger
         '
         Me.TSMIHeatExchanger.Image = Global.RELAP.My.Resources.Resources.heater_copy
-        resources.ApplyResources(Me.TSMIHeatExchanger, "TSMIHeatExchanger")
+        Me.TSMIHeatExchanger.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIHeatExchanger.Name = "TSMIHeatExchanger"
+        Me.TSMIHeatExchanger.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIHeatExchanger.Text = "Heat Exchanger"
         '
         'TSMITank
         '
         Me.TSMITank.Image = Global.RELAP.My.Resources.Resources.tank_copy
-        resources.ApplyResources(Me.TSMITank, "TSMITank")
+        Me.TSMITank.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMITank.Name = "TSMITank"
+        Me.TSMITank.Size = New System.Drawing.Size(220, 22)
+        Me.TSMITank.Text = "Tank"
         '
         'TSMICUO
         '
         Me.TSMICUO.Image = Global.RELAP.My.Resources.Resources.greyscale_20
         Me.TSMICUO.Name = "TSMICUO"
-        resources.ApplyResources(Me.TSMICUO, "TSMICUO")
+        Me.TSMICUO.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICUO.Text = "Custom Unit Operation"
         '
         'TSMICOUO
         '
         Me.TSMICOUO.Image = Global.RELAP.My.Resources.Resources.colan2
         Me.TSMICOUO.Name = "TSMICOUO"
-        resources.ApplyResources(Me.TSMICOUO, "TSMICOUO")
+        Me.TSMICOUO.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICOUO.Text = "CAPE-OPEN Unit Operation"
         '
         'ColunasToolStripMenuItem
         '
         Me.ColunasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIColShortcut, Me.TSMIColDist, Me.TSMIColAbs, Me.TSMIColAbsReb, Me.TSMIColAbsCond})
         Me.ColunasToolStripMenuItem.Name = "ColunasToolStripMenuItem"
-        resources.ApplyResources(Me.ColunasToolStripMenuItem, "ColunasToolStripMenuItem")
+        Me.ColunasToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ColunasToolStripMenuItem.Text = "Columns (Towers)"
         '
         'TSMIColShortcut
         '
         Me.TSMIColShortcut.Image = Global.RELAP.My.Resources.Resources.vessel_copy
-        resources.ApplyResources(Me.TSMIColShortcut, "TSMIColShortcut")
+        Me.TSMIColShortcut.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColShortcut.Name = "TSMIColShortcut"
+        Me.TSMIColShortcut.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColShortcut.Text = "Shortcut Column"
         '
         'TSMIColDist
         '
         Me.TSMIColDist.Image = Global.RELAP.My.Resources.Resources.vessel_copy
-        resources.ApplyResources(Me.TSMIColDist, "TSMIColDist")
+        Me.TSMIColDist.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColDist.Name = "TSMIColDist"
+        Me.TSMIColDist.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColDist.Text = "Distillation Column"
         '
         'TSMIColAbs
         '
         Me.TSMIColAbs.Image = Global.RELAP.My.Resources.Resources.vessel_copy
-        resources.ApplyResources(Me.TSMIColAbs, "TSMIColAbs")
+        Me.TSMIColAbs.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColAbs.Name = "TSMIColAbs"
+        Me.TSMIColAbs.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColAbs.Text = "Absorption Column"
         '
         'TSMIColAbsReb
         '
         Me.TSMIColAbsReb.Image = Global.RELAP.My.Resources.Resources.vessel_copy
-        resources.ApplyResources(Me.TSMIColAbsReb, "TSMIColAbsReb")
+        Me.TSMIColAbsReb.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColAbsReb.Name = "TSMIColAbsReb"
+        Me.TSMIColAbsReb.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColAbsReb.Text = "Reboiled Absorber"
         '
         'TSMIColAbsCond
         '
         Me.TSMIColAbsCond.Image = Global.RELAP.My.Resources.Resources.vessel_copy
-        resources.ApplyResources(Me.TSMIColAbsCond, "TSMIColAbsCond")
+        Me.TSMIColAbsCond.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColAbsCond.Name = "TSMIColAbsCond"
+        Me.TSMIColAbsCond.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColAbsCond.Text = "Refluxed Absorber"
         '
         'ReatoresToolStripMenuItem
         '
         Me.ReatoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIReactorConv, Me.TSMIReactorEquilibrium, Me.TSMIReactorGibbs, Me.TSMIReactorCSTR, Me.TSMIReactorPFR})
         Me.ReatoresToolStripMenuItem.Name = "ReatoresToolStripMenuItem"
-        resources.ApplyResources(Me.ReatoresToolStripMenuItem, "ReatoresToolStripMenuItem")
+        Me.ReatoresToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ReatoresToolStripMenuItem.Text = "Reactors"
         '
         'TSMIReactorConv
         '
         Me.TSMIReactorConv.Image = Global.RELAP.My.Resources.Resources.r_conv2
-        resources.ApplyResources(Me.TSMIReactorConv, "TSMIReactorConv")
+        Me.TSMIReactorConv.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorConv.Name = "TSMIReactorConv"
+        Me.TSMIReactorConv.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorConv.Text = "Conversion Reactor"
         '
         'TSMIReactorEquilibrium
         '
         Me.TSMIReactorEquilibrium.Image = Global.RELAP.My.Resources.Resources.r_equil1
-        resources.ApplyResources(Me.TSMIReactorEquilibrium, "TSMIReactorEquilibrium")
+        Me.TSMIReactorEquilibrium.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorEquilibrium.Name = "TSMIReactorEquilibrium"
+        Me.TSMIReactorEquilibrium.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorEquilibrium.Text = "Equilibrium Reactor"
         '
         'TSMIReactorGibbs
         '
         Me.TSMIReactorGibbs.Image = Global.RELAP.My.Resources.Resources.r_gibbs1
-        resources.ApplyResources(Me.TSMIReactorGibbs, "TSMIReactorGibbs")
+        Me.TSMIReactorGibbs.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorGibbs.Name = "TSMIReactorGibbs"
+        Me.TSMIReactorGibbs.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorGibbs.Text = "Gibbs Reactor"
         '
         'TSMIReactorCSTR
         '
         Me.TSMIReactorCSTR.Image = Global.RELAP.My.Resources.Resources.r_cstr
-        resources.ApplyResources(Me.TSMIReactorCSTR, "TSMIReactorCSTR")
+        Me.TSMIReactorCSTR.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorCSTR.Name = "TSMIReactorCSTR"
+        Me.TSMIReactorCSTR.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorCSTR.Text = "CSTR"
         '
         'TSMIReactorPFR
         '
         Me.TSMIReactorPFR.Image = Global.RELAP.My.Resources.Resources.r_pfr
-        resources.ApplyResources(Me.TSMIReactorPFR, "TSMIReactorPFR")
+        Me.TSMIReactorPFR.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorPFR.Name = "TSMIReactorPFR"
+        Me.TSMIReactorPFR.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorPFR.Text = "PFR"
         '
         'OperaçõesLógicasToolStripMenuItem
         '
         Me.OperaçõesLógicasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIRecycle, Me.TSMIEnergyRecycle, Me.TSMIAdjust, Me.TSMISpecification})
         Me.OperaçõesLógicasToolStripMenuItem.Name = "OperaçõesLógicasToolStripMenuItem"
-        resources.ApplyResources(Me.OperaçõesLógicasToolStripMenuItem, "OperaçõesLógicasToolStripMenuItem")
+        Me.OperaçõesLógicasToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.OperaçõesLógicasToolStripMenuItem.Text = "Logical Operations"
         '
         'TSMIRecycle
         '
         Me.TSMIRecycle.Image = Global.RELAP.My.Resources.Resources.reciclo_mini
-        resources.ApplyResources(Me.TSMIRecycle, "TSMIRecycle")
+        Me.TSMIRecycle.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIRecycle.Name = "TSMIRecycle"
+        Me.TSMIRecycle.Size = New System.Drawing.Size(168, 22)
+        Me.TSMIRecycle.Text = "Recycle (Material)"
         '
         'TSMIEnergyRecycle
         '
         Me.TSMIEnergyRecycle.Image = Global.RELAP.My.Resources.Resources.reciclo_e
-        resources.ApplyResources(Me.TSMIEnergyRecycle, "TSMIEnergyRecycle")
+        Me.TSMIEnergyRecycle.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIEnergyRecycle.Name = "TSMIEnergyRecycle"
+        Me.TSMIEnergyRecycle.Size = New System.Drawing.Size(168, 22)
+        Me.TSMIEnergyRecycle.Text = "Recycle (Energy)"
         '
         'TSMIAdjust
         '
         Me.TSMIAdjust.Image = Global.RELAP.My.Resources.Resources.ajuste_mini
-        resources.ApplyResources(Me.TSMIAdjust, "TSMIAdjust")
+        Me.TSMIAdjust.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIAdjust.Name = "TSMIAdjust"
+        Me.TSMIAdjust.Size = New System.Drawing.Size(168, 22)
+        Me.TSMIAdjust.Text = "Adjust"
         '
         'TSMISpecification
         '
         Me.TSMISpecification.Image = Global.RELAP.My.Resources.Resources.especificacao_mini
-        resources.ApplyResources(Me.TSMISpecification, "TSMISpecification")
+        Me.TSMISpecification.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMISpecification.Name = "TSMISpecification"
+        Me.TSMISpecification.Size = New System.Drawing.Size(168, 22)
+        Me.TSMISpecification.Text = "Specification"
         '
         'SuplementosToolStripMenuItem
         '
@@ -684,79 +824,105 @@ Partial Class FormFlowsheet
         Me.SuplementosToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.SuplementosToolStripMenuItem.MergeIndex = 3
         Me.SuplementosToolStripMenuItem.Name = "SuplementosToolStripMenuItem"
-        resources.ApplyResources(Me.SuplementosToolStripMenuItem, "SuplementosToolStripMenuItem")
+        Me.SuplementosToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.SuplementosToolStripMenuItem.Text = "&Utilities"
         '
         'PontoCríticoRealToolStripMenuItem
         '
         Me.PontoCríticoRealToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog1
         Me.PontoCríticoRealToolStripMenuItem.Name = "PontoCríticoRealToolStripMenuItem"
-        resources.ApplyResources(Me.PontoCríticoRealToolStripMenuItem, "PontoCríticoRealToolStripMenuItem")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PontoCríticoRealToolStripMenuItem, resources.GetString("PontoCríticoRealToolStripMenuItem.StatusBarText"))
+        Me.PontoCríticoRealToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.PontoCríticoRealToolStripMenuItem, "Utility for the calculation of the true critical point of a mixture")
+        Me.PontoCríticoRealToolStripMenuItem.Text = "True Critical Point"
         '
         'HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem
         '
         Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Name = "HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem"
-        resources.ApplyResources(Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem, "HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem, resources.GetString("HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.StatusBarText"))
+        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem, "Utility for calculation of thermodynamic equilibrium of natural gas hydrates")
+        Me.HYDVerificaçãoDasCondiçõesDeFormaçãoDeHidratosToolStripMenuItem.Text = "Hydrate Dissociation Utility"
         '
         'PropriedadesDosComponentesToolStripMenuItem
         '
-        resources.ApplyResources(Me.PropriedadesDosComponentesToolStripMenuItem, "PropriedadesDosComponentesToolStripMenuItem")
+        Me.PropriedadesDosComponentesToolStripMenuItem.Image = CType(resources.GetObject("PropriedadesDosComponentesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PropriedadesDosComponentesToolStripMenuItem.Name = "PropriedadesDosComponentesToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesDosComponentesToolStripMenuItem, resources.GetString("PropriedadesDosComponentesToolStripMenuItem.StatusBarText"))
+        Me.PropriedadesDosComponentesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesDosComponentesToolStripMenuItem, "Utility for viewing pure Component properties")
+        Me.PropriedadesDosComponentesToolStripMenuItem.Text = "Pure Component Properties"
         '
         'AnáliseDePetróleosToolStripMenuItem
         '
-        resources.ApplyResources(Me.AnáliseDePetróleosToolStripMenuItem, "AnáliseDePetróleosToolStripMenuItem")
+        Me.AnáliseDePetróleosToolStripMenuItem.Enabled = False
+        Me.AnáliseDePetróleosToolStripMenuItem.Image = CType(resources.GetObject("AnáliseDePetróleosToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AnáliseDePetróleosToolStripMenuItem.Name = "AnáliseDePetróleosToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.AnáliseDePetróleosToolStripMenuItem, resources.GetString("AnáliseDePetróleosToolStripMenuItem.StatusBarText"))
+        Me.AnáliseDePetróleosToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.AnáliseDePetróleosToolStripMenuItem, "Utility Analysis Petroleum (characterization and determination of properties and " & _
+        "composition PNA)")
+        Me.AnáliseDePetróleosToolStripMenuItem.Text = "Petroleum Analysis"
+        Me.AnáliseDePetróleosToolStripMenuItem.Visible = False
         '
         'DiagramaDeFasesToolStripMenuItem
         '
-        resources.ApplyResources(Me.DiagramaDeFasesToolStripMenuItem, "DiagramaDeFasesToolStripMenuItem")
+        Me.DiagramaDeFasesToolStripMenuItem.Image = CType(resources.GetObject("DiagramaDeFasesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.DiagramaDeFasesToolStripMenuItem.Name = "DiagramaDeFasesToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaDeFasesToolStripMenuItem, resources.GetString("DiagramaDeFasesToolStripMenuItem.StatusBarText"))
+        Me.DiagramaDeFasesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaDeFasesToolStripMenuItem, "Utility to calculate the PT diagram of the limit of thermodynamic stability of a " & _
+        "stream of matter")
+        Me.DiagramaDeFasesToolStripMenuItem.Text = "Stability Analysis"
+        Me.DiagramaDeFasesToolStripMenuItem.Visible = False
         '
         'DiagramaDeFasesToolStripMenuItem1
         '
         Me.DiagramaDeFasesToolStripMenuItem1.Image = Global.RELAP.My.Resources.Resources.cog
         Me.DiagramaDeFasesToolStripMenuItem1.Name = "DiagramaDeFasesToolStripMenuItem1"
-        resources.ApplyResources(Me.DiagramaDeFasesToolStripMenuItem1, "DiagramaDeFasesToolStripMenuItem1")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaDeFasesToolStripMenuItem1, resources.GetString("DiagramaDeFasesToolStripMenuItem1.StatusBarText"))
+        Me.DiagramaDeFasesToolStripMenuItem1.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaDeFasesToolStripMenuItem1, "Utility for phase envelope construction")
+        Me.DiagramaDeFasesToolStripMenuItem1.Text = "Phase Envelope"
         '
         'DiagramaBinárioToolStripMenuItem
         '
         Me.DiagramaBinárioToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog1
         Me.DiagramaBinárioToolStripMenuItem.Name = "DiagramaBinárioToolStripMenuItem"
-        resources.ApplyResources(Me.DiagramaBinárioToolStripMenuItem, "DiagramaBinárioToolStripMenuItem")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaBinárioToolStripMenuItem, resources.GetString("DiagramaBinárioToolStripMenuItem.StatusBarText"))
+        Me.DiagramaBinárioToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.DiagramaBinárioToolStripMenuItem, "Utility for binary envelope construction")
+        Me.DiagramaBinárioToolStripMenuItem.Text = "Binary Envelope"
         '
         'PropriedadesEspeciaisToolStripMenuItem
         '
-        resources.ApplyResources(Me.PropriedadesEspeciaisToolStripMenuItem, "PropriedadesEspeciaisToolStripMenuItem")
+        Me.PropriedadesEspeciaisToolStripMenuItem.Enabled = False
         Me.PropriedadesEspeciaisToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.PropriedadesEspeciaisToolStripMenuItem.Name = "PropriedadesEspeciaisToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesEspeciaisToolStripMenuItem, resources.GetString("PropriedadesEspeciaisToolStripMenuItem.StatusBarText"))
+        Me.PropriedadesEspeciaisToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesEspeciaisToolStripMenuItem, "Utility for viewing special properties of a stream of matter (coefciente JT, soun" & _
+        "d speed, coefficient of isothermal compressibility, etc.).-")
+        Me.PropriedadesEspeciaisToolStripMenuItem.Text = "Special Properties"
+        Me.PropriedadesEspeciaisToolStripMenuItem.Visible = False
         '
         'PSVSizingToolStripMenuItem
         '
-        resources.ApplyResources(Me.PSVSizingToolStripMenuItem, "PSVSizingToolStripMenuItem")
+        Me.PSVSizingToolStripMenuItem.Image = CType(resources.GetObject("PSVSizingToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PSVSizingToolStripMenuItem.Name = "PSVSizingToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PSVSizingToolStripMenuItem, resources.GetString("PSVSizingToolStripMenuItem.StatusBarText"))
+        Me.PSVSizingToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.PSVSizingToolStripMenuItem, "Utility for Pressure Safety Valve (PSV) sizing")
+        Me.PSVSizingToolStripMenuItem.Text = "PSV Sizing"
         '
         'FlashVesselSizingToolStripMenuItem
         '
-        resources.ApplyResources(Me.FlashVesselSizingToolStripMenuItem, "FlashVesselSizingToolStripMenuItem")
+        Me.FlashVesselSizingToolStripMenuItem.Image = CType(resources.GetObject("FlashVesselSizingToolStripMenuItem.Image"), System.Drawing.Image)
         Me.FlashVesselSizingToolStripMenuItem.Name = "FlashVesselSizingToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.FlashVesselSizingToolStripMenuItem, resources.GetString("FlashVesselSizingToolStripMenuItem.StatusBarText"))
+        Me.FlashVesselSizingToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.FlashVesselSizingToolStripMenuItem, "Utility for Separator Vessel sizing")
+        Me.FlashVesselSizingToolStripMenuItem.Text = "Flash Vessel Sizing"
         '
         'PropriedadesDePetróleosToolStripMenuItem
         '
         Me.PropriedadesDePetróleosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.PropriedadesDePetróleosToolStripMenuItem.Name = "PropriedadesDePetróleosToolStripMenuItem"
-        resources.ApplyResources(Me.PropriedadesDePetróleosToolStripMenuItem, "PropriedadesDePetróleosToolStripMenuItem")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesDePetróleosToolStripMenuItem, resources.GetString("PropriedadesDePetróleosToolStripMenuItem.StatusBarText"))
+        Me.PropriedadesDePetróleosToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.PropriedadesDePetróleosToolStripMenuItem, "Utility for viewing some petroleum ""cold flow properties"", like pour and freezing" & _
+        " points.")
+        Me.PropriedadesDePetróleosToolStripMenuItem.Text = "Petroleum Cold Flow Properties"
         '
         'OtimizaToolStripMenuItem
         '
@@ -764,19 +930,26 @@ Partial Class FormFlowsheet
         Me.OtimizaToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.OtimizaToolStripMenuItem.MergeIndex = 4
         Me.OtimizaToolStripMenuItem.Name = "OtimizaToolStripMenuItem"
-        resources.ApplyResources(Me.OtimizaToolStripMenuItem, "OtimizaToolStripMenuItem")
+        Me.OtimizaToolStripMenuItem.Size = New System.Drawing.Size(88, 20)
+        Me.OtimizaToolStripMenuItem.Text = "&Optimization"
         '
         'AnáliseDeSensibilidadeToolStripMenuItem
         '
         Me.AnáliseDeSensibilidadeToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.chart_curve
         Me.AnáliseDeSensibilidadeToolStripMenuItem.Name = "AnáliseDeSensibilidadeToolStripMenuItem"
-        resources.ApplyResources(Me.AnáliseDeSensibilidadeToolStripMenuItem, "AnáliseDeSensibilidadeToolStripMenuItem")
+        Me.AnáliseDeSensibilidadeToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
+        Me.AnáliseDeSensibilidadeToolStripMenuItem.Size = New System.Drawing.Size(269, 22)
+        Me.AnáliseDeSensibilidadeToolStripMenuItem.Text = "Sensitivity Analysis"
         '
         'MultivariateOptimizerToolStripMenuItem
         '
         Me.MultivariateOptimizerToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.arrow_switch
         Me.MultivariateOptimizerToolStripMenuItem.Name = "MultivariateOptimizerToolStripMenuItem"
-        resources.ApplyResources(Me.MultivariateOptimizerToolStripMenuItem, "MultivariateOptimizerToolStripMenuItem")
+        Me.MultivariateOptimizerToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MultivariateOptimizerToolStripMenuItem.Size = New System.Drawing.Size(269, 22)
+        Me.MultivariateOptimizerToolStripMenuItem.Text = "Multivariate Optimizer"
         '
         'ResultadosToolStripMenuItem
         '
@@ -784,14 +957,18 @@ Partial Class FormFlowsheet
         Me.ResultadosToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.ResultadosToolStripMenuItem.MergeIndex = 5
         Me.ResultadosToolStripMenuItem.Name = "ResultadosToolStripMenuItem"
-        resources.ApplyResources(Me.ResultadosToolStripMenuItem, "ResultadosToolStripMenuItem")
+        Me.ResultadosToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
+        Me.ResultadosToolStripMenuItem.Text = "&Results"
         '
         'GerarRelatórioToolStripMenuItem
         '
         Me.GerarRelatórioToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.report
         Me.GerarRelatórioToolStripMenuItem.Name = "GerarRelatórioToolStripMenuItem"
-        resources.ApplyResources(Me.GerarRelatórioToolStripMenuItem, "GerarRelatórioToolStripMenuItem")
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GerarRelatórioToolStripMenuItem, resources.GetString("GerarRelatórioToolStripMenuItem.StatusBarText"))
+        Me.GerarRelatórioToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.GerarRelatórioToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.GerarRelatórioToolStripMenuItem, "Creates a report with results from active simulation")
+        Me.GerarRelatórioToolStripMenuItem.Text = "Build Report"
         '
         'ArquivoToolStripMenuItem
         '
@@ -799,7 +976,8 @@ Partial Class FormFlowsheet
         Me.ArquivoToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly
         Me.ArquivoToolStripMenuItem.MergeIndex = 0
         Me.ArquivoToolStripMenuItem.Name = "ArquivoToolStripMenuItem"
-        resources.ApplyResources(Me.ArquivoToolStripMenuItem, "ArquivoToolStripMenuItem")
+        Me.ArquivoToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.ArquivoToolStripMenuItem.Text = "&File"
         '
         'CloseToolStripMenuItem
         '
@@ -808,7 +986,8 @@ Partial Class FormFlowsheet
         Me.CloseToolStripMenuItem.MergeIndex = 8
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        resources.ApplyResources(Me.CloseToolStripMenuItem, "CloseToolStripMenuItem")
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.CloseToolStripMenuItem.Text = "Close Active Simulation"
         '
         'FerramentasToolStripMenuItem
         '
@@ -816,55 +995,65 @@ Partial Class FormFlowsheet
         Me.FerramentasToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.FerramentasToolStripMenuItem.MergeIndex = 3
         Me.FerramentasToolStripMenuItem.Name = "FerramentasToolStripMenuItem"
-        resources.ApplyResources(Me.FerramentasToolStripMenuItem, "FerramentasToolStripMenuItem")
+        Me.FerramentasToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.FerramentasToolStripMenuItem.Text = "&Tools"
         '
         'CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem
         '
         Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem.Name = "CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem"
-        resources.ApplyResources(Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem, "CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem")
+        Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
+        Me.CaracterizaçãoDePetróleosFraçõesC7ToolStripMenuItem.Text = "Petroleum Characterization (C7+ Bulk Properties)"
         '
         'CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem
         '
         Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem.Name = "CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem"
-        resources.ApplyResources(Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem, "CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem")
+        Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
+        Me.CaracterizaçãoDePetróleosCurvasDeDestilaçãoToolStripMenuItem.Text = "Petroleum Characterization (Distillation Curves)"
         '
         'GerenciadorDeAmostrasDePetróleoToolStripMenuItem
         '
         Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem.Name = "GerenciadorDeAmostrasDePetróleoToolStripMenuItem"
-        resources.ApplyResources(Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem, "GerenciadorDeAmostrasDePetróleoToolStripMenuItem")
+        Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
+        Me.GerenciadorDeAmostrasDePetróleoToolStripMenuItem.Text = "Petroleum Assay Manager"
         '
         'GeradorDeHipotéticosToolStripMenuItem
         '
         Me.GeradorDeHipotéticosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.lightning
         Me.GeradorDeHipotéticosToolStripMenuItem.Name = "GeradorDeHipotéticosToolStripMenuItem"
-        resources.ApplyResources(Me.GeradorDeHipotéticosToolStripMenuItem, "GeradorDeHipotéticosToolStripMenuItem")
+        Me.GeradorDeHipotéticosToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
+        Me.GeradorDeHipotéticosToolStripMenuItem.Text = "Hypothetical Component Generator"
         '
         'CriadorDeComponenteDoUsuárioToolStripMenuItem
         '
         Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.lightning
         Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Name = "CriadorDeComponenteDoUsuárioToolStripMenuItem"
-        resources.ApplyResources(Me.CriadorDeComponenteDoUsuárioToolStripMenuItem, "CriadorDeComponenteDoUsuárioToolStripMenuItem")
+        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
+        Me.CriadorDeComponenteDoUsuárioToolStripMenuItem.Text = "User Component Generator"
         '
         'GerenciadorDeReaçõesToolStripMenuItem
         '
         Me.GerenciadorDeReaçõesToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.wi0124_16
         Me.GerenciadorDeReaçõesToolStripMenuItem.Name = "GerenciadorDeReaçõesToolStripMenuItem"
-        resources.ApplyResources(Me.GerenciadorDeReaçõesToolStripMenuItem, "GerenciadorDeReaçõesToolStripMenuItem")
+        Me.GerenciadorDeReaçõesToolStripMenuItem.Size = New System.Drawing.Size(333, 22)
+        Me.GerenciadorDeReaçõesToolStripMenuItem.Text = "Reactions Manager"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(185, 22)
+        Me.ToolStripMenuItem1.Text = "ToolStripMenuItem1"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(185, 22)
+        Me.ToolStripMenuItem2.Text = "ToolStripMenuItem2"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        resources.ApplyResources(Me.ToolStripMenuItem3, "ToolStripMenuItem3")
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(185, 22)
+        Me.ToolStripMenuItem3.Text = "This.toolStripMenuItem3"
         '
         'BGLoadComp
         '
@@ -879,10 +1068,13 @@ Partial Class FormFlowsheet
         '
         Me.dckPanel.ActiveAutoHideContent = Nothing
         Me.dckPanel.DefaultFloatWindowSize = New System.Drawing.Size(400, 600)
-        resources.ApplyResources(Me.dckPanel, "dckPanel")
+        Me.dckPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dckPanel.DockBackColor = System.Drawing.SystemColors.Control
         Me.dckPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow
+        Me.dckPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World)
+        Me.dckPanel.Location = New System.Drawing.Point(0, 25)
         Me.dckPanel.Name = "dckPanel"
+        Me.dckPanel.Size = New System.Drawing.Size(1229, 477)
         DockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight
         DockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight
         AutoHideStripSkin1.DockStripGradient = DockPanelGradient1
@@ -929,21 +1121,26 @@ Partial Class FormFlowsheet
         DockPaneStripSkin1.ToolWindowGradient = DockPaneStripToolWindowGradient1
         DockPanelSkin1.DockPaneStripSkin = DockPaneStripSkin1
         Me.dckPanel.Skin = DockPanelSkin1
+        Me.dckPanel.TabIndex = 9
         '
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.DefaultExt = "png"
-        resources.ApplyResources(Me.SaveFileDialog1, "SaveFileDialog1")
+        Me.SaveFileDialog1.Filter = "PNG Image|*.png"
+        Me.SaveFileDialog1.Title = "Save Flowsheet as Image"
         '
         'FormFlowsheet
         '
-        resources.ApplyResources(Me, "$this")
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(1229, 502)
         Me.Controls.Add(Me.dckPanel)
         Me.Controls.Add(Me.ToolStripPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.DoubleBuffered = True
         Me.Name = "FormFlowsheet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "Simulation"
         Me.ToolStrip4.ResumeLayout(False)
         Me.ToolStrip4.PerformLayout()
         Me.ToolStripPanel1.ResumeLayout(False)

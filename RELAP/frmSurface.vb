@@ -361,6 +361,7 @@ Public Class frmSurface
 
     Private Sub FlowsheetDesignSurface_StatusUpdate(ByVal sender As Object, ByVal e As Microsoft.MSDN.Samples.DesignSurface.StatusUpdateEventArgs) Handles FlowsheetDesignSurface.StatusUpdate
         ChildParent.TSTBZoom.Text = Format(FlowsheetDesignSurface.Zoom, "#%")
+      
     End Sub
 
     Private Sub FlowsheetDesignSurface_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles FlowsheetDesignSurface.MouseDown
@@ -384,8 +385,9 @@ Public Class frmSurface
             End If
 
             Me.FlowsheetDesignSurface.Invalidate()
-
+          
         End If
+       
 
     End Sub
 
@@ -530,10 +532,7 @@ Public Class frmSurface
             'PGEx1.Refresh()
 
         ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
-            If FlowsheetDesignSurface.SelectedObjects.Count > 1 Then
-                '                MsgBox(FlowsheetDesignSurface.SelectedObjects.Count)
-                CMS_MultiSelect.Show(MousePosition)
-            End If
+            
             If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
 
                 Me.CMS_Sel.Items("TSMI_Label").Text = Me.FlowsheetDesignSurface.SelectedObject.Tag
@@ -545,6 +544,14 @@ Public Class frmSurface
 
             End If
 
+        End If
+        Dim frm As FormMain = Me.ParentForm.ParentForm
+        If Me.FlowsheetDesignSurface.SelectedObjects.Count > 1 Then
+
+            frm.GroupComponentsToolStripMenuItem.Visible = True
+
+        Else
+            frm.GroupComponentsToolStripMenuItem.Visible = False
         End If
 
     End Sub
