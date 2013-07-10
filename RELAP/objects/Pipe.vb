@@ -437,7 +437,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                .Item.Add(FT("Set Volume Parameters", su.no_unit), valor, False, "Parameters", "Set Volume Parameters", True)
+                .Item.Add("Set Volume Parameters", Me, "Set Volume Parameters", False, "Parameters", "Set Volume Parameters", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(PipeProfile)
