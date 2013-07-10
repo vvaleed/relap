@@ -493,7 +493,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 'End With
                 ' pressure drop, Calculation parameters, Pressure drop in the tank
                 Dim valor = Format(Conversor.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
+                '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, "Parameters", RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
                 'With .Item(.Item.Count - 1)
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Nullable(Of Double))
@@ -507,56 +507,56 @@ Namespace RELAP.SimulationObjects.UnitOps
                 ' '''''''''''''
 
                 'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FromComponent), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("From Component", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "From Component", True)
+                '.Item.Add(FT("From Component", su.no_unit), valor, False, "Parameters", "From Component", True)
                 'With .Item(.Item.Count - 1)
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
 
                 'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.ToComponent), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("To Component", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "To component", True)
+                '.Item.Add(FT("To Component", su.no_unit), valor, False, "Parameters", "To component", True)
                 'With .Item(.Item.Count - 1)
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
 
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Junction Flow Area", su.area), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Junction Flow Area", True)
+                .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Forward Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Reverse Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.m_subdisco), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Subcooled Discharge Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Subcooled Discharge Coefficient", True)
+                .Item.Add(FT("Subcooled Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.m_tpdisco), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Two phase Discharge Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Two phase Discharge Coefficient", True)
+                .Item.Add(FT("Two phase Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.m_supdisco), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Superheated Discharge Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Superheated Discharge Coefficient", True)
+                .Item.Add(FT("Superheated Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

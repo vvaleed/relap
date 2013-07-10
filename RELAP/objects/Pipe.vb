@@ -499,7 +499,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 'End With
                 ' pressure drop, Calculation parameters, Pressure drop in the tank
                 Dim valor = Format(Conversor.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
+                '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, "Parameters", RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
                 'With .Item(.Item.Count - 1)
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Nullable(Of Double))
@@ -512,74 +512,82 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.NumberOfVoulmes), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Number of Volumes", True)
+                .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, "Parameters", "Number of Volumes", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
+                .Item.Add(FT("Set Volume Parameters", su.no_unit), valor, False, "Parameters", "Set Volume Parameters", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                    ' .CustomEditor = New RELAP.
+
+                End With
+
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume Flow Area", su.area), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Volume Flow Area", True)
+                .Item.Add(FT("Volume Flow Area", su.area), valor, False, "Parameters", "Volume Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.VolumeNumber), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume Number", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Volume Number", True)
+                .Item.Add(FT("Volume Number", su.no_unit), valor, False, "Parameters", "Volume Number", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionFlowArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Junction Flow Area", su.area), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Junction Flow Area", True)
+                .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Length of Volume", su.distance), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Length of Volume", True)
+                .Item.Add(FT("Length of Volume", su.distance), valor, False, "Parameters", "Length of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume of Volume", su.volume), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "volume of Volume", True)
+                .Item.Add(FT("Volume of Volume", su.volume), valor, False, "Parameters", "volume of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Azimuthal Angle", True)
+                .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "Parameters", "Azimuthal Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.angle, Me.VerticalAngle), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Vertical Angle", su.angle), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Vertical Angle", True)
+                .Item.Add(FT("Vertical Angle", su.angle), valor, False, "Parameters", "Vertical Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Wall Roughness", su.distance), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Wall Roughness", True)
+                .Item.Add(FT("Wall Roughness", su.distance), valor, False, "Parameters", "Wall Roughness", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.distance, Me.HydraulicDiameter), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Hydraulic Diameter", su.distance), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Hydraulic Diameter", True)
+                .Item.Add(FT("Hydraulic Diameter", su.distance), valor, False, "Parameters", "Hydraulic Diameter", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Forward Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), "Reverse Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
