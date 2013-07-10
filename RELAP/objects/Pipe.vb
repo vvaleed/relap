@@ -83,10 +83,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-
-
-
-
         Private m_NumberOfVoulmes As Double
         Public Property NumberOfVoulmes() As Double
             Get
@@ -98,35 +94,11 @@ Namespace RELAP.SimulationObjects.UnitOps
         End Property
 
 
-        Private m_FlowArea As Double
-        Public Property FlowArea() As Double
-            Get
-                Return m_FlowArea
-            End Get
-            Set(ByVal value As Double)
-                m_FlowArea = value
-            End Set
-        End Property
+       
 
-        Private m_JunctionFlowArea As Double
-        Public Property JunctionFlowArea() As Double
-            Get
-                Return m_JunctionFlowArea
-            End Get
-            Set(ByVal value As Double)
-                m_JunctionFlowArea = value
-            End Set
-        End Property
+       
 
-        Private m_VolumeNumber As Double
-        Public Property VolumeNumber() As Double
-            Get
-                Return m_VolumeNumber
-            End Get
-            Set(ByVal value As Double)
-                m_VolumeNumber = value
-            End Set
-        End Property
+       
 
         Private m_JunctionNumber As Double
         Public Property JunctionNumber() As Double
@@ -148,65 +120,13 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_VerticalAngle As Double
-        Public Property VerticalAngle() As Double
-            Get
-                Return m_VerticalAngle
-            End Get
-            Set(ByVal value As Double)
-                m_VerticalAngle = value
-            End Set
-        End Property
+      
 
-        Private m_Azimuthalangle As Double
-        Public Property Azimuthalangle() As Double
-            Get
-                Return m_Azimuthalangle
-            End Get
-            Set(ByVal value As Double)
-                m_Azimuthalangle = value
-            End Set
-        End Property
+       
 
-        Private m_LengthofVolume As Double
-        Public Property LengthofVolume() As Double
-            Get
-                Return m_LengthofVolume
-            End Get
-            Set(ByVal value As Double)
-                m_LengthofVolume = value
-            End Set
-        End Property
+    
 
-        Private m_VolumeofVolume As Double
-        Public Property VolumeofVolume() As Double
-            Get
-                Return m_VolumeofVolume
-            End Get
-            Set(ByVal value As Double)
-                m_VolumeofVolume = value
-            End Set
-        End Property
-
-        Private m_HydraulicDiameter As Double
-        Public Property HydraulicDiameter() As Double
-            Get
-                Return m_HydraulicDiameter
-            End Get
-            Set(ByVal value As Double)
-                m_HydraulicDiameter = value
-            End Set
-        End Property
-
-        Private m_WallRoughness As Double
-        Public Property WallRoughness() As Double
-            Get
-                Return m_WallRoughness
-            End Get
-            Set(ByVal value As Double)
-                m_WallRoughness = value
-            End Set
-        End Property
+        
 
         Private m_ffelc As Double
         Public Property FflowLossCo() As Double
@@ -235,9 +155,9 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentName = nome
             Me.m_NumberOfVoulmes = 5.0
             Me.m_ComponentDescription = descricao
-            Me.m_LengthofVolume = 5.0
-            Me.m_VerticalAngle = -90.0
-            Me.m_FlowArea = 1.0
+            ' Me.m_LengthofVolume = 5.0
+            ' Me.m_VerticalAngle = -90.0
+            ' Me.m_FlowArea = 1.0
 
             Me.FillNodeItems()
             Me.QTFillNodeItems()
@@ -520,65 +440,65 @@ Namespace RELAP.SimulationObjects.UnitOps
                 .Item.Add(FT("Set Volume Parameters", su.no_unit), valor, False, "Parameters", "Set Volume Parameters", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                    ' .CustomEditor = New RELAP.
+                    .DefaultType = GetType(PipeProfile)
+                    .CustomEditor = New RELAP.Editors.PipeEditor
 
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume Flow Area", su.area), valor, False, "Parameters", "Volume Flow Area", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.VolumeNumber), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume Number", su.no_unit), valor, False, "Parameters", "Volume Number", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionFlowArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Length of Volume", su.distance), valor, False, "Parameters", "Length of Volume", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume of Volume", su.volume), valor, False, "Parameters", "volume of Volume", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "Parameters", "Azimuthal Angle", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.angle, Me.VerticalAngle), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Vertical Angle", su.angle), valor, False, "Parameters", "Vertical Angle", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Wall Roughness", su.distance), valor, False, "Parameters", "Wall Roughness", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.HydraulicDiameter), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Hydraulic Diameter", su.distance), valor, False, "Parameters", "Hydraulic Diameter", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Volume Flow Area", su.area), valor, False, "Parameters", "Volume Flow Area", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.VolumeNumber), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Volume Number", su.no_unit), valor, False, "Parameters", "Volume Number", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionFlowArea), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Length of Volume", su.distance), valor, False, "Parameters", "Length of Volume", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Volume of Volume", su.volume), valor, False, "Parameters", "volume of Volume", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "Parameters", "Azimuthal Angle", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.angle, Me.VerticalAngle), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Vertical Angle", su.angle), valor, False, "Parameters", "Vertical Angle", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Wall Roughness", su.distance), valor, False, "Parameters", "Wall Roughness", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.distance, Me.HydraulicDiameter), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Hydraulic Diameter", su.distance), valor, False, "Parameters", "Hydraulic Diameter", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
