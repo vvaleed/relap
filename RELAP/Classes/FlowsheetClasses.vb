@@ -78,7 +78,7 @@ Namespace RELAP.FormClasses
         Public CLCS_FuelRodCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
         Public CLCS_GroupCollection As Dictionary(Of String, SimulationObjects_UnitOpBaseClass)
         Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
-        Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Pump)
+        'Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Pump)
         Public CLCS_CoolerCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.cooler)
         Public CLCS_PipeCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
         Public CLCS_ValveCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
@@ -133,7 +133,7 @@ Namespace RELAP.FormClasses
 
             '  CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
             CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
-            CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Pump)
+            ' CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Pump)
             CLCS_CoolerCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.cooler)
             CLCS_PipeCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
             CLCS_ValveCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
