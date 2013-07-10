@@ -516,7 +516,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 'End With
                 ' pressure drop, Calculation parameters, Pressure drop in the tank
                 Dim valor
-                '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, RELAP.App.GetLocalString("Parmetrosdeclculo2"), RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
+                '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, "Parameters", RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
                 'With .Item(.Item.Count - 1)
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Nullable(Of Double))
