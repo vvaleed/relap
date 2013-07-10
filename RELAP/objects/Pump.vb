@@ -21,7 +21,7 @@ Imports Microsoft.Msdn.Samples.GraphicObjects
 
 Namespace RELAP.SimulationObjects.UnitOps
 
-    <System.Serializable()> Public Class pipe
+    <System.Serializable()> Public Class Pump
 
         Inherits SimulationObjects_UnitOpBaseClass
 
@@ -30,83 +30,229 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
 
+        Structure RelapProperty
+            Public value As String
+            Public cardno As String
+            Public wordno As String
+        End Structure
 
 
 
-        Private m_ThermalStratificationModel As Boolean
+        Private m_t As Boolean
         Public Property ThermalStratificationModel() As Boolean
             Get
-                Return m_ThermalStratificationModel
+                Return m_t
             End Get
             Set(ByVal value As Boolean)
-                m_ThermalStratificationModel = value
+                m_t = value
             End Set
         End Property
 
-        Private m_LevelTrackingModel As Boolean
+        Private m_l As Boolean
         Public Property LevelTrackingModel() As Boolean
             Get
-                Return m_LevelTrackingModel
+                Return m_l
             End Get
             Set(ByVal value As Boolean)
-                m_LevelTrackingModel = value
+                m_l = value
             End Set
         End Property
 
-        Private m_InterphaseFriction As Boolean
+        Private m_pressure As Double
+        Public Property Pressure() As Double
+            Get
+                Return m_pressure
+            End Get
+            Set(ByVal value As Double)
+                m_pressure = value
+            End Set
+        End Property
+
+
+        Private m_temperature As Double
+        Public Property Temperature() As Double
+            Get
+                Return m_temperature
+            End Get
+            Set(ByVal value As Double)
+                m_temperature = value
+            End Set
+        End Property
+
+        Private m_liquidspecificinternalenergy As Double
+        Public Property LiquidSpecificInternalEnergy() As Double
+            Get
+                Return m_liquidspecificinternalenergy
+            End Get
+            Set(ByVal value As Double)
+                m_liquidspecificinternalenergy = value
+            End Set
+        End Property
+
+
+        Private _vapourspecificinternalEnergy As Double
+        Public Property VapourSpecificInternalEnergy() As Double
+            Get
+                Return _vapourspecificinternalEnergy
+            End Get
+            Set(ByVal value As Double)
+                _vapourspecificinternalEnergy = value
+            End Set
+        End Property
+
+        Private _voidFraction As Double
+        Public Property VoidFraction() As Double
+            Get
+                Return _voidFraction
+            End Get
+            Set(ByVal value As Double)
+                _voidFraction = value
+            End Set
+        End Property
+
+        Private _staticquality As Double
+        Public Property StaticQuality() As Double
+            Get
+                Return _staticquality
+            End Get
+            Set(ByVal value As Double)
+                _staticquality = value
+            End Set
+        End Property
+
+        Private _noncondensablequality As Double
+        Public Property NonCondensableQuality() As Double
+            Get
+                Return _noncondensablequality
+            End Get
+            Set(ByVal value As Double)
+                _noncondensablequality = value
+            End Set
+        End Property
+
+
+
+        Private _liquidtemperature As Double
+        Public Property LiquidTemperature() As Double
+            Get
+                Return _liquidtemperature
+            End Get
+            Set(ByVal value As Double)
+                _liquidtemperature = value
+            End Set
+        End Property
+
+
+        Private _vapourtemperature As Double
+        Public Property VapourTemperature() As Double
+            Get
+                Return _vapourtemperature
+            End Get
+            Set(ByVal value As Double)
+                _vapourtemperature = value
+            End Set
+        End Property
+
+        Private m_p As Boolean
+        Public Property PModel() As Boolean
+            Get
+                Return m_p
+            End Get
+            Set(ByVal value As Boolean)
+                m_p = value
+            End Set
+        End Property
+
+        Private m_v As Boolean
+        Public Property VModel() As Boolean
+            Get
+                Return m_v
+            End Get
+            Set(ByVal value As Boolean)
+                m_v = value
+            End Set
+        End Property
+
+        Private m_b As Boolean
         Public Property InterphaseFriction() As Boolean
             Get
-                Return m_InterphaseFriction
+                Return m_b
             End Get
             Set(ByVal value As Boolean)
-                m_InterphaseFriction = value
+                m_b = value
             End Set
         End Property
 
-        Private m_ComputeWallFriction As Boolean
+        Private m_f As Boolean
         Public Property ComputeWallFriction() As Boolean
             Get
-                Return m_ComputeWallFriction
+                Return m_f
             End Get
             Set(ByVal value As Boolean)
-                m_ComputeWallFriction = value
+                m_f = value
             End Set
         End Property
 
-        Private m_EquilibriumTemp As Boolean
+        Private m_e As Boolean
         Public Property EquilibriumTemperature() As Boolean
             Get
-                Return m_EquilibriumTemp
+                Return m_e
             End Get
             Set(ByVal value As Boolean)
-                m_EquilibriumTemp = value
-            End Set
-        End Property
-
-        Private m_NumberOfVoulmes As Double
-        Public Property NumberOfVoulmes() As Double
-            Get
-                Return m_NumberOfVoulmes
-            End Get
-            Set(ByVal value As Double)
-                m_NumberOfVoulmes = value
+                m_e = value
             End Set
         End Property
 
 
 
 
-
-
-
-
-        Private m_JunctionNumber As Double
-        Public Property JunctionNumber() As Double
+        Private m_flowarea As Double
+        Public Property FlowArea() As Double
             Get
-                Return m_JunctionNumber
+                Return m_flowarea
             End Get
             Set(ByVal value As Double)
-                m_JunctionNumber = value
+                m_flowarea = value
+            End Set
+        End Property
+
+        Private m_LengthofVolume As Double
+        Public Property LengthofVolume() As Double
+            Get
+                Return m_LengthofVolume
+            End Get
+            Set(ByVal value As Double)
+                m_LengthofVolume = value
+            End Set
+        End Property
+
+        Private m_VolumeofVolume As Double
+        Public Property VolumeofVolume() As Double
+            Get
+                Return m_VolumeofVolume
+            End Get
+            Set(ByVal value As Double)
+                m_VolumeofVolume = value
+            End Set
+        End Property
+
+        Private m_HydraulicDiameter As Double
+        Public Property HydraulicDiameter() As Double
+            Get
+                Return m_HydraulicDiameter
+            End Get
+            Set(ByVal value As Double)
+                m_HydraulicDiameter = value
+            End Set
+        End Property
+
+        Private m_WallRoughness As Double
+        Public Property WallRoughness() As Double
+            Get
+                Return m_WallRoughness
+            End Get
+            Set(ByVal value As Double)
+                m_WallRoughness = value
             End Set
         End Property
 
@@ -120,47 +266,46 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-
-
-
-
-
-
-
-
-        Private m_ffelc As Double
-        Public Property FflowLossCo() As Double
+        Private m_InclinationAngle As Double
+        Public Property InclinationAngle() As Double
             Get
-                Return m_ffelc
+                Return m_InclinationAngle
             End Get
             Set(ByVal value As Double)
-                m_ffelc = value
+                m_InclinationAngle = value
+            End Set
+        End Property
+
+        Private m_Azimuthalangle As Double
+        Public Property Azimuthalangle() As Double
+            Get
+                Return m_Azimuthalangle
+            End Get
+            Set(ByVal value As Double)
+                m_Azimuthalangle = value
             End Set
         End Property
 
 
-        Private m_rfelc As Double
-        Public Property RflowLossCo() As Double
-            Get
-                Return m_rfelc
-            End Get
-            Set(ByVal value As Double)
-                m_rfelc = value
-            End Set
-        End Property
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
-            Me.m_NumberOfVoulmes = 5.0
             Me.m_ComponentDescription = descricao
-            ' Me.m_LengthofVolume = 5.0
-            ' Me.m_VerticalAngle = -90.0
-            ' Me.m_FlowArea = 1.0
-
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me.m_flowarea = 20.0
+            Me.m_LengthofVolume = 0.0
+            Me.m_VolumeofVolume = 1000000.0
+            Me.m_Azimuthalangle = 0.0
+            Me.m_InclinationAngle = -90.0
+            Me.m_ElevationChange = -50000.0
+            Me.m_WallRoughness = 0.0
+            Me.m_HydraulicDiameter = 0
+
+            '& kvkvp.Value.HydraulicDiameter & " ") & "0000000"
+
         End Sub
 
         Public Property Volume() As Double
@@ -431,62 +576,44 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 ' '''''''''''''
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.NumberOfVoulmes), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, "Parameters", "Number of Volumes", True)
+
+                valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
+                'Tank Volume,Calculation parameters, Tank Volume
+                .Item.Add(FT("Volume Flow Area", su.area), valor, False, "Parameters", "Volume Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                .Item.Add("Set Volume Parameters", Me, "Set Volume Parameters", False, "Parameters", "Set Volume Parameters", True)
+                valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Length of Volume", su.distance), valor, False, "Parameters", "Length of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
-                    .DefaultType = GetType(PipeProfile)
-                    .CustomEditor = New RELAP.Editors.PipeEditor
-
+                    .DefaultType = GetType(Double)
                 End With
-
-                'valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Volume Flow Area", su.area), valor, False, "Parameters", "Volume Flow Area", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.VolumeNumber), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Volume Number", su.no_unit), valor, False, "Parameters", "Volume Number", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionFlowArea), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Length of Volume", su.distance), valor, False, "Parameters", "Length of Volume", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Volume of Volume", su.volume), valor, False, "Parameters", "volume of Volume", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "Parameters", "Azimuthal Angle", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.angle, Me.VerticalAngle), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Vertical Angle", su.angle), valor, False, "Parameters", "Vertical Angle", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
+                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Volume of Volume", su.volume), valor, False, "Parameters", "Volume of Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "Parameters", "Azimuthal Angle", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Conversor.ConverterDoSI(su.angle, Me.InclinationAngle), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Inclination Angle", su.angle), valor, False, "Parameters", "Inclination Angle", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Conversor.ConverterDoSI(su.distance, Me.ElevationChange), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Elevation Change", su.distance), valor, False, "Parameters", "Elevation Change", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
                 'valor = Format(Conversor.ConverterDoSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
                 '.Item.Add(FT("Wall Roughness", su.distance), valor, False, "Parameters", "Wall Roughness", True)
                 'With .Item(.Item.Count - 1)
@@ -499,47 +626,72 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+
+                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(RELAP.App.GetLocalString("TKVol"), su.volume), valor, False, "Parameters", RELAP.App.GetLocalString("TKVol"), True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
                 'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2. Volume Control Flags", "Thermal Stratification Model", True)
+                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", False, "Volume Control Flags", "Thermal Stratification Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "2. Volume Control Flags", "Level Tracking Model", True)
+                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", False, "Volume Control Flags", "Mixture Level Tracking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "2. Volume Control Flags", "Interphase Friction Model", True)
+                'valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.Temperature), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.LiquidTemperature), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Liquid Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                'valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.VapourTemperature), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Vapour Temperature", su.spmp_temperature), valor, False, "Initial ThermoDynamic States", "HELP", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
+                .Item.Add(("P Model"), Me, "PModel", False, "Volume Control Flags", "P Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "2. Volume Control Flags", "Compute Wall Friction", True)
+                .Item.Add(("V Model"), Me, "VModel", False, "Volume Control Flags", "V Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2. Volume Control Flags", "Equilibrium Temperature", True)
+
+                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "Volume Control Flags", "Interphase Friction Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
+                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "Volume Control Flags", "Compute Wall Friction", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "Volume Control Flags", "Equilibrium Temperature", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+
 
 
 
