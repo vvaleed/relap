@@ -2069,25 +2069,25 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
                 ChildParent.Collections.CLCS_TankCollection.Add(myTank.Name, myCOTK)
-                'Case TipoObjeto.Pump
-                '    Dim myPump As New TankGraphic(mpx, mpy, 50, 50, 0)
-                '    myPump.LineWidth = 2
-                '    myPump.Fill = True
-                '    myPump.FillColor = fillclr
-                '    myPump.LineColor = lineclr
-                '    myPump.Tag = "PUMP-" & Format(ChildParent.Collections.ObjectCounter("Pump"), "00#")
-                '    ChildParent.Collections.UpdateCounter("Pump")
-                '    If tag <> "" Then myPump.Tag = tag
-                '    gObj = myPump
-                '    gObj.Name = "PUMP-" & Guid.NewGuid.ToString
-                '    ChildParent.Collections.TankCollection.Add(gObj.Name, myPump)
-                '    'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                '    'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                '    'OBJETO RELAP
-                '    Dim myCOTK As RELAP.SimulationObjects.UnitOps.Pump = New RELAP.SimulationObjects.UnitOps.Pump(myPump.Name, "Bomba")
-                '    myCOTK.GraphicObject = myPump
-                '    ChildParent.Collections.ObjectCollection.Add(myPump.Name, myCOTK)
-                '    ChildParent.Collections.CLCS_PumpCollection.Add(myPump.Name, myCOTK)
+            Case TipoObjeto.Pump
+                Dim myPump As New PumpGraphic(mpx, mpy, 50, 50, 0)
+                myPump.LineWidth = 2
+                myPump.Fill = True
+                myPump.FillColor = fillclr
+                myPump.LineColor = lineclr
+                myPump.Tag = "PUMP-" & Format(ChildParent.Collections.ObjectCounter("Pump"), "00#")
+                ChildParent.Collections.UpdateCounter("Pump")
+                If tag <> "" Then myPump.Tag = tag
+                gObj = myPump
+                gObj.Name = "PUMP-" & Guid.NewGuid.ToString
+                ChildParent.Collections.PumpCollection.Add(gObj.Name, myPump)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Pump = New RELAP.SimulationObjects.UnitOps.Pump(myPump.Name, "Bomba")
+                myCOTK.GraphicObject = myPump
+                ChildParent.Collections.ObjectCollection.Add(myPump.Name, myCOTK)
+                ChildParent.Collections.CLCS_PumpCollection.Add(myPump.Name, myCOTK)
             Case TipoObjeto.Cooler
                 Dim myCooler As New CoolerGraphic(mpx, mpy, 50, 50, 0)
                 myCooler.LineWidth = 2
