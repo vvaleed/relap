@@ -2,7 +2,7 @@
 Imports System.Drawing.Design
 Imports System.ComponentModel
 Namespace RELAP.Editors
-    Public Class PipeEditor
+    Public Class UIPipeEditor
         Inherits System.Drawing.Design.UITypeEditor
 
         Private editorService As IWindowsFormsEditorService
@@ -21,13 +21,13 @@ Namespace RELAP.Editors
             If (editorService IsNot Nothing) Then
                 Dim selectionControl As New frmPipeEditor
 
-                selectionControl.PipeEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
-                selectionControl.PipeEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
-                selectionControl.PipeEditor1.Profile = value
+                selectionControl.UcPipeEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
+                selectionControl.UcPipeEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
+                'selectionControl.UcPipeEditor1.Profile = value
 
                 editorService.ShowDialog(selectionControl)
 
-                value = selectionControl.PipeEditor1.Profile
+                value = selectionControl.UcPipeEditor1.Profile
 
             End If
 

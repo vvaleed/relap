@@ -437,12 +437,11 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                .Item.Add("Set Volume Parameters", Me, "Set Volume Parameters", False, "Parameters", "Set Volume Parameters", True)
+                .Item.Add("Set Volume Parameters", valor, False, "Parameters", "Set Volume Parameters", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(PipeProfile)
-                    .CustomEditor = New RELAP.Editors.PipeEditor
-
+                    .CustomEditor = New RELAP.Editors.UIPipeEditor
                 End With
 
                 'valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
