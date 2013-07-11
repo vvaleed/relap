@@ -2684,21 +2684,31 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
                 generate.WriteLine(output)
 
-                ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
-                'generate.WriteLine(output)
-
-                'For k As Integer = 0 To Convert.ToInt32(Class1.tmdpvol(i, 1).counter) - 1
-                '    If k < 10 Then
-                '        generate.WriteLine((Format(univID, "###") + "020" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
-                '    Else
-                '        generate.WriteLine((Format(univID, "###") + "02" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
-
-                '    End If
-
-                'Next
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Pump) In ChildParent.Collections.CLCS_PumpCollection
+                '  MsgBox(kvp.Key)
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Pump '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ pump")
+
+                If kvp.Value.EquilibriumTemperature = True Then
+                    output1 = "1"
+                ElseIf kvp.Value.EquilibriumTemperature = False Then
+                    output1 = "0"
+                End If
+
+                output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & "000000" & output1
+                generate.WriteLine(output)
+
+
+                univID = univID + 1
+            Next kvp
+
+
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
