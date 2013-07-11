@@ -1,4 +1,8 @@
-﻿Public Class ucPipeEditor
+﻿
+Imports System.Windows.Forms
+
+<System.Serializable()> Public Class ucPipeEditor
+    Inherits System.Windows.Forms.UserControl
     Protected m_profile As PipeProfile
 
     Public Property Profile() As PipeProfile
