@@ -106,7 +106,7 @@ Imports System.Runtime.InteropServices
         If Not sobj Is Nothing Then
 
             'connections
-            If sobj.TipoObjeto = TipoObjeto.Cooler Or sobj.TipoObjeto = TipoObjeto.Pipe Or sobj.TipoObjeto = TipoObjeto.Expander Then
+            If sobj.TipoObjeto = TipoObjeto.SingleJunction Or sobj.TipoObjeto = TipoObjeto.Pipe Or sobj.TipoObjeto = TipoObjeto.Expander Then
                 If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Correntedeentrada")) Then
                     If e.ChangedItem.Value <> "" Then
                         If FormFlowsheet.SearchSurfaceObjectsByTag(e.ChangedItem.Value, ChildParent.FormSurface.FlowsheetDesignSurface) Is Nothing Then

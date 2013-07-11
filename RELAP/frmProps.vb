@@ -2277,9 +2277,9 @@ Public Class frmProps
 
             End If
 
-        ElseIf sobj.TipoObjeto = TipoObjeto.Cooler Then
+        ElseIf sobj.TipoObjeto = TipoObjeto.SingleJunction Then
 
-            Dim sjn As RELAP.SimulationObjects.UnitOps.cooler = ChildParent.Collections.CLCS_CoolerCollection.Item(sobj.Name)
+            Dim sjn As RELAP.SimulationObjects.UnitOps.SingleJunction = ChildParent.Collections.CLCS_SingleJunctionCollection.Item(sobj.Name)
 
             If e.ChangedItem.Label.Contains("From Component") Then
                 sjn.FromComponent = e.ChangedItem.Value

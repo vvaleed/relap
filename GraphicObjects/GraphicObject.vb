@@ -30,7 +30,7 @@ Namespace GraphicObjects
         Compressor
         Expander
         TPVessel
-        Cooler
+        SingleJunction
         Heater
         Pipe
         Valve

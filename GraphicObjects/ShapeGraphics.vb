@@ -2749,7 +2749,7 @@ Namespace GraphicObjects
 
 #Region "Constructors"
         Public Sub New()
-            Me.TipoObjeto = GraphicObjects.TipoObjeto.Cooler
+            Me.TipoObjeto = GraphicObjects.TipoObjeto.SingleJunction
             Me.Description = "Resfriador"
         End Sub
 
