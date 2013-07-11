@@ -1386,18 +1386,19 @@ Imports RELAP.RELAP.FormClasses
             ' karwai by waleed and afnan
 
             
-            If gObjTo.TipoObjeto = TipoObjeto.Cooler Then
+            If gObjTo.TipoObjeto = TipoObjeto.SingleJunction Then
 
 
-                Me.Collections.CLCS_CoolerCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                Me.Collections.CLCS_SingleJunctionCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+
 
 
                 '  gObjTo.
             End If
-            If gObjFrom.TipoObjeto = TipoObjeto.Cooler Then
+            If gObjFrom.TipoObjeto = TipoObjeto.SingleJunction Then
 
 
-                Me.Collections.CLCS_CoolerCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                Me.Collections.CLCS_SingleJunctionCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
 
                 '  gObjTo.
             End If
@@ -1488,7 +1489,7 @@ Imports RELAP.RELAP.FormClasses
                         End If
                     Else
                         Select Case gObjFrom.TipoObjeto
-                            Case TipoObjeto.Cooler
+                            Case TipoObjeto.SingleJunction
                                 GoTo 100
                             Case TipoObjeto.Pipe
                                 GoTo 100

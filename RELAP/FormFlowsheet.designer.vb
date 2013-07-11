@@ -125,11 +125,11 @@ Partial Class FormFlowsheet
         Me.dckPanel = New WeifenLuo.WinFormsUI.Docking.DockPanel()
         Me.OpenFileName = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.ToolStrip4.SuspendLayout()
-        Me.ToolStripPanel1.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.SuspendLayout()
+        Me.ToolStrip4.SuspendLayout
+        Me.ToolStripPanel1.SuspendLayout
+        Me.ToolStrip1.SuspendLayout
+        Me.MenuStrip1.SuspendLayout
+        Me.SuspendLayout
         '
         'ToolStrip4
         '
@@ -140,18 +140,18 @@ Partial Class FormFlowsheet
         Me.ToolStrip4.Size = New System.Drawing.Size(421, 25)
         Me.ToolStrip4.TabIndex = 4
         Me.ToolStrip4.Text = "Flowchart"
-        Me.ToolStrip4.Visible = False
+        Me.ToolStrip4.Visible = false
         '
         'ToolStripLabel4
         '
-        Me.ToolStripLabel4.Enabled = False
+        Me.ToolStripLabel4.Enabled = false
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
         Me.ToolStripLabel4.Size = New System.Drawing.Size(55, 22)
         Me.ToolStripLabel4.Text = "PFD Area"
         '
         'TSBtabela
         '
-        Me.TSBtabela.CheckOnClick = True
+        Me.TSBtabela.CheckOnClick = true
         Me.TSBtabela.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.TSBtabela.Image = Global.RELAP.My.Resources.Resources.picture
         Me.TSBtabela.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -181,7 +181,7 @@ Partial Class FormFlowsheet
         '
         'ToolStripButton12
         '
-        Me.ToolStripButton12.CheckOnClick = True
+        Me.ToolStripButton12.CheckOnClick = true
         Me.ToolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton12.Image = Global.RELAP.My.Resources.Resources.shape_square
         Me.ToolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -189,7 +189,7 @@ Partial Class FormFlowsheet
         Me.ToolStripButton12.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton12.Text = "Insert Rectangle"
         Me.ToolStripButton12.ToolTipText = "Insert Rectangle"
-        Me.ToolStripButton12.Visible = False
+        Me.ToolStripButton12.Visible = false
         '
         'ToolStripSeparator5
         '
@@ -248,7 +248,7 @@ Partial Class FormFlowsheet
         'ToolStripButton6
         '
         Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton6.Enabled = False
+        Me.ToolStripButton6.Enabled = false
         Me.ToolStripButton6.Image = Global.RELAP.My.Resources.Resources.page_gear
         Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton6.Name = "ToolStripButton6"
@@ -280,7 +280,7 @@ Partial Class FormFlowsheet
         '
         'ToolStripButton16
         '
-        Me.ToolStripButton16.CheckOnClick = True
+        Me.ToolStripButton16.CheckOnClick = true
         Me.ToolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton16.Image = Global.RELAP.My.Resources.Resources.shading
         Me.ToolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -290,7 +290,7 @@ Partial Class FormFlowsheet
         '
         'ToolStripButton17
         '
-        Me.ToolStripButton17.CheckOnClick = True
+        Me.ToolStripButton17.CheckOnClick = true
         Me.ToolStripButton17.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton17.Image = Global.RELAP.My.Resources.Resources.connect
         Me.ToolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -385,11 +385,11 @@ Partial Class FormFlowsheet
         '
         'ToolStripLabel6
         '
-        Me.ToolStripLabel6.Enabled = False
+        Me.ToolStripLabel6.Enabled = false
         Me.ToolStripLabel6.Name = "ToolStripLabel6"
         Me.ToolStripLabel6.Size = New System.Drawing.Size(113, 24)
         Me.ToolStripLabel6.Text = "Number Formatting"
-        Me.ToolStripLabel6.Visible = False
+        Me.ToolStripLabel6.Visible = false
         '
         'ToolStripComboBoxNumberFormatting
         '
@@ -397,7 +397,7 @@ Partial Class FormFlowsheet
         Me.ToolStripComboBoxNumberFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFormatting.Name = "ToolStripComboBoxNumberFormatting"
         Me.ToolStripComboBoxNumberFormatting.Size = New System.Drawing.Size(121, 27)
-        Me.ToolStripComboBoxNumberFormatting.Visible = False
+        Me.ToolStripComboBoxNumberFormatting.Visible = false
         '
         'ToolStripSeparator3
         '
@@ -406,11 +406,11 @@ Partial Class FormFlowsheet
         '
         'ToolStripLabel7
         '
-        Me.ToolStripLabel7.Enabled = False
+        Me.ToolStripLabel7.Enabled = false
         Me.ToolStripLabel7.Name = "ToolStripLabel7"
         Me.ToolStripLabel7.Size = New System.Drawing.Size(112, 24)
         Me.ToolStripLabel7.Text = "Fraction Formatting"
-        Me.ToolStripLabel7.Visible = False
+        Me.ToolStripLabel7.Visible = false
         '
         'ToolStripComboBoxNumberFractionFormatting
         '
@@ -418,20 +418,20 @@ Partial Class FormFlowsheet
         Me.ToolStripComboBoxNumberFractionFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFractionFormatting.Name = "ToolStripComboBoxNumberFractionFormatting"
         Me.ToolStripComboBoxNumberFractionFormatting.Size = New System.Drawing.Size(121, 25)
-        Me.ToolStripComboBoxNumberFractionFormatting.Visible = False
+        Me.ToolStripComboBoxNumberFractionFormatting.Visible = false
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.AllowItemReorder = True
+        Me.MenuStrip1.AllowItemReorder = true
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraçõesToolStripMenuItem, Me.InserirToolStripMenuItem, Me.ArquivoToolStripMenuItem, Me.tsmiGroupComponents})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.ShowItemToolTips = True
+        Me.MenuStrip1.ShowItemToolTips = true
         Me.MenuStrip1.Size = New System.Drawing.Size(154, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
-        Me.MenuStrip1.Visible = False
+        Me.MenuStrip1.Visible = false
         '
         'ConfiguraçõesToolStripMenuItem
         '
@@ -448,8 +448,8 @@ Partial Class FormFlowsheet
         Me.ComponentesToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.ComponentesToolStripMenuItem.MergeIndex = 0
         Me.ComponentesToolStripMenuItem.Name = "ComponentesToolStripMenuItem"
-        Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift)  _
+            Or System.Windows.Forms.Keys.S),System.Windows.Forms.Keys)
         Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, "Opens the configuration window for the active simulation")
         Me.ComponentesToolStripMenuItem.Text = "Simulation Settings"
@@ -773,11 +773,11 @@ Partial Class FormFlowsheet
         '
         'tsmiGroupComponents
         '
-        Me.tsmiGroupComponents.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.tsmiGroupComponents.Font = New System.Drawing.Font("Segoe UI", 9!, System.Drawing.FontStyle.Bold)
         Me.tsmiGroupComponents.Name = "tsmiGroupComponents"
         Me.tsmiGroupComponents.Size = New System.Drawing.Size(127, 20)
         Me.tsmiGroupComponents.Text = "Group Components"
-        Me.tsmiGroupComponents.Visible = False
+        Me.tsmiGroupComponents.Visible = false
         '
         'ToolStripMenuItem1
         '
@@ -799,12 +799,12 @@ Partial Class FormFlowsheet
         '
         'BGLoadComp
         '
-        Me.BGLoadComp.WorkerReportsProgress = True
+        Me.BGLoadComp.WorkerReportsProgress = true
         '
         'bgCalc
         '
-        Me.bgCalc.WorkerReportsProgress = True
-        Me.bgCalc.WorkerSupportsCancellation = True
+        Me.bgCalc.WorkerReportsProgress = true
+        Me.bgCalc.WorkerSupportsCancellation = true
         '
         'dckPanel
         '
@@ -813,7 +813,7 @@ Partial Class FormFlowsheet
         Me.dckPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dckPanel.DockBackColor = System.Drawing.SystemColors.Control
         Me.dckPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow
-        Me.dckPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World)
+        Me.dckPanel.Font = New System.Drawing.Font("Tahoma", 11!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World)
         Me.dckPanel.Location = New System.Drawing.Point(0, 25)
         Me.dckPanel.Name = "dckPanel"
         Me.dckPanel.Size = New System.Drawing.Size(1229, 477)
@@ -873,28 +873,28 @@ Partial Class FormFlowsheet
         '
         'FormFlowsheet
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1229, 502)
         Me.Controls.Add(Me.dckPanel)
         Me.Controls.Add(Me.ToolStripPanel1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.DoubleBuffered = True
+        Me.DoubleBuffered = true
         Me.Name = "FormFlowsheet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Simulation"
-        Me.ToolStrip4.ResumeLayout(False)
-        Me.ToolStrip4.PerformLayout()
-        Me.ToolStripPanel1.ResumeLayout(False)
-        Me.ToolStripPanel1.PerformLayout()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ToolStrip4.ResumeLayout(false)
+        Me.ToolStrip4.PerformLayout
+        Me.ToolStripPanel1.ResumeLayout(false)
+        Me.ToolStripPanel1.PerformLayout
+        Me.ToolStrip1.ResumeLayout(false)
+        Me.ToolStrip1.PerformLayout
+        Me.MenuStrip1.ResumeLayout(false)
+        Me.MenuStrip1.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Public WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem

@@ -2667,7 +2667,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next kvp
 
 
-            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.cooler) In ChildParent.Collections.CLCS_CoolerCollection
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.SingleJunction) In ChildParent.Collections.CLCS_SingleJunctionCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Single Junction '" & kvp.Value.GraphicObject.Tag & "'")

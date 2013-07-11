@@ -448,7 +448,7 @@ Public Class frmSurface
                         Case "TSMIHeater"
                             tobj = TipoObjeto.Heater
                         Case "TSMICooler"
-                            tobj = TipoObjeto.Cooler
+                            tobj = TipoObjeto.SingleJunction
                         Case "TSMIOrificePlate"
                             tobj = TipoObjeto.OrificePlate
                         Case "TSMIComponentSeparator"
@@ -2088,7 +2088,7 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myPump
                 ChildParent.Collections.ObjectCollection.Add(myPump.Name, myCOTK)
                 ChildParent.Collections.CLCS_PumpCollection.Add(myPump.Name, myCOTK)
-            Case TipoObjeto.Cooler
+            Case TipoObjeto.SingleJunction
                 Dim myCooler As New CoolerGraphic(mpx, mpy, 50, 50, 0)
                 myCooler.LineWidth = 2
                 myCooler.Fill = True
@@ -2103,10 +2103,10 @@ Public Class frmSurface
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
                 'OBJETO RELAP
-                Dim myCOTK As RELAP.SimulationObjects.UnitOps.cooler = New RELAP.SimulationObjects.UnitOps.cooler(myCooler.Name, "Resfriador")
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.SingleJunction = New RELAP.SimulationObjects.UnitOps.SingleJunction(myCooler.Name, "Resfriador")
                 myCOTK.GraphicObject = myCooler
                 ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
-                ChildParent.Collections.CLCS_CoolerCollection.Add(myCooler.Name, myCOTK)
+                ChildParent.Collections.CLCS_SingleJunctionCollection.Add(myCooler.Name, myCOTK)
             Case TipoObjeto.Pipe
                 Dim myPipe As New PipeGraphic(mpx, mpy, 50, 50, 0)
                 myPipe.LineWidth = 2
@@ -2265,7 +2265,7 @@ Public Class frmSurface
                 Case "TurbinaAdiabtica"
                     tobj = TipoObjeto.Expander
                 Case "Resfriador"
-                    tobj = TipoObjeto.Cooler
+                    tobj = TipoObjeto.SingleJunction
                 Case "Aquecedor"
                     tobj = TipoObjeto.Heater
                 Case "Tubulao"

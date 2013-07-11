@@ -83,12 +83,12 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_NumberOfVoulmes As Double
-        Public Property NumberOfVoulmes() As Double
+        Private m_NumberOfVoulmes As Integer
+        Public Property NumberOfVoulmes() As Integer
             Get
                 Return m_NumberOfVoulmes
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As Integer)
                 m_NumberOfVoulmes = value
             End Set
         End Property
@@ -153,7 +153,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
-            Me.m_NumberOfVoulmes = 5.0
+            Me.m_NumberOfVoulmes = 5
             Me.m_ComponentDescription = descricao
             ' Me.m_LengthofVolume = 5.0
             ' Me.m_VerticalAngle = -90.0
@@ -435,7 +435,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, "Parameters", "Number of Volumes", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
+                    .DefaultType = GetType(Integer)
                 End With
                 .Item.Add("Set Volume Parameters", valor, False, "Parameters", "Set Volume Parameters", True)
                 With .Item(.Item.Count - 1)
