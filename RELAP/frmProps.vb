@@ -2245,33 +2245,113 @@ Public Class frmProps
 
         ElseIf sobj.TipoObjeto = TipoObjeto.Pump Then
 
-            Dim bb As RELAP.SimulationObjects.UnitOps.Pump = ChildParent.Collections.CLCS_PumpCollection.Item(sobj.Name)
+            Dim pp As RELAP.SimulationObjects.UnitOps.Pump = ChildParent.Collections.CLCS_PumpCollection.Item(sobj.Name)
 
             If e.ChangedItem.Label.Contains("Volume Flow Area") Then
 
-                If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-                bb.FlowArea = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.area, e.ChangedItem.Value)
+                pp.FlowArea = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Length of Volume") Then
 
-                bb.LengthofVolume = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.distance, e.ChangedItem.Value)
-
-            ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("TKVol")) Then
-
-                If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-                bb.Volume = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.volume, e.ChangedItem.Value)
+                pp.LengthofVolume = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Volume of Volume") Then
-                bb.VolumeofVolume = e.ChangedItem.Value
+                pp.VolumeofVolume = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Azimuthal Angle") Then
-                bb.Azimuthalangle = e.ChangedItem.Value
+                pp.Azimuthalangle = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Inclination Angle") Then
-                bb.InclinationAngle = e.ChangedItem.Value
+                pp.InclinationAngle = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Elevation Change") Then
-                bb.ElevationChange = e.ChangedItem.Value
+                pp.ElevationChange = e.ChangedItem.Value
+
+                'control flags
+            ElseIf e.ChangedItem.Label.Contains("Thermal Stratification Model") Then
+                pp.ThermalStratificationModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Level Tracking Model") Then
+                pp.LevelTrackingModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Water Packing Scheme") Then
+                pp.WaterPackingScheme = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Vertical Stratification Model") Then
+                pp.VerticalStratificationModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Interphase Friction Model") Then
+                pp.InterphaseFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Compute Wall Friction") Then
+                pp.ComputeWallFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Equilibrium Temperature") Then
+                pp.EquilibriumTemperature = e.ChangedItem.Value
+
+                'pump suction
+            ElseIf e.ChangedItem.Label.Contains("Inlet Junction Area") Then
+                pp.JunctionArea = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Forward Flow Energy Loss Coefficient") Then
+                pp.FflowLossCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Reverse Flow Energy Loss Coefficient") Then
+                pp.RflowLossCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet CCFL Model") Then
+                pp.CCFLModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Choking Model") Then
+                pp.ChokingModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Smooth Area Change") Then
+                pp.SmoothAreaChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Full Abrupt Area Change") Then
+                pp.FullAbruptAreaChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Partial Abrupt Area Change") Then
+                pp.PartialAbruptAreaChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Two Velocity Momentum Equations") Then
+                pp.TwoVelocityMomentumEquations = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inlet Single Velocity Momentum Equations") Then
+                pp.SingleVelocityMomentumEquations = e.ChangedItem.Value
+
+
+                'pump discharge
+            ElseIf e.ChangedItem.Label.Contains("Outlet Junction Area") Then
+                pp.OJunctionArea = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Forward Flow Energy Loss Coefficient") Then
+                pp.OFflowLossCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Reverse Flow Energy Loss Coefficient") Then
+                pp.ORflowLossCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet CCFL Model") Then
+                pp.OCCFLModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Choking Model") Then
+                pp.OChokingModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Smooth Area Change") Then
+                pp.OSmoothAreaChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Full Abrupt Area Change") Then
+                pp.OFullAbruptAreaChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Partial Abrupt Area Change") Then
+                pp.OPartialAbruptAreaChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Two Velocity Momentum Equations") Then
+                pp.OTwoVelocityMomentumEquations = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Outlet Single Velocity Momentum Equations") Then
+                pp.OSingleVelocityMomentumEquations = e.ChangedItem.Value
+
 
 
 
