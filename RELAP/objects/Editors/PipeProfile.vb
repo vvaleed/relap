@@ -15,7 +15,7 @@
         m_collection = New Generic.SortedDictionary(Of Integer, PipeSection)
     End Sub
 
- 
+
 End Class
 
 Public Class PipeSection

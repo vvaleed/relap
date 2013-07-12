@@ -33,8 +33,8 @@ Partial Class ucPipeEditor
         Me.VolumeofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WallRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cmdSave = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.cmdCopy = New System.Windows.Forms.Button()
+        Me.cmdPaste = New System.Windows.Forms.Button()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -105,35 +105,36 @@ Partial Class ucPipeEditor
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
         '
-        'Button2
+        'cmdCopy
         '
-        Me.Button2.Location = New System.Drawing.Point(143, 309)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 6
-        Me.Button2.Text = "Copy to All"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.cmdCopy.Location = New System.Drawing.Point(143, 309)
+        Me.cmdCopy.Name = "cmdCopy"
+        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy.TabIndex = 6
+        Me.cmdCopy.Text = "Copy"
+        Me.cmdCopy.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'cmdPaste
         '
-        Me.TextBox1.Location = New System.Drawing.Point(333, 311)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 7
+        Me.cmdPaste.Location = New System.Drawing.Point(244, 309)
+        Me.cmdPaste.Name = "cmdPaste"
+        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste.TabIndex = 8
+        Me.cmdPaste.Text = "Paste"
+        Me.cmdPaste.UseVisualStyleBackColor = True
         '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.cmdPaste)
+        Me.Controls.Add(Me.cmdCopy)
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.dgv)
         Me.Name = "ucPipeEditor"
         Me.Size = New System.Drawing.Size(987, 388)
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents dgv As System.Windows.Forms.DataGridView
@@ -147,7 +148,7 @@ Partial Class ucPipeEditor
     Friend WithEvents VolumeofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents WallRoughness As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cmdSave As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents cmdCopy As System.Windows.Forms.Button
+    Friend WithEvents cmdPaste As System.Windows.Forms.Button
 
 End Class

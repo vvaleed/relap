@@ -71,5 +71,34 @@ Public Class ucPipeEditor
 
         row.Dispose()
     End Sub
+    Dim selectedcells As New List(Of Double)
+    Private Sub cmdCopy_Click(sender As Object, e As EventArgs) Handles cmdCopy.Click
+        If dgv.SelectedRows.Count = 1 Then
+            selectedcells.Clear()
+            selectedcells.Add(dgv.SelectedRows(0).Cells(1).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(2).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(3).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(4).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(5).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(6).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(7).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(8).Value)
+        End If
+    End Sub
+
+    Private Sub cmdPaste_Click(sender As Object, e As EventArgs) Handles cmdPaste.Click
+        For Each row As DataGridViewRow In dgv.SelectedRows
+            row.Cells(1).Value = selectedcells(0)
+            row.Cells(2).Value = selectedcells(1)
+            row.Cells(3).Value = selectedcells(2)
+            row.Cells(4).Value = selectedcells(3)
+            row.Cells(5).Value = selectedcells(4)
+            row.Cells(6).Value = selectedcells(5)
+            row.Cells(7).Value = selectedcells(6)
+            row.Cells(8).Value = selectedcells(7)
+
+        Next
+
+    End Sub
 End Class
 
