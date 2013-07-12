@@ -2108,7 +2108,7 @@ Public Class frmSurface
                 ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
                 ChildParent.Collections.CLCS_SingleJunctionCollection.Add(myCooler.Name, myCOTK)
             Case TipoObjeto.Pipe
-                Dim myPipe As New PipeGraphic(mpx, mpy, 50, 50, 0)
+                Dim myPipe As New PipeGraphic(mpx, mpy, 50, 10, 0)
                 myPipe.LineWidth = 2
                 myPipe.Fill = True
                 myPipe.FillColor = fillclr
@@ -2146,7 +2146,7 @@ Public Class frmSurface
                 ChildParent.Collections.ObjectCollection.Add(myValve.Name, myCOTK)
                 ChildParent.Collections.CLCS_ValveCollection.Add(myValve.Name, myCOTK)
             Case TipoObjeto.FuelRod
-                Dim myTank As New FuelRodGraphic(mpx, mpy, 50, 50, 0)
+                Dim myTank As New FuelRodGraphic(mpx, mpy, 10, 50, 0)
                 myTank.LineWidth = 2
                 myTank.Fill = True
                 myTank.FillColor = fillclr
