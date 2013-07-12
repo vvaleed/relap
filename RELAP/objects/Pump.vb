@@ -403,6 +403,134 @@ Namespace RELAP.SimulationObjects.UnitOps
         End Property
 
 
+        'pump suction initial conditions
+        Private m_EnterVelocityOrMassFlowRate As Boolean
+        Public Property EnterVelocityOrMassFlowRate() As Boolean
+            Get
+                Return m_EnterVelocityOrMassFlowRate
+            End Get
+            Set(ByVal value As Boolean)
+                m_EnterVelocityOrMassFlowRate = value
+            End Set
+        End Property
+
+        Private m_InitialLiquidVelocity As Double
+        Public Property InitialLiquidVelocity() As Double
+            Get
+                Return m_InitialLiquidVelocity
+            End Get
+            Set(ByVal value As Double)
+                m_InitialLiquidVelocity = value
+            End Set
+        End Property
+
+        Private m_InitialVaporVelocity As Double
+        Public Property InitialVaporVelocity() As Double
+            Get
+                Return m_InitialVaporVelocity
+            End Get
+            Set(ByVal value As Double)
+                m_InitialVaporVelocity = value
+            End Set
+        End Property
+
+        Private m_InterphaseVelocity As Double
+        Public Property InterphaseVelocity() As Double
+            Get
+                Return m_InterphaseVelocity
+            End Get
+            Set(ByVal value As Double)
+                m_InterphaseVelocity = value
+            End Set
+        End Property
+
+        Private m_InitialLiquidMassFlowRate As Double
+        Public Property InitialLiquidMassFlowRate() As Double
+            Get
+                Return m_InitialLiquidMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                m_InitialLiquidMassFlowRate = value
+            End Set
+        End Property
+
+        Private m_InitialVaporMassFlowRate As Double
+        Public Property InitialVaporMassFlowRate() As Double
+            Get
+                Return m_InitialVaporMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                m_InitialVaporMassFlowRate = value
+            End Set
+        End Property
+
+
+
+        'pump Discharge initial conditions
+        Private _EnterVelocityOrMassFlowRate As Boolean
+        Public Property OEnterVelocityOrMassFlowRate() As Boolean
+            Get
+                Return _EnterVelocityOrMassFlowRate
+            End Get
+            Set(ByVal value As Boolean)
+                _EnterVelocityOrMassFlowRate = value
+            End Set
+        End Property
+
+        Private _InitialLiquidVelocity As Double
+        Public Property OInitialLiquidVelocity() As Double
+            Get
+                Return _InitialLiquidVelocity
+            End Get
+            Set(ByVal value As Double)
+                _InitialLiquidVelocity = value
+            End Set
+        End Property
+
+        Private _InitialVaporVelocity As Double
+        Public Property OInitialVaporVelocity() As Double
+            Get
+                Return _InitialVaporVelocity
+            End Get
+            Set(ByVal value As Double)
+                _InitialVaporVelocity = value
+            End Set
+        End Property
+
+        Private _InterphaseVelocity As Double
+        Public Property OInterphaseVelocity() As Double
+            Get
+                Return _InterphaseVelocity
+            End Get
+            Set(ByVal value As Double)
+                _InterphaseVelocity = value
+            End Set
+        End Property
+
+        Private _InitialLiquidMassFlowRate As Double
+        Public Property OInitialLiquidMassFlowRate() As Double
+            Get
+                Return _InitialLiquidMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                _InitialLiquidMassFlowRate = value
+            End Set
+        End Property
+
+        Private _InitialVaporMassFlowRate As Double
+        Public Property OInitialVaporMassFlowRate() As Double
+            Get
+                Return _InitialVaporMassFlowRate
+            End Get
+            Set(ByVal value As Double)
+                _InitialVaporMassFlowRate = value
+            End Set
+        End Property
+
+
+
+
+
 
         Private m_pressure As Double
         Public Property Pressure() As Double
@@ -1030,8 +1158,90 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
+                'pump suction initial conditions
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InterphaseVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Interphase Velocity (suction)", su.velocity), valor, False, "5.Pump Suction Initial Conditions", "Interphase Velocity (suction)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                .Item.Add(("True for Mass Flow rate (suction)"), Me, "EnterVelocityOrMassFlowRate", False, "5.Pump Suction Initial Conditions", "True for Mass Flow rate (suction)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Liquid Velocity (suction)", su.velocity), valor, False, "5.Pump Suction Initial Conditions", "Initial Liquid Velocity (suction)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialVaporVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Vapor Velocity (suction)", su.velocity), valor, False, "5.Pump Suction Initial Conditions", "Initial Vapor Velocity (suction)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Liquid Mass Flow Rate (suction)", su.spmp_massflow), valor, False, "5.Pump Suction Initial Conditions", "Initial Liquid Mass Flow Rate (suction)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Vapor Mass Flow Rate (suction)", su.spmp_massflow), valor, False, "5.Pump Suction Initial Conditions", "Initial Vapor Mass Flow Rate (suction)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
 
 
+                'pump discharge initial conditions
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.OInterphaseVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Interphase Velocity (discharge)", su.velocity), valor, False, "6.Pump discharge Initial Conditions", "Interphase Velocity (discharge)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                .Item.Add(("True for Mass Flow rate (discharge)"), Me, "OEnterVelocityOrMassFlowRate", False, "6.Pump discharge Initial Conditions", "True for Mass Flow rate (discharge)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.OInitialLiquidVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Liquid Velocity (discharge)", su.velocity), valor, False, "6.Pump discharge Initial Conditions", "Initial Liquid Velocity (discharge)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.OInitialVaporVelocity), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Vapor Velocity (discharge)", su.velocity), valor, False, "6.Pump discharge Initial Conditions", "Initial Vapor Velocity (discharge)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.OInitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Liquid Mass Flow Rate (discharge)", su.spmp_massflow), valor, False, "6.Pump discharge Initial Conditions", "Initial Liquid Mass Flow Rate (discharge)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.OInitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Initial Vapor Mass Flow Rate (discharge)", su.spmp_massflow), valor, False, "6.Pump discharge Initial Conditions", "Initial Vapor Mass Flow Rate (discharge)", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
 
 
             End With
