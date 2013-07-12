@@ -639,7 +639,12 @@ Namespace RELAP.SistemasDeUnidades
     'End Class
 
     <System.Serializable()> Public Class Conversor
+        Public Function Convert(fromunit As String, tounit As String, value As Double) As Double
 
+            Dim sival As Double = Me.ConverterParaSI(fromunit, value)
+            Return Double.Parse(Me.ConverterDoSI(tounit, sival))
+
+        End Function
         Public Function ConverterParaSI(ByVal unidade As String, ByVal valor As Double)
 
             Select Case unidade

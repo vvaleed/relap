@@ -22,7 +22,6 @@ Partial Class frmPipeEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.UcPipeEditor1 = New Global.RELAP.ucPipeEditor()
         Me.dgv = New System.Windows.Forms.DataGridView()
         Me.VolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Azimuthalangle = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -33,18 +32,9 @@ Partial Class frmPipeEditor
         Me.VerticalAngle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VolumeofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WallRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UcPipeEditor1 = New ucPipeEditor()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'UcPipeEditor1
-        '
-        Me.UcPipeEditor1.Location = New System.Drawing.Point(65, 51)
-        Me.UcPipeEditor1.Name = "UcPipeEditor1"
-        Me.UcPipeEditor1.NumberFormat = Nothing
-        Me.UcPipeEditor1.Profile = Nothing
-        Me.UcPipeEditor1.Size = New System.Drawing.Size(150, 150)
-        Me.UcPipeEditor1.SystemOfUnits = Nothing
-        Me.UcPipeEditor1.TabIndex = 0
         '
         'dgv
         '
@@ -53,10 +43,11 @@ Partial Class frmPipeEditor
         Me.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VolumeNumber, Me.Azimuthalangle, Me.Flowarea, Me.HyrdraulicDiameter, Me.Junctionflowarea, Me.LengthofVolume, Me.VerticalAngle, Me.VolumeofVolume, Me.WallRoughness})
-        Me.dgv.Location = New System.Drawing.Point(12, 12)
+        Me.dgv.Location = New System.Drawing.Point(787, 387)
         Me.dgv.Name = "dgv"
-        Me.dgv.Size = New System.Drawing.Size(970, 289)
-        Me.dgv.TabIndex = 1
+        Me.dgv.Size = New System.Drawing.Size(210, 13)
+        Me.dgv.TabIndex = 3
+        Me.dgv.Visible = False
         '
         'VolumeNumber
         '
@@ -104,20 +95,29 @@ Partial Class frmPipeEditor
         Me.WallRoughness.HeaderText = "Wall Roughness"
         Me.WallRoughness.Name = "WallRoughness"
         '
+        'UcPipeEditor1
+        '
+        Me.UcPipeEditor1.Location = New System.Drawing.Point(10, 12)
+        Me.UcPipeEditor1.Name = "UcPipeEditor1"
+        Me.UcPipeEditor1.NumberFormat = Nothing
+        Me.UcPipeEditor1.Profile = Nothing
+        Me.UcPipeEditor1.Size = New System.Drawing.Size(987, 369)
+        Me.UcPipeEditor1.SystemOfUnits = Nothing
+        Me.UcPipeEditor1.TabIndex = 4
+        '
         'frmPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1009, 327)
-        Me.Controls.Add(Me.dgv)
+        Me.ClientSize = New System.Drawing.Size(1009, 425)
         Me.Controls.Add(Me.UcPipeEditor1)
+        Me.Controls.Add(Me.dgv)
         Me.Name = "frmPipeEditor"
         Me.Text = "Pipe Editor"
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents UcPipeEditor1 As ucPipeEditor
     Friend WithEvents dgv As System.Windows.Forms.DataGridView
     Friend WithEvents VolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Azimuthalangle As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -128,4 +128,5 @@ Partial Class frmPipeEditor
     Friend WithEvents VerticalAngle As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents VolumeofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents WallRoughness As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents UcPipeEditor1 As ucPipeEditor
 End Class

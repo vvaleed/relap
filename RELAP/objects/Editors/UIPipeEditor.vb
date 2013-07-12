@@ -27,7 +27,7 @@ Namespace RELAP.Editors
 
                 editorService.ShowDialog(selectionControl)
 
-                value = selectionControl.UcPipeEditor1.Profile
+                ' value = selectionControl.UcPipeEditor1.Profile
 
             End If
 

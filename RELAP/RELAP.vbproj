@@ -260,14 +260,14 @@
     <Compile Include="objects\Editors\frmPipeEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\UIPipeEditor.vb" />
-    <Compile Include="objects\Editors\PipeProfile.vb" />
     <Compile Include="objects\Editors\ucPipeEditor.Designer.vb">
       <DependentUpon>ucPipeEditor.vb</DependentUpon>
     </Compile>
     <Compile Include="objects\Editors\ucPipeEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="objects\Editors\UIPipeEditor.vb" />
+    <Compile Include="objects\Editors\PipeProfile.vb" />
     <Compile Include="objects\Pump.vb" />
     <Compile Include="objects\PWR Control Rod.vb" />
     <Compile Include="objects\Shroud.vb" />
@@ -421,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmPipeEditor.resx">
       <DependentUpon>frmPipeEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucPipeEditor.resx">
+      <DependentUpon>ucPipeEditor.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
