@@ -2353,9 +2353,51 @@ Public Class frmProps
                 pp.OSingleVelocityMomentumEquations = e.ChangedItem.Value
 
 
+                'pump suction initial conditions
+            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (suction)") Then
+                pp.InterphaseVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (suction)") Then
+                pp.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (suction)") Then
+                pp.InitialLiquidVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (suction)") Then
+                pp.InitialVaporVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (suction)") Then
+                pp.InitialLiquidMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (suction)") Then
+                pp.InitialVaporMassFlowRate = e.ChangedItem.Value
+
+
+
+                'pump discharge initial conditions
+            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (discharge)") Then
+                pp.OInterphaseVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (discharge)") Then
+                pp.OEnterVelocityOrMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (discharge)") Then
+                pp.OInitialLiquidVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (discharge)") Then
+                pp.OInitialVaporVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (discharge)") Then
+                pp.OInitialLiquidMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
+                pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
 
 
             End If
+
+
+
 
         ElseIf sobj.TipoObjeto = TipoObjeto.SingleJunction Then
 
