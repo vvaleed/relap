@@ -1,4 +1,24 @@
 ﻿Public Class PipeProfile
+    Protected m_collection As Generic.SortedDictionary(Of Integer, PipeSection)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property Sections() As Generic.SortedDictionary(Of Integer, PipeSection)
+        Get
+            Return m_collection
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, PipeSection))
+            m_collection = value
+        End Set
+    End Property
+
+    Public Sub New()
+        m_collection = New Generic.SortedDictionary(Of Integer, PipeSection)
+    End Sub
+
+ 
+End Class
+
+Public Class PipeSection
     Private m_FlowArea As Double
     Public Property FlowArea() As Double
         Get
@@ -82,4 +102,20 @@
             m_WallRoughness = value
         End Set
     End Property
+
+    Public Sub New(ByVal VolumeNumber As Double, ByVal Azimuthalangle As Double, ByVal FlowArea As Double, ByVal HydraulicDiameter As Double, ByVal JunctionFlowArea As Double, ByVal LengthofVolume As Double, _
+                     ByVal VerticalAngle As Double, ByVal VolumeofVolume As Double, ByVal WallRoughness As Double)
+        Me.m_Azimuthalangle = Azimuthalangle
+        Me.m_FlowArea = FlowArea
+        Me.m_HydraulicDiameter = HydraulicDiameter
+        Me.m_JunctionFlowArea = JunctionFlowArea
+        Me.m_LengthofVolume = LengthofVolume
+        Me.m_VerticalAngle = VerticalAngle
+        Me.m_VolumeNumber = VolumeNumber
+        Me.m_VolumeofVolume = VolumeofVolume
+        Me.m_WallRoughness = WallRoughness
+
+        '   Me.m_results = New System.Collections.Generic.List(Of PipeResults)
+
+    End Sub
 End Class
