@@ -2787,4701 +2787,4736 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(output)
 
             Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.pipe) In ChildParent.Collections.CLCS_PipeCollection
+                '  MsgBox(kvp.Key)
+                'kvp.Value.FlowArea.cardno()
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component PIPE '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ PIPE")
+                output = kvp.Value.UID & "0001 " & kvp.Value.NumberOfVoulmes
+                generate.WriteLine(output)
+                Dim counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+
+
+                univID = univID + 1
+                '  MsgBox(kvp.Value.ComponentName)
+            Next kvp
+
             generate.Close()
             MsgBox("File Saved")
 
             Exit Sub
             ' 105 mass fraction of gas
-            If Class1.initial.cbair = "True" Or Class1.initial.cbargon = "True" And Class1.initial.cbcrypton = "True" Or Class1.initial.cbhelium = "True" Or Class1.initial.cbhydrogen = "True" Or Class1.initial.cbnitrogen = "True" Or Class1.initial.cbsf6 = "True" Or Class1.initial.cbxenon = "True" Then
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("*     non condensible gases mass fractions card")
-                generate.WriteLine("*======================================================================")
-
-
-
-                output = ""
-                gascount = 1
-                If Class1.initial.cbair = "True" And gascount <= 5 Then
-                    output = Class1.initial.tbair
-                    gascount += 1
-                End If
-                If Class1.initial.cbargon = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbargon
-                    gascount += 1
-                End If
-                If Class1.initial.cbcrypton = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbcrypton
-                    gascount += 1
-                End If
-                If Class1.initial.cbhelium = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbhelium
-                    gascount += 1
-                End If
-                If Class1.initial.cbhydrogen = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbhydrogen
-                    gascount += 1
-                End If
-                If Class1.initial.cbnitrogen = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbnitrogen
-                    gascount += 1
-                End If
-                If Class1.initial.cbsf6 = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbsf6
-                    gascount += 1
-                End If
-                If Class1.initial.cbxenon = "True" And gascount <= 5 Then
-                    output = (output & " ") + Class1.initial.tbxenon
-                    gascount += 1
-                End If
-
-
-
-                generate.WriteLine("115 " & output)
-            End If
-            ' 200 time initial
-
-
-
-            If Class1.initial.cmbprobtype = "0" Or Class1.initial.cmbprobtype = "1" Then
-
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         initial time control card")
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("200 " + Class1.initial.tbinitime)
-            End If
-
-            ' time step control   201    299
-            If Convert.ToInt32(Class1.lb_time_count) > 0 Then
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         time step control cards")
-                generate.WriteLine("*======================================================================")
-            End If
-            For i As Integer = 1 To Convert.ToInt32(Class1.lb_time_count)
-                If i < 10 Then
-                    generate.WriteLine(("20" & i & " ") + Class1.timecontrol(i - 1))
-                End If
-                If i >= 10 Then
-                    generate.WriteLine(("2" & i & " ") + Class1.timecontrol(i - 1))
-                End If
-            Next
-
-            ' plot request
-
-            generate.WriteLine("*======================================================================")
-            generate.WriteLine("*         Plot request")
-            generate.WriteLine("*======================================================================")
-            For i As Integer = 0 To Class1.plotcounter - 1
-                If i < 39 Then
-                    generate.WriteLine("20300" & Class1.lbplot(i).ToString())
-                End If
-            Next
-
-            If True Then
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("*        Hydrodynamic Component DATA")
-                generate.WriteLine("*======================================================================")
-            End If
-            Dim counter As Integer = 1
-            Dim common As Double
-
-            ' single VOLUME
-            For i As Integer = 0 To 99
-                If Class1.sngl_vol(i).gbname IsNot Nothing Then
-
-                    Class1.sngl_vol(i).id = Class1.sngl_vol(i).gbname.Substring(10, 3).ToString()
-                    counter = 1
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component SNGL Volume " + Class1.sngl_vol(i).id)
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine(Class1.sngl_vol(i).id + "0000 " + Class1.sngl_vol(i).Nameid & " snglvol")
-                    ' single colue geometry card
-                    output = Nothing
-                    output = (((((((((Class1.sngl_vol(i).id + "0101" & " ") + Class1.sngl_vol(i).VFA & " ") + Class1.sngl_vol(i).LOV & " ") + Class1.sngl_vol(i).VOV & " ") + Class1.sngl_vol(i).AA & " ") + Class1.sngl_vol(i).IA & " ") + Class1.sngl_vol(i).EC & " ") + Class1.sngl_vol(i).WR & " ") + Class1.sngl_vol(i).HD & " ") + Class1.sngl_vol(i).VCFt + Class1.sngl_vol(i).VCFl + Class1.sngl_vol(i).VCFp + Class1.sngl_vol(i).VCFv + Class1.sngl_vol(i).VCFb + Class1.sngl_vol(i).VCFf + Class1.sngl_vol(i).VCFe
+            '    If Class1.initial.cbair = "True" Or Class1.initial.cbargon = "True" And Class1.initial.cbcrypton = "True" Or Class1.initial.cbhelium = "True" Or Class1.initial.cbhydrogen = "True" Or Class1.initial.cbnitrogen = "True" Or Class1.initial.cbsf6 = "True" Or Class1.initial.cbxenon = "True" Then
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine("*     non condensible gases mass fractions card")
+            '        generate.WriteLine("*======================================================================")
+
+
+
+            '        output = ""
+            '        gascount = 1
+            '        If Class1.initial.cbair = "True" And gascount <= 5 Then
+            '            output = Class1.initial.tbair
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbargon = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbargon
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbcrypton = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbcrypton
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbhelium = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbhelium
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbhydrogen = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbhydrogen
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbnitrogen = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbnitrogen
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbsf6 = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbsf6
+            '            gascount += 1
+            '        End If
+            '        If Class1.initial.cbxenon = "True" And gascount <= 5 Then
+            '            output = (output & " ") + Class1.initial.tbxenon
+            '            gascount += 1
+            '        End If
+
+
+
+            '        generate.WriteLine("115 " & output)
+            '    End If
+            '    ' 200 time initial
+
+
+
+            '    If Class1.initial.cmbprobtype = "0" Or Class1.initial.cmbprobtype = "1" Then
+
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine("*         initial time control card")
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine("200 " + Class1.initial.tbinitime)
+            '    End If
+
+            '    ' time step control   201    299
+            '    If Convert.ToInt32(Class1.lb_time_count) > 0 Then
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine("*         time step control cards")
+            '        generate.WriteLine("*======================================================================")
+            '    End If
+            '    For i As Integer = 1 To Convert.ToInt32(Class1.lb_time_count)
+            '        If i < 10 Then
+            '            generate.WriteLine(("20" & i & " ") + Class1.timecontrol(i - 1))
+            '        End If
+            '        If i >= 10 Then
+            '            generate.WriteLine(("2" & i & " ") + Class1.timecontrol(i - 1))
+            '        End If
+            '    Next
+
+            '    ' plot request
+
+            '    generate.WriteLine("*======================================================================")
+            '    generate.WriteLine("*         Plot request")
+            '    generate.WriteLine("*======================================================================")
+            '    For i As Integer = 0 To Class1.plotcounter - 1
+            '        If i < 39 Then
+            '            generate.WriteLine("20300" & Class1.lbplot(i).ToString())
+            '        End If
+            '    Next
+
+            '    If True Then
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine("*        Hydrodynamic Component DATA")
+            '        generate.WriteLine("*======================================================================")
+            '    End If
+            '    Dim counter As Integer = 1
+            '    Dim common As Double
+
+            '    ' single VOLUME
+            '    For i As Integer = 0 To 99
+            '        If Class1.sngl_vol(i).gbname IsNot Nothing Then
+
+            '            Class1.sngl_vol(i).id = Class1.sngl_vol(i).gbname.Substring(10, 3).ToString()
+            '            counter = 1
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component SNGL Volume " + Class1.sngl_vol(i).id)
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine(Class1.sngl_vol(i).id + "0000 " + Class1.sngl_vol(i).Nameid & " snglvol")
+            '            ' single colue geometry card
+            '            output = Nothing
+            '            output = (((((((((Class1.sngl_vol(i).id + "0101" & " ") + Class1.sngl_vol(i).VFA & " ") + Class1.sngl_vol(i).LOV & " ") + Class1.sngl_vol(i).VOV & " ") + Class1.sngl_vol(i).AA & " ") + Class1.sngl_vol(i).IA & " ") + Class1.sngl_vol(i).EC & " ") + Class1.sngl_vol(i).WR & " ") + Class1.sngl_vol(i).HD & " ") + Class1.sngl_vol(i).VCFt + Class1.sngl_vol(i).VCFl + Class1.sngl_vol(i).VCFp + Class1.sngl_vol(i).VCFv + Class1.sngl_vol(i).VCFb + Class1.sngl_vol(i).VCFf + Class1.sngl_vol(i).VCFe
 
-                    generate.WriteLine(output)
-                    generate.WriteLine((Class1.sngl_vol(i).id + "0141 " + Class1.sngl_vol(i).SF & " ") + Class1.sngl_vol(i).VRC)
-                    ' initial condition SNGLVOL
+            '            generate.WriteLine(output)
+            '            generate.WriteLine((Class1.sngl_vol(i).id + "0141 " + Class1.sngl_vol(i).SF & " ") + Class1.sngl_vol(i).VRC)
+            '            ' initial condition SNGLVOL
 
-                    If Class1.sngl_vol(i).IC_TS = "0" Then
-                        output = ((Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_IEL & " ") + Class1.sngl_vol(i).IC_IEV & " ") + Class1.sngl_vol(i).IC_VVF
-                    ElseIf Class1.sngl_vol(i).IC_TS = "1" Then
-                        output = Class1.sngl_vol(i).IC_T + " " + Class1.sngl_vol(i).IC_SQE
-
-                    ElseIf Class1.sngl_vol(i).IC_TS = "2" Then
-                        output = Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_QE
+            '            If Class1.sngl_vol(i).IC_TS = "0" Then
+            '                output = ((Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_IEL & " ") + Class1.sngl_vol(i).IC_IEV & " ") + Class1.sngl_vol(i).IC_VVF
+            '            ElseIf Class1.sngl_vol(i).IC_TS = "1" Then
+            '                output = Class1.sngl_vol(i).IC_T + " " + Class1.sngl_vol(i).IC_SQE
+
+            '            ElseIf Class1.sngl_vol(i).IC_TS = "2" Then
+            '                output = Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_QE
 
-                    ElseIf Class1.sngl_vol(i).IC_TS = "3" Then
-                        output = Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_T
+            '            ElseIf Class1.sngl_vol(i).IC_TS = "3" Then
+            '                output = Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_T
 
-                    ElseIf Class1.sngl_vol(i).IC_TS = "4" Then
-
-                        output = (Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_T & " ") + Class1.sngl_vol(i).IC_SQE
-
-                    ElseIf Class1.sngl_vol(i).IC_TS = "5" Then
-                        output = (Class1.sngl_vol(i).IC_T + " " + Class1.sngl_vol(i).IC_SQ & " ") + Class1.sngl_vol(i).IC_NCQE
-
-                    ElseIf Class1.sngl_vol(i).IC_TS = "6" Then
-                        output = (((Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_IEL & " ") + Class1.sngl_vol(i).IC_IEV & " ") + Class1.sngl_vol(i).IC_VVF & " ") + Class1.sngl_vol(i).IC_NCQ
-                    End If
-
-
-
-                    generate.WriteLine(Class1.sngl_vol(i).id + "0200 " + Class1.sngl_vol(i).IC_E + Class1.sngl_vol(i).IC_B + Class1.sngl_vol(i).IC_TS & " " & output)
-
-                End If
-            Next
-
-            ' single junction generate
-
-
-            For i As Integer = 0 To 99
-                If Class1.singjunc(i).gbname IsNot Nothing Then
-                    Class1.singjunc(i).cmbhydroid = Class1.singjunc(i).gbname.Substring(10, 3).ToString()
-
-
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Junction  " + Class1.singjunc(i).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-
-
-                    '
-                    '                        if (Class1.singjunc[i].cmbjuntype == "0")
-                    '                            output = "sngjun";
-                    '                        else
-                    '                            output = "TMDPJUN";
-                    '                     
-
-                    generate.WriteLine(Class1.singjunc(i).cmbhydroid + "0000 " + Class1.singjunc(i).txtname & " sngljun")
-
-                    ' goemetry card
-                    '  counter = 1;
-
-
-                    output = (Class1.singjunc(i).cmbhydroid + "0101" & " ") + Class1.singjunc(i).txtfromid
-
-                    If Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom) <= 9 Then
-                        Class1.singjunc(i).txtvolumenumberfrom = "0" & Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom).ToString()
-                    ElseIf Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom) > 9 Then
-                        Class1.singjunc(i).txtvolumenumberfrom = Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom).ToString()
-                    End If
-
-                    If Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto) <= 9 Then
-                        Class1.singjunc(i).txtvolumenumberto = "0" & Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto).ToString()
-                    ElseIf Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto) > 9 Then
-                        Class1.singjunc(i).txtvolumenumberto = Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto).ToString()
-                    End If
-
-                    If Convert.ToBoolean(Class1.singjunc(i).cbformatfrom) = False Then
-                        output = (output & "0") + Class1.singjunc(i).cmbconsidefrom & "0000" & " "
-                    Else
-                        If Class1.singjunc(i).cmbconsidefrom = "0" AndAlso Class1.singjunc(i).cmbconfacexfrom = "0" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberfrom & "0001" & " "
-                        ElseIf Class1.singjunc(i).cmbconsidefrom = "1" AndAlso Class1.singjunc(i).cmbconfacexfrom = "0" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberfrom & "0002" & " "
-                        ElseIf Class1.singjunc(i).cmbconsidefrom = "0" AndAlso Class1.singjunc(i).cmbconfacexfrom = "1" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberfrom & "0003" & " "
-                        ElseIf Class1.singjunc(i).cmbconsidefrom = "1" AndAlso Class1.singjunc(i).cmbconfacexfrom = "1" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberfrom & "0004" & " "
-                        ElseIf Class1.singjunc(i).cmbconsidefrom = "0" AndAlso Class1.singjunc(i).cmbconfacexfrom = "2" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberfrom & "0005" & " "
-                        ElseIf Class1.singjunc(i).cmbconsidefrom = "1" AndAlso Class1.singjunc(i).cmbconfacexfrom = "2" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberfrom & "0006" & " "
-                        End If
-                    End If
-
-                    'if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberfrom) < 10)
-                    '    output = output + "0" + Class1.singjunc[i].txtvolumenumberfrom.ToString();
-                    'else if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberfrom) >= 10)
-                    '    output = output + Class1.singjunc[i].txtvolumenumberfrom.ToString();
-
-                    'if (Class1.singjunc[i].cmbconsidefrom == "0" & Class1.singjunc[i].cmbconfacexfrom == "0")
-                    '    output = output + "0001" + " ";
-                    'else if (Class1.singjunc[i].cmbconsidefrom == "1" & Class1.singjunc[i].cmbconfacexfrom == "0")
-                    '    output = output + "0002" + " ";
-                    'else if (Class1.singjunc[i].cmbconsidefrom == "0" & Class1.singjunc[i].cmbconfacexfrom == "1")
-                    '    output = output + "0003" + " ";
-                    'else if (Class1.singjunc[i].cmbconsidefrom == "1" & Class1.singjunc[i].cmbconfacexfrom == "1")
-                    '    output = output + "0004" + " ";
-                    'else if (Class1.singjunc[i].cmbconsidefrom == "0" & Class1.singjunc[i].cmbconfacexfrom == "2")
-                    '    output = output + "0005" + " ";
-                    'else if (Class1.singjunc[i].cmbconsidefrom == "1" & Class1.singjunc[i].cmbconfacexfrom == "2")
-                    '    output = output + "0006" + " ";
-
-                    output = output + Class1.singjunc(i).txttoid
-
-                    If Convert.ToBoolean(Class1.singjunc(i).cbformatto) = False Then
-                        output = (output & "0") + Class1.singjunc(i).cmbconsideto & "0000" & " "
-                    Else
-                        If Class1.singjunc(i).cmbconsideto = "0" AndAlso Class1.singjunc(i).cmbconfacexto = "0" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberto & "0001" & " "
-                        ElseIf Class1.singjunc(i).cmbconsideto = "1" AndAlso Class1.singjunc(i).cmbconfacexto = "0" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberto & "0002" & " "
-                        ElseIf Class1.singjunc(i).cmbconsideto = "0" AndAlso Class1.singjunc(i).cmbconfacexto = "1" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberto & "0003" & " "
-                        ElseIf Class1.singjunc(i).cmbconsideto = "1" AndAlso Class1.singjunc(i).cmbconfacexto = "1" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberto & "0004" & " "
-                        ElseIf Class1.singjunc(i).cmbconsideto = "0" AndAlso Class1.singjunc(i).cmbconfacexto = "2" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberto & "0005" & " "
-                        ElseIf Class1.singjunc(i).cmbconsideto = "1" AndAlso Class1.singjunc(i).cmbconfacexto = "2" Then
-                            output = output + Class1.singjunc(i).txtvolumenumberto & "0006" & " "
-                        End If
-                    End If
-
-
-                    'if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberto) < 10)
-                    '    output = output + "0" + Class1.singjunc[i].txtvolumenumberto.ToString();
-                    'else if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberto) >= 10)
-                    '    output = output + Class1.singjunc[i].txtvolumenumberto.ToString();
-
-                    'if (Class1.singjunc[i].cmbconsideto == "0" & Class1.singjunc[i].cmbconfacexto == "0")
-                    '    output = output + "0001" + " ";
-                    'else if (Class1.singjunc[i].cmbconsideto == "1" & Class1.singjunc[i].cmbconfacexto == "0")
-                    '    output = output + "0002" + " ";
-                    'else if (Class1.singjunc[i].cmbconsideto == "0" & Class1.singjunc[i].cmbconfacexto == "1")
-                    '    output = output + "0003" + " ";
-                    'else if (Class1.singjunc[i].cmbconsideto == "1" & Class1.singjunc[i].cmbconfacexto == "1")
-                    '    output = output + "0004" + " ";
-                    'else if (Class1.singjunc[i].cmbconsideto == "0" & Class1.singjunc[i].cmbconfacexto == "2")
-                    '    output = output + "0005" + " ";
-                    'else if (Class1.singjunc[i].cmbconsideto == "1" & Class1.singjunc[i].cmbconfacexto == "2")
-                    '    output = output + "0006" + " ";
-
-
-                    output = (((output & " ") + Class1.singjunc(i).txtjarea & " ") + Class1.singjunc(i).txtffelc & " ") + Class1.singjunc(i).txtrfelc & " "
-
-                    ' counter++;
-                    ' generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txttoid  + "0" + Class1.singjunc[i].cmbconsideto  + "0000");
-                    ' counter++;
-                    'generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtjarea);
-                    ' counter++;
-                    'generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtffelc);
-                    ' counter++;
-                    'generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtrfelc);
-                    '  counter++;
-
-                    If Class1.singjunc(i).cbjetjun = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    If Class1.singjunc(i).cbmodpv = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.singjunc(i).cbccfl = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    output = output + Class1.singjunc(i).cmbhorstrat
-
-                    If Class1.singjunc(i).cbchoking = "False" Then
-                        output = output & "1"
-                    Else
-                        output = output & "0"
-                    End If
-                    output = output + Class1.singjunc(i).cmbareachange
-
-                    If Class1.singjunc(i).cbhomo = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "2"
-                    End If
-                    output = output + Class1.singjunc(i).cmbmf
-                    output = (((output & " ") + Class1.singjunc(i).txtsubdc & " ") + Class1.singjunc(i).txttpdc & " ") + Class1.singjunc(i).txtshdc
-
-                    generate.WriteLine(output)
-                    '
-                    '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " +  output  );
-                    '                              counter++;
-                    '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtsubdc);
-                    '                              counter++;
-                    '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txttpdc);
-                    '                              counter++;
-                    '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtshdc);
-                    '                    // diameter and ccfl data
-
-
-                    If Class1.singjunc(i).cbccfl = "True" Then
-                        generate.WriteLine((((Class1.singjunc(i).cmbhydroid + "0110 " + Class1.singjunc(i).txtdj & " ") + Class1.singjunc(i).txtfcf & " ") + Class1.singjunc(i).txtgi & " ") + Class1.singjunc(i).txtslope)
-                    End If
-
-                    ' else
-                    ' generate.WriteLine(Class1.singjunc[i].cmbhydroid + "0110 " + Class1.singjunc[i].txtdj);  
-
-                    If Class1.singjunc(i).cbformloss = "True" Then
-                        generate.WriteLine((((Class1.singjunc(i).cmbhydroid + "0111 " + Class1.singjunc(i).txtbf & " ") + Class1.singjunc(i).txtcf & " ") + Class1.singjunc(i).txtbr & " ") + Class1.singjunc(i).txtcr)
-                    End If
-
-
-                    generate.WriteLine((((Class1.singjunc(i).cmbhydroid + "0201 " + Class1.singjunc(i).cmbvelmfr & " ") + Class1.singjunc(i).txtliq & " ") + Class1.singjunc(i).txtvap & " ") + Class1.singjunc(i).txtint)
-                End If
-            Next
-
-
-
-
-            ' *******  PIPE code:
-
-            ' &&&&&&&&&&&&&&&&&&&&&***********************&&&&&&&&&&&&&&&&&
-            For i As Integer = 0 To 99
-                If Class1.pipeannulus(i, 1).gbname IsNot Nothing Then
-                    Class1.pipeannulus(i, 1).cmbhydroid = Class1.pipeannulus(i, 1).gbname.Substring(10, 3).ToString()
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component PIPE " + Class1.pipeannulus(i, 1).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0000 " + Class1.pipeannulus(i, 1).txtname & " pipe"
-                    generate.WriteLine(output)
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0001 " + Class1.pipeannulus(i, 1).txtnv
-                    generate.WriteLine(output)
-                    output = Nothing
-
-                    ' card X coordinate Volume Flow Area    101
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = output + Class1.pipeannulus(i, 1).txtvfa
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvfa <> Class1.pipeannulus(i, j).txtvfa Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).txtvfa
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.pipeannulus(i, j).txtvfa <> Class1.pipeannulus(i, j + 1).txtvfa And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvfa <> Class1.pipeannulus(i, 2).txtvfa Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvfa <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvfa Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvfa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvfa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-                    '
-                    '                        output = output + Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvfa;
-                    '                        kl = Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv) - kk;
-                    '                        output = output + " " + kl.ToString();
-                    '
-                    '                        
-
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0101 " & output
-                    generate.WriteLine(output)
-
-                    first1 = True
-
-                    ''' junction flow area 
-                    If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
-
-                        kl = 0
-                        kk = 0
-                        output = Nothing
-                        output = Class1.pipeannulus(i, 1).txtjfa
-                        ' 1 ";
-                        For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
-
-
-                            If Class1.pipeannulus(i, j - 1).txtjfa <> Class1.pipeannulus(i, j).txtjfa Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.pipeannulus(i, j).txtjfa
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.pipeannulus(i, j).txtjfa <> Class1.pipeannulus(i, j + 1).txtjfa And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso Class1.pipeannulus(i, 1).txtjfa <> Class1.pipeannulus(i, 2).txtjfa Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.pipeannulus(i, 1).txtjfa <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjfa Then
-                            output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        End If
-                        output = Class1.pipeannulus(i, 1).cmbhydroid + "0201 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' card X coordinate Volume Length
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.pipeannulus(i, 1).txtvl
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvl <> Class1.pipeannulus(i, j).txtvl Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).txtvl
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.pipeannulus(i, j).txtvl <> Class1.pipeannulus(i, j + 1).txtvl And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvl <> Class1.pipeannulus(i, 2).txtvl Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvl <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvl Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvl & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvl & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0301 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume volume
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.pipeannulus(i, 1).txtvv
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvv <> Class1.pipeannulus(i, j).txtvv Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).txtvv
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.pipeannulus(i, j).txtvv <> Class1.pipeannulus(i, j + 1).txtvv And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvv <> Class1.pipeannulus(i, 2).txtvv Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvv <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvv Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvv & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvv & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0401 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume azimuthal angle
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.pipeannulus(i, 1).txtvaa
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvaa <> Class1.pipeannulus(i, j).txtvaa Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).txtvaa
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.pipeannulus(i, j).txtvaa <> Class1.pipeannulus(i, j + 1).txtvaa And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvaa <> Class1.pipeannulus(i, 2).txtvaa Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvaa <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvaa Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvaa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvaa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0501 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume vertical angle
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.pipeannulus(i, 1).txtvva
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvva <> Class1.pipeannulus(i, j).txtvva Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).txtvva
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.pipeannulus(i, j).txtvva <> Class1.pipeannulus(i, j + 1).txtvva And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvva <> Class1.pipeannulus(i, 2).txtvva Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvva <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvva Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvva & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-                    ' output = output + Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvva + " " + Class1.pipeannulus[i, 1].txtnv.ToString();
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0601 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume elevation change
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.pipeannulus(i, 1).txtvec
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvec <> Class1.pipeannulus(i, j).txtvec Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).txtvec
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.pipeannulus(i, j).txtvec <> Class1.pipeannulus(i, j + 1).txtvec And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvec <> Class1.pipeannulus(i, 2).txtvec Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvec <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvec Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvec & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvec & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0701 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate wall roughness
-                    ' if (Class1.pipeannulus[i, j - 1].txtvwr != Class1.pipeannulus[i, j].txtvwr | Class1.pipeannulus[i, j - 1].txtvhd != Class1.pipeannulus[i, j].txtvhd )
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.pipeannulus(i, 1).txtvwr + " " + Class1.pipeannulus(i, 1).txtvhd
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-
-
-                        If Class1.pipeannulus(i, j - 1).txtvwr <> Class1.pipeannulus(i, j).txtvwr Or Class1.pipeannulus(i, j - 1).txtvhd <> Class1.pipeannulus(i, j).txtvhd Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            ' output = output + Class1.pipeannulus[i, j].txtvwr;
-                            output = (output + Class1.pipeannulus(i, j).txtvwr & " ") + Class1.pipeannulus(i, j).txtvhd
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If (Class1.pipeannulus(i, j + 1).txtvwr <> Class1.pipeannulus(i, j).txtvwr Or Class1.pipeannulus(i, j + 1).txtvhd <> Class1.pipeannulus(i, j).txtvhd) And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    'if (Class1.pipeannulus[i,  1].txtvwr != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvwr | Class1.pipeannulus[i,  1].txtvhd != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvhd)
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvwr <> Class1.pipeannulus(i, 2).txtvwr OrElse Class1.pipeannulus(i, 1).txtvhd <> Class1.pipeannulus(i, 2).txtvhd Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.pipeannulus(i, 1).txtvwr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvwr Or Class1.pipeannulus(i, 1).txtvhd <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvhd Then
-                        output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvwr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvhd & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvwr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvhd & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "0801 " & output
-                    generate.WriteLine(output)
-
-                    first1 = True
-
-                    ' juction loss coeffient
-                    If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = Class1.pipeannulus(i, 1).txtjaf + " " + Class1.pipeannulus(i, 1).txtjar
-                        ' 1 ";
-                        For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
-
-
-                            If Class1.pipeannulus(i, j - 1).txtjaf <> Class1.pipeannulus(i, j).txtjaf Or Class1.pipeannulus(i, j - 1).txtjar <> Class1.pipeannulus(i, j).txtjar Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (output + Class1.pipeannulus(i, j).txtjaf & " ") + Class1.pipeannulus(i, j).txtjar
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.pipeannulus(i, j).txtjaf <> Class1.pipeannulus(i, j + 1).txtjaf Or Class1.pipeannulus(i, j).txtjar <> Class1.pipeannulus(i, j + 1).txtjar) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-                        If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso Class1.pipeannulus(i, 1).txtjaf <> Class1.pipeannulus(i, 2).txtjaf OrElse Class1.pipeannulus(i, 1).txtjar <> Class1.pipeannulus(i, 2).txtjar Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.pipeannulus(i, 1).txtjaf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf Or Class1.pipeannulus(i, 1).txtjar <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjar Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        End If
-
-                        output = Class1.pipeannulus(i, 1).cmbhydroid + "0901 " & output
-                        generate.WriteLine(output)
-                    End If
-
-
-                    ' x-coordinate controol cards cards ccc1001-ccc1099
-
-
-
-
-                    kk = 0
-                    kl = 0
-                    first1 = True
-                    output = Nothing
-                    If Class1.pipeannulus(i, 1).cbtftm = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.pipeannulus(i, 1).cbcbmltm = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.pipeannulus(i, 1).cbwps = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    If Class1.pipeannulus(i, 1).cbvsmnew = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.pipeannulus(i, 1).cmbifnew = "0" Then
-                        output = output & "0"
-                    ElseIf Class1.pipeannulus(i, 1).cmbifnew = "1" Then
-                        output = output & "1"
-                    End If
-
-                    If Class1.pipeannulus(i, 1).cbwf = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.pipeannulus(i, 1).cbneqb = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-                        If Class1.pipeannulus(i, j - 1).cbtftm <> Class1.pipeannulus(i, j).cbtftm Or Class1.pipeannulus(i, j - 1).cbcbmltm <> Class1.pipeannulus(i, j).cbcbmltm Or Class1.pipeannulus(i, j - 1).cbwps <> Class1.pipeannulus(i, j).cbwps Or Class1.pipeannulus(i, j - 1).cbvsmnew <> Class1.pipeannulus(i, j).cbvsmnew Or Class1.pipeannulus(i, j - 1).cmbifnew <> Class1.pipeannulus(i, j).cmbifnew Or Class1.pipeannulus(i, j - 1).cbwf <> Class1.pipeannulus(i, j).cbwf Or Class1.pipeannulus(i, j - 1).cbneqb <> Class1.pipeannulus(i, j).cbneqb Then
-
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-                            'output = output + Class1.pipeannulus[i, j].txtjaf + " " + Class1.pipeannulus[i, j].txtjar;
-
-                            If Class1.pipeannulus(i, j).cbtftm = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, j).cbcbmltm = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, j).cbwps = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-                            If Class1.pipeannulus(i, j).cbvsmnew = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-                            If Class1.pipeannulus(i, j).cmbifnew = "0" Then
-                                output = output & "0"
-                            ElseIf Class1.pipeannulus(i, j).cmbifnew = "1" Then
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, j).cbwf = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, j).cbneqb = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If (Class1.pipeannulus(i, j + 1).cbtftm <> Class1.pipeannulus(i, j).cbtftm Or Class1.pipeannulus(i, j + 1).cbcbmltm <> Class1.pipeannulus(i, j).cbcbmltm Or Class1.pipeannulus(i, j + 1).cbwps <> Class1.pipeannulus(i, j).cbwps Or Class1.pipeannulus(i, j + 1).cbvsmnew <> Class1.pipeannulus(i, j).cbvsmnew Or Class1.pipeannulus(i, j + 1).cmbifnew <> Class1.pipeannulus(i, j).cmbifnew Or Class1.pipeannulus(i, j + 1).cbwf <> Class1.pipeannulus(i, j).cbwf Or Class1.pipeannulus(i, j + 1).cbneqb <> Class1.pipeannulus(i, j).cbneqb) And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso (Class1.pipeannulus(i, 1).cbtftm <> Class1.pipeannulus(i, 2).cbtftm Or Class1.pipeannulus(i, 1).cbcbmltm <> Class1.pipeannulus(i, 2).cbcbmltm Or Class1.pipeannulus(i, 1).cbwps <> Class1.pipeannulus(i, 2).cbwps Or Class1.pipeannulus(i, 1).cbvsmnew <> Class1.pipeannulus(i, 2).cbvsmnew Or Class1.pipeannulus(i, 1).cmbifnew <> Class1.pipeannulus(i, 2).cmbifnew Or Class1.pipeannulus(i, 1).cbwf <> Class1.pipeannulus(i, 2).cbwf Or Class1.pipeannulus(i, 1).cbneqb <> Class1.pipeannulus(i, 2).cbneqb) Then
-                        output = output & " 1 "
-                    End If
-
-
-                    If Class1.pipeannulus(i, 1).cbtftm <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbtftm Or Class1.pipeannulus(i, 1).cbcbmltm <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbcbmltm Or Class1.pipeannulus(i, 1).cbwps <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwps Or Class1.pipeannulus(i, 1).cbvsmnew <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbvsmnew Or Class1.pipeannulus(i, 1).cmbifnew <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew Or Class1.pipeannulus(i, 1).cbwf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwf Or Class1.pipeannulus(i, 1).cbneqb <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbneqb Then
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbtftm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbcbmltm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwps = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbvsmnew = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "0" Then
-                            output = output & "0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "1" Then
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwf = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbneqb = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-
-
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbtftm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbcbmltm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwps = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbvsmnew = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "0" Then
-                            output = output & "0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "1" Then
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwf = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbneqb = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "1001 " & output
-                    generate.WriteLine(output)
-
-                    ' juction control flages @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                    If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
-                        kk = 0
-                        kl = 0
-                        output = Nothing
-                        first1 = True
-
-                        If Class1.pipeannulus(i, 1).cbmodpv = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, 1).cbccfl = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, 1).cbhse = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.pipeannulus(i, 1).cbchoking = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output + Class1.pipeannulus(i, 1).cmbareachange
-
-                        If Class1.pipeannulus(i, 1).cbhomo = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "2"
-                        End If
-                        output = output + Class1.pipeannulus(i, 1).cmbmf
-
-                        For j As Integer = 2 To (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1) - 1
-                            If Class1.pipeannulus(i, j - 1).cbmodpv <> Class1.pipeannulus(i, j).cbmodpv Or Class1.pipeannulus(i, j - 1).cbccfl <> Class1.pipeannulus(i, j).cbccfl Or Class1.pipeannulus(i, j - 1).cbchoking <> Class1.pipeannulus(i, j).cbchoking Or Class1.pipeannulus(i, j - 1).cmbareachange <> Class1.pipeannulus(i, j).cmbareachange Or Class1.pipeannulus(i, j - 1).cbhomo <> Class1.pipeannulus(i, j).cbhomo Or Class1.pipeannulus(i, j - 1).cmbmf <> Class1.pipeannulus(i, j).cmbmf Or Class1.pipeannulus(i, j - 1).cbvsmnew <> Class1.pipeannulus(i, j).cbvsmnew Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                'output = output + Class1.pipeannulus[i, j].txtjaf + " " + Class1.pipeannulus[i, j].txtjar;
-                                If Class1.pipeannulus(i, j).cbmodpv = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-
-                                If Class1.pipeannulus(i, j).cbccfl = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-
-                                If Class1.pipeannulus(i, j).cbhse = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-
-                                If Class1.pipeannulus(i, j).cbchoking = "True" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-                                output = output + Class1.pipeannulus(i, j).cmbareachange
-
-                                If Class1.pipeannulus(i, j).cbhomo = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "2"
-                                End If
-                                output = output + Class1.pipeannulus(i, j).cmbmf
-
-
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.pipeannulus(i, j + 1).cbmodpv <> Class1.pipeannulus(i, j).cbmodpv Or Class1.pipeannulus(i, j + 1).cbccfl <> Class1.pipeannulus(i, j).cbccfl Or Class1.pipeannulus(i, j + 1).cbchoking <> Class1.pipeannulus(i, j).cbchoking Or Class1.pipeannulus(i, j + 1).cmbareachange <> Class1.pipeannulus(i, j).cmbareachange Or Class1.pipeannulus(i, j + 1).cbhomo <> Class1.pipeannulus(i, j).cbhomo Or Class1.pipeannulus(i, j + 1).cmbmf <> Class1.pipeannulus(i, j).cmbmf Or Class1.pipeannulus(i, j + 1).cbhse <> Class1.pipeannulus(i, j).cbhse) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-
-                        If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 2).cbmodpv <> Class1.pipeannulus(i, 1).cbmodpv Or Class1.pipeannulus(i, 2).cbccfl <> Class1.pipeannulus(i, 1).cbccfl Or Class1.pipeannulus(i, 2).cbchoking <> Class1.pipeannulus(i, 1).cbchoking Or Class1.pipeannulus(i, 2).cmbareachange <> Class1.pipeannulus(i, 1).cmbareachange Or Class1.pipeannulus(i, 2).cbhomo <> Class1.pipeannulus(i, 1).cbhomo Or Class1.pipeannulus(i, 2).cmbmf <> Class1.pipeannulus(i, 1).cmbmf Or Class1.pipeannulus(i, 2).cbhse <> Class1.pipeannulus(i, 1).cbhse) Then
-                            output = output & " 1 "
-                        End If
-
-
-                        If Class1.pipeannulus(i, 1).cbmodpv <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbmodpv Or Class1.pipeannulus(i, 1).cbccfl <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbccfl Or Class1.pipeannulus(i, 1).cbchoking <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbchoking Or Class1.pipeannulus(i, 1).cmbareachange <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbareachange Or Class1.pipeannulus(i, 1).cbhomo <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhomo Or Class1.pipeannulus(i, 1).cmbmf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbmf Or Class1.pipeannulus(i, 1).cbhse <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhse Then
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbccfl = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhse = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbchoking = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbareachange
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhomo = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "2"
-                            End If
-
-                            output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbmf
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbccfl = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhse = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbchoking = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbareachange
-
-                            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhomo = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "2"
-                            End If
-
-                            output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbmf
-
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        End If
-                        output = Class1.pipeannulus(i, 1).cmbhydroid + "1101 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' initial conditions ******************************************************************
-                    kk = 0
-                    kl = 0
-                    output = Nothing
-                    first1 = True
-
-                    output = Class1.pipeannulus(i, 1).cmbfluid
-
-                    If Class1.pipeannulus(i, 1).cbboron = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    output = output + Class1.pipeannulus(i, 1).cmbithstate & " "
-
-                    If Class1.pipeannulus(i, 1).cmbithstate = "0" Then
-                        output = (((output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtlsie & " ") + Class1.pipeannulus(i, 1).txtvsie & " ") + Class1.pipeannulus(i, 1).txtvvf & " " & "0.0"
-                    ElseIf Class1.pipeannulus(i, 1).cmbithstate = "1" Then
-                        output = (output + Class1.pipeannulus(i, 1).txtt & " ") + Class1.pipeannulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                    ElseIf Class1.pipeannulus(i, 1).cmbithstate = "2" Then
-                        output = (output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                    ElseIf Class1.pipeannulus(i, 1).cmbithstate = "3" Then
-                        output = (output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtt & " 0.0" & " 0.0" & " 0.0"
-                    ElseIf Class1.pipeannulus(i, 1).cmbithstate = "4" Then
-
-                        output = ((output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtt & " ") + Class1.pipeannulus(i, 1).txtsqeq & " 0.0" & " 0.0"
-                    ElseIf Class1.pipeannulus(i, 1).cmbithstate = "5" Then
-                        output = ((output + Class1.pipeannulus(i, 1).txtt & " ") + Class1.pipeannulus(i, 1).txtsq & " ") + Class1.pipeannulus(i, 1).txtncqeq & " 0.0" & " 0.0"
-                    ElseIf Class1.pipeannulus(i, 1).cmbithstate = "6" Then
-                        output = ((((output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtlsie & " ") + Class1.pipeannulus(i, 1).txtvsie & " ") + Class1.pipeannulus(i, 1).txtvvf & " ") + Class1.pipeannulus(i, 1).txtncq
-                    End If
-
-                    ' /000000000000000000000000000000000000000000000
-
-                    For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
-                        If Class1.pipeannulus(i, j - 1).cmbfluid <> Class1.pipeannulus(i, j).cmbfluid Or Class1.pipeannulus(i, j - 1).cbboron <> Class1.pipeannulus(i, j).cbboron Or Class1.pipeannulus(i, j - 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j - 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j - 1).txtt <> Class1.pipeannulus(i, j).txtt Or Class1.pipeannulus(i, j - 1).txtpr <> Class1.pipeannulus(i, j).txtpr Or Class1.pipeannulus(i, j - 1).txtvsie <> Class1.pipeannulus(i, j).txtvsie Or Class1.pipeannulus(i, j - 1).txtlsie <> Class1.pipeannulus(i, j).txtlsie Or Class1.pipeannulus(i, j - 1).txtvvf <> Class1.pipeannulus(i, j).txtvvf Or Class1.pipeannulus(i, j - 1).txtsqeq <> Class1.pipeannulus(i, j).txtsqeq Or Class1.pipeannulus(i, j - 1).txtncqeq <> Class1.pipeannulus(i, j).txtncqeq Or Class1.pipeannulus(i, j - 1).txtsq <> Class1.pipeannulus(i, j).txtsq Or Class1.pipeannulus(i, j - 1).txtqeq <> Class1.pipeannulus(i, j).txtqeq Or Class1.pipeannulus(i, j - 1).txtncq <> Class1.pipeannulus(i, j).txtncq Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.pipeannulus(i, j).cmbfluid
-
-                            If Class1.pipeannulus(i, j).cbboron = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            output = output + Class1.pipeannulus(i, j).cmbithstate & " "
-
-                            If Class1.pipeannulus(i, j).cmbithstate = "0" Then
-                                output = (((output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtlsie & " ") + Class1.pipeannulus(i, j).txtvsie & " ") + Class1.pipeannulus(i, j).txtvvf & " " & "0.0"
-                            ElseIf Class1.pipeannulus(i, j).cmbithstate = "1" Then
-                                output = (output + Class1.pipeannulus(i, j).txtt & " ") + Class1.pipeannulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                            ElseIf Class1.pipeannulus(i, j).cmbithstate = "2" Then
-                                output = (output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                            ElseIf Class1.pipeannulus(i, j).cmbithstate = "3" Then
-                                output = (output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtt & " 0.0" & " 0.0" & " 0.0"
-                            ElseIf Class1.pipeannulus(i, j).cmbithstate = "4" Then
-
-                                output = ((output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtt & " ") + Class1.pipeannulus(i, j).txtsqeq & " 0.0" & " 0.0"
-                            ElseIf Class1.pipeannulus(i, j).cmbithstate = "5" Then
-                                output = ((output + Class1.pipeannulus(i, j).txtt & " ") + Class1.pipeannulus(i, j).txtsq & " ") + Class1.pipeannulus(i, j).txtncqeq & " 0.0" & " 0.0"
-                            ElseIf Class1.pipeannulus(i, j).cmbithstate = "6" Then
-                                output = ((((output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtlsie & " ") + Class1.pipeannulus(i, j).txtvsie & " ") + Class1.pipeannulus(i, j).txtvvf & " ") + Class1.pipeannulus(i, j).txtncq
-                            End If
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-
-                            If (Class1.pipeannulus(i, j + 1).cmbfluid <> Class1.pipeannulus(i, j).cmbfluid Or Class1.pipeannulus(i, j + 1).cbboron <> Class1.pipeannulus(i, j).cbboron Or Class1.pipeannulus(i, j + 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j + 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j + 1).txtt <> Class1.pipeannulus(i, j).txtt Or Class1.pipeannulus(i, j + 1).txtpr <> Class1.pipeannulus(i, j).txtpr Or Class1.pipeannulus(i, j + 1).txtvsie <> Class1.pipeannulus(i, j).txtvsie Or Class1.pipeannulus(i, j + 1).txtlsie <> Class1.pipeannulus(i, j).txtlsie Or Class1.pipeannulus(i, j + 1).txtvvf <> Class1.pipeannulus(i, j).txtvvf Or Class1.pipeannulus(i, j + 1).txtsqeq <> Class1.pipeannulus(i, j).txtsqeq Or Class1.pipeannulus(i, j + 1).txtncqeq <> Class1.pipeannulus(i, j).txtncqeq Or Class1.pipeannulus(i, j + 1).txtsq <> Class1.pipeannulus(i, j).txtsq Or Class1.pipeannulus(i, j + 1).txtqeq <> Class1.pipeannulus(i, j).txtqeq Or Class1.pipeannulus(i, j + 1).txtncq <> Class1.pipeannulus(i, j).txtncq) And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso (Class1.pipeannulus(i, 1).cmbfluid <> Class1.pipeannulus(i, 2).cmbfluid Or Class1.pipeannulus(i, 1).cbboron <> Class1.pipeannulus(i, 2).cbboron Or Class1.pipeannulus(i, 1).cmbithstate <> Class1.pipeannulus(i, 2).cmbithstate Or Class1.pipeannulus(i, 1).cmbithstate <> Class1.pipeannulus(i, 2).cmbithstate Or Class1.pipeannulus(i, 1).txtt <> Class1.pipeannulus(i, 2).txtt Or Class1.pipeannulus(i, 1).txtpr <> Class1.pipeannulus(i, 2).txtpr Or Class1.pipeannulus(i, 1).txtvsie <> Class1.pipeannulus(i, 2).txtvsie Or Class1.pipeannulus(i, 1).txtlsie <> Class1.pipeannulus(i, 2).txtlsie Or Class1.pipeannulus(i, 1).txtvvf <> Class1.pipeannulus(i, 2).txtvvf Or Class1.pipeannulus(i, 1).txtsqeq <> Class1.pipeannulus(i, 2).txtsqeq Or Class1.pipeannulus(i, 1).txtncqeq <> Class1.pipeannulus(i, 2).txtncqeq Or Class1.pipeannulus(i, 1).txtsq <> Class1.pipeannulus(i, 2).txtsq Or Class1.pipeannulus(i, 1).txtqeq <> Class1.pipeannulus(i, 2).txtqeq Or Class1.pipeannulus(i, 1).txtncq <> Class1.pipeannulus(i, 2).txtncq) Then
-                        output = output & " 1 "
-                    End If
-
-                    '''/////////////////////////   
-                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtqeq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtqeq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq Then
-
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate & " "
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "0" Then
-                            output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " " & "0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "1" Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "2" Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "3" Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "4" Then
-
-                            output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "5" Then
-                            output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "6" Then
-                            output = ((((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq
-                        End If
-
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-
-
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate & " "
-
-                        If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "0" Then
-                            output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " " & "0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "1" Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "2" Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "3" Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "4" Then
-
-                            output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "5" Then
-                            output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "6" Then
-                            output = ((((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq
-                        End If
-
-
-                        output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
-                    End If
-
-
-                    output = Class1.pipeannulus(i, 1).cmbhydroid + "1201 " & output
-                    generate.WriteLine(output)
-
-
-                    '  boron concentration  card ccc 2001 ccc2099
-
-                    ' juction loss coeffient  1301  1399
-                    If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
-                        generate.WriteLine(Class1.pipeannulus(i, 1).cmbhydroid + "1300 " + Class1.pipeannulus(i, 1).cmbvelmfr)
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = Class1.pipeannulus(i, 1).txtliq + " " + Class1.pipeannulus(i, 1).txtvap & " 0.0"
-                        ' 1 ";
-                        For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
-                            If Class1.pipeannulus(i, j - 1).txtliq <> Class1.pipeannulus(i, j).txtliq Or Class1.pipeannulus(i, j - 1).txtvap <> Class1.pipeannulus(i, j).txtvap Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (output + Class1.pipeannulus(i, j).txtliq & " ") + Class1.pipeannulus(i, j).txtvap & " 0.0"
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.pipeannulus(i, j + 1).txtliq <> Class1.pipeannulus(i, j).txtliq Or Class1.pipeannulus(i, j + 1).txtvap <> Class1.pipeannulus(i, j).txtvap) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-
-                        If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 2).txtliq <> Class1.pipeannulus(i, 1).txtliq Or Class1.pipeannulus(i, 2).txtvap <> Class1.pipeannulus(i, 1).txtvap) Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.pipeannulus(i, 1).txtliq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtliq Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        End If
-
-                        output = Class1.pipeannulus(i, 1).cmbhydroid + "1301 " & output
-                        generate.WriteLine(output)
-
-                        ' juction diameter and ccfl  1401 1499
-
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = ((Class1.pipeannulus(i, 1).txtdj + " " + Class1.pipeannulus(i, 1).txtfcf & " ") + Class1.pipeannulus(i, 1).txtgi & " ") + Class1.pipeannulus(i, 1).txtslope
-                        For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
-                            If Class1.pipeannulus(i, j - 1).txtdj <> Class1.pipeannulus(i, j).txtdj Or Class1.pipeannulus(i, j - 1).txtfcf <> Class1.pipeannulus(i, j).txtfcf Or Class1.pipeannulus(i, j - 1).txtgi <> Class1.pipeannulus(i, j).txtgi Or Class1.pipeannulus(i, j - 1).txtslope <> Class1.pipeannulus(i, j).txtslope Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (((output + Class1.pipeannulus(i, j).txtdj & " ") + Class1.pipeannulus(i, j).txtfcf & " ") + Class1.pipeannulus(i, j).txtgi & " ") + Class1.pipeannulus(i, j).txtslope
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.pipeannulus(i, j + 1).txtdj <> Class1.pipeannulus(i, j).txtdj Or Class1.pipeannulus(i, j + 1).txtfcf <> Class1.pipeannulus(i, j).txtfcf Or Class1.pipeannulus(i, j + 1).txtgi <> Class1.pipeannulus(i, j).txtgi Or Class1.pipeannulus(i, j + 1).txtslope <> Class1.pipeannulus(i, j).txtslope) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-
-                        If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 1).txtdj <> Class1.pipeannulus(i, 2).txtdj Or Class1.pipeannulus(i, 1).txtfcf <> Class1.pipeannulus(i, 2).txtfcf Or Class1.pipeannulus(i, 1).txtgi <> Class1.pipeannulus(i, 2).txtgi Or Class1.pipeannulus(i, 1).txtslope <> Class1.pipeannulus(i, 2).txtslope) Then
-                            output = output & " 1 "
-                        End If
-
-
-                        If Class1.pipeannulus(i, 1).txtdj <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtdj Or Class1.pipeannulus(i, 1).txtfcf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtfcf Or Class1.pipeannulus(i, 1).txtgi <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtgi Or Class1.pipeannulus(i, 1).txtslope <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtslope Then
-                            'if (Class1.pipeannulus[i, 1].txtdj != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1].txtdj)
-                            output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        End If
-
-                        output = Class1.pipeannulus(i, 1).cmbhydroid + "1401 " & output
-                        generate.WriteLine(output)
-
-                        ' juction form loss data 3001 3099
-
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = ((Class1.pipeannulus(i, 1).txtbf + " " + Class1.pipeannulus(i, 1).txtcf & " ") + Class1.pipeannulus(i, 1).txtbr & " ") + Class1.pipeannulus(i, 1).txtcr
-                        For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
-                            If Class1.pipeannulus(i, j - 1).txtbf <> Class1.pipeannulus(i, j).txtbf Or Class1.pipeannulus(i, j - 1).txtcf <> Class1.pipeannulus(i, j).txtcf Or Class1.pipeannulus(i, j - 1).txtbr <> Class1.pipeannulus(i, j).txtbr Or Class1.pipeannulus(i, j - 1).txtcr <> Class1.pipeannulus(i, j).txtcr Then
-                                'if (Class1.pipeannulus[i, j - 1].txtbf != Class1.pipeannulus[i, j].txtbf)
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (((output + Class1.pipeannulus(i, j).txtbf & " ") + Class1.pipeannulus(i, j).txtcf & " ") + Class1.pipeannulus(i, j).txtbr & " ") + Class1.pipeannulus(i, j).txtcr
-                                'output = output + Class1.pipeannulus[i, j].txtbf;
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.pipeannulus(i, j + 1).txtbf <> Class1.pipeannulus(i, j).txtbf Or Class1.pipeannulus(i, j + 1).txtcf <> Class1.pipeannulus(i, j).txtcf Or Class1.pipeannulus(i, j + 1).txtbr <> Class1.pipeannulus(i, j).txtbr Or Class1.pipeannulus(i, j + 1).txtcr <> Class1.pipeannulus(i, j).txtcr) And first1 = True Then
-                                    'if (Class1.pipeannulus[i, j].txtbf != Class1.pipeannulus[i, j + 1].txtbf & first1 == true)
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-
-                            End If
-                        Next
-
-                        If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 2).txtbf <> Class1.pipeannulus(i, 1).txtbf Or Class1.pipeannulus(i, 2).txtcf <> Class1.pipeannulus(i, 1).txtcf Or Class1.pipeannulus(i, 2).txtbr <> Class1.pipeannulus(i, 1).txtbr Or Class1.pipeannulus(i, 2).txtcr <> Class1.pipeannulus(i, 1).txtcr) Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.pipeannulus(i, 1).txtbf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbf Or Class1.pipeannulus(i, 1).txtcf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcf Or Class1.pipeannulus(i, 1).txtbr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbr Or Class1.pipeannulus(i, 1).txtcr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcr Then
-                            ' if (Class1.pipeannulus[i, 1].txtbf != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1].txtbf)
-                            output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                            'output = output + Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1].txtbf + " " +(Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1).ToString ();
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
-                        End If
-                        output = Class1.pipeannulus(i, 1).cmbhydroid + "3001 " & output
-                        generate.WriteLine(output)
-
-                        '***************************  
-                    End If
-                End If
-            Next
-
-
-            ' annulus
-
-            ' Copied from *******  PIPE code latest:
-
-            ' &&&&&&&&&&&&&&&&&&&&&***********************&&&&&&&&&&&&&&&&&
-            For i As Integer = 0 To 99
-                If Class1.annulus(i, 1).gbname IsNot Nothing Then
-                    Class1.annulus(i, 1).cmbhydroid = Class1.annulus(i, 1).gbname.Substring(10, 3).ToString()
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component ANNULUS " + Class1.annulus(i, 1).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-
-                    output = Class1.annulus(i, 1).cmbhydroid + "0000 " + Class1.annulus(i, 1).txtname & " annulus"
-                    generate.WriteLine(output)
-                    output = Class1.annulus(i, 1).cmbhydroid + "0001 " + Class1.annulus(i, 1).txtnv
-                    generate.WriteLine(output)
-                    output = Nothing
-
-                    ' card X coordinate Volume Flow Area    101
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = output + Class1.annulus(i, 1).txtvfa
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvfa <> Class1.annulus(i, j).txtvfa Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).txtvfa
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.annulus(i, j).txtvfa <> Class1.annulus(i, j + 1).txtvfa And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvfa <> Class1.annulus(i, 2).txtvfa Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvfa <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvfa Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvfa & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvfa & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-                    '
-                    '                        output = output + Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvfa;
-                    '                        kl = Convert.ToInt32(Class1.annulus[i, 1].txtnv) - kk;
-                    '                        output = output + " " + kl.ToString();
-                    '
-                    '                        
-
-                    output = Class1.annulus(i, 1).cmbhydroid + "0101 " & output
-                    generate.WriteLine(output)
-                    first1 = True
-
-                    ''' junction flow area 
-                    If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
-
-                        kl = 0
-                        kk = 0
-                        output = Nothing
-                        output = Class1.annulus(i, 1).txtjfa
-                        ' 1 ";
-                        For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
-
-
-                            If Class1.annulus(i, j - 1).txtjfa <> Class1.annulus(i, j).txtjfa Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.annulus(i, j).txtjfa
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.annulus(i, j).txtjfa <> Class1.annulus(i, j + 1).txtjfa And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.annulus(i, 1).txtnv = "3" AndAlso Class1.annulus(i, 1).txtjfa <> Class1.annulus(i, 2).txtjfa Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.annulus(i, 1).txtjfa <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjfa Then
-                            output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        End If
-                        output = Class1.annulus(i, 1).cmbhydroid + "0201 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' card X coordinate Volume Length
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.annulus(i, 1).txtvl
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvl <> Class1.annulus(i, j).txtvl Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).txtvl
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.annulus(i, j).txtvl <> Class1.annulus(i, j + 1).txtvl And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvl <> Class1.annulus(i, 2).txtvl Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvl <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvl Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvl & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvl & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.annulus(i, 1).cmbhydroid + "0301 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume volume
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.annulus(i, 1).txtvv
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvv <> Class1.annulus(i, j).txtvv Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).txtvv
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.annulus(i, j).txtvv <> Class1.annulus(i, j + 1).txtvv And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvv <> Class1.annulus(i, 2).txtvv Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvv <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvv Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvv & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvv & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.annulus(i, 1).cmbhydroid + "0401 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume azimuthal angle
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.annulus(i, 1).txtvaa
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvaa <> Class1.annulus(i, j).txtvaa Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).txtvaa
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.annulus(i, j).txtvaa <> Class1.annulus(i, j + 1).txtvaa And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvaa <> Class1.annulus(i, 2).txtvaa Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvaa <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvaa Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvaa & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvaa & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.annulus(i, 1).cmbhydroid + "0501 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume vertical angle
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.annulus(i, 1).txtvva
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvva <> Class1.annulus(i, j).txtvva Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).txtvva
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.annulus(i, j).txtvva <> Class1.annulus(i, j + 1).txtvva And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvva <> Class1.annulus(i, 2).txtvva Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvva <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvva Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvva & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-                    ' output = output + Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvva + " " + Class1.annulus[i, 1].txtnv.ToString();
-                    output = Class1.annulus(i, 1).cmbhydroid + "0601 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate Volume elevation change
-
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.annulus(i, 1).txtvec
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvec <> Class1.annulus(i, j).txtvec Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).txtvec
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.annulus(i, j).txtvec <> Class1.annulus(i, j + 1).txtvec And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvec <> Class1.annulus(i, 2).txtvec Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvec <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvec Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvec & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvec & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-                    output = Class1.annulus(i, 1).cmbhydroid + "0701 " & output
-                    generate.WriteLine(output)
-
-                    ' card X coordinate wall roughness
-                    ' if (Class1.annulus[i, j - 1].txtvwr != Class1.annulus[i, j].txtvwr | Class1.annulus[i, j - 1].txtvhd != Class1.annulus[i, j].txtvhd )
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = Class1.annulus(i, 1).txtvwr + " " + Class1.annulus(i, 1).txtvhd
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-
-
-                        If Class1.annulus(i, j - 1).txtvwr <> Class1.annulus(i, j).txtvwr Or Class1.annulus(i, j - 1).txtvhd <> Class1.annulus(i, j).txtvhd Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            ' output = output + Class1.annulus[i, j].txtvwr;
-                            output = (output + Class1.annulus(i, j).txtvwr & " ") + Class1.annulus(i, j).txtvhd
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If (Class1.annulus(i, j + 1).txtvwr <> Class1.annulus(i, j).txtvwr Or Class1.annulus(i, j + 1).txtvhd <> Class1.annulus(i, j).txtvhd) And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-                    'if (Class1.annulus[i,  1].txtvwr != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvwr | Class1.annulus[i,  1].txtvhd != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvhd)
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvwr <> Class1.annulus(i, 2).txtvwr OrElse Class1.annulus(i, 1).txtvhd <> Class1.annulus(i, 2).txtvhd Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.annulus(i, 1).txtvwr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvwr Or Class1.annulus(i, 1).txtvhd <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvhd Then
-                        output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvwr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvhd & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvwr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvhd & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-
-                    output = Class1.annulus(i, 1).cmbhydroid + "0801 " & output
-                    generate.WriteLine(output)
-
-                    first1 = True
-                    ' juction loss coeffient
-                    If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = Class1.annulus(i, 1).txtjaf + " " + Class1.annulus(i, 1).txtjar
-                        ' 1 ";
-                        For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
-
-
-                            If Class1.annulus(i, j - 1).txtjaf <> Class1.annulus(i, j).txtjaf Or Class1.annulus(i, j - 1).txtjar <> Class1.annulus(i, j).txtjar Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (output + Class1.annulus(i, j).txtjaf & " ") + Class1.annulus(i, j).txtjar
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.annulus(i, j).txtjaf <> Class1.annulus(i, j + 1).txtjaf Or Class1.annulus(i, j).txtjar <> Class1.annulus(i, j + 1).txtjar) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-                        If Class1.annulus(i, 1).txtnv = "3" AndAlso Class1.annulus(i, 1).txtjaf <> Class1.annulus(i, 2).txtjaf OrElse Class1.annulus(i, 1).txtjar <> Class1.annulus(i, 2).txtjar Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.annulus(i, 1).txtjaf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf Or Class1.annulus(i, 1).txtjar <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjar Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        End If
-
-                        output = Class1.annulus(i, 1).cmbhydroid + "0901 " & output
-                        generate.WriteLine(output)
-                    End If
-
-
-                    ' x-coordinate controol cards cards ccc1001-ccc1099
-
-
-
-
-                    kk = 0
-                    kl = 0
-                    first1 = True
-                    output = Nothing
-                    If Class1.annulus(i, 1).cbtftm = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.annulus(i, 1).cbcbmltm = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.annulus(i, 1).cbwps = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    If Class1.annulus(i, 1).cbvsmnew = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.annulus(i, 1).cmbifnew = "0" Then
-                        output = output & "0"
-                    ElseIf Class1.annulus(i, 1).cmbifnew = "1" Then
-                        output = output & "1"
-                    End If
-
-                    If Class1.annulus(i, 1).cbwf = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.annulus(i, 1).cbneqb = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-                        If Class1.annulus(i, j - 1).cbtftm <> Class1.annulus(i, j).cbtftm Or Class1.annulus(i, j - 1).cbcbmltm <> Class1.annulus(i, j).cbcbmltm Or Class1.annulus(i, j - 1).cbwps <> Class1.annulus(i, j).cbwps Or Class1.annulus(i, j - 1).cbvsmnew <> Class1.annulus(i, j).cbvsmnew Or Class1.annulus(i, j - 1).cmbifnew <> Class1.annulus(i, j).cmbifnew Or Class1.annulus(i, j - 1).cbwf <> Class1.annulus(i, j).cbwf Or Class1.annulus(i, j - 1).cbneqb <> Class1.annulus(i, j).cbneqb Then
-
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-                            'output = output + Class1.annulus[i, j].txtjaf + " " + Class1.annulus[i, j].txtjar;
-
-                            If Class1.annulus(i, j).cbtftm = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, j).cbcbmltm = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, j).cbwps = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-                            If Class1.annulus(i, j).cbvsmnew = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-                            If Class1.annulus(i, j).cmbifnew = "0" Then
-                                output = output & "0"
-                            ElseIf Class1.annulus(i, j).cmbifnew = "1" Then
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, j).cbwf = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, j).cbneqb = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If (Class1.annulus(i, j + 1).cbtftm <> Class1.annulus(i, j).cbtftm Or Class1.annulus(i, j + 1).cbcbmltm <> Class1.annulus(i, j).cbcbmltm Or Class1.annulus(i, j + 1).cbwps <> Class1.annulus(i, j).cbwps Or Class1.annulus(i, j + 1).cbvsmnew <> Class1.annulus(i, j).cbvsmnew Or Class1.annulus(i, j + 1).cmbifnew <> Class1.annulus(i, j).cmbifnew Or Class1.annulus(i, j + 1).cbwf <> Class1.annulus(i, j).cbwf Or Class1.annulus(i, j + 1).cbneqb <> Class1.annulus(i, j).cbneqb) And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-
-
-
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso (Class1.annulus(i, 1).cbtftm <> Class1.annulus(i, 2).cbtftm Or Class1.annulus(i, 1).cbcbmltm <> Class1.annulus(i, 2).cbcbmltm Or Class1.annulus(i, 1).cbwps <> Class1.annulus(i, 2).cbwps Or Class1.annulus(i, 1).cbvsmnew <> Class1.annulus(i, 2).cbvsmnew Or Class1.annulus(i, 1).cmbifnew <> Class1.annulus(i, 2).cmbifnew Or Class1.annulus(i, 1).cbwf <> Class1.annulus(i, 2).cbwf Or Class1.annulus(i, 1).cbneqb <> Class1.annulus(i, 2).cbneqb) Then
-                        output = output & " 1 "
-                    End If
-
-
-                    If Class1.annulus(i, 1).cbtftm <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbtftm Or Class1.annulus(i, 1).cbcbmltm <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbcbmltm Or Class1.annulus(i, 1).cbwps <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwps Or Class1.annulus(i, 1).cbvsmnew <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbvsmnew Or Class1.annulus(i, 1).cmbifnew <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew Or Class1.annulus(i, 1).cbwf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwf Or Class1.annulus(i, 1).cbneqb <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbneqb Then
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbtftm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbcbmltm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwps = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbvsmnew = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "0" Then
-                            output = output & "0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "1" Then
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwf = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbneqb = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-
-
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbtftm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbcbmltm = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwps = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbvsmnew = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "0" Then
-                            output = output & "0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "1" Then
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwf = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbneqb = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-
-                    output = Class1.annulus(i, 1).cmbhydroid + "1001 " & output
-                    generate.WriteLine(output)
-
-                    ' juction control flages @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                    If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
-                        kk = 0
-                        kl = 0
-                        output = Nothing
-                        first1 = True
-
-                        If Class1.annulus(i, 1).cbmodpv = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, 1).cbccfl = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, 1).cbhse = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.annulus(i, 1).cbchoking = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output + Class1.annulus(i, 1).cmbareachange
-
-                        If Class1.annulus(i, 1).cbhomo = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "2"
-                        End If
-                        output = output + Class1.annulus(i, 1).cmbmf
-
-                        For j As Integer = 2 To (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1) - 1
-                            If Class1.annulus(i, j - 1).cbmodpv <> Class1.annulus(i, j).cbmodpv Or Class1.annulus(i, j - 1).cbccfl <> Class1.annulus(i, j).cbccfl Or Class1.annulus(i, j - 1).cbchoking <> Class1.annulus(i, j).cbchoking Or Class1.annulus(i, j - 1).cmbareachange <> Class1.annulus(i, j).cmbareachange Or Class1.annulus(i, j - 1).cbhomo <> Class1.annulus(i, j).cbhomo Or Class1.annulus(i, j - 1).cmbmf <> Class1.annulus(i, j).cmbmf Or Class1.annulus(i, j - 1).cbvsmnew <> Class1.annulus(i, j).cbvsmnew Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                'output = output + Class1.annulus[i, j].txtjaf + " " + Class1.annulus[i, j].txtjar;
-                                If Class1.annulus(i, j).cbmodpv = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-
-                                If Class1.annulus(i, j).cbccfl = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-
-                                If Class1.annulus(i, j).cbhse = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-
-                                If Class1.annulus(i, j).cbchoking = "True" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "1"
-                                End If
-                                output = output + Class1.annulus(i, j).cmbareachange
-
-                                If Class1.annulus(i, j).cbhomo = "False" Then
-                                    output = output & "0"
-                                Else
-                                    output = output & "2"
-                                End If
-                                output = output + Class1.annulus(i, j).cmbmf
-
-
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.annulus(i, j + 1).cbmodpv <> Class1.annulus(i, j).cbmodpv Or Class1.annulus(i, j + 1).cbccfl <> Class1.annulus(i, j).cbccfl Or Class1.annulus(i, j + 1).cbchoking <> Class1.annulus(i, j).cbchoking Or Class1.annulus(i, j + 1).cmbareachange <> Class1.annulus(i, j).cmbareachange Or Class1.annulus(i, j + 1).cbhomo <> Class1.annulus(i, j).cbhomo Or Class1.annulus(i, j + 1).cmbmf <> Class1.annulus(i, j).cmbmf Or Class1.annulus(i, j + 1).cbhse <> Class1.annulus(i, j).cbhse) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-
-                        If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 2).cbmodpv <> Class1.annulus(i, 1).cbmodpv Or Class1.annulus(i, 2).cbccfl <> Class1.annulus(i, 1).cbccfl Or Class1.annulus(i, 2).cbchoking <> Class1.annulus(i, 1).cbchoking Or Class1.annulus(i, 2).cmbareachange <> Class1.annulus(i, 1).cmbareachange Or Class1.annulus(i, 2).cbhomo <> Class1.annulus(i, 1).cbhomo Or Class1.annulus(i, 2).cmbmf <> Class1.annulus(i, 1).cmbmf Or Class1.annulus(i, 2).cbhse <> Class1.annulus(i, 1).cbhse) Then
-                            output = output & " 1 "
-                        End If
-
-
-                        If Class1.annulus(i, 1).cbmodpv <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbmodpv Or Class1.annulus(i, 1).cbccfl <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbccfl Or Class1.annulus(i, 1).cbchoking <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbchoking Or Class1.annulus(i, 1).cmbareachange <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbareachange Or Class1.annulus(i, 1).cbhomo <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhomo Or Class1.annulus(i, 1).cmbmf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbmf Or Class1.annulus(i, 1).cbhse <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhse Then
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbccfl = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhse = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbchoking = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbareachange
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhomo = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "2"
-                            End If
-
-                            output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbmf
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbccfl = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhse = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbchoking = "True" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbareachange
-
-                            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhomo = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "2"
-                            End If
-
-                            output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbmf
-
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        End If
-                        output = Class1.annulus(i, 1).cmbhydroid + "1101 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' initial conditions ******************************************************************
-                    kk = 0
-                    kl = 0
-                    output = Nothing
-                    first1 = True
-
-                    output = Class1.annulus(i, 1).cmbfluid
-
-                    If Class1.annulus(i, 1).cbboron = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    output = output + Class1.annulus(i, 1).cmbithstate & " "
-
-                    If Class1.annulus(i, 1).cmbithstate = "0" Then
-                        output = (((output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtlsie & " ") + Class1.annulus(i, 1).txtvsie & " ") + Class1.annulus(i, 1).txtvvf & " " & "0.0"
-                    ElseIf Class1.annulus(i, 1).cmbithstate = "1" Then
-                        output = (output + Class1.annulus(i, 1).txtt & " ") + Class1.annulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                    ElseIf Class1.annulus(i, 1).cmbithstate = "2" Then
-                        output = (output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                    ElseIf Class1.annulus(i, 1).cmbithstate = "3" Then
-                        output = (output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtt & " 0.0" & " 0.0" & " 0.0"
-                    ElseIf Class1.annulus(i, 1).cmbithstate = "4" Then
-
-                        output = ((output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtt & " ") + Class1.annulus(i, 1).txtsqeq & " 0.0" & " 0.0"
-                    ElseIf Class1.annulus(i, 1).cmbithstate = "5" Then
-                        output = ((output + Class1.annulus(i, 1).txtt & " ") + Class1.annulus(i, 1).txtsq & " ") + Class1.annulus(i, 1).txtncqeq & " 0.0" & " 0.0"
-                    ElseIf Class1.annulus(i, 1).cmbithstate = "6" Then
-                        output = ((((output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtlsie & " ") + Class1.annulus(i, 1).txtvsie & " ") + Class1.annulus(i, 1).txtvvf & " ") + Class1.annulus(i, 1).txtncq
-                    End If
-
-                    ' /000000000000000000000000000000000000000000000
-
-                    For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
-                        If Class1.annulus(i, j - 1).cmbfluid <> Class1.annulus(i, j).cmbfluid Or Class1.annulus(i, j - 1).cbboron <> Class1.annulus(i, j).cbboron Or Class1.annulus(i, j - 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j - 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j - 1).txtt <> Class1.annulus(i, j).txtt Or Class1.annulus(i, j - 1).txtpr <> Class1.annulus(i, j).txtpr Or Class1.annulus(i, j - 1).txtvsie <> Class1.annulus(i, j).txtvsie Or Class1.annulus(i, j - 1).txtlsie <> Class1.annulus(i, j).txtlsie Or Class1.annulus(i, j - 1).txtvvf <> Class1.annulus(i, j).txtvvf Or Class1.annulus(i, j - 1).txtsqeq <> Class1.annulus(i, j).txtsqeq Or Class1.annulus(i, j - 1).txtncqeq <> Class1.annulus(i, j).txtncqeq Or Class1.annulus(i, j - 1).txtsq <> Class1.annulus(i, j).txtsq Or Class1.annulus(i, j - 1).txtqeq <> Class1.annulus(i, j).txtqeq Or Class1.annulus(i, j - 1).txtncq <> Class1.annulus(i, j).txtncq Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = output + Class1.annulus(i, j).cmbfluid
-
-                            If Class1.annulus(i, j).cbboron = "False" Then
-                                output = output & "0"
-                            Else
-                                output = output & "1"
-                            End If
-
-                            output = output + Class1.annulus(i, j).cmbithstate & " "
-
-                            If Class1.annulus(i, j).cmbithstate = "0" Then
-                                output = (((output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtlsie & " ") + Class1.annulus(i, j).txtvsie & " ") + Class1.annulus(i, j).txtvvf & " " & "0.0"
-                            ElseIf Class1.annulus(i, j).cmbithstate = "1" Then
-                                output = (output + Class1.annulus(i, j).txtt & " ") + Class1.annulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                            ElseIf Class1.annulus(i, j).cmbithstate = "2" Then
-                                output = (output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                            ElseIf Class1.annulus(i, j).cmbithstate = "3" Then
-                                output = (output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtt & " 0.0" & " 0.0" & " 0.0"
-                            ElseIf Class1.annulus(i, j).cmbithstate = "4" Then
-
-                                output = ((output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtt & " ") + Class1.annulus(i, j).txtsqeq & " 0.0" & " 0.0"
-                            ElseIf Class1.annulus(i, j).cmbithstate = "5" Then
-                                output = ((output + Class1.annulus(i, j).txtt & " ") + Class1.annulus(i, j).txtsq & " ") + Class1.annulus(i, j).txtncqeq & " 0.0" & " 0.0"
-                            ElseIf Class1.annulus(i, j).cmbithstate = "6" Then
-                                output = ((((output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtlsie & " ") + Class1.annulus(i, j).txtvsie & " ") + Class1.annulus(i, j).txtvvf & " ") + Class1.annulus(i, j).txtncq
-                            End If
-                            kl = j
-                            ' -kk;
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-
-                            If (Class1.annulus(i, j + 1).cmbfluid <> Class1.annulus(i, j).cmbfluid Or Class1.annulus(i, j + 1).cbboron <> Class1.annulus(i, j).cbboron Or Class1.annulus(i, j + 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j + 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j + 1).txtt <> Class1.annulus(i, j).txtt Or Class1.annulus(i, j + 1).txtpr <> Class1.annulus(i, j).txtpr Or Class1.annulus(i, j + 1).txtvsie <> Class1.annulus(i, j).txtvsie Or Class1.annulus(i, j + 1).txtlsie <> Class1.annulus(i, j).txtlsie Or Class1.annulus(i, j + 1).txtvvf <> Class1.annulus(i, j).txtvvf Or Class1.annulus(i, j + 1).txtsqeq <> Class1.annulus(i, j).txtsqeq Or Class1.annulus(i, j + 1).txtncqeq <> Class1.annulus(i, j).txtncqeq Or Class1.annulus(i, j + 1).txtsq <> Class1.annulus(i, j).txtsq Or Class1.annulus(i, j + 1).txtqeq <> Class1.annulus(i, j).txtqeq Or Class1.annulus(i, j + 1).txtncq <> Class1.annulus(i, j).txtncq) And first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.annulus(i, 1).txtnv = "2" AndAlso (Class1.annulus(i, 1).cmbfluid <> Class1.annulus(i, 2).cmbfluid Or Class1.annulus(i, 1).cbboron <> Class1.annulus(i, 2).cbboron Or Class1.annulus(i, 1).cmbithstate <> Class1.annulus(i, 2).cmbithstate Or Class1.annulus(i, 1).cmbithstate <> Class1.annulus(i, 2).cmbithstate Or Class1.annulus(i, 1).txtt <> Class1.annulus(i, 2).txtt Or Class1.annulus(i, 1).txtpr <> Class1.annulus(i, 2).txtpr Or Class1.annulus(i, 1).txtvsie <> Class1.annulus(i, 2).txtvsie Or Class1.annulus(i, 1).txtlsie <> Class1.annulus(i, 2).txtlsie Or Class1.annulus(i, 1).txtvvf <> Class1.annulus(i, 2).txtvvf Or Class1.annulus(i, 1).txtsqeq <> Class1.annulus(i, 2).txtsqeq Or Class1.annulus(i, 1).txtncqeq <> Class1.annulus(i, 2).txtncqeq Or Class1.annulus(i, 1).txtsq <> Class1.annulus(i, 2).txtsq Or Class1.annulus(i, 1).txtqeq <> Class1.annulus(i, 2).txtqeq Or Class1.annulus(i, 1).txtncq <> Class1.annulus(i, 2).txtncq) Then
-                        output = output & " 1 "
-                    End If
-
-                    '''/////////////////////////   
-                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtqeq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtqeq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq Then
-
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate & " "
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "0" Then
-                            output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " " & "0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "1" Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "2" Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "3" Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "4" Then
-
-                            output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "5" Then
-                            output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "6" Then
-                            output = ((((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq
-                        End If
-
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-
-
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    ElseIf first1 = False Then
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate & " "
-
-                        If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "0" Then
-                            output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " " & "0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "1" Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "2" Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
-
-
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "3" Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "4" Then
-
-                            output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "5" Then
-                            output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
-                        ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "6" Then
-                            output = ((((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq
-                        End If
-
-
-                        output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
-                    End If
-
-
-                    output = Class1.annulus(i, 1).cmbhydroid + "1201 " & output
-                    generate.WriteLine(output)
-
-
-                    '  boron concentration  card ccc 2001 ccc2099
-
-                    ' juction loss coeffient  1301  1399
-                    If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
-                        generate.WriteLine(Class1.annulus(i, 1).cmbhydroid + "1300 " + Class1.annulus(i, 1).cmbvelmfr)
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = Class1.annulus(i, 1).txtliq + " " + Class1.annulus(i, 1).txtvap & " 0.0"
-                        ' 1 ";
-                        For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
-                            If Class1.annulus(i, j - 1).txtliq <> Class1.annulus(i, j).txtliq Or Class1.annulus(i, j - 1).txtvap <> Class1.annulus(i, j).txtvap Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (output + Class1.annulus(i, j).txtliq & " ") + Class1.annulus(i, j).txtvap & " 0.0"
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.annulus(i, j + 1).txtliq <> Class1.annulus(i, j).txtliq Or Class1.annulus(i, j + 1).txtvap <> Class1.annulus(i, j).txtvap) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-
-                        If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 2).txtliq <> Class1.annulus(i, 1).txtliq Or Class1.annulus(i, 2).txtvap <> Class1.annulus(i, 1).txtvap) Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.annulus(i, 1).txtliq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtliq Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        End If
-
-                        output = Class1.annulus(i, 1).cmbhydroid + "1301 " & output
-                        generate.WriteLine(output)
-
-                        ' juction diameter and ccfl  1401 1499
-
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = ((Class1.annulus(i, 1).txtdj + " " + Class1.annulus(i, 1).txtfcf & " ") + Class1.annulus(i, 1).txtgi & " ") + Class1.annulus(i, 1).txtslope
-                        For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
-                            If Class1.annulus(i, j - 1).txtdj <> Class1.annulus(i, j).txtdj Or Class1.annulus(i, j - 1).txtfcf <> Class1.annulus(i, j).txtfcf Or Class1.annulus(i, j - 1).txtgi <> Class1.annulus(i, j).txtgi Or Class1.annulus(i, j - 1).txtslope <> Class1.annulus(i, j).txtslope Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (((output + Class1.annulus(i, j).txtdj & " ") + Class1.annulus(i, j).txtfcf & " ") + Class1.annulus(i, j).txtgi & " ") + Class1.annulus(i, j).txtslope
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.annulus(i, j + 1).txtdj <> Class1.annulus(i, j).txtdj Or Class1.annulus(i, j + 1).txtfcf <> Class1.annulus(i, j).txtfcf Or Class1.annulus(i, j + 1).txtgi <> Class1.annulus(i, j).txtgi Or Class1.annulus(i, j + 1).txtslope <> Class1.annulus(i, j).txtslope) And first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-                            End If
-                        Next
-
-                        If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 1).txtdj <> Class1.annulus(i, 2).txtdj Or Class1.annulus(i, 1).txtfcf <> Class1.annulus(i, 2).txtfcf Or Class1.annulus(i, 1).txtgi <> Class1.annulus(i, 2).txtgi Or Class1.annulus(i, 1).txtslope <> Class1.annulus(i, 2).txtslope) Then
-                            output = output & " 1 "
-                        End If
-
-
-                        If Class1.annulus(i, 1).txtdj <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtdj Or Class1.annulus(i, 1).txtfcf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtfcf Or Class1.annulus(i, 1).txtgi <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtgi Or Class1.annulus(i, 1).txtslope <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtslope Then
-                            'if (Class1.annulus[i, 1].txtdj != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1].txtdj)
-                            output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        End If
-
-                        output = Class1.annulus(i, 1).cmbhydroid + "1401 " & output
-                        generate.WriteLine(output)
-
-                        ' juction form loss data 3001 3099
-
-
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = ((Class1.annulus(i, 1).txtbf + " " + Class1.annulus(i, 1).txtcf & " ") + Class1.annulus(i, 1).txtbr & " ") + Class1.annulus(i, 1).txtcr
-                        For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
-                            If Class1.annulus(i, j - 1).txtbf <> Class1.annulus(i, j).txtbf Or Class1.annulus(i, j - 1).txtcf <> Class1.annulus(i, j).txtcf Or Class1.annulus(i, j - 1).txtbr <> Class1.annulus(i, j).txtbr Or Class1.annulus(i, j - 1).txtcr <> Class1.annulus(i, j).txtcr Then
-                                'if (Class1.annulus[i, j - 1].txtbf != Class1.annulus[i, j].txtbf)
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = (((output + Class1.annulus(i, j).txtbf & " ") + Class1.annulus(i, j).txtcf & " ") + Class1.annulus(i, j).txtbr & " ") + Class1.annulus(i, j).txtcr
-                                'output = output + Class1.annulus[i, j].txtbf;
-                                kl = j
-                                ' -kk;
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If (Class1.annulus(i, j + 1).txtbf <> Class1.annulus(i, j).txtbf Or Class1.annulus(i, j + 1).txtcf <> Class1.annulus(i, j).txtcf Or Class1.annulus(i, j + 1).txtbr <> Class1.annulus(i, j).txtbr Or Class1.annulus(i, j + 1).txtcr <> Class1.annulus(i, j).txtcr) And first1 = True Then
-                                    'if (Class1.annulus[i, j].txtbf != Class1.annulus[i, j + 1].txtbf & first1 == true)
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-
-
-                            End If
-                        Next
-
-                        If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 2).txtbf <> Class1.annulus(i, 1).txtbf Or Class1.annulus(i, 2).txtcf <> Class1.annulus(i, 1).txtcf Or Class1.annulus(i, 2).txtbr <> Class1.annulus(i, 1).txtbr Or Class1.annulus(i, 2).txtcr <> Class1.annulus(i, 1).txtcr) Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.annulus(i, 1).txtbf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbf Or Class1.annulus(i, 1).txtcf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcf Or Class1.annulus(i, 1).txtbr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbr Or Class1.annulus(i, 1).txtcr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcr Then
-                            ' if (Class1.annulus[i, 1].txtbf != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1].txtbf)
-                            output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                            'output = output + Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1].txtbf + " " +(Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1).ToString ();
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
-                        End If
-                        output = Class1.annulus(i, 1).cmbhydroid + "3001 " & output
-                        generate.WriteLine(output)
-
-                        '***************************  
-                    End If
-                End If
-            Next
-
-
-
-
-
-
-            ' valve
-
-            For i As Integer = 0 To 99
-                If Class1.valve(i).gbname IsNot Nothing Then
-                    Class1.valve(i).cmbhydroid = Class1.valve(i).gbname.Substring(10, 3).ToString()
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Valve " + Class1.valve(i).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-
-
-                    output = Class1.valve(i).cmbhydroid + "0000 " + Class1.valve(i).txtname & " valve"
-                    generate.WriteLine(output)
-                    output = Class1.valve(i).cmbhydroid + "0101 " + Class1.valve(i).txtfromid
-
-
-
-                    If Convert.ToInt32(Class1.valve(i).txtfromnv) <= 9 Then
-                        Class1.valve(i).txtfromnv = "0" & Convert.ToInt32(Class1.valve(i).txtfromnv).ToString()
-                    ElseIf Convert.ToInt32(Class1.valve(i).txtfromnv) > 9 Then
-                        Class1.valve(i).txtfromnv = Convert.ToInt32(Class1.valve(i).txtfromnv).ToString()
-                    End If
-
-
-                    If Convert.ToBoolean(Class1.valve(i).cbformatfrom) = False Then
-                        output = (output & "0") + Class1.valve(i).cmbconsidefrom & "0000" & " "
-                    Else
-                        If Class1.valve(i).cmbconsidefrom = "0" AndAlso Class1.valve(i).cmbconfacexfrom = "0" Then
-                            output = output + Class1.valve(i).txtfromnv & "0001" & " "
-                        ElseIf Class1.valve(i).cmbconsidefrom = "1" AndAlso Class1.valve(i).cmbconfacexfrom = "0" Then
-                            output = output + Class1.valve(i).txtfromnv & "0002" & " "
-                        ElseIf Class1.valve(i).cmbconsidefrom = "0" AndAlso Class1.valve(i).cmbconfacexfrom = "1" Then
-                            output = output + Class1.valve(i).txtfromnv & "0003" & " "
-                        ElseIf Class1.valve(i).cmbconsidefrom = "1" AndAlso Class1.valve(i).cmbconfacexfrom = "1" Then
-                            output = output + Class1.valve(i).txtfromnv & "0004" & " "
-                        ElseIf Class1.valve(i).cmbconsidefrom = "0" AndAlso Class1.valve(i).cmbconfacexfrom = "2" Then
-                            output = output + Class1.valve(i).txtfromnv & "0005" & " "
-                        ElseIf Class1.valve(i).cmbconsidefrom = "1" AndAlso Class1.valve(i).cmbconfacexfrom = "2" Then
-                            output = output + Class1.valve(i).txtfromnv & "0006" & " "
-                        End If
-                    End If
-
-                    output = output + Class1.valve(i).txttoid
-
-                    If Convert.ToInt32(Class1.valve(i).txttonv) <= 9 Then
-                        Class1.valve(i).txttonv = "0" & Convert.ToInt32(Class1.valve(i).txttonv).ToString()
-                    ElseIf Convert.ToInt32(Class1.valve(i).txttonv) > 9 Then
-                        Class1.valve(i).txttonv = Convert.ToInt32(Class1.valve(i).txttonv).ToString()
-                    End If
-
-                    If Convert.ToBoolean(Class1.valve(i).cbformatto) = False Then
-                        output = (output & "0") + Class1.valve(i).cmbconsideto & "0000" & " "
-                    Else
-                        If Class1.valve(i).cmbconsideto = "0" AndAlso Class1.valve(i).cmbconfacexto = "0" Then
-                            output = output + Class1.valve(i).txttonv & "0001" & " "
-                        ElseIf Class1.valve(i).cmbconsideto = "1" AndAlso Class1.valve(i).cmbconfacexto = "0" Then
-                            output = output + Class1.valve(i).txttonv & "0002" & " "
-                        ElseIf Class1.valve(i).cmbconsideto = "0" AndAlso Class1.valve(i).cmbconfacexto = "1" Then
-                            output = output + Class1.valve(i).txttonv & "0003" & " "
-                        ElseIf Class1.valve(i).cmbconsideto = "1" AndAlso Class1.valve(i).cmbconfacexto = "1" Then
-                            output = output + Class1.valve(i).txttonv & "0004" & " "
-                        ElseIf Class1.valve(i).cmbconsideto = "0" AndAlso Class1.valve(i).cmbconfacexto = "2" Then
-                            output = output + Class1.valve(i).txttonv & "0005" & " "
-                        ElseIf Class1.valve(i).cmbconsideto = "1" AndAlso Class1.valve(i).cmbconfacexto = "2" Then
-                            output = output + Class1.valve(i).txttonv & "0006" & " "
-                        End If
-                    End If
-
-
-                    output = ((output + Class1.valve(i).txtjarea & " ") + Class1.valve(i).txtffelc & " ") + Class1.valve(i).txtrfelc & " "
-
-                    If Class1.valve(i).cbmodpv = "True" Then
-                        output = output & "1"
-                    Else
-                        output = output & "0"
-                    End If
-
-                    If Class1.valve(i).cbccfl = "True" Then
-                        output = output & "1"
-                    Else
-                        output = output & "0"
-                    End If
-
-                    output = output + Class1.valve(i).cmbhorstrat
-
-                    If Class1.valve(i).cbchoking = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    output = output + Class1.valve(i).cmbareachange
-
-                    If Class1.valve(i).cbhomo = "True" Then
-                        output = output & "1"
-                    Else
-                        output = output & "0"
-                    End If
-                    output = output + Class1.valve(i).cmbmf
-                    output = (((output & " ") + Class1.valve(i).txtsubdc & " ") + Class1.valve(i).txttpdc & " ") + Class1.valve(i).txtshdc
-                    generate.WriteLine(output)
-                    ' card ccc0110 junction dia and ccfl
-                    output = (((Class1.valve(i).cmbhydroid + "0110 " + Class1.valve(i).txtdj & " ") + Class1.valve(i).txtfcf & " ") + Class1.valve(i).txtgi & " ") + Class1.valve(i).txtslope
-                    generate.WriteLine(output)
-
-                    ' card ccc0111 valve j form loss data
-                    output = (((Class1.valve(i).cmbhydroid + "0111 " + Class1.valve(i).txtbf & " ") + Class1.valve(i).txtcf & " ") + Class1.valve(i).txtbr & " ") + Class1.valve(i).txtcr
-                    generate.WriteLine(output)
-                    ' card ccc0201, valve initial condition
-                    output = (((Class1.valve(i).cmbhydroid + "0201 " + Class1.valve(i).cmbvelmfr & " ") + Class1.valve(i).txtliq & " ") + Class1.valve(i).txtvap & " ") + Class1.valve(i).txtint
-                    generate.WriteLine(output)
-
-                    ' card ccc 0300 valive type
-
-                    output = Class1.valve(i).cmbhydroid + "0300 "
-
-                    If Class1.valve(i).cmbvtype = "0" Then
-                        output = output & "chkvlv"
-                    ElseIf Class1.valve(i).cmbvtype = "1" Then
-                        output = output & "trpvlv"
-                    ElseIf Class1.valve(i).cmbvtype = "2" Then
-                        output = output & "inrvlv"
-                    ElseIf Class1.valve(i).cmbvtype = "3" Then
-                        output = output & "mtrvlv"
-                    ElseIf Class1.valve(i).cmbvtype = "4" Then
-                        output = output & "srvvlv"
-                    ElseIf Class1.valve(i).cmbvtype = "5" Then
-                        output = output & "rlfvlv"
-                    End If
-
-                    generate.WriteLine(output)
-                    ' ccc0301 vlve data and initial condition
-
-                    If Class1.valve(i).cmbvtype = "0" Then
-                        output = Class1.valve(i).cmbhydroid + "0301 "
-                        If Class1.valve(i).cmbchkvlvtype = "2" Then
-                            output = output & "-1"
-                        Else
-                            output = output + Class1.valve(i).cmbchkvlvtype
-                        End If
-                        output = (((output & " ") + Class1.valve(i).cmbchkvlvip & " ") + Class1.valve(i).txtchkvlvcbp & " ") + Class1.valve(i).txtchkvlvlr
-
-                        generate.WriteLine(output)
-                    ElseIf Class1.valve(i).cmbvtype = "1" Then
-                        output = Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).txttripnum
-                        generate.WriteLine(output)
-                    ElseIf Class1.valve(i).cmbvtype = "2" Then
-                        output = (((((((((((Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).cmbinrvlvlo & " ") + Class1.valve(i).cmbinrvlvip & " ") + Class1.valve(i).txtinrvlvcbp & " ") + Class1.valve(i).txtinrvlvlf & " ") + Class1.valve(i).txtinrvlvifa & " ") + Class1.valve(i).txtinrvlvminfa & " ") + Class1.valve(i).txtinrvlvmaxfa & " ") + Class1.valve(i).txtinrvlvmoifa & " ") + Class1.valve(i).txtinrvlviav & " ") + Class1.valve(i).txtinrvlvmlf & " ") + Class1.valve(i).txtinrvlvrf & " ") + Class1.valve(i).txtinrvlvmf
-
-                        generate.WriteLine(output)
-                    ElseIf Class1.valve(i).cmbvtype = "3" Then
-                        output = ((((Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).txtopentrip & " ") + Class1.valve(i).txtclosetrip & " ") + Class1.valve(i).txtmtrvlvvcr & " ") + Class1.valve(i).txtmtrvlvip & " ") + Class1.valve(i).txtmtrvlvvtn
-                        generate.WriteLine(output)
-                    ElseIf Class1.valve(i).cmbvtype = "4" Then
-                        output = Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).txtsrvvlvcvn
-                        If Class1.valve(i).cmbsrvvlvicv = "1" Then
-                            output = (output & " ") + Class1.valve(i).txtsrvvlvvtn
-                        End If
-                        generate.WriteLine(output)
-                    ElseIf Class1.valve(i).cmbvtype = "5" Then
-                        output = ((((((((((((((((Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).cmbrlfvlvvic & " ") + Class1.valve(i).txtrlfvlvid & " ") + Class1.valve(i).txtrlfvlvvsd & " ") + Class1.valve(i).txtrlfvlvvpd & " ") + Class1.valve(i).txtrlfvlvvl & " ") + Class1.valve(i).txtrlfvlvmod & " ") + Class1.valve(i).txtrlfvlvhos & " ") + Class1.valve(i).txtrlfvlvmid & " ") + Class1.valve(i).txtrlfvlvhibe & " ") + Class1.valve(i).txtrlfvlvbad & " ") + Class1.valve(i).txtrlfvlvvsc & " ") + Class1.valve(i).txtrlfvlvvsp & " ") + Class1.valve(i).txtrlfvlvm & " ") + Class1.valve(i).txtrlfvlvvdc & " ") + Class1.valve(i).txtrlfvlvbip & " ") + Class1.valve(i).txtrlfvlvisp & " ") + Class1.valve(i).txtrlfvlvivpv
-                        generate.WriteLine(output)
-                    End If
-                    ' Card CCC0401 TABLE
-                    output = ""
-                    For j As Integer = 0 To Convert.ToInt32(Class1.valve(i).lbtecount) - 1
-                        output = output + Class1.valvetable(i, j) & " "
-                    Next
-                    output = Class1.valve(i).cmbhydroid + "0401 " & output
-                    generate.WriteLine(output)
-                End If
-            Next
-
-            ' time dependent junctuioon
-            For i As Integer = 0 To 99
-                If Class1.tmdpjun(i, 1).gbname IsNot Nothing Then
-                    Class1.tmdpjun(i, 1).cmbhydroid = Class1.tmdpjun(i, 1).gbname.Substring(10, 3).ToString()
-
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Time dependent Junction " + Class1.tmdpjun(i, 1).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-
-                    output = Class1.tmdpjun(i, 1).cmbhydroid + "0000 " + Class1.tmdpjun(i, 1).txtname & " tmdpjun"
-                    generate.WriteLine(output)
-                    ' ccc01001 geomerty card
-                    output = (Class1.tmdpjun(i, 1).cmbhydroid + "0101" & " ") + Class1.tmdpjun(i, 1).txtfromid
-
-                    If Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom) <= 9 Then
-                        Class1.tmdpjun(i, 1).txtvolumenumberfrom = "0" & Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom).ToString()
-                    ElseIf Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom) > 9 Then
-                        Class1.tmdpjun(i, 1).txtvolumenumberfrom = Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom).ToString()
-                    End If
-
-                    If Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto) <= 9 Then
-                        Class1.tmdpjun(i, 1).txtvolumenumberto = "0" & Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto).ToString()
-                    ElseIf Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto) > 9 Then
-                        Class1.tmdpjun(i, 1).txtvolumenumberto = Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto).ToString()
-                    End If
-
-                    If Convert.ToBoolean(Class1.tmdpjun(i, 1).cbformatfrom) = False Then
-                        output = (output & "0") + Class1.tmdpjun(i, 1).cmbconsidefrom & "0000" & " "
-                    Else
-                        If Class1.tmdpjun(i, 1).cmbconsidefrom = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "0" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0001" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "0" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0002" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "1" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0003" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "1" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0004" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "2" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0005" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "2" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0006" & " "
-                        End If
-                    End If
-
-                    output = output + Class1.tmdpjun(i, 1).txttoid
-
-                    If Convert.ToBoolean(Class1.tmdpjun(i, 1).cbformatto) = False Then
-                        output = (output & "0") + Class1.tmdpjun(i, 1).cmbconsideto & "0000" & " "
-                    Else
-                        If Class1.tmdpjun(i, 1).cmbconsideto = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "0" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0001" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "0" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0002" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "1" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0003" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "1" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0004" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "2" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0005" & " "
-                        ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "2" Then
-                            output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0006" & " "
-                        End If
-                    End If
-
-                    output = (output & " ") + Class1.tmdpjun(i, 1).txtjarea
-                    generate.WriteLine(output)
-
-                    'ccc0200
-                    output = (((Class1.tmdpjun(i, 1).cmbhydroid + "0200 " + Class1.tmdpjun(i, 1).cmbip & " ") + Class1.tmdpjun(i, 1).txtttn & " ") + Class1.tmdpjun(i, 1).txtanpvrc & " ") + Class1.tmdpjun(i, 1).txtnpvrc
-                    generate.WriteLine(output)
-                    ' ccc0201 0299
-
-                    For j As Integer = 0 To Convert.ToInt32(Class1.tmdpjun(i, 1).counter) - 1
-                        If j < 10 Then
-                            output = (Class1.tmdpjun(i, 1).cmbhydroid + "020" & (j + 1).ToString() & " ") + Class1.tmdpjun(i, j).lbc
-                        End If
-                        If j >= 10 Then
-                            output = (Class1.tmdpjun(i, 1).cmbhydroid + "02" & (j + 1).ToString() & " ") + Class1.tmdpjun(i, j).lbc
-                        End If
-
-                        generate.WriteLine(output)
-
-                    Next
-                End If
-            Next
-            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
-                '  MsgBox(kvp.Key)
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Time Dependent Volume" + Format(univID, "###"))
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine(Format(univID, "###") & "0000 " + kvp.Value.Name & " tmdpvol")
-
-                output = ((((((((Format(univID, "###") & "0101 " + kvp.Value.FlowArea & " ") + kvp.Value.LengthofVolume & " ") + kvp.Value.Volume & " ") + kvp.Value.Azimuthalangle & " ") + kvp.Value.InclinationAngle & " ") + kvp.Value.ElevationChange & " ") + kvp.Value.WallRoughness & " ") + kvp.Value.HydraulicDiameter & " ") + "0000000"
-                generate.WriteLine(output)
-
-                ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
-                generate.WriteLine(output)
-
-                'For k As Integer = 0 To Convert.ToInt32(Class1.tmdpvol(i, 1).counter) - 1
-                '    If k < 10 Then
-                '        generate.WriteLine((Format(univID, "###") + "020" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
-                '    Else
-                '        generate.WriteLine((Format(univID, "###") + "02" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
-
-                '    End If
-
-                'Next
-                univID = univID + 1
-                MsgBox(kvp.Value.ComponentName)
-            Next kvp
-            ' Time Dependent VOLUME
-            For i As Integer = 0 To 99
-                If Class1.tmdpvol(i, 1).gbname IsNot Nothing Then
-                    Class1.tmdpvol(i, 1).id = Class1.tmdpvol(i, 1).gbname.Substring(10, 3).ToString()
-
-                    counter = 1
-
-                End If
-            Next
-
-            ' pump
-
-            For i As Integer = 0 To 99
-                If Class1.pump(i, 1).gbname IsNot Nothing Then
-                    Class1.pump(i, 1).cmbhydroid = Class1.pump(i, 1).gbname.Substring(10, 3).ToString()
-
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Pump " + Class1.pump(i, 1).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-
-                    If Convert.ToInt32(Class1.pump(i, 1).txtvndis) <= 9 Then
-                        Class1.pump(i, 1).txtvndis = "0" & Convert.ToInt32(Class1.pump(i, 1).txtvndis).ToString()
-                    End If
-
-                    ' Class1.pump[location, 1].txtvndis = txtvndis.Text;
-                    If Convert.ToInt32(Class1.pump(i, 1).txtvnsuc) <= 9 Then
-                        Class1.pump(i, 1).txtvnsuc = "0" & Convert.ToInt32(Class1.pump(i, 1).txtvnsuc).ToString()
-                    End If
-
-
-                    'card ccc0000
-                    output = Class1.pump(i, 1).cmbhydroid + "0000 " + Class1.pump(i, 1).txtname & " pump"
-                    generate.WriteLine(output)
-                    ' ccc0101
-                    output = ((((((Class1.pump(i, 1).cmbhydroid + "0101 " + Class1.pump(i, 1).txtpvfa & " ") + Class1.pump(i, 1).txtplov & " ") + Class1.pump(i, 1).txtpvov & " ") + Class1.pump(i, 1).txtpaa & " ") + Class1.pump(i, 1).txtpia & " ") + Class1.pump(i, 1).txtpec & " ") + Class1.pump(i, 1).cmbtft + Class1.pump(i, 1).cmbmlt + Class1.pump(i, 1).cmbwps + Class1.pump(i, 1).cmbvsm + Class1.pump(i, 1).cmbifm + Class1.pump(i, 1).cmbwf + Class1.pump(i, 1).cmbesm
-                    generate.WriteLine(output)
-                    ' ccc0108
-                    ' change made----------------
-                    If Convert.ToBoolean(Class1.pump(i, 1).cbformatsuc) = False Then
-                        output = ((((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid & "0") + Class1.pump(i, 1).cmbconsidefromsuc & "0000" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                    Else
-                        If Class1.pump(i, 1).cmbconsidefromsuc = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "0" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0001" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "0" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0002" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "1" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0003" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "1" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0004" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "2" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0005" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "2" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0006" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
-                        End If
-                    End If
-
-                    If Class1.pump(i, 1).cbccflsuc = "True" Then
-                        output = output & "1"
-                    Else
-                        output = output & "0"
-                    End If
-
-                    'output + output + Class1.pump[i, 1].cmbhorstratsuc;
-
-                    If Class1.pump(i, 1).cbchokingsuc = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    output = output + Class1.pump(i, 1).cmbareachangesuc
-
-                    If Class1.pump(i, 1).cbhomosuc = "True" Then
-                        output = output & "2"
-                    Else
-                        output = output & "0"
-                    End If
-                    output = output & "0"
-
-                    generate.WriteLine(output)
-
-                    ' ccc0109
-
-
-                    'output = Class1.pump[i, 1].cmbhydroid + "0109 " + Class1.pump[i, 1].txtdisid + "0" + Class1.pump[i, 1].cmbconfacexfromdis + "0000" + " " + Class1.pump[i, 1].txtjareadis + " " + Class1.pump[i, 1].txtfcfdis + " " + Class1.pump[i, 1].txtrfelcdis + "  0";
-                    If Convert.ToBoolean(Class1.pump(i, 1).cbformatdis) = False Then
-                        output = ((((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid & "0") + Class1.pump(i, 1).cmbconsidefromdis & "0000" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                    Else
-                        If Class1.pump(i, 1).cmbconsidefromdis = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "0" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0001" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromdis = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "0" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0002" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromdis = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "1" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0003" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromdis = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "1" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0004" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromdis = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "2" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0005" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                        ElseIf Class1.pump(i, 1).cmbconsidefromdis = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "2" Then
-                            output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0006" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
-                        End If
-                    End If
-                    If Class1.pump(i, 1).cbccfldis = "True" Then
-                        output = output & "1"
-                    Else
-                        output = output & "0"
-                    End If
-
-                    'output + output + Class1.pump[i, 1].cmbhorstratdis;
-
-                    If Class1.pump(i, 1).cbchokingdis = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    output = output + Class1.pump(i, 1).cmbareachangedis
-
-                    If Class1.pump(i, 1).cbhomodis = "True" Then
-                        output = output & "2"
-                    Else
-                        output = output & "0"
-                    End If
-                    output = output & "0"
-
-                    generate.WriteLine(output)
-
-                    ' ccc0110   optional card
-
-                    If Class1.pump(i, 1).cbccflsuc = "True" Then
-                        output = (((Class1.pump(i, 1).cmbhydroid + "0110 " + Class1.pump(i, 1).txtdjsuc & " ") + Class1.pump(i, 1).txtfcfsuc & " ") + Class1.pump(i, 1).txtgisuc & " ") + Class1.pump(i, 1).txtslopesuc
-                        generate.WriteLine(output)
-
-
-                        output = Nothing
-                    Else
-                        output = Class1.pump(i, 1).cmbhydroid + "0110 " + Class1.pump(i, 1).txtdjsuc
-                        generate.WriteLine(output)
-                        output = Nothing
-                    End If
-
-                    ' ccc0111   optional card
-                    If Class1.pump(i, 1).cbccfldis = "False" Then
-                        output = Class1.pump(i, 1).cmbhydroid + "0111 " + Class1.pump(i, 1).txtdjdis
-                        generate.WriteLine(output)
-                    Else
-                        output = (((Class1.pump(i, 1).cmbhydroid + "0111 " + Class1.pump(i, 1).txtdjdis & " ") + Class1.pump(i, 1).txtfcfdis & " ") + Class1.pump(i, 1).txtgidis & " ") + Class1.pump(i, 1).txtslopedis
-                        generate.WriteLine(output)
-                    End If
-
-
-                    ' ccc 0112 optional
-
-                    output = (((Class1.pump(i, 1).cmbhydroid + "0112 " + Class1.pump(i, 1).txtbfsuc & " ") + Class1.pump(i, 1).txtcfsuc & " ") + Class1.pump(i, 1).txtbrsuc & " ") + Class1.pump(i, 1).txtcrsuc
-                    generate.WriteLine(output)
-
-                    ' ccc 0113 optional
-
-                    output = (((Class1.pump(i, 1).cmbhydroid + "0113 " + Class1.pump(i, 1).txtbfdis & " ") + Class1.pump(i, 1).txtcfdis & " ") + Class1.pump(i, 1).txtbrdis & " ") + Class1.pump(i, 1).txtcrdis
-                    generate.WriteLine(output)
-
-                    ' ccc0200
-
-                    output = Class1.pump(i, 1).cmbhydroid + "0200 " + Class1.pump(i, 1).cmbfluid + Class1.pump(i, 1).cmbboron + Class1.pump(i, 1).cmbap & " "
-                    If Class1.pump(i, 1).cmbap = "0" Then
-                        output = (((output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txtlsie & " ") + Class1.pump(i, 1).txtvsie & " ") + Class1.pump(i, 1).txtvvf
-
-                    ElseIf Class1.pump(i, 1).cmbap = "1" Then
-                        output = (output + Class1.pump(i, 1).txttemp & " ") + Class1.pump(i, 1).txtsqec
-
-                    ElseIf Class1.pump(i, 1).cmbap = "2" Then
-                        output = (output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txtsqec
-
-                    ElseIf Class1.pump(i, 1).cmbap = "3" Then
-                        output = (output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txttemp
-
-                    ElseIf Class1.pump(i, 1).cmbap = "4" Then
-                        output = ((output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txttemp & " ") + Class1.pump(i, 1).txtsqec
-
-                    ElseIf Class1.pump(i, 1).cmbap = "5" Then
-                        output = ((output + Class1.pump(i, 1).txttemp & " ") + Class1.pump(i, 1).txtsqec & " ") + Class1.pump(i, 1).txtncqec
-
-                    ElseIf Class1.pump(i, 1).cmbap = "6" Then
-                        output = ((((output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txtlsie & " ") + Class1.pump(i, 1).txtvsie & " ") + Class1.pump(i, 1).txtvvf & " ") + Class1.pump(i, 1).txtncq
-                    End If
-
-                    generate.WriteLine(output)
-
-                    ' ccc 0201
-                    output = ((Class1.pump(i, 1).cmbhydroid + "0201 " + Class1.pump(i, 1).cmbvelmfrsuc & " ") + Class1.pump(i, 1).txtliqsuc & " ") + Class1.pump(i, 1).txtvapsuc & " 0"
-                    generate.WriteLine(output)
-
-                    ' ccc 0202
-                    output = ((Class1.pump(i, 1).cmbhydroid + "0202 " + Class1.pump(i, 1).cmbvelmfrdis & " ") + Class1.pump(i, 1).txtliqdis & " ") + Class1.pump(i, 1).txtvapdis & " 0"
-                    generate.WriteLine(output)
-
-
-                    ' ccc0301
-
-                    output = ((((((Class1.pump(i, 1).cmbhydroid + "0301 " + Class1.pump(i, 1).txtptdi & " ") + Class1.pump(i, 1).txttpi & " ") + Class1.pump(i, 1).txttpdti & " ") + Class1.pump(i, 1).txtpmtti & " ") + Class1.pump(i, 1).txttdpvi & " ") + Class1.pump(i, 1).txtptn & " ") + Class1.pump(i, 1).cmbri
-                    generate.WriteLine(output)
-
-                    ' ccc0302 to ccc0304
-
-                    output = (((((Class1.pump(i, 1).cmbhydroid + "0302 " + Class1.pump(i, 1).txtrpv & " ") + Class1.pump(i, 1).txtratio & " ") + Class1.pump(i, 1).txtrf & " ") + Class1.pump(i, 1).txtrh & " ") + Class1.pump(i, 1).txtrt & " ") + Class1.pump(i, 1).txtmi
-                    generate.WriteLine(output)
-
-                    output = ((((Class1.pump(i, 1).cmbhydroid + "0303 " + Class1.pump(i, 1).txtrd & " ") + Class1.pump(i, 1).txtrpmt & " ") + Class1.pump(i, 1).txttf2 & " ") + Class1.pump(i, 1).txttf0 & " ") + Class1.pump(i, 1).txttf3 & " 0.0"
-                    generate.WriteLine(output)
-
-                    ' ccc0308
-                    If Class1.pump(i, 1).cbpvic = "True" Then
-                        output = ((((Class1.pump(i, 1).cmbhydroid + "0308 " + Class1.pump(i, 1).txtrs & " ") + Class1.pump(i, 1).txti3 & " ") + Class1.pump(i, 1).txti2 & " ") + Class1.pump(i, 1).txti1 & " ") + Class1.pump(i, 1).txti0
-                        generate.WriteLine(output)
-                    End If
-
-                    ' ccc0309
-
-                    If Class1.pump(i, 1).cbpscc = "True" Then
-                        output = (Class1.pump(i, 1).cmbhydroid + "0309 " + Class1.pump(i, 1).txtccnsc & " ") + Class1.pump(i, 1).txtpdt
-                        generate.WriteLine(output)
-                    End If
-
-                    ' ccc0310
-
-                    If Class1.pump(i, 1).cbpsdc = "True" Then
-                        output = ((Class1.pump(i, 1).cmbhydroid + "0310 " + Class1.pump(i, 1).txtept & " ") + Class1.pump(i, 1).txtmfvps & " ") + Class1.pump(i, 1).txtmrvps
-                        generate.WriteLine(output)
-                    End If
-
-                    If Class1.pump(i, 1).txtptdi = "0" Then
-
-                        ' curve 1 1 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter00) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1100 1 1"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter00) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "110" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc00
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "11" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc00
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 2 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter01) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1200 1 2"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter01) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "120" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc01
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "12" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc01
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-
-                        ' curve 1 3 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter02) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1300 1 3"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter02) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "130" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc02
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "13" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc02
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 4 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter03) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1400 1 4"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter03) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "140" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc03
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "14" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc03
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 5 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter04) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1500 1 5"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter04) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "150" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc04
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "15" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc04
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 6 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter05) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1600 1 6"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter05) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "160" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc05
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "16" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc05
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 7 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter06) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1700 1 7"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter06) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "170" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc06
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "17" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc06
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 8 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter07) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1800 1 8"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter07) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "180" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc07
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "18" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc07
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-
-                        ' curve 2 1 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter10) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "1900 2 1"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter10) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "190" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc10
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "19" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc10
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 2 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter11) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2000 2 2"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter11) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "200" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc11
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "20" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc11
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-
-                        ' curve 2 3 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter12) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2100 2 3"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter12) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "210" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc12
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "21" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc12
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 4 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter13) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2200 2 4"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter13) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "220" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc13
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "22" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc13
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 5 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter14) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2300 2 5"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter04) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "230" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc14
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "23" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc14
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 6 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter15) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2400 2 6"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter15) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "240" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc15
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "24" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc15
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 7 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter16) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2500 2 7"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter16) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "250" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc16
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "25" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc16
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 8 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter17) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2600 1 8"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter17) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "260" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc17
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "26" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc17
-                                End If
-                                generate.WriteLine(output)
-                            Next
-
-
-                            ' end of if
-                        End If
-                    End If
-
-                    If Class1.pump(i, 1).txttpi = "0" Then
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter0) > 0 Then
-                            generate.WriteLine("* Table ============")
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter0) - 1
-                                If k < 9 Then
-                                    output = Class1.pump(i, 1).cmbhydroid + "300 " + Class1.pump(i, k).lbtpmt0
-                                    generate.WriteLine(output)
-                                Else
-                                    output = Class1.pump(i, 1).cmbhydroid + "30 " + Class1.pump(i, k).lbtpmt0
-                                    generate.WriteLine(output)
-                                End If
-                            Next
-                        End If
-
-
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter1) > 0 Then
-                            generate.WriteLine("* Table ============")
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter1) - 1
-                                If k < 9 Then
-                                    output = Class1.pump(i, 1).cmbhydroid + "310 " + Class1.pump(i, k).lbtpmt1
-                                    generate.WriteLine(output)
-                                Else
-                                    output = Class1.pump(i, 1).cmbhydroid + "31 " + Class1.pump(i, k).lbtpmt1
-                                    generate.WriteLine(output)
-                                End If
-                            Next
-                        End If
-                    End If
-
-                    If Class1.pump(i, 1).txttpdti = "0" Then
-
-                        ' curve 1 1 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter00) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4100 1 1"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter00) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "410" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt00
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "41" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt00
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 2 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter01) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4200 1 2"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter01) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "420" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt01
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "42" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt01
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-
-                        ' curve 1 3 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter02) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4300 1 3"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter02) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "430" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt02
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "43" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt02
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 4 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter03) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4400 1 4"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter03) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "440" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt03
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "44" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt03
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 5 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter04) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4500 1 5"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter04) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "450" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt04
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "45" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt04
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 6 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter05) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4600 1 6"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter05) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "460" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt05
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "46" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt05
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 7 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter06) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4700 1 7"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter06) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "470" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt06
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "47" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt06
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 8 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter07) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4800 1 8"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter07) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "480" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt07
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "48" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt07
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-
-                        ' curve 2 1 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter10) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "4900 2 1"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter10) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "490" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt10
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "49" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt10
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 2 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter11) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "5000 2 2"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter11) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "500" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt11
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "50" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt11
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-
-                        ' curve 2 3 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter12) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "5100 2 3"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter12) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "510" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt12
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "51" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt12
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 4 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter13) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "5200 2 4"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter13) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "520" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt13
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "52" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt13
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 5 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter14) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "5300 2 5"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter04) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "530" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt14
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "53" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt14
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 1 6 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter15) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "5400 2 6"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter15) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "540" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt15
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "54" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt15
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 7 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter16) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2500 2 7"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter16) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "250" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt16
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "25" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt16
-                                End If
-                                generate.WriteLine(output)
-                            Next
-                        End If
-
-                        ' curve 2 8 
-                        If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter17) > 0 Then
-                            generate.WriteLine("* Table ====================")
-                            output = Class1.pump(i, 1).cmbhydroid + "2600 1 8"
-                            generate.WriteLine(output)
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter17) - 1
-                                If k < 9 Then
-                                    output = (Class1.pump(i, 1).cmbhydroid + "260" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt17
-                                Else
-                                    output = (Class1.pump(i, 1).cmbhydroid + "26" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt17
-                                End If
-                                generate.WriteLine(output)
-                            Next
-
-
-                            ' end of if
-                        End If
-                    End If
-
-                    If Class1.pump(i, 1).txtpmtti = "0" Then
-                        For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbrpmtdcounter) - 1
-                            If k < 9 Then
-                                generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "600" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbrpmtd)
-                            Else
-                                generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "60" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbrpmtd)
-                                ' generate.WriteLine(output);
-                            End If
-                        Next
-                    End If
-
-                    If Class1.pump(i, 1).cmbtdpvi = "0" Then
-                        generate.WriteLine(((Class1.pump(i, 1).cmbhydroid + "6100 " + Class1.pump(i, 1).txttn & " ") + Class1.pump(i, 1).txtanpvrc & " ") + Class1.pump(i, 1).txtnpvrc)
-                        For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtdpvcounter) - 1
-                            If k < 9 Then
-                                generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "610" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtdpv)
-                            Else
-                                generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "61" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtdpv)
-                                'generate.WriteLine(output);
-                            End If
-                        Next
-
-
-                    End If
-                End If
-            Next
-            '*************************************************************************
-
-            For i As Integer = 0 To 99
-                If Class1.branch(i, 1).gbname IsNot Nothing Then
-                    Class1.branch(i, 1).cmbhydroid = Class1.branch(i, 1).gbname.Substring(10, 3).ToString()
-
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Branch Separator Jetmixer Turbine ECCMIX " + Class1.branch(i, 1).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-                    'card ccc0000
-                    output = Class1.branch(i, 1).cmbhydroid + "0000 " + Class1.branch(i, 1).txtname & " "
-                    If Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 0 Then
-                        output = output & "branch"
-                    ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 1 Then
-                        output = output & "separator"
-                    ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 2 Then
-                        output = output & "jetmixer"
-                    ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 3 Then
-                        output = output & "turbine"
-                    ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 4 Then
-                        output = output & "eccmix"
-                    End If
-                    generate.WriteLine(output)
-
-                    ' card ccc0001
-
-                    output = (Class1.branch(i, 1).cmbhydroid + "0001 " + Class1.branch(i, 1).txtnj & " ") + Class1.branch(i, 1).cmbicc
-                    generate.WriteLine(output)
-
-                    ' card ccc0002 not include
-
-                    ' card ccc0101 
-                    output = (((((((Class1.branch(i, 1).cmbhydroid + "0101 " + Class1.branch(i, 1).txtvfa & " ") + Class1.branch(i, 1).txtlov & " ") + Class1.branch(i, 1).txtvov & " ") + Class1.branch(i, 1).txtaa & " ") + Class1.branch(i, 1).txtia & " ") + Class1.branch(i, 1).txtec & " ") + Class1.branch(i, 1).txtwr & " ") + Class1.branch(i, 1).txthd & " "
-                    output = output & Class1.branch(i, 1).cmbtft.ToString()
-                    output = output & Class1.branch(i, 1).cmbmlt.ToString()
-                    output = output & Class1.branch(i, 1).cmbwps.ToString()
-                    output = output & Class1.branch(i, 1).cmbvsm.ToString()
-                    output = output & Class1.branch(i, 1).cmbifm.ToString()
-                    output = output & Class1.branch(i, 1).cmbwf.ToString()
-                    output = output & Class1.branch(i, 1).cmbesm.ToString()
-                    generate.WriteLine(output)
-
-                    ' card ccc0131
-                    output = (((((Class1.branch(i, 1).cmbhydroid + "0131 " + Class1.branch(i, 1).txtsfx & " ") + Class1.branch(i, 1).txtvrex & " ") + Class1.branch(i, 1).txtsfy & " ") + Class1.branch(i, 1).txtvrey & " ") + Class1.branch(i, 1).txtsfz & " ") + Class1.branch(i, 1).txtvrez
-                    generate.WriteLine(output)
-
-                    ''' ccc0200
-                    output = Class1.branch(i, 1).cmbhydroid + "0200 " + Class1.branch(i, 1).cmbfluid + Class1.branch(i, 1).cmbboron + Class1.branch(i, 1).cmbap & " "
-
-                    If Class1.branch(i, 1).cmbap = "0" Then
-                        output = (((output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txtlsie & " ") + Class1.branch(i, 1).txtvsie & " ") + Class1.branch(i, 1).txtvvf
-
-                    ElseIf Class1.branch(i, 1).cmbap = "1" Then
-                        output = (output + Class1.branch(i, 1).txttemp & " ") + Class1.branch(i, 1).txtsqec
-
-                    ElseIf Class1.branch(i, 1).cmbap = "2" Then
-                        output = (output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txtsqec
-
-                    ElseIf Class1.branch(i, 1).cmbap = "3" Then
-                        output = (output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txttemp
-
-                    ElseIf Class1.branch(i, 1).cmbap = "4" Then
-                        output = ((output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txttemp & " ") + Class1.branch(i, 1).txtsqec
-
-                    ElseIf Class1.branch(i, 1).cmbap = "5" Then
-                        output = ((output + Class1.branch(i, 1).txttemp & " ") + Class1.branch(i, 1).txtsqec & " ") + Class1.branch(i, 1).txtncqec
-
-                    ElseIf Class1.branch(i, 1).cmbap = "6" Then
-                        output = ((((output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txtlsie & " ") + Class1.branch(i, 1).txtvsie & " ") + Class1.branch(i, 1).txtvvf & " ") + Class1.branch(i, 1).txtncq
-                    End If
-
-                    generate.WriteLine(output)
-                    ''' cccN101
-
-                    For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
-                        If Convert.ToInt32(Class1.branch(i, j).txtnvfromj) <= 9 Then
-                            Class1.branch(i, j).txtnvfromj = "0" & Convert.ToInt32(Class1.branch(i, j).txtnvfromj).ToString()
-                        End If
-                        If Convert.ToInt32(Class1.branch(i, j).txtnvtoj) <= 9 Then
-                            Class1.branch(i, j).txtnvtoj = "0" & Convert.ToInt32(Class1.branch(i, j).txtnvtoj).ToString()
-                        End If
-
-
-                        If Class1.branch(i, j).cbformatfrom = "False" Then
-
-                            output = ((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "101 ") + Class1.branch(i, j).txtidfromj & "0") + Class1.branch(i, j).cmbconsidefromj & "0000" & " "
-                        Else
-                            output = (Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "101 ") + Class1.branch(i, j).txtidfromj + Class1.branch(i, j).txtnvfromj & "00"
-
-                            If Class1.branch(i, j).cmbconsidefromj = "0" AndAlso Class1.branch(i, j).cmbconfacefromj = "0" Then
-                                output = output & "01 "
-                            ElseIf Class1.branch(i, j).cmbconsidefromj = "1" AndAlso Class1.branch(i, j).cmbconfacefromj = "0" Then
-                                output = output & "02 "
-                            ElseIf Class1.branch(i, j).cmbconsidefromj = "0" AndAlso Class1.branch(i, j).cmbconfacefromj = "1" Then
-                                output = output & "03 "
-                            ElseIf Class1.branch(i, j).cmbconsidefromj = "1" AndAlso Class1.branch(i, j).cmbconfacefromj = "1" Then
-                                output = output & "04 "
-                            ElseIf Class1.branch(i, j).cmbconsidefromj = "0" AndAlso Class1.branch(i, j).cmbconfacefromj = "2" Then
-                                output = output & "05 "
-                            ElseIf Class1.branch(i, j).cmbconsidefromj = "1" AndAlso Class1.branch(i, j).cmbconfacefromj = "2" Then
-                                output = output & "06 "
-
-                            End If
-                        End If
-
-                        If Class1.branch(i, j).cbformatto = "False" Then
-
-                            output = (output + Class1.branch(i, j).txtidtoj & "0") + Class1.branch(i, j).cmbconsidetoj & "0000 "
-                        Else
-                            output = output + Class1.branch(i, j).txtidtoj + Class1.branch(i, j).txtnvtoj & "00"
-
-                            If Class1.branch(i, j).cmbconsidetoj = "0" AndAlso Class1.branch(i, j).cmbconfacetoj = "0" Then
-                                output = output & "01 "
-                            ElseIf Class1.branch(i, j).cmbconsidetoj = "1" AndAlso Class1.branch(i, j).cmbconfacetoj = "0" Then
-                                output = output & "02 "
-                            ElseIf Class1.branch(i, j).cmbconsidetoj = "0" AndAlso Class1.branch(i, j).cmbconfacetoj = "1" Then
-                                output = output & "03 "
-                            ElseIf Class1.branch(i, j).cmbconsidetoj = "1" AndAlso Class1.branch(i, j).cmbconfacetoj = "1" Then
-                                output = output & "04 "
-                            ElseIf Class1.branch(i, j).cmbconsidetoj = "0" AndAlso Class1.branch(i, j).cmbconfacetoj = "2" Then
-                                output = output & "05 "
-                            ElseIf Class1.branch(i, j).cmbconsidetoj = "1" AndAlso Class1.branch(i, j).cmbconfacetoj = "2" Then
-                                output = output & "06 "
-
-                            End If
-                        End If
-
-                        output = ((output + Class1.branch(i, j).txtjareaj & " ") + Class1.branch(i, j).txtffelcj & " ") + Class1.branch(i, j).txtrfelcj & " "
-                        If Class1.branch(i, j).cbmodpvj = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-
-                        If Class1.branch(i, j).cbccflj = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output + Class1.branch(i, j).cmbhorstratj
-
-                        If Class1.branch(i, j).cbchokingj = "True" Then
-                            output = output & "0"
-                        Else
-                            output = output & "1"
-                        End If
-                        output = output + Class1.branch(i, j).cmbareachangej
-
-                        If Class1.branch(i, j).cbhomoj = "False" Then
-                            output = output & "0"
-                        Else
-                            output = output & "2"
-                        End If
-                        output = output + Class1.branch(i, j).cmbmfj & " "
-
-                        If Class1.branch(i, 1).cmbtype = "1" Then
-                            output = output + Class1.branch(i, j).txtvflseparatorj & " "
-                        Else
-                            output = output + Class1.branch(i, j).txtsubdcbranch & " "
-                        End If
-
-                        output = (output + Class1.branch(i, j).txttpdcbranch & " ") + Class1.branch(i, j).txtsupdcbranch
-
-
-                        generate.WriteLine(output)
-                    Next
-                    ''' cccN110
-
-                    For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
-                        output = ((((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "110 ") + Class1.branch(i, j).txtdjj & " ") + Class1.branch(i, j).txtfcfj & " ") + Class1.branch(i, j).txtgij & " ") + Class1.branch(i, j).txtslopej
-                        generate.WriteLine(output)
-                    Next
-
-                    ' cccn112
-                    For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
-                        output = ((((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "112 ") + Class1.branch(i, j).txtbfj & " ") + Class1.branch(i, j).txtcfj & " ") + Class1.branch(i, j).txtbrj & " ") + Class1.branch(i, j).txtcrj
-                        generate.WriteLine(output)
-                    Next
-
-                    ' cccn201
-                    For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
-                        output = ((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "201 ") + Class1.branch(i, j).txtliqj & " ") + Class1.branch(i, j).txtvapj & " 0.0"
-
-                        generate.WriteLine(output)
-                    Next
-
-                    ''' ccc0300
-
-                    If Class1.branch(i, 1).cmbtype = "3" Then
-                        output = (((((Class1.branch(i, 1).cmbhydroid + "0300 " + Class1.branch(i, 1).txttsss & " ") + Class1.branch(i, 1).txtirssg & " ") + Class1.branch(i, 1).txtsfc & " ") + Class1.branch(i, 1).txtscntsc & " ") + Class1.branch(i, 1).txtdtn & " ") + Class1.branch(i, 1).txtdf
-                        generate.WriteLine(output)
-                        ' ccc0400
-                        output = (((Class1.branch(i, 1).cmbhydroid + "0400 " + Class1.branch(i, 1).cmbtt & " ") + Class1.branch(i, 1).txtaemedp & " ") + Class1.branch(i, 1).txtdrf & " ") + Class1.branch(i, 1).txtmsr
-
-                        generate.WriteLine(output)
-                    End If
-                    If Class1.branch(i, 1).cmbtype = "1" Then
-                        ' ccc0500
-                        output = ((((((Class1.branch(i, 1).cmbhydroid + "0500 " + Class1.branch(i, 1).txtrlprfstss & " ") + Class1.branch(i, 1).txtsnea & " ") + Class1.branch(i, 1).txtrshi & " ") + Class1.branch(i, 1).txtsvarh & " ") + Class1.branch(i, 1).txtlcocuss & " ") + Class1.branch(i, 1).txtlcucuss & " ") + Class1.branch(i, 1).txtadbefsdpsv
-
-                        generate.WriteLine(output)
-                    End If
-                    If Class1.branch(i, 1).cmbtype = "1" Then
-                        ' ccc0501
-                        output = (((((((Class1.branch(i, 1).cmbhydroid + "0501 " + Class1.branch(i, 1).txtlfvpc1 & " ") + Class1.branch(i, 1).txtvcvpc1 & " ") + Class1.branch(i, 1).txtswir1 & " ") + Class1.branch(i, 1).txtdpec1 & " ") + Class1.branch(i, 1).txtdphd1 & " ") + Class1.branch(i, 1).txtsbl1 & " ") + Class1.branch(i, 1).txtdplc1 & " ") + Class1.branch(i, 1).txtdpec1
-
-                        generate.WriteLine(output)
-                    End If
-                    If Class1.branch(i, 1).cmbtype = "1" Then
-                        ' ccc0501
-                        output = (((((((Class1.branch(i, 1).cmbhydroid + "0502 " + Class1.branch(i, 1).txtlfvpc2 & " ") + Class1.branch(i, 1).txtvcvpc2 & " ") + Class1.branch(i, 1).txtswir2 & " ") + Class1.branch(i, 1).txtdpec2 & " ") + Class1.branch(i, 1).txtdphd2 & " ") + Class1.branch(i, 1).txtsbl2 & " ") + Class1.branch(i, 1).txtdplc2 & " ") + Class1.branch(i, 1).txtdpec2
-
-                        generate.WriteLine(output)
-                    End If
-                    If Class1.branch(i, 1).cmbtype = "1" Then
-                        ' ccc0501
-                        output = (((((((Class1.branch(i, 1).cmbhydroid + "0503 " + Class1.branch(i, 1).txtlfvpc3 & " ") + Class1.branch(i, 1).txtvcvpc3 & " ") + Class1.branch(i, 1).txtswir3 & " ") + Class1.branch(i, 1).txtdpec3 & " ") + Class1.branch(i, 1).txtdphd3 & " ") + Class1.branch(i, 1).txtsbl3 & " ") + Class1.branch(i, 1).txtdplc3 & " ") + Class1.branch(i, 1).txtdpec3
-
-                        generate.WriteLine(output)
-                    End If
-                    If Class1.branch(i, 1).cmbtype = "1" And Class1.branch(i, 1).cmbso = "1" Then
-                        ' ccc600
-                        output = ((Class1.branch(i, 1).cmbhydroid + "0600 " + Class1.branch(i, 1).txtvvbelow & " ") + Class1.branch(i, 1).txtvvabove & " ") + Class1.branch(i, 1).txtrdiq
-                        generate.WriteLine(output)
-                    End If
-                End If
-            Next
-
-            '___________________ A C C U M U L A T O R _____________________________
-            For i As Integer = 0 To 99
-                If Class1.accum(i).gbname IsNot Nothing Then
-                    Class1.accum(i).cmbhydroid = Class1.accum(i).gbname.Substring(10, 3).ToString()
-
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Accumulator " + Class1.accum(i).cmbhydroid)
-                    generate.WriteLine("*======================================================================")
-                    'card ccc0000
-                    output = Class1.accum(i).cmbhydroid + "0000 " + Class1.accum(i).txtname & " accum"
-                    generate.WriteLine(output)
-                    'Cards CCC0101 - 09
-                    output = (((((((((Class1.accum(i).cmbhydroid + "0101 " + Class1.accum(i).txtvfa & " ") + Class1.accum(i).txtlov & " ") + Class1.accum(i).txtvov & " ") + Class1.accum(i).txtaa & " ") + Class1.accum(i).txtia & " ") + Class1.accum(i).txtec & " ") + Class1.accum(i).txtwr & " ") + Class1.accum(i).txthd & " ") + Class1.accum(i).cmbts + Class1.accum(i).cmbmlt + Class1.accum(i).cmbwps + Class1.accum(i).cmbvsm + Class1.accum(i).cmbifm + Class1.accum(i).cmbwf + Class1.accum(i).cmbesm & " ") + Class1.accum(i).cmbgf
-                    generate.WriteLine(output)
-                    ' Card CCC0200
-                    output = ((Class1.accum(i).cmbhydroid + "0200 " + Class1.accum(i).txttankpressure & " ") + Class1.accum(i).txttanktemperature & " ") + Class1.accum(i).txttankbc
-                    generate.WriteLine(output)
-
-                    ' Junction Geometry Card : Card CCC1101
-                    output = Class1.accum(i).cmbhydroid + "1101 " + Class1.accum(i).txtidtoj
-
-
-
-
-                    If Convert.ToInt32(Class1.accum(i).txtvolumenumberto) <= 9 Then
-                        Class1.accum(i).txtvolumenumberto = "0" & Convert.ToInt32(Class1.accum(i).txtvolumenumberto).ToString()
-                    ElseIf Convert.ToInt32(Class1.accum(i).txtvolumenumberto) > 9 Then
-                        Class1.accum(i).txtvolumenumberto = Convert.ToInt32(Class1.accum(i).txtvolumenumberto).ToString()
-                    End If
-
-                    If Convert.ToBoolean(Class1.accum(i).cbformatto) = False Then
-                        output = (output & "0") + Class1.accum(i).cmbconsidetoj & "0000" & " "
-                    Else
-                        If Class1.accum(i).cmbconsidetoj = "0" AndAlso Class1.accum(i).cmbconfacetoj = "0" Then
-                            output = output + Class1.accum(i).txtvolumenumberto & "0001" & " "
-                        ElseIf Class1.accum(i).cmbconsidetoj = "1" AndAlso Class1.accum(i).cmbconfacetoj = "0" Then
-                            output = output + Class1.accum(i).txtvolumenumberto & "0002" & " "
-                        ElseIf Class1.accum(i).cmbconsidetoj = "0" AndAlso Class1.accum(i).cmbconfacetoj = "1" Then
-                            output = output + Class1.accum(i).txtvolumenumberto & "0003" & " "
-                        ElseIf Class1.accum(i).cmbconsidetoj = "1" AndAlso Class1.accum(i).cmbconfacetoj = "1" Then
-                            output = output + Class1.accum(i).txtvolumenumberto & "0004" & " "
-                        ElseIf Class1.accum(i).cmbconsidetoj = "0" AndAlso Class1.accum(i).cmbconfacetoj = "2" Then
-                            output = output + Class1.accum(i).txtvolumenumberto & "0005" & " "
-                        ElseIf Class1.accum(i).cmbconsidetoj = "1" AndAlso Class1.accum(i).cmbconfacetoj = "2" Then
-                            output = output + Class1.accum(i).txtvolumenumberto & "0006" & " "
-                        End If
-                    End If
-
-                    output = ((output + Class1.accum(i).txtjareaj & " ") + Class1.accum(i).txtffelcj & " ") + Class1.accum(i).txtrfelcj & " "
-                    If Class1.accum(i).cbmodpvj = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-
-                    If Class1.accum(i).cbccflj = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    output = output + Class1.accum(i).cmbhorstratj
-
-                    If Class1.accum(i).cbchokingj = "True" Then
-                        output = output & "0"
-                    Else
-                        output = output & "1"
-                    End If
-                    output = output + Class1.accum(i).cmbareachangej
-
-                    If Class1.accum(i).cbhomoj = "False" Then
-                        output = output & "0"
-                    Else
-                        output = output & "2"
-                    End If
-                    output = output + Class1.accum(i).cmbmfj & " "
-                    generate.WriteLine(output)
-
-                    ' CCC2200
-                    output = ((((Class1.accum(i).cmbhydroid + "2200 " + Class1.accum(i).txtlvt & " ") + Class1.accum(i).txtllt & " ") + Class1.accum(i).txtlslsp & " ") + Class1.accum(i).txtedss & " ") + Class1.accum(i).txttwt & " "
-                    If Class1.accum(i).cbhtf = "True" Then
-                        output = output & "0 "
-                    Else
-                        output = output & "1 "
-                    End If
-                    output = ((output + Class1.accum(i).txttd & " ") + Class1.accum(i).txttvhc & " ") + Class1.accum(i).txttn
-                    generate.WriteLine(output)
-                End If
-            Next
-            ' _____________ HEAT STRUCTURE___________________
-            For i As Integer = 0 To 99
-                If Class1.heat(i, 1).cbbox1 = "True" Then
-                    generate.WriteLine("*======================================================================")
-                    'if(Class1.heat[i,1]
-                    generate.WriteLine("*               -----------------------------------                ")
-                    generate.WriteLine("*              |                                   |               ")
-                    generate.WriteLine("*              |          heat structures          |               ")
-                    generate.WriteLine("*              |                                   |               ")
-                    generate.WriteLine("*               -----------------------------------                ")
-
-
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*                  heat structure " + Class1.heat(i, 1).cmbhstid)
-                    generate.WriteLine("*======================================================================")
-                    ' A8.1 Card 1CCCG000, General Heat Structure Data
-
-                    ' A8.1.1 General Heat Structure Data Card
-
-                    output = (("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "000 ") + Class1.heat(i, 1).txtnahswtg & " ") + Class1.heat(i, 1).txtnampftg & " "
-                    If Class1.heat(i, 1).cmbgt = "0" Then
-                        output = output & "1 "
-                    ElseIf Class1.heat(i, 1).cmbgt = "1" Then
-                        output = output & "2 "
-                    ElseIf Class1.heat(i, 1).cmbgt = "2" Then
-                        output = output & "3 "
-                    End If
-                    output = (((output + Class1.heat(i, 1).cmbssif & " ") + Class1.heat(i, 1).txtlbc & " ") + Class1.heat(i, 1).txtrcf & " ") + Class1.heat(i, 1).cmbbvi & " "
-                    ' CHECK
-                    If Class1.heat(i, 1).cmbmnai = "0" Then
-                        output = output & "2 "
-                    ElseIf Class1.heat(i, 1).cmbmnai = "1" Then
-                        output = output & "4 "
-                    ElseIf Class1.heat(i, 1).cmbmnai = "2" Then
-                        output = output & "8 "
-                    ElseIf Class1.heat(i, 1).cmbmnai = "3" Then
-                        output = output & "16 "
-                    ElseIf Class1.heat(i, 1).cmbmnai = "4" Then
-                        output = output & "32 "
-                    ElseIf Class1.heat(i, 1).cmbmnai = "5" Then
-                        output = output & "64 "
-                    ElseIf Class1.heat(i, 1).cmbmnai = "6" Then
-                        output = output & "128 "
-                    End If
-                    generate.WriteLine(output)
-
-                    ' A8.2 Card 1CCCG001, Gap Conductance Model Initial Gap Pressure Data
-                    output = (("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "001 ") + Class1.heat(i, 1).txtigip & " ") + Class1.heat(i, 1).txtgcrv
-                    generate.WriteLine(output)
-
-                    ' A8.3 Card 1CCCG003, Metal-Water Reaction Control Card
-                    output = ("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "003 ") + Class1.heat(i, 1).txtiotocos
-
-                    ' A8.4 Card 1CCCG004, Fuel Cladding Deformation Model Control Card
-                    If Class1.heat(i, 1).cbfcdmcc = "False" Then
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "004 " & "0"
-                    Else
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "003 " & "1"
-                    End If
-
-                    ' A8.5 Cards 1CCCG011 through 1CCCG099, Gap Deformation Data
-                    output = Nothing
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    output = (((output + Class1.heat(i, 1).txtfsr & " ") + Class1.heat(i, 1).txtcsr & " ") + Class1.heat(i, 1).txtrddfgisd & " ") + Class1.heat(i, 1).txtrddcc
-                    ' 1 ";
-                    For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg) - 1
-                        If Class1.heat(i, j - 1).txtfsr <> Class1.heat(i, j).txtfsr OrElse Class1.heat(i, j - 1).txtcsr <> Class1.heat(i, j).txtcsr OrElse Class1.heat(i, j - 1).txtrddfgisd <> Class1.heat(i, j).txtrddfgisd OrElse Class1.heat(i, j - 1).txtrddcc <> Class1.heat(i, j).txtrddcc Then
-                            If j = 2 Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                            output = (((output + Class1.heat(i, j).txtfsr & " ") + Class1.heat(i, j).txtcsr & " ") + Class1.heat(i, j).txtrddfgisd & " ") + Class1.heat(i, j).txtrddcc
-                            kl = j
-                            output = output & " " & kl.ToString() & " "
-                            kk = j
-                        Else
-                            If Class1.heat(i, j).txtfsr <> Class1.heat(i, j + 1).txtfsr OrElse Class1.heat(i, j).txtcsr <> Class1.heat(i, j + 1).txtcsr OrElse Class1.heat(i, j).txtrddfgisd <> Class1.heat(i, j + 1).txtrddfgisd OrElse Class1.heat(i, j).txtrddcc <> Class1.heat(i, j + 1).txtrddcc AndAlso first1 = True Then
-                                output = output & " 1 "
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If Class1.heat(i, 1).txtnahswtg = "2" AndAlso Class1.heat(i, 1).txtfsr <> Class1.heat(i, 2).txtfsr OrElse Class1.heat(i, 1).txtcsr <> Class1.heat(i, 2).txtcsr OrElse Class1.heat(i, 1).txtrddfgisd <> Class1.heat(i, 2).txtrddfgisd OrElse Class1.heat(i, 1).txtrddcc <> Class1.heat(i, 2).txtrddcc Then
-                        output = output & " 1 "
-                    End If
-
-                    If Class1.heat(i, 1).txtfsr <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtfsr OrElse Class1.heat(i, 1).txtcsr <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtcsr OrElse Class1.heat(i, 1).txtrddfgisd <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddfgisd OrElse Class1.heat(i, 1).txtrddcc <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddcc Then
-                        output = (((output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtfsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtcsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddfgisd & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddcc & " " & Class1.heat(i, 1).txtnahswtg.ToString()
-                    ElseIf first1 = True Then
-                        output = output & " " & Class1.heat(i, 1).txtnahswtg.ToString()
-                    ElseIf first1 = False Then
-                        output = (((output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtfsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtcsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddfgisd & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddcc & " " & Class1.heat(i, 1).txtnahswtg.ToString()
-                    End If
-                    output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "011 " & output
-                    generate.WriteLine(output)
-
-                    ' A8.6 Card 1CCCG100, Heat Structure Mesh Flags
-                    output = ("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "100 ") + Class1.heat(i, 1).txtmlf & " "
-                    If Class1.heat(i, 1).cmbmff = "0" Then
-                        output = output & "1"
-                    Else
-                        output = output & "2"
-                    End If
-                    generate.WriteLine(output)
-
-                    ' A8.7 Cards 1CCCG101 through 1CCCG199, Heat Structure Mesh Interval Data (Radial)
-                    If Class1.heat(i, 1).cmbmff = "0" Then
-                        If Convert.ToInt32(Class1.heat(i, 1).clbformat1) > 0 Then
-                            output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "101"
-
-                            For k As Integer = 0 To Convert.ToInt32(Class1.heat(i, 1).clbformat1) - 1
-                                output = (output & " ") + Class1.heat(i, k).lbformat1
-                            Next
-                            generate.WriteLine(output)
-                        End If
-                    Else
-                        output = Nothing
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = output + Class1.heat(i, 1).txtmif2
-                        ' 1 
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
-                            If Class1.heat(i, j - 1).txtmif2 <> Class1.heat(i, j).txtmif2 Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.heat(i, j).txtmif2
-                                kl = j
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.heat(i, j).txtmif2 <> Class1.heat(i, j + 1).txtmif2 AndAlso first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtmif2 <> Class1.heat(i, 2).txtmif2 Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.heat(i, 1).txtmif2 <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtmif2 Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtmif2 & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtmif2 & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        End If
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "101 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' A8.8 Cards 1CCCG201 through 1CCCG299, Heat StructureComposition Data (Radial)
-                    If Convert.ToInt32(Class1.heat(i, 1).txtmlf) = 0 Then
-                        output = Nothing
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = output + Class1.heat(i, 1).txtcn
-                        ' 1 
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
-                            If Class1.heat(i, j - 1).txtcn <> Class1.heat(i, j).txtcn Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.heat(i, j).txtcn
-                                kl = j
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.heat(i, j).txtcn <> Class1.heat(i, j + 1).txtcn AndAlso first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtcn <> Class1.heat(i, 2).txtcn Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.heat(i, 1).txtcn <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtcn Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtcn & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtcn & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        End If
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "201 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' A8.9 Card 1CCCG300, Fission Product Decay Heat Flag
-                    If Convert.ToBoolean(Class1.heat(i, 1).cbfpdhf) = True Then
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "300 " & "DKHEAT"
-                    End If
-
-                    ' A8.10 Cards 1CCCG301 through 1CCCG399, Heat Structure Source Distribution Data (Radial)
-                    If Convert.ToBoolean(Class1.heat(i, 1).cbfpdhf) = False Then
-                        output = Nothing
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = output + Class1.heat(i, 1).txtsv
-                        ' 1 
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
-                            If Class1.heat(i, j - 1).txtsv <> Class1.heat(i, j).txtsv Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.heat(i, j).txtsv
-                                kl = j
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.heat(i, j).txtsv <> Class1.heat(i, j + 1).txtsv AndAlso first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtsv <> Class1.heat(i, 2).txtsv Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.heat(i, 1).txtsv <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtsv Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtsv & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtsv & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        End If
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "301 " & output
-                        generate.WriteLine(output)
-                    Else
-                        output = Nothing
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = output + Class1.heat(i, 1).txtgac
-                        ' 1 
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
-                            If Class1.heat(i, j - 1).txtgac <> Class1.heat(i, j).txtgac Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.heat(i, j).txtgac
-                                kl = j
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.heat(i, j).txtgac <> Class1.heat(i, j + 1).txtgac AndAlso first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtgac <> Class1.heat(i, 2).txtgac Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.heat(i, 1).txtgac <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtgac Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtgac & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtgac & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
-                        End If
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "201 " & output
-                        generate.WriteLine(output)
-                    End If
-
-                    ' A8.11 Card 1CCCG400, Initial Temperature Flag
-                    If Class1.heat(i, 1).cmbitf = "0" Then
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "400 " & "0"
-                    ElseIf Class1.heat(i, 1).cmbitf = "1" Then
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "400 " & "-1"
-                    ElseIf Class1.heat(i, 1).cmbitf = "2" Then
-                        output = ("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "400 ") + Class1.heat(i, 1).txtitf
-                    End If
-                    generate.WriteLine(output)
-                    ' A8.12 Cards 1CCCG401 through 1CCCG499, Initial Temperature Data
-
-                    ' A8.12.1 Format 1 (Word 1 on Card 1CCCG400 = 0)
-                    If Class1.heat(i, 1).cmbitf = "0" Then
-                        output = Nothing
-                        kl = 0
-                        kk = 0
-                        first1 = True
-                        output = output + Class1.heat(i, 1).txttitdf1
-                        ' 1 
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1
-                            If Class1.heat(i, j - 1).txttitdf1 <> Class1.heat(i, j).txttitdf1 Then
-                                If j = 2 Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                                output = output + Class1.heat(i, j).txttitdf1
-                                kl = j
-                                output = output & " " & kl.ToString() & " "
-                                kk = j
-                            Else
-                                If Class1.heat(i, j).txttitdf1 <> Class1.heat(i, j + 1).txttitdf1 AndAlso first1 = True Then
-                                    output = output & " 1 "
-                                    first1 = False
-                                End If
-                            End If
-                        Next
-                        If Class1.heat(i, 1).txtnampftg = "2" AndAlso Class1.heat(i, 1).txttitdf1 <> Class1.heat(i, 2).txttitdf1 Then
-                            output = output & " 1 "
-                        End If
-
-                        If Class1.heat(i, 1).txttitdf1 <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)).txttitdf1 Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)).txttitdf1 & " " & Class1.heat(i, 1).txtnampftg.ToString()
-                        ElseIf first1 = True Then
-                            output = output & " " & Class1.heat(i, 1).txtnampftg.ToString()
-                        ElseIf first1 = False Then
-                            output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)).txttitdf1 & " " & Class1.heat(i, 1).txtnampftg.ToString()
-                        End If
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "401 " & output
-                        generate.WriteLine(output)
-
-                        ' A8.12.2 Format 2 (Word 1 on Card 1CCCG400 = -1)
-                    ElseIf Class1.heat(i, 1).cmbitf = "1" Then
-                        For k As Integer = 1 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                            output = Nothing
-                            kl = 0
-                            kk = 0
-                            first1 = True
-                            output = output + Class1.ITDF2(i, k, 1)
-                            ' 1 
-                            For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1
-                                If Class1.ITDF2(i, k, j - 1) <> Class1.ITDF2(i, k, j) Then
-                                    If j = 2 Then
-                                        output = output & " 1 "
-                                        first1 = False
-                                    End If
-                                    output = output + Class1.ITDF2(i, k, j)
-                                    kl = j
-                                    output = output & " " & kl.ToString() & " "
-                                    kk = j
-                                Else
-                                    If Class1.ITDF2(i, k, j) <> Class1.ITDF2(i, k, j + 1) AndAlso first1 = True Then
-                                        output = output & " 1 "
-                                        first1 = False
-                                    End If
-                                End If
-                            Next
-                            If Class1.heat(i, 1).txtnampftg = "2" AndAlso Class1.ITDF2(i, k, 1) <> Class1.ITDF2(i, k, 2) Then
-                                output = output & " 1 "
-                            End If
-
-                            If Class1.ITDF2(i, k, 1) <> Class1.ITDF2(i, k, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)) Then
-                                output = output + Class1.ITDF2(i, k, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)) & " " & Class1.heat(i, 1).txtnampftg.ToString()
-                            ElseIf first1 = True Then
-                                output = output & " " & Class1.heat(i, 1).txtnampftg.ToString()
-                            ElseIf first1 = False Then
-                                output = output + Class1.ITDF2(i, k, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)) & " " & Class1.heat(i, 1).txtnampftg.ToString()
-                            End If
-                            If k < 10 Then
-                                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "40" & k.ToString() & " " & output
-                            Else
-                                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "4" & k.ToString() & " " & output
-                            End If
-                            generate.WriteLine(output)
-                        Next
-                    End If
-
-                    ' A8.13 Cards 1CCCG501 through 1CCCG599, Left Boundary Condition Cards
-
-                    ' Modified Sequential Expansion Format
-
-                    output = Nothing
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    Dim flaglbc As Integer = 1
-
-                    Dim checklbc As Boolean = False
-                    For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                        If Class1.word1lbc(i, j - 1) <> Class1.word1lbc(i, j) OrElse Class1.heat(i, j - 1).txtlbcincre <> Class1.heat(i, j).txtlbcincre OrElse Class1.heat(i, j - 1).txtlbcbct <> Class1.heat(i, j).txtlbcbct OrElse Class1.heat(i, j - 1).cmblbcsac <> Class1.heat(i, j).cmblbcsac OrElse Class1.heat(i, j - 1).txtlbcsaf <> Class1.heat(i, j).txtlbcsaf Then
-                            flaglbc += 1
-                            If checklbc = False Then
-                                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "501" & " ") + Class1.word1lbc(i, 1) & " ") + Class1.heat(i, 1).txtlbcincre & " ") + Class1.heat(i, 1).txtlbcbct & " ") + Class1.heat(i, 1).cmblbcsac & " ") + Class1.heat(i, 1).txtlbcsaf & " 1"
-                                generate.WriteLine(output)
-                                checklbc = True
-                            End If
-
-                            If flaglbc <= 9 Then
-                                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "50" & flaglbc.ToString() & " ") + Class1.word1lbc(i, j) & " ") + Class1.heat(i, j).txtlbcincre & " ") + Class1.heat(i, j).txtlbcbct & " ") + Class1.heat(i, j).cmblbcsac & " ") + Class1.heat(i, j).txtlbcsaf & " " & j.ToString()
-                                generate.WriteLine(output)
-
-                                first1 = False
-                            ElseIf flaglbc > 9 Then
-                                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "5" & flaglbc.ToString() & " ") + Class1.word1lbc(i, j) & " ") + Class1.heat(i, j).txtlbcincre & " ") + Class1.heat(i, j).txtlbcbct & " ") + Class1.heat(i, j).cmblbcsac & " ") + Class1.heat(i, j).txtlbcsaf & " " & j.ToString()
-                                generate.WriteLine(output)
-
-                                first1 = False
-                            End If
-
-
-                        End If
-                    Next
-
-                    If flaglbc = 1 Then
-                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "50" & flaglbc.ToString() & " ") + Class1.word1lbc(i, 1) & " ") + Class1.heat(i, 1).txtlbcincre & " ") + Class1.heat(i, 1).txtlbcbct & " ") + Class1.heat(i, 1).cmblbcsac & " ") + Class1.heat(i, 1).txtlbcsaf & " " & Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                        generate.WriteLine(output)
-                    End If
-
-                    ' A8.14 Cards 1CCCG601 through 1CCCG699, Right Boundary Condition Cards
-
-                    ' Modified Sequential Expansion Format
-
-                    output = Nothing
-                    kl = 0
-                    kk = 0
-                    first1 = True
-                    Dim flagrbc As Integer = 1
-                    Dim checkrbc As Boolean = False
-                    'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "60" + flagrbc.ToString() + " " + Class1.word1rbc[i, 1] + " " + Class1.heat[i, 1].txtrbcincre + " " + Class1.heat[i, 1].txtrbcbct + " " + Class1.heat[i, 1].cmbrbcsac + " " + Class1.heat[i, 1].txtrbcsaf + " 1";
-                    'generate.WriteLine(output);
-                    'flagrbc++;
-                    For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                        If Class1.word1rbc(i, j - 1) <> Class1.word1rbc(i, j) OrElse Class1.heat(i, j - 1).txtrbcincre <> Class1.heat(i, j).txtrbcincre OrElse Class1.heat(i, j - 1).txtrbcbct <> Class1.heat(i, j).txtrbcbct OrElse Class1.heat(i, j - 1).cmbrbcsac <> Class1.heat(i, j).cmbrbcsac OrElse Class1.heat(i, j - 1).txtrbcsaf <> Class1.heat(i, j).txtrbcsaf Then
-                            flagrbc += 1
-                            If checkrbc = False Then
-                                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "601" & " ") + Class1.word1rbc(i, 1) & " ") + Class1.heat(i, 1).txtrbcincre & " ") + Class1.heat(i, 1).txtrbcbct & " ") + Class1.heat(i, 1).cmbrbcsac & " ") + Class1.heat(i, 1).txtrbcsaf & " 1"
-                                generate.WriteLine(output)
-                                checkrbc = True
-                            End If
-                            If flagrbc <= 9 Then
-                                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "60" & flagrbc.ToString() & " ") + Class1.word1rbc(i, j) & " ") + Class1.heat(i, j).txtrbcincre & " ") + Class1.heat(i, j).txtrbcbct & " ") + Class1.heat(i, j).cmbrbcsac & " ") + Class1.heat(i, j).txtrbcsaf & " " & j.ToString()
-                                generate.WriteLine(output)
-                                'flagrbc++;
-                                first1 = False
-                            ElseIf flagrbc > 9 Then
-                                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "6" & flagrbc.ToString() & " ") + Class1.word1rbc(i, j) & " ") + Class1.heat(i, j).txtrbcincre & " ") + Class1.heat(i, j).txtrbcbct & " ") + Class1.heat(i, j).cmbrbcsac & " ") + Class1.heat(i, j).txtrbcsaf & " " & j.ToString()
-                                generate.WriteLine(output)
-                                'flagrbc++;
-                                first1 = False
-                            End If
-                        End If
-                    Next
-                    If flagrbc = 1 Then
-                        output = (((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "60" & flagrbc.ToString() & " ") + Class1.word1rbc(i, 1) & " ") + Class1.heat(i, 1).txtrbcincre & " ") + Class1.heat(i, 1).txtrbcbct & " ") + Class1.heat(i, 1).cmbrbcsac & " ") + Class1.heat(i, 1).txtrbcsaf & " ") + Class1.heat(i, 1).txtnahswtg
-                        generate.WriteLine(output)
-                    End If
-                    ' A8.15 Cards 1CCCG701 through 1CCCG799, Source Data Cards
-
-                    output = Nothing
-                    Dim flagsdc As Integer = 1
-                    Dim checksdc As Boolean = False
-                    'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "70" + flagsdc.ToString() + " " + Class1.heat[i, 1].txtst + " " + Class1.heat[i, 1].txtism + " " + Class1.heat[i, 1].txtdmhmleft + " " + Class1.heat[i, 1].txtdmhmright + " 1";
-                    'generate.WriteLine(output);
-                    'flagsdc++;
-                    For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                        If Class1.heat(i, j - 1).txtst <> Class1.heat(i, j).txtst OrElse Class1.heat(i, j - 1).txtism <> Class1.heat(i, j).txtism OrElse Class1.heat(i, j - 1).txtdmhmleft <> Class1.heat(i, j).txtdmhmleft OrElse Class1.heat(i, j - 1).txtdmhmright <> Class1.heat(i, j).txtdmhmright Then
-                            flagsdc += 1
-                            If checksdc = False Then
-                                output = (((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "701" & " ") + Class1.heat(i, 1).txtst & " ") + Class1.heat(i, 1).txtism & " ") + Class1.heat(i, 1).txtdmhmleft & " ") + Class1.heat(i, 1).txtdmhmright & " 1"
-                                generate.WriteLine(output)
-                                checksdc = True
-                            End If
-                            If flagsdc <= 9 Then
-                                output = (((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "70" & flagsdc.ToString() & " ") + Class1.heat(i, j).txtst & " ") + Class1.heat(i, j).txtism & " ") + Class1.heat(i, j).txtdmhmleft & " ") + Class1.heat(i, j).txtdmhmright & " " & j.ToString()
-                                'flagsdc++;
-                                generate.WriteLine(output)
-                            ElseIf flagsdc > 9 Then
-                                output = (((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "7" & flagsdc.ToString() & " ") + Class1.heat(i, j).txtst & " ") + Class1.heat(i, j).txtism & " ") + Class1.heat(i, j).txtdmhmleft & " ") + Class1.heat(i, j).txtdmhmright & " " & j.ToString()
-                                'flagsdc++;
-                                generate.WriteLine(output)
-                            End If
-                        End If
-                    Next
-                    If flagsdc = 1 Then
-                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "70" & flagsdc.ToString() & " ") + Class1.heat(i, 1).txtst & " ") + Class1.heat(i, 1).txtism & " ") + Class1.heat(i, 1).txtdmhmleft & " ") + Class1.heat(i, 1).txtdmhmright & " ") + Class1.heat(i, 1).txtnahswtg
-                        generate.WriteLine(output)
-                    End If
-
-
-                    '
-                    '                        output = null;
-                    '                        kl = 0; kk = 0; first1 = true;
-                    '                        output = output + Class1.heat[i, 1].txtst + " " + Class1.heat[i, 1].txtism + " " + Class1.heat[i, 1].txtdmhmleft + " " + Class1.heat[i, 1].txtdmhmright;// 1 ";
-                    '                        for (int j = 2; j < Convert.ToInt32(Class1.heat[i, 1].txtnahswtg); j++)
-                    '                        {
-                    '                            if (Class1.heat[i, j - 1].txtst != Class1.heat[i, j].txtst || Class1.heat[i, j - 1].txtism != Class1.heat[i, j].txtism || Class1.heat[i, j - 1].txtdmhmleft != Class1.heat[i, j].txtdmhmleft || Class1.heat[i, j - 1].txtdmhmright != Class1.heat[i, j].txtdmhmright)
-                    '                            {
-                    '                                if (j == 2)
-                    '                                {
-                    '                                    output = output + " 1 ";
-                    '                                    first1 = false;
-                    '                                }
-                    '                                output = output + Class1.heat[i, j].txtst + " " + Class1.heat[i, j].txtism + " " + Class1.heat[i, j].txtdmhmleft + " " + Class1.heat[i, j].txtdmhmright;
-                    '                                kl = j;
-                    '                                output = output + " " + kl.ToString() + " ";
-                    '                                kk = j;
-                    '                            }
-                    '                            else
-                    '                            {
-                    '                                if (Class1.heat[i, j].txtst != Class1.heat[i, j+1].txtst || Class1.heat[i, j].txtism != Class1.heat[i, j+1].txtism || Class1.heat[i, j].txtdmhmleft != Class1.heat[i, j+1].txtdmhmleft || Class1.heat[i, j].txtdmhmright != Class1.heat[i, j+1].txtdmhmright && first1 == true)
-                    '                                {
-                    '                                    output = output + " 1 ";
-                    '                                    first1 = false;
-                    '                                }
-                    '                            }
-                    '                        }
-                    '                        if (Class1.heat[i, 1].txtnahswtg == "2" && Class1.heat[i, 1].txtst != Class1.heat[i, 2].txtst || Class1.heat[i, 1].txtism != Class1.heat[i, 2].txtism || Class1.heat[i, 1].txtdmhmleft != Class1.heat[i, 2].txtdmhmleft || Class1.heat[i, 1].txtdmhmright != Class1.heat[i, 2].txtdmhmright)
-                    '                            output = output + " 1 ";
-                    '
-                    '                        if (Class1.heat[i, 1].txtst != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtst || Class1.heat[i, 1].txtism != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtism || Class1.heat[i, 1].txtdmhmleft != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmleft || Class1.heat[i, 1].txtdmhmright != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmright)
-                    '                            output = output + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtst + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtism + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmleft + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmright + " " + Class1.heat[i, 1].txtnahswtg.ToString();
-                    '                        else if (first1 == true)
-                    '                            output = output + " " + Class1.heat[i, 1].txtnahswtg.ToString();
-                    '                        else if (first1 == false)
-                    '                            output = output + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtst + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtism + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmleft + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmright + " " + Class1.heat[i, 1].txtnahswtg.ToString();
-                    '                        output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "701 " + output;
-                    '                        generate.WriteLine(output);
-
-
-                    ' A8.16 Card 1CCCG800, Additional Left Boundary Option
-                    If Class1.heat(i, 1).cmboptionalb = "0" Then
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "800 " & "0"
-                    Else
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "800 " & "1"
-                    End If
-                    generate.WriteLine(output)
-
-                    ' A8.17 Cards 1CCCG801 through 1CCCG899, Additional Left Boundary Cards
-
-                    If Class1.heat(i, 1).cmboptionalb = "0" Then
-                        output = Nothing
-                        Dim flagalb0 As Integer = 1
-                        Dim checkalb0 As Boolean = False
-                        'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "80" + flagalb0.ToString() + " " + Class1.heat[i, 1].txththdalb + " " + Class1.heat[i, 1].txthlfalb + " " + Class1.heat[i, 1].txthlralb + " " + Class1.heat[i, 1].txtgslfalb + " " + Class1.heat[i, 1].txtgslralb + " " + Class1.heat[i, 1].txtglcfalb + " " + Class1.heat[i, 1].txtglcralb + " " + Class1.heat[i, 1].txtlbfalb + " 1";
-                        'generate.WriteLine(output);
-                        'flagalb0++;
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                            If Class1.heat(i, j - 1).txththdalb <> Class1.heat(i, j).txththdalb OrElse Class1.heat(i, j - 1).txthlfalb <> Class1.heat(i, j).txthlfalb OrElse Class1.heat(i, j - 1).txthlralb <> Class1.heat(i, j).txthlralb OrElse Class1.heat(i, j - 1).txtgslfalb <> Class1.heat(i, j).txtgslfalb OrElse Class1.heat(i, j - 1).txtgslralb <> Class1.heat(i, j).txtgslralb OrElse Class1.heat(i, j - 1).txtglcfalb <> Class1.heat(i, j).txtglcfalb OrElse Class1.heat(i, j - 1).txtglcralb <> Class1.heat(i, j).txtglcralb OrElse Class1.heat(i, j - 1).txtlbfalb <> Class1.heat(i, j).txtlbfalb Then
-                                flagalb0 += 1
-                                If checkalb0 = False Then
-                                    output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "801" & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " 1"
-                                    generate.WriteLine(output)
-                                    checkalb0 = True
-                                End If
-                                If flagalb0 <= 9 Then
-                                    output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb0.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " " & j.ToString()
-                                    'flagalb0++;
-                                    generate.WriteLine(output)
-                                ElseIf flagalb0 > 9 Then
-                                    output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "8" & flagalb0.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " " & j.ToString()
-                                    'flagalb0++;
-                                    generate.WriteLine(output)
-                                End If
-                            End If
-                        Next
-                        If flagalb0 = 1 Then
-                            output = ((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb0.ToString() & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " ") + Class1.heat(i, 1).txtnahswtg
-                            generate.WriteLine(output)
-                        End If
-
-
-                    ElseIf Class1.heat(i, 1).cmboptionalb = "1" Then
-                        output = Nothing
-                        Dim flagalb1 As Integer = 1
-                        Dim checkalb1 As Boolean = False
-                        'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "80" + flagalb1.ToString() + " " + Class1.heat[i, 1].txththdalb + " " + Class1.heat[i, 1].txthlfalb + " " + Class1.heat[i, 1].txthlralb + " " + Class1.heat[i, 1].txtgslfalb + " " + Class1.heat[i, 1].txtgslralb + " " + Class1.heat[i, 1].txtglcfalb + " " + Class1.heat[i, 1].txtglcralb + " " + Class1.heat[i, 1].txtlbfalb + " " + Class1.heat[i, 1].txtnclalb + " " + Class1.heat[i, 1].txtrtp2dralb + " " + Class1.heat[i, 1].txtffalb + " 1";
-                        'generate.WriteLine(output);
-                        'flagalb1++;
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                            If Class1.heat(i, j - 1).txththdalb <> Class1.heat(i, j).txththdalb OrElse Class1.heat(i, j - 1).txthlfalb <> Class1.heat(i, j).txthlfalb OrElse Class1.heat(i, j - 1).txthlralb <> Class1.heat(i, j).txthlralb OrElse Class1.heat(i, j - 1).txtgslfalb <> Class1.heat(i, j).txtgslfalb OrElse Class1.heat(i, j - 1).txtgslralb <> Class1.heat(i, j).txtgslralb OrElse Class1.heat(i, j - 1).txtglcfalb <> Class1.heat(i, j).txtglcfalb OrElse Class1.heat(i, j - 1).txtglcralb <> Class1.heat(i, j).txtglcralb OrElse Class1.heat(i, j - 1).txtlbfalb <> Class1.heat(i, j).txtlbfalb OrElse Class1.heat(i, j - 1).txtnclalb <> Class1.heat(i, j).txtnclalb OrElse Class1.heat(i, j - 1).txtrtp2dralb <> Class1.heat(i, j).txtrtp2dralb OrElse Class1.heat(i, j - 1).txtffalb <> Class1.heat(i, j).txtffalb Then
-                                flagalb1 += 1
-                                If checkalb1 = False Then
-                                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "801" & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " 1"
-                                    generate.WriteLine(output)
-                                    checkalb1 = True
-                                End If
-                                If flagalb1 <= 9 Then
-                                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb1.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " " & j.ToString()
-                                    'flagalb1++;
-                                    generate.WriteLine(output)
-                                ElseIf flagalb1 > 9 Then
-                                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "8" & flagalb1.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " " & j.ToString()
-                                    'flagalb1++;
-                                    generate.WriteLine(output)
-                                End If
-                            End If
-                        Next
-                        If flagalb1 = 1 Then
-                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb1.ToString() & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " 1"
-                            generate.WriteLine(output)
-                        End If
-                    End If
-
-                    ' ----------------------------------------------
-
-                    ' A8.18 Card 1CCCG900, Additional Right Boundary Option
-                    If Class1.heat(i, 1).cmboptionarb = "0" Then
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "900 " & "0"
-                    Else
-                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "900 " & "1"
-                    End If
-                    generate.WriteLine(output)
-
-                    ' A8.19 Cards 1CCCG901 through 1CCCG999, Additional Right Boundary Cards
-
-                    If Class1.heat(i, 1).cmboptionarb = "0" Then
-                        output = Nothing
-                        Dim flagarb0 As Integer = 1
-                        Dim checkarb0 As Boolean = False
-                        'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "90" + flagarb0.ToString() + " " + Class1.heat[i, 1].txththdarb + " " + Class1.heat[i, 1].txthlfarb + " " + Class1.heat[i, 1].txthlrarb + " " + Class1.heat[i, 1].txtgslfarb + " " + Class1.heat[i, 1].txtgslrarb + " " + Class1.heat[i, 1].txtglcfarb + " " + Class1.heat[i, 1].txtglcrarb + " " + Class1.heat[i, 1].txtlbfarb + " 1";
-                        'generate.WriteLine(output);
-                        'flagarb0++;
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                            If Class1.heat(i, j - 1).txththdarb <> Class1.heat(i, j).txththdarb OrElse Class1.heat(i, j - 1).txthlfarb <> Class1.heat(i, j).txthlfarb OrElse Class1.heat(i, j - 1).txthlrarb <> Class1.heat(i, j).txthlrarb OrElse Class1.heat(i, j - 1).txtgslfarb <> Class1.heat(i, j).txtgslfarb OrElse Class1.heat(i, j - 1).txtgslrarb <> Class1.heat(i, j).txtgslrarb OrElse Class1.heat(i, j - 1).txtglcfarb <> Class1.heat(i, j).txtglcfarb OrElse Class1.heat(i, j - 1).txtglcrarb <> Class1.heat(i, j).txtglcrarb OrElse Class1.heat(i, j - 1).txtlbfarb <> Class1.heat(i, j).txtlbfarb Then
-                                flagarb0 += 1
-                                If checkarb0 = False Then
-                                    output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "901" & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " 1"
-                                    generate.WriteLine(output)
-                                    checkarb0 = True
-                                End If
-
-                                If flagarb0 <= 9 Then
-                                    output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb0.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " " & j.ToString()
-                                    'flagarb0++;
-                                    generate.WriteLine(output)
-                                ElseIf flagarb0 > 9 Then
-                                    output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "9" & flagarb0.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " " & j.ToString()
-                                    'flagarb0++;
-                                    generate.WriteLine(output)
-                                End If
-                            End If
-                        Next
-                        If flagarb0 = 1 Then
-                            output = ((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb0.ToString() & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " ") + Class1.heat(i, 1).txtnahswtg
-                            generate.WriteLine(output)
-                        End If
-
-
-                    ElseIf Class1.heat(i, 1).cmboptionarb = "1" Then
-                        output = Nothing
-                        Dim flagarb1 As Integer = 1
-                        Dim checkarb1 As Boolean = False
-                        'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "90" + flagarb1.ToString() + " " + Class1.heat[i, 1].txththdarb + " " + Class1.heat[i, 1].txthlfarb + " " + Class1.heat[i, 1].txthlrarb + " " + Class1.heat[i, 1].txtgslfarb + " " + Class1.heat[i, 1].txtgslrarb + " " + Class1.heat[i, 1].txtglcfarb + " " + Class1.heat[i, 1].txtglcrarb + " " + Class1.heat[i, 1].txtlbfarb + " " + Class1.heat[i, 1].txtnclarb + " " + Class1.heat[i, 1].txtrtp2drarb + " " + Class1.heat[i, 1].txtffarb + " 1";
-                        'generate.WriteLine(output);
-                        'flagarb1++;
-                        For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
-                            If Class1.heat(i, j - 1).txththdarb <> Class1.heat(i, j).txththdarb OrElse Class1.heat(i, j - 1).txthlfarb <> Class1.heat(i, j).txthlfarb OrElse Class1.heat(i, j - 1).txthlrarb <> Class1.heat(i, j).txthlrarb OrElse Class1.heat(i, j - 1).txtgslfarb <> Class1.heat(i, j).txtgslfarb OrElse Class1.heat(i, j - 1).txtgslrarb <> Class1.heat(i, j).txtgslrarb OrElse Class1.heat(i, j - 1).txtglcfarb <> Class1.heat(i, j).txtglcfarb OrElse Class1.heat(i, j - 1).txtglcrarb <> Class1.heat(i, j).txtglcrarb OrElse Class1.heat(i, j - 1).txtlbfarb <> Class1.heat(i, j).txtlbfarb OrElse Class1.heat(i, j - 1).txtnclarb <> Class1.heat(i, j).txtnclarb OrElse Class1.heat(i, j - 1).txtrtp2drarb <> Class1.heat(i, j).txtrtp2drarb OrElse Class1.heat(i, j - 1).txtffarb <> Class1.heat(i, j).txtffarb Then
-                                flagarb1 += 1
-                                If checkarb1 = False Then
-                                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "901" & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " 1"
-                                    generate.WriteLine(output)
-                                    checkarb1 = True
-                                End If
-
-                                If flagarb1 <= 9 Then
-                                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb1.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " " & j.ToString()
-                                    'flagarb1++;
-                                    generate.WriteLine(output)
-                                ElseIf flagarb1 > 9 Then
-                                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "9" & flagarb1.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " " & j.ToString()
-                                    'flagarb1++;
-                                    generate.WriteLine(output)
-                                End If
-                            End If
-                        Next
-                        If flagarb1 = 1 Then
-                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb1.ToString() & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " 1"
-                            generate.WriteLine(output)
-                        End If
-                    End If
-
-
-
-
-
-                    ' _______________________________________________
-                End If
-            Next
-
-
-
-
-            generate.WriteLine(". END of code")
-            ' file code colse
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            ' end of writing code******************************************************************************
-            generate.Close()
+            '            ElseIf Class1.sngl_vol(i).IC_TS = "4" Then
+
+            '                output = (Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_T & " ") + Class1.sngl_vol(i).IC_SQE
+
+            '            ElseIf Class1.sngl_vol(i).IC_TS = "5" Then
+            '                output = (Class1.sngl_vol(i).IC_T + " " + Class1.sngl_vol(i).IC_SQ & " ") + Class1.sngl_vol(i).IC_NCQE
+
+            '            ElseIf Class1.sngl_vol(i).IC_TS = "6" Then
+            '                output = (((Class1.sngl_vol(i).IC_P + " " + Class1.sngl_vol(i).IC_IEL & " ") + Class1.sngl_vol(i).IC_IEV & " ") + Class1.sngl_vol(i).IC_VVF & " ") + Class1.sngl_vol(i).IC_NCQ
+            '            End If
+
+
+
+            '            generate.WriteLine(Class1.sngl_vol(i).id + "0200 " + Class1.sngl_vol(i).IC_E + Class1.sngl_vol(i).IC_B + Class1.sngl_vol(i).IC_TS & " " & output)
+
+            '        End If
+            '    Next
+
+            '    ' single junction generate
+
+
+            '    For i As Integer = 0 To 99
+            '        If Class1.singjunc(i).gbname IsNot Nothing Then
+            '            Class1.singjunc(i).cmbhydroid = Class1.singjunc(i).gbname.Substring(10, 3).ToString()
+
+
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component Junction  " + Class1.singjunc(i).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+
+
+            '            '
+            '            '                        if (Class1.singjunc[i].cmbjuntype == "0")
+            '            '                            output = "sngjun";
+            '            '                        else
+            '            '                            output = "TMDPJUN";
+            '            '                     
+
+            '            generate.WriteLine(Class1.singjunc(i).cmbhydroid + "0000 " + Class1.singjunc(i).txtname & " sngljun")
+
+            '            ' goemetry card
+            '            '  counter = 1;
+
+
+            '            output = (Class1.singjunc(i).cmbhydroid + "0101" & " ") + Class1.singjunc(i).txtfromid
+
+            '            If Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom) <= 9 Then
+            '                Class1.singjunc(i).txtvolumenumberfrom = "0" & Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom).ToString()
+            '            ElseIf Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom) > 9 Then
+            '                Class1.singjunc(i).txtvolumenumberfrom = Convert.ToInt32(Class1.singjunc(i).txtvolumenumberfrom).ToString()
+            '            End If
+
+            '            If Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto) <= 9 Then
+            '                Class1.singjunc(i).txtvolumenumberto = "0" & Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto).ToString()
+            '            ElseIf Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto) > 9 Then
+            '                Class1.singjunc(i).txtvolumenumberto = Convert.ToInt32(Class1.singjunc(i).txtvolumenumberto).ToString()
+            '            End If
+
+            '            If Convert.ToBoolean(Class1.singjunc(i).cbformatfrom) = False Then
+            '                output = (output & "0") + Class1.singjunc(i).cmbconsidefrom & "0000" & " "
+            '            Else
+            '                If Class1.singjunc(i).cmbconsidefrom = "0" AndAlso Class1.singjunc(i).cmbconfacexfrom = "0" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberfrom & "0001" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsidefrom = "1" AndAlso Class1.singjunc(i).cmbconfacexfrom = "0" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberfrom & "0002" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsidefrom = "0" AndAlso Class1.singjunc(i).cmbconfacexfrom = "1" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberfrom & "0003" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsidefrom = "1" AndAlso Class1.singjunc(i).cmbconfacexfrom = "1" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberfrom & "0004" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsidefrom = "0" AndAlso Class1.singjunc(i).cmbconfacexfrom = "2" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberfrom & "0005" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsidefrom = "1" AndAlso Class1.singjunc(i).cmbconfacexfrom = "2" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberfrom & "0006" & " "
+            '                End If
+            '            End If
+
+            '            'if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberfrom) < 10)
+            '            '    output = output + "0" + Class1.singjunc[i].txtvolumenumberfrom.ToString();
+            '            'else if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberfrom) >= 10)
+            '            '    output = output + Class1.singjunc[i].txtvolumenumberfrom.ToString();
+
+            '            'if (Class1.singjunc[i].cmbconsidefrom == "0" & Class1.singjunc[i].cmbconfacexfrom == "0")
+            '            '    output = output + "0001" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsidefrom == "1" & Class1.singjunc[i].cmbconfacexfrom == "0")
+            '            '    output = output + "0002" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsidefrom == "0" & Class1.singjunc[i].cmbconfacexfrom == "1")
+            '            '    output = output + "0003" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsidefrom == "1" & Class1.singjunc[i].cmbconfacexfrom == "1")
+            '            '    output = output + "0004" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsidefrom == "0" & Class1.singjunc[i].cmbconfacexfrom == "2")
+            '            '    output = output + "0005" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsidefrom == "1" & Class1.singjunc[i].cmbconfacexfrom == "2")
+            '            '    output = output + "0006" + " ";
+
+            '            output = output + Class1.singjunc(i).txttoid
+
+            '            If Convert.ToBoolean(Class1.singjunc(i).cbformatto) = False Then
+            '                output = (output & "0") + Class1.singjunc(i).cmbconsideto & "0000" & " "
+            '            Else
+            '                If Class1.singjunc(i).cmbconsideto = "0" AndAlso Class1.singjunc(i).cmbconfacexto = "0" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberto & "0001" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsideto = "1" AndAlso Class1.singjunc(i).cmbconfacexto = "0" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberto & "0002" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsideto = "0" AndAlso Class1.singjunc(i).cmbconfacexto = "1" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberto & "0003" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsideto = "1" AndAlso Class1.singjunc(i).cmbconfacexto = "1" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberto & "0004" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsideto = "0" AndAlso Class1.singjunc(i).cmbconfacexto = "2" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberto & "0005" & " "
+            '                ElseIf Class1.singjunc(i).cmbconsideto = "1" AndAlso Class1.singjunc(i).cmbconfacexto = "2" Then
+            '                    output = output + Class1.singjunc(i).txtvolumenumberto & "0006" & " "
+            '                End If
+            '            End If
+
+
+            '            'if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberto) < 10)
+            '            '    output = output + "0" + Class1.singjunc[i].txtvolumenumberto.ToString();
+            '            'else if (Convert.ToInt32(Class1.singjunc[i].txtvolumenumberto) >= 10)
+            '            '    output = output + Class1.singjunc[i].txtvolumenumberto.ToString();
+
+            '            'if (Class1.singjunc[i].cmbconsideto == "0" & Class1.singjunc[i].cmbconfacexto == "0")
+            '            '    output = output + "0001" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsideto == "1" & Class1.singjunc[i].cmbconfacexto == "0")
+            '            '    output = output + "0002" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsideto == "0" & Class1.singjunc[i].cmbconfacexto == "1")
+            '            '    output = output + "0003" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsideto == "1" & Class1.singjunc[i].cmbconfacexto == "1")
+            '            '    output = output + "0004" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsideto == "0" & Class1.singjunc[i].cmbconfacexto == "2")
+            '            '    output = output + "0005" + " ";
+            '            'else if (Class1.singjunc[i].cmbconsideto == "1" & Class1.singjunc[i].cmbconfacexto == "2")
+            '            '    output = output + "0006" + " ";
+
+
+            '            output = (((output & " ") + Class1.singjunc(i).txtjarea & " ") + Class1.singjunc(i).txtffelc & " ") + Class1.singjunc(i).txtrfelc & " "
+
+            '            ' counter++;
+            '            ' generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txttoid  + "0" + Class1.singjunc[i].cmbconsideto  + "0000");
+            '            ' counter++;
+            '            'generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtjarea);
+            '            ' counter++;
+            '            'generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtffelc);
+            '            ' counter++;
+            '            'generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtrfelc);
+            '            '  counter++;
+
+            '            If Class1.singjunc(i).cbjetjun = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            If Class1.singjunc(i).cbmodpv = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.singjunc(i).cbccfl = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            output = output + Class1.singjunc(i).cmbhorstrat
+
+            '            If Class1.singjunc(i).cbchoking = "False" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "0"
+            '            End If
+            '            output = output + Class1.singjunc(i).cmbareachange
+
+            '            If Class1.singjunc(i).cbhomo = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "2"
+            '            End If
+            '            output = output + Class1.singjunc(i).cmbmf
+            '            output = (((output & " ") + Class1.singjunc(i).txtsubdc & " ") + Class1.singjunc(i).txttpdc & " ") + Class1.singjunc(i).txtshdc
+
+            '            generate.WriteLine(output)
+            '            '
+            '            '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " +  output  );
+            '            '                              counter++;
+            '            '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtsubdc);
+            '            '                              counter++;
+            '            '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txttpdc);
+            '            '                              counter++;
+            '            '                              generate.WriteLine(Class1.singjunc[i].cmbhydroid + "010" + counter + " " + Class1.singjunc[i].txtshdc);
+            '            '                    // diameter and ccfl data
+
+
+            '            If Class1.singjunc(i).cbccfl = "True" Then
+            '                generate.WriteLine((((Class1.singjunc(i).cmbhydroid + "0110 " + Class1.singjunc(i).txtdj & " ") + Class1.singjunc(i).txtfcf & " ") + Class1.singjunc(i).txtgi & " ") + Class1.singjunc(i).txtslope)
+            '            End If
+
+            '            ' else
+            '            ' generate.WriteLine(Class1.singjunc[i].cmbhydroid + "0110 " + Class1.singjunc[i].txtdj);  
+
+            '            If Class1.singjunc(i).cbformloss = "True" Then
+            '                generate.WriteLine((((Class1.singjunc(i).cmbhydroid + "0111 " + Class1.singjunc(i).txtbf & " ") + Class1.singjunc(i).txtcf & " ") + Class1.singjunc(i).txtbr & " ") + Class1.singjunc(i).txtcr)
+            '            End If
+
+
+            '            generate.WriteLine((((Class1.singjunc(i).cmbhydroid + "0201 " + Class1.singjunc(i).cmbvelmfr & " ") + Class1.singjunc(i).txtliq & " ") + Class1.singjunc(i).txtvap & " ") + Class1.singjunc(i).txtint)
+            '        End If
+            '    Next
+
+
+
+
+            '    ' *******  PIPE code:
+
+            '    ' &&&&&&&&&&&&&&&&&&&&&***********************&&&&&&&&&&&&&&&&&
+            '    For i As Integer = 0 To 99
+            '        If Class1.pipeannulus(i, 1).gbname IsNot Nothing Then
+            '            Class1.pipeannulus(i, 1).cmbhydroid = Class1.pipeannulus(i, 1).gbname.Substring(10, 3).ToString()
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component PIPE " + Class1.pipeannulus(i, 1).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0000 " + Class1.pipeannulus(i, 1).txtname & " pipe"
+            '            generate.WriteLine(output)
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0001 " + Class1.pipeannulus(i, 1).txtnv
+            '            generate.WriteLine(output)
+            '            output = Nothing
+
+            '            ' card X coordinate Volume Flow Area    101
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = output + Class1.pipeannulus(i, 1).txtvfa
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvfa <> Class1.pipeannulus(i, j).txtvfa Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).txtvfa
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.pipeannulus(i, j).txtvfa <> Class1.pipeannulus(i, j + 1).txtvfa And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvfa <> Class1.pipeannulus(i, 2).txtvfa Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvfa <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvfa Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvfa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvfa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+            '            '
+            '            '                        output = output + Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvfa;
+            '            '                        kl = Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv) - kk;
+            '            '                        output = output + " " + kl.ToString();
+            '            '
+            '            '                        
+
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0101 " & output
+            '            generate.WriteLine(output)
+
+            '            first1 = True
+
+            '            ''' junction flow area 
+            '            If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
+
+            '                kl = 0
+            '                kk = 0
+            '                output = Nothing
+            '                output = Class1.pipeannulus(i, 1).txtjfa
+            '                ' 1 ";
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
+
+
+            '                    If Class1.pipeannulus(i, j - 1).txtjfa <> Class1.pipeannulus(i, j).txtjfa Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.pipeannulus(i, j).txtjfa
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.pipeannulus(i, j).txtjfa <> Class1.pipeannulus(i, j + 1).txtjfa And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso Class1.pipeannulus(i, 1).txtjfa <> Class1.pipeannulus(i, 2).txtjfa Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).txtjfa <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjfa Then
+            '                    output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+            '                output = Class1.pipeannulus(i, 1).cmbhydroid + "0201 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' card X coordinate Volume Length
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.pipeannulus(i, 1).txtvl
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvl <> Class1.pipeannulus(i, j).txtvl Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).txtvl
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.pipeannulus(i, j).txtvl <> Class1.pipeannulus(i, j + 1).txtvl And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvl <> Class1.pipeannulus(i, 2).txtvl Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvl <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvl Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvl & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvl & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0301 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume volume
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.pipeannulus(i, 1).txtvv
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvv <> Class1.pipeannulus(i, j).txtvv Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).txtvv
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.pipeannulus(i, j).txtvv <> Class1.pipeannulus(i, j + 1).txtvv And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvv <> Class1.pipeannulus(i, 2).txtvv Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvv <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvv Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvv & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvv & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0401 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume azimuthal angle
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.pipeannulus(i, 1).txtvaa
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvaa <> Class1.pipeannulus(i, j).txtvaa Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).txtvaa
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.pipeannulus(i, j).txtvaa <> Class1.pipeannulus(i, j + 1).txtvaa And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvaa <> Class1.pipeannulus(i, 2).txtvaa Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvaa <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvaa Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvaa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvaa & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0501 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume vertical angle
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.pipeannulus(i, 1).txtvva
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvva <> Class1.pipeannulus(i, j).txtvva Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).txtvva
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.pipeannulus(i, j).txtvva <> Class1.pipeannulus(i, j + 1).txtvva And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvva <> Class1.pipeannulus(i, 2).txtvva Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvva <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvva Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvva & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+            '            ' output = output + Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvva + " " + Class1.pipeannulus[i, 1].txtnv.ToString();
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0601 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume elevation change
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.pipeannulus(i, 1).txtvec
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvec <> Class1.pipeannulus(i, j).txtvec Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).txtvec
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.pipeannulus(i, j).txtvec <> Class1.pipeannulus(i, j + 1).txtvec And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvec <> Class1.pipeannulus(i, 2).txtvec Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvec <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvec Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvec & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvec & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0701 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate wall roughness
+            '            ' if (Class1.pipeannulus[i, j - 1].txtvwr != Class1.pipeannulus[i, j].txtvwr | Class1.pipeannulus[i, j - 1].txtvhd != Class1.pipeannulus[i, j].txtvhd )
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.pipeannulus(i, 1).txtvwr + " " + Class1.pipeannulus(i, 1).txtvhd
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.pipeannulus(i, j - 1).txtvwr <> Class1.pipeannulus(i, j).txtvwr Or Class1.pipeannulus(i, j - 1).txtvhd <> Class1.pipeannulus(i, j).txtvhd Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    ' output = output + Class1.pipeannulus[i, j].txtvwr;
+            '                    output = (output + Class1.pipeannulus(i, j).txtvwr & " ") + Class1.pipeannulus(i, j).txtvhd
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If (Class1.pipeannulus(i, j + 1).txtvwr <> Class1.pipeannulus(i, j).txtvwr Or Class1.pipeannulus(i, j + 1).txtvhd <> Class1.pipeannulus(i, j).txtvhd) And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            'if (Class1.pipeannulus[i,  1].txtvwr != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvwr | Class1.pipeannulus[i,  1].txtvhd != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)].txtvhd)
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso Class1.pipeannulus(i, 1).txtvwr <> Class1.pipeannulus(i, 2).txtvwr OrElse Class1.pipeannulus(i, 1).txtvhd <> Class1.pipeannulus(i, 2).txtvhd Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).txtvwr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvwr Or Class1.pipeannulus(i, 1).txtvhd <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvhd Then
+            '                output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvwr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvhd & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvwr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvhd & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "0801 " & output
+            '            generate.WriteLine(output)
+
+            '            first1 = True
+
+            '            ' juction loss coeffient
+            '            If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = Class1.pipeannulus(i, 1).txtjaf + " " + Class1.pipeannulus(i, 1).txtjar
+            '                ' 1 ";
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
+
+
+            '                    If Class1.pipeannulus(i, j - 1).txtjaf <> Class1.pipeannulus(i, j).txtjaf Or Class1.pipeannulus(i, j - 1).txtjar <> Class1.pipeannulus(i, j).txtjar Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (output + Class1.pipeannulus(i, j).txtjaf & " ") + Class1.pipeannulus(i, j).txtjar
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.pipeannulus(i, j).txtjaf <> Class1.pipeannulus(i, j + 1).txtjaf Or Class1.pipeannulus(i, j).txtjar <> Class1.pipeannulus(i, j + 1).txtjar) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+            '                If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso Class1.pipeannulus(i, 1).txtjaf <> Class1.pipeannulus(i, 2).txtjaf OrElse Class1.pipeannulus(i, 1).txtjar <> Class1.pipeannulus(i, 2).txtjar Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).txtjaf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf Or Class1.pipeannulus(i, 1).txtjar <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjar Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+
+            '                output = Class1.pipeannulus(i, 1).cmbhydroid + "0901 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+
+            '            ' x-coordinate controol cards cards ccc1001-ccc1099
+
+
+
+
+            '            kk = 0
+            '            kl = 0
+            '            first1 = True
+            '            output = Nothing
+            '            If Class1.pipeannulus(i, 1).cbtftm = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).cbcbmltm = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).cbwps = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            If Class1.pipeannulus(i, 1).cbvsmnew = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).cmbifnew = "0" Then
+            '                output = output & "0"
+            '            ElseIf Class1.pipeannulus(i, 1).cmbifnew = "1" Then
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).cbwf = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.pipeannulus(i, 1).cbneqb = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+            '                If Class1.pipeannulus(i, j - 1).cbtftm <> Class1.pipeannulus(i, j).cbtftm Or Class1.pipeannulus(i, j - 1).cbcbmltm <> Class1.pipeannulus(i, j).cbcbmltm Or Class1.pipeannulus(i, j - 1).cbwps <> Class1.pipeannulus(i, j).cbwps Or Class1.pipeannulus(i, j - 1).cbvsmnew <> Class1.pipeannulus(i, j).cbvsmnew Or Class1.pipeannulus(i, j - 1).cmbifnew <> Class1.pipeannulus(i, j).cmbifnew Or Class1.pipeannulus(i, j - 1).cbwf <> Class1.pipeannulus(i, j).cbwf Or Class1.pipeannulus(i, j - 1).cbneqb <> Class1.pipeannulus(i, j).cbneqb Then
+
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+            '                    'output = output + Class1.pipeannulus[i, j].txtjaf + " " + Class1.pipeannulus[i, j].txtjar;
+
+            '                    If Class1.pipeannulus(i, j).cbtftm = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, j).cbcbmltm = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, j).cbwps = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+            '                    If Class1.pipeannulus(i, j).cbvsmnew = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+            '                    If Class1.pipeannulus(i, j).cmbifnew = "0" Then
+            '                        output = output & "0"
+            '                    ElseIf Class1.pipeannulus(i, j).cmbifnew = "1" Then
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, j).cbwf = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, j).cbneqb = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If (Class1.pipeannulus(i, j + 1).cbtftm <> Class1.pipeannulus(i, j).cbtftm Or Class1.pipeannulus(i, j + 1).cbcbmltm <> Class1.pipeannulus(i, j).cbcbmltm Or Class1.pipeannulus(i, j + 1).cbwps <> Class1.pipeannulus(i, j).cbwps Or Class1.pipeannulus(i, j + 1).cbvsmnew <> Class1.pipeannulus(i, j).cbvsmnew Or Class1.pipeannulus(i, j + 1).cmbifnew <> Class1.pipeannulus(i, j).cmbifnew Or Class1.pipeannulus(i, j + 1).cbwf <> Class1.pipeannulus(i, j).cbwf Or Class1.pipeannulus(i, j + 1).cbneqb <> Class1.pipeannulus(i, j).cbneqb) And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso (Class1.pipeannulus(i, 1).cbtftm <> Class1.pipeannulus(i, 2).cbtftm Or Class1.pipeannulus(i, 1).cbcbmltm <> Class1.pipeannulus(i, 2).cbcbmltm Or Class1.pipeannulus(i, 1).cbwps <> Class1.pipeannulus(i, 2).cbwps Or Class1.pipeannulus(i, 1).cbvsmnew <> Class1.pipeannulus(i, 2).cbvsmnew Or Class1.pipeannulus(i, 1).cmbifnew <> Class1.pipeannulus(i, 2).cmbifnew Or Class1.pipeannulus(i, 1).cbwf <> Class1.pipeannulus(i, 2).cbwf Or Class1.pipeannulus(i, 1).cbneqb <> Class1.pipeannulus(i, 2).cbneqb) Then
+            '                output = output & " 1 "
+            '            End If
+
+
+            '            If Class1.pipeannulus(i, 1).cbtftm <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbtftm Or Class1.pipeannulus(i, 1).cbcbmltm <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbcbmltm Or Class1.pipeannulus(i, 1).cbwps <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwps Or Class1.pipeannulus(i, 1).cbvsmnew <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbvsmnew Or Class1.pipeannulus(i, 1).cmbifnew <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew Or Class1.pipeannulus(i, 1).cbwf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwf Or Class1.pipeannulus(i, 1).cbneqb <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbneqb Then
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbtftm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbcbmltm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwps = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbvsmnew = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "0" Then
+            '                    output = output & "0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "1" Then
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwf = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbneqb = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+
+
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbtftm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbcbmltm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwps = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbvsmnew = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "0" Then
+            '                    output = output & "0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbifnew = "1" Then
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbwf = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbneqb = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "1001 " & output
+            '            generate.WriteLine(output)
+
+            '            ' juction control flages @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            '            If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
+            '                kk = 0
+            '                kl = 0
+            '                output = Nothing
+            '                first1 = True
+
+            '                If Class1.pipeannulus(i, 1).cbmodpv = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).cbccfl = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).cbhse = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).cbchoking = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output + Class1.pipeannulus(i, 1).cmbareachange
+
+            '                If Class1.pipeannulus(i, 1).cbhomo = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "2"
+            '                End If
+            '                output = output + Class1.pipeannulus(i, 1).cmbmf
+
+            '                For j As Integer = 2 To (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1) - 1
+            '                    If Class1.pipeannulus(i, j - 1).cbmodpv <> Class1.pipeannulus(i, j).cbmodpv Or Class1.pipeannulus(i, j - 1).cbccfl <> Class1.pipeannulus(i, j).cbccfl Or Class1.pipeannulus(i, j - 1).cbchoking <> Class1.pipeannulus(i, j).cbchoking Or Class1.pipeannulus(i, j - 1).cmbareachange <> Class1.pipeannulus(i, j).cmbareachange Or Class1.pipeannulus(i, j - 1).cbhomo <> Class1.pipeannulus(i, j).cbhomo Or Class1.pipeannulus(i, j - 1).cmbmf <> Class1.pipeannulus(i, j).cmbmf Or Class1.pipeannulus(i, j - 1).cbvsmnew <> Class1.pipeannulus(i, j).cbvsmnew Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        'output = output + Class1.pipeannulus[i, j].txtjaf + " " + Class1.pipeannulus[i, j].txtjar;
+            '                        If Class1.pipeannulus(i, j).cbmodpv = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+
+            '                        If Class1.pipeannulus(i, j).cbccfl = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+
+            '                        If Class1.pipeannulus(i, j).cbhse = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+
+            '                        If Class1.pipeannulus(i, j).cbchoking = "True" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+            '                        output = output + Class1.pipeannulus(i, j).cmbareachange
+
+            '                        If Class1.pipeannulus(i, j).cbhomo = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "2"
+            '                        End If
+            '                        output = output + Class1.pipeannulus(i, j).cmbmf
+
+
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.pipeannulus(i, j + 1).cbmodpv <> Class1.pipeannulus(i, j).cbmodpv Or Class1.pipeannulus(i, j + 1).cbccfl <> Class1.pipeannulus(i, j).cbccfl Or Class1.pipeannulus(i, j + 1).cbchoking <> Class1.pipeannulus(i, j).cbchoking Or Class1.pipeannulus(i, j + 1).cmbareachange <> Class1.pipeannulus(i, j).cmbareachange Or Class1.pipeannulus(i, j + 1).cbhomo <> Class1.pipeannulus(i, j).cbhomo Or Class1.pipeannulus(i, j + 1).cmbmf <> Class1.pipeannulus(i, j).cmbmf Or Class1.pipeannulus(i, j + 1).cbhse <> Class1.pipeannulus(i, j).cbhse) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+
+            '                If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 2).cbmodpv <> Class1.pipeannulus(i, 1).cbmodpv Or Class1.pipeannulus(i, 2).cbccfl <> Class1.pipeannulus(i, 1).cbccfl Or Class1.pipeannulus(i, 2).cbchoking <> Class1.pipeannulus(i, 1).cbchoking Or Class1.pipeannulus(i, 2).cmbareachange <> Class1.pipeannulus(i, 1).cmbareachange Or Class1.pipeannulus(i, 2).cbhomo <> Class1.pipeannulus(i, 1).cbhomo Or Class1.pipeannulus(i, 2).cmbmf <> Class1.pipeannulus(i, 1).cmbmf Or Class1.pipeannulus(i, 2).cbhse <> Class1.pipeannulus(i, 1).cbhse) Then
+            '                    output = output & " 1 "
+            '                End If
+
+
+            '                If Class1.pipeannulus(i, 1).cbmodpv <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbmodpv Or Class1.pipeannulus(i, 1).cbccfl <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbccfl Or Class1.pipeannulus(i, 1).cbchoking <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbchoking Or Class1.pipeannulus(i, 1).cmbareachange <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbareachange Or Class1.pipeannulus(i, 1).cbhomo <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhomo Or Class1.pipeannulus(i, 1).cmbmf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbmf Or Class1.pipeannulus(i, 1).cbhse <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhse Then
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbccfl = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhse = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbchoking = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbareachange
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhomo = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "2"
+            '                    End If
+
+            '                    output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbmf
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbccfl = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhse = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbchoking = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbareachange
+
+            '                    If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cbhomo = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "2"
+            '                    End If
+
+            '                    output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).cmbmf
+
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+            '                output = Class1.pipeannulus(i, 1).cmbhydroid + "1101 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' initial conditions ******************************************************************
+            '            kk = 0
+            '            kl = 0
+            '            output = Nothing
+            '            first1 = True
+
+            '            output = Class1.pipeannulus(i, 1).cmbfluid
+
+            '            If Class1.pipeannulus(i, 1).cbboron = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            output = output + Class1.pipeannulus(i, 1).cmbithstate & " "
+
+            '            If Class1.pipeannulus(i, 1).cmbithstate = "0" Then
+            '                output = (((output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtlsie & " ") + Class1.pipeannulus(i, 1).txtvsie & " ") + Class1.pipeannulus(i, 1).txtvvf & " " & "0.0"
+            '            ElseIf Class1.pipeannulus(i, 1).cmbithstate = "1" Then
+            '                output = (output + Class1.pipeannulus(i, 1).txtt & " ") + Class1.pipeannulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '            ElseIf Class1.pipeannulus(i, 1).cmbithstate = "2" Then
+            '                output = (output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '            ElseIf Class1.pipeannulus(i, 1).cmbithstate = "3" Then
+            '                output = (output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtt & " 0.0" & " 0.0" & " 0.0"
+            '            ElseIf Class1.pipeannulus(i, 1).cmbithstate = "4" Then
+
+            '                output = ((output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtt & " ") + Class1.pipeannulus(i, 1).txtsqeq & " 0.0" & " 0.0"
+            '            ElseIf Class1.pipeannulus(i, 1).cmbithstate = "5" Then
+            '                output = ((output + Class1.pipeannulus(i, 1).txtt & " ") + Class1.pipeannulus(i, 1).txtsq & " ") + Class1.pipeannulus(i, 1).txtncqeq & " 0.0" & " 0.0"
+            '            ElseIf Class1.pipeannulus(i, 1).cmbithstate = "6" Then
+            '                output = ((((output + Class1.pipeannulus(i, 1).txtpr & " ") + Class1.pipeannulus(i, 1).txtlsie & " ") + Class1.pipeannulus(i, 1).txtvsie & " ") + Class1.pipeannulus(i, 1).txtvvf & " ") + Class1.pipeannulus(i, 1).txtncq
+            '            End If
+
+            '            ' /000000000000000000000000000000000000000000000
+
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1
+            '                If Class1.pipeannulus(i, j - 1).cmbfluid <> Class1.pipeannulus(i, j).cmbfluid Or Class1.pipeannulus(i, j - 1).cbboron <> Class1.pipeannulus(i, j).cbboron Or Class1.pipeannulus(i, j - 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j - 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j - 1).txtt <> Class1.pipeannulus(i, j).txtt Or Class1.pipeannulus(i, j - 1).txtpr <> Class1.pipeannulus(i, j).txtpr Or Class1.pipeannulus(i, j - 1).txtvsie <> Class1.pipeannulus(i, j).txtvsie Or Class1.pipeannulus(i, j - 1).txtlsie <> Class1.pipeannulus(i, j).txtlsie Or Class1.pipeannulus(i, j - 1).txtvvf <> Class1.pipeannulus(i, j).txtvvf Or Class1.pipeannulus(i, j - 1).txtsqeq <> Class1.pipeannulus(i, j).txtsqeq Or Class1.pipeannulus(i, j - 1).txtncqeq <> Class1.pipeannulus(i, j).txtncqeq Or Class1.pipeannulus(i, j - 1).txtsq <> Class1.pipeannulus(i, j).txtsq Or Class1.pipeannulus(i, j - 1).txtqeq <> Class1.pipeannulus(i, j).txtqeq Or Class1.pipeannulus(i, j - 1).txtncq <> Class1.pipeannulus(i, j).txtncq Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.pipeannulus(i, j).cmbfluid
+
+            '                    If Class1.pipeannulus(i, j).cbboron = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    output = output + Class1.pipeannulus(i, j).cmbithstate & " "
+
+            '                    If Class1.pipeannulus(i, j).cmbithstate = "0" Then
+            '                        output = (((output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtlsie & " ") + Class1.pipeannulus(i, j).txtvsie & " ") + Class1.pipeannulus(i, j).txtvvf & " " & "0.0"
+            '                    ElseIf Class1.pipeannulus(i, j).cmbithstate = "1" Then
+            '                        output = (output + Class1.pipeannulus(i, j).txtt & " ") + Class1.pipeannulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '                    ElseIf Class1.pipeannulus(i, j).cmbithstate = "2" Then
+            '                        output = (output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '                    ElseIf Class1.pipeannulus(i, j).cmbithstate = "3" Then
+            '                        output = (output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtt & " 0.0" & " 0.0" & " 0.0"
+            '                    ElseIf Class1.pipeannulus(i, j).cmbithstate = "4" Then
+
+            '                        output = ((output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtt & " ") + Class1.pipeannulus(i, j).txtsqeq & " 0.0" & " 0.0"
+            '                    ElseIf Class1.pipeannulus(i, j).cmbithstate = "5" Then
+            '                        output = ((output + Class1.pipeannulus(i, j).txtt & " ") + Class1.pipeannulus(i, j).txtsq & " ") + Class1.pipeannulus(i, j).txtncqeq & " 0.0" & " 0.0"
+            '                    ElseIf Class1.pipeannulus(i, j).cmbithstate = "6" Then
+            '                        output = ((((output + Class1.pipeannulus(i, j).txtpr & " ") + Class1.pipeannulus(i, j).txtlsie & " ") + Class1.pipeannulus(i, j).txtvsie & " ") + Class1.pipeannulus(i, j).txtvvf & " ") + Class1.pipeannulus(i, j).txtncq
+            '                    End If
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+
+            '                    If (Class1.pipeannulus(i, j + 1).cmbfluid <> Class1.pipeannulus(i, j).cmbfluid Or Class1.pipeannulus(i, j + 1).cbboron <> Class1.pipeannulus(i, j).cbboron Or Class1.pipeannulus(i, j + 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j + 1).cmbithstate <> Class1.pipeannulus(i, j).cmbithstate Or Class1.pipeannulus(i, j + 1).txtt <> Class1.pipeannulus(i, j).txtt Or Class1.pipeannulus(i, j + 1).txtpr <> Class1.pipeannulus(i, j).txtpr Or Class1.pipeannulus(i, j + 1).txtvsie <> Class1.pipeannulus(i, j).txtvsie Or Class1.pipeannulus(i, j + 1).txtlsie <> Class1.pipeannulus(i, j).txtlsie Or Class1.pipeannulus(i, j + 1).txtvvf <> Class1.pipeannulus(i, j).txtvvf Or Class1.pipeannulus(i, j + 1).txtsqeq <> Class1.pipeannulus(i, j).txtsqeq Or Class1.pipeannulus(i, j + 1).txtncqeq <> Class1.pipeannulus(i, j).txtncqeq Or Class1.pipeannulus(i, j + 1).txtsq <> Class1.pipeannulus(i, j).txtsq Or Class1.pipeannulus(i, j + 1).txtqeq <> Class1.pipeannulus(i, j).txtqeq Or Class1.pipeannulus(i, j + 1).txtncq <> Class1.pipeannulus(i, j).txtncq) And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.pipeannulus(i, 1).txtnv = "2" AndAlso (Class1.pipeannulus(i, 1).cmbfluid <> Class1.pipeannulus(i, 2).cmbfluid Or Class1.pipeannulus(i, 1).cbboron <> Class1.pipeannulus(i, 2).cbboron Or Class1.pipeannulus(i, 1).cmbithstate <> Class1.pipeannulus(i, 2).cmbithstate Or Class1.pipeannulus(i, 1).cmbithstate <> Class1.pipeannulus(i, 2).cmbithstate Or Class1.pipeannulus(i, 1).txtt <> Class1.pipeannulus(i, 2).txtt Or Class1.pipeannulus(i, 1).txtpr <> Class1.pipeannulus(i, 2).txtpr Or Class1.pipeannulus(i, 1).txtvsie <> Class1.pipeannulus(i, 2).txtvsie Or Class1.pipeannulus(i, 1).txtlsie <> Class1.pipeannulus(i, 2).txtlsie Or Class1.pipeannulus(i, 1).txtvvf <> Class1.pipeannulus(i, 2).txtvvf Or Class1.pipeannulus(i, 1).txtsqeq <> Class1.pipeannulus(i, 2).txtsqeq Or Class1.pipeannulus(i, 1).txtncqeq <> Class1.pipeannulus(i, 2).txtncqeq Or Class1.pipeannulus(i, 1).txtsq <> Class1.pipeannulus(i, 2).txtsq Or Class1.pipeannulus(i, 1).txtqeq <> Class1.pipeannulus(i, 2).txtqeq Or Class1.pipeannulus(i, 1).txtncq <> Class1.pipeannulus(i, 2).txtncq) Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            '''/////////////////////////   
+            '            If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtqeq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtqeq Or Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq Then
+
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate & " "
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "0" Then
+            '                    output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " " & "0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "1" Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "2" Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "3" Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "4" Then
+
+            '                    output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "5" Then
+            '                    output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "6" Then
+            '                    output = ((((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq
+            '                End If
+
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+
+
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbfluid
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cbboron = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                output = output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate & " "
+
+            '                If Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "0" Then
+            '                    output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " " & "0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "1" Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "2" Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "3" Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "4" Then
+
+            '                    output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "5" Then
+            '                    output = ((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtt & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtsq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).cmbithstate = "6" Then
+            '                    output = ((((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtpr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtlsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvsie & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtvvf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv)).txtncq
+            '                End If
+
+
+            '                output = output & " " & Class1.pipeannulus(i, 1).txtnv.ToString()
+            '            End If
+
+
+            '            output = Class1.pipeannulus(i, 1).cmbhydroid + "1201 " & output
+            '            generate.WriteLine(output)
+
+
+            '            '  boron concentration  card ccc 2001 ccc2099
+
+            '            ' juction loss coeffient  1301  1399
+            '            If Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) >= 2 Then
+            '                generate.WriteLine(Class1.pipeannulus(i, 1).cmbhydroid + "1300 " + Class1.pipeannulus(i, 1).cmbvelmfr)
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = Class1.pipeannulus(i, 1).txtliq + " " + Class1.pipeannulus(i, 1).txtvap & " 0.0"
+            '                ' 1 ";
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
+            '                    If Class1.pipeannulus(i, j - 1).txtliq <> Class1.pipeannulus(i, j).txtliq Or Class1.pipeannulus(i, j - 1).txtvap <> Class1.pipeannulus(i, j).txtvap Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (output + Class1.pipeannulus(i, j).txtliq & " ") + Class1.pipeannulus(i, j).txtvap & " 0.0"
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.pipeannulus(i, j + 1).txtliq <> Class1.pipeannulus(i, j).txtliq Or Class1.pipeannulus(i, j + 1).txtvap <> Class1.pipeannulus(i, j).txtvap) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+
+            '                If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 2).txtliq <> Class1.pipeannulus(i, 1).txtliq Or Class1.pipeannulus(i, 2).txtvap <> Class1.pipeannulus(i, 1).txtvap) Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).txtliq <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtliq Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+
+            '                output = Class1.pipeannulus(i, 1).cmbhydroid + "1301 " & output
+            '                generate.WriteLine(output)
+
+            '                ' juction diameter and ccfl  1401 1499
+
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = ((Class1.pipeannulus(i, 1).txtdj + " " + Class1.pipeannulus(i, 1).txtfcf & " ") + Class1.pipeannulus(i, 1).txtgi & " ") + Class1.pipeannulus(i, 1).txtslope
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
+            '                    If Class1.pipeannulus(i, j - 1).txtdj <> Class1.pipeannulus(i, j).txtdj Or Class1.pipeannulus(i, j - 1).txtfcf <> Class1.pipeannulus(i, j).txtfcf Or Class1.pipeannulus(i, j - 1).txtgi <> Class1.pipeannulus(i, j).txtgi Or Class1.pipeannulus(i, j - 1).txtslope <> Class1.pipeannulus(i, j).txtslope Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (((output + Class1.pipeannulus(i, j).txtdj & " ") + Class1.pipeannulus(i, j).txtfcf & " ") + Class1.pipeannulus(i, j).txtgi & " ") + Class1.pipeannulus(i, j).txtslope
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.pipeannulus(i, j + 1).txtdj <> Class1.pipeannulus(i, j).txtdj Or Class1.pipeannulus(i, j + 1).txtfcf <> Class1.pipeannulus(i, j).txtfcf Or Class1.pipeannulus(i, j + 1).txtgi <> Class1.pipeannulus(i, j).txtgi Or Class1.pipeannulus(i, j + 1).txtslope <> Class1.pipeannulus(i, j).txtslope) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+
+            '                If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 1).txtdj <> Class1.pipeannulus(i, 2).txtdj Or Class1.pipeannulus(i, 1).txtfcf <> Class1.pipeannulus(i, 2).txtfcf Or Class1.pipeannulus(i, 1).txtgi <> Class1.pipeannulus(i, 2).txtgi Or Class1.pipeannulus(i, 1).txtslope <> Class1.pipeannulus(i, 2).txtslope) Then
+            '                    output = output & " 1 "
+            '                End If
+
+
+            '                If Class1.pipeannulus(i, 1).txtdj <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtdj Or Class1.pipeannulus(i, 1).txtfcf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtfcf Or Class1.pipeannulus(i, 1).txtgi <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtgi Or Class1.pipeannulus(i, 1).txtslope <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtslope Then
+            '                    'if (Class1.pipeannulus[i, 1].txtdj != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1].txtdj)
+            '                    output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+
+            '                output = Class1.pipeannulus(i, 1).cmbhydroid + "1401 " & output
+            '                generate.WriteLine(output)
+
+            '                ' juction form loss data 3001 3099
+
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = ((Class1.pipeannulus(i, 1).txtbf + " " + Class1.pipeannulus(i, 1).txtcf & " ") + Class1.pipeannulus(i, 1).txtbr & " ") + Class1.pipeannulus(i, 1).txtcr
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 2
+            '                    If Class1.pipeannulus(i, j - 1).txtbf <> Class1.pipeannulus(i, j).txtbf Or Class1.pipeannulus(i, j - 1).txtcf <> Class1.pipeannulus(i, j).txtcf Or Class1.pipeannulus(i, j - 1).txtbr <> Class1.pipeannulus(i, j).txtbr Or Class1.pipeannulus(i, j - 1).txtcr <> Class1.pipeannulus(i, j).txtcr Then
+            '                        'if (Class1.pipeannulus[i, j - 1].txtbf != Class1.pipeannulus[i, j].txtbf)
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (((output + Class1.pipeannulus(i, j).txtbf & " ") + Class1.pipeannulus(i, j).txtcf & " ") + Class1.pipeannulus(i, j).txtbr & " ") + Class1.pipeannulus(i, j).txtcr
+            '                        'output = output + Class1.pipeannulus[i, j].txtbf;
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.pipeannulus(i, j + 1).txtbf <> Class1.pipeannulus(i, j).txtbf Or Class1.pipeannulus(i, j + 1).txtcf <> Class1.pipeannulus(i, j).txtcf Or Class1.pipeannulus(i, j + 1).txtbr <> Class1.pipeannulus(i, j).txtbr Or Class1.pipeannulus(i, j + 1).txtcr <> Class1.pipeannulus(i, j).txtcr) And first1 = True Then
+            '                            'if (Class1.pipeannulus[i, j].txtbf != Class1.pipeannulus[i, j + 1].txtbf & first1 == true)
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+
+            '                    End If
+            '                Next
+
+            '                If Class1.pipeannulus(i, 1).txtnv = "3" AndAlso (Class1.pipeannulus(i, 2).txtbf <> Class1.pipeannulus(i, 1).txtbf Or Class1.pipeannulus(i, 2).txtcf <> Class1.pipeannulus(i, 1).txtcf Or Class1.pipeannulus(i, 2).txtbr <> Class1.pipeannulus(i, 1).txtbr Or Class1.pipeannulus(i, 2).txtcr <> Class1.pipeannulus(i, 1).txtcr) Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.pipeannulus(i, 1).txtbf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbf Or Class1.pipeannulus(i, 1).txtcf <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcf Or Class1.pipeannulus(i, 1).txtbr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbr Or Class1.pipeannulus(i, 1).txtcr <> Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcr Then
+            '                    ' if (Class1.pipeannulus[i, 1].txtbf != Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1].txtbf)
+            '                    output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                    'output = output + Class1.pipeannulus[i, Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1].txtbf + " " +(Convert.ToInt32(Class1.pipeannulus[i, 1].txtnv)-1).ToString ();
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (((output + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.pipeannulus(i, Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.pipeannulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+            '                output = Class1.pipeannulus(i, 1).cmbhydroid + "3001 " & output
+            '                generate.WriteLine(output)
+
+            '                '***************************  
+            '            End If
+            '        End If
+            '    Next
+
+
+            '    ' annulus
+
+            '    ' Copied from *******  PIPE code latest:
+
+            '    ' &&&&&&&&&&&&&&&&&&&&&***********************&&&&&&&&&&&&&&&&&
+            '    For i As Integer = 0 To 99
+            '        If Class1.annulus(i, 1).gbname IsNot Nothing Then
+            '            Class1.annulus(i, 1).cmbhydroid = Class1.annulus(i, 1).gbname.Substring(10, 3).ToString()
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component ANNULUS " + Class1.annulus(i, 1).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0000 " + Class1.annulus(i, 1).txtname & " annulus"
+            '            generate.WriteLine(output)
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0001 " + Class1.annulus(i, 1).txtnv
+            '            generate.WriteLine(output)
+            '            output = Nothing
+
+            '            ' card X coordinate Volume Flow Area    101
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = output + Class1.annulus(i, 1).txtvfa
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvfa <> Class1.annulus(i, j).txtvfa Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).txtvfa
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.annulus(i, j).txtvfa <> Class1.annulus(i, j + 1).txtvfa And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvfa <> Class1.annulus(i, 2).txtvfa Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvfa <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvfa Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvfa & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvfa & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+            '            '
+            '            '                        output = output + Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvfa;
+            '            '                        kl = Convert.ToInt32(Class1.annulus[i, 1].txtnv) - kk;
+            '            '                        output = output + " " + kl.ToString();
+            '            '
+            '            '                        
+
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0101 " & output
+            '            generate.WriteLine(output)
+            '            first1 = True
+
+            '            ''' junction flow area 
+            '            If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
+
+            '                kl = 0
+            '                kk = 0
+            '                output = Nothing
+            '                output = Class1.annulus(i, 1).txtjfa
+            '                ' 1 ";
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
+
+
+            '                    If Class1.annulus(i, j - 1).txtjfa <> Class1.annulus(i, j).txtjfa Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.annulus(i, j).txtjfa
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.annulus(i, j).txtjfa <> Class1.annulus(i, j + 1).txtjfa And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.annulus(i, 1).txtnv = "3" AndAlso Class1.annulus(i, 1).txtjfa <> Class1.annulus(i, 2).txtjfa Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.annulus(i, 1).txtjfa <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjfa Then
+            '                    output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjfa & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+            '                output = Class1.annulus(i, 1).cmbhydroid + "0201 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' card X coordinate Volume Length
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.annulus(i, 1).txtvl
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvl <> Class1.annulus(i, j).txtvl Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).txtvl
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.annulus(i, j).txtvl <> Class1.annulus(i, j + 1).txtvl And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvl <> Class1.annulus(i, 2).txtvl Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvl <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvl Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvl & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvl & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0301 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume volume
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.annulus(i, 1).txtvv
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvv <> Class1.annulus(i, j).txtvv Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).txtvv
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.annulus(i, j).txtvv <> Class1.annulus(i, j + 1).txtvv And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvv <> Class1.annulus(i, 2).txtvv Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvv <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvv Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvv & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvv & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0401 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume azimuthal angle
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.annulus(i, 1).txtvaa
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvaa <> Class1.annulus(i, j).txtvaa Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).txtvaa
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.annulus(i, j).txtvaa <> Class1.annulus(i, j + 1).txtvaa And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvaa <> Class1.annulus(i, 2).txtvaa Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvaa <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvaa Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvaa & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvaa & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0501 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume vertical angle
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.annulus(i, 1).txtvva
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvva <> Class1.annulus(i, j).txtvva Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).txtvva
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.annulus(i, j).txtvva <> Class1.annulus(i, j + 1).txtvva And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvva <> Class1.annulus(i, 2).txtvva Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvva <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvva Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvva & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+            '            ' output = output + Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvva + " " + Class1.annulus[i, 1].txtnv.ToString();
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0601 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate Volume elevation change
+
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.annulus(i, 1).txtvec
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvec <> Class1.annulus(i, j).txtvec Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).txtvec
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.annulus(i, j).txtvec <> Class1.annulus(i, j + 1).txtvec And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvec <> Class1.annulus(i, 2).txtvec Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvec <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvec Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvec & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvec & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0701 " & output
+            '            generate.WriteLine(output)
+
+            '            ' card X coordinate wall roughness
+            '            ' if (Class1.annulus[i, j - 1].txtvwr != Class1.annulus[i, j].txtvwr | Class1.annulus[i, j - 1].txtvhd != Class1.annulus[i, j].txtvhd )
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = Class1.annulus(i, 1).txtvwr + " " + Class1.annulus(i, 1).txtvhd
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+
+
+            '                If Class1.annulus(i, j - 1).txtvwr <> Class1.annulus(i, j).txtvwr Or Class1.annulus(i, j - 1).txtvhd <> Class1.annulus(i, j).txtvhd Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    ' output = output + Class1.annulus[i, j].txtvwr;
+            '                    output = (output + Class1.annulus(i, j).txtvwr & " ") + Class1.annulus(i, j).txtvhd
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If (Class1.annulus(i, j + 1).txtvwr <> Class1.annulus(i, j).txtvwr Or Class1.annulus(i, j + 1).txtvhd <> Class1.annulus(i, j).txtvhd) And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+            '            'if (Class1.annulus[i,  1].txtvwr != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvwr | Class1.annulus[i,  1].txtvhd != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)].txtvhd)
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso Class1.annulus(i, 1).txtvwr <> Class1.annulus(i, 2).txtvwr OrElse Class1.annulus(i, 1).txtvhd <> Class1.annulus(i, 2).txtvhd Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.annulus(i, 1).txtvwr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvwr Or Class1.annulus(i, 1).txtvhd <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvhd Then
+            '                output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvwr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvhd & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvwr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvhd & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+
+            '            output = Class1.annulus(i, 1).cmbhydroid + "0801 " & output
+            '            generate.WriteLine(output)
+
+            '            first1 = True
+            '            ' juction loss coeffient
+            '            If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = Class1.annulus(i, 1).txtjaf + " " + Class1.annulus(i, 1).txtjar
+            '                ' 1 ";
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
+
+
+            '                    If Class1.annulus(i, j - 1).txtjaf <> Class1.annulus(i, j).txtjaf Or Class1.annulus(i, j - 1).txtjar <> Class1.annulus(i, j).txtjar Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (output + Class1.annulus(i, j).txtjaf & " ") + Class1.annulus(i, j).txtjar
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.annulus(i, j).txtjaf <> Class1.annulus(i, j + 1).txtjaf Or Class1.annulus(i, j).txtjar <> Class1.annulus(i, j + 1).txtjar) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+            '                If Class1.annulus(i, 1).txtnv = "3" AndAlso Class1.annulus(i, 1).txtjaf <> Class1.annulus(i, 2).txtjaf OrElse Class1.annulus(i, 1).txtjar <> Class1.annulus(i, 2).txtjar Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.annulus(i, 1).txtjaf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf Or Class1.annulus(i, 1).txtjar <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjar Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtjaf & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+
+            '                output = Class1.annulus(i, 1).cmbhydroid + "0901 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+
+            '            ' x-coordinate controol cards cards ccc1001-ccc1099
+
+
+
+
+            '            kk = 0
+            '            kl = 0
+            '            first1 = True
+            '            output = Nothing
+            '            If Class1.annulus(i, 1).cbtftm = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.annulus(i, 1).cbcbmltm = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.annulus(i, 1).cbwps = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            If Class1.annulus(i, 1).cbvsmnew = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.annulus(i, 1).cmbifnew = "0" Then
+            '                output = output & "0"
+            '            ElseIf Class1.annulus(i, 1).cmbifnew = "1" Then
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.annulus(i, 1).cbwf = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.annulus(i, 1).cbneqb = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+            '                If Class1.annulus(i, j - 1).cbtftm <> Class1.annulus(i, j).cbtftm Or Class1.annulus(i, j - 1).cbcbmltm <> Class1.annulus(i, j).cbcbmltm Or Class1.annulus(i, j - 1).cbwps <> Class1.annulus(i, j).cbwps Or Class1.annulus(i, j - 1).cbvsmnew <> Class1.annulus(i, j).cbvsmnew Or Class1.annulus(i, j - 1).cmbifnew <> Class1.annulus(i, j).cmbifnew Or Class1.annulus(i, j - 1).cbwf <> Class1.annulus(i, j).cbwf Or Class1.annulus(i, j - 1).cbneqb <> Class1.annulus(i, j).cbneqb Then
+
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+            '                    'output = output + Class1.annulus[i, j].txtjaf + " " + Class1.annulus[i, j].txtjar;
+
+            '                    If Class1.annulus(i, j).cbtftm = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, j).cbcbmltm = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, j).cbwps = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+            '                    If Class1.annulus(i, j).cbvsmnew = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+            '                    If Class1.annulus(i, j).cmbifnew = "0" Then
+            '                        output = output & "0"
+            '                    ElseIf Class1.annulus(i, j).cmbifnew = "1" Then
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, j).cbwf = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, j).cbneqb = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If (Class1.annulus(i, j + 1).cbtftm <> Class1.annulus(i, j).cbtftm Or Class1.annulus(i, j + 1).cbcbmltm <> Class1.annulus(i, j).cbcbmltm Or Class1.annulus(i, j + 1).cbwps <> Class1.annulus(i, j).cbwps Or Class1.annulus(i, j + 1).cbvsmnew <> Class1.annulus(i, j).cbvsmnew Or Class1.annulus(i, j + 1).cmbifnew <> Class1.annulus(i, j).cmbifnew Or Class1.annulus(i, j + 1).cbwf <> Class1.annulus(i, j).cbwf Or Class1.annulus(i, j + 1).cbneqb <> Class1.annulus(i, j).cbneqb) And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+
+
+
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso (Class1.annulus(i, 1).cbtftm <> Class1.annulus(i, 2).cbtftm Or Class1.annulus(i, 1).cbcbmltm <> Class1.annulus(i, 2).cbcbmltm Or Class1.annulus(i, 1).cbwps <> Class1.annulus(i, 2).cbwps Or Class1.annulus(i, 1).cbvsmnew <> Class1.annulus(i, 2).cbvsmnew Or Class1.annulus(i, 1).cmbifnew <> Class1.annulus(i, 2).cmbifnew Or Class1.annulus(i, 1).cbwf <> Class1.annulus(i, 2).cbwf Or Class1.annulus(i, 1).cbneqb <> Class1.annulus(i, 2).cbneqb) Then
+            '                output = output & " 1 "
+            '            End If
+
+
+            '            If Class1.annulus(i, 1).cbtftm <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbtftm Or Class1.annulus(i, 1).cbcbmltm <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbcbmltm Or Class1.annulus(i, 1).cbwps <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwps Or Class1.annulus(i, 1).cbvsmnew <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbvsmnew Or Class1.annulus(i, 1).cmbifnew <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew Or Class1.annulus(i, 1).cbwf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwf Or Class1.annulus(i, 1).cbneqb <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbneqb Then
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbtftm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbcbmltm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwps = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbvsmnew = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "0" Then
+            '                    output = output & "0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "1" Then
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwf = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbneqb = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+
+
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbtftm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbcbmltm = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwps = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbvsmnew = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "0" Then
+            '                    output = output & "0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbifnew = "1" Then
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbwf = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbneqb = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+
+            '            output = Class1.annulus(i, 1).cmbhydroid + "1001 " & output
+            '            generate.WriteLine(output)
+
+            '            ' juction control flages @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            '            If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
+            '                kk = 0
+            '                kl = 0
+            '                output = Nothing
+            '                first1 = True
+
+            '                If Class1.annulus(i, 1).cbmodpv = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, 1).cbccfl = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, 1).cbhse = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.annulus(i, 1).cbchoking = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output + Class1.annulus(i, 1).cmbareachange
+
+            '                If Class1.annulus(i, 1).cbhomo = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "2"
+            '                End If
+            '                output = output + Class1.annulus(i, 1).cmbmf
+
+            '                For j As Integer = 2 To (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1) - 1
+            '                    If Class1.annulus(i, j - 1).cbmodpv <> Class1.annulus(i, j).cbmodpv Or Class1.annulus(i, j - 1).cbccfl <> Class1.annulus(i, j).cbccfl Or Class1.annulus(i, j - 1).cbchoking <> Class1.annulus(i, j).cbchoking Or Class1.annulus(i, j - 1).cmbareachange <> Class1.annulus(i, j).cmbareachange Or Class1.annulus(i, j - 1).cbhomo <> Class1.annulus(i, j).cbhomo Or Class1.annulus(i, j - 1).cmbmf <> Class1.annulus(i, j).cmbmf Or Class1.annulus(i, j - 1).cbvsmnew <> Class1.annulus(i, j).cbvsmnew Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        'output = output + Class1.annulus[i, j].txtjaf + " " + Class1.annulus[i, j].txtjar;
+            '                        If Class1.annulus(i, j).cbmodpv = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+
+            '                        If Class1.annulus(i, j).cbccfl = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+
+            '                        If Class1.annulus(i, j).cbhse = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+
+            '                        If Class1.annulus(i, j).cbchoking = "True" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "1"
+            '                        End If
+            '                        output = output + Class1.annulus(i, j).cmbareachange
+
+            '                        If Class1.annulus(i, j).cbhomo = "False" Then
+            '                            output = output & "0"
+            '                        Else
+            '                            output = output & "2"
+            '                        End If
+            '                        output = output + Class1.annulus(i, j).cmbmf
+
+
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.annulus(i, j + 1).cbmodpv <> Class1.annulus(i, j).cbmodpv Or Class1.annulus(i, j + 1).cbccfl <> Class1.annulus(i, j).cbccfl Or Class1.annulus(i, j + 1).cbchoking <> Class1.annulus(i, j).cbchoking Or Class1.annulus(i, j + 1).cmbareachange <> Class1.annulus(i, j).cmbareachange Or Class1.annulus(i, j + 1).cbhomo <> Class1.annulus(i, j).cbhomo Or Class1.annulus(i, j + 1).cmbmf <> Class1.annulus(i, j).cmbmf Or Class1.annulus(i, j + 1).cbhse <> Class1.annulus(i, j).cbhse) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+
+            '                If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 2).cbmodpv <> Class1.annulus(i, 1).cbmodpv Or Class1.annulus(i, 2).cbccfl <> Class1.annulus(i, 1).cbccfl Or Class1.annulus(i, 2).cbchoking <> Class1.annulus(i, 1).cbchoking Or Class1.annulus(i, 2).cmbareachange <> Class1.annulus(i, 1).cmbareachange Or Class1.annulus(i, 2).cbhomo <> Class1.annulus(i, 1).cbhomo Or Class1.annulus(i, 2).cmbmf <> Class1.annulus(i, 1).cmbmf Or Class1.annulus(i, 2).cbhse <> Class1.annulus(i, 1).cbhse) Then
+            '                    output = output & " 1 "
+            '                End If
+
+
+            '                If Class1.annulus(i, 1).cbmodpv <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbmodpv Or Class1.annulus(i, 1).cbccfl <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbccfl Or Class1.annulus(i, 1).cbchoking <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbchoking Or Class1.annulus(i, 1).cmbareachange <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbareachange Or Class1.annulus(i, 1).cbhomo <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhomo Or Class1.annulus(i, 1).cmbmf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbmf Or Class1.annulus(i, 1).cbhse <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhse Then
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbccfl = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhse = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbchoking = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbareachange
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhomo = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "2"
+            '                    End If
+
+            '                    output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbmf
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbmodpv = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbccfl = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhse = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbchoking = "True" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbareachange
+
+            '                    If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cbhomo = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "2"
+            '                    End If
+
+            '                    output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).cmbmf
+
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+            '                output = Class1.annulus(i, 1).cmbhydroid + "1101 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' initial conditions ******************************************************************
+            '            kk = 0
+            '            kl = 0
+            '            output = Nothing
+            '            first1 = True
+
+            '            output = Class1.annulus(i, 1).cmbfluid
+
+            '            If Class1.annulus(i, 1).cbboron = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            output = output + Class1.annulus(i, 1).cmbithstate & " "
+
+            '            If Class1.annulus(i, 1).cmbithstate = "0" Then
+            '                output = (((output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtlsie & " ") + Class1.annulus(i, 1).txtvsie & " ") + Class1.annulus(i, 1).txtvvf & " " & "0.0"
+            '            ElseIf Class1.annulus(i, 1).cmbithstate = "1" Then
+            '                output = (output + Class1.annulus(i, 1).txtt & " ") + Class1.annulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '            ElseIf Class1.annulus(i, 1).cmbithstate = "2" Then
+            '                output = (output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '            ElseIf Class1.annulus(i, 1).cmbithstate = "3" Then
+            '                output = (output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtt & " 0.0" & " 0.0" & " 0.0"
+            '            ElseIf Class1.annulus(i, 1).cmbithstate = "4" Then
+
+            '                output = ((output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtt & " ") + Class1.annulus(i, 1).txtsqeq & " 0.0" & " 0.0"
+            '            ElseIf Class1.annulus(i, 1).cmbithstate = "5" Then
+            '                output = ((output + Class1.annulus(i, 1).txtt & " ") + Class1.annulus(i, 1).txtsq & " ") + Class1.annulus(i, 1).txtncqeq & " 0.0" & " 0.0"
+            '            ElseIf Class1.annulus(i, 1).cmbithstate = "6" Then
+            '                output = ((((output + Class1.annulus(i, 1).txtpr & " ") + Class1.annulus(i, 1).txtlsie & " ") + Class1.annulus(i, 1).txtvsie & " ") + Class1.annulus(i, 1).txtvvf & " ") + Class1.annulus(i, 1).txtncq
+            '            End If
+
+            '            ' /000000000000000000000000000000000000000000000
+
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1
+            '                If Class1.annulus(i, j - 1).cmbfluid <> Class1.annulus(i, j).cmbfluid Or Class1.annulus(i, j - 1).cbboron <> Class1.annulus(i, j).cbboron Or Class1.annulus(i, j - 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j - 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j - 1).txtt <> Class1.annulus(i, j).txtt Or Class1.annulus(i, j - 1).txtpr <> Class1.annulus(i, j).txtpr Or Class1.annulus(i, j - 1).txtvsie <> Class1.annulus(i, j).txtvsie Or Class1.annulus(i, j - 1).txtlsie <> Class1.annulus(i, j).txtlsie Or Class1.annulus(i, j - 1).txtvvf <> Class1.annulus(i, j).txtvvf Or Class1.annulus(i, j - 1).txtsqeq <> Class1.annulus(i, j).txtsqeq Or Class1.annulus(i, j - 1).txtncqeq <> Class1.annulus(i, j).txtncqeq Or Class1.annulus(i, j - 1).txtsq <> Class1.annulus(i, j).txtsq Or Class1.annulus(i, j - 1).txtqeq <> Class1.annulus(i, j).txtqeq Or Class1.annulus(i, j - 1).txtncq <> Class1.annulus(i, j).txtncq Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = output + Class1.annulus(i, j).cmbfluid
+
+            '                    If Class1.annulus(i, j).cbboron = "False" Then
+            '                        output = output & "0"
+            '                    Else
+            '                        output = output & "1"
+            '                    End If
+
+            '                    output = output + Class1.annulus(i, j).cmbithstate & " "
+
+            '                    If Class1.annulus(i, j).cmbithstate = "0" Then
+            '                        output = (((output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtlsie & " ") + Class1.annulus(i, j).txtvsie & " ") + Class1.annulus(i, j).txtvvf & " " & "0.0"
+            '                    ElseIf Class1.annulus(i, j).cmbithstate = "1" Then
+            '                        output = (output + Class1.annulus(i, j).txtt & " ") + Class1.annulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '                    ElseIf Class1.annulus(i, j).cmbithstate = "2" Then
+            '                        output = (output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '                    ElseIf Class1.annulus(i, j).cmbithstate = "3" Then
+            '                        output = (output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtt & " 0.0" & " 0.0" & " 0.0"
+            '                    ElseIf Class1.annulus(i, j).cmbithstate = "4" Then
+
+            '                        output = ((output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtt & " ") + Class1.annulus(i, j).txtsqeq & " 0.0" & " 0.0"
+            '                    ElseIf Class1.annulus(i, j).cmbithstate = "5" Then
+            '                        output = ((output + Class1.annulus(i, j).txtt & " ") + Class1.annulus(i, j).txtsq & " ") + Class1.annulus(i, j).txtncqeq & " 0.0" & " 0.0"
+            '                    ElseIf Class1.annulus(i, j).cmbithstate = "6" Then
+            '                        output = ((((output + Class1.annulus(i, j).txtpr & " ") + Class1.annulus(i, j).txtlsie & " ") + Class1.annulus(i, j).txtvsie & " ") + Class1.annulus(i, j).txtvvf & " ") + Class1.annulus(i, j).txtncq
+            '                    End If
+            '                    kl = j
+            '                    ' -kk;
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+
+            '                    If (Class1.annulus(i, j + 1).cmbfluid <> Class1.annulus(i, j).cmbfluid Or Class1.annulus(i, j + 1).cbboron <> Class1.annulus(i, j).cbboron Or Class1.annulus(i, j + 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j + 1).cmbithstate <> Class1.annulus(i, j).cmbithstate Or Class1.annulus(i, j + 1).txtt <> Class1.annulus(i, j).txtt Or Class1.annulus(i, j + 1).txtpr <> Class1.annulus(i, j).txtpr Or Class1.annulus(i, j + 1).txtvsie <> Class1.annulus(i, j).txtvsie Or Class1.annulus(i, j + 1).txtlsie <> Class1.annulus(i, j).txtlsie Or Class1.annulus(i, j + 1).txtvvf <> Class1.annulus(i, j).txtvvf Or Class1.annulus(i, j + 1).txtsqeq <> Class1.annulus(i, j).txtsqeq Or Class1.annulus(i, j + 1).txtncqeq <> Class1.annulus(i, j).txtncqeq Or Class1.annulus(i, j + 1).txtsq <> Class1.annulus(i, j).txtsq Or Class1.annulus(i, j + 1).txtqeq <> Class1.annulus(i, j).txtqeq Or Class1.annulus(i, j + 1).txtncq <> Class1.annulus(i, j).txtncq) And first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.annulus(i, 1).txtnv = "2" AndAlso (Class1.annulus(i, 1).cmbfluid <> Class1.annulus(i, 2).cmbfluid Or Class1.annulus(i, 1).cbboron <> Class1.annulus(i, 2).cbboron Or Class1.annulus(i, 1).cmbithstate <> Class1.annulus(i, 2).cmbithstate Or Class1.annulus(i, 1).cmbithstate <> Class1.annulus(i, 2).cmbithstate Or Class1.annulus(i, 1).txtt <> Class1.annulus(i, 2).txtt Or Class1.annulus(i, 1).txtpr <> Class1.annulus(i, 2).txtpr Or Class1.annulus(i, 1).txtvsie <> Class1.annulus(i, 2).txtvsie Or Class1.annulus(i, 1).txtlsie <> Class1.annulus(i, 2).txtlsie Or Class1.annulus(i, 1).txtvvf <> Class1.annulus(i, 2).txtvvf Or Class1.annulus(i, 1).txtsqeq <> Class1.annulus(i, 2).txtsqeq Or Class1.annulus(i, 1).txtncqeq <> Class1.annulus(i, 2).txtncqeq Or Class1.annulus(i, 1).txtsq <> Class1.annulus(i, 2).txtsq Or Class1.annulus(i, 1).txtqeq <> Class1.annulus(i, 2).txtqeq Or Class1.annulus(i, 1).txtncq <> Class1.annulus(i, 2).txtncq) Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            '''/////////////////////////   
+            '            If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtqeq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtqeq Or Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq Then
+
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate & " "
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "0" Then
+            '                    output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " " & "0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "1" Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "2" Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "3" Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "4" Then
+
+            '                    output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "5" Then
+            '                    output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "6" Then
+            '                    output = ((((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq
+            '                End If
+
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+
+
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            ElseIf first1 = False Then
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbfluid
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cbboron = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                output = output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate & " "
+
+            '                If Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "0" Then
+            '                    output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " " & "0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "1" Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "2" Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0" & " 0.0"
+
+
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "3" Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " 0.0" & " 0.0" & " 0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "4" Then
+
+            '                    output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "5" Then
+            '                    output = ((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtt & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtsq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncqeq & " 0.0" & " 0.0"
+            '                ElseIf Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).cmbithstate = "6" Then
+            '                    output = ((((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtpr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtlsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvsie & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtvvf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv)).txtncq
+            '                End If
+
+
+            '                output = output & " " & Class1.annulus(i, 1).txtnv.ToString()
+            '            End If
+
+
+            '            output = Class1.annulus(i, 1).cmbhydroid + "1201 " & output
+            '            generate.WriteLine(output)
+
+
+            '            '  boron concentration  card ccc 2001 ccc2099
+
+            '            ' juction loss coeffient  1301  1399
+            '            If Convert.ToInt32(Class1.annulus(i, 1).txtnv) >= 2 Then
+            '                generate.WriteLine(Class1.annulus(i, 1).cmbhydroid + "1300 " + Class1.annulus(i, 1).cmbvelmfr)
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = Class1.annulus(i, 1).txtliq + " " + Class1.annulus(i, 1).txtvap & " 0.0"
+            '                ' 1 ";
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
+            '                    If Class1.annulus(i, j - 1).txtliq <> Class1.annulus(i, j).txtliq Or Class1.annulus(i, j - 1).txtvap <> Class1.annulus(i, j).txtvap Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (output + Class1.annulus(i, j).txtliq & " ") + Class1.annulus(i, j).txtvap & " 0.0"
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.annulus(i, j + 1).txtliq <> Class1.annulus(i, j).txtliq Or Class1.annulus(i, j + 1).txtvap <> Class1.annulus(i, j).txtvap) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+
+            '                If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 2).txtliq <> Class1.annulus(i, 1).txtliq Or Class1.annulus(i, 2).txtvap <> Class1.annulus(i, 1).txtvap) Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.annulus(i, 1).txtliq <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtliq Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtliq & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtvap & " 0.0" & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+
+            '                output = Class1.annulus(i, 1).cmbhydroid + "1301 " & output
+            '                generate.WriteLine(output)
+
+            '                ' juction diameter and ccfl  1401 1499
+
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = ((Class1.annulus(i, 1).txtdj + " " + Class1.annulus(i, 1).txtfcf & " ") + Class1.annulus(i, 1).txtgi & " ") + Class1.annulus(i, 1).txtslope
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
+            '                    If Class1.annulus(i, j - 1).txtdj <> Class1.annulus(i, j).txtdj Or Class1.annulus(i, j - 1).txtfcf <> Class1.annulus(i, j).txtfcf Or Class1.annulus(i, j - 1).txtgi <> Class1.annulus(i, j).txtgi Or Class1.annulus(i, j - 1).txtslope <> Class1.annulus(i, j).txtslope Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (((output + Class1.annulus(i, j).txtdj & " ") + Class1.annulus(i, j).txtfcf & " ") + Class1.annulus(i, j).txtgi & " ") + Class1.annulus(i, j).txtslope
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.annulus(i, j + 1).txtdj <> Class1.annulus(i, j).txtdj Or Class1.annulus(i, j + 1).txtfcf <> Class1.annulus(i, j).txtfcf Or Class1.annulus(i, j + 1).txtgi <> Class1.annulus(i, j).txtgi Or Class1.annulus(i, j + 1).txtslope <> Class1.annulus(i, j).txtslope) And first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+            '                    End If
+            '                Next
+
+            '                If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 1).txtdj <> Class1.annulus(i, 2).txtdj Or Class1.annulus(i, 1).txtfcf <> Class1.annulus(i, 2).txtfcf Or Class1.annulus(i, 1).txtgi <> Class1.annulus(i, 2).txtgi Or Class1.annulus(i, 1).txtslope <> Class1.annulus(i, 2).txtslope) Then
+            '                    output = output & " 1 "
+            '                End If
+
+
+            '                If Class1.annulus(i, 1).txtdj <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtdj Or Class1.annulus(i, 1).txtfcf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtfcf Or Class1.annulus(i, 1).txtgi <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtgi Or Class1.annulus(i, 1).txtslope <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtslope Then
+            '                    'if (Class1.annulus[i, 1].txtdj != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1].txtdj)
+            '                    output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtdj & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtfcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtgi & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtslope & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+
+            '                output = Class1.annulus(i, 1).cmbhydroid + "1401 " & output
+            '                generate.WriteLine(output)
+
+            '                ' juction form loss data 3001 3099
+
+
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = ((Class1.annulus(i, 1).txtbf + " " + Class1.annulus(i, 1).txtcf & " ") + Class1.annulus(i, 1).txtbr & " ") + Class1.annulus(i, 1).txtcr
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 2
+            '                    If Class1.annulus(i, j - 1).txtbf <> Class1.annulus(i, j).txtbf Or Class1.annulus(i, j - 1).txtcf <> Class1.annulus(i, j).txtcf Or Class1.annulus(i, j - 1).txtbr <> Class1.annulus(i, j).txtbr Or Class1.annulus(i, j - 1).txtcr <> Class1.annulus(i, j).txtcr Then
+            '                        'if (Class1.annulus[i, j - 1].txtbf != Class1.annulus[i, j].txtbf)
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = (((output + Class1.annulus(i, j).txtbf & " ") + Class1.annulus(i, j).txtcf & " ") + Class1.annulus(i, j).txtbr & " ") + Class1.annulus(i, j).txtcr
+            '                        'output = output + Class1.annulus[i, j].txtbf;
+            '                        kl = j
+            '                        ' -kk;
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If (Class1.annulus(i, j + 1).txtbf <> Class1.annulus(i, j).txtbf Or Class1.annulus(i, j + 1).txtcf <> Class1.annulus(i, j).txtcf Or Class1.annulus(i, j + 1).txtbr <> Class1.annulus(i, j).txtbr Or Class1.annulus(i, j + 1).txtcr <> Class1.annulus(i, j).txtcr) And first1 = True Then
+            '                            'if (Class1.annulus[i, j].txtbf != Class1.annulus[i, j + 1].txtbf & first1 == true)
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+
+
+            '                    End If
+            '                Next
+
+            '                If Class1.annulus(i, 1).txtnv = "3" AndAlso (Class1.annulus(i, 2).txtbf <> Class1.annulus(i, 1).txtbf Or Class1.annulus(i, 2).txtcf <> Class1.annulus(i, 1).txtcf Or Class1.annulus(i, 2).txtbr <> Class1.annulus(i, 1).txtbr Or Class1.annulus(i, 2).txtcr <> Class1.annulus(i, 1).txtcr) Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.annulus(i, 1).txtbf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbf Or Class1.annulus(i, 1).txtcf <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcf Or Class1.annulus(i, 1).txtbr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbr Or Class1.annulus(i, 1).txtcr <> Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcr Then
+            '                    ' if (Class1.annulus[i, 1].txtbf != Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1].txtbf)
+            '                    output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                    'output = output + Class1.annulus[i, Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1].txtbf + " " +(Convert.ToInt32(Class1.annulus[i, 1].txtnv)-1).ToString ();
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = (((output + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcf & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtbr & " ") + Class1.annulus(i, Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).txtcr & " " & (Convert.ToInt32(Class1.annulus(i, 1).txtnv) - 1).ToString()
+            '                End If
+            '                output = Class1.annulus(i, 1).cmbhydroid + "3001 " & output
+            '                generate.WriteLine(output)
+
+            '                '***************************  
+            '            End If
+            '        End If
+            '    Next
+
+
+
+
+
+
+            '    ' valve
+
+            '    For i As Integer = 0 To 99
+            '        If Class1.valve(i).gbname IsNot Nothing Then
+            '            Class1.valve(i).cmbhydroid = Class1.valve(i).gbname.Substring(10, 3).ToString()
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component Valve " + Class1.valve(i).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+
+
+            '            output = Class1.valve(i).cmbhydroid + "0000 " + Class1.valve(i).txtname & " valve"
+            '            generate.WriteLine(output)
+            '            output = Class1.valve(i).cmbhydroid + "0101 " + Class1.valve(i).txtfromid
+
+
+
+            '            If Convert.ToInt32(Class1.valve(i).txtfromnv) <= 9 Then
+            '                Class1.valve(i).txtfromnv = "0" & Convert.ToInt32(Class1.valve(i).txtfromnv).ToString()
+            '            ElseIf Convert.ToInt32(Class1.valve(i).txtfromnv) > 9 Then
+            '                Class1.valve(i).txtfromnv = Convert.ToInt32(Class1.valve(i).txtfromnv).ToString()
+            '            End If
+
+
+            '            If Convert.ToBoolean(Class1.valve(i).cbformatfrom) = False Then
+            '                output = (output & "0") + Class1.valve(i).cmbconsidefrom & "0000" & " "
+            '            Else
+            '                If Class1.valve(i).cmbconsidefrom = "0" AndAlso Class1.valve(i).cmbconfacexfrom = "0" Then
+            '                    output = output + Class1.valve(i).txtfromnv & "0001" & " "
+            '                ElseIf Class1.valve(i).cmbconsidefrom = "1" AndAlso Class1.valve(i).cmbconfacexfrom = "0" Then
+            '                    output = output + Class1.valve(i).txtfromnv & "0002" & " "
+            '                ElseIf Class1.valve(i).cmbconsidefrom = "0" AndAlso Class1.valve(i).cmbconfacexfrom = "1" Then
+            '                    output = output + Class1.valve(i).txtfromnv & "0003" & " "
+            '                ElseIf Class1.valve(i).cmbconsidefrom = "1" AndAlso Class1.valve(i).cmbconfacexfrom = "1" Then
+            '                    output = output + Class1.valve(i).txtfromnv & "0004" & " "
+            '                ElseIf Class1.valve(i).cmbconsidefrom = "0" AndAlso Class1.valve(i).cmbconfacexfrom = "2" Then
+            '                    output = output + Class1.valve(i).txtfromnv & "0005" & " "
+            '                ElseIf Class1.valve(i).cmbconsidefrom = "1" AndAlso Class1.valve(i).cmbconfacexfrom = "2" Then
+            '                    output = output + Class1.valve(i).txtfromnv & "0006" & " "
+            '                End If
+            '            End If
+
+            '            output = output + Class1.valve(i).txttoid
+
+            '            If Convert.ToInt32(Class1.valve(i).txttonv) <= 9 Then
+            '                Class1.valve(i).txttonv = "0" & Convert.ToInt32(Class1.valve(i).txttonv).ToString()
+            '            ElseIf Convert.ToInt32(Class1.valve(i).txttonv) > 9 Then
+            '                Class1.valve(i).txttonv = Convert.ToInt32(Class1.valve(i).txttonv).ToString()
+            '            End If
+
+            '            If Convert.ToBoolean(Class1.valve(i).cbformatto) = False Then
+            '                output = (output & "0") + Class1.valve(i).cmbconsideto & "0000" & " "
+            '            Else
+            '                If Class1.valve(i).cmbconsideto = "0" AndAlso Class1.valve(i).cmbconfacexto = "0" Then
+            '                    output = output + Class1.valve(i).txttonv & "0001" & " "
+            '                ElseIf Class1.valve(i).cmbconsideto = "1" AndAlso Class1.valve(i).cmbconfacexto = "0" Then
+            '                    output = output + Class1.valve(i).txttonv & "0002" & " "
+            '                ElseIf Class1.valve(i).cmbconsideto = "0" AndAlso Class1.valve(i).cmbconfacexto = "1" Then
+            '                    output = output + Class1.valve(i).txttonv & "0003" & " "
+            '                ElseIf Class1.valve(i).cmbconsideto = "1" AndAlso Class1.valve(i).cmbconfacexto = "1" Then
+            '                    output = output + Class1.valve(i).txttonv & "0004" & " "
+            '                ElseIf Class1.valve(i).cmbconsideto = "0" AndAlso Class1.valve(i).cmbconfacexto = "2" Then
+            '                    output = output + Class1.valve(i).txttonv & "0005" & " "
+            '                ElseIf Class1.valve(i).cmbconsideto = "1" AndAlso Class1.valve(i).cmbconfacexto = "2" Then
+            '                    output = output + Class1.valve(i).txttonv & "0006" & " "
+            '                End If
+            '            End If
+
+
+            '            output = ((output + Class1.valve(i).txtjarea & " ") + Class1.valve(i).txtffelc & " ") + Class1.valve(i).txtrfelc & " "
+
+            '            If Class1.valve(i).cbmodpv = "True" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "0"
+            '            End If
+
+            '            If Class1.valve(i).cbccfl = "True" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "0"
+            '            End If
+
+            '            output = output + Class1.valve(i).cmbhorstrat
+
+            '            If Class1.valve(i).cbchoking = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            output = output + Class1.valve(i).cmbareachange
+
+            '            If Class1.valve(i).cbhomo = "True" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "0"
+            '            End If
+            '            output = output + Class1.valve(i).cmbmf
+            '            output = (((output & " ") + Class1.valve(i).txtsubdc & " ") + Class1.valve(i).txttpdc & " ") + Class1.valve(i).txtshdc
+            '            generate.WriteLine(output)
+            '            ' card ccc0110 junction dia and ccfl
+            '            output = (((Class1.valve(i).cmbhydroid + "0110 " + Class1.valve(i).txtdj & " ") + Class1.valve(i).txtfcf & " ") + Class1.valve(i).txtgi & " ") + Class1.valve(i).txtslope
+            '            generate.WriteLine(output)
+
+            '            ' card ccc0111 valve j form loss data
+            '            output = (((Class1.valve(i).cmbhydroid + "0111 " + Class1.valve(i).txtbf & " ") + Class1.valve(i).txtcf & " ") + Class1.valve(i).txtbr & " ") + Class1.valve(i).txtcr
+            '            generate.WriteLine(output)
+            '            ' card ccc0201, valve initial condition
+            '            output = (((Class1.valve(i).cmbhydroid + "0201 " + Class1.valve(i).cmbvelmfr & " ") + Class1.valve(i).txtliq & " ") + Class1.valve(i).txtvap & " ") + Class1.valve(i).txtint
+            '            generate.WriteLine(output)
+
+            '            ' card ccc 0300 valive type
+
+            '            output = Class1.valve(i).cmbhydroid + "0300 "
+
+            '            If Class1.valve(i).cmbvtype = "0" Then
+            '                output = output & "chkvlv"
+            '            ElseIf Class1.valve(i).cmbvtype = "1" Then
+            '                output = output & "trpvlv"
+            '            ElseIf Class1.valve(i).cmbvtype = "2" Then
+            '                output = output & "inrvlv"
+            '            ElseIf Class1.valve(i).cmbvtype = "3" Then
+            '                output = output & "mtrvlv"
+            '            ElseIf Class1.valve(i).cmbvtype = "4" Then
+            '                output = output & "srvvlv"
+            '            ElseIf Class1.valve(i).cmbvtype = "5" Then
+            '                output = output & "rlfvlv"
+            '            End If
+
+            '            generate.WriteLine(output)
+            '            ' ccc0301 vlve data and initial condition
+
+            '            If Class1.valve(i).cmbvtype = "0" Then
+            '                output = Class1.valve(i).cmbhydroid + "0301 "
+            '                If Class1.valve(i).cmbchkvlvtype = "2" Then
+            '                    output = output & "-1"
+            '                Else
+            '                    output = output + Class1.valve(i).cmbchkvlvtype
+            '                End If
+            '                output = (((output & " ") + Class1.valve(i).cmbchkvlvip & " ") + Class1.valve(i).txtchkvlvcbp & " ") + Class1.valve(i).txtchkvlvlr
+
+            '                generate.WriteLine(output)
+            '            ElseIf Class1.valve(i).cmbvtype = "1" Then
+            '                output = Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).txttripnum
+            '                generate.WriteLine(output)
+            '            ElseIf Class1.valve(i).cmbvtype = "2" Then
+            '                output = (((((((((((Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).cmbinrvlvlo & " ") + Class1.valve(i).cmbinrvlvip & " ") + Class1.valve(i).txtinrvlvcbp & " ") + Class1.valve(i).txtinrvlvlf & " ") + Class1.valve(i).txtinrvlvifa & " ") + Class1.valve(i).txtinrvlvminfa & " ") + Class1.valve(i).txtinrvlvmaxfa & " ") + Class1.valve(i).txtinrvlvmoifa & " ") + Class1.valve(i).txtinrvlviav & " ") + Class1.valve(i).txtinrvlvmlf & " ") + Class1.valve(i).txtinrvlvrf & " ") + Class1.valve(i).txtinrvlvmf
+
+            '                generate.WriteLine(output)
+            '            ElseIf Class1.valve(i).cmbvtype = "3" Then
+            '                output = ((((Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).txtopentrip & " ") + Class1.valve(i).txtclosetrip & " ") + Class1.valve(i).txtmtrvlvvcr & " ") + Class1.valve(i).txtmtrvlvip & " ") + Class1.valve(i).txtmtrvlvvtn
+            '                generate.WriteLine(output)
+            '            ElseIf Class1.valve(i).cmbvtype = "4" Then
+            '                output = Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).txtsrvvlvcvn
+            '                If Class1.valve(i).cmbsrvvlvicv = "1" Then
+            '                    output = (output & " ") + Class1.valve(i).txtsrvvlvvtn
+            '                End If
+            '                generate.WriteLine(output)
+            '            ElseIf Class1.valve(i).cmbvtype = "5" Then
+            '                output = ((((((((((((((((Class1.valve(i).cmbhydroid + "0301 " + Class1.valve(i).cmbrlfvlvvic & " ") + Class1.valve(i).txtrlfvlvid & " ") + Class1.valve(i).txtrlfvlvvsd & " ") + Class1.valve(i).txtrlfvlvvpd & " ") + Class1.valve(i).txtrlfvlvvl & " ") + Class1.valve(i).txtrlfvlvmod & " ") + Class1.valve(i).txtrlfvlvhos & " ") + Class1.valve(i).txtrlfvlvmid & " ") + Class1.valve(i).txtrlfvlvhibe & " ") + Class1.valve(i).txtrlfvlvbad & " ") + Class1.valve(i).txtrlfvlvvsc & " ") + Class1.valve(i).txtrlfvlvvsp & " ") + Class1.valve(i).txtrlfvlvm & " ") + Class1.valve(i).txtrlfvlvvdc & " ") + Class1.valve(i).txtrlfvlvbip & " ") + Class1.valve(i).txtrlfvlvisp & " ") + Class1.valve(i).txtrlfvlvivpv
+            '                generate.WriteLine(output)
+            '            End If
+            '            ' Card CCC0401 TABLE
+            '            output = ""
+            '            For j As Integer = 0 To Convert.ToInt32(Class1.valve(i).lbtecount) - 1
+            '                output = output + Class1.valvetable(i, j) & " "
+            '            Next
+            '            output = Class1.valve(i).cmbhydroid + "0401 " & output
+            '            generate.WriteLine(output)
+            '        End If
+            '    Next
+
+            '    ' time dependent junctuioon
+            '    For i As Integer = 0 To 99
+            '        If Class1.tmdpjun(i, 1).gbname IsNot Nothing Then
+            '            Class1.tmdpjun(i, 1).cmbhydroid = Class1.tmdpjun(i, 1).gbname.Substring(10, 3).ToString()
+
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component Time dependent Junction " + Class1.tmdpjun(i, 1).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+
+            '            output = Class1.tmdpjun(i, 1).cmbhydroid + "0000 " + Class1.tmdpjun(i, 1).txtname & " tmdpjun"
+            '            generate.WriteLine(output)
+            '            ' ccc01001 geomerty card
+            '            output = (Class1.tmdpjun(i, 1).cmbhydroid + "0101" & " ") + Class1.tmdpjun(i, 1).txtfromid
+
+            '            If Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom) <= 9 Then
+            '                Class1.tmdpjun(i, 1).txtvolumenumberfrom = "0" & Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom).ToString()
+            '            ElseIf Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom) > 9 Then
+            '                Class1.tmdpjun(i, 1).txtvolumenumberfrom = Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberfrom).ToString()
+            '            End If
+
+            '            If Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto) <= 9 Then
+            '                Class1.tmdpjun(i, 1).txtvolumenumberto = "0" & Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto).ToString()
+            '            ElseIf Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto) > 9 Then
+            '                Class1.tmdpjun(i, 1).txtvolumenumberto = Convert.ToInt32(Class1.tmdpjun(i, 1).txtvolumenumberto).ToString()
+            '            End If
+
+            '            If Convert.ToBoolean(Class1.tmdpjun(i, 1).cbformatfrom) = False Then
+            '                output = (output & "0") + Class1.tmdpjun(i, 1).cmbconsidefrom & "0000" & " "
+            '            Else
+            '                If Class1.tmdpjun(i, 1).cmbconsidefrom = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "0" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0001" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "0" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0002" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "1" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0003" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "1" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0004" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "2" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0005" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsidefrom = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexfrom = "2" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberfrom & "0006" & " "
+            '                End If
+            '            End If
+
+            '            output = output + Class1.tmdpjun(i, 1).txttoid
+
+            '            If Convert.ToBoolean(Class1.tmdpjun(i, 1).cbformatto) = False Then
+            '                output = (output & "0") + Class1.tmdpjun(i, 1).cmbconsideto & "0000" & " "
+            '            Else
+            '                If Class1.tmdpjun(i, 1).cmbconsideto = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "0" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0001" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "0" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0002" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "1" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0003" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "1" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0004" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "0" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "2" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0005" & " "
+            '                ElseIf Class1.tmdpjun(i, 1).cmbconsideto = "1" AndAlso Class1.tmdpjun(i, 1).cmbconfacexto = "2" Then
+            '                    output = output + Class1.tmdpjun(i, 1).txtvolumenumberto & "0006" & " "
+            '                End If
+            '            End If
+
+            '            output = (output & " ") + Class1.tmdpjun(i, 1).txtjarea
+            '            generate.WriteLine(output)
+
+            '            'ccc0200
+            '            output = (((Class1.tmdpjun(i, 1).cmbhydroid + "0200 " + Class1.tmdpjun(i, 1).cmbip & " ") + Class1.tmdpjun(i, 1).txtttn & " ") + Class1.tmdpjun(i, 1).txtanpvrc & " ") + Class1.tmdpjun(i, 1).txtnpvrc
+            '            generate.WriteLine(output)
+            '            ' ccc0201 0299
+
+            '            For j As Integer = 0 To Convert.ToInt32(Class1.tmdpjun(i, 1).counter) - 1
+            '                If j < 10 Then
+            '                    output = (Class1.tmdpjun(i, 1).cmbhydroid + "020" & (j + 1).ToString() & " ") + Class1.tmdpjun(i, j).lbc
+            '                End If
+            '                If j >= 10 Then
+            '                    output = (Class1.tmdpjun(i, 1).cmbhydroid + "02" & (j + 1).ToString() & " ") + Class1.tmdpjun(i, j).lbc
+            '                End If
+
+            '                generate.WriteLine(output)
+
+            '            Next
+            '        End If
+            '    Next
+            '    For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
+            '        '  MsgBox(kvp.Key)
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine("*         Component Time Dependent Volume" + Format(univID, "###"))
+            '        generate.WriteLine("*======================================================================")
+            '        generate.WriteLine(Format(univID, "###") & "0000 " + kvp.Value.Name & " tmdpvol")
+
+            '        output = ((((((((Format(univID, "###") & "0101 " + kvp.Value.FlowArea & " ") + kvp.Value.LengthofVolume & " ") + kvp.Value.Volume & " ") + kvp.Value.Azimuthalangle & " ") + kvp.Value.InclinationAngle & " ") + kvp.Value.ElevationChange & " ") + kvp.Value.WallRoughness & " ") + kvp.Value.HydraulicDiameter & " ") + "0000000"
+            '        generate.WriteLine(output)
+
+            '        ' output = Format(univID, "###") + "0200 " + Class1.tmdpvol(i, 1).IC_E + Class1.tmdpvol(i, 1).IC_B + Class1.tmdpvol(i, 1).IC_TS
+            '        generate.WriteLine(output)
+
+            '        'For k As Integer = 0 To Convert.ToInt32(Class1.tmdpvol(i, 1).counter) - 1
+            '        '    If k < 10 Then
+            '        '        generate.WriteLine((Format(univID, "###") + "020" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
+            '        '    Else
+            '        '        generate.WriteLine((Format(univID, "###") + "02" & (k + 1) & " ") + Class1.tmdpvol(i, k).lbc)
+
+            '        '    End If
+
+            '        'Next
+            '        univID = univID + 1
+            '        MsgBox(kvp.Value.ComponentName)
+            '    Next kvp
+            '    ' Time Dependent VOLUME
+            '    For i As Integer = 0 To 99
+            '        If Class1.tmdpvol(i, 1).gbname IsNot Nothing Then
+            '            Class1.tmdpvol(i, 1).id = Class1.tmdpvol(i, 1).gbname.Substring(10, 3).ToString()
+
+            '            counter = 1
+
+            '        End If
+            '    Next
+
+            '    ' pump
+
+            '    For i As Integer = 0 To 99
+            '        If Class1.pump(i, 1).gbname IsNot Nothing Then
+            '            Class1.pump(i, 1).cmbhydroid = Class1.pump(i, 1).gbname.Substring(10, 3).ToString()
+
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component Pump " + Class1.pump(i, 1).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+
+            '            If Convert.ToInt32(Class1.pump(i, 1).txtvndis) <= 9 Then
+            '                Class1.pump(i, 1).txtvndis = "0" & Convert.ToInt32(Class1.pump(i, 1).txtvndis).ToString()
+            '            End If
+
+            '            ' Class1.pump[location, 1].txtvndis = txtvndis.Text;
+            '            If Convert.ToInt32(Class1.pump(i, 1).txtvnsuc) <= 9 Then
+            '                Class1.pump(i, 1).txtvnsuc = "0" & Convert.ToInt32(Class1.pump(i, 1).txtvnsuc).ToString()
+            '            End If
+
+
+            '            'card ccc0000
+            '            output = Class1.pump(i, 1).cmbhydroid + "0000 " + Class1.pump(i, 1).txtname & " pump"
+            '            generate.WriteLine(output)
+            '            ' ccc0101
+            '            output = ((((((Class1.pump(i, 1).cmbhydroid + "0101 " + Class1.pump(i, 1).txtpvfa & " ") + Class1.pump(i, 1).txtplov & " ") + Class1.pump(i, 1).txtpvov & " ") + Class1.pump(i, 1).txtpaa & " ") + Class1.pump(i, 1).txtpia & " ") + Class1.pump(i, 1).txtpec & " ") + Class1.pump(i, 1).cmbtft + Class1.pump(i, 1).cmbmlt + Class1.pump(i, 1).cmbwps + Class1.pump(i, 1).cmbvsm + Class1.pump(i, 1).cmbifm + Class1.pump(i, 1).cmbwf + Class1.pump(i, 1).cmbesm
+            '            generate.WriteLine(output)
+            '            ' ccc0108
+            '            ' change made----------------
+            '            If Convert.ToBoolean(Class1.pump(i, 1).cbformatsuc) = False Then
+            '                output = ((((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid & "0") + Class1.pump(i, 1).cmbconsidefromsuc & "0000" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '            Else
+            '                If Class1.pump(i, 1).cmbconsidefromsuc = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "0" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0001" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "0" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0002" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "1" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0003" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "1" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0004" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "2" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0005" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromsuc = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromsuc = "2" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0108 " + Class1.pump(i, 1).txtsucid + Class1.pump(i, 1).txtvnsuc & "0006" & " ") + Class1.pump(i, 1).txtjareasuc & " ") + Class1.pump(i, 1).txtffelcsuc & " ") + Class1.pump(i, 1).txtrfelcsuc & "  0"
+            '                End If
+            '            End If
+
+            '            If Class1.pump(i, 1).cbccflsuc = "True" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "0"
+            '            End If
+
+            '            'output + output + Class1.pump[i, 1].cmbhorstratsuc;
+
+            '            If Class1.pump(i, 1).cbchokingsuc = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            output = output + Class1.pump(i, 1).cmbareachangesuc
+
+            '            If Class1.pump(i, 1).cbhomosuc = "True" Then
+            '                output = output & "2"
+            '            Else
+            '                output = output & "0"
+            '            End If
+            '            output = output & "0"
+
+            '            generate.WriteLine(output)
+
+            '            ' ccc0109
+
+
+            '            'output = Class1.pump[i, 1].cmbhydroid + "0109 " + Class1.pump[i, 1].txtdisid + "0" + Class1.pump[i, 1].cmbconfacexfromdis + "0000" + " " + Class1.pump[i, 1].txtjareadis + " " + Class1.pump[i, 1].txtfcfdis + " " + Class1.pump[i, 1].txtrfelcdis + "  0";
+            '            If Convert.ToBoolean(Class1.pump(i, 1).cbformatdis) = False Then
+            '                output = ((((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid & "0") + Class1.pump(i, 1).cmbconsidefromdis & "0000" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '            Else
+            '                If Class1.pump(i, 1).cmbconsidefromdis = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "0" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0001" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromdis = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "0" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0002" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromdis = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "1" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0003" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromdis = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "1" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0004" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromdis = "0" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "2" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0005" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '                ElseIf Class1.pump(i, 1).cmbconsidefromdis = "1" AndAlso Class1.pump(i, 1).cmbconfacexfromdis = "2" Then
+            '                    output = (((Class1.pump(i, 1).cmbhydroid + "0109 " + Class1.pump(i, 1).txtdisid + Class1.pump(i, 1).txtvndis & "0006" & " ") + Class1.pump(i, 1).txtjareadis & " ") + Class1.pump(i, 1).txtffelcdis & " ") + Class1.pump(i, 1).txtrfelcdis & " 0"
+            '                End If
+            '            End If
+            '            If Class1.pump(i, 1).cbccfldis = "True" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "0"
+            '            End If
+
+            '            'output + output + Class1.pump[i, 1].cmbhorstratdis;
+
+            '            If Class1.pump(i, 1).cbchokingdis = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            output = output + Class1.pump(i, 1).cmbareachangedis
+
+            '            If Class1.pump(i, 1).cbhomodis = "True" Then
+            '                output = output & "2"
+            '            Else
+            '                output = output & "0"
+            '            End If
+            '            output = output & "0"
+
+            '            generate.WriteLine(output)
+
+            '            ' ccc0110   optional card
+
+            '            If Class1.pump(i, 1).cbccflsuc = "True" Then
+            '                output = (((Class1.pump(i, 1).cmbhydroid + "0110 " + Class1.pump(i, 1).txtdjsuc & " ") + Class1.pump(i, 1).txtfcfsuc & " ") + Class1.pump(i, 1).txtgisuc & " ") + Class1.pump(i, 1).txtslopesuc
+            '                generate.WriteLine(output)
+
+
+            '                output = Nothing
+            '            Else
+            '                output = Class1.pump(i, 1).cmbhydroid + "0110 " + Class1.pump(i, 1).txtdjsuc
+            '                generate.WriteLine(output)
+            '                output = Nothing
+            '            End If
+
+            '            ' ccc0111   optional card
+            '            If Class1.pump(i, 1).cbccfldis = "False" Then
+            '                output = Class1.pump(i, 1).cmbhydroid + "0111 " + Class1.pump(i, 1).txtdjdis
+            '                generate.WriteLine(output)
+            '            Else
+            '                output = (((Class1.pump(i, 1).cmbhydroid + "0111 " + Class1.pump(i, 1).txtdjdis & " ") + Class1.pump(i, 1).txtfcfdis & " ") + Class1.pump(i, 1).txtgidis & " ") + Class1.pump(i, 1).txtslopedis
+            '                generate.WriteLine(output)
+            '            End If
+
+
+            '            ' ccc 0112 optional
+
+            '            output = (((Class1.pump(i, 1).cmbhydroid + "0112 " + Class1.pump(i, 1).txtbfsuc & " ") + Class1.pump(i, 1).txtcfsuc & " ") + Class1.pump(i, 1).txtbrsuc & " ") + Class1.pump(i, 1).txtcrsuc
+            '            generate.WriteLine(output)
+
+            '            ' ccc 0113 optional
+
+            '            output = (((Class1.pump(i, 1).cmbhydroid + "0113 " + Class1.pump(i, 1).txtbfdis & " ") + Class1.pump(i, 1).txtcfdis & " ") + Class1.pump(i, 1).txtbrdis & " ") + Class1.pump(i, 1).txtcrdis
+            '            generate.WriteLine(output)
+
+            '            ' ccc0200
+
+            '            output = Class1.pump(i, 1).cmbhydroid + "0200 " + Class1.pump(i, 1).cmbfluid + Class1.pump(i, 1).cmbboron + Class1.pump(i, 1).cmbap & " "
+            '            If Class1.pump(i, 1).cmbap = "0" Then
+            '                output = (((output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txtlsie & " ") + Class1.pump(i, 1).txtvsie & " ") + Class1.pump(i, 1).txtvvf
+
+            '            ElseIf Class1.pump(i, 1).cmbap = "1" Then
+            '                output = (output + Class1.pump(i, 1).txttemp & " ") + Class1.pump(i, 1).txtsqec
+
+            '            ElseIf Class1.pump(i, 1).cmbap = "2" Then
+            '                output = (output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txtsqec
+
+            '            ElseIf Class1.pump(i, 1).cmbap = "3" Then
+            '                output = (output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txttemp
+
+            '            ElseIf Class1.pump(i, 1).cmbap = "4" Then
+            '                output = ((output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txttemp & " ") + Class1.pump(i, 1).txtsqec
+
+            '            ElseIf Class1.pump(i, 1).cmbap = "5" Then
+            '                output = ((output + Class1.pump(i, 1).txttemp & " ") + Class1.pump(i, 1).txtsqec & " ") + Class1.pump(i, 1).txtncqec
+
+            '            ElseIf Class1.pump(i, 1).cmbap = "6" Then
+            '                output = ((((output + Class1.pump(i, 1).txtpres & " ") + Class1.pump(i, 1).txtlsie & " ") + Class1.pump(i, 1).txtvsie & " ") + Class1.pump(i, 1).txtvvf & " ") + Class1.pump(i, 1).txtncq
+            '            End If
+
+            '            generate.WriteLine(output)
+
+            '            ' ccc 0201
+            '            output = ((Class1.pump(i, 1).cmbhydroid + "0201 " + Class1.pump(i, 1).cmbvelmfrsuc & " ") + Class1.pump(i, 1).txtliqsuc & " ") + Class1.pump(i, 1).txtvapsuc & " 0"
+            '            generate.WriteLine(output)
+
+            '            ' ccc 0202
+            '            output = ((Class1.pump(i, 1).cmbhydroid + "0202 " + Class1.pump(i, 1).cmbvelmfrdis & " ") + Class1.pump(i, 1).txtliqdis & " ") + Class1.pump(i, 1).txtvapdis & " 0"
+            '            generate.WriteLine(output)
+
+
+            '            ' ccc0301
+
+            '            output = ((((((Class1.pump(i, 1).cmbhydroid + "0301 " + Class1.pump(i, 1).txtptdi & " ") + Class1.pump(i, 1).txttpi & " ") + Class1.pump(i, 1).txttpdti & " ") + Class1.pump(i, 1).txtpmtti & " ") + Class1.pump(i, 1).txttdpvi & " ") + Class1.pump(i, 1).txtptn & " ") + Class1.pump(i, 1).cmbri
+            '            generate.WriteLine(output)
+
+            '            ' ccc0302 to ccc0304
+
+            '            output = (((((Class1.pump(i, 1).cmbhydroid + "0302 " + Class1.pump(i, 1).txtrpv & " ") + Class1.pump(i, 1).txtratio & " ") + Class1.pump(i, 1).txtrf & " ") + Class1.pump(i, 1).txtrh & " ") + Class1.pump(i, 1).txtrt & " ") + Class1.pump(i, 1).txtmi
+            '            generate.WriteLine(output)
+
+            '            output = ((((Class1.pump(i, 1).cmbhydroid + "0303 " + Class1.pump(i, 1).txtrd & " ") + Class1.pump(i, 1).txtrpmt & " ") + Class1.pump(i, 1).txttf2 & " ") + Class1.pump(i, 1).txttf0 & " ") + Class1.pump(i, 1).txttf3 & " 0.0"
+            '            generate.WriteLine(output)
+
+            '            ' ccc0308
+            '            If Class1.pump(i, 1).cbpvic = "True" Then
+            '                output = ((((Class1.pump(i, 1).cmbhydroid + "0308 " + Class1.pump(i, 1).txtrs & " ") + Class1.pump(i, 1).txti3 & " ") + Class1.pump(i, 1).txti2 & " ") + Class1.pump(i, 1).txti1 & " ") + Class1.pump(i, 1).txti0
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' ccc0309
+
+            '            If Class1.pump(i, 1).cbpscc = "True" Then
+            '                output = (Class1.pump(i, 1).cmbhydroid + "0309 " + Class1.pump(i, 1).txtccnsc & " ") + Class1.pump(i, 1).txtpdt
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' ccc0310
+
+            '            If Class1.pump(i, 1).cbpsdc = "True" Then
+            '                output = ((Class1.pump(i, 1).cmbhydroid + "0310 " + Class1.pump(i, 1).txtept & " ") + Class1.pump(i, 1).txtmfvps & " ") + Class1.pump(i, 1).txtmrvps
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            If Class1.pump(i, 1).txtptdi = "0" Then
+
+            '                ' curve 1 1 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter00) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1100 1 1"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter00) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "110" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc00
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "11" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc00
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 2 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter01) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1200 1 2"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter01) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "120" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc01
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "12" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc01
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+
+            '                ' curve 1 3 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter02) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1300 1 3"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter02) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "130" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc02
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "13" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc02
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 4 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter03) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1400 1 4"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter03) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "140" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc03
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "14" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc03
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 5 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter04) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1500 1 5"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter04) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "150" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc04
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "15" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc04
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 6 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter05) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1600 1 6"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter05) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "160" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc05
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "16" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc05
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 7 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter06) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1700 1 7"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter06) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "170" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc06
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "17" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc06
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 8 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter07) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1800 1 8"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter07) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "180" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc07
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "18" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc07
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+
+            '                ' curve 2 1 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter10) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "1900 2 1"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter10) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "190" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc10
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "19" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc10
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 2 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter11) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2000 2 2"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter11) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "200" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc11
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "20" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc11
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+
+            '                ' curve 2 3 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter12) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2100 2 3"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter12) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "210" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc12
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "21" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc12
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 4 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter13) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2200 2 4"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter13) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "220" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc13
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "22" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc13
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 5 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter14) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2300 2 5"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter04) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "230" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc14
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "23" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc14
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 6 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter15) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2400 2 6"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter15) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "240" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc15
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "24" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc15
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 7 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter16) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2500 2 7"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter16) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "250" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc16
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "25" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc16
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 8 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbsphccounter17) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2600 1 8"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbsphccounter17) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "260" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc17
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "26" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbsphc17
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+
+
+            '                    ' end of if
+            '                End If
+            '            End If
+
+            '            If Class1.pump(i, 1).txttpi = "0" Then
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter0) > 0 Then
+            '                    generate.WriteLine("* Table ============")
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter0) - 1
+            '                        If k < 9 Then
+            '                            output = Class1.pump(i, 1).cmbhydroid + "300 " + Class1.pump(i, k).lbtpmt0
+            '                            generate.WriteLine(output)
+            '                        Else
+            '                            output = Class1.pump(i, 1).cmbhydroid + "30 " + Class1.pump(i, k).lbtpmt0
+            '                            generate.WriteLine(output)
+            '                        End If
+            '                    Next
+            '                End If
+
+
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter1) > 0 Then
+            '                    generate.WriteLine("* Table ============")
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpmtcounter1) - 1
+            '                        If k < 9 Then
+            '                            output = Class1.pump(i, 1).cmbhydroid + "310 " + Class1.pump(i, k).lbtpmt1
+            '                            generate.WriteLine(output)
+            '                        Else
+            '                            output = Class1.pump(i, 1).cmbhydroid + "31 " + Class1.pump(i, k).lbtpmt1
+            '                            generate.WriteLine(output)
+            '                        End If
+            '                    Next
+            '                End If
+            '            End If
+
+            '            If Class1.pump(i, 1).txttpdti = "0" Then
+
+            '                ' curve 1 1 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter00) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4100 1 1"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter00) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "410" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt00
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "41" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt00
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 2 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter01) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4200 1 2"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter01) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "420" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt01
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "42" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt01
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+
+            '                ' curve 1 3 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter02) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4300 1 3"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter02) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "430" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt02
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "43" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt02
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 4 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter03) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4400 1 4"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter03) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "440" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt03
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "44" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt03
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 5 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter04) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4500 1 5"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter04) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "450" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt04
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "45" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt04
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 6 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter05) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4600 1 6"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter05) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "460" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt05
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "46" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt05
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 7 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter06) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4700 1 7"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter06) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "470" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt06
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "47" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt06
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 8 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter07) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4800 1 8"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter07) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "480" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt07
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "48" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt07
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+
+            '                ' curve 2 1 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter10) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "4900 2 1"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter10) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "490" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt10
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "49" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt10
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 2 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter11) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "5000 2 2"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter11) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "500" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt11
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "50" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt11
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+
+            '                ' curve 2 3 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter12) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "5100 2 3"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter12) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "510" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt12
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "51" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt12
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 4 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter13) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "5200 2 4"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter13) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "520" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt13
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "52" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt13
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 5 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter14) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "5300 2 5"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter04) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "530" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt14
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "53" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt14
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 1 6 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter15) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "5400 2 6"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter15) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "540" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt15
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "54" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt15
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 7 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter16) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2500 2 7"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter16) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "250" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt16
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "25" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt16
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+            '                End If
+
+            '                ' curve 2 8 
+            '                If Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter17) > 0 Then
+            '                    generate.WriteLine("* Table ====================")
+            '                    output = Class1.pump(i, 1).cmbhydroid + "2600 1 8"
+            '                    generate.WriteLine(output)
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtpdtcounter17) - 1
+            '                        If k < 9 Then
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "260" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt17
+            '                        Else
+            '                            output = (Class1.pump(i, 1).cmbhydroid + "26" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtpdt17
+            '                        End If
+            '                        generate.WriteLine(output)
+            '                    Next
+
+
+            '                    ' end of if
+            '                End If
+            '            End If
+
+            '            If Class1.pump(i, 1).txtpmtti = "0" Then
+            '                For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbrpmtdcounter) - 1
+            '                    If k < 9 Then
+            '                        generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "600" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbrpmtd)
+            '                    Else
+            '                        generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "60" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbrpmtd)
+            '                        ' generate.WriteLine(output);
+            '                    End If
+            '                Next
+            '            End If
+
+            '            If Class1.pump(i, 1).cmbtdpvi = "0" Then
+            '                generate.WriteLine(((Class1.pump(i, 1).cmbhydroid + "6100 " + Class1.pump(i, 1).txttn & " ") + Class1.pump(i, 1).txtanpvrc & " ") + Class1.pump(i, 1).txtnpvrc)
+            '                For k As Integer = 0 To Convert.ToInt32(Class1.pump(i, 1).lbtdpvcounter) - 1
+            '                    If k < 9 Then
+            '                        generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "610" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtdpv)
+            '                    Else
+            '                        generate.WriteLine((Class1.pump(i, 1).cmbhydroid + "61" & (k + 1).ToString() & " ") + Class1.pump(i, k).lbtdpv)
+            '                        'generate.WriteLine(output);
+            '                    End If
+            '                Next
+
+
+            '            End If
+            '        End If
+            '    Next
+            '    '*************************************************************************
+
+            '    For i As Integer = 0 To 99
+            '        If Class1.branch(i, 1).gbname IsNot Nothing Then
+            '            Class1.branch(i, 1).cmbhydroid = Class1.branch(i, 1).gbname.Substring(10, 3).ToString()
+
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component Branch Separator Jetmixer Turbine ECCMIX " + Class1.branch(i, 1).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+            '            'card ccc0000
+            '            output = Class1.branch(i, 1).cmbhydroid + "0000 " + Class1.branch(i, 1).txtname & " "
+            '            If Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 0 Then
+            '                output = output & "branch"
+            '            ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 1 Then
+            '                output = output & "separator"
+            '            ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 2 Then
+            '                output = output & "jetmixer"
+            '            ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 3 Then
+            '                output = output & "turbine"
+            '            ElseIf Convert.ToInt32(Class1.branch(i, 1).cmbtype) = 4 Then
+            '                output = output & "eccmix"
+            '            End If
+            '            generate.WriteLine(output)
+
+            '            ' card ccc0001
+
+            '            output = (Class1.branch(i, 1).cmbhydroid + "0001 " + Class1.branch(i, 1).txtnj & " ") + Class1.branch(i, 1).cmbicc
+            '            generate.WriteLine(output)
+
+            '            ' card ccc0002 not include
+
+            '            ' card ccc0101 
+            '            output = (((((((Class1.branch(i, 1).cmbhydroid + "0101 " + Class1.branch(i, 1).txtvfa & " ") + Class1.branch(i, 1).txtlov & " ") + Class1.branch(i, 1).txtvov & " ") + Class1.branch(i, 1).txtaa & " ") + Class1.branch(i, 1).txtia & " ") + Class1.branch(i, 1).txtec & " ") + Class1.branch(i, 1).txtwr & " ") + Class1.branch(i, 1).txthd & " "
+            '            output = output & Class1.branch(i, 1).cmbtft.ToString()
+            '            output = output & Class1.branch(i, 1).cmbmlt.ToString()
+            '            output = output & Class1.branch(i, 1).cmbwps.ToString()
+            '            output = output & Class1.branch(i, 1).cmbvsm.ToString()
+            '            output = output & Class1.branch(i, 1).cmbifm.ToString()
+            '            output = output & Class1.branch(i, 1).cmbwf.ToString()
+            '            output = output & Class1.branch(i, 1).cmbesm.ToString()
+            '            generate.WriteLine(output)
+
+            '            ' card ccc0131
+            '            output = (((((Class1.branch(i, 1).cmbhydroid + "0131 " + Class1.branch(i, 1).txtsfx & " ") + Class1.branch(i, 1).txtvrex & " ") + Class1.branch(i, 1).txtsfy & " ") + Class1.branch(i, 1).txtvrey & " ") + Class1.branch(i, 1).txtsfz & " ") + Class1.branch(i, 1).txtvrez
+            '            generate.WriteLine(output)
+
+            '            ''' ccc0200
+            '            output = Class1.branch(i, 1).cmbhydroid + "0200 " + Class1.branch(i, 1).cmbfluid + Class1.branch(i, 1).cmbboron + Class1.branch(i, 1).cmbap & " "
+
+            '            If Class1.branch(i, 1).cmbap = "0" Then
+            '                output = (((output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txtlsie & " ") + Class1.branch(i, 1).txtvsie & " ") + Class1.branch(i, 1).txtvvf
+
+            '            ElseIf Class1.branch(i, 1).cmbap = "1" Then
+            '                output = (output + Class1.branch(i, 1).txttemp & " ") + Class1.branch(i, 1).txtsqec
+
+            '            ElseIf Class1.branch(i, 1).cmbap = "2" Then
+            '                output = (output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txtsqec
+
+            '            ElseIf Class1.branch(i, 1).cmbap = "3" Then
+            '                output = (output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txttemp
+
+            '            ElseIf Class1.branch(i, 1).cmbap = "4" Then
+            '                output = ((output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txttemp & " ") + Class1.branch(i, 1).txtsqec
+
+            '            ElseIf Class1.branch(i, 1).cmbap = "5" Then
+            '                output = ((output + Class1.branch(i, 1).txttemp & " ") + Class1.branch(i, 1).txtsqec & " ") + Class1.branch(i, 1).txtncqec
+
+            '            ElseIf Class1.branch(i, 1).cmbap = "6" Then
+            '                output = ((((output + Class1.branch(i, 1).txtpres & " ") + Class1.branch(i, 1).txtlsie & " ") + Class1.branch(i, 1).txtvsie & " ") + Class1.branch(i, 1).txtvvf & " ") + Class1.branch(i, 1).txtncq
+            '            End If
+
+            '            generate.WriteLine(output)
+            '            ''' cccN101
+
+            '            For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
+            '                If Convert.ToInt32(Class1.branch(i, j).txtnvfromj) <= 9 Then
+            '                    Class1.branch(i, j).txtnvfromj = "0" & Convert.ToInt32(Class1.branch(i, j).txtnvfromj).ToString()
+            '                End If
+            '                If Convert.ToInt32(Class1.branch(i, j).txtnvtoj) <= 9 Then
+            '                    Class1.branch(i, j).txtnvtoj = "0" & Convert.ToInt32(Class1.branch(i, j).txtnvtoj).ToString()
+            '                End If
+
+
+            '                If Class1.branch(i, j).cbformatfrom = "False" Then
+
+            '                    output = ((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "101 ") + Class1.branch(i, j).txtidfromj & "0") + Class1.branch(i, j).cmbconsidefromj & "0000" & " "
+            '                Else
+            '                    output = (Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "101 ") + Class1.branch(i, j).txtidfromj + Class1.branch(i, j).txtnvfromj & "00"
+
+            '                    If Class1.branch(i, j).cmbconsidefromj = "0" AndAlso Class1.branch(i, j).cmbconfacefromj = "0" Then
+            '                        output = output & "01 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidefromj = "1" AndAlso Class1.branch(i, j).cmbconfacefromj = "0" Then
+            '                        output = output & "02 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidefromj = "0" AndAlso Class1.branch(i, j).cmbconfacefromj = "1" Then
+            '                        output = output & "03 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidefromj = "1" AndAlso Class1.branch(i, j).cmbconfacefromj = "1" Then
+            '                        output = output & "04 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidefromj = "0" AndAlso Class1.branch(i, j).cmbconfacefromj = "2" Then
+            '                        output = output & "05 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidefromj = "1" AndAlso Class1.branch(i, j).cmbconfacefromj = "2" Then
+            '                        output = output & "06 "
+
+            '                    End If
+            '                End If
+
+            '                If Class1.branch(i, j).cbformatto = "False" Then
+
+            '                    output = (output + Class1.branch(i, j).txtidtoj & "0") + Class1.branch(i, j).cmbconsidetoj & "0000 "
+            '                Else
+            '                    output = output + Class1.branch(i, j).txtidtoj + Class1.branch(i, j).txtnvtoj & "00"
+
+            '                    If Class1.branch(i, j).cmbconsidetoj = "0" AndAlso Class1.branch(i, j).cmbconfacetoj = "0" Then
+            '                        output = output & "01 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidetoj = "1" AndAlso Class1.branch(i, j).cmbconfacetoj = "0" Then
+            '                        output = output & "02 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidetoj = "0" AndAlso Class1.branch(i, j).cmbconfacetoj = "1" Then
+            '                        output = output & "03 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidetoj = "1" AndAlso Class1.branch(i, j).cmbconfacetoj = "1" Then
+            '                        output = output & "04 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidetoj = "0" AndAlso Class1.branch(i, j).cmbconfacetoj = "2" Then
+            '                        output = output & "05 "
+            '                    ElseIf Class1.branch(i, j).cmbconsidetoj = "1" AndAlso Class1.branch(i, j).cmbconfacetoj = "2" Then
+            '                        output = output & "06 "
+
+            '                    End If
+            '                End If
+
+            '                output = ((output + Class1.branch(i, j).txtjareaj & " ") + Class1.branch(i, j).txtffelcj & " ") + Class1.branch(i, j).txtrfelcj & " "
+            '                If Class1.branch(i, j).cbmodpvj = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+
+            '                If Class1.branch(i, j).cbccflj = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output + Class1.branch(i, j).cmbhorstratj
+
+            '                If Class1.branch(i, j).cbchokingj = "True" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "1"
+            '                End If
+            '                output = output + Class1.branch(i, j).cmbareachangej
+
+            '                If Class1.branch(i, j).cbhomoj = "False" Then
+            '                    output = output & "0"
+            '                Else
+            '                    output = output & "2"
+            '                End If
+            '                output = output + Class1.branch(i, j).cmbmfj & " "
+
+            '                If Class1.branch(i, 1).cmbtype = "1" Then
+            '                    output = output + Class1.branch(i, j).txtvflseparatorj & " "
+            '                Else
+            '                    output = output + Class1.branch(i, j).txtsubdcbranch & " "
+            '                End If
+
+            '                output = (output + Class1.branch(i, j).txttpdcbranch & " ") + Class1.branch(i, j).txtsupdcbranch
+
+
+            '                generate.WriteLine(output)
+            '            Next
+            '            ''' cccN110
+
+            '            For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
+            '                output = ((((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "110 ") + Class1.branch(i, j).txtdjj & " ") + Class1.branch(i, j).txtfcfj & " ") + Class1.branch(i, j).txtgij & " ") + Class1.branch(i, j).txtslopej
+            '                generate.WriteLine(output)
+            '            Next
+
+            '            ' cccn112
+            '            For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
+            '                output = ((((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "112 ") + Class1.branch(i, j).txtbfj & " ") + Class1.branch(i, j).txtcfj & " ") + Class1.branch(i, j).txtbrj & " ") + Class1.branch(i, j).txtcrj
+            '                generate.WriteLine(output)
+            '            Next
+
+            '            ' cccn201
+            '            For j As Integer = 0 To Convert.ToInt32(Class1.branch(i, 1).txtnj) - 1
+            '                output = ((Class1.branch(i, 1).cmbhydroid + (j + 1).ToString() & "201 ") + Class1.branch(i, j).txtliqj & " ") + Class1.branch(i, j).txtvapj & " 0.0"
+
+            '                generate.WriteLine(output)
+            '            Next
+
+            '            ''' ccc0300
+
+            '            If Class1.branch(i, 1).cmbtype = "3" Then
+            '                output = (((((Class1.branch(i, 1).cmbhydroid + "0300 " + Class1.branch(i, 1).txttsss & " ") + Class1.branch(i, 1).txtirssg & " ") + Class1.branch(i, 1).txtsfc & " ") + Class1.branch(i, 1).txtscntsc & " ") + Class1.branch(i, 1).txtdtn & " ") + Class1.branch(i, 1).txtdf
+            '                generate.WriteLine(output)
+            '                ' ccc0400
+            '                output = (((Class1.branch(i, 1).cmbhydroid + "0400 " + Class1.branch(i, 1).cmbtt & " ") + Class1.branch(i, 1).txtaemedp & " ") + Class1.branch(i, 1).txtdrf & " ") + Class1.branch(i, 1).txtmsr
+
+            '                generate.WriteLine(output)
+            '            End If
+            '            If Class1.branch(i, 1).cmbtype = "1" Then
+            '                ' ccc0500
+            '                output = ((((((Class1.branch(i, 1).cmbhydroid + "0500 " + Class1.branch(i, 1).txtrlprfstss & " ") + Class1.branch(i, 1).txtsnea & " ") + Class1.branch(i, 1).txtrshi & " ") + Class1.branch(i, 1).txtsvarh & " ") + Class1.branch(i, 1).txtlcocuss & " ") + Class1.branch(i, 1).txtlcucuss & " ") + Class1.branch(i, 1).txtadbefsdpsv
+
+            '                generate.WriteLine(output)
+            '            End If
+            '            If Class1.branch(i, 1).cmbtype = "1" Then
+            '                ' ccc0501
+            '                output = (((((((Class1.branch(i, 1).cmbhydroid + "0501 " + Class1.branch(i, 1).txtlfvpc1 & " ") + Class1.branch(i, 1).txtvcvpc1 & " ") + Class1.branch(i, 1).txtswir1 & " ") + Class1.branch(i, 1).txtdpec1 & " ") + Class1.branch(i, 1).txtdphd1 & " ") + Class1.branch(i, 1).txtsbl1 & " ") + Class1.branch(i, 1).txtdplc1 & " ") + Class1.branch(i, 1).txtdpec1
+
+            '                generate.WriteLine(output)
+            '            End If
+            '            If Class1.branch(i, 1).cmbtype = "1" Then
+            '                ' ccc0501
+            '                output = (((((((Class1.branch(i, 1).cmbhydroid + "0502 " + Class1.branch(i, 1).txtlfvpc2 & " ") + Class1.branch(i, 1).txtvcvpc2 & " ") + Class1.branch(i, 1).txtswir2 & " ") + Class1.branch(i, 1).txtdpec2 & " ") + Class1.branch(i, 1).txtdphd2 & " ") + Class1.branch(i, 1).txtsbl2 & " ") + Class1.branch(i, 1).txtdplc2 & " ") + Class1.branch(i, 1).txtdpec2
+
+            '                generate.WriteLine(output)
+            '            End If
+            '            If Class1.branch(i, 1).cmbtype = "1" Then
+            '                ' ccc0501
+            '                output = (((((((Class1.branch(i, 1).cmbhydroid + "0503 " + Class1.branch(i, 1).txtlfvpc3 & " ") + Class1.branch(i, 1).txtvcvpc3 & " ") + Class1.branch(i, 1).txtswir3 & " ") + Class1.branch(i, 1).txtdpec3 & " ") + Class1.branch(i, 1).txtdphd3 & " ") + Class1.branch(i, 1).txtsbl3 & " ") + Class1.branch(i, 1).txtdplc3 & " ") + Class1.branch(i, 1).txtdpec3
+
+            '                generate.WriteLine(output)
+            '            End If
+            '            If Class1.branch(i, 1).cmbtype = "1" And Class1.branch(i, 1).cmbso = "1" Then
+            '                ' ccc600
+            '                output = ((Class1.branch(i, 1).cmbhydroid + "0600 " + Class1.branch(i, 1).txtvvbelow & " ") + Class1.branch(i, 1).txtvvabove & " ") + Class1.branch(i, 1).txtrdiq
+            '                generate.WriteLine(output)
+            '            End If
+            '        End If
+            '    Next
+
+            '    '___________________ A C C U M U L A T O R _____________________________
+            '    For i As Integer = 0 To 99
+            '        If Class1.accum(i).gbname IsNot Nothing Then
+            '            Class1.accum(i).cmbhydroid = Class1.accum(i).gbname.Substring(10, 3).ToString()
+
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*         Component Accumulator " + Class1.accum(i).cmbhydroid)
+            '            generate.WriteLine("*======================================================================")
+            '            'card ccc0000
+            '            output = Class1.accum(i).cmbhydroid + "0000 " + Class1.accum(i).txtname & " accum"
+            '            generate.WriteLine(output)
+            '            'Cards CCC0101 - 09
+            '            output = (((((((((Class1.accum(i).cmbhydroid + "0101 " + Class1.accum(i).txtvfa & " ") + Class1.accum(i).txtlov & " ") + Class1.accum(i).txtvov & " ") + Class1.accum(i).txtaa & " ") + Class1.accum(i).txtia & " ") + Class1.accum(i).txtec & " ") + Class1.accum(i).txtwr & " ") + Class1.accum(i).txthd & " ") + Class1.accum(i).cmbts + Class1.accum(i).cmbmlt + Class1.accum(i).cmbwps + Class1.accum(i).cmbvsm + Class1.accum(i).cmbifm + Class1.accum(i).cmbwf + Class1.accum(i).cmbesm & " ") + Class1.accum(i).cmbgf
+            '            generate.WriteLine(output)
+            '            ' Card CCC0200
+            '            output = ((Class1.accum(i).cmbhydroid + "0200 " + Class1.accum(i).txttankpressure & " ") + Class1.accum(i).txttanktemperature & " ") + Class1.accum(i).txttankbc
+            '            generate.WriteLine(output)
+
+            '            ' Junction Geometry Card : Card CCC1101
+            '            output = Class1.accum(i).cmbhydroid + "1101 " + Class1.accum(i).txtidtoj
+
+
+
+
+            '            If Convert.ToInt32(Class1.accum(i).txtvolumenumberto) <= 9 Then
+            '                Class1.accum(i).txtvolumenumberto = "0" & Convert.ToInt32(Class1.accum(i).txtvolumenumberto).ToString()
+            '            ElseIf Convert.ToInt32(Class1.accum(i).txtvolumenumberto) > 9 Then
+            '                Class1.accum(i).txtvolumenumberto = Convert.ToInt32(Class1.accum(i).txtvolumenumberto).ToString()
+            '            End If
+
+            '            If Convert.ToBoolean(Class1.accum(i).cbformatto) = False Then
+            '                output = (output & "0") + Class1.accum(i).cmbconsidetoj & "0000" & " "
+            '            Else
+            '                If Class1.accum(i).cmbconsidetoj = "0" AndAlso Class1.accum(i).cmbconfacetoj = "0" Then
+            '                    output = output + Class1.accum(i).txtvolumenumberto & "0001" & " "
+            '                ElseIf Class1.accum(i).cmbconsidetoj = "1" AndAlso Class1.accum(i).cmbconfacetoj = "0" Then
+            '                    output = output + Class1.accum(i).txtvolumenumberto & "0002" & " "
+            '                ElseIf Class1.accum(i).cmbconsidetoj = "0" AndAlso Class1.accum(i).cmbconfacetoj = "1" Then
+            '                    output = output + Class1.accum(i).txtvolumenumberto & "0003" & " "
+            '                ElseIf Class1.accum(i).cmbconsidetoj = "1" AndAlso Class1.accum(i).cmbconfacetoj = "1" Then
+            '                    output = output + Class1.accum(i).txtvolumenumberto & "0004" & " "
+            '                ElseIf Class1.accum(i).cmbconsidetoj = "0" AndAlso Class1.accum(i).cmbconfacetoj = "2" Then
+            '                    output = output + Class1.accum(i).txtvolumenumberto & "0005" & " "
+            '                ElseIf Class1.accum(i).cmbconsidetoj = "1" AndAlso Class1.accum(i).cmbconfacetoj = "2" Then
+            '                    output = output + Class1.accum(i).txtvolumenumberto & "0006" & " "
+            '                End If
+            '            End If
+
+            '            output = ((output + Class1.accum(i).txtjareaj & " ") + Class1.accum(i).txtffelcj & " ") + Class1.accum(i).txtrfelcj & " "
+            '            If Class1.accum(i).cbmodpvj = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+
+            '            If Class1.accum(i).cbccflj = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            output = output + Class1.accum(i).cmbhorstratj
+
+            '            If Class1.accum(i).cbchokingj = "True" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "1"
+            '            End If
+            '            output = output + Class1.accum(i).cmbareachangej
+
+            '            If Class1.accum(i).cbhomoj = "False" Then
+            '                output = output & "0"
+            '            Else
+            '                output = output & "2"
+            '            End If
+            '            output = output + Class1.accum(i).cmbmfj & " "
+            '            generate.WriteLine(output)
+
+            '            ' CCC2200
+            '            output = ((((Class1.accum(i).cmbhydroid + "2200 " + Class1.accum(i).txtlvt & " ") + Class1.accum(i).txtllt & " ") + Class1.accum(i).txtlslsp & " ") + Class1.accum(i).txtedss & " ") + Class1.accum(i).txttwt & " "
+            '            If Class1.accum(i).cbhtf = "True" Then
+            '                output = output & "0 "
+            '            Else
+            '                output = output & "1 "
+            '            End If
+            '            output = ((output + Class1.accum(i).txttd & " ") + Class1.accum(i).txttvhc & " ") + Class1.accum(i).txttn
+            '            generate.WriteLine(output)
+            '        End If
+            '    Next
+            '    ' _____________ HEAT STRUCTURE___________________
+            '    For i As Integer = 0 To 99
+            '        If Class1.heat(i, 1).cbbox1 = "True" Then
+            '            generate.WriteLine("*======================================================================")
+            '            'if(Class1.heat[i,1]
+            '            generate.WriteLine("*               -----------------------------------                ")
+            '            generate.WriteLine("*              |                                   |               ")
+            '            generate.WriteLine("*              |          heat structures          |               ")
+            '            generate.WriteLine("*              |                                   |               ")
+            '            generate.WriteLine("*               -----------------------------------                ")
+
+
+            '            generate.WriteLine("*======================================================================")
+            '            generate.WriteLine("*                  heat structure " + Class1.heat(i, 1).cmbhstid)
+            '            generate.WriteLine("*======================================================================")
+            '            ' A8.1 Card 1CCCG000, General Heat Structure Data
+
+            '            ' A8.1.1 General Heat Structure Data Card
+
+            '            output = (("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "000 ") + Class1.heat(i, 1).txtnahswtg & " ") + Class1.heat(i, 1).txtnampftg & " "
+            '            If Class1.heat(i, 1).cmbgt = "0" Then
+            '                output = output & "1 "
+            '            ElseIf Class1.heat(i, 1).cmbgt = "1" Then
+            '                output = output & "2 "
+            '            ElseIf Class1.heat(i, 1).cmbgt = "2" Then
+            '                output = output & "3 "
+            '            End If
+            '            output = (((output + Class1.heat(i, 1).cmbssif & " ") + Class1.heat(i, 1).txtlbc & " ") + Class1.heat(i, 1).txtrcf & " ") + Class1.heat(i, 1).cmbbvi & " "
+            '            ' CHECK
+            '            If Class1.heat(i, 1).cmbmnai = "0" Then
+            '                output = output & "2 "
+            '            ElseIf Class1.heat(i, 1).cmbmnai = "1" Then
+            '                output = output & "4 "
+            '            ElseIf Class1.heat(i, 1).cmbmnai = "2" Then
+            '                output = output & "8 "
+            '            ElseIf Class1.heat(i, 1).cmbmnai = "3" Then
+            '                output = output & "16 "
+            '            ElseIf Class1.heat(i, 1).cmbmnai = "4" Then
+            '                output = output & "32 "
+            '            ElseIf Class1.heat(i, 1).cmbmnai = "5" Then
+            '                output = output & "64 "
+            '            ElseIf Class1.heat(i, 1).cmbmnai = "6" Then
+            '                output = output & "128 "
+            '            End If
+            '            generate.WriteLine(output)
+
+            '            ' A8.2 Card 1CCCG001, Gap Conductance Model Initial Gap Pressure Data
+            '            output = (("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "001 ") + Class1.heat(i, 1).txtigip & " ") + Class1.heat(i, 1).txtgcrv
+            '            generate.WriteLine(output)
+
+            '            ' A8.3 Card 1CCCG003, Metal-Water Reaction Control Card
+            '            output = ("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "003 ") + Class1.heat(i, 1).txtiotocos
+
+            '            ' A8.4 Card 1CCCG004, Fuel Cladding Deformation Model Control Card
+            '            If Class1.heat(i, 1).cbfcdmcc = "False" Then
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "004 " & "0"
+            '            Else
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "003 " & "1"
+            '            End If
+
+            '            ' A8.5 Cards 1CCCG011 through 1CCCG099, Gap Deformation Data
+            '            output = Nothing
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            output = (((output + Class1.heat(i, 1).txtfsr & " ") + Class1.heat(i, 1).txtcsr & " ") + Class1.heat(i, 1).txtrddfgisd & " ") + Class1.heat(i, 1).txtrddcc
+            '            ' 1 ";
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg) - 1
+            '                If Class1.heat(i, j - 1).txtfsr <> Class1.heat(i, j).txtfsr OrElse Class1.heat(i, j - 1).txtcsr <> Class1.heat(i, j).txtcsr OrElse Class1.heat(i, j - 1).txtrddfgisd <> Class1.heat(i, j).txtrddfgisd OrElse Class1.heat(i, j - 1).txtrddcc <> Class1.heat(i, j).txtrddcc Then
+            '                    If j = 2 Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                    output = (((output + Class1.heat(i, j).txtfsr & " ") + Class1.heat(i, j).txtcsr & " ") + Class1.heat(i, j).txtrddfgisd & " ") + Class1.heat(i, j).txtrddcc
+            '                    kl = j
+            '                    output = output & " " & kl.ToString() & " "
+            '                    kk = j
+            '                Else
+            '                    If Class1.heat(i, j).txtfsr <> Class1.heat(i, j + 1).txtfsr OrElse Class1.heat(i, j).txtcsr <> Class1.heat(i, j + 1).txtcsr OrElse Class1.heat(i, j).txtrddfgisd <> Class1.heat(i, j + 1).txtrddfgisd OrElse Class1.heat(i, j).txtrddcc <> Class1.heat(i, j + 1).txtrddcc AndAlso first1 = True Then
+            '                        output = output & " 1 "
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If Class1.heat(i, 1).txtnahswtg = "2" AndAlso Class1.heat(i, 1).txtfsr <> Class1.heat(i, 2).txtfsr OrElse Class1.heat(i, 1).txtcsr <> Class1.heat(i, 2).txtcsr OrElse Class1.heat(i, 1).txtrddfgisd <> Class1.heat(i, 2).txtrddfgisd OrElse Class1.heat(i, 1).txtrddcc <> Class1.heat(i, 2).txtrddcc Then
+            '                output = output & " 1 "
+            '            End If
+
+            '            If Class1.heat(i, 1).txtfsr <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtfsr OrElse Class1.heat(i, 1).txtcsr <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtcsr OrElse Class1.heat(i, 1).txtrddfgisd <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddfgisd OrElse Class1.heat(i, 1).txtrddcc <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddcc Then
+            '                output = (((output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtfsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtcsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddfgisd & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddcc & " " & Class1.heat(i, 1).txtnahswtg.ToString()
+            '            ElseIf first1 = True Then
+            '                output = output & " " & Class1.heat(i, 1).txtnahswtg.ToString()
+            '            ElseIf first1 = False Then
+            '                output = (((output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtfsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtcsr & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddfgisd & " ") + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)).txtrddcc & " " & Class1.heat(i, 1).txtnahswtg.ToString()
+            '            End If
+            '            output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "011 " & output
+            '            generate.WriteLine(output)
+
+            '            ' A8.6 Card 1CCCG100, Heat Structure Mesh Flags
+            '            output = ("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "100 ") + Class1.heat(i, 1).txtmlf & " "
+            '            If Class1.heat(i, 1).cmbmff = "0" Then
+            '                output = output & "1"
+            '            Else
+            '                output = output & "2"
+            '            End If
+            '            generate.WriteLine(output)
+
+            '            ' A8.7 Cards 1CCCG101 through 1CCCG199, Heat Structure Mesh Interval Data (Radial)
+            '            If Class1.heat(i, 1).cmbmff = "0" Then
+            '                If Convert.ToInt32(Class1.heat(i, 1).clbformat1) > 0 Then
+            '                    output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "101"
+
+            '                    For k As Integer = 0 To Convert.ToInt32(Class1.heat(i, 1).clbformat1) - 1
+            '                        output = (output & " ") + Class1.heat(i, k).lbformat1
+            '                    Next
+            '                    generate.WriteLine(output)
+            '                End If
+            '            Else
+            '                output = Nothing
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = output + Class1.heat(i, 1).txtmif2
+            '                ' 1 
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
+            '                    If Class1.heat(i, j - 1).txtmif2 <> Class1.heat(i, j).txtmif2 Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.heat(i, j).txtmif2
+            '                        kl = j
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.heat(i, j).txtmif2 <> Class1.heat(i, j + 1).txtmif2 AndAlso first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtmif2 <> Class1.heat(i, 2).txtmif2 Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.heat(i, 1).txtmif2 <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtmif2 Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtmif2 & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtmif2 & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                End If
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "101 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' A8.8 Cards 1CCCG201 through 1CCCG299, Heat StructureComposition Data (Radial)
+            '            If Convert.ToInt32(Class1.heat(i, 1).txtmlf) = 0 Then
+            '                output = Nothing
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = output + Class1.heat(i, 1).txtcn
+            '                ' 1 
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
+            '                    If Class1.heat(i, j - 1).txtcn <> Class1.heat(i, j).txtcn Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.heat(i, j).txtcn
+            '                        kl = j
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.heat(i, j).txtcn <> Class1.heat(i, j + 1).txtcn AndAlso first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtcn <> Class1.heat(i, 2).txtcn Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.heat(i, 1).txtcn <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtcn Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtcn & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtcn & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                End If
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "201 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' A8.9 Card 1CCCG300, Fission Product Decay Heat Flag
+            '            If Convert.ToBoolean(Class1.heat(i, 1).cbfpdhf) = True Then
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "300 " & "DKHEAT"
+            '            End If
+
+            '            ' A8.10 Cards 1CCCG301 through 1CCCG399, Heat Structure Source Distribution Data (Radial)
+            '            If Convert.ToBoolean(Class1.heat(i, 1).cbfpdhf) = False Then
+            '                output = Nothing
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = output + Class1.heat(i, 1).txtsv
+            '                ' 1 
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
+            '                    If Class1.heat(i, j - 1).txtsv <> Class1.heat(i, j).txtsv Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.heat(i, j).txtsv
+            '                        kl = j
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.heat(i, j).txtsv <> Class1.heat(i, j + 1).txtsv AndAlso first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtsv <> Class1.heat(i, 2).txtsv Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.heat(i, 1).txtsv <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtsv Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtsv & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtsv & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                End If
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "301 " & output
+            '                generate.WriteLine(output)
+            '            Else
+            '                output = Nothing
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = output + Class1.heat(i, 1).txtgac
+            '                ' 1 
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 2
+            '                    If Class1.heat(i, j - 1).txtgac <> Class1.heat(i, j).txtgac Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.heat(i, j).txtgac
+            '                        kl = j
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.heat(i, j).txtgac <> Class1.heat(i, j + 1).txtgac AndAlso first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.heat(i, 1).txtnampftg = "3" AndAlso Class1.heat(i, 1).txtgac <> Class1.heat(i, 2).txtgac Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.heat(i, 1).txtgac <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtgac Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtgac & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).txtgac & " " & (Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1).ToString()
+            '                End If
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "201 " & output
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' A8.11 Card 1CCCG400, Initial Temperature Flag
+            '            If Class1.heat(i, 1).cmbitf = "0" Then
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "400 " & "0"
+            '            ElseIf Class1.heat(i, 1).cmbitf = "1" Then
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "400 " & "-1"
+            '            ElseIf Class1.heat(i, 1).cmbitf = "2" Then
+            '                output = ("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "400 ") + Class1.heat(i, 1).txtitf
+            '            End If
+            '            generate.WriteLine(output)
+            '            ' A8.12 Cards 1CCCG401 through 1CCCG499, Initial Temperature Data
+
+            '            ' A8.12.1 Format 1 (Word 1 on Card 1CCCG400 = 0)
+            '            If Class1.heat(i, 1).cmbitf = "0" Then
+            '                output = Nothing
+            '                kl = 0
+            '                kk = 0
+            '                first1 = True
+            '                output = output + Class1.heat(i, 1).txttitdf1
+            '                ' 1 
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1
+            '                    If Class1.heat(i, j - 1).txttitdf1 <> Class1.heat(i, j).txttitdf1 Then
+            '                        If j = 2 Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                        output = output + Class1.heat(i, j).txttitdf1
+            '                        kl = j
+            '                        output = output & " " & kl.ToString() & " "
+            '                        kk = j
+            '                    Else
+            '                        If Class1.heat(i, j).txttitdf1 <> Class1.heat(i, j + 1).txttitdf1 AndAlso first1 = True Then
+            '                            output = output & " 1 "
+            '                            first1 = False
+            '                        End If
+            '                    End If
+            '                Next
+            '                If Class1.heat(i, 1).txtnampftg = "2" AndAlso Class1.heat(i, 1).txttitdf1 <> Class1.heat(i, 2).txttitdf1 Then
+            '                    output = output & " 1 "
+            '                End If
+
+            '                If Class1.heat(i, 1).txttitdf1 <> Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)).txttitdf1 Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)).txttitdf1 & " " & Class1.heat(i, 1).txtnampftg.ToString()
+            '                ElseIf first1 = True Then
+            '                    output = output & " " & Class1.heat(i, 1).txtnampftg.ToString()
+            '                ElseIf first1 = False Then
+            '                    output = output + Class1.heat(i, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)).txttitdf1 & " " & Class1.heat(i, 1).txtnampftg.ToString()
+            '                End If
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "401 " & output
+            '                generate.WriteLine(output)
+
+            '                ' A8.12.2 Format 2 (Word 1 on Card 1CCCG400 = -1)
+            '            ElseIf Class1.heat(i, 1).cmbitf = "1" Then
+            '                For k As Integer = 1 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                    output = Nothing
+            '                    kl = 0
+            '                    kk = 0
+            '                    first1 = True
+            '                    output = output + Class1.ITDF2(i, k, 1)
+            '                    ' 1 
+            '                    For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnampftg) - 1
+            '                        If Class1.ITDF2(i, k, j - 1) <> Class1.ITDF2(i, k, j) Then
+            '                            If j = 2 Then
+            '                                output = output & " 1 "
+            '                                first1 = False
+            '                            End If
+            '                            output = output + Class1.ITDF2(i, k, j)
+            '                            kl = j
+            '                            output = output & " " & kl.ToString() & " "
+            '                            kk = j
+            '                        Else
+            '                            If Class1.ITDF2(i, k, j) <> Class1.ITDF2(i, k, j + 1) AndAlso first1 = True Then
+            '                                output = output & " 1 "
+            '                                first1 = False
+            '                            End If
+            '                        End If
+            '                    Next
+            '                    If Class1.heat(i, 1).txtnampftg = "2" AndAlso Class1.ITDF2(i, k, 1) <> Class1.ITDF2(i, k, 2) Then
+            '                        output = output & " 1 "
+            '                    End If
+
+            '                    If Class1.ITDF2(i, k, 1) <> Class1.ITDF2(i, k, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)) Then
+            '                        output = output + Class1.ITDF2(i, k, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)) & " " & Class1.heat(i, 1).txtnampftg.ToString()
+            '                    ElseIf first1 = True Then
+            '                        output = output & " " & Class1.heat(i, 1).txtnampftg.ToString()
+            '                    ElseIf first1 = False Then
+            '                        output = output + Class1.ITDF2(i, k, Convert.ToInt32(Class1.heat(i, 1).txtnampftg)) & " " & Class1.heat(i, 1).txtnampftg.ToString()
+            '                    End If
+            '                    If k < 10 Then
+            '                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "40" & k.ToString() & " " & output
+            '                    Else
+            '                        output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "4" & k.ToString() & " " & output
+            '                    End If
+            '                    generate.WriteLine(output)
+            '                Next
+            '            End If
+
+            '            ' A8.13 Cards 1CCCG501 through 1CCCG599, Left Boundary Condition Cards
+
+            '            ' Modified Sequential Expansion Format
+
+            '            output = Nothing
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            Dim flaglbc As Integer = 1
+
+            '            Dim checklbc As Boolean = False
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                If Class1.word1lbc(i, j - 1) <> Class1.word1lbc(i, j) OrElse Class1.heat(i, j - 1).txtlbcincre <> Class1.heat(i, j).txtlbcincre OrElse Class1.heat(i, j - 1).txtlbcbct <> Class1.heat(i, j).txtlbcbct OrElse Class1.heat(i, j - 1).cmblbcsac <> Class1.heat(i, j).cmblbcsac OrElse Class1.heat(i, j - 1).txtlbcsaf <> Class1.heat(i, j).txtlbcsaf Then
+            '                    flaglbc += 1
+            '                    If checklbc = False Then
+            '                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "501" & " ") + Class1.word1lbc(i, 1) & " ") + Class1.heat(i, 1).txtlbcincre & " ") + Class1.heat(i, 1).txtlbcbct & " ") + Class1.heat(i, 1).cmblbcsac & " ") + Class1.heat(i, 1).txtlbcsaf & " 1"
+            '                        generate.WriteLine(output)
+            '                        checklbc = True
+            '                    End If
+
+            '                    If flaglbc <= 9 Then
+            '                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "50" & flaglbc.ToString() & " ") + Class1.word1lbc(i, j) & " ") + Class1.heat(i, j).txtlbcincre & " ") + Class1.heat(i, j).txtlbcbct & " ") + Class1.heat(i, j).cmblbcsac & " ") + Class1.heat(i, j).txtlbcsaf & " " & j.ToString()
+            '                        generate.WriteLine(output)
+
+            '                        first1 = False
+            '                    ElseIf flaglbc > 9 Then
+            '                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "5" & flaglbc.ToString() & " ") + Class1.word1lbc(i, j) & " ") + Class1.heat(i, j).txtlbcincre & " ") + Class1.heat(i, j).txtlbcbct & " ") + Class1.heat(i, j).cmblbcsac & " ") + Class1.heat(i, j).txtlbcsaf & " " & j.ToString()
+            '                        generate.WriteLine(output)
+
+            '                        first1 = False
+            '                    End If
+
+
+            '                End If
+            '            Next
+
+            '            If flaglbc = 1 Then
+            '                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "50" & flaglbc.ToString() & " ") + Class1.word1lbc(i, 1) & " ") + Class1.heat(i, 1).txtlbcincre & " ") + Class1.heat(i, 1).txtlbcbct & " ") + Class1.heat(i, 1).cmblbcsac & " ") + Class1.heat(i, 1).txtlbcsaf & " " & Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                generate.WriteLine(output)
+            '            End If
+
+            '            ' A8.14 Cards 1CCCG601 through 1CCCG699, Right Boundary Condition Cards
+
+            '            ' Modified Sequential Expansion Format
+
+            '            output = Nothing
+            '            kl = 0
+            '            kk = 0
+            '            first1 = True
+            '            Dim flagrbc As Integer = 1
+            '            Dim checkrbc As Boolean = False
+            '            'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "60" + flagrbc.ToString() + " " + Class1.word1rbc[i, 1] + " " + Class1.heat[i, 1].txtrbcincre + " " + Class1.heat[i, 1].txtrbcbct + " " + Class1.heat[i, 1].cmbrbcsac + " " + Class1.heat[i, 1].txtrbcsaf + " 1";
+            '            'generate.WriteLine(output);
+            '            'flagrbc++;
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                If Class1.word1rbc(i, j - 1) <> Class1.word1rbc(i, j) OrElse Class1.heat(i, j - 1).txtrbcincre <> Class1.heat(i, j).txtrbcincre OrElse Class1.heat(i, j - 1).txtrbcbct <> Class1.heat(i, j).txtrbcbct OrElse Class1.heat(i, j - 1).cmbrbcsac <> Class1.heat(i, j).cmbrbcsac OrElse Class1.heat(i, j - 1).txtrbcsaf <> Class1.heat(i, j).txtrbcsaf Then
+            '                    flagrbc += 1
+            '                    If checkrbc = False Then
+            '                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "601" & " ") + Class1.word1rbc(i, 1) & " ") + Class1.heat(i, 1).txtrbcincre & " ") + Class1.heat(i, 1).txtrbcbct & " ") + Class1.heat(i, 1).cmbrbcsac & " ") + Class1.heat(i, 1).txtrbcsaf & " 1"
+            '                        generate.WriteLine(output)
+            '                        checkrbc = True
+            '                    End If
+            '                    If flagrbc <= 9 Then
+            '                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "60" & flagrbc.ToString() & " ") + Class1.word1rbc(i, j) & " ") + Class1.heat(i, j).txtrbcincre & " ") + Class1.heat(i, j).txtrbcbct & " ") + Class1.heat(i, j).cmbrbcsac & " ") + Class1.heat(i, j).txtrbcsaf & " " & j.ToString()
+            '                        generate.WriteLine(output)
+            '                        'flagrbc++;
+            '                        first1 = False
+            '                    ElseIf flagrbc > 9 Then
+            '                        output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "6" & flagrbc.ToString() & " ") + Class1.word1rbc(i, j) & " ") + Class1.heat(i, j).txtrbcincre & " ") + Class1.heat(i, j).txtrbcbct & " ") + Class1.heat(i, j).cmbrbcsac & " ") + Class1.heat(i, j).txtrbcsaf & " " & j.ToString()
+            '                        generate.WriteLine(output)
+            '                        'flagrbc++;
+            '                        first1 = False
+            '                    End If
+            '                End If
+            '            Next
+            '            If flagrbc = 1 Then
+            '                output = (((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "60" & flagrbc.ToString() & " ") + Class1.word1rbc(i, 1) & " ") + Class1.heat(i, 1).txtrbcincre & " ") + Class1.heat(i, 1).txtrbcbct & " ") + Class1.heat(i, 1).cmbrbcsac & " ") + Class1.heat(i, 1).txtrbcsaf & " ") + Class1.heat(i, 1).txtnahswtg
+            '                generate.WriteLine(output)
+            '            End If
+            '            ' A8.15 Cards 1CCCG701 through 1CCCG799, Source Data Cards
+
+            '            output = Nothing
+            '            Dim flagsdc As Integer = 1
+            '            Dim checksdc As Boolean = False
+            '            'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "70" + flagsdc.ToString() + " " + Class1.heat[i, 1].txtst + " " + Class1.heat[i, 1].txtism + " " + Class1.heat[i, 1].txtdmhmleft + " " + Class1.heat[i, 1].txtdmhmright + " 1";
+            '            'generate.WriteLine(output);
+            '            'flagsdc++;
+            '            For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                If Class1.heat(i, j - 1).txtst <> Class1.heat(i, j).txtst OrElse Class1.heat(i, j - 1).txtism <> Class1.heat(i, j).txtism OrElse Class1.heat(i, j - 1).txtdmhmleft <> Class1.heat(i, j).txtdmhmleft OrElse Class1.heat(i, j - 1).txtdmhmright <> Class1.heat(i, j).txtdmhmright Then
+            '                    flagsdc += 1
+            '                    If checksdc = False Then
+            '                        output = (((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "701" & " ") + Class1.heat(i, 1).txtst & " ") + Class1.heat(i, 1).txtism & " ") + Class1.heat(i, 1).txtdmhmleft & " ") + Class1.heat(i, 1).txtdmhmright & " 1"
+            '                        generate.WriteLine(output)
+            '                        checksdc = True
+            '                    End If
+            '                    If flagsdc <= 9 Then
+            '                        output = (((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "70" & flagsdc.ToString() & " ") + Class1.heat(i, j).txtst & " ") + Class1.heat(i, j).txtism & " ") + Class1.heat(i, j).txtdmhmleft & " ") + Class1.heat(i, j).txtdmhmright & " " & j.ToString()
+            '                        'flagsdc++;
+            '                        generate.WriteLine(output)
+            '                    ElseIf flagsdc > 9 Then
+            '                        output = (((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "7" & flagsdc.ToString() & " ") + Class1.heat(i, j).txtst & " ") + Class1.heat(i, j).txtism & " ") + Class1.heat(i, j).txtdmhmleft & " ") + Class1.heat(i, j).txtdmhmright & " " & j.ToString()
+            '                        'flagsdc++;
+            '                        generate.WriteLine(output)
+            '                    End If
+            '                End If
+            '            Next
+            '            If flagsdc = 1 Then
+            '                output = ((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "70" & flagsdc.ToString() & " ") + Class1.heat(i, 1).txtst & " ") + Class1.heat(i, 1).txtism & " ") + Class1.heat(i, 1).txtdmhmleft & " ") + Class1.heat(i, 1).txtdmhmright & " ") + Class1.heat(i, 1).txtnahswtg
+            '                generate.WriteLine(output)
+            '            End If
+
+
+            '            '
+            '            '                        output = null;
+            '            '                        kl = 0; kk = 0; first1 = true;
+            '            '                        output = output + Class1.heat[i, 1].txtst + " " + Class1.heat[i, 1].txtism + " " + Class1.heat[i, 1].txtdmhmleft + " " + Class1.heat[i, 1].txtdmhmright;// 1 ";
+            '            '                        for (int j = 2; j < Convert.ToInt32(Class1.heat[i, 1].txtnahswtg); j++)
+            '            '                        {
+            '            '                            if (Class1.heat[i, j - 1].txtst != Class1.heat[i, j].txtst || Class1.heat[i, j - 1].txtism != Class1.heat[i, j].txtism || Class1.heat[i, j - 1].txtdmhmleft != Class1.heat[i, j].txtdmhmleft || Class1.heat[i, j - 1].txtdmhmright != Class1.heat[i, j].txtdmhmright)
+            '            '                            {
+            '            '                                if (j == 2)
+            '            '                                {
+            '            '                                    output = output + " 1 ";
+            '            '                                    first1 = false;
+            '            '                                }
+            '            '                                output = output + Class1.heat[i, j].txtst + " " + Class1.heat[i, j].txtism + " " + Class1.heat[i, j].txtdmhmleft + " " + Class1.heat[i, j].txtdmhmright;
+            '            '                                kl = j;
+            '            '                                output = output + " " + kl.ToString() + " ";
+            '            '                                kk = j;
+            '            '                            }
+            '            '                            else
+            '            '                            {
+            '            '                                if (Class1.heat[i, j].txtst != Class1.heat[i, j+1].txtst || Class1.heat[i, j].txtism != Class1.heat[i, j+1].txtism || Class1.heat[i, j].txtdmhmleft != Class1.heat[i, j+1].txtdmhmleft || Class1.heat[i, j].txtdmhmright != Class1.heat[i, j+1].txtdmhmright && first1 == true)
+            '            '                                {
+            '            '                                    output = output + " 1 ";
+            '            '                                    first1 = false;
+            '            '                                }
+            '            '                            }
+            '            '                        }
+            '            '                        if (Class1.heat[i, 1].txtnahswtg == "2" && Class1.heat[i, 1].txtst != Class1.heat[i, 2].txtst || Class1.heat[i, 1].txtism != Class1.heat[i, 2].txtism || Class1.heat[i, 1].txtdmhmleft != Class1.heat[i, 2].txtdmhmleft || Class1.heat[i, 1].txtdmhmright != Class1.heat[i, 2].txtdmhmright)
+            '            '                            output = output + " 1 ";
+            '            '
+            '            '                        if (Class1.heat[i, 1].txtst != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtst || Class1.heat[i, 1].txtism != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtism || Class1.heat[i, 1].txtdmhmleft != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmleft || Class1.heat[i, 1].txtdmhmright != Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmright)
+            '            '                            output = output + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtst + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtism + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmleft + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmright + " " + Class1.heat[i, 1].txtnahswtg.ToString();
+            '            '                        else if (first1 == true)
+            '            '                            output = output + " " + Class1.heat[i, 1].txtnahswtg.ToString();
+            '            '                        else if (first1 == false)
+            '            '                            output = output + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtst + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtism + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmleft + " " + Class1.heat[i, Convert.ToInt32(Class1.heat[i, 1].txtnahswtg)].txtdmhmright + " " + Class1.heat[i, 1].txtnahswtg.ToString();
+            '            '                        output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "701 " + output;
+            '            '                        generate.WriteLine(output);
+
+
+            '            ' A8.16 Card 1CCCG800, Additional Left Boundary Option
+            '            If Class1.heat(i, 1).cmboptionalb = "0" Then
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "800 " & "0"
+            '            Else
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "800 " & "1"
+            '            End If
+            '            generate.WriteLine(output)
+
+            '            ' A8.17 Cards 1CCCG801 through 1CCCG899, Additional Left Boundary Cards
+
+            '            If Class1.heat(i, 1).cmboptionalb = "0" Then
+            '                output = Nothing
+            '                Dim flagalb0 As Integer = 1
+            '                Dim checkalb0 As Boolean = False
+            '                'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "80" + flagalb0.ToString() + " " + Class1.heat[i, 1].txththdalb + " " + Class1.heat[i, 1].txthlfalb + " " + Class1.heat[i, 1].txthlralb + " " + Class1.heat[i, 1].txtgslfalb + " " + Class1.heat[i, 1].txtgslralb + " " + Class1.heat[i, 1].txtglcfalb + " " + Class1.heat[i, 1].txtglcralb + " " + Class1.heat[i, 1].txtlbfalb + " 1";
+            '                'generate.WriteLine(output);
+            '                'flagalb0++;
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                    If Class1.heat(i, j - 1).txththdalb <> Class1.heat(i, j).txththdalb OrElse Class1.heat(i, j - 1).txthlfalb <> Class1.heat(i, j).txthlfalb OrElse Class1.heat(i, j - 1).txthlralb <> Class1.heat(i, j).txthlralb OrElse Class1.heat(i, j - 1).txtgslfalb <> Class1.heat(i, j).txtgslfalb OrElse Class1.heat(i, j - 1).txtgslralb <> Class1.heat(i, j).txtgslralb OrElse Class1.heat(i, j - 1).txtglcfalb <> Class1.heat(i, j).txtglcfalb OrElse Class1.heat(i, j - 1).txtglcralb <> Class1.heat(i, j).txtglcralb OrElse Class1.heat(i, j - 1).txtlbfalb <> Class1.heat(i, j).txtlbfalb Then
+            '                        flagalb0 += 1
+            '                        If checkalb0 = False Then
+            '                            output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "801" & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " 1"
+            '                            generate.WriteLine(output)
+            '                            checkalb0 = True
+            '                        End If
+            '                        If flagalb0 <= 9 Then
+            '                            output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb0.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " " & j.ToString()
+            '                            'flagalb0++;
+            '                            generate.WriteLine(output)
+            '                        ElseIf flagalb0 > 9 Then
+            '                            output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "8" & flagalb0.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " " & j.ToString()
+            '                            'flagalb0++;
+            '                            generate.WriteLine(output)
+            '                        End If
+            '                    End If
+            '                Next
+            '                If flagalb0 = 1 Then
+            '                    output = ((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb0.ToString() & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " ") + Class1.heat(i, 1).txtnahswtg
+            '                    generate.WriteLine(output)
+            '                End If
+
+
+            '            ElseIf Class1.heat(i, 1).cmboptionalb = "1" Then
+            '                output = Nothing
+            '                Dim flagalb1 As Integer = 1
+            '                Dim checkalb1 As Boolean = False
+            '                'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "80" + flagalb1.ToString() + " " + Class1.heat[i, 1].txththdalb + " " + Class1.heat[i, 1].txthlfalb + " " + Class1.heat[i, 1].txthlralb + " " + Class1.heat[i, 1].txtgslfalb + " " + Class1.heat[i, 1].txtgslralb + " " + Class1.heat[i, 1].txtglcfalb + " " + Class1.heat[i, 1].txtglcralb + " " + Class1.heat[i, 1].txtlbfalb + " " + Class1.heat[i, 1].txtnclalb + " " + Class1.heat[i, 1].txtrtp2dralb + " " + Class1.heat[i, 1].txtffalb + " 1";
+            '                'generate.WriteLine(output);
+            '                'flagalb1++;
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                    If Class1.heat(i, j - 1).txththdalb <> Class1.heat(i, j).txththdalb OrElse Class1.heat(i, j - 1).txthlfalb <> Class1.heat(i, j).txthlfalb OrElse Class1.heat(i, j - 1).txthlralb <> Class1.heat(i, j).txthlralb OrElse Class1.heat(i, j - 1).txtgslfalb <> Class1.heat(i, j).txtgslfalb OrElse Class1.heat(i, j - 1).txtgslralb <> Class1.heat(i, j).txtgslralb OrElse Class1.heat(i, j - 1).txtglcfalb <> Class1.heat(i, j).txtglcfalb OrElse Class1.heat(i, j - 1).txtglcralb <> Class1.heat(i, j).txtglcralb OrElse Class1.heat(i, j - 1).txtlbfalb <> Class1.heat(i, j).txtlbfalb OrElse Class1.heat(i, j - 1).txtnclalb <> Class1.heat(i, j).txtnclalb OrElse Class1.heat(i, j - 1).txtrtp2dralb <> Class1.heat(i, j).txtrtp2dralb OrElse Class1.heat(i, j - 1).txtffalb <> Class1.heat(i, j).txtffalb Then
+            '                        flagalb1 += 1
+            '                        If checkalb1 = False Then
+            '                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "801" & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " 1"
+            '                            generate.WriteLine(output)
+            '                            checkalb1 = True
+            '                        End If
+            '                        If flagalb1 <= 9 Then
+            '                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb1.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " " & j.ToString()
+            '                            'flagalb1++;
+            '                            generate.WriteLine(output)
+            '                        ElseIf flagalb1 > 9 Then
+            '                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "8" & flagalb1.ToString() & " ") + Class1.heat(i, j).txththdalb & " ") + Class1.heat(i, j).txthlfalb & " ") + Class1.heat(i, j).txthlralb & " ") + Class1.heat(i, j).txtgslfalb & " ") + Class1.heat(i, j).txtgslralb & " ") + Class1.heat(i, j).txtglcfalb & " ") + Class1.heat(i, j).txtglcralb & " ") + Class1.heat(i, j).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " " & j.ToString()
+            '                            'flagalb1++;
+            '                            generate.WriteLine(output)
+            '                        End If
+            '                    End If
+            '                Next
+            '                If flagalb1 = 1 Then
+            '                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "80" & flagalb1.ToString() & " ") + Class1.heat(i, 1).txththdalb & " ") + Class1.heat(i, 1).txthlfalb & " ") + Class1.heat(i, 1).txthlralb & " ") + Class1.heat(i, 1).txtgslfalb & " ") + Class1.heat(i, 1).txtgslralb & " ") + Class1.heat(i, 1).txtglcfalb & " ") + Class1.heat(i, 1).txtglcralb & " ") + Class1.heat(i, 1).txtlbfalb & " ") + Class1.heat(i, 1).txtnclalb & " ") + Class1.heat(i, 1).txtrtp2dralb & " ") + Class1.heat(i, 1).txtffalb & " 1"
+            '                    generate.WriteLine(output)
+            '                End If
+            '            End If
+
+            '            ' ----------------------------------------------
+
+            '            ' A8.18 Card 1CCCG900, Additional Right Boundary Option
+            '            If Class1.heat(i, 1).cmboptionarb = "0" Then
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "900 " & "0"
+            '            Else
+            '                output = "1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "900 " & "1"
+            '            End If
+            '            generate.WriteLine(output)
+
+            '            ' A8.19 Cards 1CCCG901 through 1CCCG999, Additional Right Boundary Cards
+
+            '            If Class1.heat(i, 1).cmboptionarb = "0" Then
+            '                output = Nothing
+            '                Dim flagarb0 As Integer = 1
+            '                Dim checkarb0 As Boolean = False
+            '                'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "90" + flagarb0.ToString() + " " + Class1.heat[i, 1].txththdarb + " " + Class1.heat[i, 1].txthlfarb + " " + Class1.heat[i, 1].txthlrarb + " " + Class1.heat[i, 1].txtgslfarb + " " + Class1.heat[i, 1].txtgslrarb + " " + Class1.heat[i, 1].txtglcfarb + " " + Class1.heat[i, 1].txtglcrarb + " " + Class1.heat[i, 1].txtlbfarb + " 1";
+            '                'generate.WriteLine(output);
+            '                'flagarb0++;
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                    If Class1.heat(i, j - 1).txththdarb <> Class1.heat(i, j).txththdarb OrElse Class1.heat(i, j - 1).txthlfarb <> Class1.heat(i, j).txthlfarb OrElse Class1.heat(i, j - 1).txthlrarb <> Class1.heat(i, j).txthlrarb OrElse Class1.heat(i, j - 1).txtgslfarb <> Class1.heat(i, j).txtgslfarb OrElse Class1.heat(i, j - 1).txtgslrarb <> Class1.heat(i, j).txtgslrarb OrElse Class1.heat(i, j - 1).txtglcfarb <> Class1.heat(i, j).txtglcfarb OrElse Class1.heat(i, j - 1).txtglcrarb <> Class1.heat(i, j).txtglcrarb OrElse Class1.heat(i, j - 1).txtlbfarb <> Class1.heat(i, j).txtlbfarb Then
+            '                        flagarb0 += 1
+            '                        If checkarb0 = False Then
+            '                            output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "901" & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " 1"
+            '                            generate.WriteLine(output)
+            '                            checkarb0 = True
+            '                        End If
+
+            '                        If flagarb0 <= 9 Then
+            '                            output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb0.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " " & j.ToString()
+            '                            'flagarb0++;
+            '                            generate.WriteLine(output)
+            '                        ElseIf flagarb0 > 9 Then
+            '                            output = (((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "9" & flagarb0.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " " & j.ToString()
+            '                            'flagarb0++;
+            '                            generate.WriteLine(output)
+            '                        End If
+            '                    End If
+            '                Next
+            '                If flagarb0 = 1 Then
+            '                    output = ((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb0.ToString() & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " ") + Class1.heat(i, 1).txtnahswtg
+            '                    generate.WriteLine(output)
+            '                End If
+
+
+            '            ElseIf Class1.heat(i, 1).cmboptionarb = "1" Then
+            '                output = Nothing
+            '                Dim flagarb1 As Integer = 1
+            '                Dim checkarb1 As Boolean = False
+            '                'output = "1" + Class1.heat[i, 1].cmbhstid + Class1.heat[i, 1].txtgn + "90" + flagarb1.ToString() + " " + Class1.heat[i, 1].txththdarb + " " + Class1.heat[i, 1].txthlfarb + " " + Class1.heat[i, 1].txthlrarb + " " + Class1.heat[i, 1].txtgslfarb + " " + Class1.heat[i, 1].txtgslrarb + " " + Class1.heat[i, 1].txtglcfarb + " " + Class1.heat[i, 1].txtglcrarb + " " + Class1.heat[i, 1].txtlbfarb + " " + Class1.heat[i, 1].txtnclarb + " " + Class1.heat[i, 1].txtrtp2drarb + " " + Class1.heat[i, 1].txtffarb + " 1";
+            '                'generate.WriteLine(output);
+            '                'flagarb1++;
+            '                For j As Integer = 2 To Convert.ToInt32(Class1.heat(i, 1).txtnahswtg)
+            '                    If Class1.heat(i, j - 1).txththdarb <> Class1.heat(i, j).txththdarb OrElse Class1.heat(i, j - 1).txthlfarb <> Class1.heat(i, j).txthlfarb OrElse Class1.heat(i, j - 1).txthlrarb <> Class1.heat(i, j).txthlrarb OrElse Class1.heat(i, j - 1).txtgslfarb <> Class1.heat(i, j).txtgslfarb OrElse Class1.heat(i, j - 1).txtgslrarb <> Class1.heat(i, j).txtgslrarb OrElse Class1.heat(i, j - 1).txtglcfarb <> Class1.heat(i, j).txtglcfarb OrElse Class1.heat(i, j - 1).txtglcrarb <> Class1.heat(i, j).txtglcrarb OrElse Class1.heat(i, j - 1).txtlbfarb <> Class1.heat(i, j).txtlbfarb OrElse Class1.heat(i, j - 1).txtnclarb <> Class1.heat(i, j).txtnclarb OrElse Class1.heat(i, j - 1).txtrtp2drarb <> Class1.heat(i, j).txtrtp2drarb OrElse Class1.heat(i, j - 1).txtffarb <> Class1.heat(i, j).txtffarb Then
+            '                        flagarb1 += 1
+            '                        If checkarb1 = False Then
+            '                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "901" & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " 1"
+            '                            generate.WriteLine(output)
+            '                            checkarb1 = True
+            '                        End If
+
+            '                        If flagarb1 <= 9 Then
+            '                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb1.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " " & j.ToString()
+            '                            'flagarb1++;
+            '                            generate.WriteLine(output)
+            '                        ElseIf flagarb1 > 9 Then
+            '                            output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "9" & flagarb1.ToString() & " ") + Class1.heat(i, j).txththdarb & " ") + Class1.heat(i, j).txthlfarb & " ") + Class1.heat(i, j).txthlrarb & " ") + Class1.heat(i, j).txtgslfarb & " ") + Class1.heat(i, j).txtgslrarb & " ") + Class1.heat(i, j).txtglcfarb & " ") + Class1.heat(i, j).txtglcrarb & " ") + Class1.heat(i, j).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " " & j.ToString()
+            '                            'flagarb1++;
+            '                            generate.WriteLine(output)
+            '                        End If
+            '                    End If
+            '                Next
+            '                If flagarb1 = 1 Then
+            '                    output = ((((((((((("1" + Class1.heat(i, 1).cmbhstid + Class1.heat(i, 1).txtgn & "90" & flagarb1.ToString() & " ") + Class1.heat(i, 1).txththdarb & " ") + Class1.heat(i, 1).txthlfarb & " ") + Class1.heat(i, 1).txthlrarb & " ") + Class1.heat(i, 1).txtgslfarb & " ") + Class1.heat(i, 1).txtgslrarb & " ") + Class1.heat(i, 1).txtglcfarb & " ") + Class1.heat(i, 1).txtglcrarb & " ") + Class1.heat(i, 1).txtlbfarb & " ") + Class1.heat(i, 1).txtnclarb & " ") + Class1.heat(i, 1).txtrtp2drarb & " ") + Class1.heat(i, 1).txtffarb & " 1"
+            '                    generate.WriteLine(output)
+            '                End If
+            '            End If
+
+
+
+
+
+            '            ' _______________________________________________
+            '        End If
+            '    Next
+
+
+
+
+            '    generate.WriteLine(". END of code")
+            '    ' file code colse
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            '    ' end of writing code******************************************************************************
+            '    generate.Close()
         End If
 
     End Sub

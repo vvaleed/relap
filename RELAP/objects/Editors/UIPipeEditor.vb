@@ -23,11 +23,11 @@ Namespace RELAP.Editors
 
                 selectionControl.UcPipeEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
                 selectionControl.UcPipeEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
-                'selectionControl.UcPipeEditor1.Profile = value
+                selectionControl.UcPipeEditor1.Profile = value
 
                 editorService.ShowDialog(selectionControl)
 
-                ' value = selectionControl.UcPipeEditor1.Profile
+                value = selectionControl.UcPipeEditor1.Profile
 
             End If
 

@@ -52,7 +52,15 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_LevelTrackingModel = value
             End Set
         End Property
-
+        Protected m_profile As PipeProfile
+        Public Property Profile() As PipeProfile
+            Get
+                Return m_profile
+            End Get
+            Set(ByVal value As PipeProfile)
+                m_profile = value
+            End Set
+        End Property
         Private m_InterphaseFriction As Boolean
         Public Property InterphaseFriction() As Boolean
             Get
@@ -147,6 +155,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentName = nome
             Me.m_NumberOfVoulmes = 5
             Me.m_ComponentDescription = descricao
+            Me.Profile = New PipeProfile
             ' Me.m_LengthofVolume = 5.0
             ' Me.m_VerticalAngle = -90.0
             ' Me.m_FlowArea = 1.0
@@ -429,9 +438,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Integer)
                 End With
-                .Item.Add("Set Volume Parameters", valor, False, "Parameters", "Set Volume Parameters", True)
+                .Item.Add("Set Volume Parameters", Me, "Profile", False, "Parameters", "Set Volume Parameters", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
                     .DefaultType = GetType(PipeProfile)
                     .CustomEditor = New RELAP.Editors.UIPipeEditor
                 End With
