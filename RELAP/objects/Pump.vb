@@ -900,63 +900,63 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 'pump suction
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Junction Area", su.area), valor, False, "3.Pump Suction Data", "Junction Area", True)
+                .Item.Add(FT("Inlet Junction Area", su.area), valor, False, "3.Pump Suction Data", "Inlet Junction Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "3.Pump Suction Data", "Forward Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Inlet Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "3.Pump Suction Data", "Inlet Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "3.Pump Suction Data", "Reverse Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Inlet Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "3.Pump Suction Data", "Inlet Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                .Item.Add(("CCFL Model"), Me, "CCFLModel", False, "3.Pump Suction Data", "CCFL Model", True)
+                .Item.Add(("Inlet CCFL Model"), Me, "CCFLModel", False, "3.Pump Suction Data", "Inlet CCFL Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Choking Model"), Me, "ChokingModel", False, "3.Pump Suction Data", "Choking Model", True)
+                .Item.Add(("Inlet Choking Model"), Me, "ChokingModel", False, "3.Pump Suction Data", "Inlet Choking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Smooth Area Change"), Me, "SmoothAreaChange", False, "3.Pump Suction Data", "Smooth Area Change", True)
+                .Item.Add(("Inlet Smooth Area Change"), Me, "SmoothAreaChange", False, "3.Pump Suction Data", "Inlet Smooth Area Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Full Abrupt Area Change"), Me, "FullAbruptAreaChange", False, "3.Pump Suction Data", "Full Abrupt Area Change", True)
+                .Item.Add(("Inlet Full Abrupt Area Change"), Me, "FullAbruptAreaChange", False, "3.Pump Suction Data", "Inlet Full Abrupt Area Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Partial Abrupt Area Change"), Me, "PartialAbruptAreaChange", False, "3.Pump Suction Data", "Partial Abrupt Area Change", True)
+                .Item.Add(("Inlet Partial Abrupt Area Change"), Me, "PartialAbruptAreaChange", False, "3.Pump Suction Data", "Inlet Partial Abrupt Area Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Two Velocity Momentum Equations"), Me, "TwoVelocityMomentumEquations", False, "3.Pump Suction Data", "Two Velocity Momentum Equations", True)
+                .Item.Add(("Inlet Two Velocity Momentum Equations"), Me, "TwoVelocityMomentumEquations", False, "3.Pump Suction Data", "Inlet Two Velocity Momentum Equations", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Single Velocity Momentum Equations"), Me, "SingleVelocityMomentumEquations", False, "3.Pump Suction Data", "Single Velocity Momentum Equations", True)
+                .Item.Add(("Inlet Single Velocity Momentum Equations"), Me, "SingleVelocityMomentumEquations", False, "3.Pump Suction Data", "Inlet Single Velocity Momentum Equations", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
@@ -967,63 +967,63 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 'pump discharge
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.OJunctionArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Junction Area", su.area), valor, False, "4.Pump Discharge Data", "Junction Area", True)
+                .Item.Add(FT("Outlet Junction Area", su.area), valor, False, "4.Pump Discharge Data", "Outlet Junction Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.OFflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "4.Pump Discharge Data", "Forward Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Outlet Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "4.Pump Discharge Data", "Outlet Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.ORflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "4.Pump Discharge Data", "Reverse Flow Energy Loss Coefficient", True)
+                .Item.Add(FT("Outlet Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "4.Pump Discharge Data", "Outlet Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                .Item.Add(("CCFL Model"), Me, "OCCFLModel", False, "4.Pump Discharge Data", "CCFL Model", True)
+                .Item.Add(("Outlet CCFL Model"), Me, "OCCFLModel", False, "4.Pump Discharge Data", "Outlet CCFL Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Choking Model"), Me, "OChokingModel", False, "4.Pump Discharge Data", "Choking Model", True)
+                .Item.Add(("Outlet Choking Model"), Me, "OChokingModel", False, "4.Pump Discharge Data", "Outlet Choking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Smooth Area Change"), Me, "OSmoothAreaChange", False, "4.Pump Discharge Data", "Smooth Area Change", True)
+                .Item.Add(("Outlet Smooth Area Change"), Me, "OSmoothAreaChange", False, "4.Pump Discharge Data", "Outlet Smooth Area Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Full Abrupt Area Change"), Me, "OFullAbruptAreaChange", False, "4.Pump Discharge Data", "Full Abrupt Area Change", True)
+                .Item.Add(("Outlet Full Abrupt Area Change"), Me, "OFullAbruptAreaChange", False, "4.Pump Discharge Data", "Outlet Full Abrupt Area Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Partial Abrupt Area Change"), Me, "OPartialAbruptAreaChange", False, "4.Pump Discharge Data", "Partial Abrupt Area Change", True)
+                .Item.Add(("Outlet Partial Abrupt Area Change"), Me, "OPartialAbruptAreaChange", False, "4.Pump Discharge Data", "Outlet Partial Abrupt Area Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Two Velocity Momentum Equations"), Me, "OTwoVelocityMomentumEquations", False, "4.Pump Discharge Data", "Two Velocity Momentum Equations", True)
+                .Item.Add(("Outlet Two Velocity Momentum Equations"), Me, "OTwoVelocityMomentumEquations", False, "4.Pump Discharge Data", "Outlet Two Velocity Momentum Equations", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Single Velocity Momentum Equations"), Me, "OSingleVelocityMomentumEquations", False, "4.Pump Discharge Data", "Single Velocity Momentum Equations", True)
+                .Item.Add(("Outlet Single Velocity Momentum Equations"), Me, "OSingleVelocityMomentumEquations", False, "4.Pump Discharge Data", "Outlet Single Velocity Momentum Equations", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
