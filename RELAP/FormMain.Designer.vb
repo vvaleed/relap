@@ -48,7 +48,6 @@ Partial Class FormMain
         Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TileVerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TileHorizontalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenerateInputFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
@@ -63,6 +62,9 @@ Partial Class FormMain
         Me.DeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DonateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerateInputFileOnlyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerateInputFileAndRunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.NewToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -108,7 +110,7 @@ Partial Class FormMain
         Me.HelpProvider1.SetHelpKeyword(Me.MenuStrip1, resources.GetString("MenuStrip1.HelpKeyword"))
         Me.HelpProvider1.SetHelpNavigator(Me.MenuStrip1, CType(resources.GetObject("MenuStrip1.HelpNavigator"), System.Windows.Forms.HelpNavigator))
         Me.HelpProvider1.SetHelpString(Me.MenuStrip1, resources.GetString("MenuStrip1.HelpString"))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VerToolStripMenuItem, Me.WindowsMenu, Me.GenerateInputFileToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VerToolStripMenuItem, Me.RunToolStripMenuItem, Me.WindowsMenu, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.HelpProvider1.SetShowHelp(Me.MenuStrip1, CType(resources.GetObject("MenuStrip1.ShowHelp"), Boolean))
@@ -268,12 +270,6 @@ Partial Class FormMain
         Me.TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
         Me.StatusBarTextProvider1.SetStatusBarText(Me.TileHorizontalToolStripMenuItem, resources.GetString("TileHorizontalToolStripMenuItem.StatusBarText"))
         '
-        'GenerateInputFileToolStripMenuItem
-        '
-        resources.ApplyResources(Me.GenerateInputFileToolStripMenuItem, "GenerateInputFileToolStripMenuItem")
-        Me.GenerateInputFileToolStripMenuItem.Name = "GenerateInputFileToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileToolStripMenuItem, resources.GetString("GenerateInputFileToolStripMenuItem.StatusBarText"))
-        '
         'HelpToolStripMenuItem
         '
         resources.ApplyResources(Me.HelpToolStripMenuItem, "HelpToolStripMenuItem")
@@ -365,6 +361,25 @@ Partial Class FormMain
         Me.AboutToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.information
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.StatusBarTextProvider1.SetStatusBarText(Me.AboutToolStripMenuItem, resources.GetString("AboutToolStripMenuItem.StatusBarText"))
+        '
+        'RunToolStripMenuItem
+        '
+        resources.ApplyResources(Me.RunToolStripMenuItem, "RunToolStripMenuItem")
+        Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem, Me.GenerateInputFileAndRunToolStripMenuItem})
+        Me.RunToolStripMenuItem.Name = "RunToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.RunToolStripMenuItem, resources.GetString("RunToolStripMenuItem.StatusBarText"))
+        '
+        'GenerateInputFileOnlyToolStripMenuItem
+        '
+        resources.ApplyResources(Me.GenerateInputFileOnlyToolStripMenuItem, "GenerateInputFileOnlyToolStripMenuItem")
+        Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileOnlyToolStripMenuItem, resources.GetString("GenerateInputFileOnlyToolStripMenuItem.StatusBarText"))
+        '
+        'GenerateInputFileAndRunToolStripMenuItem
+        '
+        resources.ApplyResources(Me.GenerateInputFileAndRunToolStripMenuItem, "GenerateInputFileAndRunToolStripMenuItem")
+        Me.GenerateInputFileAndRunToolStripMenuItem.Name = "GenerateInputFileAndRunToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileAndRunToolStripMenuItem, resources.GetString("GenerateInputFileAndRunToolStripMenuItem.StatusBarText"))
         '
         'ToolStrip1
         '
@@ -750,6 +765,8 @@ Partial Class FormMain
     Friend WithEvents NovoEstudoDoCriadorDeComponentesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveStudyDlg As System.Windows.Forms.SaveFileDialog
     Friend WithEvents SaveRegStudyDlg As System.Windows.Forms.SaveFileDialog
-    Friend WithEvents GenerateInputFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GenerateInputFileOnlyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GenerateInputFileAndRunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
