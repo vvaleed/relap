@@ -2663,6 +2663,26 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*")
             output = frmInitialSettings.txtendtime.Text & " " & frmInitialSettings.txtminsteptime.Text & " " & frmInitialSettings.txtmaxsteptime.Text & " " & frmInitialSettings.txtcontroloption.Text & " " & frmInitialSettings.txtMinorFrequency.Text & " " & frmInitialSettings.txtMajorFrequency.Text & " " & frmInitialSettings.txtRestartFrequency.Text
             generate.WriteLine("201 " & output)
+            Dim i = 1
+            For Each row As DataGridViewRow In My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows
+                If row.Cells(1).Value = "Linear" Then
+                    If row.Cells(2).Value = "Right" Then
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 2"
+                    Else
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 1"
+                    End If
+
+                Else
+                    If row.Cells(2).Value = "Right" Then
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -2"
+                    Else
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -1"
+                    End If
+
+                End If
+                i = i + 1
+                generate.WriteLine(output)
+            Next
 
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
