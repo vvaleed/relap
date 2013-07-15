@@ -40,6 +40,11 @@ Public Class ucPipeEditor
         For i = 1 To myCOTK.NumberOfVoulmes
             dgv.Rows.Add(i.ToString)
         Next
+        For Each row As DataGridViewRow In dgv.Rows
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = 0
+            Next
+        Next
 
     End Sub
 
