@@ -1,4 +1,4 @@
-﻿Public Class PipeProfile
+﻿<System.Serializable()> Public Class PipeProfile
     Protected m_collection As Generic.SortedDictionary(Of Integer, PipeSection)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
