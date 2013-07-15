@@ -376,6 +376,9 @@
     <EmbeddedResource Include="frmInitialSettings.resx">
       <DependentUpon>frmInitialSettings.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProps.en-AU.resx">
+      <DependentUpon>frmProps.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProps.en-US.resx">
       <DependentUpon>frmProps.vb</DependentUpon>
     </EmbeddedResource>
@@ -393,6 +396,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurface.es.resx">
       <DependentUpon>frmSurface.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurface.resx">
       <DependentUpon>frmSurface.vb</DependentUpon>

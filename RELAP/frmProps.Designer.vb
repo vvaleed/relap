@@ -19,6 +19,7 @@ Partial Class frmProps
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProps))
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
@@ -64,13 +65,11 @@ Partial Class frmProps
         'LblStatusObj
         '
         resources.ApplyResources(Me.LblStatusObj, "LblStatusObj")
-        Me.LblStatusObj.ImageKey = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
         Me.LblStatusObj.Name = "LblStatusObj"
         '
         'Label4
         '
         resources.ApplyResources(Me.Label4, "Label4")
-        Me.Label4.ImageKey = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
         Me.Label4.Name = "Label4"
         '
         'TableLayoutPanel7
@@ -83,13 +82,11 @@ Partial Class frmProps
         'LblTipoObj
         '
         resources.ApplyResources(Me.LblTipoObj, "LblTipoObj")
-        Me.LblTipoObj.ImageKey = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
         Me.LblTipoObj.Name = "LblTipoObj"
         '
         'Label3
         '
         resources.ApplyResources(Me.Label3, "Label3")
-        Me.Label3.ImageKey = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
         Me.Label3.Name = "Label3"
         '
         'FTSProps
@@ -116,7 +113,7 @@ Partial Class frmProps
         '
         '
         Me.PGEx1.DocCommentDescription.AccessibleDescription = resources.GetString("PGEx1.DocCommentDescription.AccessibleDescription")
-        Me.PGEx1.DocCommentDescription.AccessibleName = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx1.DocCommentDescription.AccessibleName = resources.GetString("PGEx1.DocCommentDescription.AccessibleName")
         Me.PGEx1.DocCommentDescription.Anchor = CType(resources.GetObject("PGEx1.DocCommentDescription.Anchor"), System.Windows.Forms.AnchorStyles)
         Me.PGEx1.DocCommentDescription.AutoEllipsis = True
         Me.PGEx1.DocCommentDescription.AutoSize = CType(resources.GetObject("PGEx1.DocCommentDescription.AutoSize"), Boolean)
@@ -130,7 +127,8 @@ Partial Class frmProps
         Me.PGEx1.DocCommentDescription.ImageKey = resources.GetString("PGEx1.DocCommentDescription.ImageKey")
         Me.PGEx1.DocCommentDescription.ImeMode = CType(resources.GetObject("PGEx1.DocCommentDescription.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx1.DocCommentDescription.Location = CType(resources.GetObject("PGEx1.DocCommentDescription.Location"), System.Drawing.Point)
-        Me.PGEx1.DocCommentDescription.Name = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx1.DocCommentDescription.MaximumSize = CType(resources.GetObject("PGEx1.DocCommentDescription.MaximumSize"), System.Drawing.Size)
+        Me.PGEx1.DocCommentDescription.Name = ""
         Me.PGEx1.DocCommentDescription.RightToLeft = CType(resources.GetObject("PGEx1.DocCommentDescription.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx1.DocCommentDescription.Size = CType(resources.GetObject("PGEx1.DocCommentDescription.Size"), System.Drawing.Size)
         Me.PGEx1.DocCommentDescription.TabIndex = CType(resources.GetObject("PGEx1.DocCommentDescription.TabIndex"), Integer)
@@ -153,7 +151,8 @@ Partial Class frmProps
         Me.PGEx1.DocCommentTitle.ImageKey = resources.GetString("PGEx1.DocCommentTitle.ImageKey")
         Me.PGEx1.DocCommentTitle.ImeMode = CType(resources.GetObject("PGEx1.DocCommentTitle.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx1.DocCommentTitle.Location = CType(resources.GetObject("PGEx1.DocCommentTitle.Location"), System.Drawing.Point)
-        Me.PGEx1.DocCommentTitle.Name = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx1.DocCommentTitle.MaximumSize = CType(resources.GetObject("PGEx1.DocCommentTitle.MaximumSize"), System.Drawing.Size)
+        Me.PGEx1.DocCommentTitle.Name = ""
         Me.PGEx1.DocCommentTitle.RightToLeft = CType(resources.GetObject("PGEx1.DocCommentTitle.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx1.DocCommentTitle.Size = CType(resources.GetObject("PGEx1.DocCommentTitle.Size"), System.Drawing.Size)
         Me.PGEx1.DocCommentTitle.TabIndex = CType(resources.GetObject("PGEx1.DocCommentTitle.TabIndex"), Integer)
@@ -181,13 +180,14 @@ Partial Class frmProps
         Me.PGEx1.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.PGEx1.ToolStrip.ImeMode = CType(resources.GetObject("PGEx1.ToolStrip.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx1.ToolStrip.Location = CType(resources.GetObject("PGEx1.ToolStrip.Location"), System.Drawing.Point)
-        Me.PGEx1.ToolStrip.Name = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx1.ToolStrip.MaximumSize = CType(resources.GetObject("PGEx1.ToolStrip.MaximumSize"), System.Drawing.Size)
+        Me.PGEx1.ToolStrip.Name = ""
         Me.PGEx1.ToolStrip.Padding = CType(resources.GetObject("PGEx1.ToolStrip.Padding"), System.Windows.Forms.Padding)
         Me.PGEx1.ToolStrip.RightToLeft = CType(resources.GetObject("PGEx1.ToolStrip.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx1.ToolStrip.Size = CType(resources.GetObject("PGEx1.ToolStrip.Size"), System.Drawing.Size)
         Me.PGEx1.ToolStrip.TabIndex = CType(resources.GetObject("PGEx1.ToolStrip.TabIndex"), Integer)
         Me.PGEx1.ToolStrip.TabStop = True
-        Me.PGEx1.ToolStrip.Text = "PropertyGrid Toolbar"
+        Me.PGEx1.ToolStrip.Text = resources.GetString("PGEx1.ToolStrip.Text")
         Me.PGEx1.ToolStrip.Visible = CType(resources.GetObject("PGEx1.ToolStrip.Visible"), Boolean)
         '
         'TSObj
@@ -205,7 +205,7 @@ Partial Class frmProps
         '
         '
         Me.PGEx2.DocCommentDescription.AccessibleDescription = resources.GetString("PGEx2.DocCommentDescription.AccessibleDescription")
-        Me.PGEx2.DocCommentDescription.AccessibleName = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx2.DocCommentDescription.AccessibleName = resources.GetString("PGEx2.DocCommentDescription.AccessibleName")
         Me.PGEx2.DocCommentDescription.Anchor = CType(resources.GetObject("PGEx2.DocCommentDescription.Anchor"), System.Windows.Forms.AnchorStyles)
         Me.PGEx2.DocCommentDescription.AutoEllipsis = True
         Me.PGEx2.DocCommentDescription.AutoSize = CType(resources.GetObject("PGEx2.DocCommentDescription.AutoSize"), Boolean)
@@ -219,7 +219,8 @@ Partial Class frmProps
         Me.PGEx2.DocCommentDescription.ImageKey = resources.GetString("PGEx2.DocCommentDescription.ImageKey")
         Me.PGEx2.DocCommentDescription.ImeMode = CType(resources.GetObject("PGEx2.DocCommentDescription.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx2.DocCommentDescription.Location = CType(resources.GetObject("PGEx2.DocCommentDescription.Location"), System.Drawing.Point)
-        Me.PGEx2.DocCommentDescription.Name = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx2.DocCommentDescription.MaximumSize = CType(resources.GetObject("PGEx2.DocCommentDescription.MaximumSize"), System.Drawing.Size)
+        Me.PGEx2.DocCommentDescription.Name = ""
         Me.PGEx2.DocCommentDescription.RightToLeft = CType(resources.GetObject("PGEx2.DocCommentDescription.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx2.DocCommentDescription.Size = CType(resources.GetObject("PGEx2.DocCommentDescription.Size"), System.Drawing.Size)
         Me.PGEx2.DocCommentDescription.TabIndex = CType(resources.GetObject("PGEx2.DocCommentDescription.TabIndex"), Integer)
@@ -242,7 +243,8 @@ Partial Class frmProps
         Me.PGEx2.DocCommentTitle.ImageKey = resources.GetString("PGEx2.DocCommentTitle.ImageKey")
         Me.PGEx2.DocCommentTitle.ImeMode = CType(resources.GetObject("PGEx2.DocCommentTitle.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx2.DocCommentTitle.Location = CType(resources.GetObject("PGEx2.DocCommentTitle.Location"), System.Drawing.Point)
-        Me.PGEx2.DocCommentTitle.Name = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx2.DocCommentTitle.MaximumSize = CType(resources.GetObject("PGEx2.DocCommentTitle.MaximumSize"), System.Drawing.Size)
+        Me.PGEx2.DocCommentTitle.Name = ""
         Me.PGEx2.DocCommentTitle.RightToLeft = CType(resources.GetObject("PGEx2.DocCommentTitle.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx2.DocCommentTitle.Size = CType(resources.GetObject("PGEx2.DocCommentTitle.Size"), System.Drawing.Size)
         Me.PGEx2.DocCommentTitle.TabIndex = CType(resources.GetObject("PGEx2.DocCommentTitle.TabIndex"), Integer)
@@ -270,13 +272,14 @@ Partial Class frmProps
         Me.PGEx2.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.PGEx2.ToolStrip.ImeMode = CType(resources.GetObject("PGEx2.ToolStrip.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx2.ToolStrip.Location = CType(resources.GetObject("PGEx2.ToolStrip.Location"), System.Drawing.Point)
-        Me.PGEx2.ToolStrip.Name = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
+        Me.PGEx2.ToolStrip.MaximumSize = CType(resources.GetObject("PGEx2.ToolStrip.MaximumSize"), System.Drawing.Size)
+        Me.PGEx2.ToolStrip.Name = ""
         Me.PGEx2.ToolStrip.Padding = CType(resources.GetObject("PGEx2.ToolStrip.Padding"), System.Windows.Forms.Padding)
         Me.PGEx2.ToolStrip.RightToLeft = CType(resources.GetObject("PGEx2.ToolStrip.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx2.ToolStrip.Size = CType(resources.GetObject("PGEx2.ToolStrip.Size"), System.Drawing.Size)
         Me.PGEx2.ToolStrip.TabIndex = CType(resources.GetObject("PGEx2.ToolStrip.TabIndex"), Integer)
         Me.PGEx2.ToolStrip.TabStop = True
-        Me.PGEx2.ToolStrip.Text = "PropertyGrid Toolbar"
+        Me.PGEx2.ToolStrip.Text = resources.GetString("PGEx2.ToolStrip.Text")
         Me.PGEx2.ToolStrip.Visible = CType(resources.GetObject("PGEx2.ToolStrip.Visible"), Boolean)
         '
         'TableLayoutPanel6
@@ -289,13 +292,11 @@ Partial Class frmProps
         'Label1
         '
         resources.ApplyResources(Me.Label1, "Label1")
-        Me.Label1.ImageKey = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
         Me.Label1.Name = "Label1"
         '
         'LblNomeObj
         '
         resources.ApplyResources(Me.LblNomeObj, "LblNomeObj")
-        Me.LblNomeObj.ImageKey = Global.RELAP.My.Resources.RELAP.NewVersionAvailable
         Me.LblNomeObj.Name = "LblNomeObj"
         '
         'frmProps
@@ -308,7 +309,7 @@ Partial Class frmProps
         Me.Name = "frmProps"
         Me.Opacity = 0.7R
         Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockLeft
-        Me.TabText = "Objeto seleccionado"
+        Me.TabText = "Selected Object"
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.TableLayoutPanel8.ResumeLayout(False)
         Me.TableLayoutPanel8.PerformLayout()
