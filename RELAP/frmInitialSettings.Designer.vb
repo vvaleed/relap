@@ -245,7 +245,7 @@ Partial Class frmInitialSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(342, 405)
+        Me.ClientSize = New System.Drawing.Size(342, 628)
         Me.Controls.Add(Me.txtMinorFrequency)
         Me.Controls.Add(Me.txtMajorFrequency)
         Me.Controls.Add(Me.txtRestartFrequency)

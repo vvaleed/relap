@@ -237,6 +237,12 @@
     <Compile Include="frmInitialSettings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPlotRequest.Designer.vb">
+      <DependentUpon>frmPlotRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlotRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmProps.Designer.vb">
       <DependentUpon>frmProps.vb</DependentUpon>
     </Compile>
@@ -375,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInitialSettings.resx">
       <DependentUpon>frmInitialSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlotRequest.resx">
+      <DependentUpon>frmPlotRequest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProps.en-AU.resx">
       <DependentUpon>frmProps.vb</DependentUpon>

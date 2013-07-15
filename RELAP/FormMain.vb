@@ -2536,7 +2536,7 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Function
 
-    Private Sub GenerateInputFileToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles GenerateInputFileToolStripMenuItem.Click
+    Private Sub GenerateInputFileToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles GenerateInputFileOnlyToolStripMenuItem.Click
         Dim collect As New RELAP.FormClasses.ClsObjectCollections
         Dim ChildParent = My.Application.ActiveSimulation
 
@@ -7523,4 +7523,7 @@ sim:                Dim myStream As System.IO.FileStream
 
 
 
+    
+    
+    
 End Class

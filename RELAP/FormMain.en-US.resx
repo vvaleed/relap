@@ -211,6 +211,18 @@
   <data name="VerToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Settings</value>
   </data>
+  <data name="GenerateInputFileOnlyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Generate Input File Only</value>
+  </data>
+  <data name="GenerateInputFileAndRunToolStripMenuItem.Text" xml:space="preserve">
+    <value>Generate Input File and Run</value>
+  </data>
+  <data name="RunToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="RunToolStripMenuItem.Text" xml:space="preserve">
+    <value>Run</value>
+  </data>
   <data name="CascadeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
