@@ -2241,6 +2241,27 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
                 bb.HydraulicDiameter = e.ChangedItem.Value
 
+                'control flags
+            ElseIf e.ChangedItem.Label.Contains("Thermal Stratification Model") Then
+                bb.ThermalStratificationModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Level Tracking Model") Then
+                bb.LevelTrackingModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Water Packing Scheme") Then
+                bb.WaterPackingScheme = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Vertical Stratification Model") Then
+                bb.VerticalStratificationModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Interphase Friction Model") Then
+                bb.InterphaseFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Compute Wall Friction") Then
+                bb.ComputeWallFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Equilibrium Temperature") Then
+                bb.EquilibriumTemperature = e.ChangedItem.Value
             End If
 
         ElseIf sobj.TipoObjeto = TipoObjeto.Pump Then
