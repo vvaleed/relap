@@ -51,7 +51,7 @@ Public Class ucPipeEditor
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9 As Object
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16 As Object
 
         If Not Me.Profile Is Nothing Then Me.Profile.Sections.Clear()
         For Each row In Me.dgv.Rows
@@ -65,7 +65,15 @@ Public Class ucPipeEditor
             v7 = row.Cells(6).Value
             v8 = row.Cells(7).Value
             v9 = row.Cells(8).Value
-            Me.Profile.Sections.Add(row.Index + 1, New PipeSection(v1, v2, v3, v4, v5, v6, v7, v8, v9))
+            v10 = row.Cells(9).Value
+            v11 = row.Cells(10).Value
+            v12 = row.Cells(11).Value
+            v13 = row.Cells(12).Value
+            v14 = row.Cells(13).Value
+            v15 = row.Cells(14).Value
+            v16 = row.Cells(15).Value
+           
+            Me.Profile.Sections.Add(row.Index + 1, New PipeSection(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16))
             'Else
             '    Label1.Text = DWSIM.App.GetLocalString("Erronasecao") & " " & column.Index + 1 & "."
             '    RaiseEvent StatusChanged(e, PipeEditorStatus.Erro)
@@ -88,6 +96,13 @@ Public Class ucPipeEditor
             selectedcells.Add(dgv.SelectedRows(0).Cells(6).Value)
             selectedcells.Add(dgv.SelectedRows(0).Cells(7).Value)
             selectedcells.Add(dgv.SelectedRows(0).Cells(8).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(9).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(10).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(11).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(12).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(13).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(14).Value)
+            selectedcells.Add(dgv.SelectedRows(0).Cells(15).Value)
         End If
     End Sub
 
@@ -101,6 +116,13 @@ Public Class ucPipeEditor
             row.Cells(6).Value = selectedcells(5)
             row.Cells(7).Value = selectedcells(6)
             row.Cells(8).Value = selectedcells(7)
+            row.Cells(9).Value = selectedcells(8)
+            row.Cells(10).Value = selectedcells(9)
+            row.Cells(11).Value = selectedcells(10)
+            row.Cells(12).Value = selectedcells(11)
+            row.Cells(13).Value = selectedcells(12)
+            row.Cells(14).Value = selectedcells(13)
+            row.Cells(15).Value = selectedcells(14)
 
         Next
 

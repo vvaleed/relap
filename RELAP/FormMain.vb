@@ -2831,7 +2831,7 @@ sim:                Dim myStream As System.IO.FileStream
                 Next kvp2
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea & " " & counter
+                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.VolumeofVolume & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
