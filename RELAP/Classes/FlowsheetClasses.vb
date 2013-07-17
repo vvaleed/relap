@@ -154,8 +154,9 @@ Namespace RELAP.FormClasses
                 .Add("SingleJunction", Me.CoolerCollection.Count)
                 .Add("Pipe", Me.PipeCollection.Count)
                 .Add("Valve", Me.ValveCollection.Count)
-                .Add("FuelRod", Me.TankCollection.Count)
-                .Add("Simulator", Me.TankCollection.Count)
+                .Add("FuelRod", Me.FuelRodCollection.Count)
+                .Add("Simulator", Me.SimulatorCollection.Count)
+                .Add("GROUP", Me.GroupCollection.Count)
             End With
 
         End Sub

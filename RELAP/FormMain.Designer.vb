@@ -44,6 +44,9 @@ Partial Class FormMain
         Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PreferênciasDoRELAPToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MostrarBarraDeFerramentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerateInputFileOnlyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerateInputFileAndRunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TileVerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,9 +65,6 @@ Partial Class FormMain
         Me.DeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DonateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenerateInputFileOnlyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenerateInputFileAndRunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.NewToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -235,6 +235,25 @@ Partial Class FormMain
         Me.MostrarBarraDeFerramentasToolStripMenuItem.Name = "MostrarBarraDeFerramentasToolStripMenuItem"
         Me.StatusBarTextProvider1.SetStatusBarText(Me.MostrarBarraDeFerramentasToolStripMenuItem, resources.GetString("MostrarBarraDeFerramentasToolStripMenuItem.StatusBarText"))
         '
+        'RunToolStripMenuItem
+        '
+        resources.ApplyResources(Me.RunToolStripMenuItem, "RunToolStripMenuItem")
+        Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem, Me.GenerateInputFileAndRunToolStripMenuItem})
+        Me.RunToolStripMenuItem.Name = "RunToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.RunToolStripMenuItem, resources.GetString("RunToolStripMenuItem.StatusBarText"))
+        '
+        'GenerateInputFileOnlyToolStripMenuItem
+        '
+        resources.ApplyResources(Me.GenerateInputFileOnlyToolStripMenuItem, "GenerateInputFileOnlyToolStripMenuItem")
+        Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileOnlyToolStripMenuItem, resources.GetString("GenerateInputFileOnlyToolStripMenuItem.StatusBarText"))
+        '
+        'GenerateInputFileAndRunToolStripMenuItem
+        '
+        resources.ApplyResources(Me.GenerateInputFileAndRunToolStripMenuItem, "GenerateInputFileAndRunToolStripMenuItem")
+        Me.GenerateInputFileAndRunToolStripMenuItem.Name = "GenerateInputFileAndRunToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileAndRunToolStripMenuItem, resources.GetString("GenerateInputFileAndRunToolStripMenuItem.StatusBarText"))
+        '
         'WindowsMenu
         '
         resources.ApplyResources(Me.WindowsMenu, "WindowsMenu")
@@ -361,25 +380,6 @@ Partial Class FormMain
         Me.AboutToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.information
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.StatusBarTextProvider1.SetStatusBarText(Me.AboutToolStripMenuItem, resources.GetString("AboutToolStripMenuItem.StatusBarText"))
-        '
-        'RunToolStripMenuItem
-        '
-        resources.ApplyResources(Me.RunToolStripMenuItem, "RunToolStripMenuItem")
-        Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem, Me.GenerateInputFileAndRunToolStripMenuItem})
-        Me.RunToolStripMenuItem.Name = "RunToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.RunToolStripMenuItem, resources.GetString("RunToolStripMenuItem.StatusBarText"))
-        '
-        'GenerateInputFileOnlyToolStripMenuItem
-        '
-        resources.ApplyResources(Me.GenerateInputFileOnlyToolStripMenuItem, "GenerateInputFileOnlyToolStripMenuItem")
-        Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileOnlyToolStripMenuItem, resources.GetString("GenerateInputFileOnlyToolStripMenuItem.StatusBarText"))
-        '
-        'GenerateInputFileAndRunToolStripMenuItem
-        '
-        resources.ApplyResources(Me.GenerateInputFileAndRunToolStripMenuItem, "GenerateInputFileAndRunToolStripMenuItem")
-        Me.GenerateInputFileAndRunToolStripMenuItem.Name = "GenerateInputFileAndRunToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileAndRunToolStripMenuItem, resources.GetString("GenerateInputFileAndRunToolStripMenuItem.StatusBarText"))
         '
         'ToolStrip1
         '
