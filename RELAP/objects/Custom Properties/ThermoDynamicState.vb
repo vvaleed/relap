@@ -15,6 +15,9 @@
     Public Sub New()
         m_collection = New Generic.SortedDictionary(Of Integer, ThermoDynamicState)
     End Sub
+    Public Overrides Function ToString() As String
+        Return "Click to Edit..."
+    End Function
 End Class
 Public Class ThermoDynamicState
     Private _StatesString As String

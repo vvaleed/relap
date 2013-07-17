@@ -22,32 +22,16 @@ Partial Class frmPipeEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.dgv = New System.Windows.Forms.DataGridView()
         Me.VolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Azimuthalangle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LengthofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Flowarea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HyrdraulicDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Junctionflowarea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LengthofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VerticalAngle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VolumeofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WallRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UcPipeEditor1 = New ucPipeEditor()
-        CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'dgv
-        '
-        Me.dgv.AllowUserToAddRows = False
-        Me.dgv.AllowUserToDeleteRows = False
-        Me.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VolumeNumber, Me.Azimuthalangle, Me.Flowarea, Me.HyrdraulicDiameter, Me.Junctionflowarea, Me.LengthofVolume, Me.VerticalAngle, Me.VolumeofVolume, Me.WallRoughness})
-        Me.dgv.Location = New System.Drawing.Point(889, 387)
-        Me.dgv.Name = "dgv"
-        Me.dgv.Size = New System.Drawing.Size(108, 26)
-        Me.dgv.TabIndex = 3
-        Me.dgv.Visible = False
         '
         'VolumeNumber
         '
@@ -55,10 +39,10 @@ Partial Class frmPipeEditor
         Me.VolumeNumber.Name = "VolumeNumber"
         Me.VolumeNumber.ReadOnly = True
         '
-        'Azimuthalangle
+        'LengthofVolume
         '
-        Me.Azimuthalangle.HeaderText = "Azimuthal Angle"
-        Me.Azimuthalangle.Name = "LengthofVolume"
+        Me.LengthofVolume.HeaderText = "Azimuthal Angle"
+        Me.LengthofVolume.Name = "LengthofVolume"
         '
         'Flowarea
         '
@@ -74,11 +58,6 @@ Partial Class frmPipeEditor
         '
         Me.Junctionflowarea.HeaderText = "Junction Flow Area"
         Me.Junctionflowarea.Name = "Junctionflowarea"
-        '
-        'LengthofVolume
-        '
-        Me.LengthofVolume.HeaderText = "Length of Volume"
-        Me.LengthofVolume.Name = "LengthofVolume"
         '
         'VerticalAngle
         '
@@ -101,7 +80,7 @@ Partial Class frmPipeEditor
         Me.UcPipeEditor1.Name = "UcPipeEditor1"
         Me.UcPipeEditor1.NumberFormat = Nothing
         Me.UcPipeEditor1.Profile = Nothing
-        Me.UcPipeEditor1.Size = New System.Drawing.Size(987, 369)
+        Me.UcPipeEditor1.Size = New System.Drawing.Size(1074, 650)
         Me.UcPipeEditor1.SystemOfUnits = Nothing
         Me.UcPipeEditor1.TabIndex = 4
         '
@@ -109,16 +88,13 @@ Partial Class frmPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1009, 425)
+        Me.ClientSize = New System.Drawing.Size(1065, 664)
         Me.Controls.Add(Me.UcPipeEditor1)
-        Me.Controls.Add(Me.dgv)
         Me.Name = "frmPipeEditor"
         Me.Text = "Pipe Editor"
-        CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents dgv As System.Windows.Forms.DataGridView
     Friend WithEvents VolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Azimuthalangle As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Flowarea As System.Windows.Forms.DataGridViewTextBoxColumn

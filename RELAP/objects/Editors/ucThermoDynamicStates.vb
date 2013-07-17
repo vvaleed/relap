@@ -101,6 +101,10 @@
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim str As String = ""
         Dim row As DataGridViewRow
+        If Not Me.ThermoDynamicStates Is Nothing Then
+            Me.ThermoDynamicStates.State.Clear()
+
+        End If
         For i = 0 To DataGridView1.Rows.Count - 2
             row = DataGridView1.Rows(i)
             For Each cell As DataGridViewCell In row.Cells
