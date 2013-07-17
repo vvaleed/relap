@@ -2,7 +2,7 @@
 Imports System.Drawing.Design
 Imports System.ComponentModel
 Namespace RELAP.Editors
-    Public Class UITankEditor
+    Public Class UIThermoDynamicStatesEditor
         Inherits System.Drawing.Design.UITypeEditor
 
         Private editorService As IWindowsFormsEditorService
@@ -19,15 +19,15 @@ Namespace RELAP.Editors
             End If
 
             If (editorService IsNot Nothing) Then
-                Dim selectionControl As New frmTankEditor
+                Dim selectionControl As New frmThermalHydraulicStates
 
-                selectionControl.UcPipeEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
-                selectionControl.UcPipeEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
-                selectionControl.UcPipeEditor1.Profile = value
+                selectionControl.UcThermoDynamicStates1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
+                selectionControl.UcThermoDynamicStates1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
+                selectionControl.UcThermoDynamicStates1.ThermoDynamicStates = value
 
                 editorService.ShowDialog(selectionControl)
 
-                value = selectionControl.UcPipeEditor1.Profile
+                value = selectionControl.UcThermoDynamicStates1.ThermoDynamicStates
 
             End If
 

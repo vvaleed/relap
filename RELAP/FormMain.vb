@@ -2695,9 +2695,18 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ TMDPVOL")
 
                 output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
+
                 generate.WriteLine(output)
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    generate.WriteLine("theramal type shit" & kvp.Value.ThermoDynamicStates.State(1).StateType)
+                End If
 
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    'output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume & " " & counter
 
+                    generate.WriteLine("theramal string shit" & kvp2.Value.StatesString)
+                    'counter = counter + 1
+                Next kvp2
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp

@@ -25,8 +25,9 @@ Partial Class ucThermoDynamicStates
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.lblthermostates = New System.Windows.Forms.Label()
         Me.cmbothermostates = New System.Windows.Forms.ComboBox()
-        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.cmdSave = New System.Windows.Forms.Button()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'DataGridView1
         '
@@ -39,7 +40,7 @@ Partial Class ucThermoDynamicStates
         '
         'lblthermostates
         '
-        Me.lblthermostates.AutoSize = true
+        Me.lblthermostates.AutoSize = True
         Me.lblthermostates.Location = New System.Drawing.Point(24, 157)
         Me.lblthermostates.Name = "lblthermostates"
         Me.lblthermostates.Size = New System.Drawing.Size(215, 13)
@@ -48,25 +49,35 @@ Partial Class ucThermoDynamicStates
         '
         'cmbothermostates
         '
-        Me.cmbothermostates.FormattingEnabled = true
-        Me.cmbothermostates.Items.AddRange(New Object() {"Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void F"& _ 
-                "raction", "Temperature, Static Quality", "Pressure, Static Quality", "Pressure, Temperature", "Pressure, Temperature, Static Quality", "Temperature, Static Quality, Non condensable Quality", "Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void F"& _ 
-                "raction, Non condensable Quality", "Pressure, Liquid Temperature, Vapor Temperature, Void Fraction, Non condensable Q"& _ 
+        Me.cmbothermostates.FormattingEnabled = True
+        Me.cmbothermostates.Items.AddRange(New Object() {"Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void F" & _
+                "raction", "Temperature, Static Quality", "Pressure, Static Quality", "Pressure, Temperature", "Pressure, Temperature, Static Quality", "Temperature, Static Quality, Non condensable Quality", "Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void F" & _
+                "raction, Non condensable Quality", "Pressure, Liquid Temperature, Vapor Temperature, Void Fraction, Non condensable Q" & _
                 "uality"})
         Me.cmbothermostates.Location = New System.Drawing.Point(27, 185)
         Me.cmbothermostates.Name = "cmbothermostates"
         Me.cmbothermostates.Size = New System.Drawing.Size(606, 21)
         Me.cmbothermostates.TabIndex = 3
         '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(27, 225)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 6
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
         'ucThermoDynamicStates
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.lblthermostates)
         Me.Controls.Add(Me.cmbothermostates)
         Me.Name = "ucThermoDynamicStates"
-        Me.Size = New System.Drawing.Size(664, 234)
+        Me.Size = New System.Drawing.Size(664, 266)
         CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
         Me.ResumeLayout(false)
         Me.PerformLayout
@@ -75,5 +86,6 @@ End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents lblthermostates As System.Windows.Forms.Label
     Friend WithEvents cmbothermostates As System.Windows.Forms.ComboBox
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class
