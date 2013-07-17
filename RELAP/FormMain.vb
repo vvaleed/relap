@@ -2829,12 +2829,7 @@ sim:                Dim myStream As System.IO.FileStream
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
-                counter = 1
-                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.VolumeofVolume & " " & counter
-                    generate.WriteLine(output)
-                    counter = counter + 1
-                Next kvp2
+                
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
                     output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume & " " & counter
@@ -2842,7 +2837,47 @@ sim:                Dim myStream As System.IO.FileStream
                     counter = counter + 1
                 Next kvp2
 
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
 
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness & " " & kvp2.Value.HydraulicDiameter & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
 
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)

@@ -154,26 +154,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_ffelc As Double
-        Public Property FflowLossCo() As Double
-            Get
-                Return m_ffelc
-            End Get
-            Set(ByVal value As Double)
-                m_ffelc = value
-            End Set
-        End Property
-
-
-        Private m_rfelc As Double
-        Public Property RflowLossCo() As Double
-            Get
-                Return m_rfelc
-            End Get
-            Set(ByVal value As Double)
-                m_rfelc = value
-            End Set
-        End Property
+       
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
@@ -524,47 +505,47 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
+                ''valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2. Volume Control Flags", "Thermal Stratification Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "2. Volume Control Flags", "Level Tracking Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "2. Volume Control Flags", "Interphase Friction Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "2. Volume Control Flags", "Compute Wall Friction", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2. Volume Control Flags", "Equilibrium Temperature", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+                '.Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2. Volume Control Flags", "Thermal Stratification Model", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = False
+                '    .DefaultType = GetType(Boolean)
+                'End With
+                '.Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "2. Volume Control Flags", "Level Tracking Model", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = False
+                '    .DefaultType = GetType(Boolean)
+                'End With
+                '.Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "2. Volume Control Flags", "Interphase Friction Model", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = False
+                '    .DefaultType = GetType(Boolean)
+                'End With
+                '.Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "2. Volume Control Flags", "Compute Wall Friction", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = False
+                '    .DefaultType = GetType(Boolean)
+                'End With
+                '.Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2. Volume Control Flags", "Equilibrium Temperature", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = False
+                '    .DefaultType = GetType(Boolean)
+                'End With
 
 
 

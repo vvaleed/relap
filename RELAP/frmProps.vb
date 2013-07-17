@@ -2264,6 +2264,61 @@ Public Class frmProps
                 bb.EquilibriumTemperature = e.ChangedItem.Value
             End If
 
+
+        ElseIf sobj.TipoObjeto = TipoObjeto.SingleJunction Then
+
+            Dim sjn As RELAP.SimulationObjects.UnitOps.SingleJunction = ChildParent.Collections.CLCS_SingleJunctionCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("From Component") Then
+                sjn.FromComponent = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("To Component") Then
+                sjn.ToComponent = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Junction Flow Area") Then
+                sjn.JunctionArea = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Forward Flow Energy Loss Coefficient") Then
+                sjn.FflowLossCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Reverse Flow Energy Loss Coefficient") Then
+                sjn.RflowLossCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate") Then
+                sjn.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity") Then
+                sjn.InitialLiquidVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity") Then
+                sjn.InitialVaporVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity") Then
+                sjn.InterphaseVelocity = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate") Then
+                sjn.InitialLiquidMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate") Then
+                sjn.InitialVaporMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Interphase Mass Flow Rate") Then
+                sjn.InterphaseMassFlowRate = e.ChangedItem.Value
+
+            End If
+
+        ElseIf sobj.TipoObjeto = TipoObjeto.Pipe Then
+
+            Dim pip As RELAP.SimulationObjects.UnitOps.pipe = ChildParent.Collections.CLCS_PipeCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("Number of Volumes") Then
+                pip.NumberOfVoulmes = e.ChangedItem.Value
+
+
+
+
+            End If
+
         ElseIf sobj.TipoObjeto = TipoObjeto.Pump Then
 
             Dim pp As RELAP.SimulationObjects.UnitOps.Pump = ChildParent.Collections.CLCS_PumpCollection.Item(sobj.Name)
@@ -2420,47 +2475,7 @@ Public Class frmProps
 
 
 
-        ElseIf sobj.TipoObjeto = TipoObjeto.SingleJunction Then
 
-            Dim sjn As RELAP.SimulationObjects.UnitOps.SingleJunction = ChildParent.Collections.CLCS_SingleJunctionCollection.Item(sobj.Name)
-
-            If e.ChangedItem.Label.Contains("From Component") Then
-                sjn.FromComponent = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("To Component") Then
-                sjn.ToComponent = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Junction Flow Area") Then
-                sjn.JunctionArea = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Forward Flow Energy Loss Coefficient") Then
-                sjn.FflowLossCo = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Reverse Flow Energy Loss Coefficient") Then
-                sjn.RflowLossCo = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate") Then
-                sjn.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity") Then
-                sjn.InitialLiquidVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity") Then
-                sjn.InitialVaporVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity") Then
-                sjn.InterphaseVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate") Then
-                sjn.InitialLiquidMassFlowRate = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate") Then
-                sjn.InitialVaporMassFlowRate = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Interphase Mass Flow Rate") Then
-                sjn.InterphaseMassFlowRate = e.ChangedItem.Value
-
-            End If
         ElseIf sobj.TipoObjeto = TipoObjeto.FuelRod Then
 
 
