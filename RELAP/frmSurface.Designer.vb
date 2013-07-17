@@ -21,15 +21,6 @@ Partial Class frmSurface
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSurface))
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.FlowsheetDesignSurface = New Microsoft.Msdn.Samples.DesignSurface.GraphicsSurface()
-        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.SpinningProgress1 = New CircularProgress.SpinningProgress.SpinningProgress()
-        Me.PanelSimultAdjust = New System.Windows.Forms.Panel()
-        Me.PicSimultAdjust = New System.Windows.Forms.PictureBox()
         Me.CMS_NoSel = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -71,153 +62,26 @@ Partial Class frmSurface
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.CMS_MultiSelect = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.MenuItemGroupComponents = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.TableLayoutPanel2.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelSimultAdjust.SuspendLayout()
-        CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.PanelSimultAdjust = New System.Windows.Forms.Panel()
+        Me.PicSimultAdjust = New System.Windows.Forms.PictureBox()
+        Me.SpinningProgress1 = New CircularProgress.SpinningProgress.SpinningProgress()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.FlowsheetDesignSurface = New Microsoft.Msdn.Samples.DesignSurface.GraphicsSurface()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.CMS_NoSel.SuspendLayout()
         Me.CMS_Sel.SuspendLayout()
         Me.CMS_MultiSelect.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.PanelSimultAdjust.SuspendLayout()
+        CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.FlowsheetDesignSurface, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(929, 474)
-        Me.TableLayoutPanel1.TabIndex = 3
-        '
-        'FlowsheetDesignSurface
-        '
-        Me.FlowsheetDesignSurface.AllowDrop = True
-        Me.FlowsheetDesignSurface.AutoScroll = True
-        Me.FlowsheetDesignSurface.AutoScrollMinSize = New System.Drawing.Size(9600, 6720)
-        Me.FlowsheetDesignSurface.BackColor = System.Drawing.Color.White
-        Me.FlowsheetDesignSurface.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowsheetDesignSurface.GridColor = System.Drawing.Color.GhostWhite
-        Me.FlowsheetDesignSurface.GridLineWidth = 1
-        Me.FlowsheetDesignSurface.GridSize = 25.0!
-        Me.FlowsheetDesignSurface.Location = New System.Drawing.Point(3, 3)
-        Me.FlowsheetDesignSurface.MarginColor = System.Drawing.SystemColors.Control
-        Me.FlowsheetDesignSurface.MarginLineWidth = 1
-        Me.FlowsheetDesignSurface.MaximumSize = New System.Drawing.Size(10000, 7000)
-        Me.FlowsheetDesignSurface.MouseHoverSelect = False
-        Me.FlowsheetDesignSurface.Name = "FlowsheetDesignSurface"
-        Me.FlowsheetDesignSurface.NonPrintingAreaColor = System.Drawing.Color.LightGray
-        Me.FlowsheetDesignSurface.QuickConnect = False
-        Me.FlowsheetDesignSurface.SelectedObject = Nothing
-        Me.FlowsheetDesignSurface.SelectRectangle = True
-        Me.FlowsheetDesignSurface.ShowGrid = False
-        Me.FlowsheetDesignSurface.Size = New System.Drawing.Size(923, 428)
-        Me.FlowsheetDesignSurface.SnapToGrid = False
-        Me.FlowsheetDesignSurface.SurfaceBounds = New System.Drawing.Rectangle(0, 0, 10000, 7000)
-        Me.FlowsheetDesignSurface.SurfaceMargins = New System.Drawing.Rectangle(0, 0, 10000, 7000)
-        Me.FlowsheetDesignSurface.TabIndex = 0
-        Me.FlowsheetDesignSurface.Zoom = 1.0!
-        '
-        'TableLayoutPanel2
-        '
-        Me.TableLayoutPanel2.ColumnCount = 3
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.Panel2, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.SpinningProgress1, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.PanelSimultAdjust, 2, 0)
-        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 434)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 1
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(929, 40)
-        Me.TableLayoutPanel2.TabIndex = 4
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.PictureBox3)
-        Me.Panel2.Controls.Add(Me.PictureBox4)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(443, 40)
-        Me.Panel2.TabIndex = 13
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Image = Global.RELAP.My.Resources.Resources.tick
-        Me.PictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PictureBox3.Location = New System.Drawing.Point(3, 2)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(0)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox3.TabIndex = 12
-        Me.PictureBox3.TabStop = False
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Image = Global.RELAP.My.Resources.Resources.clock
-        Me.PictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PictureBox4.Location = New System.Drawing.Point(3, 20)
-        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(0)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox4.TabIndex = 11
-        Me.PictureBox4.TabStop = False
-        Me.PictureBox4.Visible = False
-        '
-        'SpinningProgress1
-        '
-        Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
-        Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
-        Me.SpinningProgress1.Location = New System.Drawing.Point(445, 2)
-        Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
-        Me.SpinningProgress1.Name = "SpinningProgress1"
-        Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
-        Me.SpinningProgress1.TabIndex = 11
-        Me.SpinningProgress1.TransistionSegment = 5
-        Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
-        Me.SpinningProgress1.Visible = False
-        '
-        'PanelSimultAdjust
-        '
-        Me.PanelSimultAdjust.Controls.Add(Me.PicSimultAdjust)
-        Me.PanelSimultAdjust.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelSimultAdjust.Location = New System.Drawing.Point(686, 0)
-        Me.PanelSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
-        Me.PanelSimultAdjust.Name = "PanelSimultAdjust"
-        Me.PanelSimultAdjust.Size = New System.Drawing.Size(243, 40)
-        Me.PanelSimultAdjust.TabIndex = 14
-        Me.PanelSimultAdjust.Visible = False
-        '
-        'PicSimultAdjust
-        '
-        Me.PicSimultAdjust.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PicSimultAdjust.Image = Global.RELAP.My.Resources.Resources.lightning1
-        Me.PicSimultAdjust.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PicSimultAdjust.Location = New System.Drawing.Point(199, 0)
-        Me.PicSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
-        Me.PicSimultAdjust.Name = "PicSimultAdjust"
-        Me.PicSimultAdjust.Size = New System.Drawing.Size(42, 40)
-        Me.PicSimultAdjust.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PicSimultAdjust.TabIndex = 12
-        Me.PicSimultAdjust.TabStop = False
         '
         'CMS_NoSel
         '
@@ -291,7 +155,7 @@ Partial Class frmSurface
         '
         Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.ToolStripSeparator3, Me.RecalcularToolStripMenuItem, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
         Me.CMS_Sel.Name = "CMS_Sel"
-        Me.CMS_Sel.Size = New System.Drawing.Size(247, 276)
+        Me.CMS_Sel.Size = New System.Drawing.Size(247, 254)
         '
         'TSMI_Label
         '
@@ -489,11 +353,148 @@ Partial Class frmSurface
         Me.MenuItemGroupComponents.Size = New System.Drawing.Size(179, 22)
         Me.MenuItemGroupComponents.Text = "Group Components"
         '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.Panel2, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.SpinningProgress1, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.PanelSimultAdjust, 2, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 458)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(982, 40)
+        Me.TableLayoutPanel2.TabIndex = 4
+        '
+        'PanelSimultAdjust
+        '
+        Me.PanelSimultAdjust.Controls.Add(Me.PicSimultAdjust)
+        Me.PanelSimultAdjust.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelSimultAdjust.Location = New System.Drawing.Point(712, 0)
+        Me.PanelSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
+        Me.PanelSimultAdjust.Name = "PanelSimultAdjust"
+        Me.PanelSimultAdjust.Size = New System.Drawing.Size(270, 40)
+        Me.PanelSimultAdjust.TabIndex = 14
+        Me.PanelSimultAdjust.Visible = False
+        '
+        'PicSimultAdjust
+        '
+        Me.PicSimultAdjust.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicSimultAdjust.Image = Global.RELAP.My.Resources.Resources.lightning1
+        Me.PicSimultAdjust.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PicSimultAdjust.Location = New System.Drawing.Point(226, 0)
+        Me.PicSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
+        Me.PicSimultAdjust.Name = "PicSimultAdjust"
+        Me.PicSimultAdjust.Size = New System.Drawing.Size(42, 40)
+        Me.PicSimultAdjust.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PicSimultAdjust.TabIndex = 12
+        Me.PicSimultAdjust.TabStop = False
+        '
+        'SpinningProgress1
+        '
+        Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
+        Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
+        Me.SpinningProgress1.Location = New System.Drawing.Point(445, 2)
+        Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
+        Me.SpinningProgress1.Name = "SpinningProgress1"
+        Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
+        Me.SpinningProgress1.TabIndex = 11
+        Me.SpinningProgress1.TransistionSegment = 0
+        Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
+        Me.SpinningProgress1.Visible = False
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.PictureBox3)
+        Me.Panel2.Controls.Add(Me.PictureBox4)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(443, 40)
+        Me.Panel2.TabIndex = 13
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Image = Global.RELAP.My.Resources.Resources.clock
+        Me.PictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PictureBox4.Location = New System.Drawing.Point(3, 20)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox4.TabIndex = 11
+        Me.PictureBox4.TabStop = False
+        Me.PictureBox4.Visible = False
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.RELAP.My.Resources.Resources.tick
+        Me.PictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PictureBox3.Location = New System.Drawing.Point(3, 2)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox3.TabIndex = 12
+        Me.PictureBox3.TabStop = False
+        '
+        'FlowsheetDesignSurface
+        '
+        Me.FlowsheetDesignSurface.AllowDrop = True
+        Me.FlowsheetDesignSurface.AutoScroll = True
+        Me.FlowsheetDesignSurface.AutoScrollMinSize = New System.Drawing.Size(9600, 6720)
+        Me.FlowsheetDesignSurface.BackColor = System.Drawing.Color.White
+        Me.FlowsheetDesignSurface.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowsheetDesignSurface.GridColor = System.Drawing.Color.GhostWhite
+        Me.FlowsheetDesignSurface.GridLineWidth = 1
+        Me.FlowsheetDesignSurface.GridSize = 25.0!
+        Me.FlowsheetDesignSurface.Location = New System.Drawing.Point(3, 3)
+        Me.FlowsheetDesignSurface.MarginColor = System.Drawing.SystemColors.Control
+        Me.FlowsheetDesignSurface.MarginLineWidth = 1
+        Me.FlowsheetDesignSurface.MaximumSize = New System.Drawing.Size(10000, 7000)
+        Me.FlowsheetDesignSurface.MouseHoverSelect = False
+        Me.FlowsheetDesignSurface.Name = "FlowsheetDesignSurface"
+        Me.FlowsheetDesignSurface.NonPrintingAreaColor = System.Drawing.Color.LightGray
+        Me.FlowsheetDesignSurface.QuickConnect = False
+        Me.FlowsheetDesignSurface.SelectedObject = Nothing
+        Me.FlowsheetDesignSurface.SelectRectangle = True
+        Me.FlowsheetDesignSurface.ShowGrid = False
+        Me.FlowsheetDesignSurface.Size = New System.Drawing.Size(976, 452)
+        Me.FlowsheetDesignSurface.SnapToGrid = False
+        Me.FlowsheetDesignSurface.SurfaceBounds = New System.Drawing.Rectangle(0, 0, 10000, 7000)
+        Me.FlowsheetDesignSurface.SurfaceMargins = New System.Drawing.Rectangle(0, 0, 10000, 7000)
+        Me.FlowsheetDesignSurface.TabIndex = 0
+        Me.FlowsheetDesignSurface.Zoom = 1.0!
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.FlowsheetDesignSurface, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 3
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(982, 518)
+        Me.TableLayoutPanel1.TabIndex = 3
+        '
         'frmSurface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(929, 474)
+        Me.ClientSize = New System.Drawing.Size(982, 518)
         Me.CloseButton = False
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.DoubleBuffered = True
@@ -503,21 +504,19 @@ Partial Class frmSurface
         Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document
         Me.TabText = Me.Text
         Me.Text = "Flowsheet"
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelSimultAdjust.ResumeLayout(False)
-        CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMS_NoSel.ResumeLayout(False)
         Me.CMS_Sel.ResumeLayout(False)
         Me.CMS_MultiSelect.ResumeLayout(False)
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.PanelSimultAdjust.ResumeLayout(False)
+        CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Public WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Public WithEvents FlowsheetDesignSurface As Microsoft.MSDN.Samples.DesignSurface.GraphicsSurface
     Public WithEvents CMS_NoSel As System.Windows.Forms.ContextMenuStrip
     Public WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
@@ -538,7 +537,6 @@ Partial Class frmSurface
     Public WithEvents setupPrint As System.Windows.Forms.PrintDialog
     Public WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents Timer1 As System.Windows.Forms.Timer
-    Public WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Public WithEvents ClonarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents HorizontalmenteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ConectarAToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -549,7 +547,6 @@ Partial Class frmSurface
     Public WithEvents ExcluirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Public WithEvents SpinningProgress1 As CircularProgress.SpinningProgress.SpinningProgress
     Public WithEvents Timer2 As System.Windows.Forms.Timer
     Public WithEvents RecalcularToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
@@ -559,11 +556,15 @@ Partial Class frmSurface
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem8 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem10 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CMS_MultiSelect As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents MenuItemGroupComponents As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Public WithEvents Panel2 As System.Windows.Forms.Panel
     Public WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Public WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Public WithEvents SpinningProgress1 As CircularProgress.SpinningProgress.SpinningProgress
     Public WithEvents PanelSimultAdjust As System.Windows.Forms.Panel
     Public WithEvents PicSimultAdjust As System.Windows.Forms.PictureBox
-    Friend WithEvents CMS_MultiSelect As System.Windows.Forms.ContextMenuStrip
-    Friend WithEvents MenuItemGroupComponents As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents FlowsheetDesignSurface As Microsoft.Msdn.Samples.DesignSurface.GraphicsSurface
+    Public WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
 End Class

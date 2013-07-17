@@ -1033,8 +1033,6 @@ Public Class FormMain
                 '      Return Me.tmpform2.FormObjList
             Case "RELAP.frmPlotRequest"
                 Return Me.tmpform2.FormPlotReqest
-            Case "RELAP.frmEBT"
-                Return Me.tmpform2.FormEBT
             Case "RELAP.frmSurface"
                 Return Me.tmpform2.FormSurface
             Case "RELAP.frmInitialSettings"
@@ -1285,7 +1283,6 @@ Public Class FormMain
             '
             form.FormProps.Show(form.dckPanel)
             form.FormInitialSettings.Show(form.dckPanel)
-            form.FormEBT.Show(form.dckPanel)
             form.FormPlotReqest.Show(form.dckPanel)
             '
 

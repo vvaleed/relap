@@ -1,17 +1,4 @@
-﻿Public Class frmEBT
-
-    Inherits WeifenLuo.WinFormsUI.Docking.DockContent
-
-   
-
-    Private Sub TableLayoutPanel1_TabIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub cmbothermostates_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles cmbothermostates.SelectedIndexChanged
-
-    End Sub
-
+﻿Public Class ucThermoDynamicStates
     Private Sub cmbothermostates_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles cmbothermostates.SelectedValueChanged
         '        Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void Fraction
         'Temperature, Static Quality
