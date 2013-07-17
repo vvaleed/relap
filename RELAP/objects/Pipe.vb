@@ -33,25 +33,6 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
 
-        Private m_ThermalStratificationModel As Boolean
-        Public Property ThermalStratificationModel() As Boolean
-            Get
-                Return m_ThermalStratificationModel
-            End Get
-            Set(ByVal value As Boolean)
-                m_ThermalStratificationModel = value
-            End Set
-        End Property
-
-        Private m_LevelTrackingModel As Boolean
-        Public Property LevelTrackingModel() As Boolean
-            Get
-                Return m_LevelTrackingModel
-            End Get
-            Set(ByVal value As Boolean)
-                m_LevelTrackingModel = value
-            End Set
-        End Property
         Protected m_profile As PipeProfile
         Public Property Profile() As PipeProfile
             Get
@@ -61,35 +42,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_profile = value
             End Set
         End Property
-        Private m_InterphaseFriction As Boolean
-        Public Property InterphaseFriction() As Boolean
-            Get
-                Return m_InterphaseFriction
-            End Get
-            Set(ByVal value As Boolean)
-                m_InterphaseFriction = value
-            End Set
-        End Property
+  
 
-        Private m_ComputeWallFriction As Boolean
-        Public Property ComputeWallFriction() As Boolean
-            Get
-                Return m_ComputeWallFriction
-            End Get
-            Set(ByVal value As Boolean)
-                m_ComputeWallFriction = value
-            End Set
-        End Property
-
-        Private m_EquilibriumTemp As Boolean
-        Public Property EquilibriumTemperature() As Boolean
-            Get
-                Return m_EquilibriumTemp
-            End Get
-            Set(ByVal value As Boolean)
-                m_EquilibriumTemp = value
-            End Set
-        End Property
 
         Private m_NumberOfVoulmes As Integer
         Public Property NumberOfVoulmes() As Integer
@@ -125,6 +79,78 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As Double)
                 m_ElevationChange = value
+            End Set
+        End Property
+
+        'control flags variable initialization
+
+        Private m_t As Boolean
+        Public Property ThermalStratificationModel() As Boolean
+            Get
+                Return m_t
+            End Get
+            Set(ByVal value As Boolean)
+                m_t = value
+            End Set
+        End Property
+
+        Private m_l As Boolean
+        Public Property LevelTrackingModel() As Boolean
+            Get
+                Return m_l
+            End Get
+            Set(ByVal value As Boolean)
+                m_l = value
+            End Set
+        End Property
+
+        Private m_p As Boolean
+        Public Property WaterPackingScheme() As Boolean
+            Get
+                Return m_p
+            End Get
+            Set(ByVal value As Boolean)
+                m_p = value
+            End Set
+        End Property
+
+        Private m_v As Boolean
+        Public Property VerticalStratificationModel() As Boolean
+            Get
+                Return m_v
+            End Get
+            Set(ByVal value As Boolean)
+                m_v = value
+            End Set
+        End Property
+
+        Private m_b As Boolean
+        Public Property InterphaseFriction() As Boolean
+            Get
+                Return m_b
+            End Get
+            Set(ByVal value As Boolean)
+                m_b = value
+            End Set
+        End Property
+
+        Private m_f As Boolean
+        Public Property ComputeWallFriction() As Boolean
+            Get
+                Return m_f
+            End Get
+            Set(ByVal value As Boolean)
+                m_f = value
+            End Set
+        End Property
+
+        Private m_e As Boolean
+        Public Property EquilibriumTemperature() As Boolean
+            Get
+                Return m_e
+            End Get
+            Set(ByVal value As Boolean)
+                m_e = value
             End Set
         End Property
 

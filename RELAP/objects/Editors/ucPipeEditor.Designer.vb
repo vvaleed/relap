@@ -23,18 +23,25 @@ Partial Class ucPipeEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dgv = New System.Windows.Forms.DataGridView()
-        Me.VolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Azimuthalangle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Flowarea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HyrdraulicDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Junctionflowarea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LengthofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VerticalAngle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VolumeofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WallRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cmdSave = New System.Windows.Forms.Button()
         Me.cmdCopy = New System.Windows.Forms.Button()
         Me.cmdPaste = New System.Windows.Forms.Button()
+        Me.VolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LengthofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VolumeofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Azimuthalangle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VerticalAngle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ElevationChange = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HydraulicDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WallRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ThermalStratificationModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LevelTrackingModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WaterPackingScheme = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VerticalStratificationModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InterphaseFriction = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ComputeWallFriction = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EquilibriumTemperature = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -44,57 +51,11 @@ Partial Class ucPipeEditor
         Me.dgv.AllowUserToDeleteRows = False
         Me.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VolumeNumber, Me.Azimuthalangle, Me.Flowarea, Me.HyrdraulicDiameter, Me.Junctionflowarea, Me.LengthofVolume, Me.VerticalAngle, Me.VolumeofVolume, Me.WallRoughness})
+        Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VolumeNumber, Me.FlowArea, Me.LengthofVolume, Me.VolumeofVolume, Me.Azimuthalangle, Me.VerticalAngle, Me.ElevationChange, Me.HydraulicDiameter, Me.WallRoughness, Me.ThermalStratificationModel, Me.LevelTrackingModel, Me.WaterPackingScheme, Me.VerticalStratificationModel, Me.InterphaseFriction, Me.ComputeWallFriction, Me.EquilibriumTemperature})
         Me.dgv.Location = New System.Drawing.Point(7, 15)
         Me.dgv.Name = "dgv"
         Me.dgv.Size = New System.Drawing.Size(970, 289)
         Me.dgv.TabIndex = 4
-        '
-        'VolumeNumber
-        '
-        Me.VolumeNumber.HeaderText = "Volume Number"
-        Me.VolumeNumber.Name = "VolumeNumber"
-        Me.VolumeNumber.ReadOnly = True
-        '
-        'Azimuthalangle
-        '
-        Me.Azimuthalangle.HeaderText = "Azimuthal Angle"
-        Me.Azimuthalangle.Name = "Azimuthalangle"
-        '
-        'Flowarea
-        '
-        Me.Flowarea.HeaderText = "Flow Area"
-        Me.Flowarea.Name = "Flowarea"
-        '
-        'HyrdraulicDiameter
-        '
-        Me.HyrdraulicDiameter.HeaderText = "Hyrdraulic Diameter"
-        Me.HyrdraulicDiameter.Name = "HyrdraulicDiameter"
-        '
-        'Junctionflowarea
-        '
-        Me.Junctionflowarea.HeaderText = "Junction Flow Area"
-        Me.Junctionflowarea.Name = "Junctionflowarea"
-        '
-        'LengthofVolume
-        '
-        Me.LengthofVolume.HeaderText = "Length of Volume"
-        Me.LengthofVolume.Name = "LengthofVolume"
-        '
-        'VerticalAngle
-        '
-        Me.VerticalAngle.HeaderText = "Vertical Angle"
-        Me.VerticalAngle.Name = "VerticalAngle"
-        '
-        'VolumeofVolume
-        '
-        Me.VolumeofVolume.HeaderText = "Volume of Volume"
-        Me.VolumeofVolume.Name = "VolumeofVolume"
-        '
-        'WallRoughness
-        '
-        Me.WallRoughness.HeaderText = "Wall Roughness"
-        Me.WallRoughness.Name = "WallRoughness"
         '
         'cmdSave
         '
@@ -123,6 +84,87 @@ Partial Class ucPipeEditor
         Me.cmdPaste.Text = "Paste"
         Me.cmdPaste.UseVisualStyleBackColor = True
         '
+        'VolumeNumber
+        '
+        Me.VolumeNumber.HeaderText = "Volume Number"
+        Me.VolumeNumber.Name = "VolumeNumber"
+        Me.VolumeNumber.ReadOnly = True
+        '
+        'FlowArea
+        '
+        Me.FlowArea.HeaderText = "Volume Flow Area"
+        Me.FlowArea.Name = "FlowArea"
+        '
+        'LengthofVolume
+        '
+        Me.LengthofVolume.HeaderText = "Length of Volume"
+        Me.LengthofVolume.Name = "LengthofVolume"
+        '
+        'VolumeofVolume
+        '
+        Me.VolumeofVolume.HeaderText = "Volume of Volume"
+        Me.VolumeofVolume.Name = "VolumeofVolume"
+        '
+        'Azimuthalangle
+        '
+        Me.Azimuthalangle.HeaderText = "Azimuthal angle"
+        Me.Azimuthalangle.Name = "Azimuthalangle"
+        '
+        'VerticalAngle
+        '
+        Me.VerticalAngle.HeaderText = "Vertical Angle"
+        Me.VerticalAngle.Name = "VerticalAngle"
+        '
+        'ElevationChange
+        '
+        Me.ElevationChange.HeaderText = "Elevation Change"
+        Me.ElevationChange.Name = "ElevationChange"
+        '
+        'HydraulicDiameter
+        '
+        Me.HydraulicDiameter.HeaderText = "Hydraulic Diameter"
+        Me.HydraulicDiameter.Name = "HydraulicDiameter"
+        '
+        'WallRoughness
+        '
+        Me.WallRoughness.HeaderText = "Wall Roughness"
+        Me.WallRoughness.Name = "WallRoughness"
+        '
+        'ThermalStratificationModel
+        '
+        Me.ThermalStratificationModel.HeaderText = "Thermal Stratification Model "
+        Me.ThermalStratificationModel.Name = "ThermalStratificationModel"
+        '
+        'LevelTrackingModel
+        '
+        Me.LevelTrackingModel.HeaderText = "Level Tracking Model"
+        Me.LevelTrackingModel.Name = "LevelTrackingModel"
+        '
+        'WaterPackingScheme
+        '
+        Me.WaterPackingScheme.HeaderText = "Water Packing Scheme "
+        Me.WaterPackingScheme.Name = "WaterPackingScheme"
+        '
+        'VerticalStratificationModel
+        '
+        Me.VerticalStratificationModel.HeaderText = "Vertical Stratification Model "
+        Me.VerticalStratificationModel.Name = "VerticalStratificationModel"
+        '
+        'InterphaseFriction
+        '
+        Me.InterphaseFriction.HeaderText = "Interphase Friction"
+        Me.InterphaseFriction.Name = "InterphaseFriction"
+        '
+        'ComputeWallFriction
+        '
+        Me.ComputeWallFriction.HeaderText = "Compute WallFriction"
+        Me.ComputeWallFriction.Name = "ComputeWallFriction"
+        '
+        'EquilibriumTemperature
+        '
+        Me.EquilibriumTemperature.HeaderText = "Equilibrium Temperature"
+        Me.EquilibriumTemperature.Name = "EquilibriumTemperature"
+        '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -138,17 +180,24 @@ Partial Class ucPipeEditor
 
     End Sub
     Friend WithEvents dgv As System.Windows.Forms.DataGridView
-    Friend WithEvents VolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Azimuthalangle As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Flowarea As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents HyrdraulicDiameter As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Junctionflowarea As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents LengthofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VerticalAngle As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VolumeofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents WallRoughness As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cmdSave As System.Windows.Forms.Button
     Friend WithEvents cmdCopy As System.Windows.Forms.Button
     Friend WithEvents cmdPaste As System.Windows.Forms.Button
+    Friend WithEvents VolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents FlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LengthofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents VolumeofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Azimuthalangle As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents VerticalAngle As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ElevationChange As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents HydraulicDiameter As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents WallRoughness As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ThermalStratificationModel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LevelTrackingModel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents WaterPackingScheme As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents VerticalStratificationModel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents InterphaseFriction As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ComputeWallFriction As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents EquilibriumTemperature As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

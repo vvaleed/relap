@@ -43,9 +43,9 @@ Partial Class frmPipeEditor
         Me.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VolumeNumber, Me.Azimuthalangle, Me.Flowarea, Me.HyrdraulicDiameter, Me.Junctionflowarea, Me.LengthofVolume, Me.VerticalAngle, Me.VolumeofVolume, Me.WallRoughness})
-        Me.dgv.Location = New System.Drawing.Point(787, 387)
+        Me.dgv.Location = New System.Drawing.Point(889, 387)
         Me.dgv.Name = "dgv"
-        Me.dgv.Size = New System.Drawing.Size(210, 13)
+        Me.dgv.Size = New System.Drawing.Size(108, 26)
         Me.dgv.TabIndex = 3
         Me.dgv.Visible = False
         '
@@ -58,7 +58,7 @@ Partial Class frmPipeEditor
         'Azimuthalangle
         '
         Me.Azimuthalangle.HeaderText = "Azimuthal Angle"
-        Me.Azimuthalangle.Name = "Azimuthalangle"
+        Me.Azimuthalangle.Name = "LengthofVolume"
         '
         'Flowarea
         '
