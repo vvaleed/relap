@@ -40,7 +40,15 @@ Public Class ucPipeEditor
         For i = 1 To myCOTK.NumberOfVoulmes
             dgv.Rows.Add(i.ToString)
         Next
+        For i = 1 To myCOTK.NumberOfVoulmes - 1
+            dgv2.Rows.Add(i.ToString)
+        Next
         For Each row As DataGridViewRow In dgv.Rows
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = 0
+            Next
+        Next
+        For Each row As DataGridViewRow In dgv2.Rows
             For i = 1 To row.Cells.Count - 1
                 row.Cells(i).Value = 0
             Next
@@ -48,14 +56,21 @@ Public Class ucPipeEditor
 
     End Sub
 
-    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+  
+
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles dgv.CellEnter, dgv2.CellEnter
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
         Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16 As Object
 
-        If Not Me.Profile Is Nothing Then Me.Profile.Sections.Clear()
+        If Not Me.Profile Is Nothing Then
+            Me.Profile.Sections.Clear()
+            Me.Profile.Junctions.Clear()
+        End If
+
+
         For Each row In Me.dgv.Rows
-            'If ParseColumn(column) = "OK" Then
+
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             v3 = row.Cells(2).Value
@@ -72,60 +87,106 @@ Public Class ucPipeEditor
             v14 = row.Cells(13).Value
             v15 = row.Cells(14).Value
             v16 = row.Cells(15).Value
-           
+
             Me.Profile.Sections.Add(row.Index + 1, New PipeSection(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16))
-            'Else
-            '    Label1.Text = DWSIM.App.GetLocalString("Erronasecao") & " " & column.Index + 1 & "."
-            '    RaiseEvent StatusChanged(e, PipeEditorStatus.Erro)
-            '    Exit Sub
-            'End If
+            
         Next
-        '  RaiseEvent StatusChanged(e, PipeEditorStatus.OK)
+
+
+        For Each row In Me.dgv2.Rows
+
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2))
+
+        Next
+
 
         row.Dispose()
     End Sub
-    Dim selectedcells As New List(Of Double)
+    Dim selectedcells As New List(Of Object)
     Private Sub cmdCopy_Click(sender As Object, e As EventArgs) Handles cmdCopy.Click
         If dgv.SelectedRows.Count = 1 Then
             selectedcells.Clear()
-            selectedcells.Add(dgv.SelectedRows(0).Cells(1).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(2).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(3).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(4).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(5).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(6).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(7).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(8).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(9).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(10).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(11).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(12).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(13).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(14).Value)
-            selectedcells.Add(dgv.SelectedRows(0).Cells(15).Value)
+            For Each cell As DataGridViewCell In dgv.SelectedRows(0).Cells
+                selectedcells.Add(cell.Value)
+            Next
+               
         End If
     End Sub
 
     Private Sub cmdPaste_Click(sender As Object, e As EventArgs) Handles cmdPaste.Click
         For Each row As DataGridViewRow In dgv.SelectedRows
-            row.Cells(1).Value = selectedcells(0)
-            row.Cells(2).Value = selectedcells(1)
-            row.Cells(3).Value = selectedcells(2)
-            row.Cells(4).Value = selectedcells(3)
-            row.Cells(5).Value = selectedcells(4)
-            row.Cells(6).Value = selectedcells(5)
-            row.Cells(7).Value = selectedcells(6)
-            row.Cells(8).Value = selectedcells(7)
-            row.Cells(9).Value = selectedcells(8)
-            row.Cells(10).Value = selectedcells(9)
-            row.Cells(11).Value = selectedcells(10)
-            row.Cells(12).Value = selectedcells(11)
-            row.Cells(13).Value = selectedcells(12)
-            row.Cells(14).Value = selectedcells(13)
-            row.Cells(15).Value = selectedcells(14)
+            Dim i = 0
+
+
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = selectedcells(i)
+            Next
+         
 
         Next
 
+    End Sub
+
+    Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellClick
+        cmdCopy.Enabled = False
+        cmdPaste.Enabled = False
+    End Sub
+
+    Private Sub dgv_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv.RowHeaderMouseClick
+        If dgv.SelectedRows.Count = 1 Then
+            cmdCopy.Enabled = True
+        Else
+            cmdCopy.Enabled = False
+        End If
+        If dgv.SelectedRows.Count > 0 Then
+            cmdPaste.Enabled = True
+        Else
+            cmdPaste.Enabled = True
+        End If
+    End Sub
+
+    Dim selectedcells2 As New List(Of Object)
+    Private Sub cmdCopy2_Click(sender As Object, e As EventArgs) Handles cmdCopy2.Click
+        If dgv.SelectedRows.Count = 1 Then
+            selectedcells.Clear()
+            For Each cell As DataGridViewCell In dgv2.SelectedRows(0).Cells
+                selectedcells2.Add(cell.Value)
+            Next
+
+        End If
+    End Sub
+
+    Private Sub cmdPaste2_Click(sender As Object, e As EventArgs) Handles cmdPaste2.Click
+        For Each row As DataGridViewRow In dgv.SelectedRows
+            Dim i = 0
+
+
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = selectedcells2(i)
+            Next
+
+
+        Next
+
+    End Sub
+
+    Private Sub dgv2_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv2.RowHeaderMouseClick
+        If dgv2.SelectedRows.Count = 1 Then
+            cmdCopy2.Enabled = True
+        Else
+            cmdCopy2.Enabled = False
+        End If
+        If dgv2.SelectedRows.Count > 0 Then
+            cmdPaste2.Enabled = True
+        Else
+            cmdPaste2.Enabled = True
+        End If
+    End Sub
+    Private Sub dgv2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv2.CellClick
+        cmdCopy2.Enabled = False
+        cmdPaste2.Enabled = False
     End Sub
 End Class
 

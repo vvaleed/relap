@@ -22,15 +22,18 @@ Partial Class frmThermalHydraulicStates
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.UcThermoDynamicStates1 = New ucThermoDynamicStates()
+        Me.UcThermoDynamicStates1 = New RELAP.ucThermoDynamicStates()
         Me.SuspendLayout()
         '
         'UcThermoDynamicStates1
         '
         Me.UcThermoDynamicStates1.Location = New System.Drawing.Point(29, 29)
         Me.UcThermoDynamicStates1.Name = "UcThermoDynamicStates1"
+        Me.UcThermoDynamicStates1.NumberFormat = Nothing
         Me.UcThermoDynamicStates1.Size = New System.Drawing.Size(664, 266)
+        Me.UcThermoDynamicStates1.SystemOfUnits = Nothing
         Me.UcThermoDynamicStates1.TabIndex = 0
+        Me.UcThermoDynamicStates1.ThermoDynamicStates = Nothing
         '
         'frmThermalHydraulicStates
         '

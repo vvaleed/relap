@@ -11,10 +11,25 @@
         End Set
     End Property
 
+    Protected m_collection2 As Generic.SortedDictionary(Of Integer, PipeJunctions)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property Junctions() As Generic.SortedDictionary(Of Integer, PipeJunctions)
+        Get
+            Return m_collection2
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, PipeJunctions))
+            m_collection2 = value
+        End Set
+    End Property
+
     Public Sub New()
         m_collection = New Generic.SortedDictionary(Of Integer, PipeSection)
+        m_collection2 = New Generic.SortedDictionary(Of Integer, PipeJunctions)
     End Sub
-
+    Public Overrides Function ToString() As String
+        Return "Click to Edit..."
+    End Function
 
 End Class
 
@@ -202,5 +217,31 @@ Public Class PipeSection
 
         '   Me.m_results = New System.Collections.Generic.List(Of PipeResults)
 
+    End Sub
+End Class
+Public Class PipeJunctions
+    Private _JunctionNumber As Integer
+    Public Property JunctionNumber() As Integer
+        Get
+            Return _JunctionNumber
+        End Get
+        Set(ByVal value As Integer)
+            _JunctionNumber = value
+        End Set
+    End Property
+    Private _JunctionDiameter As Double
+    Public Property JunctionDiameter() As Double
+        Get
+            Return _JunctionDiameter
+        End Get
+        Set(ByVal value As Double)
+            _JunctionDiameter = value
+        End Set
+    End Property
+
+   
+    Public Sub New(JunctionNumber As String, JunctionDiameter As String)
+        _JunctionNumber = JunctionNumber
+        _JunctionDiameter = JunctionDiameter
     End Sub
 End Class
