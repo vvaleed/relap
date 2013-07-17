@@ -1031,16 +1031,16 @@ Public Class FormMain
                 Return Me.tmpform2.FormProps
             Case "RELAP.frmObjList"
                 '      Return Me.tmpform2.FormObjList
-            Case "RELAP.frmLog"
-                '    Return Me.tmpform2.FormLog
-            Case "RELAP.frmMatList"
-                '     Return Me.tmpform2.FormMatList
+            Case "RELAP.frmPlotRequest"
+                Return Me.tmpform2.FormPlotReqest
+            Case "RELAP.frmEBT"
+                Return Me.tmpform2.FormEBT
             Case "RELAP.frmSurface"
                 Return Me.tmpform2.FormSurface
-            Case "RELAP.SpreadsheetForm"
-                '    Return Me.tmpform2.FormSpreadsheet
+            Case "RELAP.frmInitialSettings"
+                Return Me.tmpform2.FormInitialSettings
             Case "RELAP.frmObjListView"
-                '    Return Me.tmpform2.FormObjListView
+                Return Me.tmpform2.FormObjListView
             Case "RELAP.frmWatch"
                 '   Return Me.tmpform2.FormWatch
         End Select
@@ -1284,7 +1284,9 @@ Public Class FormMain
             form.FormSurface.Show(form.dckPanel)
             '
             form.FormProps.Show(form.dckPanel)
-
+            form.FormInitialSettings.Show(form.dckPanel)
+            form.FormEBT.Show(form.dckPanel)
+            form.FormPlotReqest.Show(form.dckPanel)
             '
 
             form.dckPanel.ResumeLayout(True, True)
@@ -2544,7 +2546,7 @@ sim:                Dim myStream As System.IO.FileStream
 
         univID = 1
 
-
+        Dim frmInitialSettings = My.Application.ActiveSimulation.FormInitialSettings
 
         ' input file generation code
 
