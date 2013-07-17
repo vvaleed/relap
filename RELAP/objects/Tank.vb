@@ -38,6 +38,16 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
         'properties data
+        Private _ThermoDynamicStates As ThermoDynamicStates
+        Public Property ThermoDynamicStates() As ThermoDynamicStates
+            Get
+                Return _ThermoDynamicStates
+            End Get
+            Set(ByVal value As ThermoDynamicStates)
+                _ThermoDynamicStates = value
+            End Set
+        End Property
+
         Private m_flowarea As Double
         Public Property FlowArea() As Double
             Get
@@ -302,6 +312,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
+            Me._ThermoDynamicStates = New ThermoDynamicStates
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
@@ -636,7 +647,12 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-
+                .Item.Add("Thermo Dynamic States", Me, "ThermoDynamicStates", False, "1.Parameters", "Thermo Dynamic States", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(ThermoDynamicState)
+                    .CustomEditor = New RELAP.Editors.UIThermoDynamicStatesEditor
+                End With
 
                 'control flags
 

@@ -1,4 +1,37 @@
 ﻿Public Class ucThermoDynamicStates
+    ' Private ThermoDynamicStates As List(Of ThermoDynamicState)
+    'Public _ThermoDynamicStates As List(Of ThermoDynamicState)
+    Private _ThermoDynamicStates As ThermoDynamicStates
+    Public Property ThermoDynamicStates() As ThermoDynamicStates
+        Get
+            Return _ThermoDynamicStates
+        End Get
+        Set(ByVal value As ThermoDynamicStates)
+            _ThermoDynamicStates = value
+        End Set
+    End Property
+
+    Private _us As RELAP.SistemasDeUnidades.Unidades
+
+    Public Property SystemOfUnits() As RELAP.SistemasDeUnidades.Unidades
+        Get
+            Return _us
+        End Get
+        Set(ByVal value As RELAP.SistemasDeUnidades.Unidades)
+            _us = value
+        End Set
+    End Property
+
+    Private _nf As String
+
+    Public Property NumberFormat() As String
+        Get
+            Return _nf
+        End Get
+        Set(ByVal value As String)
+            _nf = value
+        End Set
+    End Property
     Private Sub cmbothermostates_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles cmbothermostates.SelectedValueChanged
         '        Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void Fraction
         'Temperature, Static Quality
@@ -10,35 +43,71 @@
         'Pressure, Liquid Temperature, Vapor Temperature, Void Fraction, Non condensable Quality
         DataGridView1.Columns.Clear()
         If cmbothermostates.SelectedIndex = 0 Then
+            DataGridView1.Columns.Add("Time", "Time")
             DataGridView1.Columns.Add("Pressure", "Pressure")
             DataGridView1.Columns.Add("LiquidSpecificInternalEnergy", "Liquid Specific Internal Energy")
             DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
             DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
         End If
         If cmbothermostates.SelectedIndex = 1 Then
+            DataGridView1.Columns.Add("Time", "Time")
             DataGridView1.Columns.Add("Temperature", "Temperature")
             DataGridView1.Columns.Add("StaticQuality", "Static Quality")
 
         End If
         If cmbothermostates.SelectedIndex = 2 Then
+            DataGridView1.Columns.Add("Time", "Time")
             DataGridView1.Columns.Add("Pressure", "Pressure")
             DataGridView1.Columns.Add("StaticQuality", "Static Quality")
 
         End If
         If cmbothermostates.SelectedIndex = 3 Then
+            DataGridView1.Columns.Add("Time", "Time")
             DataGridView1.Columns.Add("Pressure", "Pressure")
             DataGridView1.Columns.Add("Temperature", "Temperature")
 
         End If
         If cmbothermostates.SelectedIndex = 4 Then
+            DataGridView1.Columns.Add("Time", "Time")
             DataGridView1.Columns.Add("Pressure", "Pressure")
             DataGridView1.Columns.Add("Temperature", "Temperature")
             DataGridView1.Columns.Add("StaticQuality", "Static Quality")
         End If
         If cmbothermostates.SelectedIndex = 5 Then
+            DataGridView1.Columns.Add("Time", "Time")
             DataGridView1.Columns.Add("Pressure", "Pressure")
             DataGridView1.Columns.Add("Temperature", "Temperature")
             DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
         End If
+        If cmbothermostates.SelectedIndex = 6 Then
+            DataGridView1.Columns.Add("Time", "Time")
+            DataGridView1.Columns.Add("Pressure", "Pressure")
+            DataGridView1.Columns.Add("LiquidSpecificInternalEnergy", "Liquid Specific Internal Energy")
+            DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
+            DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
+            DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
+        End If
+        If cmbothermostates.SelectedIndex = 7 Then
+            DataGridView1.Columns.Add("Time", "Time")
+            DataGridView1.Columns.Add("LiquidTemperature", "Liquid Temperature")
+            DataGridView1.Columns.Add("VaporTemperature", "Vapor Temperature")
+            DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
+            DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
+        End If
+
+      
+    End Sub
+
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        Dim str As String = ""
+        Dim row As DataGridViewRow
+        For i = 0 To DataGridView1.Rows.Count - 2
+            row = DataGridView1.Rows(i)
+            For Each cell As DataGridViewCell In row.Cells
+                str = str & " " & cell.Value
+            Next
+            ThermoDynamicStates.State.Add(row.Index + 1, New ThermoDynamicState(str, cmbothermostates.SelectedIndex))
+        Next
+
     End Sub
 End Class
