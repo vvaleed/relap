@@ -56,7 +56,7 @@ Public Class ucPipeEditor
 
     End Sub
 
-  
+
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles dgv.CellEnter, dgv2.CellEnter
         Dim row As New DataGridViewRow
@@ -89,7 +89,7 @@ Public Class ucPipeEditor
             v16 = row.Cells(15).Value
 
             Me.Profile.Sections.Add(row.Index + 1, New PipeSection(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16))
-            
+
         Next
 
 
@@ -97,7 +97,17 @@ Public Class ucPipeEditor
 
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
-            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2))
+            v3 = row.Cells(2).Value
+            v4 = row.Cells(3).Value
+            v5 = row.Cells(4).Value
+            v6 = row.Cells(5).Value
+            v7 = row.Cells(6).Value
+            v8 = row.Cells(7).Value
+            v9 = row.Cells(8).Value
+            v10 = row.Cells(9).Value
+            v11 = row.Cells(10).Value
+
+            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11))
 
         Next
 
@@ -111,7 +121,7 @@ Public Class ucPipeEditor
             For Each cell As DataGridViewCell In dgv.SelectedRows(0).Cells
                 selectedcells.Add(cell.Value)
             Next
-               
+
         End If
     End Sub
 
@@ -123,7 +133,7 @@ Public Class ucPipeEditor
             For i = 1 To row.Cells.Count - 1
                 row.Cells(i).Value = selectedcells(i)
             Next
-         
+
 
         Next
 
