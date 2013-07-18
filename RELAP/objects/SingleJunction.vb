@@ -221,7 +221,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-
         Private m_rfelc As Double
         Public Property RflowLossCo() As Double
             Get

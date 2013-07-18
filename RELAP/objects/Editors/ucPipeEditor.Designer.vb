@@ -23,17 +23,6 @@ Partial Class ucPipeEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dgv = New System.Windows.Forms.DataGridView()
-        Me.cmdCopy = New System.Windows.Forms.Button()
-        Me.cmdPaste = New System.Windows.Forms.Button()
-        Me.dgv2 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmdCopy2 = New System.Windows.Forms.Button()
-        Me.cmdPaste2 = New System.Windows.Forms.Button()
         Me.VolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LengthofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -50,6 +39,22 @@ Partial Class ucPipeEditor
         Me.InterphaseFriction = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ComputeWallFriction = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.EquilibriumTemperature = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.cmdCopy = New System.Windows.Forms.Button()
+        Me.cmdPaste = New System.Windows.Forms.Button()
+        Me.dgv2 = New System.Windows.Forms.DataGridView()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
+        Me.JunctionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PVterm = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CCFLModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StratificationEntrainmentModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChokingModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SmoothAreaChange = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TwoVelocityMomentumEquations = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MomentumFlux = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -65,89 +70,6 @@ Partial Class ucPipeEditor
         Me.dgv.Name = "dgv"
         Me.dgv.Size = New System.Drawing.Size(1042, 289)
         Me.dgv.TabIndex = 4
-        '
-        'cmdCopy
-        '
-        Me.cmdCopy.Enabled = False
-        Me.cmdCopy.Location = New System.Drawing.Point(143, 309)
-        Me.cmdCopy.Name = "cmdCopy"
-        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy.TabIndex = 6
-        Me.cmdCopy.Text = "Copy"
-        Me.cmdCopy.UseVisualStyleBackColor = True
-        '
-        'cmdPaste
-        '
-        Me.cmdPaste.Enabled = False
-        Me.cmdPaste.Location = New System.Drawing.Point(244, 309)
-        Me.cmdPaste.Name = "cmdPaste"
-        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste.TabIndex = 8
-        Me.cmdPaste.Text = "Paste"
-        Me.cmdPaste.UseVisualStyleBackColor = True
-        '
-        'dgv2
-        '
-        Me.dgv2.AllowUserToAddRows = False
-        Me.dgv2.AllowUserToDeleteRows = False
-        Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6})
-        Me.dgv2.Location = New System.Drawing.Point(7, 339)
-        Me.dgv2.Name = "dgv2"
-        Me.dgv2.Size = New System.Drawing.Size(1042, 263)
-        Me.dgv2.TabIndex = 4
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Volume Number"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Volume Flow Area"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Length of Volume"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Volume of Volume"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Azimuthal angle"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Vertical Angle"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        '
-        'cmdCopy2
-        '
-        Me.cmdCopy2.Enabled = False
-        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
-        Me.cmdCopy2.Name = "cmdCopy2"
-        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy2.TabIndex = 6
-        Me.cmdCopy2.Text = "Copy"
-        Me.cmdCopy2.UseVisualStyleBackColor = True
-        '
-        'cmdPaste2
-        '
-        Me.cmdPaste2.Enabled = False
-        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
-        Me.cmdPaste2.Name = "cmdPaste2"
-        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste2.TabIndex = 8
-        Me.cmdPaste2.Text = "Paste"
-        Me.cmdPaste2.UseVisualStyleBackColor = True
         '
         'VolumeNumber
         '
@@ -244,6 +166,114 @@ Partial Class ucPipeEditor
         Me.EquilibriumTemperature.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.EquilibriumTemperature.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
+        'cmdCopy
+        '
+        Me.cmdCopy.Enabled = False
+        Me.cmdCopy.Location = New System.Drawing.Point(143, 309)
+        Me.cmdCopy.Name = "cmdCopy"
+        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy.TabIndex = 6
+        Me.cmdCopy.Text = "Copy"
+        Me.cmdCopy.UseVisualStyleBackColor = True
+        '
+        'cmdPaste
+        '
+        Me.cmdPaste.Enabled = False
+        Me.cmdPaste.Location = New System.Drawing.Point(244, 309)
+        Me.cmdPaste.Name = "cmdPaste"
+        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste.TabIndex = 8
+        Me.cmdPaste.Text = "Paste"
+        Me.cmdPaste.UseVisualStyleBackColor = True
+        '
+        'dgv2
+        '
+        Me.dgv2.AllowUserToAddRows = False
+        Me.dgv2.AllowUserToDeleteRows = False
+        Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux})
+        Me.dgv2.Location = New System.Drawing.Point(7, 339)
+        Me.dgv2.Name = "dgv2"
+        Me.dgv2.Size = New System.Drawing.Size(1042, 263)
+        Me.dgv2.TabIndex = 4
+        '
+        'cmdCopy2
+        '
+        Me.cmdCopy2.Enabled = False
+        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
+        Me.cmdCopy2.Name = "cmdCopy2"
+        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy2.TabIndex = 6
+        Me.cmdCopy2.Text = "Copy"
+        Me.cmdCopy2.UseVisualStyleBackColor = True
+        '
+        'cmdPaste2
+        '
+        Me.cmdPaste2.Enabled = False
+        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
+        Me.cmdPaste2.Name = "cmdPaste2"
+        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste2.TabIndex = 8
+        Me.cmdPaste2.Text = "Paste"
+        Me.cmdPaste2.UseVisualStyleBackColor = True
+        '
+        'JunctionNumber
+        '
+        Me.JunctionNumber.HeaderText = "Junction Number"
+        Me.JunctionNumber.Name = "JunctionNumber"
+        Me.JunctionNumber.ReadOnly = True
+        '
+        'JunctionFlowArea
+        '
+        Me.JunctionFlowArea.HeaderText = "Junction Flow Area"
+        Me.JunctionFlowArea.Name = "JunctionFlowArea"
+        '
+        'FflowLossCo
+        '
+        Me.FflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
+        Me.FflowLossCo.Name = "FflowLossCo"
+        '
+        'RflowLossCo
+        '
+        Me.RflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
+        Me.RflowLossCo.Name = "RflowLossCo"
+        '
+        'PVterm
+        '
+        Me.PVterm.HeaderText = "PV Term"
+        Me.PVterm.Name = "PVterm"
+        '
+        'CCFLModel
+        '
+        Me.CCFLModel.HeaderText = "CCFL Model"
+        Me.CCFLModel.Name = "CCFLModel"
+        '
+        'StratificationEntrainmentModel
+        '
+        Me.StratificationEntrainmentModel.HeaderText = "Horizontal Stratification Entrainment Model "
+        Me.StratificationEntrainmentModel.Name = "StratificationEntrainmentModel"
+        '
+        'ChokingModel
+        '
+        Me.ChokingModel.HeaderText = "Choking Model "
+        Me.ChokingModel.Name = "ChokingModel"
+        '
+        'SmoothAreaChange
+        '
+        Me.SmoothAreaChange.HeaderText = "Area Change "
+        Me.SmoothAreaChange.Name = "SmoothAreaChange"
+        '
+        'TwoVelocityMomentumEquations
+        '
+        Me.TwoVelocityMomentumEquations.HeaderText = "Velocity Momentum Equations "
+        Me.TwoVelocityMomentumEquations.Name = "TwoVelocityMomentumEquations"
+        '
+        'MomentumFlux
+        '
+        Me.MomentumFlux.HeaderText = "Momentum Flux"
+        Me.MomentumFlux.Name = "MomentumFlux"
+        '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -267,12 +297,6 @@ Partial Class ucPipeEditor
     Friend WithEvents dgv2 As System.Windows.Forms.DataGridView
     Friend WithEvents cmdCopy2 As System.Windows.Forms.Button
     Friend WithEvents cmdPaste2 As System.Windows.Forms.Button
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents VolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LengthofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -289,5 +313,16 @@ Partial Class ucPipeEditor
     Friend WithEvents InterphaseFriction As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ComputeWallFriction As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents EquilibriumTemperature As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents JunctionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents JunctionFlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents FflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PVterm As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CCFLModel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents StratificationEntrainmentModel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ChokingModel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SmoothAreaChange As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TwoVelocityMomentumEquations As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MomentumFlux As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class
