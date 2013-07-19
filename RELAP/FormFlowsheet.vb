@@ -49,6 +49,7 @@ Imports RELAP.RELAP.FormClasses
     Public m_IsLoadedFromFile As Boolean = False
     Public m_overrideCloseQuestion As Boolean = False
     Public m_simultadjustsolverenabled As Boolean = True
+    Public ComponentType As String
     Public FromComponent As String
     Public ToComponent As String
     Public ComponentType As String

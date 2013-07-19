@@ -2932,6 +2932,14 @@ sim:                Dim myStream As System.IO.FileStream
                     counter = counter + 1
                 Next kvp2
 
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    output1 = kvp.Value.ThermoDynamicStates.State(1).StateType
+                End If
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
+                    Counter = Counter + 1
+                Next kvp2
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp
