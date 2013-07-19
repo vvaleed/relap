@@ -538,13 +538,19 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultType = GetType(Double)
                 'End With
                 valor = App.GetTagFromUID(Me.FromComponent)
-                .Item.Add("From", valor, True, "Connections", "From Component", True)
+                .Item.Add("From Component", valor, True, "Connections", "From Component", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
+                valor = (Me.FromVolume)
+                .Item.Add("From Volume", valor, False, "Connections", "From Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .CustomEditor = New RELAP.Editors.UIVolumeSelector
+                End With
                 valor = App.GetTagFromUID(Me.ToComponent)
-                .Item.Add("To", valor, True, "Connections", "To Component", True)
+                .Item.Add("To Component", valor, True, "Connections", "To Component", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

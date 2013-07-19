@@ -65,12 +65,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-
-
-
-
-
-
         Private m_JunctionNumber As Double
         Public Property JunctionNumber() As Double
             Get
@@ -571,19 +565,20 @@ Namespace RELAP.SimulationObjects.UnitOps
 
         Public Overrides Function GetPropertyValue(ByVal prop As String, Optional ByVal su As SistemasDeUnidades.Unidades = Nothing) As Object
 
-            If su Is Nothing Then su = New RELAP.SistemasDeUnidades.UnidadesSI
-            Dim cv As New RELAP.SistemasDeUnidades.Conversor
-            Dim value As Double = 0
-            Dim propidx As Integer = CInt(prop.Split("_")(2))
+            'If su Is Nothing Then su = New RELAP.SistemasDeUnidades.UnidadesSI
+            'Dim cv As New RELAP.SistemasDeUnidades.Conversor
+            Dim value As Double = 1
+            'Dim propidx As Integer = CInt(prop.Split("_")(2))
 
-            Select Case propidx
+            'Select Case propidx
 
-                Case 0
-                    'PROP_TK_0	Pressure Drop
-                    value = cv.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault)
+            '    Case 0
+            '        'PROP_TK_0	Pressure Drop
+            '        value = cv.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault)
 
-            End Select
-
+            'End Select
+            ' hard coded return of volumeno
+            value = Me.NumberOfVoulmes
             Return value
 
         End Function
