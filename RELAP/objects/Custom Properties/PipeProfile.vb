@@ -32,8 +32,7 @@
     End Function
 
 End Class
-
-Public Class PipeSection
+<System.Serializable()> Public Class PipeSection
     Private m_VolumeNumber As Double
     Public Property VolumeNumber() As Double
         Get
@@ -302,12 +301,12 @@ Public Class PipeJunctions
         End Set
     End Property
 
-    Private m_a_junction_smooth As Boolean
-    Public Property SmoothAreaChange() As Boolean
+    Private m_a_junction_smooth As String
+    Public Property SmoothAreaChange() As String
         Get
             Return m_a_junction_smooth
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As String)
             m_a_junction_smooth = value
         End Set
     End Property
@@ -332,49 +331,49 @@ Public Class PipeJunctions
         End Set
     End Property
 
-    Private m_h_junction_homogeneus As Boolean
-    Public Property TwoVelocityMomentumEquations() As Boolean
+    Private m_h_junction_homogeneus As String
+    Public Property TwoVelocityMomentumEquations() As String
         Get
             Return m_h_junction_homogeneus
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As String)
             m_h_junction_homogeneus = value
         End Set
     End Property
 
-    Private m_h_junction_nonhomogeneus As Boolean
-    Public Property SingleVelocityMomentumEquations() As Boolean
+    Private m_h_junction_nonhomogeneus As String
+    Public Property SingleVelocityMomentumEquations() As String
         Get
             Return m_h_junction_nonhomogeneus
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As String)
             m_h_junction_nonhomogeneus = value
         End Set
     End Property
 
-    Private m_s_junction As Boolean
-    Public Property MomentumFlux() As Boolean
+    Private m_s_junction As String
+    Public Property MomentumFlux() As String
         Get
             Return m_s_junction
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As String)
             m_s_junction = value
         End Set
     End Property
 
     Public Sub New(JunctionNumber As Double, JunctionFlowArea As Double, FflowLossCo As Double, RflowLossCo As Double, PVterm As Boolean, CCFLModel As Boolean, StratificationEntrainmentModel As Boolean, _
-                   ChokingModel As Boolean, SmoothAreaChange As Boolean, TwoVelocityMomentumEquations As Boolean, MomentumFlux As Boolean)
-        m_JunctionNumber = JunctionNumber
-        m_JunctionFlowArea = JunctionFlowArea
-        m_ffelc = FflowLossCo
-        m_rfelc = RflowLossCo
-        m_e_junction = PVterm
-        m_f_junction = CCFLModel
-        m_v_junction = StratificationEntrainmentModel
-        m_c_junction = ChokingModel
-        m_a_junction_smooth = SmoothAreaChange
-        m_h_junction_homogeneus = TwoVelocityMomentumEquations
-        m_s_junction = MomentumFlux
+                   ChokingModel As Boolean, SmoothAreaChange As String, TwoVelocityMomentumEquations As String, MomentumFlux As String)
+        Me.m_JunctionNumber = JunctionNumber
+        Me.m_JunctionFlowArea = JunctionFlowArea
+        Me.m_ffelc = FflowLossCo
+        Me.m_rfelc = RflowLossCo
+        Me.m_e_junction = PVterm
+        Me.m_f_junction = CCFLModel
+        Me.m_v_junction = StratificationEntrainmentModel
+        Me.m_c_junction = ChokingModel
+        Me.m_a_junction_smooth = SmoothAreaChange
+        Me.m_h_junction_homogeneus = TwoVelocityMomentumEquations
+        Me.m_s_junction = MomentumFlux
 
     End Sub
 End Class

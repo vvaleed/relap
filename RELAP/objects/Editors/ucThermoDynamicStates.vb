@@ -106,7 +106,9 @@
 
         End If
         For i = 0 To DataGridView1.Rows.Count - 2
+            str = ""
             row = DataGridView1.Rows(i)
+
             For Each cell As DataGridViewCell In row.Cells
                 str = str & " " & cell.Value
             Next

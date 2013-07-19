@@ -48,13 +48,13 @@ Partial Class ucPipeEditor
         Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PVterm = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CCFLModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StratificationEntrainmentModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChokingModel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SmoothAreaChange = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TwoVelocityMomentumEquations = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MomentumFlux = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PVterm = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CCFLModel = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StratificationEntrainmentModel = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ChokingModel = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.SmoothAreaChange = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.TwoVelocityMomentumEquations = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.MomentumFlux = New System.Windows.Forms.DataGridViewComboBoxColumn()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -243,36 +243,55 @@ Partial Class ucPipeEditor
         '
         Me.PVterm.HeaderText = "PV Term"
         Me.PVterm.Name = "PVterm"
+        Me.PVterm.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PVterm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'CCFLModel
         '
         Me.CCFLModel.HeaderText = "CCFL Model"
         Me.CCFLModel.Name = "CCFLModel"
+        Me.CCFLModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.CCFLModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'StratificationEntrainmentModel
         '
         Me.StratificationEntrainmentModel.HeaderText = "Horizontal Stratification Entrainment Model "
         Me.StratificationEntrainmentModel.Name = "StratificationEntrainmentModel"
+        Me.StratificationEntrainmentModel.ReadOnly = True
+        Me.StratificationEntrainmentModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StratificationEntrainmentModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.StratificationEntrainmentModel.Visible = False
         '
         'ChokingModel
         '
         Me.ChokingModel.HeaderText = "Choking Model "
         Me.ChokingModel.Name = "ChokingModel"
+        Me.ChokingModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ChokingModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'SmoothAreaChange
         '
         Me.SmoothAreaChange.HeaderText = "Area Change "
+        Me.SmoothAreaChange.Items.AddRange(New Object() {"Smooth Area Change", "Full Abrupt Area Change", "Partial Abrupt Area Change"})
         Me.SmoothAreaChange.Name = "SmoothAreaChange"
+        Me.SmoothAreaChange.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SmoothAreaChange.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'TwoVelocityMomentumEquations
         '
         Me.TwoVelocityMomentumEquations.HeaderText = "Velocity Momentum Equations "
+        Me.TwoVelocityMomentumEquations.Items.AddRange(New Object() {"Two velocity Momentum Equations", "Single velocity Momentum Equations"})
         Me.TwoVelocityMomentumEquations.Name = "TwoVelocityMomentumEquations"
+        Me.TwoVelocityMomentumEquations.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TwoVelocityMomentumEquations.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'MomentumFlux
         '
         Me.MomentumFlux.HeaderText = "Momentum Flux"
+        Me.MomentumFlux.Items.AddRange(New Object() {"To and From Volume", "Only From Volume", "Only To Volume", "Do not use Momentum Flux"})
         Me.MomentumFlux.Name = "MomentumFlux"
+        Me.MomentumFlux.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.MomentumFlux.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'ucPipeEditor
         '
@@ -317,12 +336,12 @@ Partial Class ucPipeEditor
     Friend WithEvents JunctionFlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PVterm As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CCFLModel As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents StratificationEntrainmentModel As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ChokingModel As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SmoothAreaChange As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TwoVelocityMomentumEquations As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MomentumFlux As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PVterm As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents CCFLModel As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents StratificationEntrainmentModel As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents ChokingModel As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents SmoothAreaChange As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents TwoVelocityMomentumEquations As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents MomentumFlux As System.Windows.Forms.DataGridViewComboBoxColumn
 
 End Class
