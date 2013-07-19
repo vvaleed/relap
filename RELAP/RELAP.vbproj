@@ -255,6 +255,8 @@
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
     <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />
+    <Compile Include="objects\Editors\UIVolumeSelector.vb" />
+    <Compile Include="objects\Editors\UIComponentSelector.vb" />
     <Compile Include="objects\Editors\frmThermalHydraulicStatesditor.Designer.vb">
       <DependentUpon>frmThermalHydraulicStatesditor.vb</DependentUpon>
     </Compile>

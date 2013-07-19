@@ -49,7 +49,8 @@ Imports RELAP.RELAP.FormClasses
     Public m_IsLoadedFromFile As Boolean = False
     Public m_overrideCloseQuestion As Boolean = False
     Public m_simultadjustsolverenabled As Boolean = True
-
+    Public FromComponent As String
+    Public ToComponent As String
     Public FormSurface As New frmSurface
     Public FormProps As New frmProps
     Public FormInitialSettings As New frmInitialSettings
@@ -1393,7 +1394,7 @@ Imports RELAP.RELAP.FormClasses
 
 
                 Me.Collections.CLCS_SingleJunctionCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
-
+                FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
 
 
                 '  gObjTo.
@@ -1402,6 +1403,7 @@ Imports RELAP.RELAP.FormClasses
 
 
                 Me.Collections.CLCS_SingleJunctionCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
 
                 '  gObjTo.
             End If

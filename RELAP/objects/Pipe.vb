@@ -55,6 +55,15 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private _ThermoDynamicStates As ThermoDynamicStates
+        Public Property ThermoDynamicStates() As ThermoDynamicStates
+            Get
+                Return _ThermoDynamicStates
+            End Get
+            Set(ByVal value As ThermoDynamicStates)
+                _ThermoDynamicStates = value
+            End Set
+        End Property
 
 
 
@@ -439,6 +448,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 ' '''''''''''''
+
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.NumberOfVoulmes), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, "Parameters", "Number of Volumes", True)
                 With .Item(.Item.Count - 1)
@@ -449,6 +459,11 @@ Namespace RELAP.SimulationObjects.UnitOps
                 With .Item(.Item.Count - 1)
                     .DefaultType = GetType(PipeProfile)
                     .CustomEditor = New RELAP.Editors.UIPipeEditor
+                End With
+                .Item.Add("Set Thermo Dynamic States", Me, "ThermoDynamicStates", False, "Parameters", "Set Thermo Dynamic States", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultType = GetType(ThermoDynamicStates)
+                    .CustomEditor = New RELAP.Editors.UIThermoDynamicStatesEditor
                 End With
 
                 'valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
