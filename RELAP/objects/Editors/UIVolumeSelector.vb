@@ -61,21 +61,18 @@ Namespace RELAP.Editors
                 form = My.Application.ActiveSimulation
 
                 Me.ListView2.Items.Clear()
+                Dim volumes = 1
                 For Each obj As SimulationObjects_BaseClass In form.Collections.ObjectCollection.Values
                     If obj.UID = form.FromComponent Then
-
+                        volumes = obj.GetPropertyValue("NoOfVolumes")
                     End If
                 Next
-                For Each mstr As SimulationObjects.UnitOps.SingleJunction In form.Collections.CLCS_SingleJunctionCollection.Values
-                    If Not mstr.GraphicObject.OutputConnectors(0).IsAttached Then
-                        Dim lvi As New ListViewItem()
-                        With lvi
-                            .Text = mstr.GraphicObject.Tag
-                            .Tag = mstr.UID
-                            .Name = mstr.UID
-                        End With
-                        ListView2.Items.Add(lvi)
-                    End If
+                For i = 1 To volumes
+                    Dim lvi As New ListViewItem()
+                    With lvi
+                        .Text = i
+                    End With
+                    ListView2.Items.Add(lvi)
                 Next
                 Me.ListView2.SelectedItems.Clear()
 

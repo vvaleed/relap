@@ -51,6 +51,7 @@ Imports RELAP.RELAP.FormClasses
     Public m_simultadjustsolverenabled As Boolean = True
     Public FromComponent As String
     Public ToComponent As String
+    Public ComponentType As String
     Public FormSurface As New frmSurface
     Public FormProps As New frmProps
     Public FormInitialSettings As New frmInitialSettings
