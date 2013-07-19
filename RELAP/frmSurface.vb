@@ -285,6 +285,7 @@ Public Class frmSurface
                                     CType(Me.FlowsheetDesignSurface.SelectedObject, RELAP.GraphicObjects.MasterTableGraphic).PopulateGrid(PGEx1, ChildParent)
                                 Else
                                     If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Tank Or Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
+                                        My.Application.ActiveSimulation.ComponentType = "pipe"
                                         'Dim frm As New frmebt
                                         'frm.Show()
 

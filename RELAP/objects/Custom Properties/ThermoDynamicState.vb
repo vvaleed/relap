@@ -19,7 +19,7 @@
         Return "Click to Edit..."
     End Function
 End Class
-Public Class ThermoDynamicState
+<System.Serializable()> Public Class ThermoDynamicState
     Private _StatesString As String
     Public Property StatesString() As String
         Get

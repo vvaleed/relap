@@ -157,12 +157,13 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-       
+
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
+            Me._ThermoDynamicStates = New ThermoDynamicStates
             Me.m_NumberOfVoulmes = 5
             Me.m_ComponentDescription = descricao
             Me.Profile = New PipeProfile
