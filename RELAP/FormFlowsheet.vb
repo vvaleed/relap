@@ -52,7 +52,6 @@ Imports RELAP.RELAP.FormClasses
     Public ComponentType As String
     Public FromComponent As String
     Public ToComponent As String
-    Public ComponentType As String
     Public FormSurface As New frmSurface
     Public FormProps As New frmProps
     Public FormInitialSettings As New frmInitialSettings
