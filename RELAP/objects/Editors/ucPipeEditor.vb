@@ -49,7 +49,7 @@ Public Class ucPipeEditor
             Next
         Next
         For Each row As DataGridViewRow In dgv2.Rows
-            For i = 1 To row.Cells.Count - 1
+            For i = 1 To 3
                 row.Cells(i).Value = 0
             Next
         Next

@@ -2695,20 +2695,18 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ TMDPVOL")
 
                 output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
-
                 generate.WriteLine(output)
+
                 If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
-                    generate.WriteLine("theramal type shit" & kvp.Value.ThermoDynamicStates.State(1).StateType)
+                    generate.WriteLine(kvp.Value.UID & "0200 " & kvp.Value.ThermoDynamicStates.State(1).StateType)
                 End If
-
+                Dim Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
-                    'output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume & " " & counter
-
-                    generate.WriteLine("theramal string shit" & kvp2.Value.StatesString)
-                    'counter = counter + 1
+                    generate.WriteLine(kvp.Value.UID & "020" & Counter & kvp2.Value.StatesString)
+                    Counter = Counter + 1
                 Next kvp2
                 univID = univID + 1
-                '  MsgBox(kvp.Value.ComponentName)
+
             Next kvp
 
 
@@ -2874,7 +2872,62 @@ sim:                Dim myStream As System.IO.FileStream
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle & " " & counter
+                    output1 = boolto10(kvp2.Value.ThermalStratificationModel)
+                    output2 = boolto10(kvp2.Value.LevelTrackingModel)
+                    output3 = boolto10(kvp2.Value.WaterPackingScheme)
+                    output4 = boolto10(kvp2.Value.VerticalStratificationModel)
+                    output5 = boolto10(kvp2.Value.InterphaseFriction)
+                    output6 = boolto10(kvp2.Value.ComputeWallFriction)
+                    output7 = boolto10(kvp2.Value.EquilibriumTemperature)
+                    output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
+                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
+                    output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo & " " & kvp2.Value.RflowLossCo & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
+                    output1 = boolto10(kvp2.Value.PVterm)
+                    output2 = boolto10(kvp2.Value.CCFLModel)
+                    output3 = boolto10(kvp2.Value.ChokingModel)
+                    If kvp2.Value.SmoothAreaChange = "Smooth Area Change" Then
+                        output4 = "0"
+                    ElseIf kvp2.Value.SmoothAreaChange = "Full Abrupt Area Change" Then
+                        output4 = "1"
+                    ElseIf kvp2.Value.SmoothAreaChange = "Partial Abrupt Area Change" Then
+                        output4 = "2"
+                    End If
+
+                    If kvp2.Value.TwoVelocityMomentumEquations = "Two velocity Momentum Equations" Then
+                        output5 = "0"
+                    ElseIf kvp2.Value.TwoVelocityMomentumEquations = "Single velocity Momentum Equations" Then
+                        output5 = "2"
+                    End If
+
+                    If kvp2.Value.MomentumFlux = "To and From Volume" Then
+                        output6 = "0"
+                    ElseIf kvp2.Value.MomentumFlux = "Only From Volume" Then
+                        output6 = "1"
+                    ElseIf kvp2.Value.MomentumFlux = "Only To Volume" Then
+                        output6 = "2"
+                    ElseIf kvp2.Value.MomentumFlux = "Do not use Momentum Flux" Then
+                        output6 = "3"
+                    End If
+
+                    output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
