@@ -49,6 +49,25 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_InitialLiquidVelocity = value
             End Set
         End Property
+        Private _FromVolume As Integer
+        Public Property FromVolume() As Integer
+            Get
+                Return _FromVolume
+            End Get
+            Set(ByVal value As Integer)
+                _FromVolume = value
+            End Set
+        End Property
+        Private _ToVolume As Integer
+        Public Property ToVolume() As Integer
+            Get
+                Return _ToVolume
+            End Get
+            Set(ByVal value As Integer)
+                _ToVolume = value
+            End Set
+        End Property
+
 
         Private m_InitialVaporVelocity As Double
         Public Property InitialVaporVelocity() As Double
@@ -518,7 +537,18 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
-
+                valor = App.GetTagFromUID(Me.FromComponent)
+                .Item.Add("From", valor, True, "Connections", "From Component", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = App.GetTagFromUID(Me.ToComponent)
+                .Item.Add("To", valor, True, "Connections", "To Component", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)
@@ -567,6 +597,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
+
 
                 valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Initial Liquid Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
