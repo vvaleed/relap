@@ -58,7 +58,7 @@ Partial Class FormMain
         Me.BlogDeDesenvolvimentoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownloadsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WikiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FórumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ForumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RastreamentoDeBugsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistrarTiposCOMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -314,7 +314,7 @@ Partial Class FormMain
         'RELAPNaInternetToolStripMenuItem
         '
         resources.ApplyResources(Me.RELAPNaInternetToolStripMenuItem, "RELAPNaInternetToolStripMenuItem")
-        Me.RELAPNaInternetToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlogDeDesenvolvimentoToolStripMenuItem, Me.DownloadsToolStripMenuItem, Me.WikiToolStripMenuItem, Me.FórumToolStripMenuItem, Me.RastreamentoDeBugsToolStripMenuItem})
+        Me.RELAPNaInternetToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlogDeDesenvolvimentoToolStripMenuItem, Me.DownloadsToolStripMenuItem, Me.WikiToolStripMenuItem, Me.ForumToolStripMenuItem, Me.RastreamentoDeBugsToolStripMenuItem})
         Me.RELAPNaInternetToolStripMenuItem.Name = "RELAPNaInternetToolStripMenuItem"
         Me.StatusBarTextProvider1.SetStatusBarText(Me.RELAPNaInternetToolStripMenuItem, resources.GetString("RELAPNaInternetToolStripMenuItem.StatusBarText"))
         '
@@ -338,9 +338,9 @@ Partial Class FormMain
         '
         'FórumToolStripMenuItem
         '
-        resources.ApplyResources(Me.FórumToolStripMenuItem, "FórumToolStripMenuItem")
-        Me.FórumToolStripMenuItem.Name = "FórumToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.FórumToolStripMenuItem, resources.GetString("FórumToolStripMenuItem.StatusBarText"))
+        resources.ApplyResources(Me.ForumToolStripMenuItem, "ForumToolStripMenuItem")
+        Me.ForumToolStripMenuItem.Name = "ForumToolStripMenuItem"
+        Me.StatusBarTextProvider1.SetStatusBarText(Me.ForumToolStripMenuItem, resources.GetString("ForumToolStripMenuItem.StatusBarText"))
         '
         'RastreamentoDeBugsToolStripMenuItem
         '
@@ -739,7 +739,7 @@ Partial Class FormMain
     Public WithEvents BlogDeDesenvolvimentoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents DownloadsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents WikiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents FórumToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents ForumToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents RastreamentoDeBugsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents DonateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator

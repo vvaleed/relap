@@ -2329,7 +2329,7 @@ sim:                Dim myStream As System.IO.FileStream
         System.Diagnostics.Process.Start("http://apps.sourceforge.net/mediawiki/RELAP/")
     End Sub
 
-    Private Sub FórumToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FórumToolStripMenuItem.Click
+    Private Sub FórumToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ForumToolStripMenuItem.Click
         System.Diagnostics.Process.Start("http://sourceforge.net/forum/?group_id=233626")
     End Sub
 
