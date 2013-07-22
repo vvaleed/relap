@@ -299,15 +299,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        
-
-
-
-
-
-
-
-
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
             MyBase.CreateNew()
@@ -598,44 +589,44 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
                 'Tank Volume,Calculation parameters, Tank Volume
                 .Item.Add(FT("Volume Flow Area", su.area), valor, False, "1.Parameters", "Volume Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Length of Volume", su.distance), valor, False, "1.Parameters", "Length of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Volume of Volume", su.volume), valor, False, "1.Parameters", "Volume of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "1.Parameters", "Azimuthal Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.angle, Me.InclinationAngle), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.angle, Me.InclinationAngle), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Inclination Angle", su.angle), valor, False, "1.Parameters", "Inclination Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.ElevationChange), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.distance, Me.ElevationChange), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Elevation Change", su.distance), valor, False, "1.Parameters", "Elevation Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
+                valor = Format(Conversor.ConverterParaSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Wall Roughness", su.distance), valor, False, "1.Parameters", "Wall Roughness", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -693,8 +684,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Boolean)
                 End With
 
-               
-               
+
+
 
 
             End With

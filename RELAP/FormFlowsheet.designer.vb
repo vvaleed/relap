@@ -385,11 +385,11 @@ Partial Class FormFlowsheet
         '
         'ToolStripLabel6
         '
-        Me.ToolStripLabel6.Enabled = false
+        Me.ToolStripLabel6.Enabled = False
         Me.ToolStripLabel6.Name = "ToolStripLabel6"
         Me.ToolStripLabel6.Size = New System.Drawing.Size(113, 24)
         Me.ToolStripLabel6.Text = "Number Formatting"
-        Me.ToolStripLabel6.Visible = false
+        Me.ToolStripLabel6.Visible = False
         '
         'ToolStripComboBoxNumberFormatting
         '
@@ -397,7 +397,7 @@ Partial Class FormFlowsheet
         Me.ToolStripComboBoxNumberFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFormatting.Name = "ToolStripComboBoxNumberFormatting"
         Me.ToolStripComboBoxNumberFormatting.Size = New System.Drawing.Size(121, 27)
-        Me.ToolStripComboBoxNumberFormatting.Visible = false
+        Me.ToolStripComboBoxNumberFormatting.Visible = False
         '
         'ToolStripSeparator3
         '
@@ -406,11 +406,11 @@ Partial Class FormFlowsheet
         '
         'ToolStripLabel7
         '
-        Me.ToolStripLabel7.Enabled = false
+        Me.ToolStripLabel7.Enabled = False
         Me.ToolStripLabel7.Name = "ToolStripLabel7"
         Me.ToolStripLabel7.Size = New System.Drawing.Size(112, 24)
         Me.ToolStripLabel7.Text = "Fraction Formatting"
-        Me.ToolStripLabel7.Visible = false
+        Me.ToolStripLabel7.Visible = False
         '
         'ToolStripComboBoxNumberFractionFormatting
         '
@@ -418,20 +418,20 @@ Partial Class FormFlowsheet
         Me.ToolStripComboBoxNumberFractionFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFractionFormatting.Name = "ToolStripComboBoxNumberFractionFormatting"
         Me.ToolStripComboBoxNumberFractionFormatting.Size = New System.Drawing.Size(121, 25)
-        Me.ToolStripComboBoxNumberFractionFormatting.Visible = false
+        Me.ToolStripComboBoxNumberFractionFormatting.Visible = False
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.AllowItemReorder = true
+        Me.MenuStrip1.AllowItemReorder = True
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraçõesToolStripMenuItem, Me.InserirToolStripMenuItem, Me.ArquivoToolStripMenuItem, Me.tsmiGroupComponents})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.ShowItemToolTips = true
+        Me.MenuStrip1.ShowItemToolTips = True
         Me.MenuStrip1.Size = New System.Drawing.Size(154, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
-        Me.MenuStrip1.Visible = false
+        Me.MenuStrip1.Visible = False
         '
         'ConfiguraçõesToolStripMenuItem
         '
@@ -448,8 +448,8 @@ Partial Class FormFlowsheet
         Me.ComponentesToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.ComponentesToolStripMenuItem.MergeIndex = 0
         Me.ComponentesToolStripMenuItem.Name = "ComponentesToolStripMenuItem"
-        Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift)  _
-            Or System.Windows.Forms.Keys.S),System.Windows.Forms.Keys)
+        Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
         Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, "Opens the configuration window for the active simulation")
         Me.ComponentesToolStripMenuItem.Text = "Simulation Settings"
@@ -773,11 +773,11 @@ Partial Class FormFlowsheet
         '
         'tsmiGroupComponents
         '
-        Me.tsmiGroupComponents.Font = New System.Drawing.Font("Segoe UI", 9!, System.Drawing.FontStyle.Bold)
+        Me.tsmiGroupComponents.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.tsmiGroupComponents.Name = "tsmiGroupComponents"
         Me.tsmiGroupComponents.Size = New System.Drawing.Size(127, 20)
         Me.tsmiGroupComponents.Text = "Group Components"
-        Me.tsmiGroupComponents.Visible = false
+        Me.tsmiGroupComponents.Visible = False
         '
         'ToolStripMenuItem1
         '
@@ -799,12 +799,12 @@ Partial Class FormFlowsheet
         '
         'BGLoadComp
         '
-        Me.BGLoadComp.WorkerReportsProgress = true
+        Me.BGLoadComp.WorkerReportsProgress = True
         '
         'bgCalc
         '
-        Me.bgCalc.WorkerReportsProgress = true
-        Me.bgCalc.WorkerSupportsCancellation = true
+        Me.bgCalc.WorkerReportsProgress = True
+        Me.bgCalc.WorkerSupportsCancellation = True
         '
         'dckPanel
         '
@@ -813,7 +813,7 @@ Partial Class FormFlowsheet
         Me.dckPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dckPanel.DockBackColor = System.Drawing.SystemColors.Control
         Me.dckPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow
-        Me.dckPanel.Font = New System.Drawing.Font("Tahoma", 11!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World)
+        Me.dckPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World)
         Me.dckPanel.Location = New System.Drawing.Point(0, 25)
         Me.dckPanel.Name = "dckPanel"
         Me.dckPanel.Size = New System.Drawing.Size(1229, 477)

@@ -2668,16 +2668,16 @@ sim:                Dim myStream As System.IO.FileStream
                 row = My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows(j)
                 If row.Cells(1).Value = "Linear" Then
                     If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 2"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 1"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 1"
                     End If
 
                 Else
                     If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -2"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.txtPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -1"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -1"
                     End If
 
                 End If

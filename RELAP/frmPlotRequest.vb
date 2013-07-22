@@ -15,4 +15,7 @@
     End Sub
 
 
+    Private Sub frmPlotRequest_Load(sender As Object, e As EventArgs) Handles Me.Load
+        cboPlotVariableName.SelectedIndex = 9
+    End Sub
 End Class

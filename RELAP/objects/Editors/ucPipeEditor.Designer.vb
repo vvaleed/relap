@@ -42,8 +42,6 @@ Partial Class ucPipeEditor
         Me.cmdCopy = New System.Windows.Forms.Button()
         Me.cmdPaste = New System.Windows.Forms.Button()
         Me.dgv2 = New System.Windows.Forms.DataGridView()
-        Me.cmdCopy2 = New System.Windows.Forms.Button()
-        Me.cmdPaste2 = New System.Windows.Forms.Button()
         Me.JunctionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -55,6 +53,9 @@ Partial Class ucPipeEditor
         Me.SmoothAreaChange = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.TwoVelocityMomentumEquations = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.MomentumFlux = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -198,26 +199,6 @@ Partial Class ucPipeEditor
         Me.dgv2.Size = New System.Drawing.Size(1042, 263)
         Me.dgv2.TabIndex = 4
         '
-        'cmdCopy2
-        '
-        Me.cmdCopy2.Enabled = False
-        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
-        Me.cmdCopy2.Name = "cmdCopy2"
-        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy2.TabIndex = 6
-        Me.cmdCopy2.Text = "Copy"
-        Me.cmdCopy2.UseVisualStyleBackColor = True
-        '
-        'cmdPaste2
-        '
-        Me.cmdPaste2.Enabled = False
-        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
-        Me.cmdPaste2.Name = "cmdPaste2"
-        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste2.TabIndex = 8
-        Me.cmdPaste2.Text = "Paste"
-        Me.cmdPaste2.UseVisualStyleBackColor = True
-        '
         'JunctionNumber
         '
         Me.JunctionNumber.HeaderText = "Junction Number"
@@ -293,10 +274,41 @@ Partial Class ucPipeEditor
         Me.MomentumFlux.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.MomentumFlux.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
+        'cmdCopy2
+        '
+        Me.cmdCopy2.Enabled = False
+        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
+        Me.cmdCopy2.Name = "cmdCopy2"
+        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy2.TabIndex = 6
+        Me.cmdCopy2.Text = "Copy"
+        Me.cmdCopy2.UseVisualStyleBackColor = True
+        '
+        'cmdPaste2
+        '
+        Me.cmdPaste2.Enabled = False
+        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
+        Me.cmdPaste2.Name = "cmdPaste2"
+        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste2.TabIndex = 8
+        Me.cmdPaste2.Text = "Paste"
+        Me.cmdPaste2.UseVisualStyleBackColor = True
+        '
+        'cmdCopytoAll
+        '
+        Me.cmdCopytoAll.Enabled = False
+        Me.cmdCopytoAll.Location = New System.Drawing.Point(339, 309)
+        Me.cmdCopytoAll.Name = "cmdCopytoAll"
+        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll.TabIndex = 9
+        Me.cmdCopytoAll.Text = "Copy to All"
+        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cmdCopytoAll)
         Me.Controls.Add(Me.cmdPaste2)
         Me.Controls.Add(Me.cmdPaste)
         Me.Controls.Add(Me.cmdCopy2)
@@ -343,5 +355,6 @@ Partial Class ucPipeEditor
     Friend WithEvents SmoothAreaChange As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents TwoVelocityMomentumEquations As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents MomentumFlux As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
 
 End Class
