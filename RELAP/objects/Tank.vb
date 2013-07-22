@@ -702,22 +702,26 @@ Namespace RELAP.SimulationObjects.UnitOps
         End Sub
 
         Public Overrides Function GetPropertyValue(ByVal prop As String, Optional ByVal su As SistemasDeUnidades.Unidades = Nothing) As Object
+            Try
+                If su Is Nothing Then su = New RELAP.SistemasDeUnidades.UnidadesSI
+                Dim cv As New RELAP.SistemasDeUnidades.Conversor
+                Dim value As Double = 0
+                Dim propidx As Integer = CInt(prop.Split("_")(2))
 
-            If su Is Nothing Then su = New RELAP.SistemasDeUnidades.UnidadesSI
-            Dim cv As New RELAP.SistemasDeUnidades.Conversor
-            Dim value As Double = 0
-            Dim propidx As Integer = CInt(prop.Split("_")(2))
+                Select Case propidx
 
-            Select Case propidx
+                    Case 0
+                        'PROP_TK_0	Pressure Drop
+                        value = cv.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault)
 
-                Case 0
-                    'PROP_TK_0	Pressure Drop
-                    value = cv.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault)
+                End Select
 
-            End Select
+                Return value
 
-            Return value
-
+            Catch ex As Exception
+                Return 1
+            End Try
+            
         End Function
 
 

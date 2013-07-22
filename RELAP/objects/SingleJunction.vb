@@ -29,6 +29,10 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_DQ As Nullable(Of Double)
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
+        Enum Direction
+            Inlet
+            Outlet
+        End Enum
 
         Private m_EnterVelocityOrMassFlowRate As Boolean
         Public Property EnterVelocityOrMassFlowRate() As Boolean
@@ -116,6 +120,24 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As Double)
                 m_InterphaseMassFlowRate = value
+            End Set
+        End Property
+        Private _FromDirection As Direction
+        Public Property FromDirection() As Direction
+            Get
+                Return _FromDirection
+            End Get
+            Set(ByVal value As Direction)
+                _FromDirection = value
+            End Set
+        End Property
+        Private _ToDirection As Direction
+        Public Property ToDirection() As Direction
+            Get
+                Return _ToDirection
+            End Get
+            Set(ByVal value As Direction)
+                _ToDirection = value
             End Set
         End Property
 
@@ -255,7 +277,8 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
-
+            Me._ToVolume = 1
+            Me._FromVolume = 1
             Me.m_ComponentDescription = descricao
             Me.m_InitialLiquidMassFlowRate = 0.0
             Me.m_InitialVaporMassFlowRate = 0.0
@@ -549,12 +572,24 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .CustomEditor = New RELAP.Editors.UIVolumeSelector
                 End With
+
+                .Item.Add("From Direction", Me, "FromDirection", False, "Connections", "From Direction", True)
+              
+
+             
                 valor = App.GetTagFromUID(Me.ToComponent)
                 .Item.Add("To Component", valor, True, "Connections", "To Component", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
+                valor = (Me.ToVolume)
+                .Item.Add("To Volume", valor, False, "Connections", "To Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .CustomEditor = New RELAP.Editors.UIVolumeSelector
+                End With
+                .Item.Add("To Direction", Me, "ToDirection", False, "Connections", "To Direction", True)
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)

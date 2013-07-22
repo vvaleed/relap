@@ -30,7 +30,7 @@ Namespace RELAP.Editors
             End If
 
             If (editorService IsNot Nothing) Then
-
+                '  Dim var = CType(context, System.Windows.Forms.PropertyGridInternal.IRootGridEntry)
                 Me.ListView2 = New System.Windows.Forms.ListView
                 Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader
                 '
@@ -59,12 +59,18 @@ Namespace RELAP.Editors
                 Me.ColumnHeader3.Width = Me.ListView2.Width
 
                 form = My.Application.ActiveSimulation
-
+                Dim var As System.ComponentModel.ITypeDescriptorContext = context
                 Me.ListView2.Items.Clear()
                 Dim volumes = 1
                 For Each obj As SimulationObjects_BaseClass In form.Collections.ObjectCollection.Values
-                    If obj.UID = form.FromComponent Then
-                        volumes = obj.GetPropertyValue("NoOfVolumes")
+                    If var.ToString.Substring(var.ToString.Length - 9) = "To Volume" Then
+                        If obj.UID = form.ToComponent Then
+                            volumes = obj.GetPropertyValue("NoOfVolumes")
+                        End If
+                    Else
+                        If obj.UID = form.FromComponent Then
+                            volumes = obj.GetPropertyValue("NoOfVolumes")
+                        End If
                     End If
                 Next
                 For i = 1 To volumes

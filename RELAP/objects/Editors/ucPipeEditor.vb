@@ -65,6 +65,7 @@ Public Class ucPipeEditor
 
         If Not Me.Profile Is Nothing Then
             Me.Profile.Sections.Clear()
+
             Me.Profile.Junctions.Clear()
         End If
 
