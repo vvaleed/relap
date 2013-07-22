@@ -2274,6 +2274,10 @@ Public Class frmProps
 
             ElseIf e.ChangedItem.Label.Contains("To Component") Then
                 sjn.ToComponent = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("To Volume") Then
+                sjn.ToVolume = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("From Volume") Then
+                sjn.FromVolume = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Junction Flow Area") Then
                 sjn.JunctionArea = e.ChangedItem.Value

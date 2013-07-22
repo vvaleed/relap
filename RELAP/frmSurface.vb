@@ -286,11 +286,17 @@ Public Class frmSurface
                                 Else
                                     If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Tank Or Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
                                         My.Application.ActiveSimulation.ComponentType = "pipe"
-                                        'Dim frm As New frmebt
-                                        'frm.Show()
+                                      
 
-                                    Else
-                                        'frmebt.Visible = False
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleJunction Then
+                                        For Each kvp In My.Application.ActiveSimulation.Collections.CLCS_SingleJunctionCollection
+                                            If kvp.Value.GraphicObject.Name = Me.FlowsheetDesignSurface.SelectedObject.Name Then
+                                                My.Application.ActiveSimulation.FromComponent = kvp.Value.FromComponent
+                                                My.Application.ActiveSimulation.ToComponent = kvp.Value.ToComponent
+                                            End If
+                                        Next
+
+
                                     End If
                                     ChildParent.Collections.ObjectCollection(Me.FlowsheetDesignSurface.SelectedObject.Name).PopulatePropertyGrid(PGEx1, ChildParent.Options.SelectedUnitSystem)
                                 End If
