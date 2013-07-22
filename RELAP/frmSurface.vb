@@ -284,9 +284,10 @@ Public Class frmSurface
                                 ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_MasterTable Then
                                     CType(Me.FlowsheetDesignSurface.SelectedObject, RELAP.GraphicObjects.MasterTableGraphic).PopulateGrid(PGEx1, ChildParent)
                                 Else
-                                    If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Tank Or Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
+                                    My.Application.ActiveSimulation.ComponentType = ""
+                                    If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
                                         My.Application.ActiveSimulation.ComponentType = "pipe"
-                                      
+
 
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleJunction Then
                                         For Each kvp In My.Application.ActiveSimulation.Collections.CLCS_SingleJunctionCollection
@@ -654,7 +655,7 @@ Public Class frmSurface
              Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.RefluxedAbsorber And _
             Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.GO_Texto Then
 
-            Me.RecalcularToolStripMenuItem.Visible = True
+
             Me.ToolStripSeparator6.Visible = True
             Me.TabelaToolStripMenuItem.Visible = True
             Me.ClonarToolStripMenuItem.Visible = True
@@ -730,7 +731,7 @@ Public Class frmSurface
         Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.ReboiledAbsorber Or _
         Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.RefluxedAbsorber Then
 
-            Me.RecalcularToolStripMenuItem.Visible = True
+
             Me.ToolStripSeparator6.Visible = True
 
             Me.ConectarAToolStripMenuItem.Visible = False
@@ -761,7 +762,7 @@ Public Class frmSurface
             Me.ClonarToolStripMenuItem.Visible = False
             Me.HorizontalmenteToolStripMenuItem.Visible = False
             Me.ExcluirToolStripMenuItem.Visible = False
-            Me.RecalcularToolStripMenuItem.Visible = False
+
             Me.ToolStripSeparator6.Visible = False
             Me.EditCompTSMI.Visible = False
 
@@ -2451,5 +2452,6 @@ Public Class frmSurface
     End Sub
 
 
+    
     
 End Class

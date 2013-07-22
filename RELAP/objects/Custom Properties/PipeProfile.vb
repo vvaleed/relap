@@ -220,7 +220,7 @@ End Class
 End Class
 
 
-Public Class PipeJunctions
+<System.Serializable()> Public Class PipeJunctions
     Private m_JunctionNumber As Double
     Public Property JunctionNumber() As Double
         Get
@@ -241,7 +241,7 @@ Public Class PipeJunctions
         End Set
     End Property
 
-        Private m_ffelc As Double
+    Private m_ffelc As Double
     Public Property FflowLossCo() As Double
         Get
             Return m_ffelc

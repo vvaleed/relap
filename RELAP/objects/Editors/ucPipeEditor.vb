@@ -142,14 +142,17 @@ Public Class ucPipeEditor
 
     Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellClick
         cmdCopy.Enabled = False
+        cmdCopytoAll.Enabled = False
         cmdPaste.Enabled = False
     End Sub
 
     Private Sub dgv_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv.RowHeaderMouseClick
         If dgv.SelectedRows.Count = 1 Then
             cmdCopy.Enabled = True
+            cmdCopytoAll.Enabled = True
         Else
             cmdCopy.Enabled = False
+            cmdCopytoAll.Enabled = False
         End If
         If dgv.SelectedRows.Count > 0 Then
             cmdPaste.Enabled = True
@@ -186,6 +189,7 @@ Public Class ucPipeEditor
     Private Sub dgv2_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv2.RowHeaderMouseClick
         If dgv2.SelectedRows.Count = 1 Then
             cmdCopy2.Enabled = True
+
         Else
             cmdCopy2.Enabled = False
         End If
@@ -198,6 +202,24 @@ Public Class ucPipeEditor
     Private Sub dgv2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv2.CellClick
         cmdCopy2.Enabled = False
         cmdPaste2.Enabled = False
+    End Sub
+
+    Private Sub cmdCopytoAll_Click(sender As Object, e As EventArgs) Handles cmdCopytoAll.Click
+        If dgv.SelectedRows.Count = 1 Then
+            selectedcells.Clear()
+            For Each cell As DataGridViewCell In dgv.SelectedRows(0).Cells
+                selectedcells.Add(cell.Value)
+            Next
+
+        End If
+        For Each row As DataGridViewRow In dgv.Rows
+            Dim i = 0
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = selectedcells(i)
+            Next
+
+
+        Next
     End Sub
 End Class
 

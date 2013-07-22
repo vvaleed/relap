@@ -34,7 +34,6 @@ Partial Class frmSurface
         Me.CMS_Sel = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.TSMI_Label = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.RecalcularToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditCompTSMI = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ConectarAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,23 +62,23 @@ Partial Class frmSurface
         Me.CMS_MultiSelect = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.MenuItemGroupComponents = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.SpinningProgress1 = New CircularProgress.SpinningProgress.SpinningProgress()
         Me.PanelSimultAdjust = New System.Windows.Forms.Panel()
         Me.PicSimultAdjust = New System.Windows.Forms.PictureBox()
-        Me.SpinningProgress1 = New CircularProgress.SpinningProgress.SpinningProgress()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.FlowsheetDesignSurface = New Microsoft.Msdn.Samples.DesignSurface.GraphicsSurface()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.CMS_NoSel.SuspendLayout()
         Me.CMS_Sel.SuspendLayout()
         Me.CMS_MultiSelect.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSimultAdjust.SuspendLayout()
         CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -153,7 +152,7 @@ Partial Class frmSurface
         '
         'CMS_Sel
         '
-        Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.ToolStripSeparator3, Me.RecalcularToolStripMenuItem, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
+        Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.ToolStripSeparator3, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
         Me.CMS_Sel.Name = "CMS_Sel"
         Me.CMS_Sel.Size = New System.Drawing.Size(247, 254)
         '
@@ -168,15 +167,6 @@ Partial Class frmSurface
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(243, 6)
-        '
-        'RecalcularToolStripMenuItem
-        '
-        Me.RecalcularToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.arrow_refresh
-        Me.RecalcularToolStripMenuItem.Name = "RecalcularToolStripMenuItem"
-        Me.RecalcularToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.RecalcularToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
-        Me.RecalcularToolStripMenuItem.Text = "Recalculate"
-        Me.RecalcularToolStripMenuItem.Visible = False
         '
         'EditCompTSMI
         '
@@ -288,14 +278,14 @@ Partial Class frmSurface
         Me.MostrarToolStripMenuItem.CheckOnClick = True
         Me.MostrarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table_go
         Me.MostrarToolStripMenuItem.Name = "MostrarToolStripMenuItem"
-        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.MostrarToolStripMenuItem.Text = "Show"
         '
         'ConfigurarToolStripMenuItem
         '
         Me.ConfigurarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
-        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ConfigurarToolStripMenuItem.Text = "Configure..."
         '
         'PreviewDialog
@@ -371,6 +361,57 @@ Partial Class frmSurface
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(982, 40)
         Me.TableLayoutPanel2.TabIndex = 4
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.PictureBox3)
+        Me.Panel2.Controls.Add(Me.PictureBox4)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(443, 40)
+        Me.Panel2.TabIndex = 13
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.RELAP.My.Resources.Resources.tick
+        Me.PictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PictureBox3.Location = New System.Drawing.Point(3, 2)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox3.TabIndex = 12
+        Me.PictureBox3.TabStop = False
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Image = Global.RELAP.My.Resources.Resources.clock
+        Me.PictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PictureBox4.Location = New System.Drawing.Point(3, 20)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox4.TabIndex = 11
+        Me.PictureBox4.TabStop = False
+        Me.PictureBox4.Visible = False
+        '
+        'SpinningProgress1
+        '
+        Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
+        Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.SpinningProgress1.BehindTransistionSegmentIsActive = False
+        Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
+        Me.SpinningProgress1.Location = New System.Drawing.Point(445, 2)
+        Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
+        Me.SpinningProgress1.Name = "SpinningProgress1"
+        Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
+        Me.SpinningProgress1.TabIndex = 11
+        Me.SpinningProgress1.TransistionSegment = 11
+        Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
+        Me.SpinningProgress1.Visible = False
+        '
         'PanelSimultAdjust
         '
         Me.PanelSimultAdjust.Controls.Add(Me.PicSimultAdjust)
@@ -394,56 +435,6 @@ Partial Class frmSurface
         Me.PicSimultAdjust.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PicSimultAdjust.TabIndex = 12
         Me.PicSimultAdjust.TabStop = False
-        '
-        'SpinningProgress1
-        '
-        Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
-        Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
-        Me.SpinningProgress1.Location = New System.Drawing.Point(445, 2)
-        Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
-        Me.SpinningProgress1.Name = "SpinningProgress1"
-        Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
-        Me.SpinningProgress1.TabIndex = 11
-        Me.SpinningProgress1.TransistionSegment = 0
-        Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
-        Me.SpinningProgress1.Visible = False
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.PictureBox3)
-        Me.Panel2.Controls.Add(Me.PictureBox4)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(443, 40)
-        Me.Panel2.TabIndex = 13
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Image = Global.RELAP.My.Resources.Resources.clock
-        Me.PictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PictureBox4.Location = New System.Drawing.Point(3, 20)
-        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(0)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox4.TabIndex = 11
-        Me.PictureBox4.TabStop = False
-        Me.PictureBox4.Visible = False
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Image = Global.RELAP.My.Resources.Resources.tick
-        Me.PictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PictureBox3.Location = New System.Drawing.Point(3, 2)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(0)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox3.TabIndex = 12
-        Me.PictureBox3.TabStop = False
         '
         'FlowsheetDesignSurface
         '
@@ -508,11 +499,11 @@ Partial Class frmSurface
         Me.CMS_Sel.ResumeLayout(False)
         Me.CMS_MultiSelect.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSimultAdjust.ResumeLayout(False)
         CType(Me.PicSimultAdjust, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -548,7 +539,6 @@ Partial Class frmSurface
     Public WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents Timer2 As System.Windows.Forms.Timer
-    Public WithEvents RecalcularToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents EditCompTSMI As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopiarParaAÁreaDeTransferênciaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

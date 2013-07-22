@@ -23,11 +23,11 @@ Partial Class frmPlotRequest
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.txtPlotVariableName = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.cboObjects = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboPlotScale = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboPosition = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cboPlotVariableName = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,23 +40,6 @@ Partial Class frmPlotRequest
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(296, 286)
         Me.DataGridView1.TabIndex = 35
-        '
-        'txtPlotVariableName
-        '
-        Me.txtPlotVariableName.Location = New System.Drawing.Point(110, 12)
-        Me.txtPlotVariableName.Name = "txtPlotVariableName"
-        Me.txtPlotVariableName.Size = New System.Drawing.Size(100, 20)
-        Me.txtPlotVariableName.TabIndex = 36
-        Me.txtPlotVariableName.Text = "mflowj"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 15)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 13)
-        Me.Label1.TabIndex = 37
-        Me.Label1.Text = "Plot Variable Name:"
         '
         'cboObjects
         '
@@ -75,13 +58,31 @@ Partial Class frmPlotRequest
         Me.cboPosition.Items.AddRange(New Object() {"Left", "Right"})
         Me.cboPosition.Name = "cboPosition"
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 15)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(100, 13)
+        Me.Label1.TabIndex = 37
+        Me.Label1.Text = "Plot Variable Name:"
+        '
+        'cboPlotVariableName
+        '
+        Me.cboPlotVariableName.FormattingEnabled = True
+        Me.cboPlotVariableName.Items.AddRange(New Object() {"CHOKEF", "FIJ", "FJUNFT", "FJUNRT", "FLORGJ", "FORMFJ", "FWALFJ", "FWALGJ", "IREGJ", "MFLOWJ", "QUALAJ", "RHOGJ", "SONICJ", "UFJ", "UGJ", "VELFJ", "VELGJ", "VGJJ", "VOIDFJ", "VOIDGJ", "VOIDJ", "XEJ"})
+        Me.cboPlotVariableName.Location = New System.Drawing.Point(131, 15)
+        Me.cboPlotVariableName.Name = "cboPlotVariableName"
+        Me.cboPlotVariableName.Size = New System.Drawing.Size(121, 21)
+        Me.cboPlotVariableName.TabIndex = 38
+        '
         'frmPlotRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(319, 479)
+        Me.Controls.Add(Me.cboPlotVariableName)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtPlotVariableName)
         Me.Controls.Add(Me.DataGridView1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmPlotRequest"
@@ -92,9 +93,9 @@ Partial Class frmPlotRequest
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents txtPlotVariableName As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cboObjects As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents cboPlotScale As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents cboPosition As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents cboPlotVariableName As System.Windows.Forms.ComboBox
 End Class

@@ -590,43 +590,43 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .CustomEditor = New RELAP.Editors.UIVolumeSelector
                 End With
                 .Item.Add("To Direction", Me, "ToDirection", False, "Connections", "To Direction", True)
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
+                valor = Me.JunctionArea
                 .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
+                valor = Me.FflowLossCo
+                .Item.Add(("Forward Flow Energy Loss Coefficient"), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
+                valor = Me.RflowLossCo
+                .Item.Add(("Reverse Flow Energy Loss Coefficient"), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.m_subdisco), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Subcooled Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
+                valor = Me.m_subdisco
+                .Item.Add(("Subcooled Discharge Coefficient"), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.m_tpdisco), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Two phase Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
+                valor = Me.m_tpdisco
+                .Item.Add(("Two phase Discharge Coefficient"), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.m_supdisco), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Superheated Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
+                valor = Me.m_supdisco
+                .Item.Add(("Superheated Discharge Coefficient"), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

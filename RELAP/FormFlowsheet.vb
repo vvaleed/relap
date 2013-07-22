@@ -297,6 +297,7 @@ Imports RELAP.RELAP.FormClasses
 
         End If
 
+
         'load plugins
         'CreatePluginsList()
        
@@ -343,9 +344,9 @@ Imports RELAP.RELAP.FormClasses
 
         ' Me.FormLog.Grid1.Sort(Me.FormLog.Grid1.Columns(1), ListSortDirection.Descending)
         cboProblemType.SelectedIndex = 0
-        cboProblemOption.SelectedIndex = 0
+        cboProblemOption.SelectedIndex = 1
         cboInputCheck.SelectedIndex = 0
-        ToolStripComboBoxUnitSystem.SelectedIndex = 0
+        ToolStripComboBoxUnitSystem.SelectedIndex = 1
         cboOutputUnits.SelectedIndex = 0
         Me.WindowState = FormWindowState.Maximized
         My.Application.ActiveSimulation = Me
@@ -1392,20 +1393,13 @@ Imports RELAP.RELAP.FormClasses
 
             
             If gObjTo.TipoObjeto = TipoObjeto.SingleJunction Then
-
-
                 Me.Collections.CLCS_SingleJunctionCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
                 FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
-
-
                 '  gObjTo.
             End If
             If gObjFrom.TipoObjeto = TipoObjeto.SingleJunction Then
-
-
                 Me.Collections.CLCS_SingleJunctionCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
                 ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
-
                 '  gObjTo.
             End If
           
