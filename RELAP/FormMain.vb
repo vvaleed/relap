@@ -2608,7 +2608,7 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("110 " & output)
             generate.WriteLine("115 " & "1.0")
 
-           
+
 
 
             'card 201
@@ -2672,7 +2672,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
 
-                output = (((((kvp.Value.UID & "0101 " & kvp.Value.FromComponent & " ") & kvp.Value.ToComponent & " ") & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0000100"
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & kvp.Value.FromVolume & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & kvp.Value.ToVolume & "000" & kvp.Value.ToDirection & " " & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo & " " & "0000100"
                 generate.WriteLine(output)
 
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then

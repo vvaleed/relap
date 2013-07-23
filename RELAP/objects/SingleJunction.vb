@@ -30,8 +30,8 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
         Enum Direction
-            Inlet
-            Outlet
+            Inlet = 1
+            Outlet = 2
         End Enum
 
         Private m_EnterVelocityOrMassFlowRate As Boolean
@@ -53,21 +53,21 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_InitialLiquidVelocity = value
             End Set
         End Property
-        Private _FromVolume As Integer
-        Public Property FromVolume() As Integer
+        Private _FromVolume As String
+        Public Property FromVolume() As String
             Get
                 Return _FromVolume
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As String)
                 _FromVolume = value
             End Set
         End Property
-        Private _ToVolume As Integer
-        Public Property ToVolume() As Integer
+        Private _ToVolume As String
+        Public Property ToVolume() As String
             Get
                 Return _ToVolume
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As String)
                 _ToVolume = value
             End Set
         End Property
