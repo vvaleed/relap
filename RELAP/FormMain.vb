@@ -2608,54 +2608,7 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("110 " & output)
             generate.WriteLine("115 " & "1.0")
 
-            'Else
-            '    For i = 0 To frmInitialSettings.chklistboxCondensibleGases.SelectedItems.Count - 1
-            '        output = output & frmInitialSettings.chklistboxCondensibleGases.Items(frmInitialSettings.chklistboxCondensibleGases.SelectedIndices(i))
-            '    Next
-            '    generate.WriteLine(output)
-            '    '     output = frmInitialSettings.chklistboxCondensibleGases.SelectedItems.Item(frmInitialSettings.chklistboxCondensibleGases.SelectedIndices.
-            'End If
-            'If Class1.initial.cbair = "True" Or Class1.initial.cbargon = "True" Or Class1.initial.cbcrypton = "True" Or Class1.initial.cbhelium = "True" Or Class1.initial.cbhydrogen = "True" Or Class1.initial.cbnitrogen = "True" Or Class1.initial.cbsf6 = "True" Or Class1.initial.cbxenon = "True" Then
-            '    generate.WriteLine("*======================================================================")
-            '    generate.WriteLine("*          Non condensible gases card")
-            '    generate.WriteLine("*======================================================================")
-
-            '    output = ""
-
-            '    If Class1.initial.cbair = "True" And gascount <= 5 Then
-            '        output = "air "
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbargon = "True" And gascount <= 5 Then
-            '        output = output & " argon"
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbcrypton = "True" And gascount <= 5 Then
-            '        output = output & " crypton"
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbhelium = "True" And gascount <= 5 Then
-            '        output = output & " helium"
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbhydrogen = "True" And gascount <= 5 Then
-            '        output = output & " hydrogen"
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbnitrogen = "True" And gascount <= 5 Then
-            '        output = output & " nitrogen"
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbsf6 = "True" And gascount <= 5 Then
-            '        output = output & " sf6"
-            '        gascount += 1
-            '    End If
-            '    If Class1.initial.cbxenon = "True" And gascount <= 5 Then
-            '        output = output & " xenon"
-            '        gascount += 1
-            '    End If
-            '    generate.WriteLine("110 " & output)
-            'End If
+           
 
 
             'card 201
