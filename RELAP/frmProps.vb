@@ -2289,6 +2289,15 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Reverse Flow Energy Loss Coefficient") Then
                 sjn.RflowLossCo = e.ChangedItem.Value
 
+            ElseIf e.ChangedItem.Label.Contains("Subcooled Discharge Coefficient") Then
+                sjn.SubcooledDishargeCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Two phase Discharge Coefficient") Then
+                sjn.TwoPhaseDischargeCo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Superheated Discharge Coefficient") Then
+                sjn.SuperheatedDishargeCo = e.ChangedItem.Value
+
             ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate") Then
                 sjn.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
 

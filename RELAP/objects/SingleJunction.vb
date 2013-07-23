@@ -574,9 +574,9 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
                 .Item.Add("From Direction", Me, "FromDirection", False, "Connections", "From Direction", True)
-              
 
-             
+
+
                 valor = App.GetTagFromUID(Me.ToComponent)
                 .Item.Add("To Component", valor, True, "Connections", "To Component", True)
                 With .Item(.Item.Count - 1)
@@ -611,22 +611,22 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.m_subdisco
-                .Item.Add(("Subcooled Discharge Coefficient"), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
+                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.SubcooledDishargeCo), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Subcooled Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.m_tpdisco
-                .Item.Add(("Two phase Discharge Coefficient"), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
+                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.TwoPhaseDischargeCo), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Two phase Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.m_supdisco
-                .Item.Add(("Superheated Discharge Coefficient"), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
+                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.SuperheatedDishargeCo), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Superheated Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
