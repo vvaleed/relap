@@ -361,8 +361,69 @@ End Class
         End Set
     End Property
 
+    Private m_EnterVelocityOrMassFlowRate As Boolean
+    Public Property EnterVelocityOrMassFlowRate() As Boolean
+        Get
+            Return m_EnterVelocityOrMassFlowRate
+        End Get
+        Set(ByVal value As Boolean)
+            m_EnterVelocityOrMassFlowRate = value
+        End Set
+    End Property
+
+    Private m_InitialLiquidVelocity As Double
+    Public Property InitialLiquidVelocity() As Double
+        Get
+            Return m_InitialLiquidVelocity
+        End Get
+        Set(ByVal value As Double)
+            m_InitialLiquidVelocity = value
+        End Set
+    End Property
+
+    Private m_InitialVaporVelocity As Double
+    Public Property InitialVaporVelocity() As Double
+        Get
+            Return m_InitialVaporVelocity
+        End Get
+        Set(ByVal value As Double)
+            m_InitialVaporVelocity = value
+        End Set
+    End Property
+
+    Private m_InterphaseVelocity As Double
+    Public Property InterphaseVelocity() As Double
+        Get
+            Return m_InterphaseVelocity
+        End Get
+        Set(ByVal value As Double)
+            m_InterphaseVelocity = value
+        End Set
+    End Property
+
+    Private m_InitialLiquidMassFlowRate As Double
+    Public Property InitialLiquidMassFlowRate() As Double
+        Get
+            Return m_InitialLiquidMassFlowRate
+        End Get
+        Set(ByVal value As Double)
+            m_InitialLiquidMassFlowRate = value
+        End Set
+    End Property
+
+    Private m_InitialVaporMassFlowRate As Double
+    Public Property InitialVaporMassFlowRate() As Double
+        Get
+            Return m_InitialVaporMassFlowRate
+        End Get
+        Set(ByVal value As Double)
+            m_InitialVaporMassFlowRate = value
+        End Set
+    End Property
+
     Public Sub New(JunctionNumber As Double, JunctionFlowArea As Double, FflowLossCo As Double, RflowLossCo As Double, PVterm As Boolean, CCFLModel As Boolean, StratificationEntrainmentModel As Boolean, _
-                   ChokingModel As Boolean, SmoothAreaChange As String, TwoVelocityMomentumEquations As String, MomentumFlux As String)
+                   ChokingModel As Boolean, SmoothAreaChange As String, TwoVelocityMomentumEquations As String, MomentumFlux As String, _
+                   InterphaseVelocity As Double, EnterVelocityOrMassFlowRate As Boolean, InitialLiquidVelocity As Double, InitialVaporVelocity As Double, InitialLiquidMassFlowRate As Double, InitialVaporMassFlowRate As Double)
         Me.m_JunctionNumber = JunctionNumber
         Me.m_JunctionFlowArea = JunctionFlowArea
         Me.m_ffelc = FflowLossCo
@@ -374,6 +435,12 @@ End Class
         Me.m_a_junction_smooth = SmoothAreaChange
         Me.m_h_junction_homogeneus = TwoVelocityMomentumEquations
         Me.m_s_junction = MomentumFlux
+        Me.m_EnterVelocityOrMassFlowRate = EnterVelocityOrMassFlowRate
+        Me.m_InitialLiquidVelocity = InitialLiquidVelocity
+        Me.m_InitialVaporVelocity = InitialVaporVelocity
+        Me.m_InterphaseVelocity = InterphaseVelocity
+        Me.m_InitialLiquidMassFlowRate = InitialLiquidMassFlowRate
+        Me.m_InitialVaporMassFlowRate = InitialVaporMassFlowRate
 
     End Sub
 End Class

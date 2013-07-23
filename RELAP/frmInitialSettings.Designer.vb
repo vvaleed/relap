@@ -24,11 +24,11 @@ Partial Class frmInitialSettings
     Private Sub InitializeComponent()
         Me.chklistboxCondensibleGases = New System.Windows.Forms.CheckedListBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chklistboxFluid = New System.Windows.Forms.GroupBox()
         Me.optHeavyWater = New System.Windows.Forms.RadioButton()
         Me.optWater = New System.Windows.Forms.RadioButton()
         Me.optDefaultFluid = New System.Windows.Forms.RadioButton()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chklistboxBoron = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtendtime = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -43,7 +43,7 @@ Partial Class frmInitialSettings
         Me.txtRestartFrequency = New System.Windows.Forms.TextBox()
         Me.txtMajorFrequency = New System.Windows.Forms.TextBox()
         Me.txtMinorFrequency = New System.Windows.Forms.TextBox()
-        Me.GroupBox1.SuspendLayout()
+        Me.chklistboxFluid.SuspendLayout()
         Me.SuspendLayout()
         '
         'chklistboxCondensibleGases
@@ -61,22 +61,22 @@ Partial Class frmInitialSettings
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(115, 13)
+        Me.Label1.Size = New System.Drawing.Size(142, 13)
         Me.Label1.TabIndex = 19
-        Me.Label1.Text = "Condensible Gases"
+        Me.Label1.Text = "Non Condensible Gases"
         '
-        'GroupBox1
+        'chklistboxFluid
         '
-        Me.GroupBox1.Controls.Add(Me.optHeavyWater)
-        Me.GroupBox1.Controls.Add(Me.optWater)
-        Me.GroupBox1.Controls.Add(Me.optDefaultFluid)
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(151, 25)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(109, 101)
-        Me.GroupBox1.TabIndex = 21
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Fluid"
+        Me.chklistboxFluid.Controls.Add(Me.optHeavyWater)
+        Me.chklistboxFluid.Controls.Add(Me.optWater)
+        Me.chklistboxFluid.Controls.Add(Me.optDefaultFluid)
+        Me.chklistboxFluid.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chklistboxFluid.Location = New System.Drawing.Point(167, 25)
+        Me.chklistboxFluid.Name = "chklistboxFluid"
+        Me.chklistboxFluid.Size = New System.Drawing.Size(109, 101)
+        Me.chklistboxFluid.TabIndex = 21
+        Me.chklistboxFluid.TabStop = False
+        Me.chklistboxFluid.Text = "Fluid"
         '
         'optHeavyWater
         '
@@ -112,15 +112,15 @@ Partial Class frmInitialSettings
         Me.optDefaultFluid.Text = "Default Fluid"
         Me.optDefaultFluid.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'chklistboxBoron
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(151, 132)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(76, 17)
-        Me.CheckBox1.TabIndex = 22
-        Me.CheckBox1.Text = "Has Boron"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chklistboxBoron.AutoSize = True
+        Me.chklistboxBoron.Location = New System.Drawing.Point(174, 132)
+        Me.chklistboxBoron.Name = "chklistboxBoron"
+        Me.chklistboxBoron.Size = New System.Drawing.Size(76, 17)
+        Me.chklistboxBoron.TabIndex = 22
+        Me.chklistboxBoron.Text = "Has Boron"
+        Me.chklistboxBoron.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -260,26 +260,26 @@ Partial Class frmInitialSettings
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtendtime)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.chklistboxBoron)
+        Me.Controls.Add(Me.chklistboxFluid)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.chklistboxCondensibleGases)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmInitialSettings"
         Me.Text = "Initial Settings"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.chklistboxFluid.ResumeLayout(False)
+        Me.chklistboxFluid.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents chklistboxCondensibleGases As System.Windows.Forms.CheckedListBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents chklistboxFluid As System.Windows.Forms.GroupBox
     Friend WithEvents optHeavyWater As System.Windows.Forms.RadioButton
     Friend WithEvents optWater As System.Windows.Forms.RadioButton
     Friend WithEvents optDefaultFluid As System.Windows.Forms.RadioButton
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents chklistboxBoron As System.Windows.Forms.CheckBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtendtime As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
