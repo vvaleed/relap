@@ -73,6 +73,16 @@ Namespace RELAP
             Return Nothing
 
         End Function
+        Public Shared Function GetUIDFromTag(tag) As String
+            For Each obj As SimulationObjects_BaseClass In My.Application.ActiveSimulation.Collections.ObjectCollection.Values
+                If obj.GraphicObject.Tag = tag Then
+                    Return obj.UID
+                End If
+            Next
+
+            Return Nothing
+
+        End Function
         Public Shared Function GetComponentName(ByVal UniqueName As String, Optional ByRef fp As FormMain = Nothing) As String
             If Not UniqueName = "" Then
                 If fp Is Nothing Then fp = FormMain
