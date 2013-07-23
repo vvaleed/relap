@@ -2328,6 +2328,7 @@ Public Class frmProps
             If e.ChangedItem.Label.Contains("Number of Volumes") Then
                 pip.NumberOfVoulmes = e.ChangedItem.Value
 
+
             End If
 
         ElseIf sobj.TipoObjeto = TipoObjeto.Pump Then

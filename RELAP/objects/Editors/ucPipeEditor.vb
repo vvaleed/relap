@@ -61,7 +61,7 @@ Public Class ucPipeEditor
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles dgv.CellEnter, dgv2.CellEnter
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16 As Object
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17 As Object
 
         If Not Me.Profile Is Nothing Then
             Me.Profile.Sections.Clear()
@@ -107,8 +107,14 @@ Public Class ucPipeEditor
             v9 = row.Cells(8).Value
             v10 = row.Cells(9).Value
             v11 = row.Cells(10).Value
+            v12 = row.Cells(11).Value
+            v13 = row.Cells(12).Value
+            v14 = row.Cells(13).Value
+            v15 = row.Cells(14).Value
+            v16 = row.Cells(15).Value
+            v17 = row.Cells(16).Value
 
-            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11))
+            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17))
 
         Next
 
@@ -220,6 +226,26 @@ Public Class ucPipeEditor
 
 
         Next
+    End Sub
+
+   
+    Private Sub dgv2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgv2.CellValueChanged
+        Try
+            If e.ColumnIndex = 12 Then
+                If dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = True Then
+                    dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).Style.BackColor = Color.Gray
+                    dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).ReadOnly = True
+                    dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex + 2).Style.BackColor = Color.Gray
+                    dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex + 2).ReadOnly = True
+                Else
+                    dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).ReadOnly = False
+                    dgv2.Rows(e.RowIndex).Cells(e.ColumnIndex + 2).ReadOnly = False
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+       
     End Sub
 End Class
 

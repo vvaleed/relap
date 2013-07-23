@@ -42,6 +42,9 @@ Partial Class ucPipeEditor
         Me.cmdCopy = New System.Windows.Forms.Button()
         Me.cmdPaste = New System.Windows.Forms.Button()
         Me.dgv2 = New System.Windows.Forms.DataGridView()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
         Me.JunctionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -53,9 +56,12 @@ Partial Class ucPipeEditor
         Me.SmoothAreaChange = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.TwoVelocityMomentumEquations = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.MomentumFlux = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.cmdCopy2 = New System.Windows.Forms.Button()
-        Me.cmdPaste2 = New System.Windows.Forms.Button()
-        Me.cmdCopytoAll = New System.Windows.Forms.Button()
+        Me.InterphaseVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EnterVelocityOrMassFlowRate = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.InitialLiquidVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InitialVaporVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InitialLiquidMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InitialVaporMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -193,11 +199,41 @@ Partial Class ucPipeEditor
         Me.dgv2.AllowUserToDeleteRows = False
         Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux})
+        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.InterphaseVelocity, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate})
         Me.dgv2.Location = New System.Drawing.Point(7, 339)
         Me.dgv2.Name = "dgv2"
         Me.dgv2.Size = New System.Drawing.Size(1042, 263)
         Me.dgv2.TabIndex = 4
+        '
+        'cmdCopy2
+        '
+        Me.cmdCopy2.Enabled = False
+        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
+        Me.cmdCopy2.Name = "cmdCopy2"
+        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy2.TabIndex = 6
+        Me.cmdCopy2.Text = "Copy"
+        Me.cmdCopy2.UseVisualStyleBackColor = True
+        '
+        'cmdPaste2
+        '
+        Me.cmdPaste2.Enabled = False
+        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
+        Me.cmdPaste2.Name = "cmdPaste2"
+        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste2.TabIndex = 8
+        Me.cmdPaste2.Text = "Paste"
+        Me.cmdPaste2.UseVisualStyleBackColor = True
+        '
+        'cmdCopytoAll
+        '
+        Me.cmdCopytoAll.Enabled = False
+        Me.cmdCopytoAll.Location = New System.Drawing.Point(339, 309)
+        Me.cmdCopytoAll.Name = "cmdCopytoAll"
+        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll.TabIndex = 9
+        Me.cmdCopytoAll.Text = "Copy to All"
+        Me.cmdCopytoAll.UseVisualStyleBackColor = True
         '
         'JunctionNumber
         '
@@ -274,35 +310,35 @@ Partial Class ucPipeEditor
         Me.MomentumFlux.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.MomentumFlux.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'cmdCopy2
+        'InterphaseVelocity
         '
-        Me.cmdCopy2.Enabled = False
-        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
-        Me.cmdCopy2.Name = "cmdCopy2"
-        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy2.TabIndex = 6
-        Me.cmdCopy2.Text = "Copy"
-        Me.cmdCopy2.UseVisualStyleBackColor = True
+        Me.InterphaseVelocity.HeaderText = "Interphase Velocity"
+        Me.InterphaseVelocity.Name = "InterphaseVelocity"
         '
-        'cmdPaste2
+        'EnterVelocityOrMassFlowRate
         '
-        Me.cmdPaste2.Enabled = False
-        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
-        Me.cmdPaste2.Name = "cmdPaste2"
-        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste2.TabIndex = 8
-        Me.cmdPaste2.Text = "Paste"
-        Me.cmdPaste2.UseVisualStyleBackColor = True
+        Me.EnterVelocityOrMassFlowRate.HeaderText = "Check for mass flow rates"
+        Me.EnterVelocityOrMassFlowRate.Name = "EnterVelocityOrMassFlowRate"
         '
-        'cmdCopytoAll
+        'InitialLiquidVelocity
         '
-        Me.cmdCopytoAll.Enabled = False
-        Me.cmdCopytoAll.Location = New System.Drawing.Point(339, 309)
-        Me.cmdCopytoAll.Name = "cmdCopytoAll"
-        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopytoAll.TabIndex = 9
-        Me.cmdCopytoAll.Text = "Copy to All"
-        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        Me.InitialLiquidVelocity.HeaderText = "Initial Liquid Velocity"
+        Me.InitialLiquidVelocity.Name = "InitialLiquidVelocity"
+        '
+        'InitialVaporVelocity
+        '
+        Me.InitialVaporVelocity.HeaderText = "Initial Vapor Velocity"
+        Me.InitialVaporVelocity.Name = "InitialVaporVelocity"
+        '
+        'InitialLiquidMassFlowRate
+        '
+        Me.InitialLiquidMassFlowRate.HeaderText = "Initial Liquid Mass Flow Rate"
+        Me.InitialLiquidMassFlowRate.Name = "InitialLiquidMassFlowRate"
+        '
+        'InitialVaporMassFlowRate
+        '
+        Me.InitialVaporMassFlowRate.HeaderText = "Initial Vapor Mass Flow Rate"
+        Me.InitialVaporMassFlowRate.Name = "InitialVaporMassFlowRate"
         '
         'ucPipeEditor
         '
@@ -344,6 +380,7 @@ Partial Class ucPipeEditor
     Friend WithEvents InterphaseFriction As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ComputeWallFriction As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents EquilibriumTemperature As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
     Friend WithEvents JunctionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents JunctionFlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -355,6 +392,11 @@ Partial Class ucPipeEditor
     Friend WithEvents SmoothAreaChange As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents TwoVelocityMomentumEquations As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents MomentumFlux As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
+    Friend WithEvents InterphaseVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents EnterVelocityOrMassFlowRate As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents InitialLiquidVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents InitialVaporVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents InitialLiquidMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents InitialVaporMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class
