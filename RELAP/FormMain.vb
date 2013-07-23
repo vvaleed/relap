@@ -2666,18 +2666,20 @@ sim:                Dim myStream As System.IO.FileStream
             Dim row As DataGridViewRow
             For j = 0 To My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows.Count - 2
                 row = My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows(j)
+                Dim _uid = RELAP.App.GetUIDFromTag(row.Cells(0).Value)
+
                 If row.Cells(1).Value = "Linear" Then
                     If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 2"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 1"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 1"
                     End If
 
                 Else
                     If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -2"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 -2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & My.Application.ActiveSimulation.FormPlotReqest.objs(i - 1) & "000000 -1"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 -1"
                     End If
 
                 End If
@@ -2938,7 +2940,7 @@ sim:                Dim myStream As System.IO.FileStream
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
                     generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
-                    Counter = Counter + 1
+                    counter = counter + 1
                 Next kvp2
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
