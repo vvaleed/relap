@@ -710,7 +710,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 Return value
 
             Catch ex As Exception
-                Return 1
+                Return "01"
             End Try
             
         End Function
