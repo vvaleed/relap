@@ -109,17 +109,32 @@
         Dim row As DataGridViewRow
         If Not Me.ThermoDynamicStates Is Nothing Then
             Me.ThermoDynamicStates.State.Clear()
-
         End If
-        For i = 0 To DataGridView1.Rows.Count - 2
-            str = ""
-            row = DataGridView1.Rows(i)
+        If My.Application.ActiveSimulation.ComponentType <> "pipe" Then
+            For i = 0 To DataGridView1.Rows.Count - 2
+                str = ""
+                row = DataGridView1.Rows(i)
 
-            For Each cell As DataGridViewCell In row.Cells
-                str = str & " " & cell.Value
+                For Each cell As DataGridViewCell In row.Cells
+                    str = str & " " & cell.Value
+                Next
+                ThermoDynamicStates.State.Add(row.Index + 1, New ThermoDynamicState(str, cmbothermostates.SelectedIndex))
             Next
-            ThermoDynamicStates.State.Add(row.Index + 1, New ThermoDynamicState(str, cmbothermostates.SelectedIndex))
-        Next
-
+        Else
+            For i = 0 To DataGridView1.Rows.Count - 2
+                str = ""
+                row = DataGridView1.Rows(i)
+                Dim cell As DataGridViewCell
+                For j = 0 To row.Cells.Count - 2
+                    cell = row.Cells(j)
+                    str = str & " " & cell.Value
+                Next
+                For j = row.Cells.Count - 1 To 4
+                    str = str & " 0"
+                Next
+                str = str & " " & row.Cells(row.Cells.Count - 1).Value
+                ThermoDynamicStates.State.Add(row.Index + 1, New ThermoDynamicState(str, cmbothermostates.SelectedIndex))
+            Next
+        End If
     End Sub
 End Class
