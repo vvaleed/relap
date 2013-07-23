@@ -76,7 +76,7 @@ Namespace RELAP.Editors
                 For i = 1 To volumes
                     Dim lvi As New ListViewItem()
                     With lvi
-                        .Text = i
+                        .Text = i.ToString("D2")
                     End With
                     ListView2.Items.Add(lvi)
                 Next
