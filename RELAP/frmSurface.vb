@@ -2064,7 +2064,7 @@ Public Class frmSurface
                 myTank.Fill = True
                 myTank.FillColor = fillclr
                 myTank.LineColor = lineclr
-                myTank.Tag = "TMDPVOL-" & Format(ChildParent.Collections.ObjectCounter("TANK"), "00#")
+                myTank.Tag = "TMDPVOL" & Format(ChildParent.Collections.ObjectCounter("TANK"), "00#")
                 ChildParent.Collections.UpdateCounter("TANK")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
@@ -2083,7 +2083,7 @@ Public Class frmSurface
                 myPump.Fill = True
                 myPump.FillColor = fillclr
                 myPump.LineColor = lineclr
-                myPump.Tag = "PUMP-" & Format(ChildParent.Collections.ObjectCounter("Pump"), "00#")
+                myPump.Tag = "PUMP" & Format(ChildParent.Collections.ObjectCounter("Pump"), "00#")
                 ChildParent.Collections.UpdateCounter("Pump")
                 If tag <> "" Then myPump.Tag = tag
                 gObj = myPump
@@ -2102,7 +2102,7 @@ Public Class frmSurface
                 myCooler.Fill = True
                 myCooler.FillColor = fillclr
                 myCooler.LineColor = lineclr
-                myCooler.Tag = "SNGLJUN-" & Format(ChildParent.Collections.ObjectCounter("SingleJunction"), "00#")
+                myCooler.Tag = "SNGLJUN" & Format(ChildParent.Collections.ObjectCounter("SingleJunction"), "00#")
                 ChildParent.Collections.UpdateCounter("SingleJunction")
                 If tag <> "" Then myCooler.Tag = tag
                 gObj = myCooler
@@ -2121,7 +2121,7 @@ Public Class frmSurface
                 myPipe.Fill = True
                 myPipe.FillColor = fillclr
                 myPipe.LineColor = lineclr
-                myPipe.Tag = "PIPE-" & Format(ChildParent.Collections.ObjectCounter("Pipe"), "00#")
+                myPipe.Tag = "PIPE" & Format(ChildParent.Collections.ObjectCounter("Pipe"), "00#")
                 ChildParent.Collections.UpdateCounter("Pipe")
                 If tag <> "" Then myPipe.Tag = tag
                 gObj = myPipe
@@ -2140,7 +2140,7 @@ Public Class frmSurface
                 myValve.Fill = True
                 myValve.FillColor = fillclr
                 myValve.LineColor = lineclr
-                myValve.Tag = "VALVE-" & Format(ChildParent.Collections.ObjectCounter("Valve"), "00#")
+                myValve.Tag = "VALVE" & Format(ChildParent.Collections.ObjectCounter("Valve"), "00#")
                 ChildParent.Collections.UpdateCounter("Valve")
                 If tag <> "" Then myValve.Tag = tag
                 gObj = myValve
@@ -2159,7 +2159,7 @@ Public Class frmSurface
                 myTank.Fill = True
                 myTank.FillColor = fillclr
                 myTank.LineColor = lineclr
-                myTank.Tag = "FUELROD-" & Format(ChildParent.Collections.ObjectCounter("FuelRod"), "00#")
+                myTank.Tag = "FUELROD" & Format(ChildParent.Collections.ObjectCounter("FuelRod"), "00#")
                 ChildParent.Collections.UpdateCounter("FuelRod")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
@@ -2178,7 +2178,7 @@ Public Class frmSurface
                 myTank.Fill = True
                 myTank.FillColor = fillclr
                 myTank.LineColor = lineclr
-                myTank.Tag = "Simulator-" & Format(ChildParent.Collections.ObjectCounter("Simulator"), "00#")
+                myTank.Tag = "Simulator" & Format(ChildParent.Collections.ObjectCounter("Simulator"), "00#")
                 ChildParent.Collections.UpdateCounter("Simulator")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
