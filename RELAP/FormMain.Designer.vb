@@ -336,7 +336,7 @@ Partial Class FormMain
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
         Me.StatusBarTextProvider1.SetStatusBarText(Me.WikiToolStripMenuItem, resources.GetString("WikiToolStripMenuItem.StatusBarText"))
         '
-        'FórumToolStripMenuItem
+        'ForumToolStripMenuItem
         '
         resources.ApplyResources(Me.ForumToolStripMenuItem, "ForumToolStripMenuItem")
         Me.ForumToolStripMenuItem.Name = "ForumToolStripMenuItem"

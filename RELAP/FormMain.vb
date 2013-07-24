@@ -2947,4 +2947,8 @@ sim:                Dim myStream As System.IO.FileStream
     
     
     
+    Private Sub GenerateInputFileAndRunToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerateInputFileAndRunToolStripMenuItem.Click
+        GenerateInputFileToolStripMenuItem_Click(Nothing, Nothing)
+
+    End Sub
 End Class
