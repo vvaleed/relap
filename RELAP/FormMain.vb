@@ -2629,16 +2629,16 @@ sim:                Dim myStream As System.IO.FileStream
 
                 If row.Cells(1).Value = "Linear" Then
                     If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 2"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 1"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 1"
                     End If
 
                 Else
                     If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 -2"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text & " " & _uid & "000000 -1"
+                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -1"
                     End If
 
                 End If
@@ -2944,13 +2944,13 @@ sim:                Dim myStream As System.IO.FileStream
 
 
 
-    
-    
-    
+
+
+
     Private Sub GenerateInputFileAndRunToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerateInputFileAndRunToolStripMenuItem.Click
         GenerateInputFileToolStripMenuItem_Click(Nothing, Nothing)
 
     End Sub
 
-    
+
 End Class
