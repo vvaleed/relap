@@ -2212,35 +2212,29 @@ Public Class frmProps
             If e.ChangedItem.Label.Contains("Volume Flow Area") Then
 
                 If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-                bb.FlowArea = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.area, e.ChangedItem.Value)
-
+                bb.FlowArea = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Length of Volume") Then
 
-                bb.LengthofVolume = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.distance, e.ChangedItem.Value)
-
-            ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("TKVol")) Then
-
-                If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-                bb.Volume = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.volume, e.ChangedItem.Value)
-
+                bb.LengthofVolume = e.ChangedItem.Value
+           
             ElseIf e.ChangedItem.Label.Contains("Volume of Volume") Then
-                bb.VolumeofVolume = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.volume, e.ChangedItem.Value)
+                bb.VolumeofVolume = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Azimuthal Angle") Then
-                bb.Azimuthalangle = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.angle, e.ChangedItem.Value)
+                bb.Azimuthalangle = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Inclination Angle") Then
-                bb.InclinationAngle = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.angle, e.ChangedItem.Value)
+                bb.InclinationAngle = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Elevation Change") Then
-                bb.ElevationChange = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.distance, e.ChangedItem.Value)
+                bb.ElevationChange = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Wall Roughness") Then
-                bb.WallRoughness = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.distance, e.ChangedItem.Value)
+                bb.WallRoughness = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
-                bb.HydraulicDiameter = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.distance, e.ChangedItem.Value)
+                bb.HydraulicDiameter = e.ChangedItem.Value
 
                 'control flags
             ElseIf e.ChangedItem.Label.Contains("Thermal Stratification Model") Then
