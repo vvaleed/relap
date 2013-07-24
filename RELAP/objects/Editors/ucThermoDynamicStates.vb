@@ -116,7 +116,7 @@
                 row = DataGridView1.Rows(i)
 
                 For Each cell As DataGridViewCell In row.Cells
-                    str = str & " " & cell.Value
+                    str = str & " " & cell.Value.ToString("F")
                 Next
                 ThermoDynamicStates.State.Add(row.Index + 1, New ThermoDynamicState(str, cmbothermostates.SelectedIndex))
             Next
@@ -127,10 +127,10 @@
                 Dim cell As DataGridViewCell
                 For j = 0 To row.Cells.Count - 2
                     cell = row.Cells(j)
-                    str = str & " " & cell.Value
+                    str = str & " " & cell.Value.ToString("F")
                 Next
                 For j = row.Cells.Count - 1 To 4
-                    str = str & " 0"
+                    str = str & " 0.0"
                 Next
                 str = str & " " & row.Cells(row.Cells.Count - 1).Value
                 ThermoDynamicStates.State.Add(row.Index + 1, New ThermoDynamicState(str, cmbothermostates.SelectedIndex))
