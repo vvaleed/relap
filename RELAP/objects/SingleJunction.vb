@@ -277,6 +277,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
+            Me.m_area = 0.1
             Me._ToVolume = 1
             Me._FromVolume = 1
             Me.m_ComponentDescription = descricao
