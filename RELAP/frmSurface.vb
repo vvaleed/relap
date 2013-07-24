@@ -2064,7 +2064,7 @@ Public Class frmSurface
                 myTank.Fill = True
                 myTank.FillColor = fillclr
                 myTank.LineColor = lineclr
-                myTank.Tag = "TMDPVOL" & Format(ChildParent.Collections.ObjectCounter("TANK"), "00#")
+                myTank.Tag = "TDV" & Format(ChildParent.Collections.ObjectCounter("TANK"), "00#")
                 ChildParent.Collections.UpdateCounter("TANK")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
@@ -2102,7 +2102,7 @@ Public Class frmSurface
                 myCooler.Fill = True
                 myCooler.FillColor = fillclr
                 myCooler.LineColor = lineclr
-                myCooler.Tag = "SNGLJUN" & Format(ChildParent.Collections.ObjectCounter("SingleJunction"), "00#")
+                myCooler.Tag = "SJ" & Format(ChildParent.Collections.ObjectCounter("SingleJunction"), "00#")
                 ChildParent.Collections.UpdateCounter("SingleJunction")
                 If tag <> "" Then myCooler.Tag = tag
                 gObj = myCooler
@@ -2159,7 +2159,7 @@ Public Class frmSurface
                 myTank.Fill = True
                 myTank.FillColor = fillclr
                 myTank.LineColor = lineclr
-                myTank.Tag = "FUELROD" & Format(ChildParent.Collections.ObjectCounter("FuelRod"), "00#")
+                myTank.Tag = "FUELR" & Format(ChildParent.Collections.ObjectCounter("FuelRod"), "00#")
                 ChildParent.Collections.UpdateCounter("FuelRod")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
@@ -2178,7 +2178,7 @@ Public Class frmSurface
                 myTank.Fill = True
                 myTank.FillColor = fillclr
                 myTank.LineColor = lineclr
-                myTank.Tag = "Simulator" & Format(ChildParent.Collections.ObjectCounter("Simulator"), "00#")
+                myTank.Tag = "Sim" & Format(ChildParent.Collections.ObjectCounter("Simulator"), "00#")
                 ChildParent.Collections.UpdateCounter("Simulator")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
