@@ -137,7 +137,7 @@ Partial Class frmInitialSettings
         Me.txtendtime.Name = "txtendtime"
         Me.txtendtime.Size = New System.Drawing.Size(100, 20)
         Me.txtendtime.TabIndex = 24
-        Me.txtendtime.Text = "20"
+        Me.txtendtime.Text = "20.0"
         '
         'Label3
         '
@@ -172,7 +172,7 @@ Partial Class frmInitialSettings
         Me.txtminsteptime.Name = "txtminsteptime"
         Me.txtminsteptime.Size = New System.Drawing.Size(100, 20)
         Me.txtminsteptime.TabIndex = 28
-        Me.txtminsteptime.Text = "1e-6"
+        Me.txtminsteptime.Text = "1.0e-6"
         '
         'txtmaxsteptime
         '

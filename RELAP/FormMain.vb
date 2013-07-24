@@ -2617,7 +2617,7 @@ sim:                Dim myStream As System.IO.FileStream
 
             'card 201
             generate.WriteLine("*")
-            output = frmInitialSettings.txtendtime.Text.ToString("F") & " " & frmInitialSettings.txtminsteptime.Text.ToString("F") & " " & frmInitialSettings.txtmaxsteptime.Text & " " & frmInitialSettings.txtcontroloption.Text & " " & frmInitialSettings.txtMinorFrequency.Text & " " & frmInitialSettings.txtMajorFrequency.Text & " " & frmInitialSettings.txtRestartFrequency.Text
+            output = frmInitialSettings.txtendtime.Text & " " & frmInitialSettings.txtminsteptime.Text & " " & frmInitialSettings.txtmaxsteptime.Text & " " & frmInitialSettings.txtcontroloption.Text & " " & frmInitialSettings.txtMinorFrequency.Text & " " & frmInitialSettings.txtMajorFrequency.Text & " " & frmInitialSettings.txtRestartFrequency.Text
             generate.WriteLine("201 " & output)
 
             'card 203
@@ -2653,9 +2653,9 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Time Dependent Volume '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ TMDPVOL")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpvol")
 
-                output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & kvp.Value.WallRoughness & " ") & kvp.Value.HydraulicDiameter & " ") & "0000000"
+                output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " ") & kvp.Value.LengthofVolume.ToString("F") & " ") & kvp.Value.VolumeofVolume.ToString("F") & " ") & kvp.Value.Azimuthalangle.ToString("F") & " ") & kvp.Value.InclinationAngle.ToString("F") & " ") & kvp.Value.ElevationChange.ToString("F") & " ") & kvp.Value.WallRoughness.ToString("F") & " ") & kvp.Value.HydraulicDiameter.ToString("F") & " ") & "0000000"
                 generate.WriteLine(output)
 
                 If frmInitialSettings.optDefaultFluid.Checked = True Then
@@ -2792,55 +2792,54 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component PIPE '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ PIPE")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ pipe")
                 output = kvp.Value.UID & "0001 " & kvp.Value.NumberOfVoulmes
                 generate.WriteLine(output)
-                Dim vol = 1
                 Dim counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea & " " & vol
+                    output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume & " " & vol
+                    output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume & " " & vol
+                    output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle & " " & vol
+                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle & " " & vol
+                    output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
-                counter = 1
-                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange & " " & vol
-                    generate.WriteLine(output)
-                    counter = counter + 1
-                Next kvp2
+                'counter = 1
+                'For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                '    output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange & " " & vol
+                '    generate.WriteLine(output)
+                '    counter = counter + 1
+                'Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness & " " & kvp2.Value.HydraulicDiameter & " " & vol
+                    output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness.ToString("F") & " " & kvp2.Value.HydraulicDiameter.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -2854,21 +2853,21 @@ sim:                Dim myStream As System.IO.FileStream
                     output5 = boolto10(kvp2.Value.InterphaseFriction)
                     output6 = boolto10(kvp2.Value.ComputeWallFriction)
                     output7 = boolto10(kvp2.Value.EquilibriumTemperature)
-                    output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & vol
+                    output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
-                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea & " " & vol
+                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
-                    output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo & " " & kvp2.Value.RflowLossCo & " " & vol
+                    output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -2902,7 +2901,7 @@ sim:                Dim myStream As System.IO.FileStream
                         output6 = "3"
                     End If
 
-                    output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & vol
+                    output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -2924,11 +2923,11 @@ sim:                Dim myStream As System.IO.FileStream
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
                     If kvp2.Value.EnterVelocityOrMassFlowRate = False Then
-                        output1 = kvp2.Value.InitialLiquidVelocity & " " & kvp2.Value.InitialVaporVelocity
+                        output1 = kvp2.Value.InitialLiquidVelocity.ToString("F") & " " & kvp2.Value.InitialVaporVelocity.ToString("F")
                     ElseIf kvp2.Value.EnterVelocityOrMassFlowRate = True Then
-                        output1 = kvp2.Value.InitialLiquidMassFlowRate & " " & kvp2.Value.InitialVaporMassFlowRate
+                        output1 = kvp2.Value.InitialLiquidMassFlowRate.ToString("F") & " " & kvp2.Value.InitialVaporMassFlowRate.ToString("F")
                     End If
-                    output = kvp.Value.UID & "130" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity & " " & vol
+                    output = kvp.Value.UID & "130" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity.ToString("F") & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
