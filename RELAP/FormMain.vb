@@ -2691,7 +2691,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
 
-                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" & " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" '& " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
                 generate.WriteLine(output)
 
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then
