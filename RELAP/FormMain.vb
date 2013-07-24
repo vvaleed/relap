@@ -84,7 +84,7 @@ Public Class FormMain
                         Me.ToolStripStatusLabel1.Text = RELAP.App.GetLocalString("Abrindosimulao") + " " + MyFiles(i) + "..."
                         Application.DoEvents()
                         Me.LoadF(MyFiles(i))
-                  
+
                 End Select
             Next
         End If
