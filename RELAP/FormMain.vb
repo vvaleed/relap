@@ -2074,7 +2074,7 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Sub
 
-    Private Sub NewToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripButton.Click, NewToolStripMenuItem.Click
+    Private Sub NewToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripButton.Click, NewToolStripMenuItem.Click, NovoToolStripMenuItem.Click
 
         Dim NewMDIChild As New FormFlowsheet()
 
@@ -2951,4 +2951,6 @@ sim:                Dim myStream As System.IO.FileStream
         GenerateInputFileToolStripMenuItem_Click(Nothing, Nothing)
 
     End Sub
+
+    
 End Class
