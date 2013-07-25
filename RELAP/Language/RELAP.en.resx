@@ -3139,11 +3139,11 @@ Liquid Surface Tension: Brock-Bird Method</value>
   <data name="REqPGridItem2Help" xml:space="preserve">
     <value>Show reaction extents in the select Equilibrium Reactor</value>
   </data>
-  <data name="Resfriador" xml:space="preserve">
-    <value>Cooler</value>
+  <data name="SingleJunction" xml:space="preserve">
+    <value>Single Junction</value>
   </data>
-  <data name="Resfriadores" xml:space="preserve">
-    <value>Coolers</value>
+  <data name="SingleJunctiones" xml:space="preserve">
+    <value>Single Junctions</value>
   </data>
   <data name="Resultados" xml:space="preserve">
     <value>Results</value>
@@ -4369,7 +4369,7 @@ Liquid Surface Tension: Brock-Bird Method</value>
   <data name="RefluxedAbsorber_Desc" xml:space="preserve">
     <value>Rigorous model for industrial refluxed absorbers.</value>
   </data>
-  <data name="Resfriador_Desc" xml:space="preserve">
+  <data name="SingleJunction_Desc" xml:space="preserve">
     <value>Unit operation to model cooling processes.</value>
   </data>
   <data name="ShortcutColumn_Desc" xml:space="preserve">

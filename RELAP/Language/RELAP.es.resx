@@ -1872,7 +1872,7 @@
   <data name="ControlledObjectData" xml:space="preserve">
     <value>ControlledObjectData </value>
   </data>
-  <data name="Resfriadores" xml:space="preserve">
+  <data name="SingleJunctiones" xml:space="preserve">
     <value>Enfriadores </value>
   </data>
   <data name="SelecioLiquidrueparaign2" xml:space="preserve">
@@ -3200,8 +3200,8 @@ Las propiedades se calculan directamente desde el Estado o datos experimentales 
   <data name="PressovsTemperatura" xml:space="preserve">
     <value>Presión vs Temperatura</value>
   </data>
-  <data name="Resfriador" xml:space="preserve">
-    <value>Resfriador</value>
+  <data name="SingleJunction" xml:space="preserve">
+    <value>SingleJunction</value>
   </data>
   <data name="Queda" xml:space="preserve">
     <value>Caída </value>
@@ -4376,7 +4376,7 @@ Las propiedades se calculan directamente desde el Estado o datos experimentales 
   <data name="RefluxedAbsorber_Desc" xml:space="preserve">
     <value>Modelo rigoroso para absorbedora con condensador.</value>
   </data>
-  <data name="Resfriador_Desc" xml:space="preserve">
+  <data name="SingleJunction_Desc" xml:space="preserve">
     <value>Modelo para representar um processo de resfriamento de uma corrente de matéria.</value>
   </data>
   <data name="ShortcutColumn_Desc" xml:space="preserve">

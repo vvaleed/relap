@@ -2743,14 +2743,14 @@ Namespace GraphicObjects
 
     End Class
 
-    <Serializable()> Public Class CoolerGraphic
+    <Serializable()> Public Class SingleJunctionGraphic
 
         Inherits ShapeGraphic
 
 #Region "Constructors"
         Public Sub New()
             Me.TipoObjeto = GraphicObjects.TipoObjeto.SingleJunction
-            Me.Description = "Resfriador"
+            Me.Description = "SingleJunction"
         End Sub
 
         Public Sub New(ByVal graphicPosition As Point)
@@ -2805,7 +2805,7 @@ Namespace GraphicObjects
 
         Public Overrides Sub Draw(ByVal g As System.Drawing.Graphics)
 
-            Dim myIC1 As New ConnectionPoint
+         Dim myIC1 As New ConnectionPoint
             myIC1.Position = New Point(X, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
 
@@ -2823,7 +2823,6 @@ Namespace GraphicObjects
                         .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
                     Else
                         .Item(0).Position = New Point(X, Y + 0.5 * Height)
-
                     End If
                 Else
                     .Add(myIC1)
@@ -2880,58 +2879,28 @@ Namespace GraphicObjects
             gContainer = g.BeginContainer()
             myMatrix = g.Transform()
             If m_Rotation <> 0 Then
-                myMatrix.RotateAt(m_Rotation, New PointF(X, Y), Drawing.Drawing2D.MatrixOrder.Append)
+                myMatrix.RotateAt(m_Rotation, New PointF(X, Y), _
+                    Drawing.Drawing2D.MatrixOrder.Append)
                 g.Transform = myMatrix
             End If
-
-
-            Dim myPen As New Pen(Me.LineColor, Me.LineWidth)
-            Dim myPen2 As New Pen(Color.White, 0)
             Dim rect As New Rectangle(X, Y, Width, Height)
+            Dim lgb1 As New LinearGradientBrush(rect, Me.GradientColor1, Me.GradientColor2, LinearGradientMode.Vertical)
+            If Me.Fill Then
+                If Me.GradientMode = False Then
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect)
+                Else
+                    g.FillRectangle(lgb1, rect)
+                End If
+            End If
+            Dim myPen As New Pen(Me.LineColor, Me.LineWidth)
             g.SmoothingMode = SmoothingMode.AntiAlias
-            'g.DrawRectangle(myPen2, rect)
-
-            Dim gp As Drawing2D.GraphicsPath = New Drawing2D.GraphicsPath
-            gp.AddLine(CInt(X), CInt(Y + 0.5 * Height), CInt(X + 0.5 * Width), CInt(Y))
-            gp.AddLine(CInt(X + 0.5 * Width), CInt(Y), CInt(X + Width), CInt(Y + 0.5 * Height))
-            gp.AddLine(CInt(X + Width), CInt(Y + 0.5 * Height), CInt(X + 0.5 * Width), CInt(Y + Height))
-            gp.AddLine(CInt(X + 0.5 * Width), CInt(Y + Height), CInt(X), CInt(Y + 0.5 * Height))
-
-            gp.CloseFigure()
-
-            g.DrawPath(myPen, gp)
+            g.DrawRectangle(myPen, rect)
 
             Dim strdist As SizeF = g.MeasureString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New PointF(0, 0), New StringFormat(StringFormatFlags.NoClip, 0))
             Dim strx As Single = (Me.Width - strdist.Width) / 2
             'g.FillRectangle(Brushes.White, X + strx, Y + CSng(Height + 5), strdist.Width, strdist.Height)
             g.DrawString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New SolidBrush(Me.LineColor), X + strx, Y + Height + 5)
 
-            Dim pgb1 As New PathGradientBrush(gp)
-            pgb1.CenterColor = Me.GradientColor2
-            'lgb1.SetBlendTriangularShape(0.5)
-            pgb1.SurroundColors = New Color() {Me.GradientColor1}
-
-            If Me.Fill Then
-                If Me.GradientMode = False Then
-                    g.FillPath(New SolidBrush(Me.FillColor), gp)
-                Else
-                    g.FillPath(pgb1, gp)
-                End If
-            End If
-
-            Dim size As SizeF
-            Dim fontA As New Font("Arial", 10, 3, GraphicsUnit.Pixel, 0, False)
-            size = g.MeasureString("R", fontA)
-
-            Dim ax, ay As Integer
-            ax = Me.X + (Me.Width - size.Width) / 2
-            ay = Me.Y + (Me.Height - size.Height) / 2
-
-            g.SmoothingMode = SmoothingMode.AntiAlias
-            g.TextRenderingHint = Text.TextRenderingHint.AntiAlias
-            g.DrawString("R", fontA, Brushes.DarkBlue, ax, ay)
-
-            gp.Dispose()
             g.EndContainer(gContainer)
 
         End Sub

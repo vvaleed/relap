@@ -87,6 +87,9 @@
     <Reference Include="DotNumerics">
       <HintPath>References\DotNumerics.dll</HintPath>
     </Reference>
+    <Reference Include="DrawingBoard2">
+      <HintPath>C:\Users\ne1145\Downloads\DrawingBoard2.dll</HintPath>
+    </Reference>
     <Reference Include="EWSoftware.StatusBarText">
       <HintPath>References\EWSoftware.StatusBarText.dll</HintPath>
     </Reference>
@@ -191,7 +194,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Class1.vb" />
     <Compile Include="Classes\BaseClasses.vb" />
     <Compile Include="Classes\BaseThermoClasses.vb" />
     <Compile Include="Classes\FlowsheetClasses.vb" />

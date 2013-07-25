@@ -454,7 +454,7 @@
     <value>Calor Removido</value>
   </data>
   <data name="Calorremovidodacorre" xml:space="preserve">
-    <value>Calor removido da corrente de entrada pelo resfriador</value>
+    <value>Calor removido da corrente de entrada pelo SingleJunction</value>
   </data>
   <data name="Calortransferido" xml:space="preserve">
     <value>Calor transferido</value>
@@ -2546,7 +2546,7 @@ Tensão Superficial da Fase Líquida: Método Brock-Bird</value>
     <value>Queda de pressão aplicada no aquecedor.</value>
   </data>
   <data name="Quedadepressoaplicad4" xml:space="preserve">
-    <value>Queda de pressão aplicada no resfriador.</value>
+    <value>Queda de pressão aplicada no SingleJunction.</value>
   </data>
   <data name="Quedadepressoaplicad5" xml:space="preserve">
     <value>Queda de pressão aplicada no tanque.</value>
@@ -2659,11 +2659,11 @@ Tensão Superficial da Fase Líquida: Método Brock-Bird</value>
   <data name="RemoverReacaodoConjuntoPergunta" xml:space="preserve">
     <value>Tem certeza de que deseja remover deste conjunto a reação selecionada?</value>
   </data>
-  <data name="Resfriador" xml:space="preserve">
-    <value>Resfriador</value>
+  <data name="SingleJunction" xml:space="preserve">
+    <value>SingleJunction</value>
   </data>
-  <data name="Resfriadores" xml:space="preserve">
-    <value>Resfriadores</value>
+  <data name="SingleJunctiones" xml:space="preserve">
+    <value>SingleJunctiones</value>
   </data>
   <data name="Resultados" xml:space="preserve">
     <value>Resultados</value>
@@ -3029,7 +3029,7 @@ Tensão Superficial da Fase Líquida: Método Brock-Bird</value>
     <value>Tubulações</value>
   </data>
   <data name="TubulaesTurbinaseRes" xml:space="preserve">
-    <value>Tubulações, Turbinas e Resfriadores.</value>
+    <value>Tubulações, Turbinas e SingleJunctiones.</value>
   </data>
   <data name="Tubulao" xml:space="preserve">
     <value>Tubulação</value>
@@ -4375,7 +4375,7 @@ Tensão Superficial da Fase Líquida: Método Brock-Bird</value>
   <data name="RefluxedAbsorber_Desc" xml:space="preserve">
     <value>Modelo rigoroso para absorvedora com condensador.</value>
   </data>
-  <data name="Resfriador_Desc" xml:space="preserve">
+  <data name="SingleJunction_Desc" xml:space="preserve">
     <value>Modelo para representar um processo de resfriamento de uma corrente de matéria.</value>
   </data>
   <data name="ShortcutColumn_Desc" xml:space="preserve">

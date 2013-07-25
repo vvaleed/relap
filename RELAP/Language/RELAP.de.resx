@@ -3139,10 +3139,10 @@ Oberflächenspannung (flüssig): Brock-Bird-Methode</value>
   <data name="REqPGridItem2Help" xml:space="preserve">
     <value>Anzeige des Reaktionsfortschrittes im ausgeählten Gleichgewichtsreaktor</value>
   </data>
-  <data name="Resfriador" xml:space="preserve">
+  <data name="SingleJunction" xml:space="preserve">
     <value>Kühler</value>
   </data>
-  <data name="Resfriadores" xml:space="preserve">
+  <data name="SingleJunctiones" xml:space="preserve">
     <value>Kühler</value>
   </data>
   <data name="Resultados" xml:space="preserve">
@@ -4369,7 +4369,7 @@ Oberflächenspannung (flüssig): Brock-Bird-Methode</value>
   <data name="RefluxedAbsorber_Desc" xml:space="preserve">
     <value>Rigoroses Modell für industrielle Absober mit Rücklauf.</value>
   </data>
-  <data name="Resfriador_Desc" xml:space="preserve">
+  <data name="SingleJunction_Desc" xml:space="preserve">
     <value>Grundoperation zur Modellierung von Kühlprozessen.</value>
   </data>
   <data name="ShortcutColumn_Desc" xml:space="preserve">

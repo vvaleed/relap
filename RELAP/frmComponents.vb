@@ -14,7 +14,7 @@
             '.Rows.Add(New Object() {"Correntedeenergia", Me.ImageList2.Images(18), "Correntedeenergia"})
             '.Rows.Add(New Object() {"Misturador", Me.ImageList2.Images(3), "Misturador"})
             '.Rows.Add(New Object() {"Divisor", Me.ImageList2.Images(4), "Divisor"})
-            .Rows.Add(New Object() {"Resfriador", Me.ImageList2.Images(1), "Single Junction"})
+            .Rows.Add(New Object() {"SingleJunction", Me.ImageList2.Images(26), "Single Junction"})
             '.Rows.Add(New Object() {"Aquecedor", Me.ImageList2.Images(2), "Aquecedor"})
             .Rows.Add(New Object() {"Tubulao", Me.ImageList2.Images(5), "Pipe"})
             .Rows.Add(New Object() {"Vlvula", Me.ImageList2.Images(15), "Valve"})
