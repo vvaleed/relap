@@ -2097,7 +2097,7 @@ Public Class frmSurface
                 ChildParent.Collections.ObjectCollection.Add(myPump.Name, myCOTK)
                 ChildParent.Collections.CLCS_PumpCollection.Add(myPump.Name, myCOTK)
             Case TipoObjeto.SingleJunction
-                Dim myCooler As New CoolerGraphic(mpx, mpy, 50, 50, 0)
+                Dim myCooler As New SingleJunctionGraphic(mpx, mpy, 15, 15, 0)
                 myCooler.LineWidth = 2
                 myCooler.Fill = True
                 myCooler.FillColor = fillclr
@@ -2107,11 +2107,11 @@ Public Class frmSurface
                 If tag <> "" Then myCooler.Tag = tag
                 gObj = myCooler
                 gObj.Name = "SNGLJUN-" & Guid.NewGuid.ToString
-                ChildParent.Collections.CoolerCollection.Add(gObj.Name, myCooler)
+                ChildParent.Collections.SingleJunctionCollection.Add(gObj.Name, myCooler)
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
                 'OBJETO RELAP
-                Dim myCOTK As RELAP.SimulationObjects.UnitOps.SingleJunction = New RELAP.SimulationObjects.UnitOps.SingleJunction(myCooler.Name, "Resfriador")
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.SingleJunction = New RELAP.SimulationObjects.UnitOps.SingleJunction(myCooler.Name, "SingleJunction")
                 myCOTK.GraphicObject = myCooler
                 ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
                 ChildParent.Collections.CLCS_SingleJunctionCollection.Add(myCooler.Name, myCOTK)
@@ -2272,7 +2272,7 @@ Public Class frmSurface
                     tobj = TipoObjeto.Compressor
                 Case "TurbinaAdiabtica"
                     tobj = TipoObjeto.Expander
-                Case "Resfriador"
+                Case "SingleJunction"
                     tobj = TipoObjeto.SingleJunction
                 Case "Aquecedor"
                     tobj = TipoObjeto.Heater

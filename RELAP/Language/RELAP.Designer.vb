@@ -1226,7 +1226,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Calor removido da corrente de entrada pelo resfriador.
+        '''  Looks up a localized string similar to Calor removido da corrente de entrada pelo SingleJunction.
         '''</summary>
         Friend Shared ReadOnly Property Calorremovidodacorre() As String
             Get
@@ -9977,7 +9977,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Queda de pressão aplicada no resfriador..
+        '''  Looks up a localized string similar to Queda de pressão aplicada no SingleJunction..
         '''</summary>
         Friend Shared ReadOnly Property Quedadepressoaplicad4() As String
             Get
@@ -10445,29 +10445,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Resfriador.
+        '''  Looks up a localized string similar to SingleJunction.
         '''</summary>
-        Friend Shared ReadOnly Property Resfriador() As String
+        Friend Shared ReadOnly Property SingleJunction() As String
             Get
-                Return ResourceManager.GetString("Resfriador", resourceCulture)
+                Return ResourceManager.GetString("SingleJunction", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized string similar to Modelo para representar um processo de resfriamento de uma corrente de matéria..
         '''</summary>
-        Friend Shared ReadOnly Property Resfriador_Desc() As String
+        Friend Shared ReadOnly Property SingleJunction_Desc() As String
             Get
-                Return ResourceManager.GetString("Resfriador_Desc", resourceCulture)
+                Return ResourceManager.GetString("SingleJunction_Desc", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Resfriadores.
+        '''  Looks up a localized string similar to SingleJunctiones.
         '''</summary>
-        Friend Shared ReadOnly Property Resfriadores() As String
+        Friend Shared ReadOnly Property SingleJunctiones() As String
             Get
-                Return ResourceManager.GetString("Resfriadores", resourceCulture)
+                Return ResourceManager.GetString("SingleJunctiones", resourceCulture)
             End Get
         End Property
         
@@ -12101,7 +12101,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Tubulações, Turbinas e Resfriadores..
+        '''  Looks up a localized string similar to Tubulações, Turbinas e SingleJunctiones..
         '''</summary>
         Friend Shared ReadOnly Property TubulaesTurbinaseRes() As String
             Get

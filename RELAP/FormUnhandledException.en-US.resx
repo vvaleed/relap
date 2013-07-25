@@ -112,81 +112,18 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 13</value>
-  </data>
-  <data name="Label1.Text" xml:space="preserve">
-    <value>RELAP generated an unhandled exception.</value>
-  </data>
-  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 42</value>
-  </data>
-  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>510, 85</value>
-  </data>
   <data name="Label2.Text" xml:space="preserve">
     <value>
 In most cases, you can continue to execute RELAP normally. If you choose to close the application, you still can save the opened simulations.
 
 If the error is unrecoverable, click the 'Close' button. It will not be possible to save the opened simulations. In this case, check the 'Restart RELAP' box to restart the program.</value>
   </data>
-  <data name="KryptonButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 137</value>
-  </data>
-  <data name="KryptonButton1.Text" xml:space="preserve">
-    <value>Save and Quit</value>
-  </data>
-  <data name="KryptonButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 137</value>
-  </data>
-  <data name="KryptonButton2.Text" xml:space="preserve">
-    <value>Continue</value>
-  </data>
-  <data name="LabelWithDivider1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-10, 128</value>
-  </data>
-  <data name="TextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 219</value>
-  </data>
-  <data name="Panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>530, 133</value>
-  </data>
-  <data name="KryptonButton4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 137</value>
-  </data>
-  <data name="KryptonButton4.Text" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="KryptonCheckBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 177</value>
-  </data>
-  <data name="KryptonCheckBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="KryptonCheckBox1.Text" xml:space="preserve">
-    <value>Restart RELAP</value>
-  </data>
-  <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 171</value>
-  </data>
-  <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 25</value>
-  </data>
-  <data name="Button1.Text" xml:space="preserve">
-    <value>View Details</value>
-  </data>
-  <data name="Button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 137</value>
-  </data>
-  <data name="Button2.Text" xml:space="preserve">
-    <value>Send Error Info</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAMDAAAAEAGACoHAAAFgAAACgAAAAwAAAAYAAAAAEAGAAAAAAAAAAAAEgAAABIAAAAAAAAAAAA
@@ -313,8 +250,5 @@ If the error is unrecoverable, click the 'Close' button. It will not be possible
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Error</value>
   </data>
 </root>

@@ -629,7 +629,7 @@ Imports RELAP.RELAP.FormClasses
         If Collections.CompressorCollection Is Nothing Then Collections.CompressorCollection = New Dictionary(Of String, CompressorGraphic)
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
         If Collections.ValveCollection Is Nothing Then Collections.ValveCollection = New Dictionary(Of String, ValveGraphic)
-        If Collections.CoolerCollection Is Nothing Then Collections.CoolerCollection = New Dictionary(Of String, CoolerGraphic)
+        If Collections.SingleJunctionCollection Is Nothing Then Collections.SingleJunctionCollection = New Dictionary(Of String, SingleJunctionGraphic)
         If Collections.HeaterCollection Is Nothing Then Collections.HeaterCollection = New Dictionary(Of String, HeaterGraphic)
         If Collections.TankCollection Is Nothing Then Collections.TankCollection = New Dictionary(Of String, TankGraphic)
         If Collections.ConnectorCollection Is Nothing Then Collections.ConnectorCollection = New Dictionary(Of String, ConnectorGraphic)
