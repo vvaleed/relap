@@ -256,7 +256,21 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
+    <Compile Include="objects\Custom Properties\HeatStructureMeshData.vb" />
     <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />
+    <Compile Include="objects\Editors\frmHeatStructureEditor.Designer.vb">
+      <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmHeatStructureEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\ucHeatStructureEditor.Designer.vb">
+      <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\ucHeatStructureEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\UIHeatStructureEditor.vb" />
     <Compile Include="objects\Editors\UIVolumeSelector.vb" />
     <Compile Include="objects\Editors\UIComponentSelector.vb" />
     <Compile Include="objects\Editors\frmThermalHydraulicStatesditor.Designer.vb">
@@ -286,6 +300,7 @@
     </Compile>
     <Compile Include="objects\Editors\UIPipeEditor.vb" />
     <Compile Include="objects\Custom Properties\PipeProfile.vb" />
+    <Compile Include="objects\heat structure.vb" />
     <Compile Include="objects\Pump.vb" />
     <Compile Include="objects\PWR Control Rod.vb" />
     <Compile Include="objects\Shroud.vb" />

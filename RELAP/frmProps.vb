@@ -1180,9 +1180,9 @@ Public Class frmProps
 
     '            End If
 
-    '        ElseIf sobj.TipoObjeto = TipoObjeto.HeatExchanger Then
+    '        ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
 
-    '            Dim bb As RELAP.SimulationObjects.UnitOps.HeatExchanger = ChildParent.Collections.CLCS_HeatExchangerCollection.Item(sobj.Name)
+    '            Dim bb As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
 
     '            If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("OverallHeatTranferCoefficient")) Then
 
@@ -1223,7 +1223,7 @@ Public Class frmProps
     '                    .Tag = sobj.Tag
     '                    .Calculado = False
     '                    .Nome = sobj.Name
-    '                    .Tipo = TipoObjeto.HeatExchanger
+    '                    .Tipo = TipoObjeto.HeatStructure
     '                    .Emissor = "PropertyGrid"
     '                End With
 
@@ -2217,7 +2217,7 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Length of Volume") Then
 
                 bb.LengthofVolume = e.ChangedItem.Value
-           
+
             ElseIf e.ChangedItem.Label.Contains("Volume of Volume") Then
                 bb.VolumeofVolume = e.ChangedItem.Value
 
@@ -2778,9 +2778,9 @@ Public Class frmProps
 
             '    End If
 
-            'ElseIf sobj.TipoObjeto = TipoObjeto.HeatExchanger Then
+            'ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
 
-            '    Dim bb As RELAP.SimulationObjects.UnitOps.HeatExchanger = ChildParent.Collections.CLCS_HeatExchangerCollection.Item(sobj.Name)
+            '    Dim bb As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
 
             '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("OverallHeatTranferCoefficient")) Then
 
@@ -2821,7 +2821,7 @@ Public Class frmProps
             '            .Tag = sobj.Tag
             '            .Calculado = False
             '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.HeatExchanger
+            '            .Tipo = TipoObjeto.HeatStructure
             '            .Emissor = "PropertyGrid"
             '        End With
 

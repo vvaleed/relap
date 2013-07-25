@@ -929,9 +929,9 @@ Public Class FormMain
     '                        Case Microsoft.Msdn.Samples.GraphicObjects.TipoObjeto.RCT_PFR
     '                            .CLCS_ReactorPFRCollection(gObj.Name).GraphicObject = gObj
     '                            .ReactorPFRCollection(gObj.Name) = gObj
-    '                        Case Microsoft.Msdn.Samples.GraphicObjects.TipoObjeto.HeatExchanger
-    '                            .CLCS_HeatExchangerCollection(gObj.Name).GraphicObject = gObj
-    '                            .HeatExchangerCollection(gObj.Name) = gObj
+    '                        Case Microsoft.Msdn.Samples.GraphicObjects.TipoObjeto.HeatStructure
+    '                            .CLCS_HeatStructureCollection(gObj.Name).GraphicObject = gObj
+    '                            .HeatStructureCollection(gObj.Name) = gObj
     '                        Case Microsoft.Msdn.Samples.GraphicObjects.TipoObjeto.ShortcutColumn
     '                            .CLCS_ShortcutColumnCollection(gObj.Name).GraphicObject = gObj
     '                            .ShortcutColumnCollection(gObj.Name) = gObj

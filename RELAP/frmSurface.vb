@@ -461,8 +461,8 @@ Public Class frmSurface
                             tobj = TipoObjeto.OrificePlate
                         Case "TSMIComponentSeparator"
                             tobj = TipoObjeto.ComponentSeparator
-                        Case "TSMIHeatExchanger"
-                            tobj = TipoObjeto.HeatExchanger
+                        Case "TSMIHeatStructure"
+                            tobj = TipoObjeto.HeatStructure
                         Case "TSMITank"
                             tobj = TipoObjeto.Tank
                         Case "TSMIColShortcut"
@@ -1564,8 +1564,8 @@ Public Class frmSurface
     '            ChildParent.Collections.ObjectCollection.Add(myDWOBJ.Nome, myDWOBJ)
     '            ChildParent.Collections.CLCS_ReactorPFRCollection.Add(myDWOBJ.Nome, myDWOBJ)
     '            Me.FlowsheetDesignSurface.drawingObjects.Add(myDWOBJ.GraphicObject)
-    '        Case TipoObjeto.HeatExchanger
-    '            Dim myDWOBJ As RELAP.SimulationObjects.UnitOps.HeatExchanger = CType(newobj, RELAP.SimulationObjects.UnitOps.HeatExchanger)
+    '        Case TipoObjeto.HeatStructure
+    '            Dim myDWOBJ As RELAP.SimulationObjects.UnitOps.HeatStructure = CType(newobj, RELAP.SimulationObjects.UnitOps.HeatStructure)
     '            With myDWOBJ.GraphicObject
     '                .Calculated = False
     '                .Name = "HE-" & Guid.NewGuid.ToString
@@ -1592,9 +1592,9 @@ Public Class frmSurface
     '                .EnergyConnector.IsAttached = False
     '            End With
     '            myDWOBJ.Nome = myDWOBJ.GraphicObject.Name
-    '            ChildParent.Collections.HeatExchangerCollection.Add(myDWOBJ.GraphicObject.Name, myDWOBJ.GraphicObject)
+    '            ChildParent.Collections.HeatStructureCollection.Add(myDWOBJ.GraphicObject.Name, myDWOBJ.GraphicObject)
     '            ChildParent.Collections.ObjectCollection.Add(myDWOBJ.Nome, myDWOBJ)
-    '            ChildParent.Collections.CLCS_HeatExchangerCollection.Add(myDWOBJ.Nome, myDWOBJ)
+    '            ChildParent.Collections.CLCS_HeatStructureCollection.Add(myDWOBJ.Nome, myDWOBJ)
     '            Me.FlowsheetDesignSurface.drawingObjects.Add(myDWOBJ.GraphicObject)
     '        Case TipoObjeto.ShortcutColumn
     '            Dim myDWOBJ As RELAP.SimulationObjects.UnitOps.ShortcutColumn = CType(newobj, RELAP.SimulationObjects.UnitOps.ShortcutColumn)
@@ -2115,6 +2115,27 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myCooler
                 ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
                 ChildParent.Collections.CLCS_SingleJunctionCollection.Add(myCooler.Name, myCOTK)
+
+            Case TipoObjeto.HeatStructure
+                Dim myHeatStructure As New HeatStructureGraphic(mpx, mpy, 15, 15, 0)
+                myHeatStructure.LineWidth = 2
+                myHeatStructure.Fill = True
+                myHeatStructure.FillColor = fillclr
+                myHeatStructure.LineColor = lineclr
+                myHeatStructure.Tag = "HS" & Format(ChildParent.Collections.ObjectCounter("HeatStructure"), "00#")
+                ChildParent.Collections.UpdateCounter("HeatStructure")
+                If tag <> "" Then myHeatStructure.Tag = tag
+                gObj = myHeatStructure
+                gObj.Name = "HEATST-" & Guid.NewGuid.ToString
+                ChildParent.Collections.HeatStructureCollection.Add(gObj.Name, myHeatStructure)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = New RELAP.SimulationObjects.UnitOps.HeatStructure(myHeatStructure.Name, "HeatStructure")
+                myCOTK.GraphicObject = myHeatStructure
+                ChildParent.Collections.ObjectCollection.Add(myHeatStructure.Name, myCOTK)
+                ChildParent.Collections.CLCS_HeatStructureCollection.Add(myHeatStructure.Name, myCOTK)
+
             Case TipoObjeto.Pipe
                 Dim myPipe As New PipeGraphic(mpx, mpy, 50, 10, 0)
                 myPipe.LineWidth = 2
@@ -2290,8 +2311,8 @@ Public Class frmSurface
                     tobj = TipoObjeto.RCT_CSTR
                 Case "ReatorPFR"
                     tobj = TipoObjeto.RCT_PFR
-                Case "HeatExchanger"
-                    tobj = TipoObjeto.HeatExchanger
+                Case "HeatStructure"
+                    tobj = TipoObjeto.HeatStructure
                 Case "ShortcutColumn"
                     tobj = TipoObjeto.ShortcutColumn
                 Case "DistillationColumn"

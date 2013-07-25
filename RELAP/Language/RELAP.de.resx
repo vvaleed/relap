@@ -1951,10 +1951,10 @@ Oberflächenspannung (flüssig): Brock-Bird-Methode</value>
   <data name="HeaterCoolerOutletTemperature" xml:space="preserve">
     <value>Temperatur des Austrittsstroms</value>
   </data>
-  <data name="HeatExchanger" xml:space="preserve">
+  <data name="HeatStructure" xml:space="preserve">
     <value>Wärmetauscher</value>
   </data>
-  <data name="HeatExchangers" xml:space="preserve">
+  <data name="HeatStructures" xml:space="preserve">
     <value>Wärmetauscher</value>
   </data>
   <data name="HeatLoad" xml:space="preserve">
@@ -3139,7 +3139,7 @@ Oberflächenspannung (flüssig): Brock-Bird-Methode</value>
   <data name="REqPGridItem2Help" xml:space="preserve">
     <value>Anzeige des Reaktionsfortschrittes im ausgeählten Gleichgewichtsreaktor</value>
   </data>
-  <data name="SingleJunction" xml:space="preserve">
+  <data name="HeatStructure" xml:space="preserve">
     <value>Kühler</value>
   </data>
   <data name="SingleJunctiones" xml:space="preserve">
@@ -4336,7 +4336,7 @@ Oberflächenspannung (flüssig): Brock-Bird-Methode</value>
   <data name="Especificao_Desc" xml:space="preserve">
     <value>Spezifiziert eine Objekteigenschaft als Funktion einer Eigenschaft eines anderen Objektes.</value>
   </data>
-  <data name="HeatExchanger_Desc" xml:space="preserve">
+  <data name="HeatStructure_Desc" xml:space="preserve">
     <value>Vereinfachtes Modell eines industriellen Wärmetauschers.</value>
   </data>
   <data name="Misturador_Desc" xml:space="preserve">

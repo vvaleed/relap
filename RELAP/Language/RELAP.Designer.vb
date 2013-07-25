@@ -6235,27 +6235,27 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized string similar to Trocador de Calor.
         '''</summary>
-        Friend Shared ReadOnly Property HeatExchanger() As String
+        Friend Shared ReadOnly Property HeatStructure() As String
             Get
-                Return ResourceManager.GetString("HeatExchanger", resourceCulture)
+                Return ResourceManager.GetString("HeatStructure", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized string similar to Modelo simplificado de trocador de calor..
         '''</summary>
-        Friend Shared ReadOnly Property HeatExchanger_Desc() As String
+        Friend Shared ReadOnly Property HeatStructure_Desc() As String
             Get
-                Return ResourceManager.GetString("HeatExchanger_Desc", resourceCulture)
+                Return ResourceManager.GetString("HeatStructure_Desc", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized string similar to Trocadores de Calor.
         '''</summary>
-        Friend Shared ReadOnly Property HeatExchangers() As String
+        Friend Shared ReadOnly Property HeatStructures() As String
             Get
-                Return ResourceManager.GetString("HeatExchangers", resourceCulture)
+                Return ResourceManager.GetString("HeatStructures", resourceCulture)
             End Get
         End Property
         

@@ -644,7 +644,7 @@ Imports RELAP.RELAP.FormClasses
         If Collections.ReactorGibbsCollection Is Nothing Then Collections.ReactorGibbsCollection = New Dictionary(Of String, ReactorGibbsGraphic)
         If Collections.ReactorCSTRCollection Is Nothing Then Collections.ReactorCSTRCollection = New Dictionary(Of String, ReactorCSTRGraphic)
         If Collections.ReactorPFRCollection Is Nothing Then Collections.ReactorPFRCollection = New Dictionary(Of String, ReactorPFRGraphic)
-        If Collections.HeatExchangerCollection Is Nothing Then Collections.HeatExchangerCollection = New Dictionary(Of String, HeatExchangerGraphic)
+        If Collections.HeatStructureCollection Is Nothing Then Collections.HeatStructureCollection = New Dictionary(Of String, HeatStructureGraphic)
         If Collections.ShortcutColumnCollection Is Nothing Then Collections.ShortcutColumnCollection = New Dictionary(Of String, ShorcutColumnGraphic)
         If Collections.DistillationColumnCollection Is Nothing Then Collections.DistillationColumnCollection = New Dictionary(Of String, DistillationColumnGraphic)
         If Collections.AbsorptionColumnCollection Is Nothing Then Collections.AbsorptionColumnCollection = New Dictionary(Of String, AbsorptionColumnGraphic)
@@ -669,7 +669,7 @@ Imports RELAP.RELAP.FormClasses
     TSMIAdjust.Click, TSMIColAbs.Click, TSMIColAbsCond.Click, TSMIColAbsReb.Click, TSMIColDist.Click, _
      TSMIColShortcut.Click, TSMIComponentSeparator.Click, TSMICompressor.Click, TSMICooler.Click, _
      TSMIEnergyRecycle.Click, TSMIEnergyStream.Click, TSMIExpander.Click, TSMIHeater.Click, _
-     TSMIHeatExchanger.Click, TSMIMaterialStream.Click, TSMIMixer.Click, TSMIOrificePlate.Click, _
+     TSMIHeatStructure.Click, TSMIMaterialStream.Click, TSMIMixer.Click, TSMIOrificePlate.Click, _
      TSMIPipe.Click, TSMIPump.Click, TSMIReactorConv.Click, TSMIReactorCSTR.Click, TSMIReactorEquilibrium.Click, _
      TSMIReactorGibbs.Click, TSMIReactorPFR.Click, TSMIRecycle.Click, TSMISeparator.Click, _
      TSMISpecification.Click, TSMISplitter.Click, TSMITank.Click, TSMIValve.Click, TSMICUO.Click, TSMICOUO.Click
@@ -1494,6 +1494,8 @@ Imports RELAP.RELAP.FormClasses
                             Case TipoObjeto.Pipe
                                 GoTo 100
                             Case TipoObjeto.Tank
+                                GoTo 100
+                            Case TipoObjeto.HeatStructure
                                 GoTo 100
                             Case TipoObjeto.FuelRod
                                 GoTo 100
