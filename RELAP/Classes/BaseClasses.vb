@@ -614,7 +614,7 @@ Imports System.Runtime.InteropServices
                         End If
                     End If
                 End If
-            ElseIf sobj.TipoObjeto = TipoObjeto.HeatExchanger Then
+            ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
                 If e.ChangedItem.Label.Equals(RELAP.App.GetLocalString("Correntedeentrada1")) Then
                     If e.ChangedItem.Value <> "" Then
                         If FormFlowsheet.SearchSurfaceObjectsByTag(e.ChangedItem.Value, ChildParent.FormSurface.FlowsheetDesignSurface) Is Nothing Then

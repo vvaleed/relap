@@ -58,7 +58,7 @@ Namespace RELAP.FormClasses
         Public ReactorGibbsCollection As Dictionary(Of String, ReactorGibbsGraphic)
         Public ReactorCSTRCollection As Dictionary(Of String, ReactorCSTRGraphic)
         Public ReactorPFRCollection As Dictionary(Of String, ReactorPFRGraphic)
-        Public HeatExchangerCollection As Dictionary(Of String, HeatExchangerGraphic)
+        Public HeatStructureCollection As Dictionary(Of String, HeatStructureGraphic)
         Public ShortcutColumnCollection As Dictionary(Of String, ShorcutColumnGraphic)
         Public DistillationColumnCollection As Dictionary(Of String, DistillationColumnGraphic)
         Public AbsorptionColumnCollection As Dictionary(Of String, AbsorptionColumnGraphic)
@@ -78,6 +78,7 @@ Namespace RELAP.FormClasses
         Public CLCS_FuelRodCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
         Public CLCS_GroupCollection As Dictionary(Of String, SimulationObjects_UnitOpBaseClass)
         Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
+        Public CLCS_HeatStructureCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure)
         Public CLCS_PumpCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Pump)
         Public CLCS_SingleJunctionCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.SingleJunction)
         Public CLCS_PipeCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
@@ -115,7 +116,7 @@ Namespace RELAP.FormClasses
             ReactorGibbsCollection = New Dictionary(Of String, ReactorGibbsGraphic)
             ReactorCSTRCollection = New Dictionary(Of String, ReactorCSTRGraphic)
             ReactorPFRCollection = New Dictionary(Of String, ReactorPFRGraphic)
-            HeatExchangerCollection = New Dictionary(Of String, HeatExchangerGraphic)
+            HeatStructureCollection = New Dictionary(Of String, HeatStructureGraphic)
             ShortcutColumnCollection = New Dictionary(Of String, ShorcutColumnGraphic)
             DistillationColumnCollection = New Dictionary(Of String, DistillationColumnGraphic)
             AbsorptionColumnCollection = New Dictionary(Of String, AbsorptionColumnGraphic)
@@ -133,6 +134,7 @@ Namespace RELAP.FormClasses
 
             '  CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
             CLCS_TankCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
+            CLCS_HeatStructureCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure)
             CLCS_PumpCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Pump)
             CLCS_SingleJunctionCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.SingleJunction)
             CLCS_PipeCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.pipe)
@@ -150,6 +152,7 @@ Namespace RELAP.FormClasses
             With Me.ObjectCounter
 
                 .Add("TANK", Me.TankCollection.Count)
+                .Add("HeatStructure", Me.HeatStructureCollection.Count)
                 .Add("Pump", Me.PumpCollection.Count)
                 .Add("SingleJunction", Me.SingleJunctionCollection.Count)
                 .Add("Pipe", Me.PipeCollection.Count)

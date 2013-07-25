@@ -21,7 +21,7 @@
             .Rows.Add(New Object() {"Bomba", Me.ImageList2.Images(6), "Pump"})
             '.Rows.Add(New Object() {"CompressorAdiabtico", Me.ImageList2.Images(0), "CompressorAdiabtico"})
             '.Rows.Add(New Object() {"TurbinaAdiabtica", Me.ImageList2.Images(14), "TurbinaAdiabtica"})
-            '.Rows.Add(New Object() {"HeatExchanger", Me.ImageList2.Images(2), "HeatExchanger"})
+            .Rows.Add(New Object() {"HeatStructure", Me.ImageList2.Images(2), "HeatStructure"})
             '.Rows.Add(New Object() {"ShortcutColumn", Me.ImageList2.Images(16), "ShortcutColumn"})
             '.Rows.Add(New Object() {"DistillationColumn", Me.ImageList2.Images(16), "DistillationColumn"})
             '.Rows.Add(New Object() {"AbsorptionColumn", Me.ImageList2.Images(16), "AbsorptionColumn"})

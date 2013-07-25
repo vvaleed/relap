@@ -92,7 +92,7 @@ Partial Class FormFlowsheet
         Me.TSMICooler = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIOrificePlate = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIComponentSeparator = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TSMIHeatExchanger = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TSMIHeatStructure = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMITank = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMICUO = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMICOUO = New System.Windows.Forms.ToolStripMenuItem()
@@ -488,7 +488,7 @@ Partial Class FormFlowsheet
         '
         'OperaçõesUnitáriasToolStripMenuItem
         '
-        Me.OperaçõesUnitáriasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIMixer, Me.TSMISplitter, Me.TSMICompressor, Me.TSMIExpander, Me.TSMIPump, Me.TSMIPipe, Me.TSMIValve, Me.TSMISeparator, Me.TSMIHeater, Me.TSMICooler, Me.TSMIOrificePlate, Me.TSMIComponentSeparator, Me.TSMIHeatExchanger, Me.TSMITank, Me.TSMICUO, Me.TSMICOUO})
+        Me.OperaçõesUnitáriasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIMixer, Me.TSMISplitter, Me.TSMICompressor, Me.TSMIExpander, Me.TSMIPump, Me.TSMIPipe, Me.TSMIValve, Me.TSMISeparator, Me.TSMIHeater, Me.TSMICooler, Me.TSMIOrificePlate, Me.TSMIComponentSeparator, Me.TSMIHeatStructure, Me.TSMITank, Me.TSMICUO, Me.TSMICOUO})
         Me.OperaçõesUnitáriasToolStripMenuItem.Name = "OperaçõesUnitáriasToolStripMenuItem"
         Me.OperaçõesUnitáriasToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.OperaçõesUnitáriasToolStripMenuItem.Text = "Unit Operations"
@@ -589,13 +589,13 @@ Partial Class FormFlowsheet
         Me.TSMIComponentSeparator.Size = New System.Drawing.Size(220, 22)
         Me.TSMIComponentSeparator.Text = "Component Separator"
         '
-        'TSMIHeatExchanger
+        'TSMIHeatStructure
         '
-        Me.TSMIHeatExchanger.Image = Global.RELAP.My.Resources.Resources.heater_copy
-        Me.TSMIHeatExchanger.ImageTransparentColor = System.Drawing.Color.White
-        Me.TSMIHeatExchanger.Name = "TSMIHeatExchanger"
-        Me.TSMIHeatExchanger.Size = New System.Drawing.Size(220, 22)
-        Me.TSMIHeatExchanger.Text = "Heat Exchanger"
+        Me.TSMIHeatStructure.Image = Global.RELAP.My.Resources.Resources.heater_copy
+        Me.TSMIHeatStructure.ImageTransparentColor = System.Drawing.Color.White
+        Me.TSMIHeatStructure.Name = "TSMIHeatStructure"
+        Me.TSMIHeatStructure.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIHeatStructure.Text = "Heat Exchanger"
         '
         'TSMITank
         '
@@ -952,7 +952,7 @@ End Sub
     Public WithEvents TSMIReactorGibbs As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMIReactorCSTR As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMIReactorPFR As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents TSMIHeatExchanger As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents TSMIHeatStructure As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMITank As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMIRecycle As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TSMIEnergyRecycle As System.Windows.Forms.ToolStripMenuItem

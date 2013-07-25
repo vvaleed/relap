@@ -47,7 +47,7 @@ Namespace GraphicObjects
         RCT_Gibbs
         RCT_CSTR
         RCT_PFR
-        HeatExchanger
+        HeatStructure
         ShortcutColumn
         DistillationColumn
         AbsorptionColumn
@@ -83,7 +83,7 @@ Namespace GraphicObjects
         RCT_Gibbs
         RCT_CSTR
         RCT_PFR
-        HeatExchanger
+        HeatStructure
         DistillationColumn
         AbsorptionColumn
         ComponentSeparator

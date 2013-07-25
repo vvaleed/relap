@@ -6124,16 +6124,16 @@ Namespace GraphicObjects
 
     End Class
 
-    <Serializable()> Public Class HeatExchangerGraphic
+    <Serializable()> Public Class HeatStructureGraphic
         Inherits ShapeGraphic
 
 #Region "Constructors"
         Public Sub New()
             'Defines the unitop type.
-            TipoObjeto = GraphicObjects.TipoObjeto.HeatExchanger
+            TipoObjeto = GraphicObjects.TipoObjeto.HeatStructure
             'Creates 2 in and 2 out connection points.
             CreateConnectors(2, 2)
-            Me.Description = "HeatExchanger"
+            Me.Description = "HeatStructure"
         End Sub
 
         Public Sub New(ByVal graphicPosition As Point)
@@ -9009,7 +9009,7 @@ Namespace GraphicObjects
                     g.DrawString("A", fontA, Brushes.DarkOrange, ax, ay)
                     gp.Dispose()
                     g.EndContainer(gContainer)
-                Case ShapeIcon.HeatExchanger
+                Case ShapeIcon.HeatStructure
                     Dim rect As New Rectangle(X, Y, Width, Height)
                     Dim path As New GraphicsPath()
                     path.AddEllipse(rect)

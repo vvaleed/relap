@@ -3475,10 +3475,10 @@ Tensão Superficial da Fase Líquida: Método Brock-Bird</value>
   <data name="Erronocalculodasconc" xml:space="preserve">
     <value>Erro no cálculo da composição de equilíbrio.</value>
   </data>
-  <data name="HeatExchanger" xml:space="preserve">
+  <data name="HeatStructure" xml:space="preserve">
     <value>Trocador de Calor</value>
   </data>
-  <data name="HeatExchangers" xml:space="preserve">
+  <data name="HeatStructures" xml:space="preserve">
     <value>Trocadores de Calor</value>
   </data>
   <data name="Area" xml:space="preserve">
@@ -4342,7 +4342,7 @@ Tensão Superficial da Fase Líquida: Método Brock-Bird</value>
   <data name="Especificao_Desc" xml:space="preserve">
     <value>Especifica uma propriedade de um objeto como uma função de outra propriedade de outro objeto.</value>
   </data>
-  <data name="HeatExchanger_Desc" xml:space="preserve">
+  <data name="HeatStructure_Desc" xml:space="preserve">
     <value>Modelo simplificado de trocador de calor.</value>
   </data>
   <data name="Misturador_Desc" xml:space="preserve">

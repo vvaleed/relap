@@ -933,7 +933,7 @@
   <data name="HeaterCoolerOutletTemperature" xml:space="preserve">
     <value>Temperatura de salida</value>
   </data>
-  <data name="HeatExchangers" xml:space="preserve">
+  <data name="HeatStructures" xml:space="preserve">
     <value>Intercambiadores de calor </value>
   </data>
   <data name="Valormnimoparaavariv" xml:space="preserve">
@@ -1635,7 +1635,7 @@
   <data name="CaixadeTexto" xml:space="preserve">
     <value>Caja de Texto  </value>
   </data>
-  <data name="HeatExchanger" xml:space="preserve">
+  <data name="HeatStructure" xml:space="preserve">
     <value>Intercambiador de calor </value>
   </data>
   <data name="Potnciageradapelatur" xml:space="preserve">
@@ -4343,7 +4343,7 @@ Las propiedades se calculan directamente desde el Estado o datos experimentales 
   <data name="Especificao_Desc" xml:space="preserve">
     <value>Especifica una propiedad de un objeto en función de una propiedad de otro objeto.</value>
   </data>
-  <data name="HeatExchanger_Desc" xml:space="preserve">
+  <data name="HeatStructure_Desc" xml:space="preserve">
     <value>Modelo simplificado de trocador de calor.</value>
   </data>
   <data name="Misturador_Desc" xml:space="preserve">

@@ -490,10 +490,10 @@
   <data name="TSMIComponentSeparator.Text" xml:space="preserve">
     <value>Komponentenseparator</value>
   </data>
-  <data name="TSMIHeatExchanger.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="TSMIHeatStructure.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 22</value>
   </data>
-  <data name="TSMIHeatExchanger.Text" xml:space="preserve">
+  <data name="TSMIHeatStructure.Text" xml:space="preserve">
     <value>Wärmetauscher</value>
   </data>
   <data name="TSMITank.Size" type="System.Drawing.Size, System.Drawing">
