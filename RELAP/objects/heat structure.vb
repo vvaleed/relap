@@ -97,6 +97,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             MyBase.CreateNew()
             Me.m_ComponentName = nome
             Me.m_ComponentDescription = descricao
+            Me._HeatStructureMeshData = New HeatStructureMeshData
             Me.FillNodeItems()
             Me.QTFillNodeItems()
            

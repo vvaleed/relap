@@ -338,6 +338,12 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor.resx">
+      <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor.resx">
+      <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucThermoDynamicStates.resx">
       <DependentUpon>ucThermoDynamicStates.vb</DependentUpon>
     </EmbeddedResource>

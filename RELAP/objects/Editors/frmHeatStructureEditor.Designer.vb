@@ -22,8 +22,30 @@ Partial Class frmHeatStructureEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.UcHeatStructureEditor1 = New ucHeatStructureEditor()
+        Me.SuspendLayout()
+        '
+        'UcHeatStructureEditor1
+        '
+        Me.UcHeatStructureEditor1.HeatStructureMeshData = Nothing
+        Me.UcHeatStructureEditor1.Location = New System.Drawing.Point(12, 9)
+        Me.UcHeatStructureEditor1.Name = "UcHeatStructureEditor1"
+        Me.UcHeatStructureEditor1.NumberFormat = Nothing
+        Me.UcHeatStructureEditor1.Size = New System.Drawing.Size(728, 422)
+        Me.UcHeatStructureEditor1.SystemOfUnits = Nothing
+        Me.UcHeatStructureEditor1.TabIndex = 0
+        '
+        'frmHeatStructureEditor
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(761, 443)
+        Me.Controls.Add(Me.UcHeatStructureEditor1)
+        Me.Name = "frmHeatStructureEditor"
         Me.Text = "frmHeatStructureEditor"
+        Me.ResumeLayout(False)
+
     End Sub
+    Friend WithEvents UcHeatStructureEditor1 As ucHeatStructureEditor
+
 End Class

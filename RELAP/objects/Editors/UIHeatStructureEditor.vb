@@ -20,7 +20,13 @@ Namespace RELAP.Editors
 
             If (editorService IsNot Nothing) Then
                 Dim selectionControl As New frmHeatStructureEditor
+                '    selectionControl.UcHeatStructureEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
+                '    selectionControl.UcHeatStructureEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
+                selectionControl.UcHeatStructureEditor1.HeatStructureMeshData = value
 
+                editorService.ShowDialog(selectionControl)
+
+                value = selectionControl.UcHeatStructureEditor1.HeatStructureMeshData
                 'selectionControl.UcPipeEditor1.Profile = value
 
                 'editorService.ShowDialog(selectionControl)
