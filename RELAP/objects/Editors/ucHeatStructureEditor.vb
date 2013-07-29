@@ -27,4 +27,9 @@
             _nf = value
         End Set
     End Property
+
+   
+    Private Sub DataGridViewformat1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewformat1.CellContentClick
+
+    End Sub
 End Class
