@@ -31,7 +31,7 @@ Namespace RELAP.Editors
 
                 'editorService.ShowDialog(selectionControl)
 
-                value = selectionControl
+                'value = selectionControl
 
             End If
 

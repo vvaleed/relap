@@ -37,17 +37,52 @@ Public Class ucPipeEditor
         Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.PipeGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.pipe = My.Application.ActiveSimulation.Collections.CLCS_PipeCollection(gobj.Name)
 
-        For i = 1 To myCOTK.NumberOfVoulmes
-            dgv.Rows.Add(i.ToString)
-        Next
+        If myCOTK.Profile.Sections.Count <> 0 Then
+
+
+            For i = 0 To myCOTK.Profile.Sections.Count - 1
+                Dim row As New DataGridViewRow
+                'row.Cells.Add(
+                Dim cell As DataGridViewCell
+                'cell=row.CreateCells(
+                cell.Value = myCOTK.Profile.Sections(i).VolumeNumber
+                row.Cells.Add(cell)
+
+                row.Cells(0).Value = myCOTK.Profile.Sections(i).VolumeNumber
+                row.Cells(1).Value = myCOTK.Profile.Sections(i).FlowArea
+                row.Cells(2).Value = myCOTK.Profile.Sections(i).LengthofVolume
+                row.Cells(3).Value = myCOTK.Profile.Sections(i).VolumeofVolume
+                row.Cells(4).Value = myCOTK.Profile.Sections(i).Azimuthalangle
+                row.Cells(5).Value = myCOTK.Profile.Sections(i).VerticalAngle
+                row.Cells(6).Value = myCOTK.Profile.Sections(i).ElevationChange
+                row.Cells(7).Value = myCOTK.Profile.Sections(i).HydraulicDiameter
+                row.Cells(8).Value = myCOTK.Profile.Sections(i).WallRoughness
+                row.Cells(9).Value = myCOTK.Profile.Sections(i).ThermalStratificationModel
+                row.Cells(10).Value = myCOTK.Profile.Sections(i).LevelTrackingModel
+                row.Cells(11).Value = myCOTK.Profile.Sections(i).WaterPackingScheme
+                row.Cells(12).Value = myCOTK.Profile.Sections(i).VerticalStratificationModel
+                row.Cells(13).Value = myCOTK.Profile.Sections(i).InterphaseFriction
+                row.Cells(14).Value = myCOTK.Profile.Sections(i).ComputeWallFriction
+                row.Cells(15).Value = myCOTK.Profile.Sections(i).EquilibriumTemperature
+
+                dgv.Rows.Add(row)
+            Next
+        Else
+            For i = 1 To myCOTK.NumberOfVoulmes
+
+                dgv.Rows.Add(i.ToString)
+            Next
+            For Each row As DataGridViewRow In dgv.Rows
+                For i = 1 To row.Cells.Count - 1
+                    row.Cells(i).Value = 0
+                Next
+            Next
+        End If
+
         For i = 1 To myCOTK.NumberOfVoulmes - 1
             dgv2.Rows.Add(i.ToString)
         Next
-        For Each row As DataGridViewRow In dgv.Rows
-            For i = 1 To row.Cells.Count - 1
-                row.Cells(i).Value = 0
-            Next
-        Next
+        
         For Each row As DataGridViewRow In dgv2.Rows
             For i = 1 To 3
                 row.Cells(i).Value = 0
@@ -58,7 +93,7 @@ Public Class ucPipeEditor
 
 
 
-    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles dgv.CellEnter, dgv2.CellEnter
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles dgv.CellEnter, dgv2.CellEnter, cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
         Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17 As Object

@@ -29,7 +29,7 @@
     End Property
 
    
-    Private Sub DataGridViewformat1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewformat1.CellContentClick
+    Private Sub DataGridViewformat1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvformat1.CellContentClick
 
     End Sub
 End Class

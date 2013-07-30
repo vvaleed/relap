@@ -25,29 +25,29 @@ Partial Class ucHeatStructureEditor
         Me.chkboxmeshgeometry = New System.Windows.Forms.CheckBox()
         Me.chklistboxSelectFormat = New System.Windows.Forms.CheckedListBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.DataGridViewformat1 = New System.Windows.Forms.DataGridView()
+        Me.dgvformat1 = New System.Windows.Forms.DataGridView()
         Me.Numberofintervals = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightCoordinate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewformat2 = New System.Windows.Forms.DataGridView()
+        Me.dgvformat2 = New System.Windows.Forms.DataGridView()
         Me.MeshInterval = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewNoDecay = New System.Windows.Forms.DataGridView()
+        Me.dgvNoDecay = New System.Windows.Forms.DataGridView()
         Me.SourceValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.DataGridViewWithDecay = New System.Windows.Forms.DataGridView()
+        Me.dgvWithDecay = New System.Windows.Forms.DataGridView()
         Me.GammaAttenuationCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewComposition = New System.Windows.Forms.DataGridView()
+        Me.dgvComposition = New System.Windows.Forms.DataGridView()
         Me.CompositionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        CType(Me.DataGridViewformat1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewformat2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewWithDecay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewComposition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvWithDecay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkboxmeshgeometry
@@ -83,15 +83,15 @@ Partial Class ucHeatStructureEditor
         Me.TextBox1.TabIndex = 3
         Me.TextBox1.Text = "Select Format"
         '
-        'DataGridViewformat1
+        'dgvformat1
         '
-        Me.DataGridViewformat1.AccessibleDescription = "                            "
-        Me.DataGridViewformat1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewformat1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Numberofintervals, Me.RightCoordinate})
-        Me.DataGridViewformat1.Location = New System.Drawing.Point(34, 114)
-        Me.DataGridViewformat1.Name = "DataGridViewformat1"
-        Me.DataGridViewformat1.Size = New System.Drawing.Size(256, 125)
-        Me.DataGridViewformat1.TabIndex = 4
+        Me.dgvformat1.AccessibleDescription = "                            "
+        Me.dgvformat1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvformat1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Numberofintervals, Me.RightCoordinate})
+        Me.dgvformat1.Location = New System.Drawing.Point(34, 114)
+        Me.dgvformat1.Name = "dgvformat1"
+        Me.dgvformat1.Size = New System.Drawing.Size(256, 125)
+        Me.dgvformat1.TabIndex = 4
         '
         'Numberofintervals
         '
@@ -104,15 +104,15 @@ Partial Class ucHeatStructureEditor
         Me.RightCoordinate.HeaderText = "Right Coordinate"
         Me.RightCoordinate.Name = "RightCoordinate"
         '
-        'DataGridViewformat2
+        'dgvformat2
         '
-        Me.DataGridViewformat2.AccessibleDescription = "                            "
-        Me.DataGridViewformat2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewformat2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MeshInterval, Me.IntervalNumber})
-        Me.DataGridViewformat2.Location = New System.Drawing.Point(34, 259)
-        Me.DataGridViewformat2.Name = "DataGridViewformat2"
-        Me.DataGridViewformat2.Size = New System.Drawing.Size(256, 125)
-        Me.DataGridViewformat2.TabIndex = 5
+        Me.dgvformat2.AccessibleDescription = "                            "
+        Me.dgvformat2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvformat2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MeshInterval, Me.IntervalNumber})
+        Me.dgvformat2.Location = New System.Drawing.Point(34, 259)
+        Me.dgvformat2.Name = "dgvformat2"
+        Me.dgvformat2.Size = New System.Drawing.Size(256, 125)
+        Me.dgvformat2.TabIndex = 5
         '
         'MeshInterval
         '
@@ -125,15 +125,15 @@ Partial Class ucHeatStructureEditor
         Me.IntervalNumber.HeaderText = "Interval Number"
         Me.IntervalNumber.Name = "IntervalNumber"
         '
-        'DataGridViewNoDecay
+        'dgvNoDecay
         '
-        Me.DataGridViewNoDecay.AccessibleDescription = "                            "
-        Me.DataGridViewNoDecay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewNoDecay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SourceValue, Me.MeshIntervalNumber})
-        Me.DataGridViewNoDecay.Location = New System.Drawing.Point(344, 114)
-        Me.DataGridViewNoDecay.Name = "DataGridViewNoDecay"
-        Me.DataGridViewNoDecay.Size = New System.Drawing.Size(256, 125)
-        Me.DataGridViewNoDecay.TabIndex = 6
+        Me.dgvNoDecay.AccessibleDescription = "                            "
+        Me.dgvNoDecay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvNoDecay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SourceValue, Me.MeshIntervalNumber})
+        Me.dgvNoDecay.Location = New System.Drawing.Point(344, 114)
+        Me.dgvNoDecay.Name = "dgvNoDecay"
+        Me.dgvNoDecay.Size = New System.Drawing.Size(256, 125)
+        Me.dgvNoDecay.TabIndex = 6
         '
         'SourceValue
         '
@@ -165,15 +165,15 @@ Partial Class ucHeatStructureEditor
         Me.TextBox3.Size = New System.Drawing.Size(100, 20)
         Me.TextBox3.TabIndex = 8
         '
-        'DataGridViewWithDecay
+        'dgvWithDecay
         '
-        Me.DataGridViewWithDecay.AccessibleDescription = "                            "
-        Me.DataGridViewWithDecay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewWithDecay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GammaAttenuationCo, Me.MeshIntervalNumber2})
-        Me.DataGridViewWithDecay.Location = New System.Drawing.Point(344, 259)
-        Me.DataGridViewWithDecay.Name = "DataGridViewWithDecay"
-        Me.DataGridViewWithDecay.Size = New System.Drawing.Size(256, 125)
-        Me.DataGridViewWithDecay.TabIndex = 9
+        Me.dgvWithDecay.AccessibleDescription = "                            "
+        Me.dgvWithDecay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvWithDecay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GammaAttenuationCo, Me.MeshIntervalNumber2})
+        Me.dgvWithDecay.Location = New System.Drawing.Point(344, 259)
+        Me.dgvWithDecay.Name = "dgvWithDecay"
+        Me.dgvWithDecay.Size = New System.Drawing.Size(256, 125)
+        Me.dgvWithDecay.TabIndex = 9
         '
         'GammaAttenuationCo
         '
@@ -186,15 +186,15 @@ Partial Class ucHeatStructureEditor
         Me.MeshIntervalNumber2.HeaderText = "Mesh Interval Number"
         Me.MeshIntervalNumber2.Name = "MeshIntervalNumber2"
         '
-        'DataGridViewComposition
+        'dgvComposition
         '
-        Me.DataGridViewComposition.AccessibleDescription = "                            "
-        Me.DataGridViewComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
-        Me.DataGridViewComposition.Location = New System.Drawing.Point(640, 114)
-        Me.DataGridViewComposition.Name = "DataGridViewComposition"
-        Me.DataGridViewComposition.Size = New System.Drawing.Size(256, 125)
-        Me.DataGridViewComposition.TabIndex = 10
+        Me.dgvComposition.AccessibleDescription = "                            "
+        Me.dgvComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
+        Me.dgvComposition.Location = New System.Drawing.Point(640, 114)
+        Me.dgvComposition.Name = "dgvComposition"
+        Me.dgvComposition.Size = New System.Drawing.Size(256, 125)
+        Me.dgvComposition.TabIndex = 10
         '
         'CompositionNumber
         '
@@ -224,23 +224,23 @@ Partial Class ucHeatStructureEditor
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.DataGridViewComposition)
-        Me.Controls.Add(Me.DataGridViewWithDecay)
+        Me.Controls.Add(Me.dgvComposition)
+        Me.Controls.Add(Me.dgvWithDecay)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.DataGridViewNoDecay)
-        Me.Controls.Add(Me.DataGridViewformat2)
-        Me.Controls.Add(Me.DataGridViewformat1)
+        Me.Controls.Add(Me.dgvNoDecay)
+        Me.Controls.Add(Me.dgvformat2)
+        Me.Controls.Add(Me.dgvformat1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.chklistboxSelectFormat)
         Me.Controls.Add(Me.chkboxmeshgeometry)
         Me.Name = "ucHeatStructureEditor"
         Me.Size = New System.Drawing.Size(912, 422)
-        CType(Me.DataGridViewformat1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewformat2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewNoDecay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewWithDecay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewComposition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvWithDecay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -248,17 +248,17 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents chkboxmeshgeometry As System.Windows.Forms.CheckBox
     Friend WithEvents chklistboxSelectFormat As System.Windows.Forms.CheckedListBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents DataGridViewformat1 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewformat2 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewNoDecay As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvformat1 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvformat2 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvNoDecay As System.Windows.Forms.DataGridView
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents DataGridViewWithDecay As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvWithDecay As System.Windows.Forms.DataGridView
     Friend WithEvents Numberofintervals As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RightCoordinate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshInterval As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IntervalNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewComposition As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvComposition As System.Windows.Forms.DataGridView
     Friend WithEvents SourceValue As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshIntervalNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GammaAttenuationCo As System.Windows.Forms.DataGridViewTextBoxColumn
