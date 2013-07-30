@@ -8,24 +8,16 @@
             _EnterMeshGeometry = value
         End Set
     End Property
-    Private _EnterMeshGeometry2 As Boolean
-    Public Property EnterMeshGeometry2() As Boolean
+    Private _SelectFormat As String
+    Public Property SelectFormat() As String
         Get
-            Return _EnterMeshGeometry2
+            Return _SelectFormat
         End Get
-        Set(ByVal value As Boolean)
-            _EnterMeshGeometry2 = value
+        Set(ByVal value As String)
+            _SelectFormat = value
         End Set
     End Property
-    Private _EnterMeshGeometry3 As Boolean
-    Public Property EnterMeshGeometry3() As Boolean
-        Get
-            Return _EnterMeshGeometry3
-        End Get
-        Set(ByVal value As Boolean)
-            _EnterMeshGeometry3 = value
-        End Set
-    End Property
+  
     Protected m_collection As Generic.SortedDictionary(Of Integer, HSMeshDataFormat1)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
