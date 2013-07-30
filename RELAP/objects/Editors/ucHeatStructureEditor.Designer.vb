@@ -23,7 +23,6 @@ Partial Class ucHeatStructureEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.chkboxmeshgeometry = New System.Windows.Forms.CheckBox()
-        Me.chklistboxSelectFormat = New System.Windows.Forms.CheckedListBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.dgvformat1 = New System.Windows.Forms.DataGridView()
         Me.Numberofintervals = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -35,7 +34,7 @@ Partial Class ucHeatStructureEditor
         Me.SourceValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtboxDecayHeat = New System.Windows.Forms.TextBox()
         Me.dgvWithDecay = New System.Windows.Forms.DataGridView()
         Me.GammaAttenuationCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +42,8 @@ Partial Class ucHeatStructureEditor
         Me.CompositionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.CmbBoxSelectFormat = New System.Windows.Forms.ComboBox()
+        Me.cmdsave = New System.Windows.Forms.Button()
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,17 +60,6 @@ Partial Class ucHeatStructureEditor
         Me.chkboxmeshgeometry.TabIndex = 0
         Me.chkboxmeshgeometry.Text = "Enter Mesh Geometry"
         Me.chkboxmeshgeometry.UseVisualStyleBackColor = True
-        '
-        'chklistboxSelectFormat
-        '
-        Me.chklistboxSelectFormat.BackColor = System.Drawing.SystemColors.Menu
-        Me.chklistboxSelectFormat.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.chklistboxSelectFormat.FormattingEnabled = True
-        Me.chklistboxSelectFormat.Items.AddRange(New Object() {"Number of intervals, Right coordinate", "Mesh interval, Interval number"})
-        Me.chklistboxSelectFormat.Location = New System.Drawing.Point(34, 78)
-        Me.chklistboxSelectFormat.Name = "chklistboxSelectFormat"
-        Me.chklistboxSelectFormat.Size = New System.Drawing.Size(199, 30)
-        Me.chklistboxSelectFormat.TabIndex = 2
         '
         'TextBox1
         '
@@ -109,7 +99,7 @@ Partial Class ucHeatStructureEditor
         Me.dgvformat2.AccessibleDescription = "                            "
         Me.dgvformat2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvformat2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MeshInterval, Me.IntervalNumber})
-        Me.dgvformat2.Location = New System.Drawing.Point(34, 259)
+        Me.dgvformat2.Location = New System.Drawing.Point(34, 114)
         Me.dgvformat2.Name = "dgvformat2"
         Me.dgvformat2.Size = New System.Drawing.Size(256, 125)
         Me.dgvformat2.TabIndex = 5
@@ -151,26 +141,26 @@ Partial Class ucHeatStructureEditor
         Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(344, 78)
+        Me.TextBox2.Location = New System.Drawing.Point(344, 59)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
         Me.TextBox2.Size = New System.Drawing.Size(100, 13)
         Me.TextBox2.TabIndex = 7
         Me.TextBox2.Text = "Decay Heat"
         '
-        'TextBox3
+        'txtboxDecayHeat
         '
-        Me.TextBox3.Location = New System.Drawing.Point(416, 75)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox3.TabIndex = 8
+        Me.txtboxDecayHeat.Location = New System.Drawing.Point(422, 59)
+        Me.txtboxDecayHeat.Name = "txtboxDecayHeat"
+        Me.txtboxDecayHeat.Size = New System.Drawing.Size(100, 20)
+        Me.txtboxDecayHeat.TabIndex = 8
         '
         'dgvWithDecay
         '
         Me.dgvWithDecay.AccessibleDescription = "                            "
         Me.dgvWithDecay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvWithDecay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GammaAttenuationCo, Me.MeshIntervalNumber2})
-        Me.dgvWithDecay.Location = New System.Drawing.Point(344, 259)
+        Me.dgvWithDecay.Location = New System.Drawing.Point(344, 114)
         Me.dgvWithDecay.Name = "dgvWithDecay"
         Me.dgvWithDecay.Size = New System.Drawing.Size(256, 125)
         Me.dgvWithDecay.TabIndex = 9
@@ -191,7 +181,7 @@ Partial Class ucHeatStructureEditor
         Me.dgvComposition.AccessibleDescription = "                            "
         Me.dgvComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
-        Me.dgvComposition.Location = New System.Drawing.Point(640, 114)
+        Me.dgvComposition.Location = New System.Drawing.Point(34, 280)
         Me.dgvComposition.Name = "dgvComposition"
         Me.dgvComposition.Size = New System.Drawing.Size(256, 125)
         Me.dgvComposition.TabIndex = 10
@@ -212,28 +202,47 @@ Partial Class ucHeatStructureEditor
         Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(640, 82)
+        Me.TextBox4.Location = New System.Drawing.Point(34, 261)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.ReadOnly = True
         Me.TextBox4.Size = New System.Drawing.Size(100, 13)
         Me.TextBox4.TabIndex = 11
         Me.TextBox4.Text = "Composition Data"
         '
+        'CmbBoxSelectFormat
+        '
+        Me.CmbBoxSelectFormat.FormattingEnabled = True
+        Me.CmbBoxSelectFormat.Items.AddRange(New Object() {"Number of Intervals, Right Coordinate", "Mesh Interval, Interval number"})
+        Me.CmbBoxSelectFormat.Location = New System.Drawing.Point(34, 82)
+        Me.CmbBoxSelectFormat.Name = "CmbBoxSelectFormat"
+        Me.CmbBoxSelectFormat.Size = New System.Drawing.Size(256, 21)
+        Me.CmbBoxSelectFormat.TabIndex = 12
+        '
+        'cmdsave
+        '
+        Me.cmdsave.Location = New System.Drawing.Point(617, 382)
+        Me.cmdsave.Name = "cmdsave"
+        Me.cmdsave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdsave.TabIndex = 13
+        Me.cmdsave.Text = "Save"
+        Me.cmdsave.UseVisualStyleBackColor = True
+        '
         'ucHeatStructureEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cmdsave)
+        Me.Controls.Add(Me.CmbBoxSelectFormat)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.dgvComposition)
-        Me.Controls.Add(Me.dgvWithDecay)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.txtboxDecayHeat)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.dgvNoDecay)
-        Me.Controls.Add(Me.dgvformat2)
         Me.Controls.Add(Me.dgvformat1)
         Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.chklistboxSelectFormat)
         Me.Controls.Add(Me.chkboxmeshgeometry)
+        Me.Controls.Add(Me.dgvWithDecay)
+        Me.Controls.Add(Me.dgvformat2)
         Me.Name = "ucHeatStructureEditor"
         Me.Size = New System.Drawing.Size(912, 422)
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -246,13 +255,12 @@ Partial Class ucHeatStructureEditor
 
     End Sub
     Friend WithEvents chkboxmeshgeometry As System.Windows.Forms.CheckBox
-    Friend WithEvents chklistboxSelectFormat As System.Windows.Forms.CheckedListBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents dgvformat1 As System.Windows.Forms.DataGridView
     Friend WithEvents dgvformat2 As System.Windows.Forms.DataGridView
     Friend WithEvents dgvNoDecay As System.Windows.Forms.DataGridView
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents txtboxDecayHeat As System.Windows.Forms.TextBox
     Friend WithEvents dgvWithDecay As System.Windows.Forms.DataGridView
     Friend WithEvents Numberofintervals As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RightCoordinate As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -266,5 +274,7 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents CompositionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshIntervalNumber3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents CmbBoxSelectFormat As System.Windows.Forms.ComboBox
+    Friend WithEvents cmdsave As System.Windows.Forms.Button
 
 End Class
