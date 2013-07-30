@@ -42,9 +42,6 @@ Partial Class ucPipeEditor
         Me.cmdCopy = New System.Windows.Forms.Button()
         Me.cmdPaste = New System.Windows.Forms.Button()
         Me.dgv2 = New System.Windows.Forms.DataGridView()
-        Me.cmdCopy2 = New System.Windows.Forms.Button()
-        Me.cmdPaste2 = New System.Windows.Forms.Button()
-        Me.cmdCopytoAll = New System.Windows.Forms.Button()
         Me.JunctionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -62,8 +59,27 @@ Partial Class ucPipeEditor
         Me.InitialVaporVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialLiquidMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialVaporMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.cmdSave = New System.Windows.Forms.Button()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer3.Panel1.SuspendLayout()
+        Me.SplitContainer3.Panel2.SuspendLayout()
+        Me.SplitContainer3.SuspendLayout()
         Me.SuspendLayout()
         '
         'dgv
@@ -73,9 +89,10 @@ Partial Class ucPipeEditor
         Me.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VolumeNumber, Me.FlowArea, Me.LengthofVolume, Me.VolumeofVolume, Me.Azimuthalangle, Me.VerticalAngle, Me.ElevationChange, Me.HydraulicDiameter, Me.WallRoughness, Me.ThermalStratificationModel, Me.LevelTrackingModel, Me.WaterPackingScheme, Me.VerticalStratificationModel, Me.InterphaseFriction, Me.ComputeWallFriction, Me.EquilibriumTemperature})
-        Me.dgv.Location = New System.Drawing.Point(7, 15)
+        Me.dgv.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgv.Location = New System.Drawing.Point(0, 0)
         Me.dgv.Name = "dgv"
-        Me.dgv.Size = New System.Drawing.Size(1042, 289)
+        Me.dgv.Size = New System.Drawing.Size(1052, 282)
         Me.dgv.TabIndex = 4
         '
         'VolumeNumber
@@ -176,7 +193,7 @@ Partial Class ucPipeEditor
         'cmdCopy
         '
         Me.cmdCopy.Enabled = False
-        Me.cmdCopy.Location = New System.Drawing.Point(143, 309)
+        Me.cmdCopy.Location = New System.Drawing.Point(175, 10)
         Me.cmdCopy.Name = "cmdCopy"
         Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
         Me.cmdCopy.TabIndex = 6
@@ -186,7 +203,7 @@ Partial Class ucPipeEditor
         'cmdPaste
         '
         Me.cmdPaste.Enabled = False
-        Me.cmdPaste.Location = New System.Drawing.Point(244, 309)
+        Me.cmdPaste.Location = New System.Drawing.Point(256, 10)
         Me.cmdPaste.Name = "cmdPaste"
         Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
         Me.cmdPaste.TabIndex = 8
@@ -200,40 +217,11 @@ Partial Class ucPipeEditor
         Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.InterphaseVelocity, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate})
-        Me.dgv2.Location = New System.Drawing.Point(7, 339)
+        Me.dgv2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgv2.Location = New System.Drawing.Point(0, 0)
         Me.dgv2.Name = "dgv2"
-        Me.dgv2.Size = New System.Drawing.Size(1042, 263)
+        Me.dgv2.Size = New System.Drawing.Size(1052, 280)
         Me.dgv2.TabIndex = 4
-        '
-        'cmdCopy2
-        '
-        Me.cmdCopy2.Enabled = False
-        Me.cmdCopy2.Location = New System.Drawing.Point(143, 624)
-        Me.cmdCopy2.Name = "cmdCopy2"
-        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy2.TabIndex = 6
-        Me.cmdCopy2.Text = "Copy"
-        Me.cmdCopy2.UseVisualStyleBackColor = True
-        '
-        'cmdPaste2
-        '
-        Me.cmdPaste2.Enabled = False
-        Me.cmdPaste2.Location = New System.Drawing.Point(244, 624)
-        Me.cmdPaste2.Name = "cmdPaste2"
-        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste2.TabIndex = 8
-        Me.cmdPaste2.Text = "Paste"
-        Me.cmdPaste2.UseVisualStyleBackColor = True
-        '
-        'cmdCopytoAll
-        '
-        Me.cmdCopytoAll.Enabled = False
-        Me.cmdCopytoAll.Location = New System.Drawing.Point(339, 309)
-        Me.cmdCopytoAll.Name = "cmdCopytoAll"
-        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopytoAll.TabIndex = 9
-        Me.cmdCopytoAll.Text = "Copy to All"
-        Me.cmdCopytoAll.UseVisualStyleBackColor = True
         '
         'JunctionNumber
         '
@@ -340,21 +328,124 @@ Partial Class ucPipeEditor
         Me.InitialVaporMassFlowRate.HeaderText = "Initial Vapor Mass Flow Rate"
         Me.InitialVaporMassFlowRate.Name = "InitialVaporMassFlowRate"
         '
+        'cmdCopy2
+        '
+        Me.cmdCopy2.Enabled = False
+        Me.cmdCopy2.Location = New System.Drawing.Point(202, 16)
+        Me.cmdCopy2.Name = "cmdCopy2"
+        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy2.TabIndex = 6
+        Me.cmdCopy2.Text = "Copy"
+        Me.cmdCopy2.UseVisualStyleBackColor = True
+        '
+        'cmdPaste2
+        '
+        Me.cmdPaste2.Enabled = False
+        Me.cmdPaste2.Location = New System.Drawing.Point(304, 16)
+        Me.cmdPaste2.Name = "cmdPaste2"
+        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste2.TabIndex = 8
+        Me.cmdPaste2.Text = "Paste"
+        Me.cmdPaste2.UseVisualStyleBackColor = True
+        '
+        'cmdCopytoAll
+        '
+        Me.cmdCopytoAll.Enabled = False
+        Me.cmdCopytoAll.Location = New System.Drawing.Point(351, 10)
+        Me.cmdCopytoAll.Name = "cmdCopytoAll"
+        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll.TabIndex = 9
+        Me.cmdCopytoAll.Text = "Copy to All"
+        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.dgv)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.cmdSave)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.cmdCopytoAll)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.cmdCopy)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.cmdPaste)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1052, 330)
+        Me.SplitContainer1.SplitterDistance = 282
+        Me.SplitContainer1.TabIndex = 10
+        '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(444, 10)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 10
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        Me.SplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.SplitContainer1)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer3)
+        Me.SplitContainer2.Size = New System.Drawing.Size(1052, 661)
+        Me.SplitContainer2.SplitterDistance = 330
+        Me.SplitContainer2.TabIndex = 11
+        '
+        'SplitContainer3
+        '
+        Me.SplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer3.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer3.Name = "SplitContainer3"
+        Me.SplitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer3.Panel1
+        '
+        Me.SplitContainer3.Panel1.Controls.Add(Me.dgv2)
+        '
+        'SplitContainer3.Panel2
+        '
+        Me.SplitContainer3.Panel2.Controls.Add(Me.cmdPaste2)
+        Me.SplitContainer3.Panel2.Controls.Add(Me.cmdCopy2)
+        Me.SplitContainer3.Size = New System.Drawing.Size(1052, 327)
+        Me.SplitContainer3.SplitterDistance = 280
+        Me.SplitContainer3.TabIndex = 12
+        '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.cmdCopytoAll)
-        Me.Controls.Add(Me.cmdPaste2)
-        Me.Controls.Add(Me.cmdPaste)
-        Me.Controls.Add(Me.cmdCopy2)
-        Me.Controls.Add(Me.cmdCopy)
-        Me.Controls.Add(Me.dgv2)
-        Me.Controls.Add(Me.dgv)
+        Me.Controls.Add(Me.SplitContainer2)
         Me.Name = "ucPipeEditor"
         Me.Size = New System.Drawing.Size(1052, 661)
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        Me.SplitContainer3.Panel1.ResumeLayout(False)
+        Me.SplitContainer3.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -398,5 +489,9 @@ Partial Class ucPipeEditor
     Friend WithEvents InitialVaporVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialLiquidMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialVaporMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitContainer3 As System.Windows.Forms.SplitContainer
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class
