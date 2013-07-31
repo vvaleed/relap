@@ -2932,6 +2932,9 @@ sim:                Dim myStream As System.IO.FileStream
                     counter = counter + 1
                 Next kvp2
             Next kvp
+
+
+
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure) In ChildParent.Collections.CLCS_HeatStructureCollection
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Heat Structure '" & kvp.Value.GraphicObject.Tag & "'")
@@ -2941,9 +2944,37 @@ sim:                Dim myStream As System.IO.FileStream
 
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "100 " & kvp.Value.HeatStructureMeshData.EnterMeshGeometry & " " & kvp.Value.HeatStructureMeshData.SelectFormat)
 
+                Dim Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat1) In kvp.Value.HeatStructureMeshData.MeshDataFormat1
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate.ToString("F")
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
 
-                generate.WriteLine("1" & kvp.Value.UID & "0" & "300 " & kvp.Value.HeatStructureMeshData.DecayHeat)
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat2) In kvp.Value.HeatStructureMeshData.MeshDataFormat2
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval & " " & kvp2.Value.IntervalNumber
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataComposition) In kvp.Value.HeatStructureMeshData.MeshDataComposition
+                    output = "1" & kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.CompositionNumber & " " & kvp2.Value.MeshIntervalNumber3
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+                If kvp.Value.HeatStructureMeshData.DecayHeat = "0" Then
+                ElseIf kvp.Value.HeatStructureMeshData.DecayHeat = "" Then
+                Else
+                    generate.WriteLine("1" & kvp.Value.UID & "0" & "300 " & kvp.Value.HeatStructureMeshData.DecayHeat)
+                End If
+
             Next kvp
+
+
+
 
             generate.WriteLine(".")
             generate.Close()

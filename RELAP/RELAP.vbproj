@@ -256,6 +256,7 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
+    <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureMeshData.vb" />
     <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />
     <Compile Include="objects\Editors\frmHeatStructureEditor.Designer.vb">
@@ -264,13 +265,26 @@
     <Compile Include="objects\Editors\frmHeatStructureEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="objects\Editors\frmHeatStructureEditor2.Designer.vb">
+      <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmHeatStructureEditor2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="objects\Editors\ucHeatStructureEditor.Designer.vb">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </Compile>
     <Compile Include="objects\Editors\ucHeatStructureEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="objects\Editors\ucHeatStructureEditor2.Designer.vb">
+      <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\ucHeatStructureEditor2.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="objects\Editors\UIHeatStructureEditor.vb" />
+    <Compile Include="objects\Editors\UIHeatStructureEditor2.vb" />
     <Compile Include="objects\Editors\UIVolumeSelector.vb" />
     <Compile Include="objects\Editors\UIComponentSelector.vb" />
     <Compile Include="objects\Editors\frmThermalHydraulicStatesditor.Designer.vb">
@@ -341,8 +355,14 @@
     <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor2.resx">
+      <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor.resx">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor2.resx">
+      <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucThermoDynamicStates.resx">
       <DependentUpon>ucThermoDynamicStates.vb</DependentUpon>
