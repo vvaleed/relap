@@ -33,7 +33,7 @@
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
     End Sub
 
-    Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave.Click
+    Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvtab1.CellEnter, dgvTab2.CellEnter, dgvTab3.CellEnter, cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
         Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10 As Object
@@ -45,15 +45,28 @@
             Me.HeatStructureBoundaryCond.BoundaryCondTab4.Clear()
             Me.HeatStructureBoundaryCond.BoundaryCondTab5.Clear()
         End If
+        Try
+            For Each row In Me.dgvtab1.Rows
+                v1 = row.Cells(0).Value
+                v2 = row.Cells(1).Value
+                v3 = row.Cells(2).Value
+                v4 = row.Cells(3).Value
+                v5 = row.Cells(4).Value
+                v6 = row.Cells(5).Value
+                Me.HeatStructureBoundaryCond.BoundaryCondTab1.Add(row.Index + 1, New HSBoundaryCondTab1(v1, v2, v3, v4, v5, v6))
+            Next
+        Catch ex As Exception
 
-        For Each row In Me.dgvtab1.Rows
+        End Try
+
+        For Each row In Me.dgvTab3.Rows
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             v3 = row.Cells(2).Value
             v4 = row.Cells(3).Value
             v5 = row.Cells(4).Value
-            v6 = row.Cells(5).Value
-            Me.HeatStructureBoundaryCond.BoundaryCondTab1.Add(row.Index + 1, New HSBoundaryCondTab1(v1, v2, v3, v4, v5, v6))
+            Me.HeatStructureBoundaryCond.BoundaryCondTab3.Add(row.Index + 1, New HSBoundaryCondTab3(v1, v2, v3, v4, v5))
         Next
+        row.Dispose()
     End Sub
 End Class
