@@ -24,30 +24,29 @@ Partial Class ucHeatStructureEditor2
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.dgvtab1 = New System.Windows.Forms.DataGridView()
-        Me.dgvTab2 = New System.Windows.Forms.DataGridView()
-        Me.dgvTab3 = New System.Windows.Forms.DataGridView()
         Me.leftBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LeftIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LeftBoundaryConditionType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.leftSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.leftSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.leftHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.dgvTab2 = New System.Windows.Forms.DataGridView()
         Me.RightBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightBoundaryConditionType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.dgvTab3 = New System.Windows.Forms.DataGridView()
         Me.SourceType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InternalSourceMultiplier = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DirectModeratorHeatingMultiplierLeft = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DirectModeratorHeatingMultiplierRight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SourceHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.dgvTab4 = New System.Windows.Forms.DataGridView()
         Me.leftHeatedEquivalentDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LeftHeatedLengthForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -61,6 +60,7 @@ Partial Class ucHeatStructureEditor2
         Me.leftPitchtoDiameterRatio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.leftFoulingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.leftAddHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -74,16 +74,17 @@ Partial Class ucHeatStructureEditor2
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdSave = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
         CType(Me.dgvtab1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
         CType(Me.dgvTab2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
         CType(Me.dgvTab3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage4.SuspendLayout()
         CType(Me.dgvTab4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage5.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -94,10 +95,10 @@ Partial Class ucHeatStructureEditor2
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Location = New System.Drawing.Point(3, 15)
+        Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(975, 456)
+        Me.TabControl1.Size = New System.Drawing.Size(975, 425)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -106,51 +107,10 @@ Partial Class ucHeatStructureEditor2
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(967, 430)
+        Me.TabPage1.Size = New System.Drawing.Size(967, 399)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Left Boundary Conditions"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.dgvTab2)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(967, 430)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Right Boundary Conditions"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.dgvTab3)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(967, 430)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Source Data"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'TabPage4
-        '
-        Me.TabPage4.Controls.Add(Me.dgvTab4)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(967, 430)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "Additional Left Boundary Conditions"
-        Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'TabPage5
-        '
-        Me.TabPage5.Controls.Add(Me.DataGridView1)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(967, 430)
-        Me.TabPage5.TabIndex = 4
-        Me.TabPage5.Text = "Additional Right Boundary Conditions"
-        Me.TabPage5.UseVisualStyleBackColor = True
         '
         'dgvtab1
         '
@@ -159,28 +119,8 @@ Partial Class ucHeatStructureEditor2
         Me.dgvtab1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.leftBoundaryVolumeNumber, Me.LeftIncrement, Me.LeftBoundaryConditionType, Me.leftSurfaceAreaSelection, Me.leftSurfaceArea, Me.leftHeatStructureNumber})
         Me.dgvtab1.Location = New System.Drawing.Point(22, 17)
         Me.dgvtab1.Name = "dgvtab1"
-        Me.dgvtab1.Size = New System.Drawing.Size(917, 240)
+        Me.dgvtab1.Size = New System.Drawing.Size(917, 376)
         Me.dgvtab1.TabIndex = 0
-        '
-        'dgvTab2
-        '
-        Me.dgvTab2.BackgroundColor = System.Drawing.SystemColors.Window
-        Me.dgvTab2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTab2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RightBoundaryVolumeNumber, Me.RightIncrement, Me.RightBoundaryConditionType, Me.RightSurfaceAreaSelection, Me.RightSurfaceArea, Me.RightHeatStructureNumber})
-        Me.dgvTab2.Location = New System.Drawing.Point(21, 17)
-        Me.dgvTab2.Name = "dgvTab2"
-        Me.dgvTab2.Size = New System.Drawing.Size(917, 240)
-        Me.dgvTab2.TabIndex = 1
-        '
-        'dgvTab3
-        '
-        Me.dgvTab3.BackgroundColor = System.Drawing.SystemColors.Window
-        Me.dgvTab3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTab3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SourceType, Me.InternalSourceMultiplier, Me.DirectModeratorHeatingMultiplierLeft, Me.DirectModeratorHeatingMultiplierRight, Me.SourceHeatStructureNumber})
-        Me.dgvTab3.Location = New System.Drawing.Point(27, 24)
-        Me.dgvTab3.Name = "dgvTab3"
-        Me.dgvTab3.Size = New System.Drawing.Size(915, 255)
-        Me.dgvTab3.TabIndex = 0
         '
         'leftBoundaryVolumeNumber
         '
@@ -216,6 +156,27 @@ Partial Class ucHeatStructureEditor2
         Me.leftHeatStructureNumber.HeaderText = "Heat Structure Number"
         Me.leftHeatStructureNumber.Name = "leftHeatStructureNumber"
         '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.dgvTab2)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(967, 399)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Right Boundary Conditions"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'dgvTab2
+        '
+        Me.dgvTab2.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.dgvTab2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTab2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RightBoundaryVolumeNumber, Me.RightIncrement, Me.RightBoundaryConditionType, Me.RightSurfaceAreaSelection, Me.RightSurfaceArea, Me.RightHeatStructureNumber})
+        Me.dgvTab2.Location = New System.Drawing.Point(21, 17)
+        Me.dgvTab2.Name = "dgvTab2"
+        Me.dgvTab2.Size = New System.Drawing.Size(917, 376)
+        Me.dgvTab2.TabIndex = 1
+        '
         'RightBoundaryVolumeNumber
         '
         Me.RightBoundaryVolumeNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
@@ -250,6 +211,26 @@ Partial Class ucHeatStructureEditor2
         Me.RightHeatStructureNumber.HeaderText = "Heat Structure Number"
         Me.RightHeatStructureNumber.Name = "RightHeatStructureNumber"
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.dgvTab3)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(967, 399)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Source Data"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'dgvTab3
+        '
+        Me.dgvTab3.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.dgvTab3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTab3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SourceType, Me.InternalSourceMultiplier, Me.DirectModeratorHeatingMultiplierLeft, Me.DirectModeratorHeatingMultiplierRight, Me.SourceHeatStructureNumber})
+        Me.dgvTab3.Location = New System.Drawing.Point(28, 24)
+        Me.dgvTab3.Name = "dgvTab3"
+        Me.dgvTab3.Size = New System.Drawing.Size(915, 372)
+        Me.dgvTab3.TabIndex = 0
+        '
         'SourceType
         '
         Me.SourceType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -276,6 +257,16 @@ Partial Class ucHeatStructureEditor2
         Me.SourceHeatStructureNumber.HeaderText = "Heat Structure Number"
         Me.SourceHeatStructureNumber.Name = "SourceHeatStructureNumber"
         '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.dgvTab4)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Size = New System.Drawing.Size(967, 399)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "Additional Left Boundary Conditions"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
         'dgvTab4
         '
         Me.dgvTab4.BackgroundColor = System.Drawing.SystemColors.Window
@@ -283,7 +274,7 @@ Partial Class ucHeatStructureEditor2
         Me.dgvTab4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.leftHeatedEquivalentDiameter, Me.LeftHeatedLengthForward, Me.LeftHeatedLengthReverse, Me.leftGridSpacerLengthForward, Me.leftGridSpacerLengthReverse, Me.leftGridLossCoefficientForward, Me.leftGridLossCoefficientReverse, Me.leftLocalBoilingFactor, Me.leftNaturalCirculationLength, Me.leftPitchtoDiameterRatio, Me.leftFoulingFactor, Me.leftAddHeatStructureNumber})
         Me.dgvTab4.Location = New System.Drawing.Point(29, 21)
         Me.dgvTab4.Name = "dgvTab4"
-        Me.dgvTab4.Size = New System.Drawing.Size(913, 298)
+        Me.dgvTab4.Size = New System.Drawing.Size(913, 375)
         Me.dgvTab4.TabIndex = 0
         '
         'leftHeatedEquivalentDiameter
@@ -347,6 +338,16 @@ Partial Class ucHeatStructureEditor2
         Me.leftAddHeatStructureNumber.HeaderText = "Heat Structure Number"
         Me.leftAddHeatStructureNumber.Name = "leftAddHeatStructureNumber"
         '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.DataGridView1)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Size = New System.Drawing.Size(967, 399)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "Additional Right Boundary Conditions"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
         'DataGridView1
         '
         Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.Window
@@ -354,7 +355,7 @@ Partial Class ucHeatStructureEditor2
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
         Me.DataGridView1.Location = New System.Drawing.Point(21, 23)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(913, 298)
+        Me.DataGridView1.Size = New System.Drawing.Size(913, 373)
         Me.DataGridView1.TabIndex = 1
         '
         'DataGridViewTextBoxColumn1
@@ -417,23 +418,33 @@ Partial Class ucHeatStructureEditor2
         Me.DataGridViewTextBoxColumn12.HeaderText = "Heat Structure Number"
         Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(806, 434)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 2
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
         'ucHeatStructureEditor2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "ucHeatStructureEditor2"
         Me.Size = New System.Drawing.Size(978, 486)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage4.ResumeLayout(False)
-        Me.TabPage5.ResumeLayout(False)
         CType(Me.dgvtab1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
         CType(Me.dgvTab2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
         CType(Me.dgvTab3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage4.ResumeLayout(False)
         CType(Me.dgvTab4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage5.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -490,5 +501,6 @@ Partial Class ucHeatStructureEditor2
     Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class
