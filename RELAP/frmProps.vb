@@ -2503,6 +2503,23 @@ Public Class frmProps
             End If
 
 
+        ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
+            Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
+                hs.NumberOfAxialHS = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
+                hs.NumberOfRadialMP = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Steady State initialization flag") Then
+                hs.SSinitialTemp = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
+                hs.LeftBoundaryCO = e.ChangedItem.Value
+
+
+            End If
 
 
 

@@ -44,6 +44,7 @@
     Private Sub chkboxmeshgeometry_CheckStateChanged(sender As Object, e As EventArgs) Handles chkboxmeshgeometry.CheckStateChanged
         Try
             If chkboxmeshgeometry.Checked = False Then
+                HeatStructureMeshData.EnterMeshGeometry = "1"
                 CmbBoxSelectFormat.Hide()
 
                 dgvformat1.Hide()
@@ -68,6 +69,7 @@
 
 
             ElseIf chkboxmeshgeometry.Checked = True Then
+                HeatStructureMeshData.EnterMeshGeometry = "0"
                 CmbBoxSelectFormat.Show()
                 dgvformat1.Show()
                 dgvformat2.Show()
@@ -88,11 +90,13 @@
 
     Private Sub CmbBoxSelectFormat_SelectedValueChanged(sender As Object, e As EventArgs) Handles CmbBoxSelectFormat.SelectedValueChanged
         If CmbBoxSelectFormat.SelectedIndex = 0 Then
+            HeatStructureMeshData.SelectFormat = "1"
             dgvformat1.Show()
             dgvformat2.Rows.Clear()
             dgvformat2.Hide()
 
         ElseIf CmbBoxSelectFormat.SelectedIndex = 1 Then
+            HeatStructureMeshData.SelectFormat = "2"
             dgvformat1.Rows.Clear()
             dgvformat1.Hide()
             dgvformat2.Show()
@@ -100,6 +104,8 @@
     End Sub
 
     Private Sub txtboxDecayHeat_TextChanged(sender As Object, e As EventArgs) Handles txtboxDecayHeat.TextChanged
+        HeatStructureMeshData.DecayHeat = txtboxDecayHeat.Text.ToString
+
         If txtboxDecayHeat.Text = "" Then
             dgvNoDecay.Show()
             dgvWithDecay.Hide()
@@ -119,6 +125,27 @@
 
 
     Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles cmdsave.Click
+        Dim row As DataGridViewRow
+        If Not Me.HeatStructureMeshData.MeshDataFormat1 Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataFormat1.Clear()
+        Else
+            For i = 0 To dgvformat1.Rows.Count - 2
+
+            Next
+        End If
+        If Not Me.HeatStructureMeshData.MeshDataFormat2 Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataFormat2.Clear()
+        End If
+        If Not Me.HeatStructureMeshData.MeshDataNoDecay Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataNoDecay.Clear()
+        End If
+        If Not Me.HeatStructureMeshData.MeshDataWithDecay Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataWithDecay.Clear()
+        End If
+        If Not Me.HeatStructureMeshData.MeshDataComposition Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataComposition.Clear()
+        End If
+
 
     End Sub
 End Class
