@@ -2932,6 +2932,19 @@ sim:                Dim myStream As System.IO.FileStream
                     counter = counter + 1
                 Next kvp2
             Next kvp
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure) In ChildParent.Collections.CLCS_HeatStructureCollection
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Heat Structure '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & kvp.Value.SSinitialTemp & " " & kvp.Value.LeftBoundaryCO
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "000 " & output)
+
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "100 " & kvp.Value.HeatStructureMeshData.EnterMeshGeometry & " " & kvp.Value.HeatStructureMeshData.SelectFormat)
+
+
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "300 " & kvp.Value.HeatStructureMeshData.DecayHeat)
+            Next kvp
+
             generate.WriteLine(".")
             generate.Close()
             MsgBox("File Saved")

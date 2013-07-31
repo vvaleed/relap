@@ -53,33 +53,33 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_NumberOfAxialHS As Double
+        Private _NumberOfAxialHS As Double
         Public Property NumberOfAxialHS() As Double
             Get
-                Return m_NumberOfAxialHS
+                Return _NumberOfAxialHS
             End Get
             Set(ByVal value As Double)
-                m_NumberOfAxialHS = value
+                _NumberOfAxialHS = value
             End Set
         End Property
 
-        Private m_NumberOfAxialMP As Double
-        Public Property NumberOfAxialMP() As Double
+        Private _NumberOfRadialMP As Double
+        Public Property NumberOfRadialMP() As Double
             Get
-                Return m_NumberOfAxialMP
+                Return _NumberOfRadialMP
             End Get
             Set(ByVal value As Double)
-                m_NumberOfAxialMP = value
+                _NumberOfRadialMP = value
             End Set
         End Property
 
-        Private m_SSinitialTemp As Double
+        Private _SSinitialTemp As Double
         Public Property SSinitialTemp() As Double
             Get
-                Return m_SSinitialTemp
+                Return _SSinitialTemp
             End Get
             Set(ByVal value As Double)
-                m_SSinitialTemp = value
+                _SSinitialTemp = value
             End Set
         End Property
         Private _LeftBoundaryCO As Double
@@ -376,8 +376,28 @@ Namespace RELAP.SimulationObjects.UnitOps
                 ' '''''''''''''
 
                 valor = Format(Me.NumberOfAxialHS, FlowSheet.Options.NumberFormat)
-                'Tank Volume,Calculation parameters, Tank Volume
-                .Item.Add(("No. of axial Heat structures"), valor, False, "1.Parameters", "No. of axial Heat structures", True)
+                .Item.Add(("No. of axial Heat structures"), valor, False, "1.Parameters", "No. of axial Heat structures with same Geometry", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Me.NumberOfRadialMP, FlowSheet.Options.NumberFormat)
+                .Item.Add(("No. of Radial Mesh Points"), valor, False, "1.Parameters", "No. of Radial Mesh Points of this Geometry", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Me.SSinitialTemp, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Steady State initialization flag"), valor, False, "1.Parameters", "Steady State initialization flag", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Me.LeftBoundaryCO, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Left Boundary Coordinate"), valor, False, "1.Parameters", "Left Boundary Coordinate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

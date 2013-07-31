@@ -1,10 +1,10 @@
 ﻿<System.Serializable()> Public Class HeatStructureMeshData
-    Private _EnterMeshGeometry As Boolean
-    Public Property EnterMeshGeometry() As Boolean
+    Private _EnterMeshGeometry As String
+    Public Property EnterMeshGeometry() As String
         Get
             Return _EnterMeshGeometry
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As String)
             _EnterMeshGeometry = value
         End Set
     End Property
@@ -17,7 +17,17 @@
             _SelectFormat = value
         End Set
     End Property
-  
+
+    Private _DecayHeat As String
+    Public Property DecayHeat() As String
+        Get
+            Return _DecayHeat
+        End Get
+        Set(ByVal value As String)
+            _DecayHeat = value
+        End Set
+    End Property
+
     Protected m_collection As Generic.SortedDictionary(Of Integer, HSMeshDataFormat1)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
