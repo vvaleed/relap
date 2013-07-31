@@ -52,6 +52,14 @@
         End Set
     End Property
 
+    Public Sub New()
+        m_collection = New Generic.SortedDictionary(Of Integer, HSBoundaryCondTab1)
+        m_collection2 = New Generic.SortedDictionary(Of Integer, HSBoundaryCondTab2)
+        m_collection3 = New Generic.SortedDictionary(Of Integer, HSBoundaryCondTab3)
+        m_collection4 = New Generic.SortedDictionary(Of Integer, HSBoundaryCondTab4)
+        m_collection5 = New Generic.SortedDictionary(Of Integer, HSBoundaryCondTab5)
+    End Sub
+
     Public Overrides Function ToString() As String
         Return "Click to Edit..."
     End Function
@@ -201,7 +209,61 @@ End Class
 End Class
 
 <System.Serializable()> Public Class HSBoundaryCondTab3
+    Private _SourceType As Double
+    Public Property SourceType() As Double
+        Get
+            Return _SourceType
+        End Get
+        Set(ByVal value As Double)
+            _SourceType = value
+        End Set
+    End Property
 
+    Private _InternalSourceMultiplier As Double
+    Public Property InternalSourceMultiplier() As Double
+        Get
+            Return _InternalSourceMultiplier
+        End Get
+        Set(ByVal value As Double)
+            _InternalSourceMultiplier = value
+        End Set
+    End Property
+    Private _DirectModeratorHeatingMultiplierLeft As Double
+    Public Property DirectModeratorHeatingMultiplierLeft() As Double
+        Get
+            Return _DirectModeratorHeatingMultiplierLeft
+        End Get
+        Set(ByVal value As Double)
+            _DirectModeratorHeatingMultiplierLeft = value
+        End Set
+    End Property
+
+    Private _DirectModeratorHeatingMultiplierRight As Double
+    Public Property DirectModeratorHeatingMultiplierRight() As Double
+        Get
+            Return _DirectModeratorHeatingMultiplierRight
+        End Get
+        Set(ByVal value As Double)
+            _DirectModeratorHeatingMultiplierRight = value
+        End Set
+    End Property
+    Private _SourceHeatStructureNumber As Double
+    Public Property SourceHeatStructureNumber() As Double
+        Get
+            Return _SourceHeatStructureNumber
+        End Get
+        Set(ByVal value As Double)
+            _SourceHeatStructureNumber = value
+        End Set
+    End Property
+
+    Public Sub New(ByVal SourceType As Double, ByVal InternalSourceMultiplier As Double, ByVal DirectModeratorHeatingMultiplierLeft As Double, ByVal DirectModeratorHeatingMultiplierRight As Double, ByVal SourceHeatStructureNumber As Double)
+        Me._SourceType = SourceType
+        Me._InternalSourceMultiplier = InternalSourceMultiplier
+        Me._DirectModeratorHeatingMultiplierLeft = DirectModeratorHeatingMultiplierLeft
+        Me._DirectModeratorHeatingMultiplierRight = DirectModeratorHeatingMultiplierRight
+        Me._SourceHeatStructureNumber = SourceHeatStructureNumber
+    End Sub
 End Class
 
 

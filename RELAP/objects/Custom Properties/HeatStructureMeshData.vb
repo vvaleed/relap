@@ -83,6 +83,17 @@
             m_collection5 = value
         End Set
     End Property
+    Protected m_collection6 As Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property TemperatureInitialCond() As Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond)
+        Get
+            Return m_collection6
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond))
+            m_collection6 = value
+        End Set
+    End Property
 
     Public Sub New()
         m_collection = New Generic.SortedDictionary(Of Integer, HSMeshDataFormat1)
@@ -90,6 +101,7 @@
         m_collection3 = New Generic.SortedDictionary(Of Integer, HSMeshDataNoDecay)
         m_collection4 = New Generic.SortedDictionary(Of Integer, HSMeshDataWithDecay)
         m_collection5 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition)
+        m_collection6 = New Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond)
     End Sub
     Public Overrides Function ToString() As String
         Return "Click to Edit..."
@@ -221,6 +233,30 @@ End Class
     Public Sub New(ByVal CompositionNumber As Double, ByVal MeshIntervalNumber3 As Double)
         Me._CompositionNumber = CompositionNumber
         Me._MeshIntervalNumber3 = MeshIntervalNumber3
+    End Sub
+End Class
+<System.Serializable()> Public Class HSTemperatureInitialCond
+    Private _tt1 As Double
+    Public Property tt1() As Double
+        Get
+            Return _tt1
+        End Get
+        Set(ByVal value As Double)
+            _tt1 = value
+        End Set
+    End Property
+    Private _tt2 As Double
+    Public Property tt2() As Double
+        Get
+            Return _tt2
+        End Get
+        Set(ByVal value As Double)
+            _tt2 = value
+        End Set
+    End Property
+    Public Sub New(ByVal tt1 As Double, ByVal tt2 As Double)
+        Me._tt1 = tt1
+        Me._tt2 = tt2
     End Sub
 
 End Class

@@ -135,6 +135,7 @@
             Me.HeatStructureMeshData.MeshDataNoDecay.Clear()
             Me.HeatStructureMeshData.MeshDataWithDecay.Clear()
             Me.HeatStructureMeshData.MeshDataComposition.Clear()
+            Me.HeatStructureMeshData.TemperatureInitialCond.Clear()
         End If
 
         For Each row In Me.dgvformat1.Rows
@@ -167,8 +168,16 @@
             Me.HeatStructureMeshData.MeshDataComposition.Add(row.Index + 1, New HSMeshDataComposition(v9, v10))
         Next
 
-
+        For Each row In Me.DataGridView1.Rows
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.HeatStructureMeshData.TemperatureInitialCond.Add(row.Index + 1, New HSTemperatureInitialCond(v1, v2))
+        Next
         row.Dispose()
+
+    End Sub
+
+    Private Sub cmdsave_Click(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvWithDecay.CellEnter, dgvNoDecay.CellEnter, dgvformat2.CellEnter, dgvformat1.CellEnter, dgvComposition.CellEnter, cmdsave.Click
 
     End Sub
 End Class

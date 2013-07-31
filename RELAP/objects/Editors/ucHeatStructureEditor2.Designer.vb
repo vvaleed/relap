@@ -61,7 +61,7 @@ Partial Class ucHeatStructureEditor2
         Me.leftFoulingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.leftAddHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dgvTab5 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -85,7 +85,7 @@ Partial Class ucHeatStructureEditor2
         Me.TabPage4.SuspendLayout()
         CType(Me.dgvTab4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvTab5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -340,7 +340,7 @@ Partial Class ucHeatStructureEditor2
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.DataGridView1)
+        Me.TabPage5.Controls.Add(Me.dgvTab5)
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Size = New System.Drawing.Size(967, 399)
@@ -348,15 +348,15 @@ Partial Class ucHeatStructureEditor2
         Me.TabPage5.Text = "Additional Right Boundary Conditions"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'dgvTab5
         '
-        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.Window
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
-        Me.DataGridView1.Location = New System.Drawing.Point(21, 23)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(913, 373)
-        Me.DataGridView1.TabIndex = 1
+        Me.dgvTab5.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.dgvTab5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTab5.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
+        Me.dgvTab5.Location = New System.Drawing.Point(21, 23)
+        Me.dgvTab5.Name = "dgvTab5"
+        Me.dgvTab5.Size = New System.Drawing.Size(913, 373)
+        Me.dgvTab5.TabIndex = 1
         '
         'DataGridViewTextBoxColumn1
         '
@@ -445,7 +445,7 @@ Partial Class ucHeatStructureEditor2
         Me.TabPage4.ResumeLayout(False)
         CType(Me.dgvTab4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvTab5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -488,7 +488,7 @@ Partial Class ucHeatStructureEditor2
     Friend WithEvents leftPitchtoDiameterRatio As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents leftFoulingFactor As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents leftAddHeatStructureNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvTab5 As System.Windows.Forms.DataGridView
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn

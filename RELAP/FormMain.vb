@@ -2972,8 +2972,8 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
 
                 Counter = 1
-                For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab1) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab1
-                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.LeftBoundaryVolumeNumber & " " & kvp2.Value.LeftIncrement & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea & " " & kvp2.Value.LeftHeatStructureNumber
+                For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab3) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab3
+                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.SourceType & " " & kvp2.Value.InternalSourceMultiplier & " " & kvp2.Value.DirectModeratorHeatingMultiplierLeft & " " & kvp2.Value.DirectModeratorHeatingMultiplierRight & " " & kvp2.Value.SourceHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
