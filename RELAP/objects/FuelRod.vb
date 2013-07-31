@@ -763,7 +763,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Conversor.ConverterDoSI(su.burnup, Me.AverageBurnup), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("IAverage Burnup", su.burnup), valor, False, "No. of Rods", "0.0 ≤ x ≤ 4752000.0 ", True)
+                .Item.Add(FT("Average Burnup", su.burnup), valor, False, "No. of Rods", "0.0 ≤ x ≤ 4752000.0 ", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
