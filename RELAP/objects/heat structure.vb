@@ -52,6 +52,15 @@ Namespace RELAP.SimulationObjects.UnitOps
                 _HeatStructureMeshData = value
             End Set
         End Property
+        Private _HeatStructureBoundaryCond As HeatStructureBoundaryCond
+        Public Property HeatStructureBoundaryCond() As HeatStructureBoundaryCond
+            Get
+                Return _HeatStructureBoundaryCond
+            End Get
+            Set(ByVal value As HeatStructureBoundaryCond)
+                _HeatStructureBoundaryCond = value
+            End Set
+        End Property
 
         Private _NumberOfAxialHS As Double
         Public Property NumberOfAxialHS() As Double
@@ -410,6 +419,12 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .CustomEditor = New RELAP.Editors.UIHeatStructureEditor
                 End With
 
+                .Item.Add("Heat Structure Boundary Conditions", Me, "HeatStructureBoundaryCond", False, "1.Parameters", "Heat Structure Boundary Conditions", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(HeatStructureBoundaryCond)
+                    .CustomEditor = New RELAP.Editors.UIHeatStructureEditor2
+                End With
 
             End With
 

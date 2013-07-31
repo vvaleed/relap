@@ -124,28 +124,51 @@
 
 
 
-    Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles cmdsave.Click
-        Dim row As DataGridViewRow
-        If Not Me.HeatStructureMeshData.MeshDataFormat1 Is Nothing Then
-            Me.HeatStructureMeshData.MeshDataFormat1.Clear()
-        Else
-            For i = 0 To dgvformat1.Rows.Count - 2
+    Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles dgvformat1.CellEnter, dgvformat2.CellEnter, dgvNoDecay.CellEnter, dgvWithDecay.CellEnter, dgvComposition.CellEnter, cmdsave.Click
+        Dim row As New DataGridViewRow
+        Dim cv As New RELAP.SistemasDeUnidades.Conversor
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10 As Object
 
-            Next
-        End If
-        If Not Me.HeatStructureMeshData.MeshDataFormat2 Is Nothing Then
+        If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataFormat1.Clear()
             Me.HeatStructureMeshData.MeshDataFormat2.Clear()
-        End If
-        If Not Me.HeatStructureMeshData.MeshDataNoDecay Is Nothing Then
             Me.HeatStructureMeshData.MeshDataNoDecay.Clear()
-        End If
-        If Not Me.HeatStructureMeshData.MeshDataWithDecay Is Nothing Then
             Me.HeatStructureMeshData.MeshDataWithDecay.Clear()
-        End If
-        If Not Me.HeatStructureMeshData.MeshDataComposition Is Nothing Then
             Me.HeatStructureMeshData.MeshDataComposition.Clear()
         End If
 
+        For Each row In Me.dgvformat1.Rows
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataFormat1.Add(row.Index + 1, New HSMeshDataFormat1(v1, v2))
+        Next
+
+        For Each row In Me.dgvformat2.Rows
+            v3 = row.Cells(0).Value
+            v4 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataFormat2.Add(row.Index + 1, New HSMeshDataFormat2(v3, v4))
+        Next
+           
+        For Each row In Me.dgvNoDecay.Rows
+            v5 = row.Cells(0).Value
+            v6 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataNoDecay.Add(row.Index + 1, New HSMeshDataNoDecay(v5, v6))
+        Next
+
+        For Each row In Me.dgvWithDecay.Rows
+            v7 = row.Cells(0).Value
+            v8 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataWithDecay.Add(row.Index + 1, New HSMeshDataWithDecay(v7, v8))
+        Next
+ 
+        For Each row In Me.dgvComposition.Rows
+            v9 = row.Cells(0).Value
+            v10 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataComposition.Add(row.Index + 1, New HSMeshDataComposition(v9, v10))
+        Next
+
+
+        row.Dispose()
 
     End Sub
 End Class
