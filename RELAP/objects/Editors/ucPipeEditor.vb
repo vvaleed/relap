@@ -37,17 +37,13 @@ Public Class ucPipeEditor
         Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.PipeGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.pipe = My.Application.ActiveSimulation.Collections.CLCS_PipeCollection(gobj.Name)
 
+
+        For i = 1 To myCOTK.NumberOfVoulmes
+            dgv.Rows.Add(i.ToString)
+        Next
         If myCOTK.Profile.Sections.Count <> 0 Then
-
-
-            For i = 0 To myCOTK.Profile.Sections.Count - 1
-                Dim row As New DataGridViewRow
-                'row.Cells.Add(
-                Dim cell As DataGridViewCell
-                'cell=row.CreateCells(
-                cell.Value = myCOTK.Profile.Sections(i).VolumeNumber
-                row.Cells.Add(cell)
-
+            Dim i = 1
+            For Each row As DataGridViewRow In dgv.Rows
                 row.Cells(0).Value = myCOTK.Profile.Sections(i).VolumeNumber
                 row.Cells(1).Value = myCOTK.Profile.Sections(i).FlowArea
                 row.Cells(2).Value = myCOTK.Profile.Sections(i).LengthofVolume
@@ -64,14 +60,10 @@ Public Class ucPipeEditor
                 row.Cells(13).Value = myCOTK.Profile.Sections(i).InterphaseFriction
                 row.Cells(14).Value = myCOTK.Profile.Sections(i).ComputeWallFriction
                 row.Cells(15).Value = myCOTK.Profile.Sections(i).EquilibriumTemperature
-
-                dgv.Rows.Add(row)
+                i = i + 1
             Next
+
         Else
-            For i = 1 To myCOTK.NumberOfVoulmes
-
-                dgv.Rows.Add(i.ToString)
-            Next
             For Each row As DataGridViewRow In dgv.Rows
                 For i = 1 To row.Cells.Count - 1
                     row.Cells(i).Value = 0
@@ -79,21 +71,46 @@ Public Class ucPipeEditor
             Next
         End If
 
+
+        
+
         For i = 1 To myCOTK.NumberOfVoulmes - 1
             dgv2.Rows.Add(i.ToString)
         Next
-        
-        For Each row As DataGridViewRow In dgv2.Rows
-            For i = 1 To 3
-                row.Cells(i).Value = 0
+        If myCOTK.Profile.Junctions.Count <> 0 Then
+            Dim i = 1
+            For Each row As DataGridViewRow In dgv2.Rows
+                row.Cells(0).Value = myCOTK.Profile.Junctions(i).JunctionNumber
+                row.Cells(1).Value = myCOTK.Profile.Junctions(i).JunctionFlowArea
+                row.Cells(2).Value = myCOTK.Profile.Junctions(i).FflowLossCo
+                row.Cells(3).Value = myCOTK.Profile.Junctions(i).FflowLossCo
+                row.Cells(4).Value = myCOTK.Profile.Junctions(i).PVterm
+                row.Cells(5).Value = myCOTK.Profile.Junctions(i).CCFLModel
+                row.Cells(6).Value = myCOTK.Profile.Junctions(i).ChokingModel
+                row.Cells(7).Value = myCOTK.Profile.Junctions(i).SmoothAreaChange
+                row.Cells(8).Value = myCOTK.Profile.Junctions(i).SingleVelocityMomentumEquations
+                row.Cells(9).Value = myCOTK.Profile.Junctions(i).MomentumFlux
+                row.Cells(10).Value = myCOTK.Profile.Junctions(i).InterphaseVelocity
+                row.Cells(11).Value = myCOTK.Profile.Junctions(i).EnterVelocityOrMassFlowRate
+                row.Cells(12).Value = myCOTK.Profile.Junctions(i).InitialLiquidVelocity
+                row.Cells(13).Value = myCOTK.Profile.Junctions(i).InitialVaporVelocity
+                row.Cells(14).Value = myCOTK.Profile.Junctions(i).InitialLiquidMassFlowRate
+                row.Cells(15).Value = myCOTK.Profile.Junctions(i).InitialVaporMassFlowRate
+                i = i + 1
             Next
-        Next
+        Else
+            For Each row As DataGridViewRow In dgv2.Rows
+                For i = 1 To 3
+                    row.Cells(i).Value = 0
+                Next
+            Next
+        End If
 
     End Sub
 
 
 
-    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles dgv.CellEnter, dgv2.CellEnter, cmdSave.Click
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
         Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17 As Object
