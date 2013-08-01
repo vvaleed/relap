@@ -35,7 +35,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Public cardno As String
             Public wordno As String
         End Structure
-        Enum GeometryType
+        Enum GeometryTypeEnum
             Rectangular
             Cylinderical
             Spherical
@@ -100,6 +100,16 @@ Namespace RELAP.SimulationObjects.UnitOps
                 _LeftBoundaryCO = value
             End Set
         End Property
+        Private _geometryType As GeometryTypeEnum
+        Public Property GeometryType() As GeometryTypeEnum
+            Get
+                Return _geometryType
+            End Get
+            Set(ByVal value As GeometryTypeEnum)
+                _geometryType = value
+            End Set
+        End Property
+
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
@@ -110,6 +120,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me._HeatStructureBoundaryCond = New HeatStructureBoundaryCond
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me.GeometryType = GeometryTypeEnum.Cylinderical
            
 
             '& kvkvp.Value.HydraulicDiameter & " ") & "0000000"
@@ -398,6 +409,9 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
+
+                .Item.Add("Geometry Type", Me, "GeometryType", False, "1.Parameters", "", True)
+
 
                 valor = Format(Me.SSinitialTemp, FlowSheet.Options.NumberFormat)
                 .Item.Add(("Steady State initialization flag"), valor, False, "1.Parameters", "Steady State initialization flag", True)
