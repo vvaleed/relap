@@ -107,6 +107,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentName = nome
             Me.m_ComponentDescription = descricao
             Me._HeatStructureMeshData = New HeatStructureMeshData
+            Me._HeatStructureBoundaryCond = New HeatStructureBoundaryCond
             Me.FillNodeItems()
             Me.QTFillNodeItems()
            

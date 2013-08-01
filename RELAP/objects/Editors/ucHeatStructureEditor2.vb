@@ -33,7 +33,7 @@
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
     End Sub
 
-    Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvtab1.CellEnter, dgvTab2.CellEnter, dgvTab3.CellEnter, cmdSave.Click
+    Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
         Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10 As Object

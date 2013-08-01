@@ -35,31 +35,31 @@ Public Class ucPipeEditor
 
     Private Sub ucPipeEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.PipeGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
-        Dim myCOTK As RELAP.SimulationObjects.UnitOps.pipe = My.Application.ActiveSimulation.Collections.CLCS_PipeCollection(gobj.Name)
+        Dim myPipe As RELAP.SimulationObjects.UnitOps.pipe = My.Application.ActiveSimulation.Collections.CLCS_PipeCollection(gobj.Name)
 
 
-        For i = 1 To myCOTK.NumberOfVoulmes
+        For i = 1 To myPipe.NumberOfVoulmes
             dgv.Rows.Add(i.ToString)
         Next
-        If myCOTK.Profile.Sections.Count <> 0 Then
+        If myPipe.Profile.Sections.Count <> 0 Then
             Dim i = 1
             For Each row As DataGridViewRow In dgv.Rows
-                row.Cells(0).Value = myCOTK.Profile.Sections(i).VolumeNumber
-                row.Cells(1).Value = myCOTK.Profile.Sections(i).FlowArea
-                row.Cells(2).Value = myCOTK.Profile.Sections(i).LengthofVolume
-                row.Cells(3).Value = myCOTK.Profile.Sections(i).VolumeofVolume
-                row.Cells(4).Value = myCOTK.Profile.Sections(i).Azimuthalangle
-                row.Cells(5).Value = myCOTK.Profile.Sections(i).VerticalAngle
-                row.Cells(6).Value = myCOTK.Profile.Sections(i).ElevationChange
-                row.Cells(7).Value = myCOTK.Profile.Sections(i).HydraulicDiameter
-                row.Cells(8).Value = myCOTK.Profile.Sections(i).WallRoughness
-                row.Cells(9).Value = myCOTK.Profile.Sections(i).ThermalStratificationModel
-                row.Cells(10).Value = myCOTK.Profile.Sections(i).LevelTrackingModel
-                row.Cells(11).Value = myCOTK.Profile.Sections(i).WaterPackingScheme
-                row.Cells(12).Value = myCOTK.Profile.Sections(i).VerticalStratificationModel
-                row.Cells(13).Value = myCOTK.Profile.Sections(i).InterphaseFriction
-                row.Cells(14).Value = myCOTK.Profile.Sections(i).ComputeWallFriction
-                row.Cells(15).Value = myCOTK.Profile.Sections(i).EquilibriumTemperature
+                row.Cells(0).Value = myPipe.Profile.Sections(i).VolumeNumber
+                row.Cells(1).Value = myPipe.Profile.Sections(i).FlowArea
+                row.Cells(2).Value = myPipe.Profile.Sections(i).LengthofVolume
+                row.Cells(3).Value = myPipe.Profile.Sections(i).VolumeofVolume
+                row.Cells(4).Value = myPipe.Profile.Sections(i).Azimuthalangle
+                row.Cells(5).Value = myPipe.Profile.Sections(i).VerticalAngle
+                row.Cells(6).Value = myPipe.Profile.Sections(i).ElevationChange
+                row.Cells(7).Value = myPipe.Profile.Sections(i).HydraulicDiameter
+                row.Cells(8).Value = myPipe.Profile.Sections(i).WallRoughness
+                row.Cells(9).Value = myPipe.Profile.Sections(i).ThermalStratificationModel
+                row.Cells(10).Value = myPipe.Profile.Sections(i).LevelTrackingModel
+                row.Cells(11).Value = myPipe.Profile.Sections(i).WaterPackingScheme
+                row.Cells(12).Value = myPipe.Profile.Sections(i).VerticalStratificationModel
+                row.Cells(13).Value = myPipe.Profile.Sections(i).InterphaseFriction
+                row.Cells(14).Value = myPipe.Profile.Sections(i).ComputeWallFriction
+                row.Cells(15).Value = myPipe.Profile.Sections(i).EquilibriumTemperature
                 i = i + 1
             Next
 
@@ -72,30 +72,30 @@ Public Class ucPipeEditor
         End If
 
 
-        
 
-        For i = 1 To myCOTK.NumberOfVoulmes - 1
+
+        For i = 1 To myPipe.NumberOfVoulmes - 1
             dgv2.Rows.Add(i.ToString)
         Next
-        If myCOTK.Profile.Junctions.Count <> 0 Then
+        If myPipe.Profile.Junctions.Count <> 0 Then
             Dim i = 1
             For Each row As DataGridViewRow In dgv2.Rows
-                row.Cells(0).Value = myCOTK.Profile.Junctions(i).JunctionNumber
-                row.Cells(1).Value = myCOTK.Profile.Junctions(i).JunctionFlowArea
-                row.Cells(2).Value = myCOTK.Profile.Junctions(i).FflowLossCo
-                row.Cells(3).Value = myCOTK.Profile.Junctions(i).FflowLossCo
-                row.Cells(4).Value = myCOTK.Profile.Junctions(i).PVterm
-                row.Cells(5).Value = myCOTK.Profile.Junctions(i).CCFLModel
-                row.Cells(6).Value = myCOTK.Profile.Junctions(i).ChokingModel
-                row.Cells(7).Value = myCOTK.Profile.Junctions(i).SmoothAreaChange
-                row.Cells(8).Value = myCOTK.Profile.Junctions(i).SingleVelocityMomentumEquations
-                row.Cells(9).Value = myCOTK.Profile.Junctions(i).MomentumFlux
-                row.Cells(10).Value = myCOTK.Profile.Junctions(i).InterphaseVelocity
-                row.Cells(11).Value = myCOTK.Profile.Junctions(i).EnterVelocityOrMassFlowRate
-                row.Cells(12).Value = myCOTK.Profile.Junctions(i).InitialLiquidVelocity
-                row.Cells(13).Value = myCOTK.Profile.Junctions(i).InitialVaporVelocity
-                row.Cells(14).Value = myCOTK.Profile.Junctions(i).InitialLiquidMassFlowRate
-                row.Cells(15).Value = myCOTK.Profile.Junctions(i).InitialVaporMassFlowRate
+                row.Cells(0).Value = myPipe.Profile.Junctions(i).JunctionNumber
+                row.Cells(1).Value = myPipe.Profile.Junctions(i).JunctionFlowArea
+                row.Cells(2).Value = myPipe.Profile.Junctions(i).FflowLossCo
+                row.Cells(3).Value = myPipe.Profile.Junctions(i).FflowLossCo
+                'row.Cells(4).Value = myPipe.Profile.Junctions(i).PVterm
+                'row.Cells(5).Value = myPipe.Profile.Junctions(i).CCFLModel
+                'row.Cells(6).Value = myPipe.Profile.Junctions(i).ChokingModel
+                'row.Cells(7).Value = myPipe.Profile.Junctions(i).SmoothAreaChange
+                'row.Cells(8).Value = myPipe.Profile.Junctions(i).SingleVelocityMomentumEquations
+                'row.Cells(9).Value = myPipe.Profile.Junctions(i).MomentumFlux
+                'row.Cells(10).Value = myPipe.Profile.Junctions(i).InterphaseVelocity
+                row.Cells(11).Value = myPipe.Profile.Junctions(i).EnterVelocityOrMassFlowRate
+                row.Cells(12).Value = myPipe.Profile.Junctions(i).InitialLiquidVelocity
+                row.Cells(13).Value = myPipe.Profile.Junctions(i).InitialVaporVelocity
+                row.Cells(14).Value = myPipe.Profile.Junctions(i).InitialLiquidMassFlowRate
+                row.Cells(15).Value = myPipe.Profile.Junctions(i).InitialVaporMassFlowRate
                 i = i + 1
             Next
         Else
