@@ -18,6 +18,17 @@
         End Set
     End Property
 
+    Private _SelectTemp As String
+    Public Property SelectTemp() As String
+        Get
+            Return _SelectTemp
+        End Get
+        Set(ByVal value As String)
+            _SelectTemp = value
+        End Set
+    End Property
+
+
     Private _DecayHeat As String
     Public Property DecayHeat() As String
         Get
@@ -83,14 +94,14 @@
             m_collection5 = value
         End Set
     End Property
-    Protected m_collection6 As Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond)
+    Protected m_collection6 As Generic.SortedDictionary(Of Integer, HSTemp1)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
-    Public Property TemperatureInitialCond() As Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond)
+    Public Property Temp1() As Generic.SortedDictionary(Of Integer, HSTemp1)
         Get
             Return m_collection6
         End Get
-        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond))
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSTemp1))
             m_collection6 = value
         End Set
     End Property
@@ -101,7 +112,7 @@
         m_collection3 = New Generic.SortedDictionary(Of Integer, HSMeshDataNoDecay)
         m_collection4 = New Generic.SortedDictionary(Of Integer, HSMeshDataWithDecay)
         m_collection5 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition)
-        m_collection6 = New Generic.SortedDictionary(Of Integer, HSTemperatureInitialCond)
+        m_collection6 = New Generic.SortedDictionary(Of Integer, HSTemp1)
     End Sub
     Public Overrides Function ToString() As String
         Return "Click to Edit..."
@@ -235,28 +246,28 @@ End Class
         Me._MeshIntervalNumber3 = MeshIntervalNumber3
     End Sub
 End Class
-<System.Serializable()> Public Class HSTemperatureInitialCond
-    Private _tt1 As Double
-    Public Property tt1() As Double
+<System.Serializable()> Public Class HSTemp1
+    Private _Temp1Temperature As Double
+    Public Property Temp1Temperature() As Double
         Get
-            Return _tt1
+            Return _Temp1Temperature
         End Get
         Set(ByVal value As Double)
-            _tt1 = value
+            _Temp1Temperature = value
         End Set
     End Property
-    Private _tt2 As Double
-    Public Property tt2() As Double
+    Private _Temp1MeshPointNumber As Double
+    Public Property Temp1MeshPointNumber() As Double
         Get
-            Return _tt2
+            Return _Temp1MeshPointNumber
         End Get
         Set(ByVal value As Double)
-            _tt2 = value
+            _Temp1MeshPointNumber = value
         End Set
     End Property
-    Public Sub New(ByVal tt1 As Double, ByVal tt2 As Double)
-        Me._tt1 = tt1
-        Me._tt2 = tt2
+    Public Sub New(ByVal Temp1Temperature As Double, ByVal Temp1MeshPointNumber As Double)
+        Me._Temp1Temperature = Temp1Temperature
+        Me._Temp1MeshPointNumber = Temp1MeshPointNumber
     End Sub
 
 End Class
