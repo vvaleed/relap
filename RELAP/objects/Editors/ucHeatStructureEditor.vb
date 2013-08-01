@@ -35,6 +35,11 @@
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
 
         chkboxmeshgeometry.Checked = True
+        CmbBoxSelectFormat.SelectedIndex = 0
+        dgvformat2.Hide()
+        dgvWithDecay.Hide()
+        dgvTemp2.Hide()
+        ComboBoxTemp.SelectedIndex = 0
 
         If myCOTK.HeatStructureMeshData.MeshDataFormat1.Count <> 0 Then
 
@@ -102,6 +107,23 @@
             dgvformat2.Show()
         End If
     End Sub
+    Private Sub ComboBoxTemp_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboBoxTemp.SelectedValueChanged
+        If ComboBoxTemp.SelectedIndex = 0 Then
+            HeatStructureMeshData.SelectTemp = "0"
+            dgvTemp2.Rows.Clear()
+            dgvTemp2.Hide()
+            dgvTemp1.Show()
+        ElseIf ComboBoxTemp.SelectedIndex = 1 Then
+            HeatStructureMeshData.SelectTemp = "-1"
+            dgvTemp1.Rows.Clear()
+            dgvTemp1.Hide()
+            dgvTemp2.Show()
+        Else
+            HeatStructureMeshData.SelectTemp = "1"
+            dgvTemp1.Rows.Clear()
+            dgvTemp2.Rows.Clear()
+        End If
+    End Sub
 
     Private Sub txtboxDecayHeat_TextChanged(sender As Object, e As EventArgs) Handles txtboxDecayHeat.TextChanged
         HeatStructureMeshData.DecayHeat = txtboxDecayHeat.Text.ToString
@@ -127,7 +149,7 @@
     Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles cmdsave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10 As Object
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12 As Object
 
         If Not Me.HeatStructureMeshData Is Nothing Then
             Me.HeatStructureMeshData.MeshDataFormat1.Clear()
@@ -135,7 +157,7 @@
             Me.HeatStructureMeshData.MeshDataNoDecay.Clear()
             Me.HeatStructureMeshData.MeshDataWithDecay.Clear()
             Me.HeatStructureMeshData.MeshDataComposition.Clear()
-            Me.HeatStructureMeshData.TemperatureInitialCond.Clear()
+            Me.HeatStructureMeshData.Temp1.Clear()
         End If
 
 
@@ -148,39 +170,40 @@
 
 
 
-        For Each row In Me.dgvformat2.Rows
+        For i = 0 To dgvformat2.Rows.Count - 1
             v3 = row.Cells(0).Value
             v4 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataFormat2.Add(row.Index + 1, New HSMeshDataFormat2(v3, v4))
         Next
 
-        For Each row In Me.dgvNoDecay.Rows
+        For i = 0 To dgvNoDecay.Rows.Count - 1
             v5 = row.Cells(0).Value
             v6 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataNoDecay.Add(row.Index + 1, New HSMeshDataNoDecay(v5, v6))
         Next
 
-        For Each row In Me.dgvWithDecay.Rows
+        For i = 0 To dgvWithDecay.Rows.Count - 1
             v7 = row.Cells(0).Value
             v8 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataWithDecay.Add(row.Index + 1, New HSMeshDataWithDecay(v7, v8))
         Next
 
-        For Each row In Me.dgvComposition.Rows
+        For i = 0 To dgvComposition.Rows.Count - 1
             v9 = row.Cells(0).Value
             v10 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataComposition.Add(row.Index + 1, New HSMeshDataComposition(v9, v10))
         Next
 
-        For Each row In Me.DataGridView1.Rows
-            v1 = row.Cells(0).Value
-            v2 = row.Cells(1).Value
-            Me.HeatStructureMeshData.TemperatureInitialCond.Add(row.Index + 1, New HSTemperatureInitialCond(v1, v2))
+        For i = 0 To dgvTemp1.Rows.Count - 1
+            v11 = row.Cells(0).Value
+            v12 = row.Cells(1).Value
+            Me.HeatStructureMeshData.Temp1.Add(row.Index + 1, New HSTemp1(v11, v12))
         Next
         row.Dispose()
 
     End Sub
 
 
+    
 End Class
 

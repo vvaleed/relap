@@ -2951,12 +2951,12 @@ sim:                Dim myStream As System.IO.FileStream
                     Counter = Counter + 1
                 Next kvp2
 
-                Counter = 1
-                For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat2) In kvp.Value.HeatStructureMeshData.MeshDataFormat2
-                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval & " " & kvp2.Value.IntervalNumber
-                    generate.WriteLine(output)
-                    Counter = Counter + 1
-                Next kvp2
+                'Counter = 1
+                'For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat2) In kvp.Value.HeatStructureMeshData.MeshDataFormat2
+                '    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval & " " & kvp2.Value.IntervalNumber
+                '    generate.WriteLine(output)
+                '    Counter = Counter + 1
+                'Next kvp2
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataComposition) In kvp.Value.HeatStructureMeshData.MeshDataComposition
@@ -2970,6 +2970,14 @@ sim:                Dim myStream As System.IO.FileStream
                 Else
                     generate.WriteLine("1" & kvp.Value.UID & "0" & "300 " & kvp.Value.HeatStructureMeshData.DecayHeat)
                 End If
+
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "400" & kvp.Value.HeatStructureMeshData.SelectTemp)
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSTemp1) In kvp.Value.HeatStructureMeshData.Temp1
+                    output = "1" & kvp.Value.UID & "0" & "40" & Counter & " " & kvp2.Value.Temp1Temperature & " " & kvp2.Value.Temp1MeshPointNumber
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab3) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab3
