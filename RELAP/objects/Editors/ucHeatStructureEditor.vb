@@ -124,7 +124,7 @@
 
 
 
-    Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles dgvformat1.CellEnter, dgvformat2.CellEnter, dgvNoDecay.CellEnter, dgvWithDecay.CellEnter, dgvComposition.CellEnter, cmdsave.Click
+    Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles cmdsave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
         Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10 As Object
@@ -138,18 +138,22 @@
             Me.HeatStructureMeshData.TemperatureInitialCond.Clear()
         End If
 
-        For Each row In Me.dgvformat1.Rows
+
+        For i = 0 To dgvformat1.Rows.Count - 1
+            row = dgvformat1.Rows(i)
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataFormat1.Add(row.Index + 1, New HSMeshDataFormat1(v1, v2))
         Next
+
+
 
         For Each row In Me.dgvformat2.Rows
             v3 = row.Cells(0).Value
             v4 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataFormat2.Add(row.Index + 1, New HSMeshDataFormat2(v3, v4))
         Next
-           
+
         For Each row In Me.dgvNoDecay.Rows
             v5 = row.Cells(0).Value
             v6 = row.Cells(1).Value
@@ -161,7 +165,7 @@
             v8 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataWithDecay.Add(row.Index + 1, New HSMeshDataWithDecay(v7, v8))
         Next
- 
+
         For Each row In Me.dgvComposition.Rows
             v9 = row.Cells(0).Value
             v10 = row.Cells(1).Value
@@ -177,8 +181,6 @@
 
     End Sub
 
-    Private Sub cmdsave_Click(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvWithDecay.CellEnter, dgvNoDecay.CellEnter, dgvformat2.CellEnter, dgvformat1.CellEnter, dgvComposition.CellEnter, cmdsave.Click
-
-    End Sub
+   
 End Class
 
