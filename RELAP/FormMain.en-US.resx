@@ -118,157 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="NewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="NewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Steady-state Simulation</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="NewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compound Creator Study</value>
-  </data>
-  <data name="NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Data Regression Study</value>
-  </data>
-  <data name="NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="NovoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="NovoToolStripMenuItem.Text" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="OpenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="OpenToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Open</value>
-  </data>
-  <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 6</value>
-  </data>
-  <data name="SaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="SaveToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Save</value>
-  </data>
-  <data name="SaveAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="SaveAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save All</value>
-  </data>
-  <data name="SaveAllToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="SaveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="SaveAsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save &amp;As...</value>
-  </data>
-  <data name="ToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 6</value>
-  </data>
-  <data name="CloseAllToolstripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="CloseAllToolstripMenuItem.Text" xml:space="preserve">
-    <value>Close All</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 6</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exi&amp;t RELAP</value>
-  </data>
-  <data name="FileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="FileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
-  <data name="PreferênciasDoRELAPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="PreferênciasDoRELAPToolStripMenuItem.Text" xml:space="preserve">
-    <value>General Settings</value>
-  </data>
-  <data name="MostrarBarraDeFerramentasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="MostrarBarraDeFerramentasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Show Toolstrip</value>
-  </data>
-  <data name="VerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="VerToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings</value>
-  </data>
-  <data name="GenerateInputFileOnlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Generate Input File Only</value>
-  </data>
-  <data name="GenerateInputFileAndRunToolStripMenuItem.Text" xml:space="preserve">
-    <value>Generate Input File and Run</value>
-  </data>
-  <data name="RunToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="RunToolStripMenuItem.Text" xml:space="preserve">
-    <value>Run</value>
-  </data>
-  <data name="CascadeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
-  </data>
-  <data name="CascadeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Cascade</value>
-  </data>
-  <data name="TileVerticalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
-  </data>
-  <data name="TileVerticalToolStripMenuItem.Text" xml:space="preserve">
-    <value>Group &amp;Vertically</value>
-  </data>
-  <data name="TileHorizontalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
-  </data>
-  <data name="TileHorizontalToolStripMenuItem.Text" xml:space="preserve">
-    <value>Group &amp;Horizontally</value>
-  </data>
-  <data name="WindowsMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 20</value>
-  </data>
-  <data name="WindowsMenu.Text" xml:space="preserve">
-    <value>&amp;Windows</value>
-  </data>
-  <data name="ContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
-  </data>
-  <data name="ContentsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Show Help</value>
-  </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 6</value>
-  </data>
   <data name="BlogDeDesenvolvimentoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -289,12 +138,6 @@
         Rf7ipkdV9i/eK3lngyiG4e2CkOXKngoqzTrOd7ZR2WWicbiBLflPsFe5nYAT6xZflW/e+J/PtPqLhuS9
         uTM4+42WLZmBM+KSlv7lTkDmmgebTqzhmQzJ2tXz/wAXtK5ndaP6lgAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <data name="BlogDeDesenvolvimentoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 22</value>
-  </data>
-  <data name="BlogDeDesenvolvimentoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Development Blog</value>
   </data>
   <data name="DownloadsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -317,9 +160,6 @@
         uTM4+42WLZmBM+KSlv7lTkDmmgebTqzhmQzJ2tXz/wAXtK5ndaP6lgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="DownloadsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 22</value>
-  </data>
   <data name="WikiToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -341,9 +181,6 @@
         uTM4+42WLZmBM+KSlv7lTkDmmgebTqzhmQzJ2tXz/wAXtK5ndaP6lgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="WikiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 22</value>
-  </data>
   <data name="RastreamentoDeBugsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -364,108 +201,6 @@
         Rf7ipkdV9i/eK3lngyiG4e2CkOXKngoqzTrOd7ZR2WWicbiBLflPsFe5nYAT6xZflW/e+J/PtPqLhuS9
         uTM4+42WLZmBM+KSlv7lTkDmmgebTqzhmQzJ2tXz/wAXtK5ndaP6lgAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <data name="RastreamentoDeBugsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 22</value>
-  </data>
-  <data name="RastreamentoDeBugsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bug Tracking / Feature and Support Requests</value>
-  </data>
-  <data name="RELAPNaInternetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
-  </data>
-  <data name="RELAPNaInternetToolStripMenuItem.Text" xml:space="preserve">
-    <value>RELAP on the Web</value>
-  </data>
-  <data name="RegistrarTiposCOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 22</value>
-  </data>
-  <data name="RegistrarTiposCOMToolStripMenuItem.Text" xml:space="preserve">
-    <value>Register types for COM Interop</value>
-  </data>
-  <data name="DeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 22</value>
-  </data>
-  <data name="DeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Unregister types</value>
-  </data>
-  <data name="RegistroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
-  </data>
-  <data name="RegistroToolStripMenuItem.Text" xml:space="preserve">
-    <value>Registry</value>
-  </data>
-  <data name="DonateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
-  </data>
-  <data name="DonateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Donate!</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;About RELAP...</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="NewToolStripButton.Text" xml:space="preserve">
-    <value>New Steady-State Simulation</value>
-  </data>
-  <data name="OpenToolStripButton.Text" xml:space="preserve">
-    <value>&amp;Open Simulation</value>
-  </data>
-  <data name="SaveToolStripButton.Text" xml:space="preserve">
-    <value>&amp;Save Active Simulation</value>
-  </data>
-  <data name="ToolStripButton1.Text" xml:space="preserve">
-    <value>Save As...</value>
-  </data>
-  <data name="ToolStripButton1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="SaveAllToolStripButton.Text" xml:space="preserve">
-    <value>Save All</value>
-  </data>
-  <data name="SaveAllToolStripButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="ToolStripButton2.Text" xml:space="preserve">
-    <value>General Settings</value>
-  </data>
-  <data name="ToolStripButton3.Text" xml:space="preserve">
-    <value>Cascade Windows</value>
-  </data>
-  <data name="ToolStripButton5.Text" xml:space="preserve">
-    <value>Group Windows Vertically</value>
-  </data>
-  <data name="ToolStripButton4.Text" xml:space="preserve">
-    <value>Group Windows Horizontally</value>
-  </data>
-  <data name="ToolStripButton6.Text" xml:space="preserve">
-    <value>Show Context-Sensitive Help</value>
-  </data>
-  <data name="ToolStripButton7.Text" xml:space="preserve">
-    <value>Donate</value>
-  </data>
-  <data name="ToolStripButton8.Text" xml:space="preserve">
-    <value>About RELAP</value>
-  </data>
-  <data name="OpenFileDialog1.Filter" xml:space="preserve">
-    <value>Steady-state Simulation (*.RELAP)|*.RELAP|Compound Creator Study (*.dwcsd)|*.dwcsd|Data Regression Study (*.dwrsd)|*.dwrsd|All RELAP Files (*.RELAP, *.dwcsd, *.dwrsd)|*.RELAP;*.dwcsd;*.dwrsd</value>
-  </data>
-  <data name="OpenFileDialog1.Title" xml:space="preserve">
-    <value>Open existing simulation</value>
-  </data>
-  <data name="SaveFileDialog1.Filter" xml:space="preserve">
-    <value>Steady-state Simulation (*.RELAP)|*.RELAP</value>
-  </data>
-  <data name="SaveFileDialog1.Title" xml:space="preserve">
-    <value>Save active simulation</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -593,20 +328,5 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <data name="sfdUpdater.Filter" xml:space="preserve">
-    <value>All files|*.*</value>
-  </data>
-  <data name="sfdUpdater.Title" xml:space="preserve">
-    <value>Save Installation Package</value>
-  </data>
-  <data name="SaveStudyDlg.Filter" xml:space="preserve">
-    <value>Compound Creator Study|*.dwcsd</value>
-  </data>
-  <data name="SaveRegStudyDlg.Filter" xml:space="preserve">
-    <value>Data Regression Study|*.dwrsd</value>
-  </data>
-  <data name="SaveRegStudyDlg.Title" xml:space="preserve">
-    <value>Save Study</value>
   </data>
 </root>
