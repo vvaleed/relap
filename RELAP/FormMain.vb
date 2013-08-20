@@ -16,6 +16,7 @@
 '    along with RELAP.  If not, see <http://www.gnu.org/licenses/>.
 
 'Imports RELAP.SimulationObjects
+Imports System.Runtime.InteropServices
 Imports System.ComponentModel
 Imports FileHelpers
 Imports RELAP.RELAP.ClassesBasicasTermodinamica
@@ -3006,9 +3007,127 @@ sim:                Dim myStream As System.IO.FileStream
 
 
     Private Sub GenerateInputFileAndRunToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerateInputFileAndRunToolStripMenuItem.Click
+
+        If My.Settings.RELAPPath = "" Then
+            FolderBrowserDialog1.Description = "Select RELAP's Installation Folder"
+            If FolderBrowserDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+                My.Settings.RELAPPath = FolderBrowserDialog1.SelectedPath
+                My.Settings.Save()
+            End If
+        End If
         GenerateInputFileToolStripMenuItem_Click(Nothing, Nothing)
 
-    End Sub
+        Dim olddate As DateTime = DateTime.Now
+        ' System.DateTime = "2006-06-06"
+        Dim lol As DateTime
+        lol = "2006-06-06 " & TimeOfDay
+        SetDeviceTime(lol)
+        Dim RetVal
+        Dim pathstring As String
+        Dim txtRestart, txtOutput, txtInput As String
 
+        Dim ichar As Integer
+
+        txtInput = SaveFileDialog1.FileName
+        txtOutput = SaveFileDialog1.FileName.Substring(0, SaveFileDialog1.FileName.Length - 2)
+
+        '  Copy input file name without extension into name of output and restart files
+        ichar = 1
+
+        txtRestart = txtOutput & ".r"
+        txtOutput = txtOutput & ".o"
+
+
+        pathstring = " -i " & SaveFileDialog1.FileName & " -o " _
+        & txtOutput & " -r " & txtRestart _
+        & " -w " & My.Settings.RELAPPath & "\tpfh2o -d " & My.Settings.RELAPPath & "\tpfd2o"
+        '  If chkNGUI = 1 Then pathstring = pathstring & " -n gui "
+
+        If Dir$(txtRestart) <> "" Then
+            Kill(txtRestart)
+        End If
+
+        If Dir$(txtOutput) <> "" Then
+            Kill(txtOutput)
+        End If
+        ' Check to make sure that relap5.exe, tpfh2o, and tpfd2o files are in folder
+
+       
+        If Dir$(My.Settings.RELAPPath & "\relap5.EXE") <> "" And _
+           Dir$(My.Settings.RELAPPath & "\tpfh2o") <> "" And _
+           Dir$(My.Settings.RELAPPath & "\tpfd2o") <> "" Then
+            Dim startInfo As ProcessStartInfo
+
+            startInfo = New ProcessStartInfo
+
+            startInfo.EnvironmentVariables("rslicense") = "228165458269493124064444"
+
+            startInfo.FileName = My.Settings.RELAPPath & "\relap5.EXE"
+            startInfo.Arguments = pathstring
+            startInfo.UseShellExecute = False
+
+            Dim shell2 As Process
+
+            shell2 = New Process
+
+            shell2.StartInfo = startInfo
+
+            shell2.Start()
+
+            ' RetVal = Shell(pathstring, vbMaximizedFocus)
+        Else
+            If Dir$(My.Settings.RELAPPath & "\relap5.EXE") = "" Then
+                MsgBox("RELAP5.EXE is not in " & My.Settings.RELAPPath & " folder", vbOKOnly, "Error")
+            End If
+            If Dir$(My.Settings.RELAPPath & "\tpfh2o") = "" Then
+                MsgBox("Light water property file, tpfd2o is not in " & My.Settings.RELAPPath & " folder", vbOKOnly, "Error")
+            End If
+            If Dir$(My.Settings.RELAPPath & "\tpfd2o") = "" Then
+                MsgBox("Light water property file, tpfh2o is not in " & My.Settings.RELAPPath & " folder", vbOKOnly, "Error")
+            End If
+        End If
+        SetDeviceTime(olddate)
+    End Sub
+    'System time structure used to pass to P/Invoke...
+    <structlayoutattribute(layoutkind.sequential)> _
+    Private Structure SYSTEMTIME
+        Public year As Short
+        Public month As Short
+        Public dayOfWeek As Short
+        Public day As Short
+        Public hour As Short
+        Public minute As Short
+        Public second As Short
+        Public milliseconds As Short
+    End Structure
+
+    'P/Invoke dec for setting the system time...
+    <DllImport("kernel32.dll")> _
+    Private Shared Function SetLocalTime(ByRef time As SYSTEMTIME) As Boolean
+
+    End Function
+    Public Sub SetDeviceTime(ByVal p_NewDate As Date)
+        'Populate structure...
+        'Substitute <your date="" object=""> with your date object returned via GPRS...
+
+        Dim st As SYSTEMTIME
+        st.year = p_NewDate.Year
+        st.month = p_NewDate.Month
+        st.dayOfWeek = p_NewDate.DayOfWeek
+        st.day = p_NewDate.Day
+        st.hour = p_NewDate.Hour
+        st.minute = p_NewDate.Minute
+        st.second = p_NewDate.Second
+        st.milliseconds = p_NewDate.Millisecond
+
+        'Set the new time...
+        Dim bool As Boolean = False
+
+        bool = SetLocalTime(st)
+
+        If bool = True Then
+
+        End If
+    End Sub
 
 End Class

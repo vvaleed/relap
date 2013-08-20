@@ -98,6 +98,8 @@ Partial Class FormMain
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.SaveStudyDlg = New System.Windows.Forms.SaveFileDialog()
         Me.SaveRegStudyDlg = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -105,405 +107,438 @@ Partial Class FormMain
         '
         'MenuStrip1
         '
-        resources.ApplyResources(Me.MenuStrip1, "MenuStrip1")
         Me.MenuStrip1.AllowItemReorder = True
-        Me.HelpProvider1.SetHelpKeyword(Me.MenuStrip1, resources.GetString("MenuStrip1.HelpKeyword"))
-        Me.HelpProvider1.SetHelpNavigator(Me.MenuStrip1, CType(resources.GetObject("MenuStrip1.HelpNavigator"), System.Windows.Forms.HelpNavigator))
-        Me.HelpProvider1.SetHelpString(Me.MenuStrip1, resources.GetString("MenuStrip1.HelpString"))
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VerToolStripMenuItem, Me.RunToolStripMenuItem, Me.WindowsMenu, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.HelpProvider1.SetShowHelp(Me.MenuStrip1, CType(resources.GetObject("MenuStrip1.ShowHelp"), Boolean))
+        Me.HelpProvider1.SetShowHelp(Me.MenuStrip1, True)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1002, 24)
+        Me.MenuStrip1.TabIndex = 1
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
         'FileToolStripMenuItem
         '
-        resources.ApplyResources(Me.FileToolStripMenuItem, "FileToolStripMenuItem")
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NovoToolStripMenuItem, Me.OpenToolStripMenuItem, Me.toolStripSeparator, Me.SaveToolStripMenuItem, Me.SaveAllToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripSeparator2, Me.CloseAllToolstripMenuItem, Me.toolStripSeparator1, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.FileToolStripMenuItem, resources.GetString("FileToolStripMenuItem.StatusBarText"))
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "&File"
         '
         'NovoToolStripMenuItem
         '
-        resources.ApplyResources(Me.NovoToolStripMenuItem, "NovoToolStripMenuItem")
         Me.NovoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem, Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem})
         Me.NovoToolStripMenuItem.Name = "NovoToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.NovoToolStripMenuItem, resources.GetString("NovoToolStripMenuItem.StatusBarText"))
+        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.NovoToolStripMenuItem.Text = "New"
         '
         'NewToolStripMenuItem
         '
-        resources.ApplyResources(Me.NewToolStripMenuItem, "NewToolStripMenuItem")
         Me.NewToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.page_white
+        Me.NewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.NewToolStripMenuItem, resources.GetString("NewToolStripMenuItem.StatusBarText"))
+        Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
+        Me.NewToolStripMenuItem.Text = "&Steady-state Simulation"
+        Me.NewToolStripMenuItem.Visible = False
         '
         'NovoEstudoDoCriadorDeComponentesToolStripMenuItem
         '
-        resources.ApplyResources(Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem, "NovoEstudoDoCriadorDeComponentesToolStripMenuItem")
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.page_white
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Name = "NovoEstudoDoCriadorDeComponentesToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem, resources.GetString("NovoEstudoDoCriadorDeComponentesToolStripMenuItem.StatusBarText"))
+        Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
+        Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Text = "Compound Creator Study"
+        Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Visible = False
         '
         'NovoEstudoDeRegressãoDeDadosToolStripMenuItem
         '
-        resources.ApplyResources(Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem, "NovoEstudoDeRegressãoDeDadosToolStripMenuItem")
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.page_white
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Name = "NovoEstudoDeRegressãoDeDadosToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem, resources.GetString("NovoEstudoDeRegressãoDeDadosToolStripMenuItem.StatusBarText"))
+        Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
+        Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Text = "Data Regression Study"
+        Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Visible = False
         '
         'OpenToolStripMenuItem
         '
-        resources.ApplyResources(Me.OpenToolStripMenuItem, "OpenToolStripMenuItem")
         Me.OpenToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.folder_page_white
+        Me.OpenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.OpenToolStripMenuItem, resources.GetString("OpenToolStripMenuItem.StatusBarText"))
+        Me.OpenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'toolStripSeparator
         '
-        resources.ApplyResources(Me.toolStripSeparator, "toolStripSeparator")
         Me.toolStripSeparator.Name = "toolStripSeparator"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.toolStripSeparator, resources.GetString("toolStripSeparator.StatusBarText"))
+        Me.toolStripSeparator.Size = New System.Drawing.Size(192, 6)
         '
         'SaveToolStripMenuItem
         '
-        resources.ApplyResources(Me.SaveToolStripMenuItem, "SaveToolStripMenuItem")
+        Me.SaveToolStripMenuItem.Enabled = False
         Me.SaveToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.page_save
+        Me.SaveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.SaveToolStripMenuItem, resources.GetString("SaveToolStripMenuItem.StatusBarText"))
+        Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'SaveAllToolStripMenuItem
         '
-        resources.ApplyResources(Me.SaveAllToolStripMenuItem, "SaveAllToolStripMenuItem")
+        Me.SaveAllToolStripMenuItem.Enabled = False
         Me.SaveAllToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.disk_multiple
         Me.SaveAllToolStripMenuItem.Name = "SaveAllToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.SaveAllToolStripMenuItem, resources.GetString("SaveAllToolStripMenuItem.StatusBarText"))
+        Me.SaveAllToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.SaveAllToolStripMenuItem.Text = "Save All"
+        Me.SaveAllToolStripMenuItem.Visible = False
         '
         'SaveAsToolStripMenuItem
         '
-        resources.ApplyResources(Me.SaveAsToolStripMenuItem, "SaveAsToolStripMenuItem")
+        Me.SaveAsToolStripMenuItem.Enabled = False
         Me.SaveAsToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.disk
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.SaveAsToolStripMenuItem, resources.GetString("SaveAsToolStripMenuItem.StatusBarText"))
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.SaveAsToolStripMenuItem.Text = "Save &As..."
         '
         'ToolStripSeparator2
         '
-        resources.ApplyResources(Me.ToolStripSeparator2, "ToolStripSeparator2")
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripSeparator2, resources.GetString("ToolStripSeparator2.StatusBarText"))
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(192, 6)
         '
         'CloseAllToolstripMenuItem
         '
-        resources.ApplyResources(Me.CloseAllToolstripMenuItem, "CloseAllToolstripMenuItem")
+        Me.CloseAllToolstripMenuItem.Enabled = False
         Me.CloseAllToolstripMenuItem.Image = Global.RELAP.My.Resources.Resources.cross
         Me.CloseAllToolstripMenuItem.Name = "CloseAllToolstripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.CloseAllToolstripMenuItem, resources.GetString("CloseAllToolstripMenuItem.StatusBarText"))
+        Me.CloseAllToolstripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
+        Me.CloseAllToolstripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.CloseAllToolstripMenuItem.Text = "Close All"
         '
         'toolStripSeparator1
         '
-        resources.ApplyResources(Me.toolStripSeparator1, "toolStripSeparator1")
         Me.toolStripSeparator1.Name = "toolStripSeparator1"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.toolStripSeparator1, resources.GetString("toolStripSeparator1.StatusBarText"))
+        Me.toolStripSeparator1.Size = New System.Drawing.Size(192, 6)
         '
         'ExitToolStripMenuItem
         '
-        resources.ApplyResources(Me.ExitToolStripMenuItem, "ExitToolStripMenuItem")
         Me.ExitToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.undo_16
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ExitToolStripMenuItem, resources.GetString("ExitToolStripMenuItem.StatusBarText"))
+        Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.ExitToolStripMenuItem.Text = "Exi&t RELAP"
         '
         'VerToolStripMenuItem
         '
-        resources.ApplyResources(Me.VerToolStripMenuItem, "VerToolStripMenuItem")
         Me.VerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreferênciasDoRELAPToolStripMenuItem, Me.MostrarBarraDeFerramentasToolStripMenuItem})
         Me.VerToolStripMenuItem.Name = "VerToolStripMenuItem"
         Me.VerToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.VerToolStripMenuItem, resources.GetString("VerToolStripMenuItem.StatusBarText"))
+        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.VerToolStripMenuItem.Text = "&Settings"
         '
         'PreferênciasDoRELAPToolStripMenuItem
         '
-        resources.ApplyResources(Me.PreferênciasDoRELAPToolStripMenuItem, "PreferênciasDoRELAPToolStripMenuItem")
         Me.PreferênciasDoRELAPToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_edit
         Me.PreferênciasDoRELAPToolStripMenuItem.Name = "PreferênciasDoRELAPToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.PreferênciasDoRELAPToolStripMenuItem, resources.GetString("PreferênciasDoRELAPToolStripMenuItem.StatusBarText"))
+        Me.PreferênciasDoRELAPToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.PreferênciasDoRELAPToolStripMenuItem.Text = "General Settings"
         '
         'MostrarBarraDeFerramentasToolStripMenuItem
         '
-        resources.ApplyResources(Me.MostrarBarraDeFerramentasToolStripMenuItem, "MostrarBarraDeFerramentasToolStripMenuItem")
         Me.MostrarBarraDeFerramentasToolStripMenuItem.Checked = True
         Me.MostrarBarraDeFerramentasToolStripMenuItem.CheckOnClick = True
         Me.MostrarBarraDeFerramentasToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.MostrarBarraDeFerramentasToolStripMenuItem.Name = "MostrarBarraDeFerramentasToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.MostrarBarraDeFerramentasToolStripMenuItem, resources.GetString("MostrarBarraDeFerramentasToolStripMenuItem.StatusBarText"))
+        Me.MostrarBarraDeFerramentasToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.MostrarBarraDeFerramentasToolStripMenuItem.Text = "Show Toolstrip"
         '
         'RunToolStripMenuItem
         '
-        resources.ApplyResources(Me.RunToolStripMenuItem, "RunToolStripMenuItem")
         Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem, Me.GenerateInputFileAndRunToolStripMenuItem})
+        Me.RunToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.RunToolStripMenuItem.Name = "RunToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.RunToolStripMenuItem, resources.GetString("RunToolStripMenuItem.StatusBarText"))
+        Me.RunToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
+        Me.RunToolStripMenuItem.Text = "Run"
         '
         'GenerateInputFileOnlyToolStripMenuItem
         '
-        resources.ApplyResources(Me.GenerateInputFileOnlyToolStripMenuItem, "GenerateInputFileOnlyToolStripMenuItem")
         Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileOnlyToolStripMenuItem, resources.GetString("GenerateInputFileOnlyToolStripMenuItem.StatusBarText"))
+        Me.GenerateInputFileOnlyToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.GenerateInputFileOnlyToolStripMenuItem.Text = "Generate Input File Only"
         '
         'GenerateInputFileAndRunToolStripMenuItem
         '
-        resources.ApplyResources(Me.GenerateInputFileAndRunToolStripMenuItem, "GenerateInputFileAndRunToolStripMenuItem")
         Me.GenerateInputFileAndRunToolStripMenuItem.Name = "GenerateInputFileAndRunToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.GenerateInputFileAndRunToolStripMenuItem, resources.GetString("GenerateInputFileAndRunToolStripMenuItem.StatusBarText"))
+        Me.GenerateInputFileAndRunToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.GenerateInputFileAndRunToolStripMenuItem.Text = "Generate Input File and Run"
         '
         'WindowsMenu
         '
-        resources.ApplyResources(Me.WindowsMenu, "WindowsMenu")
         Me.WindowsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CascadeToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.TileHorizontalToolStripMenuItem})
         Me.WindowsMenu.MergeIndex = 102
         Me.WindowsMenu.Name = "WindowsMenu"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.WindowsMenu, resources.GetString("WindowsMenu.StatusBarText"))
+        Me.WindowsMenu.Size = New System.Drawing.Size(68, 20)
+        Me.WindowsMenu.Text = "&Windows"
         '
         'CascadeToolStripMenuItem
         '
-        resources.ApplyResources(Me.CascadeToolStripMenuItem, "CascadeToolStripMenuItem")
         Me.CascadeToolStripMenuItem.AutoToolTip = True
         Me.CascadeToolStripMenuItem.CheckOnClick = True
         Me.CascadeToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_cascade
         Me.CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.CascadeToolStripMenuItem, resources.GetString("CascadeToolStripMenuItem.StatusBarText"))
+        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.CascadeToolStripMenuItem.Text = "&Cascade"
         '
         'TileVerticalToolStripMenuItem
         '
-        resources.ApplyResources(Me.TileVerticalToolStripMenuItem, "TileVerticalToolStripMenuItem")
         Me.TileVerticalToolStripMenuItem.AutoToolTip = True
         Me.TileVerticalToolStripMenuItem.CheckOnClick = True
         Me.TileVerticalToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_tile_horizontal
         Me.TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.TileVerticalToolStripMenuItem, resources.GetString("TileVerticalToolStripMenuItem.StatusBarText"))
+        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.TileVerticalToolStripMenuItem.Text = "Group &Vertically"
         '
         'TileHorizontalToolStripMenuItem
         '
-        resources.ApplyResources(Me.TileHorizontalToolStripMenuItem, "TileHorizontalToolStripMenuItem")
         Me.TileHorizontalToolStripMenuItem.AutoToolTip = True
         Me.TileHorizontalToolStripMenuItem.CheckOnClick = True
         Me.TileHorizontalToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_tile_vertical
         Me.TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.TileHorizontalToolStripMenuItem, resources.GetString("TileHorizontalToolStripMenuItem.StatusBarText"))
+        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.TileHorizontalToolStripMenuItem.Text = "Group &Horizontally"
         '
         'HelpToolStripMenuItem
         '
-        resources.ApplyResources(Me.HelpToolStripMenuItem, "HelpToolStripMenuItem")
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContentsToolStripMenuItem, Me.toolStripSeparator5, Me.RELAPNaInternetToolStripMenuItem, Me.RegistroToolStripMenuItem, Me.DonateToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.HelpToolStripMenuItem.MergeIndex = 102
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.HelpToolStripMenuItem, resources.GetString("HelpToolStripMenuItem.StatusBarText"))
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "&Help"
         '
         'ContentsToolStripMenuItem
         '
-        resources.ApplyResources(Me.ContentsToolStripMenuItem, "ContentsToolStripMenuItem")
         Me.ContentsToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.help
         Me.ContentsToolStripMenuItem.Name = "ContentsToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ContentsToolStripMenuItem, resources.GetString("ContentsToolStripMenuItem.StatusBarText"))
+        Me.ContentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
+        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.ContentsToolStripMenuItem.Text = "&Show Help"
         '
         'toolStripSeparator5
         '
-        resources.ApplyResources(Me.toolStripSeparator5, "toolStripSeparator5")
         Me.toolStripSeparator5.Name = "toolStripSeparator5"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.toolStripSeparator5, resources.GetString("toolStripSeparator5.StatusBarText"))
+        Me.toolStripSeparator5.Size = New System.Drawing.Size(175, 6)
         '
         'RELAPNaInternetToolStripMenuItem
         '
-        resources.ApplyResources(Me.RELAPNaInternetToolStripMenuItem, "RELAPNaInternetToolStripMenuItem")
         Me.RELAPNaInternetToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlogDeDesenvolvimentoToolStripMenuItem, Me.DownloadsToolStripMenuItem, Me.WikiToolStripMenuItem, Me.ForumToolStripMenuItem, Me.RastreamentoDeBugsToolStripMenuItem})
         Me.RELAPNaInternetToolStripMenuItem.Name = "RELAPNaInternetToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.RELAPNaInternetToolStripMenuItem, resources.GetString("RELAPNaInternetToolStripMenuItem.StatusBarText"))
+        Me.RELAPNaInternetToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.RELAPNaInternetToolStripMenuItem.Text = "RELAP on the Web"
         '
         'BlogDeDesenvolvimentoToolStripMenuItem
         '
-        resources.ApplyResources(Me.BlogDeDesenvolvimentoToolStripMenuItem, "BlogDeDesenvolvimentoToolStripMenuItem")
+        Me.BlogDeDesenvolvimentoToolStripMenuItem.Image = CType(resources.GetObject("BlogDeDesenvolvimentoToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlogDeDesenvolvimentoToolStripMenuItem.Name = "BlogDeDesenvolvimentoToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.BlogDeDesenvolvimentoToolStripMenuItem, resources.GetString("BlogDeDesenvolvimentoToolStripMenuItem.StatusBarText"))
+        Me.BlogDeDesenvolvimentoToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
+        Me.BlogDeDesenvolvimentoToolStripMenuItem.Text = "Development Blog"
         '
         'DownloadsToolStripMenuItem
         '
-        resources.ApplyResources(Me.DownloadsToolStripMenuItem, "DownloadsToolStripMenuItem")
+        Me.DownloadsToolStripMenuItem.Image = CType(resources.GetObject("DownloadsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.DownloadsToolStripMenuItem.Name = "DownloadsToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DownloadsToolStripMenuItem, resources.GetString("DownloadsToolStripMenuItem.StatusBarText"))
+        Me.DownloadsToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
+        Me.DownloadsToolStripMenuItem.Text = "Downloads"
         '
         'WikiToolStripMenuItem
         '
-        resources.ApplyResources(Me.WikiToolStripMenuItem, "WikiToolStripMenuItem")
+        Me.WikiToolStripMenuItem.Image = CType(resources.GetObject("WikiToolStripMenuItem.Image"), System.Drawing.Image)
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.WikiToolStripMenuItem, resources.GetString("WikiToolStripMenuItem.StatusBarText"))
+        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
+        Me.WikiToolStripMenuItem.Text = "Wiki"
         '
         'ForumToolStripMenuItem
         '
-        resources.ApplyResources(Me.ForumToolStripMenuItem, "ForumToolStripMenuItem")
         Me.ForumToolStripMenuItem.Name = "ForumToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ForumToolStripMenuItem, resources.GetString("ForumToolStripMenuItem.StatusBarText"))
+        Me.ForumToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
         '
         'RastreamentoDeBugsToolStripMenuItem
         '
-        resources.ApplyResources(Me.RastreamentoDeBugsToolStripMenuItem, "RastreamentoDeBugsToolStripMenuItem")
+        Me.RastreamentoDeBugsToolStripMenuItem.Image = CType(resources.GetObject("RastreamentoDeBugsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.RastreamentoDeBugsToolStripMenuItem.Name = "RastreamentoDeBugsToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.RastreamentoDeBugsToolStripMenuItem, resources.GetString("RastreamentoDeBugsToolStripMenuItem.StatusBarText"))
+        Me.RastreamentoDeBugsToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
+        Me.RastreamentoDeBugsToolStripMenuItem.Text = "Bug Tracking / Feature and Support Requests"
         '
         'RegistroToolStripMenuItem
         '
-        resources.ApplyResources(Me.RegistroToolStripMenuItem, "RegistroToolStripMenuItem")
         Me.RegistroToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegistrarTiposCOMToolStripMenuItem, Me.DeToolStripMenuItem})
         Me.RegistroToolStripMenuItem.Name = "RegistroToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.RegistroToolStripMenuItem, resources.GetString("RegistroToolStripMenuItem.StatusBarText"))
+        Me.RegistroToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.RegistroToolStripMenuItem.Text = "Registry"
         '
         'RegistrarTiposCOMToolStripMenuItem
         '
-        resources.ApplyResources(Me.RegistrarTiposCOMToolStripMenuItem, "RegistrarTiposCOMToolStripMenuItem")
         Me.RegistrarTiposCOMToolStripMenuItem.Name = "RegistrarTiposCOMToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.RegistrarTiposCOMToolStripMenuItem, resources.GetString("RegistrarTiposCOMToolStripMenuItem.StatusBarText"))
+        Me.RegistrarTiposCOMToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
+        Me.RegistrarTiposCOMToolStripMenuItem.Text = "Register types for COM Interop"
         '
         'DeToolStripMenuItem
         '
-        resources.ApplyResources(Me.DeToolStripMenuItem, "DeToolStripMenuItem")
         Me.DeToolStripMenuItem.Name = "DeToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DeToolStripMenuItem, resources.GetString("DeToolStripMenuItem.StatusBarText"))
+        Me.DeToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
+        Me.DeToolStripMenuItem.Text = "Unregister types"
         '
         'DonateToolStripMenuItem
         '
-        resources.ApplyResources(Me.DonateToolStripMenuItem, "DonateToolStripMenuItem")
         Me.DonateToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.money_add
         Me.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.DonateToolStripMenuItem, resources.GetString("DonateToolStripMenuItem.StatusBarText"))
+        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.DonateToolStripMenuItem.Text = "Donate!"
         '
         'AboutToolStripMenuItem
         '
-        resources.ApplyResources(Me.AboutToolStripMenuItem, "AboutToolStripMenuItem")
         Me.AboutToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.information
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.AboutToolStripMenuItem, resources.GetString("AboutToolStripMenuItem.StatusBarText"))
+        Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.AboutToolStripMenuItem.Text = "&About RELAP..."
         '
         'ToolStrip1
         '
-        resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
-        Me.HelpProvider1.SetHelpKeyword(Me.ToolStrip1, resources.GetString("ToolStrip1.HelpKeyword"))
-        Me.HelpProvider1.SetHelpNavigator(Me.ToolStrip1, CType(resources.GetObject("ToolStrip1.HelpNavigator"), System.Windows.Forms.HelpNavigator))
-        Me.HelpProvider1.SetHelpString(Me.ToolStrip1, resources.GetString("ToolStrip1.HelpString"))
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.OpenToolStripButton, Me.SaveToolStripButton, Me.ToolStripButton1, Me.SaveAllToolStripButton, Me.ToolStripSeparator3, Me.ToolStripButton2, Me.ToolStripSeparator4, Me.ToolStripButton3, Me.ToolStripButton5, Me.ToolStripButton4, Me.ToolStripSeparator6, Me.ToolStripButton6, Me.ToolStripButton7, Me.ToolStripButton8})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.HelpProvider1.SetShowHelp(Me.ToolStrip1, CType(resources.GetObject("ToolStrip1.ShowHelp"), Boolean))
+        Me.HelpProvider1.SetShowHelp(Me.ToolStrip1, True)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1002, 25)
+        Me.ToolStrip1.TabIndex = 6
+        Me.ToolStrip1.Text = "ToolStrip1"
         '
         'NewToolStripButton
         '
-        resources.ApplyResources(Me.NewToolStripButton, "NewToolStripButton")
         Me.NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.NewToolStripButton.Image = Global.RELAP.My.Resources.Resources.page_white
+        Me.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.NewToolStripButton.Name = "NewToolStripButton"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.NewToolStripButton, resources.GetString("NewToolStripButton.StatusBarText"))
+        Me.NewToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.NewToolStripButton.Text = "New Steady-State Simulation"
         '
         'OpenToolStripButton
         '
-        resources.ApplyResources(Me.OpenToolStripButton, "OpenToolStripButton")
         Me.OpenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.OpenToolStripButton.Image = Global.RELAP.My.Resources.Resources.folder_page_white
+        Me.OpenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.OpenToolStripButton.Name = "OpenToolStripButton"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.OpenToolStripButton, resources.GetString("OpenToolStripButton.StatusBarText"))
+        Me.OpenToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.OpenToolStripButton.Text = "&Open Simulation"
         '
         'SaveToolStripButton
         '
-        resources.ApplyResources(Me.SaveToolStripButton, "SaveToolStripButton")
         Me.SaveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SaveToolStripButton.Enabled = False
         Me.SaveToolStripButton.Image = Global.RELAP.My.Resources.Resources.page_save
+        Me.SaveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SaveToolStripButton.Name = "SaveToolStripButton"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.SaveToolStripButton, resources.GetString("SaveToolStripButton.StatusBarText"))
+        Me.SaveToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.SaveToolStripButton.Text = "&Save Active Simulation"
         '
         'ToolStripButton1
         '
-        resources.ApplyResources(Me.ToolStripButton1, "ToolStripButton1")
         Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Enabled = False
         Me.ToolStripButton1.Image = Global.RELAP.My.Resources.Resources.disk
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton1, resources.GetString("ToolStripButton1.StatusBarText"))
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Save As..."
+        Me.ToolStripButton1.Visible = False
         '
         'SaveAllToolStripButton
         '
-        resources.ApplyResources(Me.SaveAllToolStripButton, "SaveAllToolStripButton")
         Me.SaveAllToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SaveAllToolStripButton.Enabled = False
         Me.SaveAllToolStripButton.Image = Global.RELAP.My.Resources.Resources.disk_multiple
+        Me.SaveAllToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SaveAllToolStripButton.Name = "SaveAllToolStripButton"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.SaveAllToolStripButton, resources.GetString("SaveAllToolStripButton.StatusBarText"))
+        Me.SaveAllToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.SaveAllToolStripButton.Text = "Save All"
+        Me.SaveAllToolStripButton.Visible = False
         '
         'ToolStripSeparator3
         '
-        resources.ApplyResources(Me.ToolStripSeparator3, "ToolStripSeparator3")
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripSeparator3, resources.GetString("ToolStripSeparator3.StatusBarText"))
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton2
         '
-        resources.ApplyResources(Me.ToolStripButton2, "ToolStripButton2")
         Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton2.Image = Global.RELAP.My.Resources.Resources.application_edit
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton2, resources.GetString("ToolStripButton2.StatusBarText"))
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "General Settings"
         '
         'ToolStripSeparator4
         '
-        resources.ApplyResources(Me.ToolStripSeparator4, "ToolStripSeparator4")
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripSeparator4, resources.GetString("ToolStripSeparator4.StatusBarText"))
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton3
         '
-        resources.ApplyResources(Me.ToolStripButton3, "ToolStripButton3")
         Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton3.Image = Global.RELAP.My.Resources.Resources.application_cascade
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton3, resources.GetString("ToolStripButton3.StatusBarText"))
+        Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton3.Text = "Cascade Windows"
         '
         'ToolStripButton5
         '
-        resources.ApplyResources(Me.ToolStripButton5, "ToolStripButton5")
         Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton5.Image = Global.RELAP.My.Resources.Resources.application_tile_horizontal
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton5, resources.GetString("ToolStripButton5.StatusBarText"))
+        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton5.Text = "Group Windows Vertically"
         '
         'ToolStripButton4
         '
-        resources.ApplyResources(Me.ToolStripButton4, "ToolStripButton4")
         Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton4.Image = Global.RELAP.My.Resources.Resources.application_tile_vertical
+        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton4, resources.GetString("ToolStripButton4.StatusBarText"))
+        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton4.Text = "Group Windows Horizontally"
         '
         'ToolStripSeparator6
         '
-        resources.ApplyResources(Me.ToolStripSeparator6, "ToolStripSeparator6")
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripSeparator6, resources.GetString("ToolStripSeparator6.StatusBarText"))
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton6
         '
-        resources.ApplyResources(Me.ToolStripButton6, "ToolStripButton6")
         Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton6.Image = Global.RELAP.My.Resources.Resources.help
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton6, resources.GetString("ToolStripButton6.StatusBarText"))
+        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton6.Text = "Show Context-Sensitive Help"
         '
         'ToolStripButton7
         '
-        resources.ApplyResources(Me.ToolStripButton7, "ToolStripButton7")
         Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton7.Image = Global.RELAP.My.Resources.Resources.money_add
+        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton7.Name = "ToolStripButton7"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton7, resources.GetString("ToolStripButton7.StatusBarText"))
+        Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton7.Text = "Donate"
         '
         'ToolStripButton8
         '
-        resources.ApplyResources(Me.ToolStripButton8, "ToolStripButton8")
         Me.ToolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton8.Image = Global.RELAP.My.Resources.Resources.information
+        Me.ToolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton8.Name = "ToolStripButton8"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripButton8, resources.GetString("ToolStripButton8.StatusBarText"))
+        Me.ToolStripButton8.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton8.Text = "About RELAP"
         '
         'BgLoadComp
         '
@@ -512,16 +547,20 @@ Partial Class FormMain
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.DefaultExt = "RELAP"
-        resources.ApplyResources(Me.OpenFileDialog1, "OpenFileDialog1")
+        Me.OpenFileDialog1.Filter = "Steady-state Simulation (*.RELAP)|*.RELAP|Compound Creator Study (*.dwcsd)|*.dwcs" & _
+    "d|Data Regression Study (*.dwrsd)|*.dwrsd|All RELAP Files (*.RELAP, *.dwcsd, *.d" & _
+    "wrsd)|*.RELAP;*.dwcsd;*.dwrsd"
         Me.OpenFileDialog1.FilterIndex = 4
         Me.OpenFileDialog1.RestoreDirectory = True
+        Me.OpenFileDialog1.Title = "Open existing simulation"
         '
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.DefaultExt = "RELAP"
-        resources.ApplyResources(Me.SaveFileDialog1, "SaveFileDialog1")
+        Me.SaveFileDialog1.Filter = "Steady-state Simulation (*.RELAP)|*.RELAP"
         Me.SaveFileDialog1.RestoreDirectory = True
         Me.SaveFileDialog1.SupportMultiDottedExtensions = True
+        Me.SaveFileDialog1.Title = "Save active simulation"
         '
         'bgLoadFile
         '
@@ -533,35 +572,37 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
         Me.StatusStrip1.GripMargin = New System.Windows.Forms.Padding(0)
         Me.StatusStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible
-        Me.HelpProvider1.SetHelpKeyword(Me.StatusStrip1, resources.GetString("StatusStrip1.HelpKeyword"))
-        Me.HelpProvider1.SetHelpNavigator(Me.StatusStrip1, CType(resources.GetObject("StatusStrip1.HelpNavigator"), System.Windows.Forms.HelpNavigator))
-        Me.HelpProvider1.SetHelpString(Me.StatusStrip1, resources.GetString("StatusStrip1.HelpString"))
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.tslupd})
         Me.StatusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 583)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.HelpProvider1.SetShowHelp(Me.StatusStrip1, CType(resources.GetObject("StatusStrip1.ShowHelp"), Boolean))
+        Me.HelpProvider1.SetShowHelp(Me.StatusStrip1, True)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1002, 22)
+        Me.StatusStrip1.TabIndex = 22
+        Me.StatusStrip1.Text = "StatusStrip1"
         '
         'ToolStripStatusLabel1
         '
-        resources.ApplyResources(Me.ToolStripStatusLabel1, "ToolStripStatusLabel1")
         Me.ToolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripStatusLabel1.Margin = New System.Windows.Forms.Padding(0)
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(0, 22)
         Me.ToolStripStatusLabel1.Spring = True
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.ToolStripStatusLabel1, resources.GetString("ToolStripStatusLabel1.StatusBarText"))
+        Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tslupd
         '
-        resources.ApplyResources(Me.tslupd, "tslupd")
         Me.tslupd.Image = Global.RELAP.My.Resources.Resources.information
+        Me.tslupd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.tslupd.IsLink = True
         Me.tslupd.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
         Me.tslupd.Name = "tslupd"
-        Me.StatusBarTextProvider1.SetStatusBarText(Me.tslupd, resources.GetString("tslupd.StatusBarText"))
+        Me.tslupd.Size = New System.Drawing.Size(16, 17)
+        Me.tslupd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.tslupd.Visible = False
         '
         'TimerBackup
         '
@@ -577,36 +618,44 @@ Partial Class FormMain
         '
         'sfdUpdater
         '
-        resources.ApplyResources(Me.sfdUpdater, "sfdUpdater")
+        Me.sfdUpdater.Filter = "All files|*.*"
+        Me.sfdUpdater.Title = "Save Installation Package"
         '
         'HelpProvider1
         '
-        resources.ApplyResources(Me.HelpProvider1, "HelpProvider1")
+        Me.HelpProvider1.HelpNamespace = "help\RELAP.chm"
         '
         'SaveStudyDlg
         '
-        resources.ApplyResources(Me.SaveStudyDlg, "SaveStudyDlg")
+        Me.SaveStudyDlg.Filter = "Compound Creator Study|*.dwcsd"
+        Me.SaveStudyDlg.Title = "Salvar Estudo"
         '
         'SaveRegStudyDlg
         '
-        resources.ApplyResources(Me.SaveRegStudyDlg, "SaveRegStudyDlg")
+        Me.SaveRegStudyDlg.Filter = "Data Regression Study|*.dwrsd"
+        Me.SaveRegStudyDlg.Title = "Save Study"
+        '
+        'OpenFileDialog2
+        '
+        Me.OpenFileDialog2.FileName = "OpenFileDialog2"
         '
         'FormMain
         '
-        resources.ApplyResources(Me, "$this")
         Me.AllowDrop = True
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(1002, 605)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.DoubleBuffered = True
-        Me.HelpProvider1.SetHelpKeyword(Me, resources.GetString("$this.HelpKeyword"))
-        Me.HelpProvider1.SetHelpNavigator(Me, CType(resources.GetObject("$this.HelpNavigator"), System.Windows.Forms.HelpNavigator))
-        Me.HelpProvider1.SetHelpString(Me, resources.GetString("$this.HelpString"))
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "FormMain"
-        Me.HelpProvider1.SetShowHelp(Me, CType(resources.GetObject("$this.ShowHelp"), Boolean))
+        Me.HelpProvider1.SetShowHelp(Me, True)
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "RELAP 5"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -768,5 +817,7 @@ Partial Class FormMain
     Friend WithEvents RunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GenerateInputFileOnlyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GenerateInputFileAndRunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
 
 End Class

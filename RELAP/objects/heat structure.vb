@@ -121,7 +121,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.FillNodeItems()
             Me.QTFillNodeItems()
             Me.GeometryType = GeometryTypeEnum.Cylinderical
-           
+
 
             '& kvkvp.Value.HydraulicDiameter & " ") & "0000000"
 

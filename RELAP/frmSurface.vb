@@ -2238,8 +2238,8 @@ Public Class frmSurface
 
         Me.FlowsheetDesignSurface.Cursor = Cursors.Arrow
 
-        Return gObj.Name
 
+        Return gObj.Name
     End Function
 
     Private Sub FlowsheetDesignSurface_DragEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles FlowsheetDesignSurface.DragEnter
