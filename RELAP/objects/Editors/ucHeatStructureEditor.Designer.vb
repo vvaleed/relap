@@ -53,8 +53,8 @@ Partial Class ucHeatStructureEditor
         Me.Temp1Temperature = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Temp1MeshPointNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvTemp2 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Temp2GammaAttenCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Temp2MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,22 +332,22 @@ Partial Class ucHeatStructureEditor
         '
         Me.dgvTemp2.AccessibleDescription = "                            "
         Me.dgvTemp2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTemp2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
+        Me.dgvTemp2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temp2GammaAttenCo, Me.Temp2MeshIntervalNumber})
         Me.dgvTemp2.Location = New System.Drawing.Point(27, 105)
         Me.dgvTemp2.Name = "dgvTemp2"
         Me.dgvTemp2.Size = New System.Drawing.Size(256, 125)
         Me.dgvTemp2.TabIndex = 12
         '
-        'DataGridViewTextBoxColumn1
+        'Temp2GammaAttenCo
         '
-        Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Gamma Attenuation Co."
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.Temp2GammaAttenCo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Temp2GammaAttenCo.HeaderText = "Gamma Attenuation Co."
+        Me.Temp2GammaAttenCo.Name = "Temp2GammaAttenCo"
         '
-        'DataGridViewTextBoxColumn2
+        'Temp2MeshIntervalNumber
         '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Mesh Interval Number"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.Temp2MeshIntervalNumber.HeaderText = "Mesh Interval Number"
+        Me.Temp2MeshIntervalNumber.Name = "Temp2MeshIntervalNumber"
         '
         'ucHeatStructureEditor
         '
@@ -399,11 +399,11 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents dgvTemp1 As System.Windows.Forms.DataGridView
     Friend WithEvents dgvTemp2 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Temp1Temperature As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Temp1MeshPointNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ComboBoxTemp As System.Windows.Forms.ComboBox
+    Friend WithEvents Temp2GammaAttenCo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Temp2MeshIntervalNumber As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

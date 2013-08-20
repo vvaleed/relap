@@ -105,6 +105,17 @@
             m_collection6 = value
         End Set
     End Property
+    Protected m_collection7 As Generic.SortedDictionary(Of Integer, HSTemp2)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property Temp2() As Generic.SortedDictionary(Of Integer, HSTemp2)
+        Get
+            Return m_collection7
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSTemp2))
+            m_collection7 = value
+        End Set
+    End Property
 
     Public Sub New()
         m_collection = New Generic.SortedDictionary(Of Integer, HSMeshDataFormat1)
@@ -113,6 +124,7 @@
         m_collection4 = New Generic.SortedDictionary(Of Integer, HSMeshDataWithDecay)
         m_collection5 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition)
         m_collection6 = New Generic.SortedDictionary(Of Integer, HSTemp1)
+        m_collection7 = New Generic.SortedDictionary(Of Integer, HSTemp2)
     End Sub
     Public Overrides Function ToString() As String
         Return "Click to Edit..."
@@ -268,6 +280,32 @@ End Class
     Public Sub New(ByVal Temp1Temperature As Double, ByVal Temp1MeshPointNumber As Double)
         Me._Temp1Temperature = Temp1Temperature
         Me._Temp1MeshPointNumber = Temp1MeshPointNumber
+    End Sub
+
+End Class
+
+<System.Serializable()> Public Class HSTemp2
+    Private _Temp2GammaAttenCo As Double
+    Public Property Temp2GammaAttenCo() As Double
+        Get
+            Return _Temp2GammaAttenCo
+        End Get
+        Set(ByVal value As Double)
+            _Temp2GammaAttenCo = value
+        End Set
+    End Property
+    Private _Temp2MeshIntervalNumber As Double
+    Public Property Temp2MeshIntervalNumber() As Double
+        Get
+            Return _Temp2MeshIntervalNumber
+        End Get
+        Set(ByVal value As Double)
+            _Temp2MeshIntervalNumber = value
+        End Set
+    End Property
+    Public Sub New(ByVal Temp2GammaAttenCo As Double, ByVal Temp2MeshIntervalNumber As Double)
+        Me._Temp2GammaAttenCo = Temp2GammaAttenCo
+        Me._Temp2MeshIntervalNumber = Temp2MeshIntervalNumber
     End Sub
 
 End Class
