@@ -2982,7 +2982,21 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab3) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab3
-                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.SourceType & " " & kvp2.Value.InternalSourceMultiplier & " " & kvp2.Value.DirectModeratorHeatingMultiplierLeft & " " & kvp2.Value.DirectModeratorHeatingMultiplierRight & " " & kvp2.Value.SourceHeatStructureNumber
+                    output = "1" & kvp.Value.UID & "0" & "70" & Counter & " " & kvp2.Value.SourceType & " " & kvp2.Value.InternalSourceMultiplier & " " & kvp2.Value.DirectModeratorHeatingMultiplierLeft & " " & kvp2.Value.DirectModeratorHeatingMultiplierRight & " " & kvp2.Value.SourceHeatStructureNumber
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab4) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab4
+                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.leftHeatedEquivalentDiameter & " " & kvp2.Value.LeftHeatedLengthForward & " " & kvp2.Value.LeftHeatedLengthReverse & " " & kvp2.Value.leftGridSpacerLengthForward & " " & kvp2.Value.leftGridSpacerLengthReverse
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab5) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab5
+                    output = "1" & kvp.Value.UID & "0" & "90" & Counter & " " & kvp2.Value.rightHeatedEquivalentDiameter & " " & kvp2.Value.rightHeatedLengthForward & " " & kvp2.Value.rightHeatedLengthReverse & " " & kvp2.Value.rightGridSpacerLengthForward & " " & kvp2.Value.rightGridSpacerLengthReverse
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3052,7 +3066,7 @@ sim:                Dim myStream As System.IO.FileStream
         End If
         ' Check to make sure that relap5.exe, tpfh2o, and tpfd2o files are in folder
 
-       
+
         If Dir$(My.Settings.RELAPPath & "\relap5.EXE") <> "" And _
            Dir$(My.Settings.RELAPPath & "\tpfh2o") <> "" And _
            Dir$(My.Settings.RELAPPath & "\tpfd2o") <> "" Then

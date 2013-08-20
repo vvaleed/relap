@@ -268,10 +268,260 @@ End Class
 
 
 <System.Serializable()> Public Class HSBoundaryCondTab4
- 
+    Private _leftHeatedEquivalentDiameter As Double
+    Public Property leftHeatedEquivalentDiameter() As Double
+        Get
+            Return _leftHeatedEquivalentDiameter
+        End Get
+        Set(ByVal value As Double)
+            _leftHeatedEquivalentDiameter = value
+        End Set
+    End Property
+    Private _LeftHeatedLengthForward As Double
+    Public Property LeftHeatedLengthForward() As Double
+        Get
+            Return _LeftHeatedLengthForward
+        End Get
+        Set(ByVal value As Double)
+            _LeftHeatedLengthForward = value
+        End Set
+    End Property
+    Private _LeftHeatedLengthReverse As Double
+    Public Property LeftHeatedLengthReverse() As Double
+        Get
+            Return _LeftHeatedLengthReverse
+        End Get
+        Set(ByVal value As Double)
+            _LeftHeatedLengthReverse = value
+        End Set
+    End Property
+    Private _leftGridSpacerLengthForward As Double
+    Public Property leftGridSpacerLengthForward() As Double
+        Get
+            Return _leftGridSpacerLengthForward
+        End Get
+        Set(ByVal value As Double)
+            _leftGridSpacerLengthForward = value
+        End Set
+    End Property
+    Private _leftGridSpacerLengthReverse As Double
+    Public Property leftGridSpacerLengthReverse() As Double
+        Get
+            Return _leftGridSpacerLengthReverse
+        End Get
+        Set(ByVal value As Double)
+            _leftGridSpacerLengthReverse = value
+        End Set
+    End Property
+
+    Private _leftGridLossCoefficientForward As Double
+    Public Property leftGridLossCoefficientForward() As Double
+        Get
+            Return _leftGridLossCoefficientForward
+        End Get
+        Set(ByVal value As Double)
+            _leftGridLossCoefficientForward = value
+        End Set
+    End Property
+    Private _leftGridLossCoefficientReverse As Double
+    Public Property leftGridLossCoefficientReverse() As Double
+        Get
+            Return _leftGridLossCoefficientReverse
+        End Get
+        Set(ByVal value As Double)
+            _leftGridLossCoefficientReverse = value
+        End Set
+    End Property
+    Private _leftLocalBoilingFactor As Double
+    Public Property leftLocalBoilingFactor() As Double
+        Get
+            Return _leftLocalBoilingFactor
+        End Get
+        Set(ByVal value As Double)
+            _leftLocalBoilingFactor = value
+        End Set
+    End Property
+    Private _leftNaturalCirculationLength As Double
+    Public Property leftNaturalCirculationLength() As String
+        Get
+            Return _leftNaturalCirculationLength
+        End Get
+        Set(ByVal value As String)
+            _leftNaturalCirculationLength = value
+        End Set
+    End Property
+    Private _leftPitchtoDiameterRatio As Double
+    Public Property leftPitchtoDiameterRatio() As Double
+        Get
+            Return _leftPitchtoDiameterRatio
+        End Get
+        Set(ByVal value As Double)
+            _leftPitchtoDiameterRatio = value
+        End Set
+    End Property
+    Private _leftFoulingFactor As Double
+    Public Property leftFoulingFactor() As Double
+        Get
+            Return _leftFoulingFactor
+        End Get
+        Set(ByVal value As Double)
+            _leftFoulingFactor = value
+        End Set
+    End Property
+    Private _leftAddHeatStructureNumber As Double
+    Public Property leftAddHeatStructureNumber() As Double
+        Get
+            Return _leftAddHeatStructureNumber
+        End Get
+        Set(ByVal value As Double)
+            _leftAddHeatStructureNumber = value
+        End Set
+    End Property
+
+
+    Public Sub New(ByVal leftHeatedEquivalentDiameter As Double, ByVal LeftHeatedLengthForward As Double, ByVal LeftHeatedLengthReverse As Double, ByVal leftGridSpacerLengthForward As Double, ByVal leftGridSpacerLengthReverse As Double, ByVal leftGridLossCoefficientForward As Double, _
+                   ByVal leftGridLossCoefficientReverse As Double, ByVal leftLocalBoilingFactor As Double, ByVal leftNaturalCirculationLength As Double, ByVal leftPitchtoDiameterRatio As Double, ByVal leftFoulingFactor As Double, ByVal leftAddHeatStructureNumber As Double)
+        Me._leftHeatedEquivalentDiameter = leftHeatedEquivalentDiameter
+        Me._LeftHeatedLengthForward = LeftHeatedLengthForward
+        Me._LeftHeatedLengthReverse = LeftHeatedLengthReverse
+        Me._leftGridSpacerLengthForward = leftGridSpacerLengthForward
+        Me._leftGridSpacerLengthReverse = leftGridSpacerLengthReverse
+        Me._leftGridLossCoefficientForward = leftGridLossCoefficientForward
+        Me._leftGridLossCoefficientReverse = leftGridLossCoefficientReverse
+        Me._leftLocalBoilingFactor = leftLocalBoilingFactor
+        Me._leftNaturalCirculationLength = leftNaturalCirculationLength
+        Me._leftPitchtoDiameterRatio = leftPitchtoDiameterRatio
+        Me._leftFoulingFactor = leftFoulingFactor
+        Me._leftAddHeatStructureNumber = leftAddHeatStructureNumber
+    End Sub
 End Class
 
 
 <System.Serializable()> Public Class HSBoundaryCondTab5
+    Private _rightHeatedEquivalentDiameter As Double
+    Public Property rightHeatedEquivalentDiameter() As Double
+        Get
+            Return _rightHeatedEquivalentDiameter
+        End Get
+        Set(ByVal value As Double)
+            _rightHeatedEquivalentDiameter = value
+        End Set
+    End Property
+    Private _rightHeatedLengthForward As Double
+    Public Property rightHeatedLengthForward() As Double
+        Get
+            Return _rightHeatedLengthForward
+        End Get
+        Set(ByVal value As Double)
+            _rightHeatedLengthForward = value
+        End Set
+    End Property
+    Private _rightHeatedLengthReverse As Double
+    Public Property rightHeatedLengthReverse() As Double
+        Get
+            Return _rightHeatedLengthReverse
+        End Get
+        Set(ByVal value As Double)
+            _rightHeatedLengthReverse = value
+        End Set
+    End Property
+    Private _rightGridSpacerLengthForward As Double
+    Public Property rightGridSpacerLengthForward() As Double
+        Get
+            Return _rightGridSpacerLengthForward
+        End Get
+        Set(ByVal value As Double)
+            _rightGridSpacerLengthForward = value
+        End Set
+    End Property
+    Private _rightGridSpacerLengthReverse As Double
+    Public Property rightGridSpacerLengthReverse() As Double
+        Get
+            Return _rightGridSpacerLengthReverse
+        End Get
+        Set(ByVal value As Double)
+            _rightGridSpacerLengthReverse = value
+        End Set
+    End Property
 
+    Private _rightGridLossCoefficientForward As Double
+    Public Property rightGridLossCoefficientForward() As Double
+        Get
+            Return _rightGridLossCoefficientForward
+        End Get
+        Set(ByVal value As Double)
+            _rightGridLossCoefficientForward = value
+        End Set
+    End Property
+    Private _rightGridLossCoefficientReverse As Double
+    Public Property rightGridLossCoefficientReverse() As Double
+        Get
+            Return _rightGridLossCoefficientReverse
+        End Get
+        Set(ByVal value As Double)
+            _rightGridLossCoefficientReverse = value
+        End Set
+    End Property
+    Private _rightLocalBoilingFactor As Double
+    Public Property rightLocalBoilingFactor() As Double
+        Get
+            Return _rightLocalBoilingFactor
+        End Get
+        Set(ByVal value As Double)
+            _rightLocalBoilingFactor = value
+        End Set
+    End Property
+    Private _rightNaturalCirculationLength As Double
+    Public Property rightNaturalCirculationLength() As String
+        Get
+            Return _rightNaturalCirculationLength
+        End Get
+        Set(ByVal value As String)
+            _rightNaturalCirculationLength = value
+        End Set
+    End Property
+    Private _rightPitchtoDiameterRatio As Double
+    Public Property rightPitchtoDiameterRatio() As Double
+        Get
+            Return _rightPitchtoDiameterRatio
+        End Get
+        Set(ByVal value As Double)
+            _rightPitchtoDiameterRatio = value
+        End Set
+    End Property
+    Private _rightFoulingFactor As Double
+    Public Property rightFoulingFactor() As Double
+        Get
+            Return _rightFoulingFactor
+        End Get
+        Set(ByVal value As Double)
+            _rightFoulingFactor = value
+        End Set
+    End Property
+    Private _rightAddHeatStructureNumber As Double
+    Public Property rightAddHeatStructureNumber() As Double
+        Get
+            Return _rightAddHeatStructureNumber
+        End Get
+        Set(ByVal value As Double)
+            _rightAddHeatStructureNumber = value
+        End Set
+    End Property
+
+
+    Public Sub New(ByVal rightHeatedEquivalentDiameter As Double, ByVal rightHeatedLengthForward As Double, ByVal rightHeatedLengthReverse As Double, ByVal rightGridSpacerLengthForward As Double, ByVal rightGridSpacerLengthReverse As Double, ByVal rightGridLossCoefficientForward As Double, _
+                   ByVal rightGridLossCoefficientReverse As Double, ByVal rightLocalBoilingFactor As Double, ByVal rightNaturalCirculationLength As Double, ByVal rightPitchtoDiameterRatio As Double, ByVal rightFoulingFactor As Double, ByVal rightAddHeatStructureNumber As Double)
+        Me._rightHeatedEquivalentDiameter = rightHeatedEquivalentDiameter
+        Me._rightHeatedLengthForward = rightHeatedLengthForward
+        Me._rightHeatedLengthReverse = rightHeatedLengthReverse
+        Me._rightGridSpacerLengthForward = rightGridSpacerLengthForward
+        Me._rightGridSpacerLengthReverse = rightGridSpacerLengthReverse
+        Me._rightGridLossCoefficientForward = rightGridLossCoefficientForward
+        Me._rightGridLossCoefficientReverse = rightGridLossCoefficientReverse
+        Me._rightLocalBoilingFactor = rightLocalBoilingFactor
+        Me._rightNaturalCirculationLength = rightNaturalCirculationLength
+        Me._rightPitchtoDiameterRatio = rightPitchtoDiameterRatio
+        Me._rightFoulingFactor = rightFoulingFactor
+        Me._rightAddHeatStructureNumber = rightAddHeatStructureNumber
+    End Sub
 End Class
