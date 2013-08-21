@@ -2982,6 +2982,7 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab1) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab1
+                  
                     If kvp2.Value.LeftBoundaryConditionType.ToString = "Default" Then
                         kvp2.Value.LeftBoundaryConditionType = "101"
                     ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Insulated Boundary" Then
@@ -2994,6 +2995,7 @@ sim:                Dim myStream As System.IO.FileStream
                         kvp2.Value.LeftBoundaryConditionType = "130"
                     ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Horizontal bundle" Then
                         kvp2.Value.LeftBoundaryConditionType = "134"
+
                     End If
                     output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & kvp2.Value.LeftBoundaryVolumeNumber & " " & kvp2.Value.LeftIncrement & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea
                     generate.WriteLine(output)
@@ -3048,7 +3050,7 @@ sim:                Dim myStream As System.IO.FileStream
 
             generate.WriteLine(".")
             generate.Close()
-            'MsgBox("File Saved")
+            MsgBox("File Saved")
 
             Exit Sub
 

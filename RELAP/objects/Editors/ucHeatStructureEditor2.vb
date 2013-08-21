@@ -33,8 +33,13 @@
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
         dgvtab1.Rows.Add(1)
         dgvtab1.Rows(0).Cells(1).Value = 10000
+        '  myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(0).LeftBoundaryConditionType = "Default"
+        '    dgvtab1.Rows(0).Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(0).LeftBoundaryConditionType
+        Dim cbCol As DataGridViewComboBoxCell = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell)
+
         dgvTab2.Rows.Add(1)
         dgvTab2.Rows(0).Cells(1).Value = 10000
+        '  dgvTab2.Rows(0).Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab2(0).RightBoundaryConditionType(0)
     End Sub
 
     Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave.Click
