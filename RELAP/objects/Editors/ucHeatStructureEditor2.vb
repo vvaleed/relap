@@ -31,6 +31,10 @@
     Private Sub ucHeatStructureEditor2_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim gobj As Microsoft.MSDN.Samples.GraphicObjects.HeatStructureGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
+        dgvtab1.Rows.Add(1)
+        dgvtab1.Rows(0).Cells(1).Value = 10000
+        dgvTab2.Rows.Add(1)
+        dgvTab2.Rows(0).Cells(1).Value = 10000
     End Sub
 
     Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave.Click
@@ -122,4 +126,5 @@
         Next
         row.Dispose()
     End Sub
+
 End Class

@@ -2981,6 +2981,47 @@ sim:                Dim myStream As System.IO.FileStream
                 Next kvp2
 
                 Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab1) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab1
+                    If kvp2.Value.LeftBoundaryConditionType.ToString = "Default" Then
+                        kvp2.Value.LeftBoundaryConditionType = "101"
+                    ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Insulated Boundary" Then
+                        kvp2.Value.LeftBoundaryConditionType = "0"
+                    ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Verticle bundle without crossflow" Then
+                        kvp2.Value.LeftBoundaryConditionType = "110"
+                    ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Verticle bundle with crossflow" Then
+                        kvp2.Value.LeftBoundaryConditionType = "111"
+                    ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Flat plate above fluid" Then
+                        kvp2.Value.LeftBoundaryConditionType = "130"
+                    ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Horizontal bundle" Then
+                        kvp2.Value.LeftBoundaryConditionType = "134"
+                    End If
+                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & kvp2.Value.LeftBoundaryVolumeNumber & " " & kvp2.Value.LeftIncrement & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab2) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab2
+                    If kvp2.Value.RightBoundaryConditionType.ToString = "Default" Then
+                        kvp2.Value.RightBoundaryConditionType = "101"
+                    ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Insulated Boundary" Then
+                        kvp2.Value.RightBoundaryConditionType = "0"
+                    ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Verticle bundle without crossflow" Then
+                        kvp2.Value.RightBoundaryConditionType = "110"
+                    ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Verticle bundle with crossflow" Then
+                        kvp2.Value.RightBoundaryConditionType = "111"
+                    ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Flat plate above fluid" Then
+                        kvp2.Value.RightBoundaryConditionType = "130"
+                    ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Horizontal bundle" Then
+                        kvp2.Value.RightBoundaryConditionType = "134"
+                    End If
+                    output = "1" & kvp.Value.UID & "0" & "60" & Counter & " " & kvp2.Value.RightBoundaryVolumeNumber & " " & kvp2.Value.RightIncrement & " " & kvp2.Value.RightBoundaryConditionType & " " & kvp2.Value.RightSurfaceAreaSelection & " " & kvp2.Value.RightSurfaceArea
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+
+                Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab3) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab3
                     output = "1" & kvp.Value.UID & "0" & "70" & Counter & " " & kvp2.Value.SourceType & " " & kvp2.Value.InternalSourceMultiplier & " " & kvp2.Value.DirectModeratorHeatingMultiplierLeft & " " & kvp2.Value.DirectModeratorHeatingMultiplierRight & " " & kvp2.Value.SourceHeatStructureNumber
                     generate.WriteLine(output)
