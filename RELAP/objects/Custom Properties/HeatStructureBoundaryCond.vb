@@ -87,12 +87,12 @@ End Class
         End Set
     End Property
 
-    Private _LeftBoundaryConditionType As Double
-    Public Property LeftBoundaryConditionType() As Double
+    Private _LeftBoundaryConditionType As String
+    Public Property LeftBoundaryConditionType() As String
         Get
             Return _LeftBoundaryConditionType
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As String)
             _LeftBoundaryConditionType = value
         End Set
     End Property
@@ -127,7 +127,7 @@ End Class
         End Set
     End Property
 
-    Public Sub New(ByVal LeftBoundaryVolumeNumber As Double, ByVal LeftIncrement As Double, ByVal LeftBoundaryConditionType As Double, ByVal LeftSurfaceAreaSelection As Double, ByVal LeftSurfaceArea As Double, ByVal LeftHeatStructureNumber As Double)
+    Public Sub New(ByVal LeftBoundaryVolumeNumber As Double, ByVal LeftIncrement As Double, ByVal LeftBoundaryConditionType As String, ByVal LeftSurfaceAreaSelection As Double, ByVal LeftSurfaceArea As Double, ByVal LeftHeatStructureNumber As Double)
         Me._LeftBoundaryVolumeNumber = LeftBoundaryVolumeNumber
         Me._LeftIncrement = LeftIncrement
         Me._LeftBoundaryConditionType = LeftBoundaryConditionType
@@ -158,12 +158,12 @@ End Class
         End Set
     End Property
 
-    Private _RightBoundaryConditionType As Double
-    Public Property RightBoundaryConditionType() As Double
+    Private _RightBoundaryConditionType As String
+    Public Property RightBoundaryConditionType() As String
         Get
             Return _RightBoundaryConditionType
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As String)
             _RightBoundaryConditionType = value
         End Set
     End Property
@@ -198,7 +198,7 @@ End Class
         End Set
     End Property
 
-    Public Sub New(ByVal RightBoundaryVolumeNumber As Double, ByVal RightIncrement As Double, ByVal RightBoundaryConditionType As Double, ByVal RightSurfaceAreaSelection As Double, ByVal RightSurfaceArea As Double, ByVal RightHeatStructureNumber As Double)
+    Public Sub New(ByVal RightBoundaryVolumeNumber As Double, ByVal RightIncrement As Double, ByVal RightBoundaryConditionType As String, ByVal RightSurfaceAreaSelection As Double, ByVal RightSurfaceArea As Double, ByVal RightHeatStructureNumber As Double)
         Me._RightBoundaryVolumeNumber = RightBoundaryVolumeNumber
         Me._RightIncrement = RightIncrement
         Me._RightBoundaryConditionType = RightBoundaryConditionType
