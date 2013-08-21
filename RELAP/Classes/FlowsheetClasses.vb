@@ -141,6 +141,7 @@ Namespace RELAP.FormClasses
             CLCS_ValveCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
             CLCS_FuelRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
             CLCS_SimulatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
+            CLCS_GroupCollection = New Dictionary(Of String, SimulationObjects_UnitOpBaseClass)
 
 
         End Sub

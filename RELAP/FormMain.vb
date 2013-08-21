@@ -2982,7 +2982,7 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab1) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab1
-                  
+
                     If kvp2.Value.LeftBoundaryConditionType.ToString = "Default" Then
                         kvp2.Value.LeftBoundaryConditionType = "101"
                     ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Insulated Boundary" Then

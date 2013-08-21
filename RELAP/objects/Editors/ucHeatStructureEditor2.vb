@@ -35,7 +35,8 @@
         dgvtab1.Rows(0).Cells(1).Value = 10000
         '  myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(0).LeftBoundaryConditionType = "Default"
         '    dgvtab1.Rows(0).Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(0).LeftBoundaryConditionType
-        Dim cbCol As DataGridViewComboBoxCell = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell)
+        dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
+        'Dim cbCol As DataGridViewComboBoxCell = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell)
 
         dgvTab2.Rows.Add(1)
         dgvTab2.Rows(0).Cells(1).Value = 10000

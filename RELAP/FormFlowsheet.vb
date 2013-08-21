@@ -1275,7 +1275,7 @@ Imports RELAP.RELAP.FormClasses
                             'dispose object
                             Me.Collections.ObjectCollection(namesel).Dispose()
                             Select Case SelectedObj.TipoObjeto
-                              
+
                             End Select
 
                             Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
@@ -2126,6 +2126,7 @@ Imports RELAP.RELAP.FormClasses
             gObj.Y = 0
 
 
+
             Collections.UpdateCounter("GROUP")
             'GetFlowsheetGraphicObject(gObj.Tag)
             Collections.GroupCollection.Add(gObj.Name, gObj)
@@ -2133,10 +2134,14 @@ Imports RELAP.RELAP.FormClasses
             'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
             'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
             'OBJETO RELAP
-            Dim myCOTK As RELAP.SimulationObjects.UnitOps.Tank = New RELAP.SimulationObjects.UnitOps.Tank(gObj.Name, "Tanque")
-            myCOTK.GraphicObject = gObj
-            Collections.ObjectCollection.Add(gObj.Name, myCOTK)
-            Collections.CLCS_GroupCollection.Add(gObj.Name, myCOTK)
+            If gObj.TipoObjeto = TipoObjeto.Tank Then
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Tank = New RELAP.SimulationObjects.UnitOps.Tank(gObj.Name, "Tanque")
+                myCOTK.GraphicObject = gObj
+                '  Collections.ObjectCollection.Add(gObj.Name, myCOTK)
+                Collections.CLCS_GroupCollection.Add(gObj.Name, myCOTK)
+            End If
+
+            
         Next
     End Sub
 End Class
