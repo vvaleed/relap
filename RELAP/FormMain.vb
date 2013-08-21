@@ -3030,16 +3030,18 @@ sim:                Dim myStream As System.IO.FileStream
                     Counter = Counter + 1
                 Next kvp2
 
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "800 " & "1")
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab4) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab4
-                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.leftHeatedEquivalentDiameter & " " & kvp2.Value.LeftHeatedLengthForward & " " & kvp2.Value.LeftHeatedLengthReverse & " " & kvp2.Value.leftGridSpacerLengthForward & " " & kvp2.Value.leftGridSpacerLengthReverse
+                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.leftHeatedEquivalentDiameter.ToString("F") & " " & kvp2.Value.LeftHeatedLengthForward.ToString("F") & " " & kvp2.Value.LeftHeatedLengthReverse.ToString("F") & " " & kvp2.Value.leftGridSpacerLengthForward.ToString("F") & " " & kvp2.Value.leftGridSpacerLengthReverse.ToString("F") & " " & kvp2.Value.leftGridLossCoefficientForward.ToString("F") & " " & kvp2.Value.leftGridLossCoefficientReverse.ToString("F") & " " & kvp2.Value.leftLocalBoilingFactor.ToString("F") & " " & kvp2.Value.leftNaturalCirculationLength.ToString("F") & " " & kvp2.Value.leftPitchtoDiameterRatio.ToString("F") & " " & kvp2.Value.leftFoulingFactor.ToString("F") & " " & kvp2.Value.leftAddHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
 
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "900 " & "1")
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab5) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab5
-                    output = "1" & kvp.Value.UID & "0" & "90" & Counter & " " & kvp2.Value.rightHeatedEquivalentDiameter & " " & kvp2.Value.rightHeatedLengthForward & " " & kvp2.Value.rightHeatedLengthReverse & " " & kvp2.Value.rightGridSpacerLengthForward & " " & kvp2.Value.rightGridSpacerLengthReverse
+                    output = "1" & kvp.Value.UID & "0" & "90" & Counter & " " & kvp2.Value.rightHeatedEquivalentDiameter.ToString("F") & " " & kvp2.Value.rightHeatedLengthForward.ToString("F") & " " & kvp2.Value.rightHeatedLengthReverse.ToString("F") & " " & kvp2.Value.rightGridSpacerLengthForward.ToString("F") & " " & kvp2.Value.rightGridSpacerLengthReverse.ToString("F") & " " & kvp2.Value.rightGridLossCoefficientForward.ToString("F") & " " & kvp2.Value.rightGridLossCoefficientReverse.ToString("F") & " " & kvp2.Value.rightLocalBoilingFactor.ToString("F") & " " & kvp2.Value.rightNaturalCirculationLength.ToString("F") & " " & kvp2.Value.rightPitchtoDiameterRatio.ToString("F") & " " & kvp2.Value.rightFoulingFactor.ToString("F") & " " & kvp2.Value.rightAddHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
