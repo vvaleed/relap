@@ -3007,7 +3007,7 @@ sim:                Dim myStream As System.IO.FileStream
 
             generate.WriteLine(".")
             generate.Close()
-            MsgBox("File Saved")
+            'MsgBox("File Saved")
 
             Exit Sub
 
@@ -3030,7 +3030,8 @@ sim:                Dim myStream As System.IO.FileStream
             End If
         End If
         GenerateInputFileToolStripMenuItem_Click(Nothing, Nothing)
-
+        Dim temppath As String
+        temppath = "C:\Users\ne1145\Desktop\relap2\RELAP34EXPERIMENTAL\simpl.i"
         Dim olddate As DateTime = DateTime.Now
         ' System.DateTime = "2006-06-06"
         Dim lol As DateTime
@@ -3042,8 +3043,10 @@ sim:                Dim myStream As System.IO.FileStream
 
         Dim ichar As Integer
 
+        '   
+        'txtInput = temppath
         txtInput = SaveFileDialog1.FileName
-        txtOutput = SaveFileDialog1.FileName.Substring(0, SaveFileDialog1.FileName.Length - 2)
+        txtOutput = txtInput.Substring(0, txtInput.Length - 2)
 
         '  Copy input file name without extension into name of output and restart files
         ichar = 1
@@ -3052,7 +3055,7 @@ sim:                Dim myStream As System.IO.FileStream
         txtOutput = txtOutput & ".o"
 
 
-        pathstring = " -i " & SaveFileDialog1.FileName & " -o " _
+        pathstring = " -i " & txtInput & " -o " _
         & txtOutput & " -r " & txtRestart _
         & " -w " & My.Settings.RELAPPath & "\tpfh2o -d " & My.Settings.RELAPPath & "\tpfd2o"
         '  If chkNGUI = 1 Then pathstring = pathstring & " -n gui "
@@ -3100,6 +3103,7 @@ sim:                Dim myStream As System.IO.FileStream
                 MsgBox("Light water property file, tpfh2o is not in " & My.Settings.RELAPPath & " folder", vbOKOnly, "Error")
             End If
         End If
+        System.Threading.Thread.Sleep(3000)
         SetDeviceTime(olddate)
     End Sub
     'System time structure used to pass to P/Invoke...
