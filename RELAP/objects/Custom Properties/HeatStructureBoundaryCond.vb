@@ -342,11 +342,11 @@ End Class
         End Set
     End Property
     Private _leftNaturalCirculationLength As Double
-    Public Property leftNaturalCirculationLength() As String
+    Public Property leftNaturalCirculationLength() As Double
         Get
             Return _leftNaturalCirculationLength
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Double)
             _leftNaturalCirculationLength = value
         End Set
     End Property
@@ -472,11 +472,11 @@ End Class
         End Set
     End Property
     Private _rightNaturalCirculationLength As Double
-    Public Property rightNaturalCirculationLength() As String
+    Public Property rightNaturalCirculationLength() As Double
         Get
             Return _rightNaturalCirculationLength
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Double)
             _rightNaturalCirculationLength = value
         End Set
     End Property
