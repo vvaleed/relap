@@ -17,6 +17,7 @@ Namespace GraphicObjects
 
     Public Enum TipoObjeto
 
+        Subsystem
         Simulator
         NodeIn
         NodeOut
