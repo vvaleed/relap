@@ -1,4 +1,61 @@
 ﻿<System.Serializable()> Public Class HeatStructureMeshData
+
+    Private _GapConductanceModel As Boolean
+    Public Property GapConductanceModel() As Boolean
+        Get
+            Return _GapConductanceModel
+        End Get
+        Set(ByVal value As Boolean)
+            _GapConductanceModel = value
+        End Set
+    End Property
+    Private _InitialGapInternalPressure As Double
+    Public Property InitialGapInternalPressure() As Double
+        Get
+            Return _InitialGapInternalPressure
+        End Get
+        Set(ByVal value As Double)
+            _InitialGapInternalPressure = value
+        End Set
+    End Property
+    Private _GapConductanceReferenceVolume As Double
+    Public Property GapConductanceReferenceVolume() As Double
+        Get
+            Return _GapConductanceReferenceVolume
+        End Get
+        Set(ByVal value As Double)
+            _GapConductanceReferenceVolume = value
+        End Set
+    End Property
+    Private _MetalWaterReaction As Boolean
+    Public Property MetalWaterReaction() As Boolean
+        Get
+            Return _MetalWaterReaction
+        End Get
+        Set(ByVal value As Boolean)
+            _MetalWaterReaction = value
+        End Set
+    End Property
+    Private _InitialOxideThicknes As Double
+    Public Property InitialOxideThicknes() As Double
+        Get
+            Return _InitialOxideThicknes
+        End Get
+        Set(ByVal value As Double)
+            _InitialOxideThicknes = value
+        End Set
+    End Property
+    Private _FormLossFactors As Boolean
+    Public Property FormLossFactors() As Boolean
+        Get
+            Return _FormLossFactors
+        End Get
+        Set(ByVal value As Boolean)
+            _FormLossFactors = value
+        End Set
+    End Property
+
+
     Private _EnterMeshGeometry As String
     Public Property EnterMeshGeometry() As String
         Get
@@ -17,7 +74,6 @@
             _SelectFormat = value
         End Set
     End Property
-
     Private _SelectTemp As String
     Public Property SelectTemp() As String
         Get
@@ -27,8 +83,6 @@
             _SelectTemp = value
         End Set
     End Property
-
-
     Private _DecayHeat As String
     Public Property DecayHeat() As String
         Get
@@ -36,6 +90,18 @@
         End Get
         Set(ByVal value As String)
             _DecayHeat = value
+        End Set
+    End Property
+
+    Protected m_collection0 As Generic.SortedDictionary(Of Integer, HSGapDeformation)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property GapDeformation() As Generic.SortedDictionary(Of Integer, HSGapDeformation)
+        Get
+            Return m_collection0
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSGapDeformation))
+            m_collection0 = value
         End Set
     End Property
 
@@ -118,6 +184,7 @@
     End Property
 
     Public Sub New()
+        m_collection0 = New Generic.SortedDictionary(Of Integer, HSGapDeformation)
         m_collection = New Generic.SortedDictionary(Of Integer, HSMeshDataFormat1)
         m_collection2 = New Generic.SortedDictionary(Of Integer, HSMeshDataFormat2)
         m_collection3 = New Generic.SortedDictionary(Of Integer, HSMeshDataNoDecay)
@@ -132,6 +199,66 @@
 
 End Class
 
+<System.Serializable()> Public Class HSGapDeformation
+    Private _FuelSurfaceRoughness As Double
+    Public Property FuelSurfaceRoughness() As Double
+        Get
+            Return _FuelSurfaceRoughness
+        End Get
+        Set(ByVal value As Double)
+            _FuelSurfaceRoughness = value
+        End Set
+    End Property
+
+    Private _CladdingSurfaceRoughness As Double
+    Public Property CladdingSurfaceRoughness() As Double
+        Get
+            Return _CladdingSurfaceRoughness
+        End Get
+        Set(ByVal value As Double)
+            _CladdingSurfaceRoughness = value
+        End Set
+    End Property
+
+    Private _RadialDisplacementFission As Double
+    Public Property RadialDisplacementFission() As Double
+        Get
+            Return _RadialDisplacementFission
+        End Get
+        Set(ByVal value As Double)
+            _RadialDisplacementFission = value
+        End Set
+    End Property
+
+    Private _RadialDisplacementCladding As Double
+    Public Property RadialDisplacementCladding() As Double
+        Get
+            Return _RadialDisplacementCladding
+        End Get
+        Set(ByVal value As Double)
+            _RadialDisplacementCladding = value
+        End Set
+    End Property
+
+    Private _HSnumberGapDef As Double
+    Public Property HSnumberGapDef() As Double
+        Get
+            Return _HSnumberGapDef
+        End Get
+        Set(ByVal value As Double)
+            _HSnumberGapDef = value
+        End Set
+    End Property
+
+    Public Sub New(ByVal FuelSurfaceRoughness As Double, ByVal RightCoordinate As Double, ByVal RadialDisplacementFission As Double, ByVal RadialDisplacementCladding As Double, ByVal HSnumberGapDef As Double)
+        Me._FuelSurfaceRoughness = FuelSurfaceRoughness
+        Me._CladdingSurfaceRoughness = CladdingSurfaceRoughness
+        Me._RadialDisplacementFission = RadialDisplacementFission
+        Me._RadialDisplacementCladding = RadialDisplacementCladding
+        Me._HSnumberGapDef = HSnumberGapDef
+    End Sub
+
+End Class
 
 <System.Serializable()> Public Class HSMeshDataFormat1
     Private _NumberOfIntervals As Double
