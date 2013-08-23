@@ -2961,17 +2961,17 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat1) In kvp.Value.HeatStructureMeshData.MeshDataFormat1
-                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate.ToString("F")
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
 
-                'Counter = 1
-                'For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat2) In kvp.Value.HeatStructureMeshData.MeshDataFormat2
-                '    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval & " " & kvp2.Value.IntervalNumber
-                '    generate.WriteLine(output)
-                '    Counter = Counter + 1
-                'Next kvp2
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat2) In kvp.Value.HeatStructureMeshData.MeshDataFormat2
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval & " " & kvp2.Value.IntervalNumber
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataComposition) In kvp.Value.HeatStructureMeshData.MeshDataComposition
@@ -2981,9 +2981,28 @@ sim:                Dim myStream As System.IO.FileStream
                 Next kvp2
 
                 If kvp.Value.HeatStructureMeshData.DecayHeat = "0" Then
+                    Counter = 1
+                    For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataNoDecay) In kvp.Value.HeatStructureMeshData.MeshDataNoDecay
+                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.SourceValue & " " & kvp2.Value.MeshIntervalNumber
+                        generate.WriteLine(output)
+                        Counter = Counter + 1
+                    Next kvp2
                 ElseIf kvp.Value.HeatStructureMeshData.DecayHeat = "" Then
+                    Counter = 1
+                    For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataNoDecay) In kvp.Value.HeatStructureMeshData.MeshDataNoDecay
+                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.SourceValue & " " & kvp2.Value.MeshIntervalNumber
+                        generate.WriteLine(output)
+                        Counter = Counter + 1
+                    Next kvp2
+
                 Else
                     generate.WriteLine("1" & kvp.Value.UID & "0" & "300 " & kvp.Value.HeatStructureMeshData.DecayHeat)
+                    Counter = 1
+                    For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataWithDecay) In kvp.Value.HeatStructureMeshData.MeshDataWithDecay
+                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.GammaAttenuationCo & " " & kvp2.Value.MeshIntervalNumber2
+                        generate.WriteLine(output)
+                        Counter = Counter + 1
+                    Next kvp2
                 End If
 
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "400" & kvp.Value.HeatStructureMeshData.SelectTemp)

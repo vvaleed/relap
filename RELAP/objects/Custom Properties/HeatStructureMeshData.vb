@@ -9,21 +9,21 @@
             _GapConductanceModel = value
         End Set
     End Property
-    Private _InitialGapInternalPressure As Double
-    Public Property InitialGapInternalPressure() As Double
+    Private _InitialGapInternalPressure As String
+    Public Property InitialGapInternalPressure() As String
         Get
             Return _InitialGapInternalPressure
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As String)
             _InitialGapInternalPressure = value
         End Set
     End Property
-    Private _GapConductanceReferenceVolume As Double
-    Public Property GapConductanceReferenceVolume() As Double
+    Private _GapConductanceReferenceVolume As String
+    Public Property GapConductanceReferenceVolume() As String
         Get
             Return _GapConductanceReferenceVolume
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As String)
             _GapConductanceReferenceVolume = value
         End Set
     End Property
@@ -36,12 +36,12 @@
             _MetalWaterReaction = value
         End Set
     End Property
-    Private _InitialOxideThicknes As Double
-    Public Property InitialOxideThicknes() As Double
+    Private _InitialOxideThicknes As String
+    Public Property InitialOxideThicknes() As String
         Get
             Return _InitialOxideThicknes
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As String)
             _InitialOxideThicknes = value
         End Set
     End Property
