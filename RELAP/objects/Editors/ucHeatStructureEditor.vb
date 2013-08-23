@@ -71,6 +71,17 @@
         End If
     End Sub
 
+    Private Sub ChkboxMetalWaterReaction_CheckStateChanged(sender As Object, e As EventArgs) Handles ChkboxMetalWaterReaction.CheckStateChanged
+        If ChkboxMetalWaterReaction.Checked = False Then
+            txtboxOxideThickness.Clear()
+            txtboxOxideThickness.BackColor = Color.Gray
+            txtboxOxideThickness.ReadOnly = True
+        ElseIf ChkboxMetalWaterReaction.Checked = True Then
+            txtboxOxideThickness.BackColor = Color.White
+            txtboxOxideThickness.ReadOnly = False
+        End If
+    End Sub
+
     Private Sub chkboxmeshgeometry_CheckStateChanged(sender As Object, e As EventArgs) Handles chkboxmeshgeometry.CheckStateChanged
         Try
             If chkboxmeshgeometry.Checked = False Then
@@ -118,7 +129,7 @@
         End Try
     End Sub
 
-    Private Sub CmbBoxSelectFormat_SelectedValueChanged(sender As Object, e As EventArgs) Handles CmbBoxSelectFormat.SelectedValueChanged
+    Private Sub CmbBoxSelectFormat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbBoxSelectFormat.SelectedIndexChanged
         If CmbBoxSelectFormat.SelectedIndex = 0 Then
             HeatStructureMeshData.SelectFormat = "1"
             dgvformat1.Show()
@@ -206,17 +217,7 @@
         Next
 
         If Not Me.HeatStructureMeshData Is Nothing Then
-            Me.HeatStructureMeshData.MeshDataFormat1.Clear()
-        End If
-        For i = 0 To dgvformat1.Rows.Count - 2
-            row = dgvformat1.Rows(i)
-            v1 = row.Cells(0).Value
-            v2 = row.Cells(1).Value
-            Me.HeatStructureMeshData.MeshDataFormat1.Add(row.Index + 1, New HSMeshDataFormat1(v1, v2))
-        Next
-
-        If Not Me.HeatStructureMeshData Is Nothing Then
-            Me.HeatStructureMeshData.MeshDataFormat1.Clear()
+            Me.HeatStructureMeshData.MeshDataFormat2.Clear()
         End If
         For i = 0 To dgvformat2.Rows.Count - 2
             row = dgvformat2.Rows(i)
@@ -281,5 +282,6 @@
 
 
  
+    
 End Class
 
