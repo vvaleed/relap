@@ -2943,9 +2943,23 @@ sim:                Dim myStream As System.IO.FileStream
                 output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & kvp.Value.SSinitialTemp & " " & kvp.Value.LeftBoundaryCO
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "000 " & output)
 
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "001 " & kvp.Value.HeatStructureMeshData.InitialGapInternalPressure & " " & kvp.Value.HeatStructureMeshData.GapConductanceReferenceVolume)
+
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "003 " & kvp.Value.HeatStructureMeshData.InitialOxideThicknes)
+
+                output = boolto10(kvp.Value.HeatStructureMeshData.FormLossFactors)
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "004 " & output)
+
+                Dim Counter = 11
+                For Each kvp2 As KeyValuePair(Of Integer, HSGapDeformation) In kvp.Value.HeatStructureMeshData.GapDeformation
+                    output = "1" & kvp.Value.UID & "00" & Counter & " " & kvp2.Value.FuelSurfaceRoughness.ToString("F") & " " & kvp2.Value.CladdingSurfaceRoughness.ToString("F") & " " & kvp2.Value.RadialDisplacementFission.ToString("F") & " " & kvp2.Value.RadialDisplacementCladding.ToString("F") & " " & kvp2.Value.HSnumberGapDef
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "100 " & kvp.Value.HeatStructureMeshData.EnterMeshGeometry & " " & kvp.Value.HeatStructureMeshData.SelectFormat)
 
-                Dim Counter = 1
+                Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat1) In kvp.Value.HeatStructureMeshData.MeshDataFormat1
                     output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate.ToString("F")
                     generate.WriteLine(output)
