@@ -46,6 +46,31 @@
         End If
     End Sub
 
+    Private Sub ChkboxGapConductance_CheckStateChanged(sender As Object, e As EventArgs) Handles ChkboxGapConductance.CheckStateChanged
+        If ChkboxGapConductance.Checked = False Then
+            txtboxInitialGapInternalPressure.Clear()
+            txtboxInitialGapInternalPressure.BackColor = Color.Gray
+            txtboxInitialGapInternalPressure.ReadOnly = True
+            txtboxGapConductanceRefVol.Clear()
+            txtboxGapConductanceRefVol.BackColor = Color.Gray
+            txtboxGapConductanceRefVol.ReadOnly = True
+            ChkboxDeformation.BackColor = Color.Gray
+            ChkboxDeformation.Checked = False
+            dgvGapDeformation.BackgroundColor = Color.Gray
+            dgvGapDeformation.Enabled = False
+            dgvGapDeformation.ClearSelection()
+        ElseIf ChkboxGapConductance.Checked = True Then
+            txtboxInitialGapInternalPressure.BackColor = Color.White
+            txtboxInitialGapInternalPressure.ReadOnly = False
+            txtboxGapConductanceRefVol.BackColor = Color.White
+            txtboxGapConductanceRefVol.ReadOnly = False
+            ChkboxDeformation.BackColor = Color.White
+            ChkboxDeformation.Checked = True
+            dgvGapDeformation.BackgroundColor = Color.White
+            dgvGapDeformation.Enabled = True
+        End If
+    End Sub
+
     Private Sub chkboxmeshgeometry_CheckStateChanged(sender As Object, e As EventArgs) Handles chkboxmeshgeometry.CheckStateChanged
         Try
             If chkboxmeshgeometry.Checked = False Then
@@ -107,6 +132,7 @@
             dgvformat2.Show()
         End If
     End Sub
+
     Private Sub ComboBoxTemp_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboBoxTemp.SelectedValueChanged
         If ComboBoxTemp.SelectedIndex = 0 Then
             HeatStructureMeshData.SelectTemp = "0"
@@ -149,7 +175,25 @@
     Private Sub cmdsave_Click(sender As Object, e As EventArgs) Handles cmdsave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2 As Object
+        Dim v1, v2, v3, v4, v5 As Object
+
+        HeatStructureMeshData.InitialGapInternalPressure = txtboxInitialGapInternalPressure.Text
+        HeatStructureMeshData.GapConductanceReferenceVolume = txtboxGapConductanceRefVol.Text
+        HeatStructureMeshData.InitialOxideThicknes = txtboxOxideThickness.Text
+        HeatStructureMeshData.FormLossFactors = ChkboxDeformation.CheckState
+
+        If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.GapDeformation.Clear()
+        End If
+        For i = 0 To dgvGapDeformation.Rows.Count - 2
+            row = dgvGapDeformation.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            v3 = row.Cells(2).Value
+            v4 = row.Cells(3).Value
+            v5 = row.Cells(4).Value
+            Me.HeatStructureMeshData.GapDeformation.Add(row.Index + 1, New HSGapDeformation(v1, v2, v3, v4, v5))
+        Next
 
         If Not Me.HeatStructureMeshData Is Nothing Then
             Me.HeatStructureMeshData.MeshDataFormat1.Clear()
@@ -236,5 +280,6 @@
 
 
 
+ 
 End Class
 

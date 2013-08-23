@@ -250,7 +250,7 @@ End Class
         End Set
     End Property
 
-    Public Sub New(ByVal FuelSurfaceRoughness As Double, ByVal RightCoordinate As Double, ByVal RadialDisplacementFission As Double, ByVal RadialDisplacementCladding As Double, ByVal HSnumberGapDef As Double)
+    Public Sub New(ByVal FuelSurfaceRoughness As Double, ByVal CladdingSurfaceRoughness As Double, ByVal RadialDisplacementFission As Double, ByVal RadialDisplacementCladding As Double, ByVal HSnumberGapDef As Double)
         Me._FuelSurfaceRoughness = FuelSurfaceRoughness
         Me._CladdingSurfaceRoughness = CladdingSurfaceRoughness
         Me._RadialDisplacementFission = RadialDisplacementFission
