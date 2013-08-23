@@ -262,6 +262,7 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
+    <Compile Include="objects\Subsystem.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureMeshData.vb" />
     <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />

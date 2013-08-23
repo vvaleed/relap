@@ -1130,7 +1130,6 @@ Imports System.Runtime.InteropServices
         frmSurface.uid = temp
 
         Me._uid = temp.ToString("D3")
-        '  Me._uid = Int(Me._uid).ToString("D3")
         Me.m_nodeitems = New System.Collections.Generic.Dictionary(Of Integer, RELAP.Outros.NodeItem)
         Me.m_qtnodeitems = New System.Collections.Generic.Dictionary(Of Integer, RELAP.Outros.NodeItem)
 

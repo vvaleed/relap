@@ -2042,7 +2042,58 @@ Public Class frmSurface
         End If
         Me.FlowsheetDesignSurface.Invalidate()
     End Sub
+    Public Function AddSubsytemToSurface(ByVal x As Integer, ByVal y As Integer, Optional ByVal tag As String = "") As String
+        ChildParent = My.Application.ActiveSimulation
 
+        If ChildParent.Collections.ObjectCounter Is Nothing Then ChildParent.Collections.InitializeCounter()
+
+        Dim gObj As GraphicObject = Nothing
+        Dim fillclr As Color = Color.WhiteSmoke
+        Dim lineclr As Color = Color.Red
+        Dim mpx = x '- SplitContainer1.SplitterDistance
+        Dim mpy = y '- ToolStripContainer1.TopToolStripPanel.Height
+
+        Dim myTank As New SubSystemGraphic(mpx, mpy, 50, 50, 0)
+        myTank.LineWidth = 2
+        myTank.Fill = True
+        myTank.FillColor = fillclr
+        myTank.LineColor = lineclr
+        myTank.Tag = "SS" & Format(ChildParent.Collections.ObjectCounter("Subsystem"), "00#")
+        ChildParent.Collections.UpdateCounter("Subsystem")
+        If tag <> "" Then myTank.Tag = tag
+        gObj = myTank
+        gObj.Name = "SS-" & Guid.NewGuid.ToString
+        ChildParent.Collections.SubSystemCollection.Add(gObj.Name, myTank)
+        'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+        'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+        'OBJETO RELAP
+        Dim myCOTK As RELAP.SimulationObjects.UnitOps.Subsystem = New RELAP.SimulationObjects.UnitOps.Subsystem(myTank.Name, "Subsystem")
+        myCOTK.GraphicObject = myTank
+        ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
+        ChildParent.Collections.CLCS_SubSystemCollection.Add(myTank.Name, myCOTK)
+        If Not gObj Is Nothing Then
+            Me.FlowsheetDesignSurface.drawingObjects.Add(gObj)
+            Me.FlowsheetDesignSurface.Invalidate()
+            Application.DoEvents()
+            Dim arrays(ChildParent.Collections.ObjectCollection.Count - 1) As String
+            '   Dim aNode, aNode2 As TreeNode
+            Dim i As Integer = 0
+            'For Each aNode In ChildParent.FormObjList.TreeViewObj.Nodes
+            '    For Each aNode2 In aNode.Nodes
+            '        arrays(i) = aNode2.Text
+            '        i += 1
+            '    Next
+            'Next
+            'ChildParent.FormObjList.ACSC.Clear()
+            'ChildParent.FormObjList.ACSC.AddRange(arrays)
+            'ChildParent.FormObjList.TBSearch.AutoCompleteCustomSource = ChildParent.FormObjList.ACSC
+        End If
+
+        Me.FlowsheetDesignSurface.Cursor = Cursors.Arrow
+
+
+        Return gObj.Name
+    End Function
     Public Function AddObjectToSurface(ByVal type As TipoObjeto, ByVal x As Integer, ByVal y As Integer, Optional ByVal tag As String = "") As String
 
         ChildParent = My.Application.ActiveSimulation
@@ -2056,8 +2107,6 @@ Public Class frmSurface
         Dim mpy = y '- ToolStripContainer1.TopToolStripPanel.Height
 
         Select Case type
-
-
             Case TipoObjeto.Tank
                 Dim myTank As New TankGraphic(mpx, mpy, 50, 50, 0)
                 myTank.LineWidth = 2
@@ -2184,7 +2233,7 @@ Public Class frmSurface
                 ChildParent.Collections.UpdateCounter("FuelRod")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
-                gObj.Name = "TQ-" & Guid.NewGuid.ToString
+                gObj.Name = "FR-" & Guid.NewGuid.ToString
                 ChildParent.Collections.FuelRodCollection.Add(gObj.Name, myTank)
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
@@ -2203,7 +2252,7 @@ Public Class frmSurface
                 ChildParent.Collections.UpdateCounter("Simulator")
                 If tag <> "" Then myTank.Tag = tag
                 gObj = myTank
-                gObj.Name = "TQ-" & Guid.NewGuid.ToString
+                gObj.Name = "SIM-" & Guid.NewGuid.ToString
                 ChildParent.Collections.SimulatorCollection.Add(gObj.Name, myTank)
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
@@ -2212,8 +2261,6 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
                 ChildParent.Collections.CLCS_SimulatorCollection.Add(myTank.Name, myCOTK)
-
-
 
         End Select
         'ChildParent.FormObjList.TreeViewObj.Refresh()
@@ -2473,6 +2520,6 @@ Public Class frmSurface
     End Sub
 
 
-    
-    
+
+
 End Class

@@ -622,7 +622,7 @@ Imports RELAP.RELAP.FormClasses
     Public Sub CheckCollections()
 
         'Creates all the graphic collections.
-        If Collections.GroupCollection Is Nothing Then Collections.GroupCollection = New Dictionary(Of String, ShapeGraphic)
+        If Collections.SubSystemCollection Is Nothing Then Collections.SubSystemCollection = New Dictionary(Of String, SubSystemGraphic)
         If Collections.MixerCollection Is Nothing Then Collections.MixerCollection = New Dictionary(Of String, NodeInGraphic)
         If Collections.SplitterCollection Is Nothing Then Collections.SplitterCollection = New Dictionary(Of String, NodeOutGraphic)
         If Collections.MaterialStreamCollection Is Nothing Then Collections.MaterialStreamCollection = New Dictionary(Of String, MaterialStreamGraphic)
@@ -1913,223 +1913,23 @@ Imports RELAP.RELAP.FormClasses
 
 #End Region
 
-    '#Region "    Plugin/CAPE-OPEN MO Management "
-
-    '    Private Sub CreatePluginsList()
-
-    '        'process plugin list
-
-    '        For Each iplugin As Interfaces.IUtilityPlugin In FormMain.UtilityPlugins.Values
-
-    '            Dim tsmi As New ToolStripMenuItem
-    '            With tsmi
-    '                .Text = iplugin.Name
-    '                .Tag = iplugin.UniqueID
-    '                .Image = My.Resources.plugin
-    '                .DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-    '            End With
-    '            Me.PluginsToolStripMenuItem.DropDownItems.Add(tsmi)
-    '            AddHandler tsmi.Click, AddressOf Me.PluginClick
-    '        Next
-
-    '    End Sub
-
-    '    Private Sub PluginClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    '        Dim tsmi As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
-
-    '        Dim myUPlugin As Interfaces.IUtilityPlugin = FormMain.UtilityPlugins.Item(tsmi.Tag)
-
-    '        myUPlugin.SetFlowsheet(Me)
-    '        Select Case myUPlugin.DisplayMode
-    '            Case Interfaces.IUtilityPlugin.DispMode.Normal
-    '                myUPlugin.UtilityForm.Show(Me)
-    '            Case Interfaces.IUtilityPlugin.DispMode.Modal
-    '                myUPlugin.UtilityForm.ShowDialog(Me)
-    '            Case Interfaces.IUtilityPlugin.DispMode.Dockable
-    '                CType(myUPlugin.UtilityForm, Docking.DockContent).Show(Me.dckPanel)
-    '        End Select
-
-    '    End Sub
-
-    '    Private Sub CreateCOMOList()
-
-    '        'process plugin list
-
-    '        For Each icomo As RELAP.SimulationObjects.UnitOps.Auxiliary.CapeOpen.CapeOpenUnitOpInfo In FormMain.COMonitoringObjects.Values
-
-    '            Dim tsmi As New ToolStripMenuItem
-    '            With tsmi
-    '                .Text = icomo.Name
-    '                .Tag = icomo.TypeName
-    '                .Image = My.Resources.colan2
-    '                .DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-    '                .AutoToolTip = False
-    '            End With
-    '            With icomo
-    '                tsmi.ToolTipText = "TypeName: " & vbTab & .TypeName & vbCrLf & _
-    '                                    "Version: " & vbTab & vbTab & .Version & vbCrLf & _
-    '                                    "Vendor URL: " & vbTab & .VendorURL & vbCrLf & _
-    '                                    "About: " & vbTab & vbTab & .AboutInfo
-    '            End With
-    '            Me.CAPEOPENFlowsheetMonitoringObjectsMOsToolStripMenuItem.DropDownItems.Add(tsmi)
-    '            AddHandler tsmi.Click, AddressOf Me.COMOClick
-    '        Next
-
-    '    End Sub
-
-    '    Private Sub COMOClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    '        Dim tsmi As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
-
-    '        Dim myCOMO As RELAP.SimulationObjects.UnitOps.Auxiliary.CapeOpen.CapeOpenUnitOpInfo = FormMain.COMonitoringObjects.Item(tsmi.Tag)
-
-    '        Dim _como As Object = Nothing
-    '        Try
-    '            Dim t As Type = Type.GetTypeFromProgID(myCOMO.TypeName)
-    '            _como = Activator.CreateInstance(t)
-    '            If TryCast(_como, CapeOpen.ICapeUtilities) IsNot Nothing Then
-    '                If TryCast(_como, CapeOpen.IPersistStreamInit) IsNot Nothing Then
-    '                    CType(_como, CapeOpen.IPersistStreamInit).InitNew()
-    '                End If
-    '                With CType(_como, CapeOpen.ICapeUtilities)
-    '                    .Initialize()
-    '                    .simulationContext = Me
-    '                    .Edit()
-    '                End With
-    '            End If
-    '        Catch ex As Exception
-    '            Me.WriteToLog("Error creating CAPE-OPEN Flowsheet Monitoring Object: " & ex.ToString, Color.Red, RELAP.FormClasses.TipoAviso.Erro)
-    '        Finally
-    '            If TryCast(_como, CapeOpen.ICapeUtilities) IsNot Nothing Then
-    '                With CType(_como, CapeOpen.ICapeUtilities)
-    '                    .Terminate()
-    '                End With
-    '            End If
-    '        End Try
-
-    '    End Sub
-
-    '#End Region
-
-    '#Region "    CAPE-OPEN COSE/PME Methods and Properties "
-
-    '    Public ReadOnly Property NamedValue(ByVal name As String) As Object Implements CapeOpen.ICapeCOSEUtilities.NamedValue
-    '        Get
-    '            Return Nothing
-    '        End Get
-    '    End Property
-
-    '    Public ReadOnly Property NamedValueList() As Object Implements CapeOpen.ICapeCOSEUtilities.NamedValueList
-    '        Get
-    '            Return New String() {Nothing}
-    '        End Get
-    '    End Property
-
-    '    Public Sub LogMessage(ByVal message As String) Implements CapeOpen.ICapeDiagnostic.LogMessage
-    '        Me.WriteMessage(message)
-    '    End Sub
-
-    '    Public Sub PopUpMessage(ByVal message As String) Implements CapeOpen.ICapeDiagnostic.PopUpMessage
-    '        VDialog.Show(message)
-    '    End Sub
-
-    '    'Public Function CreateMaterialTemplate(ByVal materialTemplateName As String) As Object Implements CapeOpen.ICapeMaterialTemplateSystem.CreateMaterialTemplate
-    '    '    For Each pp As PropertyPackage In Me.Options.PropertyPackages.Values
-    '    '        If materialTemplateName = pp.ComponentName Then
-    '    '            Dim mat As New Streams.MaterialStream("temporary stream", "temporary stream", Me, pp)
-    '    '            Me.AddComponentsRows(mat)
-    '    '            Return mat
-    '    '            Exit For
-    '    '        Else
-    '    '            Return Nothing
-    '    '        End If
-    '    '    Next
-    '    '    Return Nothing
-    '    'End Function
-
-    '    'Public ReadOnly Property MaterialTemplates() As Object Implements CapeOpen.ICapeMaterialTemplateSystem.MaterialTemplates
-    '    '    Get
-    '    '        Dim pps As New ArrayList
-    '    '        For Each p As PropertyPackage In Me.Options.PropertyPackages.Values
-    '    '            pps.Add(p.ComponentName)
-    '    '        Next
-    '    '        Dim arr2(pps.Count - 1) As String
-    '    '        Array.Copy(pps.ToArray, arr2, pps.Count)
-    '    '        Return arr2
-    '    '    End Get
-    '    'End Property
-
-    '    'Public Function GetStreamCollection() As Object Implements CapeOpen.ICapeFlowsheetMonitoring.GetStreamCollection
-    '    '    Dim _col As New RELAP.SimulationObjects.UnitOps.Auxiliary.CapeOpen.CCapeCollection
-    '    '    For Each o As SimulationObjects_BaseClass In Me.Collections.ObjectCollection.Values
-    '    '        If TryCast(o, CapeOpen.ICapeThermoMaterialObject) IsNot Nothing Then
-    '    '            'object is a CAPE-OPEN Material Object
-    '    '            _col._icol.Add(o)
-    '    '        ElseIf TryCast(o, CapeOpen.ICapeCollection) IsNot Nothing Then
-    '    '            'object is a CAPE-OPEN Energy Object
-    '    '            _col._icol.Add(o)
-    '    '        End If
-    '    '    Next
-    '    '    Return _col
-    '    'End Function
-
-    '    'Public Function GetUnitOperationCollection() As Object Implements CapeOpen.ICapeFlowsheetMonitoring.GetUnitOperationCollection
-    '    '    Dim _col As New RELAP.SimulationObjects.UnitOps.Auxiliary.CapeOpen.CCapeCollection
-    '    '    For Each o As SimulationObjects_BaseClass In Me.Collections.ObjectCollection.Values
-    '    '        If TryCast(o, CapeOpen.ICapeUnit) IsNot Nothing Then
-    '    '            'object is a CAPE-OPEN Unit Operation
-    '    '            _col._icol.Add(o)
-    '    '        End If
-    '    '    Next
-    '    '    Return _col
-    '    'End Function
-
-    '    Public ReadOnly Property SolutionStatus() As CapeOpen.CapeSolutionStatus Implements CapeOpen.ICapeFlowsheetMonitoring.SolutionStatus
-    '        Get
-    '            Return CapeOpen.CapeSolutionStatus.CAPE_SOLVED
-    '        End Get
-    '    End Property
-
-    '    Public ReadOnly Property ValStatus() As CapeOpen.CapeValidationStatus Implements CapeOpen.ICapeFlowsheetMonitoring.ValStatus
-    '        Get
-    '            Return CapeOpen.CapeValidationStatus.CAPE_VALID
-    '        End Get
-    '    End Property
-
-    '    Public Property ComponentDescription() As String Implements CapeOpen.ICapeIdentification.ComponentDescription
-    '        Get
-    '            Return Me.Options.SimComentario
-    '        End Get
-    '        Set(ByVal value As String)
-    '            Me.Options.SimComentario = value
-    '        End Set
-    '    End Property
-
-    '    Public Property ComponentName() As String Implements CapeOpen.ICapeIdentification.ComponentName
-    '        Get
-    '            Return Me.Options.SimNome
-    '        End Get
-    '        Set(ByVal value As String)
-    '            Me.Options.SimNome = value
-    '        End Set
-    '    End Property
-
-    '#End Region
+   
 
    
     Private Sub tsmiGroupComponents_Click(sender As Object, e As EventArgs) Handles tsmiGroupComponents.Click
 
+        '  
+        FormSurface.AddSubsytemToSurface(FormSurface.FlowsheetDesignSurface.SelectedObjects.Values(0).X, FormSurface.FlowsheetDesignSurface.SelectedObjects.Values(0).Y)
         For Each gObj In FormSurface.FlowsheetDesignSurface.SelectedObjects.Values
 
-            gObj.X = 0
-            gObj.Y = 0
 
 
+            DeleteObject(gObj.Tag)
 
-            Collections.UpdateCounter("GROUP")
+
+            'Collections.UpdateCounter("SubSystem")
             'GetFlowsheetGraphicObject(gObj.Tag)
-            Collections.GroupCollection.Add(gObj.Name, gObj)
+            ' Collections.SubSystemCollection.Add(gObj.Name, gObj)
             'Collections.TankCollection.Add(gObj.Name, gObj)
             'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
             'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
@@ -2137,8 +1937,9 @@ Imports RELAP.RELAP.FormClasses
             If gObj.TipoObjeto = TipoObjeto.Tank Then
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Tank = New RELAP.SimulationObjects.UnitOps.Tank(gObj.Name, "Tanque")
                 myCOTK.GraphicObject = gObj
+
                 '  Collections.ObjectCollection.Add(gObj.Name, myCOTK)
-                Collections.CLCS_GroupCollection.Add(gObj.Name, myCOTK)
+                ' Collections.CLCS_SubSystemCollection.Add(gObj.Name, myCOTK)
             End If
 
             
