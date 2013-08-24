@@ -40,6 +40,7 @@
         dgvWithDecay.Hide()
         dgvTemp2.Hide()
         ComboBoxTemp.SelectedIndex = 0
+        ChkBoxInitialTemp.Checked = True
 
         If myCOTK.HeatStructureMeshData.MeshDataFormat1.Count <> 0 Then
 
@@ -144,6 +145,23 @@
         End If
     End Sub
 
+    Private Sub ChkBoxInitialTemp_CheckStateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ChkBoxInitialTemp.CheckStateChanged
+        If ChkBoxInitialTemp.Checked = False Then
+            HeatStructureMeshData.EnterInitialTemp = "1"
+            ComboBoxTemp.Hide()
+            ComboBoxTemp.Enabled = False
+            dgvTemp1.Hide()
+            dgvTemp2.Hide()
+            dgvTemp1.Rows.Clear()
+            dgvTemp2.Rows.Clear()
+        ElseIf ChkBoxInitialTemp.Checked = True Then
+            HeatStructureMeshData.EnterInitialTemp = "0"
+            ComboBoxTemp.Show()
+            ComboBoxTemp.Enabled = True
+            dgvTemp1.Show()
+            dgvTemp2.Show()
+        End If
+    End Sub
     Private Sub ComboBoxTemp_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboBoxTemp.SelectedValueChanged
         If ComboBoxTemp.SelectedIndex = 0 Then
             HeatStructureMeshData.SelectTemp = "0"

@@ -2940,7 +2940,15 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Component Heat Structure '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
-                output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & kvp.Value.SSinitialTemp & " " & kvp.Value.LeftBoundaryCO
+                output1 = kvp.Value.GeometryType.ToString
+                If output1 = "Rectangular" Then
+                    output2 = "1"
+                ElseIf output1 = "Cylinderical" Then
+                    output2 = "2"
+                ElseIf output1 = "Spherical" Then
+                    output2 = "3"
+                End If
+                output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & output2 & " " & kvp.Value.HeatStructureMeshData.EnterInitialTemp & " " & kvp.Value.LeftBoundaryCO
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "000 " & output)
 
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "001 " & kvp.Value.HeatStructureMeshData.InitialGapInternalPressure & " " & kvp.Value.HeatStructureMeshData.GapConductanceReferenceVolume)

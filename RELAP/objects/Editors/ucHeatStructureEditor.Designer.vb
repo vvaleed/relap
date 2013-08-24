@@ -45,17 +45,14 @@ Partial Class ucHeatStructureEditor
         Me.CmbBoxSelectFormat = New System.Windows.Forms.ComboBox()
         Me.cmdsave = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.Tab2 = New System.Windows.Forms.TabPage()
-        Me.Tab3 = New System.Windows.Forms.TabPage()
-        Me.ComboBoxTemp = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dgvTemp1 = New System.Windows.Forms.DataGridView()
-        Me.Temp1Temperature = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Temp1MeshPointNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvTemp2 = New System.Windows.Forms.DataGridView()
-        Me.Temp2GammaAttenCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Temp2MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Tab1 = New System.Windows.Forms.TabPage()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.dgvGapDeformation = New System.Windows.Forms.DataGridView()
+        Me.FuelSurfaceRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CladdingSurfaceRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RadialDisplacementFission = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RadialDisplacementCladding = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HSnumberGapDef = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ChkboxDeformation = New System.Windows.Forms.CheckBox()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.txtboxOxideThickness = New System.Windows.Forms.TextBox()
@@ -65,25 +62,28 @@ Partial Class ucHeatStructureEditor
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.ChkboxGapConductance = New System.Windows.Forms.CheckBox()
-        Me.dgvGapDeformation = New System.Windows.Forms.DataGridView()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.FuelSurfaceRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CladdingSurfaceRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RadialDisplacementFission = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RadialDisplacementCladding = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HSnumberGapDef = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tab2 = New System.Windows.Forms.TabPage()
+        Me.Tab3 = New System.Windows.Forms.TabPage()
+        Me.ComboBoxTemp = New System.Windows.Forms.ComboBox()
+        Me.dgvTemp1 = New System.Windows.Forms.DataGridView()
+        Me.Temp1Temperature = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Temp1MeshPointNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvTemp2 = New System.Windows.Forms.DataGridView()
+        Me.Temp2GammaAttenCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Temp2MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChkBoxInitialTemp = New System.Windows.Forms.CheckBox()
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvWithDecay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
+        Me.Tab1.SuspendLayout()
+        CType(Me.dgvGapDeformation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Tab2.SuspendLayout()
         Me.Tab3.SuspendLayout()
         CType(Me.dgvTemp1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTemp2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Tab1.SuspendLayout()
-        CType(Me.dgvGapDeformation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkboxmeshgeometry
@@ -273,102 +273,6 @@ Partial Class ucHeatStructureEditor
         Me.TabControl1.Size = New System.Drawing.Size(729, 462)
         Me.TabControl1.TabIndex = 14
         '
-        'Tab2
-        '
-        Me.Tab2.Controls.Add(Me.chkboxmeshgeometry)
-        Me.Tab2.Controls.Add(Me.TextBox1)
-        Me.Tab2.Controls.Add(Me.dgvWithDecay)
-        Me.Tab2.Controls.Add(Me.dgvNoDecay)
-        Me.Tab2.Controls.Add(Me.TextBox2)
-        Me.Tab2.Controls.Add(Me.txtboxDecayHeat)
-        Me.Tab2.Controls.Add(Me.dgvComposition)
-        Me.Tab2.Controls.Add(Me.TextBox4)
-        Me.Tab2.Controls.Add(Me.CmbBoxSelectFormat)
-        Me.Tab2.Controls.Add(Me.dgvformat1)
-        Me.Tab2.Controls.Add(Me.dgvformat2)
-        Me.Tab2.Location = New System.Drawing.Point(4, 22)
-        Me.Tab2.Name = "Tab2"
-        Me.Tab2.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab2.Size = New System.Drawing.Size(721, 436)
-        Me.Tab2.TabIndex = 0
-        Me.Tab2.Text = "Mesh Geometry"
-        Me.Tab2.UseVisualStyleBackColor = True
-        '
-        'Tab3
-        '
-        Me.Tab3.Controls.Add(Me.ComboBoxTemp)
-        Me.Tab3.Controls.Add(Me.Label1)
-        Me.Tab3.Controls.Add(Me.dgvTemp1)
-        Me.Tab3.Controls.Add(Me.dgvTemp2)
-        Me.Tab3.Location = New System.Drawing.Point(4, 22)
-        Me.Tab3.Name = "Tab3"
-        Me.Tab3.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab3.Size = New System.Drawing.Size(721, 436)
-        Me.Tab3.TabIndex = 1
-        Me.Tab3.Text = "Initial Temperature Data"
-        Me.Tab3.UseVisualStyleBackColor = True
-        '
-        'ComboBoxTemp
-        '
-        Me.ComboBoxTemp.FormattingEnabled = True
-        Me.ComboBoxTemp.Items.AddRange(New Object() {"Same Distribution For All Heat Structures", "Separate Distribution For Each Heat Structure"})
-        Me.ComboBoxTemp.Location = New System.Drawing.Point(27, 51)
-        Me.ComboBoxTemp.Name = "ComboBoxTemp"
-        Me.ComboBoxTemp.Size = New System.Drawing.Size(256, 21)
-        Me.ComboBoxTemp.TabIndex = 14
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(24, 20)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(210, 13)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Enter Initial Temperature Conditions"
-        '
-        'dgvTemp1
-        '
-        Me.dgvTemp1.AccessibleDescription = "                            "
-        Me.dgvTemp1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTemp1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temp1Temperature, Me.Temp1MeshPointNumber})
-        Me.dgvTemp1.Location = New System.Drawing.Point(27, 105)
-        Me.dgvTemp1.Name = "dgvTemp1"
-        Me.dgvTemp1.Size = New System.Drawing.Size(256, 125)
-        Me.dgvTemp1.TabIndex = 10
-        '
-        'Temp1Temperature
-        '
-        Me.Temp1Temperature.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Temp1Temperature.HeaderText = "Temperature"
-        Me.Temp1Temperature.Name = "Temp1Temperature"
-        '
-        'Temp1MeshPointNumber
-        '
-        Me.Temp1MeshPointNumber.HeaderText = "Mesh Point Number"
-        Me.Temp1MeshPointNumber.Name = "Temp1MeshPointNumber"
-        '
-        'dgvTemp2
-        '
-        Me.dgvTemp2.AccessibleDescription = "                            "
-        Me.dgvTemp2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTemp2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temp2GammaAttenCo, Me.Temp2MeshIntervalNumber})
-        Me.dgvTemp2.Location = New System.Drawing.Point(27, 105)
-        Me.dgvTemp2.Name = "dgvTemp2"
-        Me.dgvTemp2.Size = New System.Drawing.Size(256, 125)
-        Me.dgvTemp2.TabIndex = 12
-        '
-        'Temp2GammaAttenCo
-        '
-        Me.Temp2GammaAttenCo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Temp2GammaAttenCo.HeaderText = "Gamma Attenuation Co."
-        Me.Temp2GammaAttenCo.Name = "Temp2GammaAttenCo"
-        '
-        'Temp2MeshIntervalNumber
-        '
-        Me.Temp2MeshIntervalNumber.HeaderText = "Mesh Interval Number"
-        Me.Temp2MeshIntervalNumber.Name = "Temp2MeshIntervalNumber"
-        '
         'Tab1
         '
         Me.Tab1.Controls.Add(Me.TextBox6)
@@ -389,6 +293,55 @@ Partial Class ucHeatStructureEditor
         Me.Tab1.TabIndex = 2
         Me.Tab1.Text = "Gap Conductance Model"
         Me.Tab1.UseVisualStyleBackColor = True
+        '
+        'TextBox6
+        '
+        Me.TextBox6.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox6.Location = New System.Drawing.Point(20, 255)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.ReadOnly = True
+        Me.TextBox6.Size = New System.Drawing.Size(286, 13)
+        Me.TextBox6.TabIndex = 34
+        Me.TextBox6.Text = "Gap Deformation Data" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'dgvGapDeformation
+        '
+        Me.dgvGapDeformation.AccessibleDescription = "                            "
+        Me.dgvGapDeformation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvGapDeformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvGapDeformation.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FuelSurfaceRoughness, Me.CladdingSurfaceRoughness, Me.RadialDisplacementFission, Me.RadialDisplacementCladding, Me.HSnumberGapDef})
+        Me.dgvGapDeformation.Location = New System.Drawing.Point(20, 274)
+        Me.dgvGapDeformation.Name = "dgvGapDeformation"
+        Me.dgvGapDeformation.Size = New System.Drawing.Size(684, 125)
+        Me.dgvGapDeformation.TabIndex = 33
+        '
+        'FuelSurfaceRoughness
+        '
+        Me.FuelSurfaceRoughness.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.FuelSurfaceRoughness.HeaderText = "Fuel Surface Roughness"
+        Me.FuelSurfaceRoughness.Name = "FuelSurfaceRoughness"
+        '
+        'CladdingSurfaceRoughness
+        '
+        Me.CladdingSurfaceRoughness.HeaderText = "Cladding Surface Roughness"
+        Me.CladdingSurfaceRoughness.Name = "CladdingSurfaceRoughness"
+        '
+        'RadialDisplacementFission
+        '
+        Me.RadialDisplacementFission.HeaderText = "Radial Displacement due to Fission Gas-induced Fuel"
+        Me.RadialDisplacementFission.Name = "RadialDisplacementFission"
+        '
+        'RadialDisplacementCladding
+        '
+        Me.RadialDisplacementCladding.HeaderText = "Radial Displacement due to Cladding Creepdown"
+        Me.RadialDisplacementCladding.Name = "RadialDisplacementCladding"
+        '
+        'HSnumberGapDef
+        '
+        Me.HSnumberGapDef.HeaderText = "Heat Structure Number"
+        Me.HSnumberGapDef.Name = "HSnumberGapDef"
         '
         'ChkboxDeformation
         '
@@ -477,54 +430,101 @@ Partial Class ucHeatStructureEditor
         Me.ChkboxGapConductance.Text = "Use Gap Conductance Model"
         Me.ChkboxGapConductance.UseVisualStyleBackColor = True
         '
-        'dgvGapDeformation
+        'Tab2
         '
-        Me.dgvGapDeformation.AccessibleDescription = "                            "
-        Me.dgvGapDeformation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvGapDeformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvGapDeformation.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FuelSurfaceRoughness, Me.CladdingSurfaceRoughness, Me.RadialDisplacementFission, Me.RadialDisplacementCladding, Me.HSnumberGapDef})
-        Me.dgvGapDeformation.Location = New System.Drawing.Point(20, 274)
-        Me.dgvGapDeformation.Name = "dgvGapDeformation"
-        Me.dgvGapDeformation.Size = New System.Drawing.Size(684, 125)
-        Me.dgvGapDeformation.TabIndex = 33
+        Me.Tab2.Controls.Add(Me.chkboxmeshgeometry)
+        Me.Tab2.Controls.Add(Me.TextBox1)
+        Me.Tab2.Controls.Add(Me.dgvWithDecay)
+        Me.Tab2.Controls.Add(Me.dgvNoDecay)
+        Me.Tab2.Controls.Add(Me.TextBox2)
+        Me.Tab2.Controls.Add(Me.txtboxDecayHeat)
+        Me.Tab2.Controls.Add(Me.dgvComposition)
+        Me.Tab2.Controls.Add(Me.TextBox4)
+        Me.Tab2.Controls.Add(Me.CmbBoxSelectFormat)
+        Me.Tab2.Controls.Add(Me.dgvformat1)
+        Me.Tab2.Controls.Add(Me.dgvformat2)
+        Me.Tab2.Location = New System.Drawing.Point(4, 22)
+        Me.Tab2.Name = "Tab2"
+        Me.Tab2.Padding = New System.Windows.Forms.Padding(3)
+        Me.Tab2.Size = New System.Drawing.Size(721, 436)
+        Me.Tab2.TabIndex = 0
+        Me.Tab2.Text = "Mesh Geometry"
+        Me.Tab2.UseVisualStyleBackColor = True
         '
-        'TextBox6
+        'Tab3
         '
-        Me.TextBox6.BackColor = System.Drawing.SystemColors.Window
-        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(20, 255)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.ReadOnly = True
-        Me.TextBox6.Size = New System.Drawing.Size(286, 13)
-        Me.TextBox6.TabIndex = 34
-        Me.TextBox6.Text = "Gap Deformation Data" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Tab3.Controls.Add(Me.ChkBoxInitialTemp)
+        Me.Tab3.Controls.Add(Me.ComboBoxTemp)
+        Me.Tab3.Controls.Add(Me.dgvTemp1)
+        Me.Tab3.Controls.Add(Me.dgvTemp2)
+        Me.Tab3.Location = New System.Drawing.Point(4, 22)
+        Me.Tab3.Name = "Tab3"
+        Me.Tab3.Padding = New System.Windows.Forms.Padding(3)
+        Me.Tab3.Size = New System.Drawing.Size(721, 436)
+        Me.Tab3.TabIndex = 1
+        Me.Tab3.Text = "Initial Temperature Data"
+        Me.Tab3.UseVisualStyleBackColor = True
         '
-        'FuelSurfaceRoughness
+        'ComboBoxTemp
         '
-        Me.FuelSurfaceRoughness.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.FuelSurfaceRoughness.HeaderText = "Fuel Surface Roughness"
-        Me.FuelSurfaceRoughness.Name = "FuelSurfaceRoughness"
+        Me.ComboBoxTemp.FormattingEnabled = True
+        Me.ComboBoxTemp.Items.AddRange(New Object() {"Same Distribution For All Heat Structures", "Separate Distribution For Each Heat Structure"})
+        Me.ComboBoxTemp.Location = New System.Drawing.Point(27, 51)
+        Me.ComboBoxTemp.Name = "ComboBoxTemp"
+        Me.ComboBoxTemp.Size = New System.Drawing.Size(256, 21)
+        Me.ComboBoxTemp.TabIndex = 14
         '
-        'CladdingSurfaceRoughness
+        'dgvTemp1
         '
-        Me.CladdingSurfaceRoughness.HeaderText = "Cladding Surface Roughness"
-        Me.CladdingSurfaceRoughness.Name = "CladdingSurfaceRoughness"
+        Me.dgvTemp1.AccessibleDescription = "                            "
+        Me.dgvTemp1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTemp1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temp1Temperature, Me.Temp1MeshPointNumber})
+        Me.dgvTemp1.Location = New System.Drawing.Point(27, 105)
+        Me.dgvTemp1.Name = "dgvTemp1"
+        Me.dgvTemp1.Size = New System.Drawing.Size(256, 125)
+        Me.dgvTemp1.TabIndex = 10
         '
-        'RadialDisplacementFission
+        'Temp1Temperature
         '
-        Me.RadialDisplacementFission.HeaderText = "Radial Displacement due to Fission Gas-induced Fuel"
-        Me.RadialDisplacementFission.Name = "RadialDisplacementFission"
+        Me.Temp1Temperature.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Temp1Temperature.HeaderText = "Temperature"
+        Me.Temp1Temperature.Name = "Temp1Temperature"
         '
-        'RadialDisplacementCladding
+        'Temp1MeshPointNumber
         '
-        Me.RadialDisplacementCladding.HeaderText = "Radial Displacement due to Cladding Creepdown"
-        Me.RadialDisplacementCladding.Name = "RadialDisplacementCladding"
+        Me.Temp1MeshPointNumber.HeaderText = "Mesh Point Number"
+        Me.Temp1MeshPointNumber.Name = "Temp1MeshPointNumber"
         '
-        'HSnumberGapDef
+        'dgvTemp2
         '
-        Me.HSnumberGapDef.HeaderText = "Heat Structure Number"
-        Me.HSnumberGapDef.Name = "HSnumberGapDef"
+        Me.dgvTemp2.AccessibleDescription = "                            "
+        Me.dgvTemp2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTemp2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temp2GammaAttenCo, Me.Temp2MeshIntervalNumber})
+        Me.dgvTemp2.Location = New System.Drawing.Point(27, 105)
+        Me.dgvTemp2.Name = "dgvTemp2"
+        Me.dgvTemp2.Size = New System.Drawing.Size(256, 125)
+        Me.dgvTemp2.TabIndex = 12
+        '
+        'Temp2GammaAttenCo
+        '
+        Me.Temp2GammaAttenCo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Temp2GammaAttenCo.HeaderText = "Gamma Attenuation Co."
+        Me.Temp2GammaAttenCo.Name = "Temp2GammaAttenCo"
+        '
+        'Temp2MeshIntervalNumber
+        '
+        Me.Temp2MeshIntervalNumber.HeaderText = "Mesh Interval Number"
+        Me.Temp2MeshIntervalNumber.Name = "Temp2MeshIntervalNumber"
+        '
+        'ChkBoxInitialTemp
+        '
+        Me.ChkBoxInitialTemp.AutoSize = True
+        Me.ChkBoxInitialTemp.Location = New System.Drawing.Point(27, 17)
+        Me.ChkBoxInitialTemp.Name = "ChkBoxInitialTemp"
+        Me.ChkBoxInitialTemp.Size = New System.Drawing.Size(193, 17)
+        Me.ChkBoxInitialTemp.TabIndex = 15
+        Me.ChkBoxInitialTemp.Text = "Enter Initial Temperature Conditions"
+        Me.ChkBoxInitialTemp.UseVisualStyleBackColor = True
         '
         'ucHeatStructureEditor
         '
@@ -540,15 +540,15 @@ Partial Class ucHeatStructureEditor
         CType(Me.dgvWithDecay, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
+        Me.Tab1.ResumeLayout(False)
+        Me.Tab1.PerformLayout()
+        CType(Me.dgvGapDeformation, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Tab2.ResumeLayout(False)
         Me.Tab2.PerformLayout()
         Me.Tab3.ResumeLayout(False)
         Me.Tab3.PerformLayout()
         CType(Me.dgvTemp1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvTemp2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Tab1.ResumeLayout(False)
-        Me.Tab1.PerformLayout()
-        CType(Me.dgvGapDeformation, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -579,7 +579,6 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents Tab3 As System.Windows.Forms.TabPage
     Friend WithEvents dgvTemp1 As System.Windows.Forms.DataGridView
     Friend WithEvents dgvTemp2 As System.Windows.Forms.DataGridView
-    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Temp1Temperature As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Temp1MeshPointNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ComboBoxTemp As System.Windows.Forms.ComboBox
@@ -602,5 +601,6 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents ChkboxGapConductance As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkBoxInitialTemp As System.Windows.Forms.CheckBox
 
 End Class

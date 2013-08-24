@@ -65,6 +65,17 @@
             _EnterMeshGeometry = value
         End Set
     End Property
+
+    Private _EnterInitialTemp As String
+    Public Property EnterInitialTemp() As String
+        Get
+            Return _EnterInitialTemp
+        End Get
+        Set(ByVal value As String)
+            _EnterInitialTemp = value
+        End Set
+    End Property
+
     Private _SelectFormat As String
     Public Property SelectFormat() As String
         Get
