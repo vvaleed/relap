@@ -25,8 +25,20 @@ Partial Class ucHeatStructureEditor2
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.dgvtab1 = New System.Windows.Forms.DataGridView()
+        Me.leftBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeftIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeftBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.leftSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvTab2 = New System.Windows.Forms.DataGridView()
+        Me.RightBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.RightSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.dgvTab3 = New System.Windows.Forms.DataGridView()
         Me.SourceType = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,6 +48,18 @@ Partial Class ucHeatStructureEditor2
         Me.SourceHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.dgvTab4 = New System.Windows.Forms.DataGridView()
+        Me.leftHeatedEquivalentDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeftHeatedLengthForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeftHeatedLengthReverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftGridSpacerLengthForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftGridSpacerLengthReverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftGridLossCoefficientForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftGridLossCoefficientReverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftLocalBoilingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftNaturalCirculationLength = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftPitchtoDiameterRatio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftFoulingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftAddHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.dgvTab5 = New System.Windows.Forms.DataGridView()
         Me.rightHeatedEquivalentDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -51,30 +75,6 @@ Partial Class ucHeatStructureEditor2
         Me.rightFoulingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.rightAddHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cmdSave = New System.Windows.Forms.Button()
-        Me.leftHeatedEquivalentDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LeftHeatedLengthForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LeftHeatedLengthReverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftGridSpacerLengthForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftGridSpacerLengthReverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftGridLossCoefficientForward = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftGridLossCoefficientReverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftLocalBoilingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftNaturalCirculationLength = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftPitchtoDiameterRatio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftFoulingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftAddHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.RightSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LeftIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LeftBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.leftSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvtab1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +123,45 @@ Partial Class ucHeatStructureEditor2
         Me.dgvtab1.Size = New System.Drawing.Size(917, 376)
         Me.dgvtab1.TabIndex = 0
         '
+        'leftBoundaryVolumeNumber
+        '
+        Me.leftBoundaryVolumeNumber.FillWeight = 60.0!
+        Me.leftBoundaryVolumeNumber.HeaderText = "Boundary Volume Number"
+        Me.leftBoundaryVolumeNumber.Name = "leftBoundaryVolumeNumber"
+        '
+        'LeftIncrement
+        '
+        Me.LeftIncrement.FillWeight = 59.08629!
+        Me.LeftIncrement.HeaderText = "Increment"
+        Me.LeftIncrement.Name = "LeftIncrement"
+        '
+        'LeftBoundaryConditionType
+        '
+        Me.LeftBoundaryConditionType.FillWeight = 59.08629!
+        Me.LeftBoundaryConditionType.HeaderText = "Boundary Condition Type"
+        Me.LeftBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
+        Me.LeftBoundaryConditionType.Name = "LeftBoundaryConditionType"
+        Me.LeftBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.LeftBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'leftSurfaceAreaSelection
+        '
+        Me.leftSurfaceAreaSelection.FillWeight = 59.08629!
+        Me.leftSurfaceAreaSelection.HeaderText = "Surface Area Selection"
+        Me.leftSurfaceAreaSelection.Name = "leftSurfaceAreaSelection"
+        '
+        'leftSurfaceArea
+        '
+        Me.leftSurfaceArea.FillWeight = 59.08629!
+        Me.leftSurfaceArea.HeaderText = "Surface Area"
+        Me.leftSurfaceArea.Name = "leftSurfaceArea"
+        '
+        'leftHeatStructureNumber
+        '
+        Me.leftHeatStructureNumber.FillWeight = 59.08629!
+        Me.leftHeatStructureNumber.HeaderText = "Heat Structure Number"
+        Me.leftHeatStructureNumber.Name = "leftHeatStructureNumber"
+        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.dgvTab2)
@@ -144,6 +183,45 @@ Partial Class ucHeatStructureEditor2
         Me.dgvTab2.Name = "dgvTab2"
         Me.dgvTab2.Size = New System.Drawing.Size(917, 376)
         Me.dgvTab2.TabIndex = 1
+        '
+        'RightBoundaryVolumeNumber
+        '
+        Me.RightBoundaryVolumeNumber.FillWeight = 33.0!
+        Me.RightBoundaryVolumeNumber.HeaderText = "Boundary Volume Number"
+        Me.RightBoundaryVolumeNumber.Name = "RightBoundaryVolumeNumber"
+        '
+        'RightIncrement
+        '
+        Me.RightIncrement.FillWeight = 33.40101!
+        Me.RightIncrement.HeaderText = "Increment"
+        Me.RightIncrement.Name = "RightIncrement"
+        '
+        'RightBoundaryConditionType
+        '
+        Me.RightBoundaryConditionType.FillWeight = 33.40101!
+        Me.RightBoundaryConditionType.HeaderText = "Boundary Condition Type"
+        Me.RightBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
+        Me.RightBoundaryConditionType.Name = "RightBoundaryConditionType"
+        Me.RightBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.RightBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'RightSurfaceAreaSelection
+        '
+        Me.RightSurfaceAreaSelection.FillWeight = 33.40101!
+        Me.RightSurfaceAreaSelection.HeaderText = "Surface Area Selection"
+        Me.RightSurfaceAreaSelection.Name = "RightSurfaceAreaSelection"
+        '
+        'RightSurfaceArea
+        '
+        Me.RightSurfaceArea.FillWeight = 33.40101!
+        Me.RightSurfaceArea.HeaderText = "Surface Area"
+        Me.RightSurfaceArea.Name = "RightSurfaceArea"
+        '
+        'RightHeatStructureNumber
+        '
+        Me.RightHeatStructureNumber.FillWeight = 33.40101!
+        Me.RightHeatStructureNumber.HeaderText = "Heat Structure Number"
+        Me.RightHeatStructureNumber.Name = "RightHeatStructureNumber"
         '
         'TabPage3
         '
@@ -208,10 +286,70 @@ Partial Class ucHeatStructureEditor2
         Me.dgvTab4.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvTab4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTab4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.leftHeatedEquivalentDiameter, Me.LeftHeatedLengthForward, Me.LeftHeatedLengthReverse, Me.leftGridSpacerLengthForward, Me.leftGridSpacerLengthReverse, Me.leftGridLossCoefficientForward, Me.leftGridLossCoefficientReverse, Me.leftLocalBoilingFactor, Me.leftNaturalCirculationLength, Me.leftPitchtoDiameterRatio, Me.leftFoulingFactor, Me.leftAddHeatStructureNumber})
-        Me.dgvTab4.Location = New System.Drawing.Point(36, 21)
+        Me.dgvTab4.Location = New System.Drawing.Point(28, 21)
         Me.dgvTab4.Name = "dgvTab4"
         Me.dgvTab4.Size = New System.Drawing.Size(913, 375)
         Me.dgvTab4.TabIndex = 0
+        '
+        'leftHeatedEquivalentDiameter
+        '
+        Me.leftHeatedEquivalentDiameter.HeaderText = "Heated Equivalent Diameter"
+        Me.leftHeatedEquivalentDiameter.Name = "leftHeatedEquivalentDiameter"
+        '
+        'LeftHeatedLengthForward
+        '
+        Me.LeftHeatedLengthForward.HeaderText = "Heated Length Forward"
+        Me.LeftHeatedLengthForward.Name = "LeftHeatedLengthForward"
+        '
+        'LeftHeatedLengthReverse
+        '
+        Me.LeftHeatedLengthReverse.HeaderText = "Heated Length Reverse"
+        Me.LeftHeatedLengthReverse.Name = "LeftHeatedLengthReverse"
+        '
+        'leftGridSpacerLengthForward
+        '
+        Me.leftGridSpacerLengthForward.HeaderText = "Grid Spacer Length Forward"
+        Me.leftGridSpacerLengthForward.Name = "leftGridSpacerLengthForward"
+        '
+        'leftGridSpacerLengthReverse
+        '
+        Me.leftGridSpacerLengthReverse.HeaderText = "Grid Spacer Length Reverse"
+        Me.leftGridSpacerLengthReverse.Name = "leftGridSpacerLengthReverse"
+        '
+        'leftGridLossCoefficientForward
+        '
+        Me.leftGridLossCoefficientForward.HeaderText = "Grid Loss Coefficient Forward"
+        Me.leftGridLossCoefficientForward.Name = "leftGridLossCoefficientForward"
+        '
+        'leftGridLossCoefficientReverse
+        '
+        Me.leftGridLossCoefficientReverse.HeaderText = "Grid Loss Coefficient Reverse"
+        Me.leftGridLossCoefficientReverse.Name = "leftGridLossCoefficientReverse"
+        '
+        'leftLocalBoilingFactor
+        '
+        Me.leftLocalBoilingFactor.HeaderText = "Local Boiling Factor"
+        Me.leftLocalBoilingFactor.Name = "leftLocalBoilingFactor"
+        '
+        'leftNaturalCirculationLength
+        '
+        Me.leftNaturalCirculationLength.HeaderText = "Natural Circulation Length"
+        Me.leftNaturalCirculationLength.Name = "leftNaturalCirculationLength"
+        '
+        'leftPitchtoDiameterRatio
+        '
+        Me.leftPitchtoDiameterRatio.HeaderText = "Pitch to Diameter Ratio"
+        Me.leftPitchtoDiameterRatio.Name = "leftPitchtoDiameterRatio"
+        '
+        'leftFoulingFactor
+        '
+        Me.leftFoulingFactor.HeaderText = "Fouling Factor"
+        Me.leftFoulingFactor.Name = "leftFoulingFactor"
+        '
+        'leftAddHeatStructureNumber
+        '
+        Me.leftAddHeatStructureNumber.HeaderText = "Heat Structure Number"
+        Me.leftAddHeatStructureNumber.Name = "leftAddHeatStructureNumber"
         '
         'TabPage5
         '
@@ -229,7 +367,7 @@ Partial Class ucHeatStructureEditor2
         Me.dgvTab5.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvTab5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTab5.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.rightHeatedEquivalentDiameter, Me.rightHeatedLengthForward, Me.rightHeatedLengthReverse, Me.rightGridSpacerLengthForward, Me.rightGridSpacerLengthReverse, Me.rightGridLossCoefficientForward, Me.rightGridLossCoefficientReverse, Me.rightLocalBoilingFactor, Me.rightNaturalCirculationLength, Me.rightPitchtoDiameterRatio, Me.rightFoulingFactor, Me.rightAddHeatStructureNumber})
-        Me.dgvTab5.Location = New System.Drawing.Point(21, 23)
+        Me.dgvTab5.Location = New System.Drawing.Point(25, 23)
         Me.dgvTab5.Name = "dgvTab5"
         Me.dgvTab5.Size = New System.Drawing.Size(913, 373)
         Me.dgvTab5.TabIndex = 1
@@ -302,144 +440,6 @@ Partial Class ucHeatStructureEditor2
         Me.cmdSave.TabIndex = 2
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
-        '
-        'leftHeatedEquivalentDiameter
-        '
-        Me.leftHeatedEquivalentDiameter.HeaderText = "Heated Equivalent Diameter"
-        Me.leftHeatedEquivalentDiameter.Name = "leftHeatedEquivalentDiameter"
-        '
-        'LeftHeatedLengthForward
-        '
-        Me.LeftHeatedLengthForward.HeaderText = "Heated Length Forward"
-        Me.LeftHeatedLengthForward.Name = "LeftHeatedLengthForward"
-        '
-        'LeftHeatedLengthReverse
-        '
-        Me.LeftHeatedLengthReverse.HeaderText = "Heated Length Reverse"
-        Me.LeftHeatedLengthReverse.Name = "LeftHeatedLengthReverse"
-        '
-        'leftGridSpacerLengthForward
-        '
-        Me.leftGridSpacerLengthForward.HeaderText = "Grid Spacer Length Forward"
-        Me.leftGridSpacerLengthForward.Name = "leftGridSpacerLengthForward"
-        '
-        'leftGridSpacerLengthReverse
-        '
-        Me.leftGridSpacerLengthReverse.HeaderText = "Grid Spacer Length Reverse"
-        Me.leftGridSpacerLengthReverse.Name = "leftGridSpacerLengthReverse"
-        '
-        'leftGridLossCoefficientForward
-        '
-        Me.leftGridLossCoefficientForward.HeaderText = "Grid Loss Coefficient Forward"
-        Me.leftGridLossCoefficientForward.Name = "leftGridLossCoefficientForward"
-        '
-        'leftGridLossCoefficientReverse
-        '
-        Me.leftGridLossCoefficientReverse.HeaderText = "Grid Loss Coefficient Reverse"
-        Me.leftGridLossCoefficientReverse.Name = "leftGridLossCoefficientReverse"
-        '
-        'leftLocalBoilingFactor
-        '
-        Me.leftLocalBoilingFactor.HeaderText = "Local Boiling Factor"
-        Me.leftLocalBoilingFactor.Name = "leftLocalBoilingFactor"
-        '
-        'leftNaturalCirculationLength
-        '
-        Me.leftNaturalCirculationLength.HeaderText = "Natural Circulation Length"
-        Me.leftNaturalCirculationLength.Name = "leftNaturalCirculationLength"
-        '
-        'leftPitchtoDiameterRatio
-        '
-        Me.leftPitchtoDiameterRatio.HeaderText = "Pitch to Diameter Ratio"
-        Me.leftPitchtoDiameterRatio.Name = "leftPitchtoDiameterRatio"
-        '
-        'leftFoulingFactor
-        '
-        Me.leftFoulingFactor.HeaderText = "Fouling Factor"
-        Me.leftFoulingFactor.Name = "leftFoulingFactor"
-        '
-        'leftAddHeatStructureNumber
-        '
-        Me.leftAddHeatStructureNumber.HeaderText = "Heat Structure Number"
-        Me.leftAddHeatStructureNumber.Name = "leftAddHeatStructureNumber"
-        '
-        'RightBoundaryVolumeNumber
-        '
-        Me.RightBoundaryVolumeNumber.FillWeight = 33.0!
-        Me.RightBoundaryVolumeNumber.HeaderText = "Boundary Volume Number"
-        Me.RightBoundaryVolumeNumber.Name = "RightBoundaryVolumeNumber"
-        '
-        'RightIncrement
-        '
-        Me.RightIncrement.FillWeight = 33.40101!
-        Me.RightIncrement.HeaderText = "Increment"
-        Me.RightIncrement.Name = "RightIncrement"
-        '
-        'RightBoundaryConditionType
-        '
-        Me.RightBoundaryConditionType.FillWeight = 33.40101!
-        Me.RightBoundaryConditionType.HeaderText = "Boundary Condition Type"
-        Me.RightBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
-        Me.RightBoundaryConditionType.Name = "RightBoundaryConditionType"
-        Me.RightBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.RightBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'RightSurfaceAreaSelection
-        '
-        Me.RightSurfaceAreaSelection.FillWeight = 33.40101!
-        Me.RightSurfaceAreaSelection.HeaderText = "Surface Area Selection"
-        Me.RightSurfaceAreaSelection.Name = "RightSurfaceAreaSelection"
-        '
-        'RightSurfaceArea
-        '
-        Me.RightSurfaceArea.FillWeight = 33.40101!
-        Me.RightSurfaceArea.HeaderText = "Surface Area"
-        Me.RightSurfaceArea.Name = "RightSurfaceArea"
-        '
-        'RightHeatStructureNumber
-        '
-        Me.RightHeatStructureNumber.FillWeight = 33.40101!
-        Me.RightHeatStructureNumber.HeaderText = "Heat Structure Number"
-        Me.RightHeatStructureNumber.Name = "RightHeatStructureNumber"
-        '
-        'leftBoundaryVolumeNumber
-        '
-        Me.leftBoundaryVolumeNumber.FillWeight = 60.0!
-        Me.leftBoundaryVolumeNumber.HeaderText = "Boundary Volume Number"
-        Me.leftBoundaryVolumeNumber.Name = "leftBoundaryVolumeNumber"
-        '
-        'LeftIncrement
-        '
-        Me.LeftIncrement.FillWeight = 59.08629!
-        Me.LeftIncrement.HeaderText = "Increment"
-        Me.LeftIncrement.Name = "LeftIncrement"
-        '
-        'LeftBoundaryConditionType
-        '
-        Me.LeftBoundaryConditionType.FillWeight = 59.08629!
-        Me.LeftBoundaryConditionType.HeaderText = "Boundary Condition Type"
-        Me.LeftBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
-        Me.LeftBoundaryConditionType.Name = "LeftBoundaryConditionType"
-        Me.LeftBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.LeftBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'leftSurfaceAreaSelection
-        '
-        Me.leftSurfaceAreaSelection.FillWeight = 59.08629!
-        Me.leftSurfaceAreaSelection.HeaderText = "Surface Area Selection"
-        Me.leftSurfaceAreaSelection.Name = "leftSurfaceAreaSelection"
-        '
-        'leftSurfaceArea
-        '
-        Me.leftSurfaceArea.FillWeight = 59.08629!
-        Me.leftSurfaceArea.HeaderText = "Surface Area"
-        Me.leftSurfaceArea.Name = "leftSurfaceArea"
-        '
-        'leftHeatStructureNumber
-        '
-        Me.leftHeatStructureNumber.FillWeight = 59.08629!
-        Me.leftHeatStructureNumber.HeaderText = "Heat Structure Number"
-        Me.leftHeatStructureNumber.Name = "leftHeatStructureNumber"
         '
         'ucHeatStructureEditor2
         '
