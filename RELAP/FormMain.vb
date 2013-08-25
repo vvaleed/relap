@@ -3094,10 +3094,11 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*======================================================================")
             Dim i1 = 1
             Dim dgvrow As DataGridViewRow
-            For j = 0 To My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows.Count - 2
+            Dim frm As frmControlSystem = My.Application.ActiveSimulation.FormControlSystem
+            For j = 0 To frm.dgv1.Rows.Count - 2
                 dgvrow = My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows(j)
                 Dim _uid = RELAP.App.GetUIDFromTag(dgvrow.Cells(0).Value)
-                output = "2050010" & i & " " & frmControlSystem.ComponentName.ToString() & frmControlSystem.cboComponentType.ToString() & frmControlSystem.txtScalingFactor.ToString() & frmControlSystem.txtInitialValue.ToString() & frmControlSystem.chkComputeIntialConditions.ToString() & frmControlSystem.cboLimiterControl.ToString() & frmControlSystem.txtMinValue.ToString() & frmControlSystem.txtMaxValue.ToString()
+                output = "2050010" & i & " " & dgvrow.Cells(0).Value & dgvrow.Cells(1).Value & dgvrow.Cells(2).Value & dgvrow.Cells(3).Value & dgvrow.Cells(4).Value & dgvrow.Cells(5).Value & dgvrow.Cells(6).Value & dgvrow.Cells(7).Value
 
                 i = i + 1
                 generate.WriteLine(output)
