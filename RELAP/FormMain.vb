@@ -3093,18 +3093,32 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*======================================================================")
             Dim i1 = 1
             Dim dgvrow As DataGridViewRow
+
             Dim frm As frmControlSystem = My.Application.ActiveSimulation.FormControlSystem
+
             For j = 0 To frm.dgv1.Rows.Count - 2
                 dgvrow = My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows(j)
                 Dim _uid = RELAP.App.GetUIDFromTag(dgvrow.Cells(0).Value)
-                output = "2050010" & i & " " & dgvrow.Cells(0).Value & dgvrow.Cells(1).Value & dgvrow.Cells(2).Value & dgvrow.Cells(3).Value & dgvrow.Cells(4).Value & dgvrow.Cells(5).Value & dgvrow.Cells(6).Value & dgvrow.Cells(7).Value
+                output = "2050010" & i & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value & " " & dgvrow.Cells(2).Value & " " & dgvrow.Cells(3).Value & " " & dgvrow.Cells(4).Value & " " & dgvrow.Cells(5).Value & " " & dgvrow.Cells(6).Value & " " & dgvrow.Cells(7).Value
 
                 i = i + 1
                 generate.WriteLine(output)
-            Next
 
+                If dgvrow.Cells(1).Value = "SUM" Then
+                
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
 
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
 
+                End If
+
+                    Next
             generate.WriteLine(".")
             generate.Close()
             MsgBox("File Saved")
