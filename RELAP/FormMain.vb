@@ -3088,6 +3088,20 @@ sim:                Dim myStream As System.IO.FileStream
                 Next kvp2
             Next kvp
 
+            Dim a As Integer = 1
+            generate.WriteLine("*======================================================================")
+            generate.WriteLine("*          Control Components                                          ")
+            generate.WriteLine("*======================================================================")
+            Dim i1 = 1
+            Dim dgvrow As DataGridViewRow
+            For j = 0 To My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows.Count - 2
+                dgvrow = My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows(j)
+                Dim _uid = RELAP.App.GetUIDFromTag(dgvrow.Cells(0).Value)
+                output = "2050010" & i & " " & frmControlSystem.ComponentName.ToString() & frmControlSystem.cboComponentType.ToString() & frmControlSystem.txtScalingFactor.ToString() & frmControlSystem.txtInitialValue.ToString() & frmControlSystem.chkComputeIntialConditions.ToString() & frmControlSystem.cboLimiterControl.ToString() & frmControlSystem.txtMinValue.ToString() & frmControlSystem.txtMaxValue.ToString()
+
+                i = i + 1
+                generate.WriteLine(output)
+            Next
 
 
 
