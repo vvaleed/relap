@@ -1,6 +1,11 @@
 ﻿Public Class ucThermoDynamicStates
+
     ' Private ThermoDynamicStates As List(Of ThermoDynamicState)
     'Public _ThermoDynamicStates As List(Of ThermoDynamicState)
+
+
+
+
     Private _ThermoDynamicStates As ThermoDynamicStates
     Public Property ThermoDynamicStates() As ThermoDynamicStates
         Get
@@ -32,7 +37,17 @@
             _nf = value
         End Set
     End Property
-    Private Sub cmbothermostates_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles cmbothermostates.SelectedValueChanged
+
+    Private Sub ucThermoDynamicStates_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If ThermoDynamicStates.cmbocheck = 1 Then
+            cmbothermostates.SelectedIndex = ThermoDynamicStates.storeindex
+        Else
+            cmbothermostates.SelectedIndex = 0
+        End If
+    End Sub
+
+    Private Sub cmbothermostates_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbothermostates.SelectedValueChanged
         '        Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void Fraction
         'Temperature, Static Quality
         'Pressure, Static Quality
@@ -42,6 +57,8 @@
         'Pressure, Liquid Specific Internal Energy, Vapor Specific Internal Energy, Void Fraction, Non condensable Quality
         'Pressure, Liquid Temperature, Vapor Temperature, Void Fraction, Non condensable Quality
         DataGridView1.Columns.Clear()
+        ThermoDynamicStates.cmbocheck = 1
+        ThermoDynamicStates.storeindex = cmbothermostates.SelectedIndex
         If My.Application.ActiveSimulation.ComponentType <> "pipe" Then
             DataGridView1.Columns.Add("Time", "Time")
         End If
@@ -101,10 +118,10 @@
         If My.Application.ActiveSimulation.ComponentType = "pipe" Then
             DataGridView1.Columns.Add("Volume", "Volume")
         End If
-      
+
     End Sub
 
-    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+    Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdSave.Click
         Dim str As String = ""
         Dim row As DataGridViewRow
         If Not Me.ThermoDynamicStates Is Nothing Then
@@ -137,4 +154,5 @@
             Next
         End If
     End Sub
+
 End Class

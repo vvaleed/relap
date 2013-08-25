@@ -98,7 +98,6 @@
         End If
 
         If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count = 0 Then
-            dgvTab5.Rows.Add(1)
             dgvTab5.Rows(0).Cells(0).Value = 0.0
             dgvTab5.Rows(0).Cells(1).Value = 10.0
             dgvTab5.Rows(0).Cells(2).Value = 10.0
@@ -112,8 +111,12 @@
             dgvTab5.Rows(0).Cells(10).Value = 1.0
             dgvTab5.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-            dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
             Dim i = 1
+            For i = 1 To myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count - 1
+                dgvTab5.Rows.Add(i.ToString)
+            Next
+            dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count - 1)
+            i = 1
             For Each row As DataGridViewRow In dgvTab5.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedEquivalentDiameter
                 row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthForward
