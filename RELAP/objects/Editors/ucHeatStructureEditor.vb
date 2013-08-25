@@ -34,6 +34,53 @@
         Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.HeatStructureGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
 
+        If HeatStructureMeshData.GapConductanceModel = False Then
+            ChkboxGapConductance.Checked = False
+            txtboxInitialGapInternalPressure.Clear()
+            txtboxInitialGapInternalPressure.BackColor = Color.Gray
+            txtboxInitialGapInternalPressure.ReadOnly = True
+            txtboxGapConductanceRefVol.Clear()
+            txtboxGapConductanceRefVol.BackColor = Color.Gray
+            txtboxGapConductanceRefVol.ReadOnly = True
+            ChkboxDeformation.BackColor = Color.Gray
+            ChkboxDeformation.Checked = False
+            dgvGapDeformation.BackgroundColor = Color.Gray
+            dgvGapDeformation.Enabled = False
+            dgvGapDeformation.ClearSelection()
+        ElseIf HeatStructureMeshData.GapConductanceModel = True Then
+            ChkboxGapConductance.Checked = True
+            txtboxInitialGapInternalPressure.BackColor = Color.White
+            txtboxInitialGapInternalPressure.ReadOnly = False
+            txtboxInitialGapInternalPressure.Text = HeatStructureMeshData.InitialGapInternalPressure.ToString
+            txtboxGapConductanceRefVol.BackColor = Color.White
+            txtboxGapConductanceRefVol.ReadOnly = False
+            txtboxGapConductanceRefVol.Text = HeatStructureMeshData.GapConductanceReferenceVolume.ToString
+            ChkboxDeformation.BackColor = Color.White
+            ChkboxDeformation.Checked = True
+            dgvGapDeformation.BackgroundColor = Color.White
+            dgvGapDeformation.Enabled = True
+        End If
+        If myCOTK.HeatStructureMeshData.GapDeformation.Count <> 0 Then
+            dgvGapDeformation.Rows.Add(myCOTK.HeatStructureMeshData.GapDeformation.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvGapDeformation.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.GapDeformation(i).FuelSurfaceRoughness
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.GapDeformation(i).CladdingSurfaceRoughness
+                row.Cells(2).Value = myCOTK.HeatStructureMeshData.GapDeformation(i).RadialDisplacementFission
+                row.Cells(3).Value = myCOTK.HeatStructureMeshData.GapDeformation(i).RadialDisplacementCladding
+                row.Cells(4).Value = myCOTK.HeatStructureMeshData.GapDeformation(i).HSnumberGapDef
+                i = i + 1
+            Next
+        Else
+            For Each row As DataGridViewRow In dgvGapDeformation.Rows
+                row.Cells(0).Value = 0.000001
+                row.Cells(1).Value = 0.000002
+                row.Cells(2).Value = 0.0
+                row.Cells(3).Value = 0.0
+                row.Cells(4).Value = myCOTK.NumberOfAxialHS
+            Next
+        End If
+
         chkboxmeshgeometry.Checked = True
         CmbBoxSelectFormat.SelectedIndex = 0
         dgvformat2.Hide()
@@ -49,6 +96,7 @@
 
     Private Sub ChkboxGapConductance_CheckStateChanged(sender As Object, e As EventArgs) Handles ChkboxGapConductance.CheckStateChanged
         If ChkboxGapConductance.Checked = False Then
+            HeatStructureMeshData.GapConductanceModel = False
             txtboxInitialGapInternalPressure.Clear()
             txtboxInitialGapInternalPressure.BackColor = Color.Gray
             txtboxInitialGapInternalPressure.ReadOnly = True
@@ -59,8 +107,9 @@
             ChkboxDeformation.Checked = False
             dgvGapDeformation.BackgroundColor = Color.Gray
             dgvGapDeformation.Enabled = False
-            dgvGapDeformation.ClearSelection()
+            dgvGapDeformation.Rows.Clear()
         ElseIf ChkboxGapConductance.Checked = True Then
+            HeatStructureMeshData.GapConductanceModel = True
             txtboxInitialGapInternalPressure.BackColor = Color.White
             txtboxInitialGapInternalPressure.ReadOnly = False
             txtboxGapConductanceRefVol.BackColor = Color.White

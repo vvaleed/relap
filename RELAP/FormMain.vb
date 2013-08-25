@@ -2948,7 +2948,7 @@ sim:                Dim myStream As System.IO.FileStream
                 ElseIf output1 = "Spherical" Then
                     output2 = "3"
                 End If
-                output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & output2 & " " & kvp.Value.HeatStructureMeshData.EnterInitialTemp & " " & kvp.Value.LeftBoundaryCO
+                output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & output2 & " " & kvp.Value.HeatStructureMeshData.EnterInitialTemp & " " & kvp.Value.LeftBoundaryCO.ToString("F")
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "000 " & output)
 
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "001 " & kvp.Value.HeatStructureMeshData.InitialGapInternalPressure & " " & kvp.Value.HeatStructureMeshData.GapConductanceReferenceVolume)
