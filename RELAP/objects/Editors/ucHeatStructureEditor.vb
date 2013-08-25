@@ -73,6 +73,7 @@
             Next
         Else
             For Each row As DataGridViewRow In dgvGapDeformation.Rows
+                dgvGapDeformation.Rows.Add(1)
                 row.Cells(0).Value = 0.000001
                 row.Cells(1).Value = 0.000002
                 row.Cells(2).Value = 0.0
@@ -81,20 +82,162 @@
             Next
         End If
 
-        chkboxmeshgeometry.Checked = True
-        CmbBoxSelectFormat.SelectedIndex = 0
-        dgvformat2.Hide()
-        dgvWithDecay.Hide()
-        dgvTemp2.Hide()
-        ComboBoxTemp.SelectedIndex = 0
+        If HeatStructureMeshData.MetalWaterReaction = False Then
+            ChkboxMetalWaterReaction.Checked = False
+            txtboxOxideThickness.Clear()
+            txtboxOxideThickness.BackColor = Color.Gray
+            txtboxOxideThickness.ReadOnly = True
+        ElseIf HeatStructureMeshData.MetalWaterReaction = True Then
+            ChkboxMetalWaterReaction.Checked = True
+            txtboxOxideThickness.BackColor = Color.White
+            txtboxOxideThickness.ReadOnly = False
+            txtboxOxideThickness.Text = HeatStructureMeshData.InitialOxideThicknes
+        End If
+
+        If HeatStructureMeshData.EnterMeshGeometry = "1" Then
+            chkboxmeshgeometry.Checked = False
+            CmbBoxSelectFormat.Hide()
+            dgvformat1.Hide()
+            dgvformat1.Rows.Clear()
+            dgvformat2.Hide()
+            dgvformat2.Rows.Clear()
+            dgvNoDecay.Hide()
+            dgvNoDecay.Rows.Clear()
+            dgvWithDecay.Hide()
+            dgvWithDecay.Rows.Clear()
+            dgvComposition.Hide()
+            dgvComposition.Rows.Clear()
+            TextBox1.Hide()
+            TextBox2.Hide()
+            TextBox4.Hide()
+            txtboxDecayHeat.Hide()
+        ElseIf HeatStructureMeshData.EnterMeshGeometry = "0" Then
+            chkboxmeshgeometry.Checked = True
+            CmbBoxSelectFormat.Show()
+            dgvformat1.Show()
+            dgvformat2.Show()
+            dgvNoDecay.Show()
+            dgvWithDecay.Show()
+            dgvComposition.Show()
+            TextBox1.Show()
+            TextBox2.Show()
+            TextBox4.Show()
+            txtboxDecayHeat.Show()
+            txtboxDecayHeat.Text = HeatStructureMeshData.DecayHeat
+        Else
+            chkboxmeshgeometry.Checked = True
+            CmbBoxSelectFormat.SelectedIndex = 0
+            HeatStructureMeshData.SelectFormat = "1"
+            dgvformat2.Hide()
+            dgvWithDecay.Hide()
+            dgvTemp2.Hide()
+        End If
+
+        If HeatStructureMeshData.SelectFormat = "1" Then
+            CmbBoxSelectFormat.SelectedIndex = 0
+            dgvformat1.Show()
+            dgvformat2.Rows.Clear()
+            dgvformat2.Hide()
+        ElseIf HeatStructureMeshData.SelectFormat = "2" Then
+            CmbBoxSelectFormat.SelectedIndex = 1
+            dgvformat1.Rows.Clear()
+            dgvformat1.Hide()
+            dgvformat2.Show()
+        Else
+            CmbBoxSelectFormat.SelectedIndex = 0
+            dgvformat1.Hide()
+            dgvformat2.Hide()
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataFormat1.Count <> 0 Then
+            dgvformat1.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataFormat1.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvformat1.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataFormat1(i).NumberOfIntervals
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataFormat1(i).RightCoordinate
+                i = i + 1
+            Next
+        Else
+            For Each row As DataGridViewRow In dgvformat1.Rows
+                dgvformat1.Rows.Add(1)
+                row.Cells(0).Value = myCOTK.NumberOfRadialMP - 1
+                row.Cells(1).Value = myCOTK.LeftBoundaryCO + 1
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataFormat2.Count <> 0 Then
+            dgvformat2.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataFormat2.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvformat2.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataFormat2(i).MeshInterval
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataFormat2(i).IntervalNumber
+                i = i + 1
+            Next
+        Else
+            For Each row As DataGridViewRow In dgvformat2.Rows
+                dgvformat2.Rows.Add(1)
+                row.Cells(0).Value = 0.0
+                row.Cells(1).Value = myCOTK.NumberOfRadialMP - 1
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataComposition.Count <> 0 Then
+            dgvComposition.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvComposition.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataComposition(i).CompositionNumber
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataComposition(i).MeshIntervalNumber3
+                i = i + 1
+            Next
+        Else
+            For Each row As DataGridViewRow In dgvComposition.Rows
+                dgvComposition.Rows.Add(1)
+                row.Cells(0).Value = 5
+                row.Cells(1).Value = myCOTK.NumberOfRadialMP - 1
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataNoDecay.Count <> 0 Then
+            dgvNoDecay.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataNoDecay.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvNoDecay.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataNoDecay(i).SourceValue
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataNoDecay(i).MeshIntervalNumber
+                i = i + 1
+            Next
+        Else
+            For Each row As DataGridViewRow In dgvNoDecay.Rows
+                dgvNoDecay.Rows.Add(1)
+                row.Cells(0).Value = 0.0
+                row.Cells(1).Value = myCOTK.NumberOfRadialMP - 1
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataWithDecay.Count <> 0 Then
+            dgvWithDecay.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataWithDecay.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvWithDecay.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataWithDecay(i).GammaAttenuationCo
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataWithDecay(i).MeshIntervalNumber2
+                i = i + 1
+            Next
+        Else
+            For Each row As DataGridViewRow In dgvWithDecay.Rows
+                dgvWithDecay.Rows.Add(1)
+                row.Cells(0).Value = 0.0
+                row.Cells(1).Value = myCOTK.NumberOfRadialMP - 1
+            Next
+        End If
+
         ChkBoxInitialTemp.Checked = True
+
 
         If myCOTK.HeatStructureMeshData.MeshDataFormat1.Count <> 0 Then
 
         End If
     End Sub
 
-    Private Sub ChkboxGapConductance_CheckStateChanged(sender As Object, e As EventArgs) Handles ChkboxGapConductance.CheckStateChanged
+    Private Sub ChkboxGapConductance_CheckStateChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ChkboxGapConductance.CheckStateChanged
         If ChkboxGapConductance.Checked = False Then
             HeatStructureMeshData.GapConductanceModel = False
             txtboxInitialGapInternalPressure.Clear()
@@ -123,10 +266,12 @@
 
     Private Sub ChkboxMetalWaterReaction_CheckStateChanged(sender As Object, e As EventArgs) Handles ChkboxMetalWaterReaction.CheckStateChanged
         If ChkboxMetalWaterReaction.Checked = False Then
+            HeatStructureMeshData.MetalWaterReaction = False
             txtboxOxideThickness.Clear()
             txtboxOxideThickness.BackColor = Color.Gray
             txtboxOxideThickness.ReadOnly = True
         ElseIf ChkboxMetalWaterReaction.Checked = True Then
+            HeatStructureMeshData.MetalWaterReaction = True
             txtboxOxideThickness.BackColor = Color.White
             txtboxOxideThickness.ReadOnly = False
         End If
@@ -137,28 +282,22 @@
             If chkboxmeshgeometry.Checked = False Then
                 HeatStructureMeshData.EnterMeshGeometry = "1"
                 CmbBoxSelectFormat.Hide()
-
+                HeatStructureMeshData.SelectFormat = "3"
                 dgvformat1.Hide()
                 dgvformat1.Rows.Clear()
-
                 dgvformat2.Hide()
                 dgvformat2.Rows.Clear()
-
                 dgvNoDecay.Hide()
                 dgvNoDecay.Rows.Clear()
-
                 dgvWithDecay.Hide()
                 dgvWithDecay.Rows.Clear()
-
                 dgvComposition.Hide()
                 dgvComposition.Rows.Clear()
-
                 TextBox1.Hide()
                 TextBox2.Hide()
                 TextBox4.Hide()
                 txtboxDecayHeat.Hide()
-
-
+                txtboxDecayHeat.Clear()
             ElseIf chkboxmeshgeometry.Checked = True Then
                 HeatStructureMeshData.EnterMeshGeometry = "0"
                 CmbBoxSelectFormat.Show()
@@ -171,8 +310,6 @@
                 TextBox2.Show()
                 TextBox4.Show()
                 txtboxDecayHeat.Show()
-
-
             End If
         Catch ex As Exception
 
@@ -259,6 +396,7 @@
         HeatStructureMeshData.GapConductanceReferenceVolume = txtboxGapConductanceRefVol.Text
         HeatStructureMeshData.InitialOxideThicknes = txtboxOxideThickness.Text
         HeatStructureMeshData.FormLossFactors = ChkboxDeformation.CheckState
+        HeatStructureMeshData.DecayHeat = txtboxDecayHeat.Text
 
         If Not Me.HeatStructureMeshData Is Nothing Then
             Me.HeatStructureMeshData.GapDeformation.Clear()
