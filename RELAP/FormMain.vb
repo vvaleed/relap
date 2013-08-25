@@ -3116,14 +3116,78 @@ sim:                Dim myStream As System.IO.FileStream
                         generate.WriteLine(output)
                     Next
 
-                End If
+                ElseIf dgvrow.Cells(1).Value = "MULT" Then
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
 
+                        i = i + 1
+                        generate.WriteLine(output)
                     Next
-            generate.WriteLine(".")
-            generate.Close()
-            MsgBox("File Saved")
+                ElseIf dgvrow.Cells(1).Value = "DIFFEREND" Then
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
 
-            Exit Sub
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "INTEGRAL" Then
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "DIV" Then
+
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "DELAY" Then
+
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "TRIPUNIT" Then
+
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value
+
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+
+                End If
+                End If
+            Next
+        generate.WriteLine(".")
+        generate.Close()
+        MsgBox("File Saved")
+
+        Exit Sub
 
         End If
 

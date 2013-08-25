@@ -3,7 +3,7 @@
 
 
     Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv1.CellEndEdit
-      
+
         '        TRIPUNIT()
         '        TRIPDLAY()
         '        POWERI()
@@ -255,13 +255,13 @@
                     Dim cbo As New DataGridViewComboBoxColumn
                     cbo.HeaderText = "Trip Number"
                     cbo.Name = "VariableName"
-                    cbo.Items.Add("True")
-                    cbo.Items.Add("False")
-                    cbo.Items.Add("Negative")
+                    cbo.Items.Add("1")
+                    cbo.Items.Add("0")
+                    cbo.Items.Add("-1")
                     dgv2.Columns.Add(cbo)
 
             End Select
-            
+
 
         End If
     End Sub

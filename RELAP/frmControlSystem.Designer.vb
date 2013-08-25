@@ -55,7 +55,7 @@ Partial Class frmControlSystem
         'cboComponentType
         '
         Me.cboComponentType.HeaderText = "Component Type"
-        Me.cboComponentType.Items.AddRange(New Object() {"SUM", "MULT", "DIV", "DIFFRENI", "DIFFREND ", "INTEGRAL", "FUNCTION ", "STDFNCTN", "DELAY", "TRIPUNIT", "TRIPDLAY", "POWERI ", "POWERR ", "POWERX", "PROP-INT", "LAG", "LEAD-LAG ", "CONSTANT ", "SHAFT", "PUMPCTL", "STEAMCTL ", "FEEDCTL", "DELETE"})
+        Me.cboComponentType.Items.AddRange(New Object() {"SUM", "MULT", "DIV", "DIFFREND ", "INTEGRAL", "DELAY", "TRIPUNIT", "TRIPDLAY", "POWERI ", "POWERR ", "POWERX", "PROP-INT", "LAG", "LEAD-LAG ", "CONSTANT ", "SHAFT", "PUMPCTL", "STEAMCTL ", "FEEDCTL", "DELETE"})
         Me.cboComponentType.Name = "cboComponentType"
         '
         'txtScalingFactor
