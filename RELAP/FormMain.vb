@@ -2951,13 +2951,12 @@ sim:                Dim myStream As System.IO.FileStream
                 output = kvp.Value.NumberOfAxialHS & " " & kvp.Value.NumberOfRadialMP & " " & output2 & " " & kvp.Value.HeatStructureMeshData.EnterInitialTemp & " " & kvp.Value.LeftBoundaryCO.ToString("F")
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "000 " & output)
 
-                generate.WriteLine("1" & kvp.Value.UID & "0" & "001 " & kvp.Value.HeatStructureMeshData.InitialGapInternalPressure & " " & kvp.Value.HeatStructureMeshData.GapConductanceReferenceVolume)
-
-                generate.WriteLine("1" & kvp.Value.UID & "0" & "003 " & kvp.Value.HeatStructureMeshData.InitialOxideThicknes)
-
-                output = boolto10(kvp.Value.HeatStructureMeshData.FormLossFactors)
-                generate.WriteLine("1" & kvp.Value.UID & "0" & "004 " & output)
-
+                If kvp.Value.HeatStructureMeshData.GapConductanceModel.ToString = True Then
+                    generate.WriteLine("1" & kvp.Value.UID & "0" & "001 " & kvp.Value.HeatStructureMeshData.InitialGapInternalPressure & " " & kvp.Value.HeatStructureMeshData.GapConductanceReferenceVolume)
+                    generate.WriteLine("1" & kvp.Value.UID & "0" & "003 " & kvp.Value.HeatStructureMeshData.InitialOxideThicknes)
+                    output = boolto10(kvp.Value.HeatStructureMeshData.FormLossFactors)
+                    generate.WriteLine("1" & kvp.Value.UID & "0" & "004 " & output)
+                End If
                 Dim Counter = 11
                 For Each kvp2 As KeyValuePair(Of Integer, HSGapDeformation) In kvp.Value.HeatStructureMeshData.GapDeformation
                     output = "1" & kvp.Value.UID & "00" & Counter & " " & kvp2.Value.FuelSurfaceRoughness.ToString("F") & " " & kvp2.Value.CladdingSurfaceRoughness.ToString("F") & " " & kvp2.Value.RadialDisplacementFission.ToString("F") & " " & kvp2.Value.RadialDisplacementCladding.ToString("F") & " " & kvp2.Value.HSnumberGapDef
