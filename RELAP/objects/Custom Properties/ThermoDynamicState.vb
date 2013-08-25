@@ -1,5 +1,24 @@
 ﻿<System.Serializable()> Public Class ThermoDynamicStates
+    Private _storeindex As Integer
+    Public Property storeindex() As Integer
+        Get
+            Return _storeindex
+        End Get
+        Set(ByVal value As Integer)
+            _storeindex = value
+        End Set
+    End Property
 
+
+    Private _cmbocheck As Integer
+    Public Property cmbocheck() As Integer
+        Get
+            Return _cmbocheck
+        End Get
+        Set(ByVal value As Integer)
+            _cmbocheck = value
+        End Set
+    End Property
     Protected m_collection As Generic.SortedDictionary(Of Integer, ThermoDynamicState)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
@@ -38,7 +57,7 @@ End Class
             _StateType = value
         End Set
     End Property
-
+ 
 
     Public Sub New(str, statetype)
         Me._StatesString = str
