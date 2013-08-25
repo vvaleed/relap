@@ -82,15 +82,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private _SSinitialTemp As Double
-        Public Property SSinitialTemp() As Double
-            Get
-                Return _SSinitialTemp
-            End Get
-            Set(ByVal value As Double)
-                _SSinitialTemp = value
-            End Set
-        End Property
         Private _LeftBoundaryCO As Double
         Public Property LeftBoundaryCO() As Double
             Get
@@ -123,6 +114,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.GeometryType = GeometryTypeEnum.Cylinderical
             Me._NumberOfAxialHS = 5
             Me._NumberOfRadialMP = 5
+            Me._LeftBoundaryCO = 0.5
 
 
             '& kvkvp.Value.HydraulicDiameter & " ") & "0000000"
@@ -414,16 +406,8 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 .Item.Add("Geometry Type", Me, "GeometryType", False, "1.Parameters", "", True)
 
-
-                valor = Format(Me.SSinitialTemp, FlowSheet.Options.NumberFormat)
-                .Item.Add(("Steady State initialization flag"), valor, False, "1.Parameters", "Steady State initialization flag", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
                 valor = Format(Me.LeftBoundaryCO, FlowSheet.Options.NumberFormat)
-                .Item.Add(("Left Boundary Coordinate"), valor, False, "1.Parameters", "Left Boundary Coordinate", True)
+                .Item.Add(FT("Left Boundary Coordinate", su.distance), valor, False, "1.Parameters", "Left Boundary Coordinate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

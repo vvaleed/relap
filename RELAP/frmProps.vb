@@ -2623,9 +2623,6 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
                 hs.NumberOfRadialMP = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Steady State initialization flag") Then
-                hs.SSinitialTemp = e.ChangedItem.Value
-
             ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
                 hs.LeftBoundaryCO = e.ChangedItem.Value
 

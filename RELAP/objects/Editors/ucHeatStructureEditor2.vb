@@ -33,6 +33,7 @@
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
         'default values
         dgvtab1.Rows.Add(1)
+        dgvTab5.Rows.Add(1)
         dgvtab1.Rows(0).Cells(1).Value = 10000
         dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
 
@@ -49,7 +50,7 @@
             dgvTab3.Rows(0).Cells(3).Value = 0
             dgvTab3.Rows(0).Cells(4).Value = myCOTK.NumberOfAxialHS
         Else
-            dgvTab3.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count)
+            dgvTab3.Rows.Count.ToString()
             Dim i = 1
             For Each row As DataGridViewRow In dgvTab3.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).SourceType
@@ -77,7 +78,7 @@
             dgvTab4.Rows(0).Cells(10).Value = 1.0
             dgvTab4.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-            dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
+            '  dgvTab4.Rows.Add(3)
             Dim i = 1
             For Each row As DataGridViewRow In dgvTab4.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftHeatedEquivalentDiameter
