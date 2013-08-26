@@ -163,13 +163,35 @@ End Class
 End Class
 
 <System.Serializable()> Public Class HSBoundaryCondTab2
-    Private _RightBoundaryVolumeNumber As Double
-    Public Property RightBoundaryVolumeNumber() As Double
+    Private _rightComponent As String
+    Public Property rightComponent() As String
         Get
-            Return _RightBoundaryVolumeNumber
+            Return _rightComponent
+        End Get
+        Set(ByVal value As String)
+            _rightComponent = value
+        End Set
+    End Property
+
+
+    Private _rightComponentVolumeNumber As Double
+    Public Property rightComponentVolumeNumber() As Double
+        Get
+            Return _rightComponentVolumeNumber
         End Get
         Set(ByVal value As Double)
-            _RightBoundaryVolumeNumber = value
+            _rightComponentVolumeNumber = value
+        End Set
+    End Property
+
+
+    Private _rightAverageVolumeVelocity As String
+    Public Property rightAverageVolumeVelocity() As String
+        Get
+            Return _rightAverageVolumeVelocity
+        End Get
+        Set(ByVal value As String)
+            _rightAverageVolumeVelocity = value
         End Set
     End Property
 
@@ -223,8 +245,10 @@ End Class
         End Set
     End Property
 
-    Public Sub New(ByVal RightBoundaryVolumeNumber As Double, ByVal RightIncrement As Double, ByVal RightBoundaryConditionType As String, ByVal RightSurfaceAreaSelection As Double, ByVal RightSurfaceArea As Double, ByVal RightHeatStructureNumber As Double)
-        Me._RightBoundaryVolumeNumber = RightBoundaryVolumeNumber
+    Public Sub New(ByVal rightComponent As String, ByVal rightComponentVolumeNumber As Double, ByVal rightAverageVolumeVelocity As String, ByVal RightIncrement As Double, ByVal RightBoundaryConditionType As String, ByVal RightSurfaceAreaSelection As Double, ByVal RightSurfaceArea As Double, ByVal RightHeatStructureNumber As Double)
+        Me._rightComponent = rightComponent
+        Me._rightComponentVolumeNumber = rightComponentVolumeNumber
+        Me._rightAverageVolumeVelocity = rightAverageVolumeVelocity
         Me._RightIncrement = RightIncrement
         Me._RightBoundaryConditionType = RightBoundaryConditionType
         Me._RightSurfaceAreaSelection = RightSurfaceAreaSelection

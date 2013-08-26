@@ -25,14 +25,16 @@ Partial Class ucHeatStructureEditor2
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.dgvtab1 = New System.Windows.Forms.DataGridView()
+        Me.leftComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.leftComponentVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftAverageVolumeVelocity = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.LeftIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeftBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.leftSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.leftHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvTab2 = New System.Windows.Forms.DataGridView()
-        Me.RightBoundaryVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.RightSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RightHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.dgvTab3 = New System.Windows.Forms.DataGridView()
         Me.SourceType = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -69,14 +71,14 @@ Partial Class ucHeatStructureEditor2
         Me.rightFoulingFactor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.rightAddHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cmdSave = New System.Windows.Forms.Button()
-        Me.leftComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.leftComponentVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftAverageVolumeVelocity = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.LeftIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LeftBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.leftSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.leftHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.rightComponentVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.rightAverageVolumeVelocity = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.RightIncrement = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightBoundaryConditionType = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.RightSurfaceAreaSelection = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightSurfaceArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RightHeatStructureNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvtab1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +127,62 @@ Partial Class ucHeatStructureEditor2
         Me.dgvtab1.Size = New System.Drawing.Size(917, 376)
         Me.dgvtab1.TabIndex = 0
         '
+        'leftComponent
+        '
+        Me.leftComponent.FillWeight = 70.0!
+        Me.leftComponent.HeaderText = "Component"
+        Me.leftComponent.Name = "leftComponent"
+        '
+        'leftComponentVolumeNumber
+        '
+        Me.leftComponentVolumeNumber.FillWeight = 60.0!
+        Me.leftComponentVolumeNumber.HeaderText = "Component Volume Number"
+        Me.leftComponentVolumeNumber.Name = "leftComponentVolumeNumber"
+        Me.leftComponentVolumeNumber.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.leftComponentVolumeNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'leftAverageVolumeVelocity
+        '
+        Me.leftAverageVolumeVelocity.FillWeight = 80.0!
+        Me.leftAverageVolumeVelocity.HeaderText = "Average Volume Velocity"
+        Me.leftAverageVolumeVelocity.Items.AddRange(New Object() {"Taken from x-coordinate", "Taken from y-coordinate", "Taken from z-coordinate"})
+        Me.leftAverageVolumeVelocity.Name = "leftAverageVolumeVelocity"
+        Me.leftAverageVolumeVelocity.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.leftAverageVolumeVelocity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'LeftIncrement
+        '
+        Me.LeftIncrement.FillWeight = 59.08629!
+        Me.LeftIncrement.HeaderText = "Increment"
+        Me.LeftIncrement.Name = "LeftIncrement"
+        '
+        'LeftBoundaryConditionType
+        '
+        Me.LeftBoundaryConditionType.FillWeight = 59.08629!
+        Me.LeftBoundaryConditionType.HeaderText = "Boundary Condition Type"
+        Me.LeftBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
+        Me.LeftBoundaryConditionType.Name = "LeftBoundaryConditionType"
+        Me.LeftBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.LeftBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'leftSurfaceAreaSelection
+        '
+        Me.leftSurfaceAreaSelection.FillWeight = 59.08629!
+        Me.leftSurfaceAreaSelection.HeaderText = "Surface Area Selection"
+        Me.leftSurfaceAreaSelection.Name = "leftSurfaceAreaSelection"
+        '
+        'leftSurfaceArea
+        '
+        Me.leftSurfaceArea.FillWeight = 59.08629!
+        Me.leftSurfaceArea.HeaderText = "Surface Area"
+        Me.leftSurfaceArea.Name = "leftSurfaceArea"
+        '
+        'leftHeatStructureNumber
+        '
+        Me.leftHeatStructureNumber.FillWeight = 59.08629!
+        Me.leftHeatStructureNumber.HeaderText = "Heat Structure Number"
+        Me.leftHeatStructureNumber.Name = "leftHeatStructureNumber"
+        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.dgvTab2)
@@ -141,50 +199,11 @@ Partial Class ucHeatStructureEditor2
         Me.dgvTab2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvTab2.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvTab2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTab2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RightBoundaryVolumeNumber, Me.RightIncrement, Me.RightBoundaryConditionType, Me.RightSurfaceAreaSelection, Me.RightSurfaceArea, Me.RightHeatStructureNumber})
+        Me.dgvTab2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RightComponent, Me.rightComponentVolumeNumber, Me.rightAverageVolumeVelocity, Me.RightIncrement, Me.RightBoundaryConditionType, Me.RightSurfaceAreaSelection, Me.RightSurfaceArea, Me.RightHeatStructureNumber})
         Me.dgvTab2.Location = New System.Drawing.Point(21, 17)
         Me.dgvTab2.Name = "dgvTab2"
         Me.dgvTab2.Size = New System.Drawing.Size(917, 376)
         Me.dgvTab2.TabIndex = 1
-        '
-        'RightBoundaryVolumeNumber
-        '
-        Me.RightBoundaryVolumeNumber.FillWeight = 33.0!
-        Me.RightBoundaryVolumeNumber.HeaderText = "Boundary Volume Number"
-        Me.RightBoundaryVolumeNumber.Name = "RightBoundaryVolumeNumber"
-        '
-        'RightIncrement
-        '
-        Me.RightIncrement.FillWeight = 33.40101!
-        Me.RightIncrement.HeaderText = "Increment"
-        Me.RightIncrement.Name = "RightIncrement"
-        '
-        'RightBoundaryConditionType
-        '
-        Me.RightBoundaryConditionType.FillWeight = 33.40101!
-        Me.RightBoundaryConditionType.HeaderText = "Boundary Condition Type"
-        Me.RightBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
-        Me.RightBoundaryConditionType.Name = "RightBoundaryConditionType"
-        Me.RightBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.RightBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'RightSurfaceAreaSelection
-        '
-        Me.RightSurfaceAreaSelection.FillWeight = 33.40101!
-        Me.RightSurfaceAreaSelection.HeaderText = "Surface Area Selection"
-        Me.RightSurfaceAreaSelection.Name = "RightSurfaceAreaSelection"
-        '
-        'RightSurfaceArea
-        '
-        Me.RightSurfaceArea.FillWeight = 33.40101!
-        Me.RightSurfaceArea.HeaderText = "Surface Area"
-        Me.RightSurfaceArea.Name = "RightSurfaceArea"
-        '
-        'RightHeatStructureNumber
-        '
-        Me.RightHeatStructureNumber.FillWeight = 33.40101!
-        Me.RightHeatStructureNumber.HeaderText = "Heat Structure Number"
-        Me.RightHeatStructureNumber.Name = "RightHeatStructureNumber"
         '
         'TabPage3
         '
@@ -404,61 +423,61 @@ Partial Class ucHeatStructureEditor2
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
         '
-        'leftComponent
+        'RightComponent
         '
-        Me.leftComponent.FillWeight = 70.0!
-        Me.leftComponent.HeaderText = "Component"
-        Me.leftComponent.Name = "leftComponent"
+        Me.RightComponent.FillWeight = 60.0!
+        Me.RightComponent.HeaderText = "Component"
+        Me.RightComponent.Name = "RightComponent"
+        Me.RightComponent.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.RightComponent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'leftComponentVolumeNumber
+        'rightComponentVolumeNumber
         '
-        Me.leftComponentVolumeNumber.FillWeight = 60.0!
-        Me.leftComponentVolumeNumber.HeaderText = "Component Volume Number"
-        Me.leftComponentVolumeNumber.Name = "leftComponentVolumeNumber"
-        Me.leftComponentVolumeNumber.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.leftComponentVolumeNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.rightComponentVolumeNumber.FillWeight = 60.0!
+        Me.rightComponentVolumeNumber.HeaderText = "Component Volume Number"
+        Me.rightComponentVolumeNumber.Name = "rightComponentVolumeNumber"
         '
-        'leftAverageVolumeVelocity
+        'rightAverageVolumeVelocity
         '
-        Me.leftAverageVolumeVelocity.FillWeight = 80.0!
-        Me.leftAverageVolumeVelocity.HeaderText = "Average Volume Velocity"
-        Me.leftAverageVolumeVelocity.Items.AddRange(New Object() {"Taken from x-coordinate", "Taken from y-coordinate", "Taken from z-coordinate"})
-        Me.leftAverageVolumeVelocity.Name = "leftAverageVolumeVelocity"
-        Me.leftAverageVolumeVelocity.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.leftAverageVolumeVelocity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.rightAverageVolumeVelocity.FillWeight = 60.0!
+        Me.rightAverageVolumeVelocity.HeaderText = "Average Volume Velocity"
+        Me.rightAverageVolumeVelocity.Items.AddRange(New Object() {"Taken from x-coordinate", "Taken from y-coordinate", "Taken from z-coordinate"})
+        Me.rightAverageVolumeVelocity.Name = "rightAverageVolumeVelocity"
+        Me.rightAverageVolumeVelocity.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.rightAverageVolumeVelocity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'LeftIncrement
+        'RightIncrement
         '
-        Me.LeftIncrement.FillWeight = 59.08629!
-        Me.LeftIncrement.HeaderText = "Increment"
-        Me.LeftIncrement.Name = "LeftIncrement"
+        Me.RightIncrement.FillWeight = 33.40101!
+        Me.RightIncrement.HeaderText = "Increment"
+        Me.RightIncrement.Name = "RightIncrement"
         '
-        'LeftBoundaryConditionType
+        'RightBoundaryConditionType
         '
-        Me.LeftBoundaryConditionType.FillWeight = 59.08629!
-        Me.LeftBoundaryConditionType.HeaderText = "Boundary Condition Type"
-        Me.LeftBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
-        Me.LeftBoundaryConditionType.Name = "LeftBoundaryConditionType"
-        Me.LeftBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.LeftBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.RightBoundaryConditionType.FillWeight = 60.0!
+        Me.RightBoundaryConditionType.HeaderText = "Boundary Condition Type"
+        Me.RightBoundaryConditionType.Items.AddRange(New Object() {"Default", "Insulated Boundary", "Verticle bundle without crossflow", "Verticle bundle with crossflow", "Flat plate above fluid", "Horizontal bundle"})
+        Me.RightBoundaryConditionType.Name = "RightBoundaryConditionType"
+        Me.RightBoundaryConditionType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.RightBoundaryConditionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'leftSurfaceAreaSelection
+        'RightSurfaceAreaSelection
         '
-        Me.leftSurfaceAreaSelection.FillWeight = 59.08629!
-        Me.leftSurfaceAreaSelection.HeaderText = "Surface Area Selection"
-        Me.leftSurfaceAreaSelection.Name = "leftSurfaceAreaSelection"
+        Me.RightSurfaceAreaSelection.FillWeight = 33.40101!
+        Me.RightSurfaceAreaSelection.HeaderText = "Surface Area Selection"
+        Me.RightSurfaceAreaSelection.Name = "RightSurfaceAreaSelection"
         '
-        'leftSurfaceArea
+        'RightSurfaceArea
         '
-        Me.leftSurfaceArea.FillWeight = 59.08629!
-        Me.leftSurfaceArea.HeaderText = "Surface Area"
-        Me.leftSurfaceArea.Name = "leftSurfaceArea"
+        Me.RightSurfaceArea.FillWeight = 33.40101!
+        Me.RightSurfaceArea.HeaderText = "Surface Area"
+        Me.RightSurfaceArea.Name = "RightSurfaceArea"
         '
-        'leftHeatStructureNumber
+        'RightHeatStructureNumber
         '
-        Me.leftHeatStructureNumber.FillWeight = 59.08629!
-        Me.leftHeatStructureNumber.HeaderText = "Heat Structure Number"
-        Me.leftHeatStructureNumber.Name = "leftHeatStructureNumber"
+        Me.RightHeatStructureNumber.FillWeight = 33.40101!
+        Me.RightHeatStructureNumber.HeaderText = "Heat Structure Number"
+        Me.RightHeatStructureNumber.Name = "RightHeatStructureNumber"
         '
         'ucHeatStructureEditor2
         '
@@ -511,12 +530,6 @@ Partial Class ucHeatStructureEditor2
     Friend WithEvents rightPitchtoDiameterRatio As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents rightFoulingFactor As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents rightAddHeatStructureNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents RightBoundaryVolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents RightIncrement As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents RightBoundaryConditionType As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents RightSurfaceAreaSelection As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents RightSurfaceArea As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents RightHeatStructureNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents leftHeatedEquivalentDiameter As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LeftHeatedLengthForward As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LeftHeatedLengthReverse As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -537,5 +550,13 @@ Partial Class ucHeatStructureEditor2
     Friend WithEvents leftSurfaceAreaSelection As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents leftSurfaceArea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents leftHeatStructureNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RightComponent As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents rightComponentVolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents rightAverageVolumeVelocity As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents RightIncrement As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RightBoundaryConditionType As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents RightSurfaceAreaSelection As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RightSurfaceArea As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RightHeatStructureNumber As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

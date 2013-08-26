@@ -2978,14 +2978,14 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat1) In kvp.Value.HeatStructureMeshData.MeshDataFormat1
-                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate.ToString("F")
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat2) In kvp.Value.HeatStructureMeshData.MeshDataFormat2
-                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval & " " & kvp2.Value.IntervalNumber
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.MeshInterval.ToString("F") & " " & kvp2.Value.IntervalNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3007,7 +3007,7 @@ sim:                Dim myStream As System.IO.FileStream
                 ElseIf kvp.Value.HeatStructureMeshData.DecayHeat = "" Then
                     Counter = 1
                     For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataNoDecay) In kvp.Value.HeatStructureMeshData.MeshDataNoDecay
-                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.SourceValue & " " & kvp2.Value.MeshIntervalNumber
+                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.SourceValue.ToString("F") & " " & kvp2.Value.MeshIntervalNumber
                         generate.WriteLine(output)
                         Counter = Counter + 1
                     Next kvp2
@@ -3016,16 +3016,16 @@ sim:                Dim myStream As System.IO.FileStream
                     generate.WriteLine("1" & kvp.Value.UID & "0" & "300 " & kvp.Value.HeatStructureMeshData.DecayHeat)
                     Counter = 1
                     For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataWithDecay) In kvp.Value.HeatStructureMeshData.MeshDataWithDecay
-                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.GammaAttenuationCo & " " & kvp2.Value.MeshIntervalNumber2
+                        output = "1" & kvp.Value.UID & "0" & "30" & Counter & " " & kvp2.Value.GammaAttenuationCo.ToString("F") & " " & kvp2.Value.MeshIntervalNumber2
                         generate.WriteLine(output)
                         Counter = Counter + 1
                     Next kvp2
                 End If
 
-                generate.WriteLine("1" & kvp.Value.UID & "0" & "400" & kvp.Value.HeatStructureMeshData.SelectTemp)
+                generate.WriteLine("1" & kvp.Value.UID & "0" & "400" & " " & kvp.Value.HeatStructureMeshData.SelectTemp)
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSTemp1) In kvp.Value.HeatStructureMeshData.Temp1
-                    output = "1" & kvp.Value.UID & "0" & "40" & Counter & " " & kvp2.Value.Temp1Temperature & " " & kvp2.Value.Temp1MeshPointNumber
+                    output = "1" & kvp.Value.UID & "0" & "40" & Counter & " " & kvp2.Value.Temp1Temperature.ToString("F") & " " & kvp2.Value.Temp1MeshPointNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3055,6 +3055,8 @@ sim:                Dim myStream As System.IO.FileStream
                         kvp2.Value.leftAverageVolumeVelocity = "2"
                     ElseIf kvp2.Value.leftAverageVolumeVelocity.ToString = "Taken from z-coordinate" Then
                         kvp2.Value.leftAverageVolumeVelocity = "1"
+                    Else
+                        kvp2.Value.leftAverageVolumeVelocity = "0"
                     End If
 
                     output1 = GetUIDFromTag(kvp2.Value.leftComponent)
@@ -3063,7 +3065,7 @@ sim:                Dim myStream As System.IO.FileStream
                     Else
                         output2 = "0 0"
                     End If
-                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & output2 & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea
+                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & output2 & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea.ToString("F") & " " & kvp2.Value.LeftHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3082,8 +3084,26 @@ sim:                Dim myStream As System.IO.FileStream
                         kvp2.Value.RightBoundaryConditionType = "130"
                     ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Horizontal bundle" Then
                         kvp2.Value.RightBoundaryConditionType = "134"
+                    Else
+                        kvp2.Value.RightBoundaryConditionType = "0"
                     End If
-                    output = "1" & kvp.Value.UID & "0" & "60" & Counter & " " & kvp2.Value.RightBoundaryVolumeNumber & " " & kvp2.Value.RightIncrement & " " & kvp2.Value.RightBoundaryConditionType & " " & kvp2.Value.RightSurfaceAreaSelection & " " & kvp2.Value.RightSurfaceArea
+                    If kvp2.Value.rightAverageVolumeVelocity.ToString = "Taken from x-coordinate" Then
+                        kvp2.Value.rightAverageVolumeVelocity = "0"
+                    ElseIf kvp2.Value.rightAverageVolumeVelocity.ToString = "Taken from y-coordinate" Then
+                        kvp2.Value.rightAverageVolumeVelocity = "2"
+                    ElseIf kvp2.Value.rightAverageVolumeVelocity.ToString = "Taken from z-coordinate" Then
+                        kvp2.Value.rightAverageVolumeVelocity = "1"
+                    Else
+                        kvp2.Value.rightAverageVolumeVelocity = "0"
+                    End If
+
+                    output1 = GetUIDFromTag(kvp2.Value.rightComponent)
+                    If output1 <> 0 Then
+                        output2 = output1 & CInt(kvp2.Value.rightComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.rightAverageVolumeVelocity & " " & kvp2.Value.RightIncrement
+                    Else
+                        output2 = "0 0"
+                    End If
+                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & output2 & " " & kvp2.Value.RightBoundaryConditionType & " " & kvp2.Value.RightSurfaceAreaSelection & " " & kvp2.Value.RightSurfaceArea.ToString("F") & " " & kvp2.Value.RightHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
