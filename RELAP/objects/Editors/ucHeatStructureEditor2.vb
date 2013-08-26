@@ -52,7 +52,7 @@
             dgvTab3.Rows(0).Cells(3).Value = 0
             dgvTab3.Rows(0).Cells(4).Value = myCOTK.NumberOfAxialHS
         Else
-            dgvTab3.Rows.Count.ToString()
+            dgvTab3.Rows.Add(1)
             Dim i = 1
             For Each row As DataGridViewRow In dgvTab3.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).SourceType
@@ -80,10 +80,10 @@
             dgvTab4.Rows(0).Cells(10).Value = 1.0
             dgvTab4.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-            '  dgvTab4.Rows.Add(3)
-            dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
+            dgvTab4.Rows.Add(1)
+            'dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
 
-            Dim i = 0
+            Dim i = 1
             For Each row As DataGridViewRow In dgvTab4.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftHeatedEquivalentDiameter
                 row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).LeftHeatedLengthForward
@@ -102,6 +102,7 @@
         End If
 
         If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count = 0 Then
+            dgvTab5.Rows.Add(1)
             dgvTab5.Rows(0).Cells(0).Value = 0.0
             dgvTab5.Rows(0).Cells(1).Value = 10.0
             dgvTab5.Rows(0).Cells(2).Value = 10.0
@@ -115,10 +116,10 @@
             dgvTab5.Rows(0).Cells(10).Value = 1.0
             dgvTab5.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-            Dim i = 0
-            
-            dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
 
+            dgvTab5.Rows.Add(1)
+            'dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
+            Dim i = 1
             For Each row As DataGridViewRow In dgvTab5.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedEquivalentDiameter
                 row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthForward
@@ -154,7 +155,9 @@
             v4 = row.Cells(3).Value
             v5 = row.Cells(4).Value
             v6 = row.Cells(5).Value
-            Me.HeatStructureBoundaryCond.BoundaryCondTab1.Add(row.Index + 1, New HSBoundaryCondTab1(v1, v2, v3, v4, v5, v6))
+            v7 = row.Cells(6).Value
+            v8 = row.Cells(7).Value
+            Me.HeatStructureBoundaryCond.BoundaryCondTab1.Add(row.Index + 1, New HSBoundaryCondTab1(v1, v2, v3, v4, v5, v6, v7, v8))
         Next
         If Not Me.HeatStructureBoundaryCond Is Nothing Then
             Me.HeatStructureBoundaryCond.BoundaryCondTab2.Clear()
@@ -235,12 +238,14 @@
 
             For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
                 cbo.Items.Add(kvp.Value.GraphicObject.Tag)
-
+                cbo.Items.Add("Insulated")
             Next
         Catch ex As Exception
 
         End Try
     End Sub
+
+
 
     
 End Class
