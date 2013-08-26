@@ -561,6 +561,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
+
                 valor = App.GetTagFromUID(Me.FromComponent)
                 .Item.Add("From Component", valor, True, "Connections", "From Component", True)
                 With .Item(.Item.Count - 1)

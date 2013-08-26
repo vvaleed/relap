@@ -239,6 +239,12 @@
     <Compile Include="frmInitialSettings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmMaterials.Designer.vb">
+      <DependentUpon>frmMaterials.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaterials.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPlotRequest.Designer.vb">
       <DependentUpon>frmPlotRequest.vb</DependentUpon>
     </Compile>
@@ -361,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmControlSystem.resx">
       <DependentUpon>frmControlSystem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaterials.resx">
+      <DependentUpon>frmMaterials.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>

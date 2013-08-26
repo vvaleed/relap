@@ -67,15 +67,38 @@
 End Class
 
 <System.Serializable()> Public Class HSBoundaryCondTab1
-    Private _LeftBoundaryVolumeNumber As Double
-    Public Property LeftBoundaryVolumeNumber() As Double
+    Private _leftComponent As String
+    Public Property leftComponent() As String
         Get
-            Return _LeftBoundaryVolumeNumber
+            Return _leftComponent
         End Get
-        Set(ByVal value As Double)
-            _LeftBoundaryVolumeNumber = value
+        Set(ByVal value As String)
+            _leftComponent = value
         End Set
     End Property
+
+
+    Private _leftComponentVolumeNumber As Double
+    Public Property leftComponentVolumeNumber() As Double
+        Get
+            Return _leftComponentVolumeNumber
+        End Get
+        Set(ByVal value As Double)
+            _leftComponentVolumeNumber = value
+        End Set
+    End Property
+
+
+    Private _leftAverageVolumeVelocity As String
+    Public Property leftAverageVolumeVelocity() As String
+        Get
+            Return _leftAverageVolumeVelocity
+        End Get
+        Set(ByVal value As String)
+            _leftAverageVolumeVelocity = value
+        End Set
+    End Property
+
 
     Private _LeftIncrement As Double
     Public Property LeftIncrement() As Double
@@ -127,8 +150,10 @@ End Class
         End Set
     End Property
 
-    Public Sub New(ByVal LeftBoundaryVolumeNumber As Double, ByVal LeftIncrement As Double, ByVal LeftBoundaryConditionType As String, ByVal LeftSurfaceAreaSelection As Double, ByVal LeftSurfaceArea As Double, ByVal LeftHeatStructureNumber As Double)
-        Me._LeftBoundaryVolumeNumber = LeftBoundaryVolumeNumber
+    Public Sub New(ByVal leftComponent As String, ByVal leftComponentVolumeNumber As Double, ByVal leftAverageVolumeVelocity As String, ByVal LeftIncrement As Double, ByVal LeftBoundaryConditionType As String, ByVal LeftSurfaceAreaSelection As Double, ByVal LeftSurfaceArea As Double, ByVal LeftHeatStructureNumber As Double)
+        Me._leftComponent = leftComponent
+        Me._leftComponentVolumeNumber = leftComponentVolumeNumber
+        Me._leftAverageVolumeVelocity = leftAverageVolumeVelocity
         Me._LeftIncrement = LeftIncrement
         Me._LeftBoundaryConditionType = LeftBoundaryConditionType
         Me._LeftSurfaceAreaSelection = LeftSurfaceAreaSelection

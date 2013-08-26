@@ -1038,6 +1038,8 @@ Public Class FormMain
                 Return Me.tmpform2.FormSurface
             Case "RELAP.frmInitialSettings"
                 Return Me.tmpform2.FormInitialSettings
+            Case "RELAP.frmMaterials"
+                Return Me.tmpform2.FormMaterials
             Case "RELAP.frmObjListView"
                 Return Me.tmpform2.FormObjListView
             Case "RELAP.frmWatch"
@@ -1284,6 +1286,7 @@ Public Class FormMain
             '
             form.FormProps.Show(form.dckPanel)
             form.FormInitialSettings.Show(form.dckPanel)
+            form.FormMaterials.Show(form.dckPanel)
             form.FormPlotReqest.Show(form.dckPanel)
             '
 
@@ -2536,11 +2539,18 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Function
 
+    Function GetUIDFromTag(ByVal tag) As String
+        For Each obj As SimulationObjects_BaseClass In My.Application.ActiveSimulation.Collections.ObjectCollection.Values
+            If obj.GraphicObject.Tag = tag Then
+                Return obj.UID
+            End If
+        Next
+        Return 0
+    End Function
+
     Private Sub GenerateInputFileToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles GenerateInputFileOnlyToolStripMenuItem.Click
         Dim collect As New RELAP.FormClasses.ClsObjectCollections
         Dim ChildParent = My.Application.ActiveSimulation
-
-
 
         univID = 1
 
@@ -3035,9 +3045,25 @@ sim:                Dim myStream As System.IO.FileStream
                         kvp2.Value.LeftBoundaryConditionType = "130"
                     ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Horizontal bundle" Then
                         kvp2.Value.LeftBoundaryConditionType = "134"
-
+                    Else
+                        kvp2.Value.LeftBoundaryConditionType = "0"
                     End If
-                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & kvp2.Value.LeftBoundaryVolumeNumber & " " & kvp2.Value.LeftIncrement & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea
+
+                    If kvp2.Value.leftAverageVolumeVelocity.ToString = "Taken from x-coordinate" Then
+                        kvp2.Value.leftAverageVolumeVelocity = "0"
+                    ElseIf kvp2.Value.leftAverageVolumeVelocity.ToString = "Taken from y-coordinate" Then
+                        kvp2.Value.leftAverageVolumeVelocity = "2"
+                    ElseIf kvp2.Value.leftAverageVolumeVelocity.ToString = "Taken from z-coordinate" Then
+                        kvp2.Value.leftAverageVolumeVelocity = "1"
+                    End If
+
+                    output1 = GetUIDFromTag(kvp2.Value.leftComponent)
+                    If output1 <> 0 Then
+                        output2 = output1 & CInt(kvp2.Value.leftComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.leftAverageVolumeVelocity & " " & kvp2.Value.LeftIncrement
+                    Else
+                        output2 = "0 0"
+                    End If
+                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & output2 & " " & kvp2.Value.LeftBoundaryConditionType & " " & kvp2.Value.LeftSurfaceAreaSelection & " " & kvp2.Value.LeftSurfaceArea
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3281,7 +3307,7 @@ sim:                Dim myStream As System.IO.FileStream
                 MsgBox("Light water property file, tpfh2o is not in " & My.Settings.RELAPPath & " folder", vbOKOnly, "Error")
             End If
         End If
-        System.Threading.Thread.Sleep(3000)
+        System.Threading.Thread.Sleep(6000)
         SetDeviceTime(olddate)
     End Sub
     'System time structure used to pass to P/Invoke...
