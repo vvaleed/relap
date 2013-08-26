@@ -6351,25 +6351,25 @@ Namespace GraphicObjects
 
             MyBase.PositionConnectors()
 
-            With InputConnectors
-                If FlippedH Then
-                    .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
-                    .Item(1).Position = New Point(X + 0.5 * Width, Y)
-                Else
-                    .Item(0).Position = New Point(X, Y + 0.5 * Height)
-                    .Item(1).Position = New Point(X + 0.5 * Width, Y)
-                End If
-            End With
+            'With InputConnectors
+            '    If FlippedH Then
+            '        .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+            '        .Item(1).Position = New Point(X + 0.5 * Width, Y)
+            '    Else
+            '        .Item(0).Position = New Point(X, Y + 0.5 * Height)
+            '        .Item(1).Position = New Point(X + 0.5 * Width, Y)
+            '    End If
+            'End With
 
-            With OutputConnectors
-                If FlippedH Then
-                    .Item(0).Position = New Point(X, Y + 0.5 * Height)
-                    .Item(1).Position = New Point(X + 0.5 * Width, Y + Height)
-                Else
-                    .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
-                    .Item(1).Position = New Point(X + 0.5 * Width, Y + Height)
-                End If
-            End With
+            'With OutputConnectors
+            '    If FlippedH Then
+            '        .Item(0).Position = New Point(X, Y + 0.5 * Height)
+            '        .Item(1).Position = New Point(X + 0.5 * Width, Y + Height)
+            '    Else
+            '        .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+            '        .Item(1).Position = New Point(X + 0.5 * Width, Y + Height)
+            '    End If
+            'End With
 
         End Sub
 

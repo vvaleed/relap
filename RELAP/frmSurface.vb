@@ -653,6 +653,7 @@ Public Class frmSurface
             Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.AbsorptionColumn And _
              Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.ReboiledAbsorber And _
              Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.RefluxedAbsorber And _
+             Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.HeatStructure And _
             Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.GO_Texto Then
 
 

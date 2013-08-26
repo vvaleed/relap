@@ -3181,13 +3181,13 @@ sim:                Dim myStream As System.IO.FileStream
                     Next
 
                 End If
-                End If
-            Next
-        generate.WriteLine(".")
-        generate.Close()
-        MsgBox("File Saved")
 
-        Exit Sub
+            Next
+            generate.WriteLine(".")
+            generate.Close()
+            MsgBox("File Saved")
+
+            Exit Sub
 
         End If
 
