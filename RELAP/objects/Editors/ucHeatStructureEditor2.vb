@@ -34,15 +34,22 @@
 
 
         'default values
-        '  dgvtab1.Rows.Add(1)
-        'dgvTab5.Rows.Add(1)
-        ' dgvtab1.Rows(0).Cells(1).Value = 10000
-        ' dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
+        dgvtab1.Rows.Add(1)
+        dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
+        dgvtab1.Rows(0).Cells(3).Value = 10000
+        dgvtab1.Rows(0).Cells(4).Value = DirectCast(dgvtab1.Rows(0).Cells(4), DataGridViewComboBoxCell).Items(0)
+        dgvtab1.Rows(0).Cells(5).Value = 1
+        dgvtab1.Rows(0).Cells(6).Value = 5.0
+        dgvtab1.Rows(0).Cells(7).Value = myCOTK.NumberOfAxialHS
 
         dgvTab2.Rows.Add(1)
-        dgvTab2.Rows(0).Cells(1).Value = 10000
         dgvTab2.Rows(0).Cells(2).Value = DirectCast(dgvTab2.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
-
+        dgvTab2.Rows(0).Cells(3).Value = 10000
+        dgvTab2.Rows(0).Cells(4).Value = DirectCast(dgvTab2.Rows(0).Cells(4), DataGridViewComboBoxCell).Items(0)
+        dgvTab2.Rows(0).Cells(5).Value = 1
+        dgvTab2.Rows(0).Cells(6).Value = 5.0
+        dgvTab2.Rows(0).Cells(7).Value = myCOTK.NumberOfAxialHS
+      
 
         If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count = 0 Then
             dgvTab3.Rows.Add(1)
@@ -171,7 +178,9 @@
             v4 = row.Cells(3).Value
             v5 = row.Cells(4).Value
             v6 = row.Cells(5).Value
-            Me.HeatStructureBoundaryCond.BoundaryCondTab2.Add(row.Index + 1, New HSBoundaryCondTab2(v1, v2, v3, v4, v5, v6))
+            v7 = row.Cells(6).Value
+            v8 = row.Cells(7).Value
+            Me.HeatStructureBoundaryCond.BoundaryCondTab2.Add(row.Index + 1, New HSBoundaryCondTab2(v1, v2, v3, v4, v5, v6, v7, v8))
         Next
 
         If Not Me.HeatStructureBoundaryCond Is Nothing Then
@@ -245,7 +254,19 @@
         End Try
     End Sub
 
+    Private Sub dgvtab2_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles dgvTab2.RowsAdded
+        Try
 
+            Dim cbo As DataGridViewComboBoxCell = dgvTab2.Rows(e.RowIndex).Cells(0)
+            cbo.Items.Clear()
 
-    
+            For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
+                cbo.Items.Add(kvp.Value.GraphicObject.Tag)
+                cbo.Items.Add("Insulated")
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class
