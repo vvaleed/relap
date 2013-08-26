@@ -24,12 +24,13 @@ Partial Class frmMaterials
     Private Sub InitializeComponent()
         Me.CmboboxSelectMaterial = New System.Windows.Forms.ComboBox()
         Me.TxtBoxSelectMaterial = New System.Windows.Forms.TextBox()
+        Me.cmdSave = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'CmboboxSelectMaterial
         '
         Me.CmboboxSelectMaterial.FormattingEnabled = True
-        Me.CmboboxSelectMaterial.Items.AddRange(New Object() {"Stainless Steel", "Carbon Steel", "U02", "Zr"})
+        Me.CmboboxSelectMaterial.Items.AddRange(New Object() {"s-steel", "c-steel", "uo2", "zr", "Insert Table"})
         Me.CmboboxSelectMaterial.Location = New System.Drawing.Point(12, 31)
         Me.CmboboxSelectMaterial.Name = "CmboboxSelectMaterial"
         Me.CmboboxSelectMaterial.Size = New System.Drawing.Size(121, 21)
@@ -46,11 +47,21 @@ Partial Class frmMaterials
         Me.TxtBoxSelectMaterial.TabIndex = 1
         Me.TxtBoxSelectMaterial.Text = "Select Material"
         '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(214, 337)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 2
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
         'frmMaterials
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(301, 381)
+        Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.TxtBoxSelectMaterial)
         Me.Controls.Add(Me.CmboboxSelectMaterial)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -62,4 +73,5 @@ Partial Class frmMaterials
     End Sub
     Friend WithEvents CmboboxSelectMaterial As System.Windows.Forms.ComboBox
     Friend WithEvents TxtBoxSelectMaterial As System.Windows.Forms.TextBox
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 End Class
