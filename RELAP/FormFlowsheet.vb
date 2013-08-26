@@ -1380,7 +1380,7 @@ Imports RELAP.RELAP.FormClasses
         gObjFrom.TipoObjeto <> TipoObjeto.Nenhum And _
         gObjTo.TipoObjeto <> TipoObjeto.GO_Figura And gObjTo.TipoObjeto <> TipoObjeto.GO_Tabela And _
         gObjTo.TipoObjeto <> TipoObjeto.GO_Tabela And gObjTo.TipoObjeto <> TipoObjeto.GO_TabelaRapida And _
-        gObjTo.TipoObjeto <> TipoObjeto.Nenhum And gObjTo.TipoObjeto <> TipoObjeto.GO_MasterTable Then
+        gObjTo.TipoObjeto <> TipoObjeto.Nenhum And gObjTo.TipoObjeto <> TipoObjeto.GO_MasterTable And gObjTo.TipoObjeto <> TipoObjeto.HeatStructure Then
 
             Dim con1OK As Boolean = False
             Dim con2OK As Boolean = False
@@ -1394,7 +1394,7 @@ Imports RELAP.RELAP.FormClasses
 
             ' karwai by waleed and afnan
 
-            
+
             If gObjTo.TipoObjeto = TipoObjeto.SingleJunction Then
                 Me.Collections.CLCS_SingleJunctionCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
                 FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
@@ -1405,7 +1405,7 @@ Imports RELAP.RELAP.FormClasses
                 ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
                 '  gObjTo.
             End If
-          
+
 
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
@@ -1498,8 +1498,7 @@ Imports RELAP.RELAP.FormClasses
                                 GoTo 100
                             Case TipoObjeto.Tank
                                 GoTo 100
-                            Case TipoObjeto.HeatStructure
-                                GoTo 100
+                           
                             Case TipoObjeto.FuelRod
                                 GoTo 100
                             Case TipoObjeto.Simulator
@@ -1530,7 +1529,7 @@ Imports RELAP.RELAP.FormClasses
                         End Select
 100:                    If gObjFrom.TipoObjeto <> TipoObjeto.CapeOpenUO And gObjFrom.TipoObjeto <> TipoObjeto.CustomUO And gObjFrom.TipoObjeto <> TipoObjeto.DistillationColumn _
                             And gObjFrom.TipoObjeto <> TipoObjeto.AbsorptionColumn And gObjFrom.TipoObjeto <> TipoObjeto.OT_EnergyRecycle _
-                            And gObjFrom.TipoObjeto <> TipoObjeto.RefluxedAbsorber And gObjFrom.TipoObjeto <> TipoObjeto.ReboiledAbsorber Then
+                            And gObjFrom.TipoObjeto <> TipoObjeto.RefluxedAbsorber And gObjFrom.TipoObjeto <> TipoObjeto.ReboiledAbsorber And gObjFrom.TipoObjeto <> TipoObjeto.HeatStructure Then
                             If Not gObjFrom.EnergyConnector.IsAttached Then
                                 StartPos = gObjFrom.EnergyConnector.Position
                                 gObjFrom.EnergyConnector.IsAttached = True

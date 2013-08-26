@@ -137,7 +137,7 @@ Partial Class FormFlowsheet
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel4, Me.TSBtabela, Me.TSBTexto, Me.ToolStripButton19, Me.ToolStripButton12, Me.ToolStripSeparator5, Me.ToolStripButton1, Me.TSTBZoom, Me.ToolStripButton2, Me.ToolStripButton20, Me.ToolStripSeparator6, Me.ToolStripButton18, Me.ToolStripButton6, Me.ToolStripButton11, Me.ToolStripButton10, Me.ToolStripSeparator4, Me.ToolStripButton16, Me.ToolStripButton17})
         Me.ToolStrip4.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(452, 25)
+        Me.ToolStrip4.Size = New System.Drawing.Size(421, 25)
         Me.ToolStrip4.TabIndex = 4
         Me.ToolStrip4.Text = "Flowchart"
         Me.ToolStrip4.Visible = False

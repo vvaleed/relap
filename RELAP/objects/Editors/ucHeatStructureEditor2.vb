@@ -31,11 +31,13 @@
     Private Sub ucHeatStructureEditor2_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim gobj As Microsoft.MSDN.Samples.GraphicObjects.HeatStructureGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = My.Application.ActiveSimulation.Collections.CLCS_HeatStructureCollection(gobj.Name)
+
+
         'default values
-        dgvtab1.Rows.Add(1)
-        dgvTab5.Rows.Add(1)
-        dgvtab1.Rows(0).Cells(1).Value = 10000
-        dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
+        '  dgvtab1.Rows.Add(1)
+        'dgvTab5.Rows.Add(1)
+        ' dgvtab1.Rows(0).Cells(1).Value = 10000
+        ' dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
 
         dgvTab2.Rows.Add(1)
         dgvTab2.Rows(0).Cells(1).Value = 10000
@@ -79,7 +81,9 @@
             dgvTab4.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
             '  dgvTab4.Rows.Add(3)
-            Dim i = 1
+            dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
+
+            Dim i = 0
             For Each row As DataGridViewRow In dgvTab4.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftHeatedEquivalentDiameter
                 row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).LeftHeatedLengthForward
@@ -111,12 +115,10 @@
             dgvTab5.Rows(0).Cells(10).Value = 1.0
             dgvTab5.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-            Dim i = 1
-            For i = 1 To myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count - 1
-                dgvTab5.Rows.Add(i.ToString)
-            Next
-            dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count - 1)
-            i = 1
+            Dim i = 0
+            
+            dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
+
             For Each row As DataGridViewRow In dgvTab5.Rows
                 row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedEquivalentDiameter
                 row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthForward
@@ -225,4 +227,20 @@
         ' row.Dispose()
     End Sub
 
+    Private Sub dgvtab1_RowsAdded(sender As Object, e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles dgvtab1.RowsAdded
+        Try
+
+            Dim cbo As DataGridViewComboBoxCell = dgvtab1.Rows(e.RowIndex).Cells(0)
+            cbo.Items.Clear()
+
+            For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
+                cbo.Items.Add(kvp.Value.GraphicObject.Tag)
+
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    
 End Class

@@ -278,14 +278,14 @@ Partial Class frmSurface
         Me.MostrarToolStripMenuItem.CheckOnClick = True
         Me.MostrarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table_go
         Me.MostrarToolStripMenuItem.Name = "MostrarToolStripMenuItem"
-        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.MostrarToolStripMenuItem.Text = "Show"
         '
         'ConfigurarToolStripMenuItem
         '
         Me.ConfigurarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
-        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.ConfigurarToolStripMenuItem.Text = "Configure..."
         '
         'PreviewDialog
@@ -366,10 +366,10 @@ Partial Class frmSurface
         Me.Panel2.Controls.Add(Me.PictureBox3)
         Me.Panel2.Controls.Add(Me.PictureBox4)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Location = New System.Drawing.Point(42, 0)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(443, 40)
+        Me.Panel2.Size = New System.Drawing.Size(470, 40)
         Me.Panel2.TabIndex = 13
         '
         'PictureBox3
@@ -401,14 +401,13 @@ Partial Class frmSurface
         '
         Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
         Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.SpinningProgress1.BehindTransistionSegmentIsActive = False
         Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
-        Me.SpinningProgress1.Location = New System.Drawing.Point(445, 2)
+        Me.SpinningProgress1.Location = New System.Drawing.Point(2, 2)
         Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
         Me.SpinningProgress1.Name = "SpinningProgress1"
         Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
         Me.SpinningProgress1.TabIndex = 11
-        Me.SpinningProgress1.TransistionSegment = 11
+        Me.SpinningProgress1.TransistionSegment = 0
         Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
         Me.SpinningProgress1.Visible = False
         '
@@ -416,10 +415,10 @@ Partial Class frmSurface
         '
         Me.PanelSimultAdjust.Controls.Add(Me.PicSimultAdjust)
         Me.PanelSimultAdjust.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelSimultAdjust.Location = New System.Drawing.Point(712, 0)
+        Me.PanelSimultAdjust.Location = New System.Drawing.Point(512, 0)
         Me.PanelSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
         Me.PanelSimultAdjust.Name = "PanelSimultAdjust"
-        Me.PanelSimultAdjust.Size = New System.Drawing.Size(270, 40)
+        Me.PanelSimultAdjust.Size = New System.Drawing.Size(470, 40)
         Me.PanelSimultAdjust.TabIndex = 14
         Me.PanelSimultAdjust.Visible = False
         '
@@ -428,7 +427,7 @@ Partial Class frmSurface
         Me.PicSimultAdjust.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicSimultAdjust.Image = Global.RELAP.My.Resources.Resources.lightning1
         Me.PicSimultAdjust.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PicSimultAdjust.Location = New System.Drawing.Point(226, 0)
+        Me.PicSimultAdjust.Location = New System.Drawing.Point(426, 0)
         Me.PicSimultAdjust.Margin = New System.Windows.Forms.Padding(0)
         Me.PicSimultAdjust.Name = "PicSimultAdjust"
         Me.PicSimultAdjust.Size = New System.Drawing.Size(42, 40)
