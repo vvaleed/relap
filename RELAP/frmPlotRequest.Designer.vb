@@ -70,7 +70,7 @@ Partial Class frmPlotRequest
         'cboPlotVariableName
         '
         Me.cboPlotVariableName.FormattingEnabled = True
-        Me.cboPlotVariableName.Items.AddRange(New Object() {"CHOKEF", "FIJ", "FJUNFT", "FJUNRT", "FLORGJ", "FORMFJ", "FWALFJ", "FWALGJ", "IREGJ", "MFLOWJ", "QUALAJ", "RHOGJ", "SONICJ", "UFJ", "UGJ", "VELFJ", "VELGJ", "VGJJ", "VOIDFJ", "VOIDGJ", "VOIDJ", "XEJ"})
+        Me.cboPlotVariableName.Items.AddRange(New Object() {"CHOKEF", "FIJ", "FJUNFT", "FJUNRT", "FLORGJ", "FORMFJ", "FWALFJ", "FWALGJ", "HTTEMP", "IREGJ", "MFLOWJ", "QUALAJ", "RHOGJ", "SONICJ", "UFJ", "UGJ", "VELFJ", "VELGJ", "VGJJ", "VOIDFJ", "VOIDGJ", "VOIDJ", "XEJ"})
         Me.cboPlotVariableName.Location = New System.Drawing.Point(131, 15)
         Me.cboPlotVariableName.Name = "cboPlotVariableName"
         Me.cboPlotVariableName.Size = New System.Drawing.Size(121, 21)

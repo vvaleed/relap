@@ -247,8 +247,9 @@
 
             For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
                 cbo.Items.Add(kvp.Value.GraphicObject.Tag)
-                cbo.Items.Add("Insulated")
+
             Next
+            cbo.Items.Add("Insulated")
         Catch ex As Exception
 
         End Try
@@ -262,8 +263,9 @@
 
             For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
                 cbo.Items.Add(kvp.Value.GraphicObject.Tag)
-                cbo.Items.Add("Insulated")
+
             Next
+            cbo.Items.Add("Insulated")
         Catch ex As Exception
 
         End Try

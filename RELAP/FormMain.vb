@@ -2555,6 +2555,7 @@ sim:                Dim myStream As System.IO.FileStream
         univID = 1
 
         Dim frmInitialSettings = My.Application.ActiveSimulation.FormInitialSettings
+        Dim frmMaterials = My.Application.ActiveSimulation.FormMaterials
 
         ' input file generation code
 
@@ -2637,21 +2638,38 @@ sim:                Dim myStream As System.IO.FileStream
             For j = 0 To My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows.Count - 2
                 row = My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows(j)
                 Dim _uid = RELAP.App.GetUIDFromTag(row.Cells(0).Value)
+                If row.Cells(0).Value = "HS000" Then
+                    If row.Cells(1).Value = "Linear" Then
+                        If row.Cells(2).Value = "Right" Then
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 2"
+                        Else
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 1"
+                        End If
 
-                If row.Cells(1).Value = "Linear" Then
-                    If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 2"
                     Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 1"
-                    End If
+                        If row.Cells(2).Value = "Right" Then
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 -2"
+                        Else
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 -1"
+                        End If
 
+                    End If
                 Else
-                    If row.Cells(2).Value = "Right" Then
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -2"
-                    Else
-                        output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -1"
-                    End If
+                    If row.Cells(1).Value = "Linear" Then
+                        If row.Cells(2).Value = "Right" Then
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 2"
+                        Else
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 1"
+                        End If
 
+                    Else
+                        If row.Cells(2).Value = "Right" Then
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -2"
+                        Else
+                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -1"
+                        End If
+
+                    End If
                 End If
                 i = i + 1
                 generate.WriteLine(output)
@@ -2944,7 +2962,13 @@ sim:                Dim myStream As System.IO.FileStream
                 Next kvp2
             Next kvp
 
-
+            If frmMaterials.checkMaterial = 1 Then
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Materials ")
+                generate.WriteLine("*======================================================================")
+                'generate.WriteLine(frmMaterials.CmboboxSelectMaterial.SelectedItem.ToString)
+                generate.WriteLine("20100" & frmMaterials.CmboboxSelectMaterial.SelectedIndex + 1 & "00" & " " & frmMaterials.CmboboxSelectMaterial.SelectedItem.ToString)
+            End If
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure) In ChildParent.Collections.CLCS_HeatStructureCollection
                 generate.WriteLine("*======================================================================")
@@ -3046,7 +3070,7 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.LeftBoundaryConditionType.ToString = "Horizontal bundle" Then
                         kvp2.Value.LeftBoundaryConditionType = "134"
                     Else
-                        kvp2.Value.LeftBoundaryConditionType = "0"
+                        kvp2.Value.LeftBoundaryConditionType = "1"
                     End If
 
                     If kvp2.Value.leftAverageVolumeVelocity.ToString = "Taken from x-coordinate" Then
@@ -3085,7 +3109,7 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.RightBoundaryConditionType.ToString = "Horizontal bundle" Then
                         kvp2.Value.RightBoundaryConditionType = "134"
                     Else
-                        kvp2.Value.RightBoundaryConditionType = "0"
+                        kvp2.Value.RightBoundaryConditionType = "1"
                     End If
                     If kvp2.Value.rightAverageVolumeVelocity.ToString = "Taken from x-coordinate" Then
                         kvp2.Value.rightAverageVolumeVelocity = "0"
@@ -3103,7 +3127,7 @@ sim:                Dim myStream As System.IO.FileStream
                     Else
                         output2 = "0 0"
                     End If
-                    output = "1" & kvp.Value.UID & "0" & "50" & Counter & " " & output2 & " " & kvp2.Value.RightBoundaryConditionType & " " & kvp2.Value.RightSurfaceAreaSelection & " " & kvp2.Value.RightSurfaceArea.ToString("F") & " " & kvp2.Value.RightHeatStructureNumber
+                    output = "1" & kvp.Value.UID & "0" & "60" & Counter & " " & output2 & " " & kvp2.Value.RightBoundaryConditionType & " " & kvp2.Value.RightSurfaceAreaSelection & " " & kvp2.Value.RightSurfaceArea.ToString("F") & " " & kvp2.Value.RightHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3151,7 +3175,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(output)
 
                 If dgvrow.Cells(1).Value = "SUM" Then
-                
+
                     Dim dgvrow1 As DataGridViewRow
                     For k = 0 To frm.dgv2.Rows.Count - 2
                         dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
