@@ -32,6 +32,7 @@ Namespace GraphicObjects
         Expander
         TPVessel
         SingleJunction
+        TimeDependentJunction
         Heater
         Pipe
         Valve

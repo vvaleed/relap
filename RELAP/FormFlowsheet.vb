@@ -635,6 +635,7 @@ Imports RELAP.RELAP.FormClasses
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
         If Collections.ValveCollection Is Nothing Then Collections.ValveCollection = New Dictionary(Of String, ValveGraphic)
         If Collections.SingleJunctionCollection Is Nothing Then Collections.SingleJunctionCollection = New Dictionary(Of String, SingleJunctionGraphic)
+        If Collections.TimeDependentJunctionCollection Is Nothing Then Collections.TimeDependentJunctionCollection = New Dictionary(Of String, TimeDependentJunctionGraphic)
         If Collections.HeaterCollection Is Nothing Then Collections.HeaterCollection = New Dictionary(Of String, HeaterGraphic)
         If Collections.TankCollection Is Nothing Then Collections.TankCollection = New Dictionary(Of String, TankGraphic)
         If Collections.ConnectorCollection Is Nothing Then Collections.ConnectorCollection = New Dictionary(Of String, ConnectorGraphic)
@@ -1409,6 +1410,19 @@ Imports RELAP.RELAP.FormClasses
             End If
 
 
+            'time dependent junction
+            If gObjTo.TipoObjeto = TipoObjeto.TimeDependentJunction Then
+                Me.Collections.CLCS_TimeDependentJunctionCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                '  gObjTo.
+            End If
+            If gObjFrom.TipoObjeto = TipoObjeto.TimeDependentJunction Then
+                Me.Collections.CLCS_TimeDependentJunctionCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                '  gObjTo.
+            End If
+
+
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
             Dim InConSlot, OutConSlot As New ConnectionPoint
@@ -1495,6 +1509,8 @@ Imports RELAP.RELAP.FormClasses
                     Else
                         Select Case gObjFrom.TipoObjeto
                             Case TipoObjeto.SingleJunction
+                                GoTo 100
+                            Case TipoObjeto.TimeDependentJunction
                                 GoTo 100
                             Case TipoObjeto.Pipe
                                 GoTo 100

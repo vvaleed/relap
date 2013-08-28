@@ -297,6 +297,14 @@ Public Class frmSurface
                                             End If
                                         Next
 
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.TimeDependentJunction Then
+                                        For Each kvp In My.Application.ActiveSimulation.Collections.CLCS_TimeDependentJunctionCollection
+                                            If kvp.Value.GraphicObject.Name = Me.FlowsheetDesignSurface.SelectedObject.Name Then
+                                                My.Application.ActiveSimulation.FromComponent = kvp.Value.FromComponent
+                                                My.Application.ActiveSimulation.ToComponent = kvp.Value.ToComponent
+                                            End If
+                                        Next
+
 
                                     End If
                                     ChildParent.Collections.ObjectCollection(Me.FlowsheetDesignSurface.SelectedObject.Name).PopulatePropertyGrid(PGEx1, ChildParent.Options.SelectedUnitSystem)
@@ -457,6 +465,8 @@ Public Class frmSurface
                             tobj = TipoObjeto.Heater
                         Case "TSMICooler"
                             tobj = TipoObjeto.SingleJunction
+                        Case "TSMICooler"
+                            tobj = TipoObjeto.TimeDependentJunction
                         Case "TSMIOrificePlate"
                             tobj = TipoObjeto.OrificePlate
                         Case "TSMIComponentSeparator"
@@ -2166,6 +2176,26 @@ Public Class frmSurface
                 ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
                 ChildParent.Collections.CLCS_SingleJunctionCollection.Add(myCooler.Name, myCOTK)
 
+            Case TipoObjeto.TimeDependentJunction
+                Dim myTMDPJUN As New TimeDependentJunctionGraphic(mpx, mpy, 15, 20, 0)
+                myTMDPJUN.LineWidth = 2
+                myTMDPJUN.Fill = True
+                myTMDPJUN.FillColor = fillclr
+                myTMDPJUN.LineColor = lineclr
+                myTMDPJUN.Tag = "TDJ" & Format(ChildParent.Collections.ObjectCounter("TimeDependentJunction"), "00#")
+                ChildParent.Collections.UpdateCounter("TimeDependentJunction")
+                If tag <> "" Then myTMDPJUN.Tag = tag
+                gObj = myTMDPJUN
+                gObj.Name = "TMDPJUN-" & Guid.NewGuid.ToString
+                ChildParent.Collections.TimeDependentJunctionCollection.Add(gObj.Name, myTMDPJUN)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.TimeDependentJunction = New RELAP.SimulationObjects.UnitOps.TimeDependentJunction(myTMDPJUN.Name, "TimeDependentJunction")
+                myCOTK.GraphicObject = myTMDPJUN
+                ChildParent.Collections.ObjectCollection.Add(myTMDPJUN.Name, myCOTK)
+                ChildParent.Collections.CLCS_TimeDependentJunctionCollection.Add(myTMDPJUN.Name, myCOTK)
+
             Case TipoObjeto.HeatStructure
                 Dim myHeatStructure As New HeatStructureGraphic(mpx, mpy, 15, 15, 0)
                 myHeatStructure.LineWidth = 2
@@ -2343,6 +2373,8 @@ Public Class frmSurface
                     tobj = TipoObjeto.Expander
                 Case "SingleJunction"
                     tobj = TipoObjeto.SingleJunction
+                Case "TimeDependentJunction"
+                    tobj = TipoObjeto.TimeDependentJunction
                 Case "Aquecedor"
                     tobj = TipoObjeto.Heater
                 Case "Tubulao"

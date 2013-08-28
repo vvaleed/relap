@@ -350,6 +350,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="objects\Time Dependent Junction.vb" />
     <Compile Include="objects\Valve.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SharedFunctions.vb" />
