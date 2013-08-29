@@ -463,6 +463,8 @@ Public Class frmSurface
                             tobj = TipoObjeto.Vessel
                         Case "TSMIHeater"
                             tobj = TipoObjeto.Heater
+                        Case "TSMISingleVolume"
+                            tobj = TipoObjeto.SingleVolume
                         Case "TSMICooler"
                             tobj = TipoObjeto.SingleJunction
                         Case "TSMICooler"
@@ -2137,6 +2139,25 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
                 ChildParent.Collections.CLCS_TankCollection.Add(myTank.Name, myCOTK)
+            Case TipoObjeto.SingleVolume
+                Dim myVolume As New SingleVolumeGraphic(mpx, mpy, 50, 40, 0)
+                myVolume.LineWidth = 2
+                myVolume.Fill = True
+                myVolume.FillColor = fillclr
+                myVolume.LineColor = lineclr
+                myVolume.Tag = "SV" & Format(ChildParent.Collections.ObjectCounter("SingleVolume"), "00#")
+                ChildParent.Collections.UpdateCounter("SingleVolume")
+                If tag <> "" Then myVolume.Tag = tag
+                gObj = myVolume
+                gObj.Name = "SNGLVOL-" & Guid.NewGuid.ToString
+                ChildParent.Collections.SingleVolumeCollection.Add(gObj.Name, myVolume)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.SingleVolume = New RELAP.SimulationObjects.UnitOps.SingleVolume(myVolume.Name, "SingleVolume")
+                myCOTK.GraphicObject = myVolume
+                ChildParent.Collections.ObjectCollection.Add(myVolume.Name, myCOTK)
+                ChildParent.Collections.CLCS_SingleVolumeCollection.Add(myVolume.Name, myCOTK)
             Case TipoObjeto.Pump
                 Dim myPump As New PumpGraphic(mpx, mpy, 50, 50, 0)
                 myPump.LineWidth = 2
@@ -2371,6 +2392,8 @@ Public Class frmSurface
                     tobj = TipoObjeto.Compressor
                 Case "TurbinaAdiabtica"
                     tobj = TipoObjeto.Expander
+                Case "SingleVolume"
+                    tobj = TipoObjeto.SingleVolume
                 Case "SingleJunction"
                     tobj = TipoObjeto.SingleJunction
                 Case "TimeDependentJunction"

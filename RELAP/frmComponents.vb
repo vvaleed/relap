@@ -31,6 +31,7 @@
             '.Rows.Add(New Object() {"ComponentSeparator", Me.ImageList2.Images(22), "ComponentSeparator"})
 
             .Rows.Add(New Object() {"Tanque", Me.ImageList2.Images(13), "Time Dependent Volume"})
+            .Rows.Add(New Object() {"SingleVolume", Me.ImageList2.Images(13), "Single Volume"})
             .Rows.Add(New Object() {"FuelRod", Me.ImageList2.Images(5), "Fuel Rod"})
             .Rows.Add(New Object() {"Simulator", Me.ImageList2.Images(16), "Simulator"})
             .Rows.Add(New Object() {"PWRControlRod", Me.ImageList2.Images(8), "PWR Control Rod"})

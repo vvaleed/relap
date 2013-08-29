@@ -634,6 +634,7 @@ Imports RELAP.RELAP.FormClasses
         If Collections.CompressorCollection Is Nothing Then Collections.CompressorCollection = New Dictionary(Of String, CompressorGraphic)
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
         If Collections.ValveCollection Is Nothing Then Collections.ValveCollection = New Dictionary(Of String, ValveGraphic)
+        If Collections.SingleVolumeCollection Is Nothing Then Collections.SingleVolumeCollection = New Dictionary(Of String, SingleVolumeGraphic)
         If Collections.SingleJunctionCollection Is Nothing Then Collections.SingleJunctionCollection = New Dictionary(Of String, SingleJunctionGraphic)
         If Collections.TimeDependentJunctionCollection Is Nothing Then Collections.TimeDependentJunctionCollection = New Dictionary(Of String, TimeDependentJunctionGraphic)
         If Collections.HeaterCollection Is Nothing Then Collections.HeaterCollection = New Dictionary(Of String, HeaterGraphic)
@@ -1508,6 +1509,8 @@ Imports RELAP.RELAP.FormClasses
                         End If
                     Else
                         Select Case gObjFrom.TipoObjeto
+                            Case TipoObjeto.SingleVolume
+                                GoTo 100
                             Case TipoObjeto.SingleJunction
                                 GoTo 100
                             Case TipoObjeto.TimeDependentJunction
@@ -1516,7 +1519,7 @@ Imports RELAP.RELAP.FormClasses
                                 GoTo 100
                             Case TipoObjeto.Tank
                                 GoTo 100
-                           
+
                             Case TipoObjeto.FuelRod
                                 GoTo 100
                             Case TipoObjeto.Simulator

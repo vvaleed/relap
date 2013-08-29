@@ -31,6 +31,7 @@ Namespace GraphicObjects
         Compressor
         Expander
         TPVessel
+        SingleVolume
         SingleJunction
         TimeDependentJunction
         Heater
