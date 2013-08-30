@@ -36,6 +36,7 @@ Namespace GraphicObjects
         TimeDependentJunction
         Heater
         Pipe
+        Branch
         Valve
         Nenhum
         GO_Tabela

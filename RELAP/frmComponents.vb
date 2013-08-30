@@ -18,6 +18,7 @@
             .Rows.Add(New Object() {"TimeDependentJunction", Me.ImageList2.Images(26), "Time Dependent Junction"})
             '.Rows.Add(New Object() {"Aquecedor", Me.ImageList2.Images(2), "Aquecedor"})
             .Rows.Add(New Object() {"Tubulao", Me.ImageList2.Images(5), "Pipe"})
+            .Rows.Add(New Object() {"Branch", Me.ImageList2.Images(5), "Branch"})
             .Rows.Add(New Object() {"Vlvula", Me.ImageList2.Images(15), "Valve"})
             .Rows.Add(New Object() {"Bomba", Me.ImageList2.Images(6), "Pump"})
             '.Rows.Add(New Object() {"CompressorAdiabtico", Me.ImageList2.Images(0), "CompressorAdiabtico"})

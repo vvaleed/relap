@@ -455,6 +455,8 @@ Public Class frmSurface
                             tobj = TipoObjeto.Expander
                         Case "TSMIPump"
                             tobj = TipoObjeto.Pump
+                        Case "TSMIBranch"
+                            tobj = TipoObjeto.Branch
                         Case "TSMIPipe"
                             tobj = TipoObjeto.Pipe
                         Case "TSMIValve"
@@ -2236,6 +2238,25 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myHeatStructure
                 ChildParent.Collections.ObjectCollection.Add(myHeatStructure.Name, myCOTK)
                 ChildParent.Collections.CLCS_HeatStructureCollection.Add(myHeatStructure.Name, myCOTK)
+            Case TipoObjeto.branch
+                Dim mybranch As New BranchGraphic(mpx, mpy, 50, 10, 0)
+                mybranch.LineWidth = 2
+                mybranch.Fill = True
+                mybranch.FillColor = fillclr
+                mybranch.LineColor = lineclr
+                mybranch.Tag = "BRANCH" & Format(ChildParent.Collections.ObjectCounter("Branch"), "00#")
+                ChildParent.Collections.UpdateCounter("Branch")
+                If tag <> "" Then mybranch.Tag = tag
+                gObj = mybranch
+                gObj.Name = "BR-" & Guid.NewGuid.ToString
+                ChildParent.Collections.BranchCollection.Add(gObj.Name, mybranch)
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
+                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
+                'OBJETO RELAP
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Branch = New RELAP.SimulationObjects.UnitOps.Branch(mybranch.Name, "Branch")
+                myCOTK.GraphicObject = mybranch
+                ChildParent.Collections.ObjectCollection.Add(mybranch.Name, myCOTK)
+                ChildParent.Collections.CLCS_BranchCollection.Add(mybranch.Name, myCOTK)
 
             Case TipoObjeto.Pipe
                 Dim myPipe As New PipeGraphic(mpx, mpy, 50, 10, 0)
@@ -2400,6 +2421,8 @@ Public Class frmSurface
                     tobj = TipoObjeto.TimeDependentJunction
                 Case "Aquecedor"
                     tobj = TipoObjeto.Heater
+                Case "Branch"
+                    tobj = TipoObjeto.Branch
                 Case "Tubulao"
                     tobj = TipoObjeto.Pipe
                 Case "Vlvula"
