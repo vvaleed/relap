@@ -64,6 +64,7 @@ Partial Class ucHeatStructureEditor
         Me.ChkboxGapConductance = New System.Windows.Forms.CheckBox()
         Me.Tab2 = New System.Windows.Forms.TabPage()
         Me.Tab3 = New System.Windows.Forms.TabPage()
+        Me.ChkBoxInitialTemp = New System.Windows.Forms.CheckBox()
         Me.ComboBoxTemp = New System.Windows.Forms.ComboBox()
         Me.dgvTemp1 = New System.Windows.Forms.DataGridView()
         Me.Temp1Temperature = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -71,7 +72,6 @@ Partial Class ucHeatStructureEditor
         Me.dgvTemp2 = New System.Windows.Forms.DataGridView()
         Me.Temp2GammaAttenCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Temp2MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChkBoxInitialTemp = New System.Windows.Forms.CheckBox()
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -465,6 +465,16 @@ Partial Class ucHeatStructureEditor
         Me.Tab3.Text = "Initial Temperature Data"
         Me.Tab3.UseVisualStyleBackColor = True
         '
+        'ChkBoxInitialTemp
+        '
+        Me.ChkBoxInitialTemp.AutoSize = True
+        Me.ChkBoxInitialTemp.Location = New System.Drawing.Point(27, 17)
+        Me.ChkBoxInitialTemp.Name = "ChkBoxInitialTemp"
+        Me.ChkBoxInitialTemp.Size = New System.Drawing.Size(193, 17)
+        Me.ChkBoxInitialTemp.TabIndex = 15
+        Me.ChkBoxInitialTemp.Text = "Enter Initial Temperature Conditions"
+        Me.ChkBoxInitialTemp.UseVisualStyleBackColor = True
+        '
         'ComboBoxTemp
         '
         Me.ComboBoxTemp.FormattingEnabled = True
@@ -515,16 +525,6 @@ Partial Class ucHeatStructureEditor
         '
         Me.Temp2MeshIntervalNumber.HeaderText = "Mesh Interval Number"
         Me.Temp2MeshIntervalNumber.Name = "Temp2MeshIntervalNumber"
-        '
-        'ChkBoxInitialTemp
-        '
-        Me.ChkBoxInitialTemp.AutoSize = True
-        Me.ChkBoxInitialTemp.Location = New System.Drawing.Point(27, 17)
-        Me.ChkBoxInitialTemp.Name = "ChkBoxInitialTemp"
-        Me.ChkBoxInitialTemp.Size = New System.Drawing.Size(193, 17)
-        Me.ChkBoxInitialTemp.TabIndex = 15
-        Me.ChkBoxInitialTemp.Text = "Enter Initial Temperature Conditions"
-        Me.ChkBoxInitialTemp.UseVisualStyleBackColor = True
         '
         'ucHeatStructureEditor
         '

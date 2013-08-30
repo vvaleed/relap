@@ -42,7 +42,7 @@ Partial Class frmHeatStructureEditor2
         Me.ClientSize = New System.Drawing.Size(992, 470)
         Me.Controls.Add(Me.UcHeatStructureEditor21)
         Me.Name = "frmHeatStructureEditor2"
-        Me.Text = "frmHeatStructureEditor2"
+        Me.Text = "Heat Structure Boundry Conditions"
         Me.ResumeLayout(False)
 
     End Sub
