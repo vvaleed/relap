@@ -41,7 +41,7 @@
         dgvComposition.Rows.Add(1)
         dgvComposition.Rows(0).Cells(0).Value = 1
         dgvComposition.Rows(0).Cells(1).Value = myCOTK.NumberOfRadialMP - 1
-
+        ChkboxGapConductance.Checked = HeatStructureMeshData.GapConductanceModel
       
 
         ComboBoxTemp.SelectedIndex = 0
@@ -49,32 +49,32 @@
         dgvTemp1.Rows(0).Cells(0).Value = 50.0
         dgvTemp1.Rows(0).Cells(1).Value = myCOTK.NumberOfRadialMP
 
-        If HeatStructureMeshData.GapConductanceModel = False Then
-            ChkboxGapConductance.Checked = False
-            txtboxInitialGapInternalPressure.Clear()
-            txtboxInitialGapInternalPressure.BackColor = Color.Gray
-            txtboxInitialGapInternalPressure.ReadOnly = True
-            txtboxGapConductanceRefVol.Clear()
-            txtboxGapConductanceRefVol.BackColor = Color.Gray
-            txtboxGapConductanceRefVol.ReadOnly = True
-            ChkboxDeformation.BackColor = Color.Gray
-            ChkboxDeformation.Checked = False
-            dgvGapDeformation.BackgroundColor = Color.Gray
-            dgvGapDeformation.Enabled = False
-            dgvGapDeformation.ClearSelection()
-        ElseIf HeatStructureMeshData.GapConductanceModel = True Then
-            ChkboxGapConductance.Checked = True
-            txtboxInitialGapInternalPressure.BackColor = Color.White
-            txtboxInitialGapInternalPressure.ReadOnly = False
-            txtboxInitialGapInternalPressure.Text = HeatStructureMeshData.InitialGapInternalPressure.ToString
-            txtboxGapConductanceRefVol.BackColor = Color.White
-            txtboxGapConductanceRefVol.ReadOnly = False
-            txtboxGapConductanceRefVol.Text = HeatStructureMeshData.GapConductanceReferenceVolume.ToString
-            ChkboxDeformation.BackColor = Color.White
-            ChkboxDeformation.Checked = True
-            dgvGapDeformation.BackgroundColor = Color.White
-            dgvGapDeformation.Enabled = True
-        End If
+        'If HeatStructureMeshData.GapConductanceModel = False Then
+        '    ChkboxGapConductance.Checked = False
+        '    txtboxInitialGapInternalPressure.Clear()
+        '    txtboxInitialGapInternalPressure.BackColor = Color.Gray
+        '    txtboxInitialGapInternalPressure.ReadOnly = True
+        '    txtboxGapConductanceRefVol.Clear()
+        '    txtboxGapConductanceRefVol.BackColor = Color.Gray
+        '    txtboxGapConductanceRefVol.ReadOnly = True
+        '    ChkboxDeformation.BackColor = Color.Gray
+        '    ChkboxDeformation.Checked = False
+        '    dgvGapDeformation.BackgroundColor = Color.Gray
+        '    dgvGapDeformation.Enabled = False
+        '    dgvGapDeformation.ClearSelection()
+        'ElseIf HeatStructureMeshData.GapConductanceModel = True Then
+        '    ChkboxGapConductance.Checked = True
+        '    txtboxInitialGapInternalPressure.BackColor = Color.White
+        '    txtboxInitialGapInternalPressure.ReadOnly = False
+        '    txtboxInitialGapInternalPressure.Text = HeatStructureMeshData.InitialGapInternalPressure.ToString
+        '    txtboxGapConductanceRefVol.BackColor = Color.White
+        '    txtboxGapConductanceRefVol.ReadOnly = False
+        '    txtboxGapConductanceRefVol.Text = HeatStructureMeshData.GapConductanceReferenceVolume.ToString
+        '    ChkboxDeformation.BackColor = Color.White
+        '    ChkboxDeformation.Checked = True
+        '    dgvGapDeformation.BackgroundColor = Color.White
+        '    dgvGapDeformation.Enabled = True
+        'End If
         'If myCOTK.HeatStructureMeshData.GapDeformation.Count <> 0 Then
         '    dgvGapDeformation.Rows.Add(myCOTK.HeatStructureMeshData.GapDeformation.Count)
         '    Dim i = 1
@@ -508,5 +508,6 @@
 
  
     
+   
 End Class
 

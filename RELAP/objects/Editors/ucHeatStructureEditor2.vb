@@ -34,13 +34,33 @@
 
 
         'default values
-        dgvtab1.Rows.Add(1)
-        dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
-        dgvtab1.Rows(0).Cells(3).Value = 10000
-        dgvtab1.Rows(0).Cells(4).Value = DirectCast(dgvtab1.Rows(0).Cells(4), DataGridViewComboBoxCell).Items(0)
-        dgvtab1.Rows(0).Cells(5).Value = 1
-        dgvtab1.Rows(0).Cells(6).Value = 5.0
-        dgvtab1.Rows(0).Cells(7).Value = myCOTK.NumberOfAxialHS
+        If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count = 0 Then
+            dgvTab3.Rows.Add(1)
+            dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
+            dgvtab1.Rows(0).Cells(3).Value = 10000
+            dgvtab1.Rows(0).Cells(4).Value = DirectCast(dgvtab1.Rows(0).Cells(4), DataGridViewComboBoxCell).Items(0)
+            dgvtab1.Rows(0).Cells(5).Value = 1
+            dgvtab1.Rows(0).Cells(6).Value = 5.0
+            dgvtab1.Rows(0).Cells(7).Value = myCOTK.NumberOfAxialHS
+        Else
+            If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count <> 1 Then
+                dgvtab1.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count - 1)
+            End If
+
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvtab1.Rows
+                Dim CBox As DataGridViewComboBoxCell = CType(row.Cells(0), DataGridViewComboBoxCell)
+                Dim CCol As DataGridViewComboBoxColumn = CType(dgvtab1.Columns(0), DataGridViewComboBoxColumn)
+
+                CBox.Value = CCol.Items(CCol.Items.Count - 1)
+                ' row.Cells(0).Value = DirectCast(dgvTab2.Rows(0).Cells(2), DataGridViewComboBoxCell).Items
+                row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(i).leftComponentVolumeNumber
+                'row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(i).leftAverageVolumeVelocity
+                row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(i).LeftIncrement
+                '    row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1(i).LeftBoundaryConditionType
+                i = i + 1
+            Next
+        End If
 
         dgvTab2.Rows.Add(1)
         dgvTab2.Rows(0).Cells(2).Value = DirectCast(dgvTab2.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
@@ -49,100 +69,108 @@
         dgvTab2.Rows(0).Cells(5).Value = 1
         dgvTab2.Rows(0).Cells(6).Value = 5.0
         dgvTab2.Rows(0).Cells(7).Value = myCOTK.NumberOfAxialHS
-      
-
-        ' If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count = 0 Then
-        dgvTab3.Rows.Add(1)
-        dgvTab3.Rows(0).Cells(0).Value = 0
-        dgvTab3.Rows(0).Cells(1).Value = 0
-        dgvTab3.Rows(0).Cells(2).Value = 0
-        dgvTab3.Rows(0).Cells(3).Value = 0
-        dgvTab3.Rows(0).Cells(4).Value = myCOTK.NumberOfAxialHS
-        'Else
-        'dgvTab3.Rows.Add(1)
-        'Dim i = 1
-        'For Each row As DataGridViewRow In dgvTab3.Rows
-        '    row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).SourceType
-        '    row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).InternalSourceMultiplier
-        '    row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).DirectModeratorHeatingMultiplierLeft
-        '    row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).DirectModeratorHeatingMultiplierRight
-        '    row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).SourceHeatStructureNumber
-        '    i = i + 1
-        'Next
-        'End If
 
 
-        '  If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count = 0 Then
-        dgvTab4.Rows.Add(1)
-        dgvTab4.Rows(0).Cells(0).Value = 0.0
-        dgvTab4.Rows(0).Cells(1).Value = 10.0
-        dgvTab4.Rows(0).Cells(2).Value = 10.0
-        dgvTab4.Rows(0).Cells(3).Value = 0.0
-        dgvTab4.Rows(0).Cells(4).Value = 0.0
-        dgvTab4.Rows(0).Cells(5).Value = 0.0
-        dgvTab4.Rows(0).Cells(6).Value = 0.0
-        dgvTab4.Rows(0).Cells(7).Value = 1.0
-        dgvTab4.Rows(0).Cells(8).Value = 0.0
-        dgvTab4.Rows(0).Cells(9).Value = 1.1
-        dgvTab4.Rows(0).Cells(10).Value = 1.0
-        dgvTab4.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
-        'Else
-        'dgvTab4.Rows.Add(1)
-        ''dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
+        If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count = 0 Then
+            dgvTab3.Rows.Add(1)
+            dgvTab3.Rows(0).Cells(0).Value = 0
+            dgvTab3.Rows(0).Cells(1).Value = 0
+            dgvTab3.Rows(0).Cells(2).Value = 0
+            dgvTab3.Rows(0).Cells(3).Value = 0
+            dgvTab3.Rows(0).Cells(4).Value = myCOTK.NumberOfAxialHS
+        Else
+            If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count <> 1 Then
+                dgvTab3.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count - 1)
+            End If
 
-        'Dim i = 1
-        'For Each row As DataGridViewRow In dgvTab4.Rows
-        '    row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftHeatedEquivalentDiameter
-        '    row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).LeftHeatedLengthForward
-        '    row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).LeftHeatedLengthReverse
-        '    row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridSpacerLengthForward
-        '    row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridSpacerLengthReverse
-        '    row.Cells(5).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridLossCoefficientForward
-        '    row.Cells(6).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridLossCoefficientReverse
-        '    row.Cells(7).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftLocalBoilingFactor
-        '    row.Cells(8).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftNaturalCirculationLength
-        '    row.Cells(9).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftPitchtoDiameterRatio
-        '    row.Cells(10).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftFoulingFactor
-        '    row.Cells(11).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftAddHeatStructureNumber
-        '    i = i + 1
-        'Next
-        'End If
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvTab3.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).SourceType
+                row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).InternalSourceMultiplier
+                row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).DirectModeratorHeatingMultiplierLeft
+                row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).DirectModeratorHeatingMultiplierRight
+                row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3(i).SourceHeatStructureNumber
+                i = i + 1
+            Next
+        End If
 
-        ' If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count = 0 Then
-        dgvTab5.Rows.Add(1)
-        dgvTab5.Rows(0).Cells(0).Value = 0.0
-        dgvTab5.Rows(0).Cells(1).Value = 10.0
-        dgvTab5.Rows(0).Cells(2).Value = 10.0
-        dgvTab5.Rows(0).Cells(3).Value = 0.0
-        dgvTab5.Rows(0).Cells(4).Value = 0.0
-        dgvTab5.Rows(0).Cells(5).Value = 0.0
-        dgvTab5.Rows(0).Cells(6).Value = 0.0
-        dgvTab5.Rows(0).Cells(7).Value = 1.0
-        dgvTab5.Rows(0).Cells(8).Value = 0.0
-        dgvTab5.Rows(0).Cells(9).Value = 1.1
-        dgvTab5.Rows(0).Cells(10).Value = 1.0
-        dgvTab5.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
-        'Else
 
-        'dgvTab5.Rows.Add(1)
-        ''dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
-        'Dim i = 1
-        'For Each row As DataGridViewRow In dgvTab5.Rows
-        '    row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedEquivalentDiameter
-        '    row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthForward
-        '    row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthReverse
-        '    row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridSpacerLengthForward
-        '    row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridSpacerLengthReverse
-        '    row.Cells(5).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridLossCoefficientForward
-        '    row.Cells(6).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridLossCoefficientReverse
-        '    row.Cells(7).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightLocalBoilingFactor
-        '    row.Cells(8).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightNaturalCirculationLength
-        '    row.Cells(9).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightPitchtoDiameterRatio
-        '    row.Cells(10).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightFoulingFactor
-        '    row.Cells(11).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightAddHeatStructureNumber
-        '    i = i + 1
-        'Next
-        'End If
+        If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count = 0 Then
+            dgvTab4.Rows.Add(1)
+            dgvTab4.Rows(0).Cells(0).Value = 0.0
+            dgvTab4.Rows(0).Cells(1).Value = 10.0
+            dgvTab4.Rows(0).Cells(2).Value = 10.0
+            dgvTab4.Rows(0).Cells(3).Value = 0.0
+            dgvTab4.Rows(0).Cells(4).Value = 0.0
+            dgvTab4.Rows(0).Cells(5).Value = 0.0
+            dgvTab4.Rows(0).Cells(6).Value = 0.0
+            dgvTab4.Rows(0).Cells(7).Value = 1.0
+            dgvTab4.Rows(0).Cells(8).Value = 0.0
+            dgvTab4.Rows(0).Cells(9).Value = 1.1
+            dgvTab4.Rows(0).Cells(10).Value = 1.0
+            dgvTab4.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
+        Else
+            If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count <> 1 Then
+                dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count - 1)
+            End If
+
+            'dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
+
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvTab4.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftHeatedEquivalentDiameter
+                row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).LeftHeatedLengthForward
+                row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).LeftHeatedLengthReverse
+                row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridSpacerLengthForward
+                row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridSpacerLengthReverse
+                row.Cells(5).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridLossCoefficientForward
+                row.Cells(6).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftGridLossCoefficientReverse
+                row.Cells(7).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftLocalBoilingFactor
+                row.Cells(8).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftNaturalCirculationLength
+                row.Cells(9).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftPitchtoDiameterRatio
+                row.Cells(10).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftFoulingFactor
+                row.Cells(11).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4(i).leftAddHeatStructureNumber
+                i = i + 1
+            Next
+        End If
+
+        If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count = 0 Then
+            dgvTab5.Rows.Add(1)
+            dgvTab5.Rows(0).Cells(0).Value = 0.0
+            dgvTab5.Rows(0).Cells(1).Value = 10.0
+            dgvTab5.Rows(0).Cells(2).Value = 10.0
+            dgvTab5.Rows(0).Cells(3).Value = 0.0
+            dgvTab5.Rows(0).Cells(4).Value = 0.0
+            dgvTab5.Rows(0).Cells(5).Value = 0.0
+            dgvTab5.Rows(0).Cells(6).Value = 0.0
+            dgvTab5.Rows(0).Cells(7).Value = 1.0
+            dgvTab5.Rows(0).Cells(8).Value = 0.0
+            dgvTab5.Rows(0).Cells(9).Value = 1.1
+            dgvTab5.Rows(0).Cells(10).Value = 1.0
+            dgvTab5.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
+        Else
+            If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count <> 1 Then
+                dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count - 1)
+            End If
+
+            'dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvTab5.Rows
+                row.Cells(0).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedEquivalentDiameter
+                row.Cells(1).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthForward
+                row.Cells(2).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightHeatedLengthReverse
+                row.Cells(3).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridSpacerLengthForward
+                row.Cells(4).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridSpacerLengthReverse
+                row.Cells(5).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridLossCoefficientForward
+                row.Cells(6).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightGridLossCoefficientReverse
+                row.Cells(7).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightLocalBoilingFactor
+                row.Cells(8).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightNaturalCirculationLength
+                row.Cells(9).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightPitchtoDiameterRatio
+                row.Cells(10).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightFoulingFactor
+                row.Cells(11).Value = myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5(i).rightAddHeatStructureNumber
+                i = i + 1
+            Next
+        End If
     End Sub
 
     Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave.Click
