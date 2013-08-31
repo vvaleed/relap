@@ -34,6 +34,18 @@ Namespace RELAP.SimulationObjects.UnitOps
             Outlet = 2
         End Enum
 
+
+        Private _BranchJunctionsGeometry As BranchJunctionsGeometry
+        Public Property BranchJunctionsGeometry() As BranchJunctionsGeometry
+            Get
+                Return _BranchJunctionsGeometry
+            End Get
+            Set(ByVal value As BranchJunctionsGeometry)
+                _BranchJunctionsGeometry = value
+            End Set
+        End Property
+
+
         Private m_EnterVelocityOrMassFlowRate As Boolean
         Public Property EnterVelocityOrMassFlowRate() As Boolean
             Get
@@ -281,6 +293,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me._ToVolume = 1
             Me._FromVolume = 1
             Me.m_ComponentDescription = descricao
+            Me._BranchJunctionsGeometry = New BranchJunctionsGeometry
             Me.m_InitialLiquidMassFlowRate = 0.0
             Me.m_InitialVaporMassFlowRate = 0.0
             Me.m_EnterVelocityOrMassFlowRate = True
@@ -561,6 +574,12 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
+
+                .Item.Add("Set Branch Junctions Geometry", Me, "BranchJunctionsGeometry", False, "Parameters", "Set Branch Junctions Geometry", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultType = GetType(BranchJunctionsGeometry)
+                    .CustomEditor = New RELAP.Editors.UIBranchEditor
+                End With
 
                 valor = App.GetTagFromUID(Me.FromComponent)
                 .Item.Add("From Component", valor, True, "Connections", "From Component", True)
