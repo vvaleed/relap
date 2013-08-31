@@ -269,12 +269,25 @@
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
     <Compile Include="objects\Branch.vb" />
+    <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
+    <Compile Include="objects\Editors\frmBranchEditor.Designer.vb">
+      <DependentUpon>frmBranchEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmBranchEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="objects\Editors\frmJunctionsEditor.Designer.vb">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </Compile>
     <Compile Include="objects\Editors\frmJunctionsEditor.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\ucBranchEditor.Designer.vb">
+      <DependentUpon>ucBranchEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\ucBranchEditor.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="objects\Editors\ucJunctionsEditor.Designer.vb">
       <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
@@ -282,6 +295,7 @@
     <Compile Include="objects\Editors\ucJunctionsEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="objects\Editors\UIBranchEditor.vb" />
     <Compile Include="objects\Editors\UIJunctionsEditor.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
@@ -387,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaterials.resx">
       <DependentUpon>frmMaterials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmBranchEditor.resx">
+      <DependentUpon>frmBranchEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
