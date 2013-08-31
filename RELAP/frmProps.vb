@@ -2259,6 +2259,20 @@ Public Class frmProps
                 bb.EquilibriumTemperature = e.ChangedItem.Value
             End If
 
+        ElseIf sobj.TipoObjeto = TipoObjeto.TimeDependentJunction Then
+
+            Dim sjn As RELAP.SimulationObjects.UnitOps.TimeDependentJunction = ChildParent.Collections.CLCS_TimeDependentJunctionCollection.Item(sobj.Name)
+            If e.ChangedItem.Label.Contains("From Component") Then
+                sjn.FromComponent = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("To Component") Then
+                sjn.ToComponent = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("To Volume") Then
+                sjn.ToVolume = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("From Volume") Then
+                sjn.FromVolume = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Junction Flow Area") Then
+                sjn.JunctionArea = e.ChangedItem.Value
+            End If
 
         ElseIf sobj.TipoObjeto = TipoObjeto.SingleJunction Then
 
@@ -2275,7 +2289,6 @@ Public Class frmProps
                 sjn.FromVolume = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Junction Flow Area") Then
-                'sjn.JunctionArea = Conversor.ConverterDoSI(ChildParent.Options.SelectedUnitSystem.area, e.ChangedItem.Value)
                 sjn.JunctionArea = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Forward Flow Energy Loss Coefficient") Then
                 sjn.FflowLossCo = e.ChangedItem.Value
