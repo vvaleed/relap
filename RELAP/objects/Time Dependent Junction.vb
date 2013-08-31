@@ -35,25 +35,17 @@ Namespace RELAP.SimulationObjects.UnitOps
             Outlet = 2
         End Enum
 
-        Private m_EnterVelocityOrMassFlowRate As Boolean
-        Public Property EnterVelocityOrMassFlowRate() As Boolean
+
+        Private _JunctionsData As JunctionsData
+        Public Property JunctionsData() As JunctionsData
             Get
-                Return m_EnterVelocityOrMassFlowRate
+                Return _JunctionsData
             End Get
-            Set(ByVal value As Boolean)
-                m_EnterVelocityOrMassFlowRate = value
+            Set(ByVal value As JunctionsData)
+                _JunctionsData = value
             End Set
         End Property
 
-        Private m_InitialLiquidVelocity As Double
-        Public Property InitialLiquidVelocity() As Double
-            Get
-                Return m_InitialLiquidVelocity
-            End Get
-            Set(ByVal value As Double)
-                m_InitialLiquidVelocity = value
-            End Set
-        End Property
         Private _FromVolume As String
         Public Property FromVolume() As String
             Get
@@ -73,56 +65,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-
-        Private m_InitialVaporVelocity As Double
-        Public Property InitialVaporVelocity() As Double
-            Get
-                Return m_InitialVaporVelocity
-            End Get
-            Set(ByVal value As Double)
-                m_InitialVaporVelocity = value
-            End Set
-        End Property
-
-        Private m_InterphaseVelocity As Double
-        Public Property InterphaseVelocity() As Double
-            Get
-                Return m_InterphaseVelocity
-            End Get
-            Set(ByVal value As Double)
-                m_InterphaseVelocity = value
-            End Set
-        End Property
-
-        Private m_InitialLiquidMassFlowRate As Double
-        Public Property InitialLiquidMassFlowRate() As Double
-            Get
-                Return m_InitialLiquidMassFlowRate
-            End Get
-            Set(ByVal value As Double)
-                m_InitialLiquidMassFlowRate = value
-            End Set
-        End Property
-
-        Private m_InitialVaporMassFlowRate As Double
-        Public Property InitialVaporMassFlowRate() As Double
-            Get
-                Return m_InitialVaporMassFlowRate
-            End Get
-            Set(ByVal value As Double)
-                m_InitialVaporMassFlowRate = value
-            End Set
-        End Property
-
-        Private m_InterphaseMassFlowRate As Double
-        Public Property InterphaseMassFlowRate() As Double
-            Get
-                Return m_InterphaseMassFlowRate
-            End Get
-            Set(ByVal value As Double)
-                m_InterphaseMassFlowRate = value
-            End Set
-        End Property
         Private _FromDirection As Direction
         Public Property FromDirection() As Direction
             Get
@@ -139,56 +81,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As Direction)
                 _ToDirection = value
-            End Set
-        End Property
-
-        Private m_ThermalStratificationModel As Boolean
-        Public Property ThermalStratificationModel() As Boolean
-            Get
-                Return m_ThermalStratificationModel
-            End Get
-            Set(ByVal value As Boolean)
-                m_ThermalStratificationModel = value
-            End Set
-        End Property
-
-        Private m_LevelTrackingModel As Boolean
-        Public Property LevelTrackingModel() As Boolean
-            Get
-                Return m_LevelTrackingModel
-            End Get
-            Set(ByVal value As Boolean)
-                m_LevelTrackingModel = value
-            End Set
-        End Property
-
-        Private m_InterphaseFriction As Boolean
-        Public Property InterphaseFriction() As Boolean
-            Get
-                Return m_InterphaseFriction
-            End Get
-            Set(ByVal value As Boolean)
-                m_InterphaseFriction = value
-            End Set
-        End Property
-
-        Private m_ComputeWallFriction As Boolean
-        Public Property ComputeWallFriction() As Boolean
-            Get
-                Return m_ComputeWallFriction
-            End Get
-            Set(ByVal value As Boolean)
-                m_ComputeWallFriction = value
-            End Set
-        End Property
-
-        Private m_EquilibriumTemp As Boolean
-        Public Property EquilibriumTemperature() As Boolean
-            Get
-                Return m_EquilibriumTemp
-            End Get
-            Set(ByVal value As Boolean)
-                m_EquilibriumTemp = value
             End Set
         End Property
 
@@ -223,68 +115,16 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_subdisco As Double
-        Public Property SubcooledDishargeCo() As Double
-            Get
-                Return m_subdisco
-            End Get
-            Set(ByVal value As Double)
-                m_subdisco = value
-            End Set
-        End Property
-
-        Private m_tpdisco As Double
-        Public Property TwoPhaseDischargeCo() As Double
-            Get
-                Return m_tpdisco
-            End Get
-            Set(ByVal value As Double)
-                m_tpdisco = value
-            End Set
-        End Property
-
-        Private m_supdisco As Double
-        Public Property SuperheatedDishargeCo() As Double
-            Get
-                Return m_supdisco
-            End Get
-            Set(ByVal value As Double)
-                m_supdisco = value
-            End Set
-        End Property
-
-        Private m_ffelc As Double
-        Public Property FflowLossCo() As Double
-            Get
-                Return m_ffelc
-            End Get
-            Set(ByVal value As Double)
-                m_ffelc = value
-            End Set
-        End Property
-
-        Private m_rfelc As Double
-        Public Property RflowLossCo() As Double
-            Get
-                Return m_rfelc
-            End Get
-            Set(ByVal value As Double)
-                m_rfelc = value
-            End Set
-        End Property
-
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
-            Me.m_area = 0.1
+            Me.m_area = 0.0
             Me._ToVolume = 1
             Me._FromVolume = 1
+            Me._JunctionsData = New JunctionsData
             Me.m_ComponentDescription = descricao
-            Me.m_InitialLiquidMassFlowRate = 0.0
-            Me.m_InitialVaporMassFlowRate = 0.0
-            Me.m_EnterVelocityOrMassFlowRate = True
             Me.FillNodeItems()
             Me.QTFillNodeItems()
         End Sub
@@ -600,122 +440,11 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.FflowLossCo
-                .Item.Add(("Forward Flow Energy Loss Coefficient"), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
+                .Item.Add("Set Junctions Data", Me, "JunctionsData", False, "Parameters", "Set Junctions Data", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
+                    .DefaultType = GetType(JunctionsData)
+                    .CustomEditor = New RELAP.Editors.UIJunctionsEditor
                 End With
-
-                valor = Me.RflowLossCo
-                .Item.Add(("Reverse Flow Energy Loss Coefficient"), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.SubcooledDishargeCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Subcooled Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.TwoPhaseDischargeCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Two phase Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.SuperheatedDishargeCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Superheated Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-
-                .Item.Add(("True for Mass Flow rate"), Me, "EnterVelocityOrMassFlowRate", False, "Single Junction Initial Conditions", "True for Mass Flow rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialVaporVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Vapor Velocity", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InterphaseVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Interphase Velocity", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InterphaseMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Interphase Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-
-                ' valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
-
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "Volume Control Flags", "Level Tracking Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "Volume Control Flags", "Interphase Friction Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "Volume Control Flags", "Compute Wall Friction", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "Volume Control Flags", "Equilibrium Temperature", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-
-
 
             End With
 

@@ -269,6 +269,20 @@
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
     <Compile Include="objects\Branch.vb" />
+    <Compile Include="objects\Custom Properties\JunctionsData.vb" />
+    <Compile Include="objects\Editors\frmJunctionsEditor.Designer.vb">
+      <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmJunctionsEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\ucJunctionsEditor.Designer.vb">
+      <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\ucJunctionsEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\UIJunctionsEditor.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />
@@ -380,11 +394,17 @@
     <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor2.resx">
       <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmJunctionsEditor.resx">
+      <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor.resx">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor2.resx">
       <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucJunctionsEditor.resx">
+      <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucThermoDynamicStates.resx">
       <DependentUpon>ucThermoDynamicStates.vb</DependentUpon>
