@@ -2769,7 +2769,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
 
-                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" '& " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" '& " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
                 generate.WriteLine(output)
 
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then
@@ -2778,6 +2778,37 @@ sim:                Dim myStream As System.IO.FileStream
                     output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseMassFlowRate
                 End If
                 generate.WriteLine(output)
+
+                univID = univID + 1
+
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.TimeDependentJunction) In ChildParent.Collections.CLCS_TimeDependentJunctionCollection
+                '  MsgBox(kvp.Key)
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Time Dependent Junction '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpjun")
+
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea
+                generate.WriteLine(output)
+
+                output = kvp.Value.UID & "0200 " & kvp.Value.JunctionsData.EnterMassorVelocity
+                generate.WriteLine(output)
+
+                Dim Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, JunctionDatavelocity) In kvp.Value.JunctionsData.JunctionDatavelocity
+                    output = kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.TimeVelocity.ToString("F") & " " & kvp2.Value.LiquidVelocity.ToString("F") & " " & kvp2.Value.VaporVelocity.ToString("F") & " " & kvp2.Value.InterfaceVelocityv.ToString("F")
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
+
+                Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, JunctionDataMass) In kvp.Value.JunctionsData.JunctionDataMass
+                    output = kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.TimeMass.ToString("F") & " " & kvp2.Value.LiquidMassFlow.ToString("F") & " " & kvp2.Value.VaporMassFlow.ToString("F") & " " & kvp2.Value.InterfaceVelocitym.ToString("F")
+                    generate.WriteLine(output)
+                    Counter = Counter + 1
+                Next kvp2
 
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)

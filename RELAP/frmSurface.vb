@@ -320,19 +320,19 @@ Public Class frmSurface
                         Else
                             Me.FlowsheetDesignSurface.SelectedObject = Nothing
                         End If
-                        Else
-                            PGEx2.SelectedObject = Nothing
-                            PGEx1.SelectedObject = Nothing
-                        End If
-                        PGEx2.Refresh()
-                        PGEx1.Refresh()
+                    Else
+                        PGEx2.SelectedObject = Nothing
+                        PGEx1.SelectedObject = Nothing
+                    End If
+                    PGEx2.Refresh()
+                    PGEx1.Refresh()
                 Else
-                        ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Nenhumselecionado")
-                        ChildParent.FormProps.LblTipoObj.Text = "-"
-                        ChildParent.FormProps.LblStatusObj.Text = "-"
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
-                        'ChildParent.FormObjList.TreeViewObj.CollapseAll()
-                        'ChildParent.FormObjList.TreeViewObj.SelectedNode = Nothing
+                    ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Nenhumselecionado")
+                    ChildParent.FormProps.LblTipoObj.Text = "-"
+                    ChildParent.FormProps.LblStatusObj.Text = "-"
+                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                    'ChildParent.FormObjList.TreeViewObj.CollapseAll()
+                    'ChildParent.FormObjList.TreeViewObj.SelectedNode = Nothing
                 End If
             Else
                 PGEx2.SelectedObject = Nothing
@@ -379,7 +379,7 @@ Public Class frmSurface
 
     Private Sub FlowsheetDesignSurface_StatusUpdate(ByVal sender As Object, ByVal e As Microsoft.MSDN.Samples.DesignSurface.StatusUpdateEventArgs) Handles FlowsheetDesignSurface.StatusUpdate
         ChildParent.TSTBZoom.Text = Format(FlowsheetDesignSurface.Zoom, "#%")
-      
+
     End Sub
 
     Private Sub FlowsheetDesignSurface_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles FlowsheetDesignSurface.MouseDown
@@ -403,9 +403,9 @@ Public Class frmSurface
             End If
 
             Me.FlowsheetDesignSurface.Invalidate()
-          
+
         End If
-       
+
 
     End Sub
 
@@ -556,7 +556,7 @@ Public Class frmSurface
             'PGEx1.Refresh()
 
         ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
-            
+
             If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
 
                 Me.CMS_Sel.Items("TSMI_Label").Text = Me.FlowsheetDesignSurface.SelectedObject.Tag
@@ -2045,7 +2045,7 @@ Public Class frmSurface
 
     End Function
 
-   
+
 
     Private Sub ExcluirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExcluirToolStripMenuItem.Click
         Call Me.ChildParent.DeleteSelectedObject(sender, e)
