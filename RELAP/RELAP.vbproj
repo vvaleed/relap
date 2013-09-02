@@ -271,6 +271,7 @@
     <Compile Include="objects\Branch.vb" />
     <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
+    <Compile Include="objects\Custom Properties\ValveType.vb" />
     <Compile Include="objects\Editors\frmBranchEditor.Designer.vb">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
     </Compile>
@@ -281,6 +282,12 @@
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </Compile>
     <Compile Include="objects\Editors\frmJunctionsEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\frmValveEditor.Designer.vb">
+      <DependentUpon>frmValveEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmValveEditor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="objects\Editors\ucBranchEditor.Designer.vb">
@@ -295,8 +302,15 @@
     <Compile Include="objects\Editors\ucJunctionsEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="objects\Editors\ucValveEditor.Designer.vb">
+      <DependentUpon>ucValveEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\ucValveEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="objects\Editors\UIBranchEditor.vb" />
     <Compile Include="objects\Editors\UIJunctionsEditor.vb" />
+    <Compile Include="objects\Editors\UIValveEditor.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />
@@ -413,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmJunctionsEditor.resx">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmValveEditor.resx">
+      <DependentUpon>frmValveEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucBranchEditor.resx">
       <DependentUpon>ucBranchEditor.vb</DependentUpon>
@@ -555,6 +572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucPipeEditor.resx">
       <DependentUpon>ucPipeEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucValveEditor.resx">
+      <DependentUpon>ucValveEditor.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

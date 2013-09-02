@@ -30,6 +30,17 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
 
+        Private _ValveType As ValveType
+        Public Property ValveType() As ValveType
+            Get
+                Return _ValveType
+            End Get
+            Set(ByVal value As ValveType)
+                _ValveType = value
+            End Set
+        End Property
+
+
         Private m_ThermalStratificationModel As Boolean
         Public Property ThermalStratificationModel() As Boolean
             Get
@@ -168,6 +179,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             MyBase.CreateNew()
             Me.m_ComponentName = nome
             Me.m_ComponentDescription = descricao
+            Me._ValveType = New ValveType
             Me.FillNodeItems()
             Me.QTFillNodeItems()
         End Sub
@@ -431,6 +443,13 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 ' '''''''''''''
+
+                .Item.Add("Set Valve Type", Me, "ValveType", False, "1.Parameters", "Set Valve Type", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(ValveType)
+                    .CustomEditor = New RELAP.Editors.UIValveEditor
+                End With
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FromComponent), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("From Component", su.no_unit), valor, False, "Parameters", "From Component", True)
