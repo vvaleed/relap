@@ -35,7 +35,7 @@
 
         'default values
         If myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count = 0 Then
-            dgvTab3.Rows.Add(1)
+            dgvtab1.Rows.Add(1)
             dgvtab1.Rows(0).Cells(2).Value = DirectCast(dgvtab1.Rows(0).Cells(2), DataGridViewComboBoxCell).Items(0)
             dgvtab1.Rows(0).Cells(3).Value = 10000
             dgvtab1.Rows(0).Cells(4).Value = DirectCast(dgvtab1.Rows(0).Cells(4), DataGridViewComboBoxCell).Items(0)

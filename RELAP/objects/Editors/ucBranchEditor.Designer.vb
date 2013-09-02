@@ -42,6 +42,7 @@ Partial Class ucBranchEditor
         Me.SubcooledDischargeCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TwoPhaseDischargeCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SuperheatedDischargeCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdSave = New System.Windows.Forms.Button()
         CType(Me.dgvBranch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -161,10 +162,20 @@ Partial Class ucBranchEditor
         Me.SuperheatedDischargeCo.HeaderText = "Superheated Discharge Coefficient"
         Me.SuperheatedDischargeCo.Name = "SuperheatedDischargeCo"
         '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(1169, 424)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 1
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
         'ucBranchEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.dgvBranch)
         Me.Name = "ucBranchEditor"
         Me.Size = New System.Drawing.Size(1279, 489)
@@ -192,5 +203,6 @@ Partial Class ucBranchEditor
     Friend WithEvents SubcooledDischargeCo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TwoPhaseDischargeCo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SuperheatedDischargeCo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class
