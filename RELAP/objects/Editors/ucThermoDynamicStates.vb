@@ -61,9 +61,9 @@ Public Class ucThermoDynamicStates
         DataGridView1.Columns.Clear()
         ThermoDynamicStates.cmbocheck = 1
         ThermoDynamicStates.storeindex = cmbothermostates.SelectedIndex
-            If (My.Application.ActiveSimulation.ComponentType <> "pipe" And My.Application.ActiveSimulation.ComponentType <> "SingleVolume") Then
-                DataGridView1.Columns.Add("Time", "Time")
-            End If
+        If (My.Application.ActiveSimulation.ComponentType <> "pipe" And My.Application.ActiveSimulation.ComponentType <> "SingleVolume" And My.Application.ActiveSimulation.ComponentType <> "Branch") Then
+            DataGridView1.Columns.Add("Time", "Time")
+        End If
 
             If cmbothermostates.SelectedIndex = 0 Then
 
@@ -111,7 +111,7 @@ Public Class ucThermoDynamicStates
                 DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
         End If
 
-        If (My.Application.ActiveSimulation.ComponentType <> "SingleVolume") Then
+        If (My.Application.ActiveSimulation.ComponentType <> "SingleVolume" And My.Application.ActiveSimulation.ComponentType <> "Branch") Then
             If cmbothermostates.SelectedIndex = 7 Then
 
                 DataGridView1.Columns.Add("LiquidTemperature", "Liquid Temperature")

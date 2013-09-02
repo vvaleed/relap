@@ -289,6 +289,8 @@ Public Class frmSurface
                                         My.Application.ActiveSimulation.ComponentType = "pipe"
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleVolume Then
                                         My.Application.ActiveSimulation.ComponentType = "SingleVolume"
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Branch Then
+                                        My.Application.ActiveSimulation.ComponentType = "Branch"
 
 
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleJunction Then
@@ -2246,11 +2248,11 @@ Public Class frmSurface
                 mybranch.Fill = True
                 mybranch.FillColor = fillclr
                 mybranch.LineColor = lineclr
-                mybranch.Tag = "BRANCH" & Format(ChildParent.Collections.ObjectCounter("Branch"), "00#")
+                mybranch.Tag = "BR" & Format(ChildParent.Collections.ObjectCounter("Branch"), "00#")
                 ChildParent.Collections.UpdateCounter("Branch")
                 If tag <> "" Then mybranch.Tag = tag
                 gObj = mybranch
-                gObj.Name = "BR-" & Guid.NewGuid.ToString
+                gObj.Name = "BRANCH" & Guid.NewGuid.ToString
                 ChildParent.Collections.BranchCollection.Add(gObj.Name, mybranch)
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
                 'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1

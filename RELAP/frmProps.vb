@@ -2313,6 +2313,40 @@ Public Class frmProps
                 bb.EquilibriumTemperature = e.ChangedItem.Value
             End If
 
+        ElseIf sobj.TipoObjeto = TipoObjeto.Branch Then
+
+            Dim bb As RELAP.SimulationObjects.UnitOps.Branch = ChildParent.Collections.CLCS_BranchCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("Number of Junctions") Then
+                bb.NumberofJunctions = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
+                bb.FlowArea = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Length of Volume") Then
+                bb.LengthofVolume = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Volume of Volume") Then
+                bb.VolumeofVolume = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Azimuthal Angle") Then
+                bb.Azimuthalangle = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inclination Angle") Then
+                bb.InclinationAngle = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Elevation Change") Then
+                bb.ElevationChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Wall Roughness") Then
+                bb.WallRoughness = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
+                bb.HydraulicDiameter = e.ChangedItem.Value
+
+                'control flags
+            End If
+
         ElseIf sobj.TipoObjeto = TipoObjeto.TimeDependentJunction Then
 
             Dim sjn As RELAP.SimulationObjects.UnitOps.TimeDependentJunction = ChildParent.Collections.CLCS_TimeDependentJunctionCollection.Item(sobj.Name)

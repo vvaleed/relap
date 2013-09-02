@@ -27,16 +27,19 @@ Partial Class frmBranchEditor
         '
         'UcBranchEditor1
         '
-        Me.UcBranchEditor1.Location = New System.Drawing.Point(41, 27)
+        Me.UcBranchEditor1.BranchJunctionsGeometry = Nothing
+        Me.UcBranchEditor1.Location = New System.Drawing.Point(12, 12)
         Me.UcBranchEditor1.Name = "UcBranchEditor1"
-        Me.UcBranchEditor1.Size = New System.Drawing.Size(150, 150)
+        Me.UcBranchEditor1.NumberFormat = Nothing
+        Me.UcBranchEditor1.Size = New System.Drawing.Size(1315, 456)
+        Me.UcBranchEditor1.SystemOfUnits = Nothing
         Me.UcBranchEditor1.TabIndex = 0
         '
         'frmBranchEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(1328, 495)
         Me.Controls.Add(Me.UcBranchEditor1)
         Me.Name = "frmBranchEditor"
         Me.Text = "frmBranchEditor"
