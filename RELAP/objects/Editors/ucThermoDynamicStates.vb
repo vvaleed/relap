@@ -109,7 +109,9 @@ Public Class ucThermoDynamicStates
                 DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
                 DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
                 DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
-            End If
+        End If
+
+        If (My.Application.ActiveSimulation.ComponentType <> "SingleVolume") Then
             If cmbothermostates.SelectedIndex = 7 Then
 
                 DataGridView1.Columns.Add("LiquidTemperature", "Liquid Temperature")
@@ -117,9 +119,10 @@ Public Class ucThermoDynamicStates
                 DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
                 DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
             End If
-            If My.Application.ActiveSimulation.ComponentType = "pipe" Then
-                DataGridView1.Columns.Add("Volume", "Volume")
-            End If
+        End If
+        If My.Application.ActiveSimulation.ComponentType = "pipe" Then
+            DataGridView1.Columns.Add("Volume", "Volume")
+        End If
 
     End Sub
 

@@ -2751,12 +2751,11 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
 
                 If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
-                    generate.WriteLine(kvp.Value.UID & "0200 " & fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType)
+                    output = fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType
                 End If
-                Dim Counter = 1
+
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
-                    generate.WriteLine(kvp.Value.UID & "020" & Counter & kvp2.Value.StatesString)
-                    Counter = Counter + 1
+                    generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
                 Next kvp2
                 univID = univID + 1
 
