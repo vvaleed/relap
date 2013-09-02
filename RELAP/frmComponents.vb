@@ -14,6 +14,8 @@
             '.Rows.Add(New Object() {"Correntedeenergia", Me.ImageList2.Images(18), "Correntedeenergia"})
             '.Rows.Add(New Object() {"Misturador", Me.ImageList2.Images(3), "Misturador"})
             '.Rows.Add(New Object() {"Divisor", Me.ImageList2.Images(4), "Divisor"})
+            .Rows.Add(New Object() {"SingleVolume", Me.ImageList2.Images(13), "Single Volume"})
+            .Rows.Add(New Object() {"Tanque", Me.ImageList2.Images(13), "Time Dependent Volume"})
             .Rows.Add(New Object() {"SingleJunction", Me.ImageList2.Images(26), "Single Junction"})
             .Rows.Add(New Object() {"TimeDependentJunction", Me.ImageList2.Images(26), "Time Dependent Junction"})
             '.Rows.Add(New Object() {"Aquecedor", Me.ImageList2.Images(2), "Aquecedor"})
@@ -31,8 +33,8 @@
             '.Rows.Add(New Object() {"RefluxedAbsorber", Me.ImageList2.Images(16), "RefluxedAbsorber"})
             '.Rows.Add(New Object() {"ComponentSeparator", Me.ImageList2.Images(22), "ComponentSeparator"})
 
-            .Rows.Add(New Object() {"Tanque", Me.ImageList2.Images(13), "Time Dependent Volume"})
-            .Rows.Add(New Object() {"SingleVolume", Me.ImageList2.Images(13), "Single Volume"})
+
+
             .Rows.Add(New Object() {"FuelRod", Me.ImageList2.Images(5), "Fuel Rod"})
             .Rows.Add(New Object() {"Simulator", Me.ImageList2.Images(16), "Simulator"})
             .Rows.Add(New Object() {"PWRControlRod", Me.ImageList2.Images(8), "PWR Control Rod"})
