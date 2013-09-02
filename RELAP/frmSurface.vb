@@ -287,6 +287,8 @@ Public Class frmSurface
                                     My.Application.ActiveSimulation.ComponentType = ""
                                     If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
                                         My.Application.ActiveSimulation.ComponentType = "pipe"
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleVolume Then
+                                        My.Application.ActiveSimulation.ComponentType = "SingleVolume"
 
 
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleJunction Then

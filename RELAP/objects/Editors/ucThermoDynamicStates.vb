@@ -1,4 +1,6 @@
-﻿Public Class ucThermoDynamicStates
+﻿Imports Microsoft.MSDN.Samples.GraphicObjects
+
+Public Class ucThermoDynamicStates
 
     ' Private ThermoDynamicStates As List(Of ThermoDynamicState)
     'Public _ThermoDynamicStates As List(Of ThermoDynamicState)
@@ -59,65 +61,65 @@
         DataGridView1.Columns.Clear()
         ThermoDynamicStates.cmbocheck = 1
         ThermoDynamicStates.storeindex = cmbothermostates.SelectedIndex
-        If My.Application.ActiveSimulation.ComponentType <> "pipe" Then
-            DataGridView1.Columns.Add("Time", "Time")
-        End If
+            If (My.Application.ActiveSimulation.ComponentType <> "pipe" And My.Application.ActiveSimulation.ComponentType <> "SingleVolume") Then
+                DataGridView1.Columns.Add("Time", "Time")
+            End If
 
-        If cmbothermostates.SelectedIndex = 0 Then
+            If cmbothermostates.SelectedIndex = 0 Then
 
-            DataGridView1.Columns.Add("Pressure", "Pressure")
-            DataGridView1.Columns.Add("LiquidSpecificInternalEnergy", "Liquid Specific Internal Energy")
-            DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
-            DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
-        End If
-        If cmbothermostates.SelectedIndex = 1 Then
+                DataGridView1.Columns.Add("Pressure", "Pressure")
+                DataGridView1.Columns.Add("LiquidSpecificInternalEnergy", "Liquid Specific Internal Energy")
+                DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
+                DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
+            End If
+            If cmbothermostates.SelectedIndex = 1 Then
 
-            DataGridView1.Columns.Add("Temperature", "Temperature")
-            DataGridView1.Columns.Add("StaticQuality", "Static Quality")
+                DataGridView1.Columns.Add("Temperature", "Temperature")
+                DataGridView1.Columns.Add("StaticQuality", "Static Quality")
 
-        End If
-        If cmbothermostates.SelectedIndex = 2 Then
+            End If
+            If cmbothermostates.SelectedIndex = 2 Then
 
-            DataGridView1.Columns.Add("Pressure", "Pressure")
-            DataGridView1.Columns.Add("StaticQuality", "Static Quality")
+                DataGridView1.Columns.Add("Pressure", "Pressure")
+                DataGridView1.Columns.Add("StaticQuality", "Static Quality")
 
-        End If
-        If cmbothermostates.SelectedIndex = 3 Then
+            End If
+            If cmbothermostates.SelectedIndex = 3 Then
 
-            DataGridView1.Columns.Add("Pressure", "Pressure")
-            DataGridView1.Columns.Add("Temperature", "Temperature")
+                DataGridView1.Columns.Add("Pressure", "Pressure")
+                DataGridView1.Columns.Add("Temperature", "Temperature")
 
-        End If
-        If cmbothermostates.SelectedIndex = 4 Then
+            End If
+            If cmbothermostates.SelectedIndex = 4 Then
 
-            DataGridView1.Columns.Add("Pressure", "Pressure")
-            DataGridView1.Columns.Add("Temperature", "Temperature")
-            DataGridView1.Columns.Add("StaticQuality", "Static Quality")
-        End If
-        If cmbothermostates.SelectedIndex = 5 Then
+                DataGridView1.Columns.Add("Pressure", "Pressure")
+                DataGridView1.Columns.Add("Temperature", "Temperature")
+                DataGridView1.Columns.Add("StaticQuality", "Static Quality")
+            End If
+            If cmbothermostates.SelectedIndex = 5 Then
 
-            DataGridView1.Columns.Add("Pressure", "Pressure")
-            DataGridView1.Columns.Add("Temperature", "Temperature")
-            DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
-        End If
-        If cmbothermostates.SelectedIndex = 6 Then
+                DataGridView1.Columns.Add("Pressure", "Pressure")
+                DataGridView1.Columns.Add("Temperature", "Temperature")
+                DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
+            End If
+            If cmbothermostates.SelectedIndex = 6 Then
 
-            DataGridView1.Columns.Add("Pressure", "Pressure")
-            DataGridView1.Columns.Add("LiquidSpecificInternalEnergy", "Liquid Specific Internal Energy")
-            DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
-            DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
-            DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
-        End If
-        If cmbothermostates.SelectedIndex = 7 Then
+                DataGridView1.Columns.Add("Pressure", "Pressure")
+                DataGridView1.Columns.Add("LiquidSpecificInternalEnergy", "Liquid Specific Internal Energy")
+                DataGridView1.Columns.Add("VaporSpecificInternalEnergy", "Vapor Specific Internal Energy")
+                DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
+                DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
+            End If
+            If cmbothermostates.SelectedIndex = 7 Then
 
-            DataGridView1.Columns.Add("LiquidTemperature", "Liquid Temperature")
-            DataGridView1.Columns.Add("VaporTemperature", "Vapor Temperature")
-            DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
-            DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
-        End If
-        If My.Application.ActiveSimulation.ComponentType = "pipe" Then
-            DataGridView1.Columns.Add("Volume", "Volume")
-        End If
+                DataGridView1.Columns.Add("LiquidTemperature", "Liquid Temperature")
+                DataGridView1.Columns.Add("VaporTemperature", "Vapor Temperature")
+                DataGridView1.Columns.Add("VoidFraction", "Void Fraction")
+                DataGridView1.Columns.Add("NoncondensableQuality", "Non condensable Quality")
+            End If
+            If My.Application.ActiveSimulation.ComponentType = "pipe" Then
+                DataGridView1.Columns.Add("Volume", "Volume")
+            End If
 
     End Sub
 
@@ -154,5 +156,9 @@
             Next
         End If
     End Sub
+
+    Private Function FlowsheetDesignSurface() As Object
+        Throw New NotImplementedException
+    End Function
 
 End Class
