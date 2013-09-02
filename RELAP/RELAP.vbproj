@@ -414,6 +414,9 @@
     <EmbeddedResource Include="objects\Editors\frmJunctionsEditor.resx">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucBranchEditor.resx">
+      <DependentUpon>ucBranchEditor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor.resx">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>

@@ -34,7 +34,15 @@ Namespace RELAP.SimulationObjects.UnitOps
             Outlet = 2
         End Enum
 
-
+        Private _ThermoDynamicStates As ThermoDynamicStates
+        Public Property ThermoDynamicStates() As ThermoDynamicStates
+            Get
+                Return _ThermoDynamicStates
+            End Get
+            Set(ByVal value As ThermoDynamicStates)
+                _ThermoDynamicStates = value
+            End Set
+        End Property
         Private _BranchJunctionsGeometry As BranchJunctionsGeometry
         Public Property BranchJunctionsGeometry() As BranchJunctionsGeometry
             Get
@@ -45,6 +53,95 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private _NumberofJunctions As Double
+        Public Property NumberofJunctions() As Double
+            Get
+                Return _NumberofJunctions
+            End Get
+            Set(ByVal value As Double)
+                _NumberofJunctions = value
+            End Set
+        End Property
+
+        Private m_flowarea As Double
+        Public Property FlowArea() As Double
+            Get
+                Return m_flowarea
+            End Get
+            Set(ByVal value As Double)
+                m_flowarea = value
+            End Set
+        End Property
+
+        Private m_LengthofVolume As Double
+        Public Property LengthofVolume() As Double
+            Get
+                Return m_LengthofVolume
+            End Get
+            Set(ByVal value As Double)
+                m_LengthofVolume = value
+            End Set
+        End Property
+
+        Private m_VolumeofVolume As Double
+        Public Property VolumeofVolume() As Double
+            Get
+                Return m_VolumeofVolume
+            End Get
+            Set(ByVal value As Double)
+                m_VolumeofVolume = value
+            End Set
+        End Property
+
+        Private m_HydraulicDiameter As Double
+        Public Property HydraulicDiameter() As Double
+            Get
+                Return m_HydraulicDiameter
+            End Get
+            Set(ByVal value As Double)
+                m_HydraulicDiameter = value
+            End Set
+        End Property
+
+        Private m_WallRoughness As Double
+        Public Property WallRoughness() As Double
+            Get
+                Return m_WallRoughness
+            End Get
+            Set(ByVal value As Double)
+                m_WallRoughness = value
+            End Set
+        End Property
+
+        Private m_ElevationChange As Double
+        Public Property ElevationChange() As Double
+            Get
+                Return m_ElevationChange
+            End Get
+            Set(ByVal value As Double)
+                m_ElevationChange = value
+            End Set
+        End Property
+
+        Private m_InclinationAngle As Double
+        Public Property InclinationAngle() As Double
+            Get
+                Return m_InclinationAngle
+            End Get
+            Set(ByVal value As Double)
+                m_InclinationAngle = value
+            End Set
+        End Property
+
+        Private m_Azimuthalangle As Double
+        Public Property Azimuthalangle() As Double
+            Get
+                Return m_Azimuthalangle
+            End Get
+            Set(ByVal value As Double)
+                m_Azimuthalangle = value
+            End Set
+        End Property
 
         Private m_EnterVelocityOrMassFlowRate As Boolean
         Public Property EnterVelocityOrMassFlowRate() As Boolean
@@ -294,6 +391,16 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me._FromVolume = 1
             Me.m_ComponentDescription = descricao
             Me._BranchJunctionsGeometry = New BranchJunctionsGeometry
+            Me._ThermoDynamicStates = New ThermoDynamicStates
+            Me._NumberofJunctions = 2
+            Me.m_flowarea = 20.0
+            Me.m_LengthofVolume = 0.0
+            Me.m_VolumeofVolume = 1000000.0
+            Me.m_Azimuthalangle = 0.0
+            Me.m_InclinationAngle = -90.0
+            Me.m_ElevationChange = -50000.0
+            Me.m_WallRoughness = 0.0
+            Me.m_HydraulicDiameter = 0
             Me.m_InitialLiquidMassFlowRate = 0.0
             Me.m_InitialVaporMassFlowRate = 0.0
             Me.m_EnterVelocityOrMassFlowRate = True
@@ -575,7 +682,70 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultType = GetType(Double)
                 'End With
 
-                .Item.Add("Set Branch Junctions Geometry", Me, "BranchJunctionsGeometry", False, "Parameters", "Set Branch Junctions Geometry", True)
+                .Item.Add(("Number of Junctions"), Me, "NumberofJunctions", False, "1.Parameters", "Number of Junctions", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = Format(Me.FlowArea, FlowSheet.Options.NumberFormat)
+                'Tank Volume,Calculation parameters, Tank Volume
+                .Item.Add(FT("Volume Flow Area", su.area), valor, False, "1.Parameters", "Volume Flow Area", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.LengthofVolume, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Length of Volume", su.distance), valor, False, "1.Parameters", "Length of Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.VolumeofVolume, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Volume of Volume", su.volume), valor, False, "1.Parameters", "Volume of Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.Azimuthalangle, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "1.Parameters", "Azimuthal Angle", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.InclinationAngle, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Inclination Angle", su.angle), valor, False, "1.Parameters", "Inclination Angle", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.ElevationChange, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Elevation Change", su.distance), valor, False, "1.Parameters", "Elevation Change", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.WallRoughness, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Wall Roughness", su.distance), valor, False, "1.Parameters", "Wall Roughness", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.HydraulicDiameter, FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Hydraulic Diameter", su.distance), valor, False, "1.Parameters", "Hydraulic Diameter", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                .Item.Add("Thermo Dynamic States", Me, "ThermoDynamicStates", False, "1.Parameters", "Thermo Dynamic States", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(ThermoDynamicState)
+                    .CustomEditor = New RELAP.Editors.UIThermoDynamicStatesEditor
+                End With
+
+                .Item.Add("Set Branch Junctions Geometry", Me, "BranchJunctionsGeometry", False, "1.Parameters", "Set Branch Junctions Geometry", True)
                 With .Item(.Item.Count - 1)
                     .DefaultType = GetType(BranchJunctionsGeometry)
                     .CustomEditor = New RELAP.Editors.UIBranchEditor
