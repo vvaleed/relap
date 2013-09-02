@@ -173,12 +173,22 @@ Namespace RELAP.SimulationObjects.UnitOps
         End Property
 
         Private m_b As Boolean
-        Public Property InterphaseFriction() As Boolean
+        Public Property PipeInterphaseFriction() As Boolean
             Get
                 Return m_b
             End Get
             Set(ByVal value As Boolean)
                 m_b = value
+            End Set
+        End Property
+
+        Private m_b1 As Boolean
+        Public Property RodInterphaseFriction() As Boolean
+            Get
+                Return m_b1
+            End Get
+            Set(ByVal value As Boolean)
+                m_b1 = value
             End Set
         End Property
 
@@ -203,102 +213,6 @@ Namespace RELAP.SimulationObjects.UnitOps
         End Property
 
 
-
-        Private m_pressure As Double
-        Public Property Pressure() As Double
-            Get
-                Return m_pressure
-            End Get
-            Set(ByVal value As Double)
-                m_pressure = value
-            End Set
-        End Property
-
-
-        Private m_temperature As Double
-        Public Property Temperature() As Double
-            Get
-                Return m_temperature
-            End Get
-            Set(ByVal value As Double)
-                m_temperature = value
-            End Set
-        End Property
-
-        Private m_liquidspecificinternalenergy As Double
-        Public Property LiquidSpecificInternalEnergy() As Double
-            Get
-                Return m_liquidspecificinternalenergy
-            End Get
-            Set(ByVal value As Double)
-                m_liquidspecificinternalenergy = value
-            End Set
-        End Property
-
-
-        Private _vapourspecificinternalEnergy As Double
-        Public Property VapourSpecificInternalEnergy() As Double
-            Get
-                Return _vapourspecificinternalEnergy
-            End Get
-            Set(ByVal value As Double)
-                _vapourspecificinternalEnergy = value
-            End Set
-        End Property
-
-        Private _voidFraction As Double
-        Public Property VoidFraction() As Double
-            Get
-                Return _voidFraction
-            End Get
-            Set(ByVal value As Double)
-                _voidFraction = value
-            End Set
-        End Property
-
-        Private _staticquality As Double
-        Public Property StaticQuality() As Double
-            Get
-                Return _staticquality
-            End Get
-            Set(ByVal value As Double)
-                _staticquality = value
-            End Set
-        End Property
-
-        Private _noncondensablequality As Double
-        Public Property NonCondensableQuality() As Double
-            Get
-                Return _noncondensablequality
-            End Get
-            Set(ByVal value As Double)
-                _noncondensablequality = value
-            End Set
-        End Property
-
-
-
-        Private _liquidtemperature As Double
-        Public Property LiquidTemperature() As Double
-            Get
-                Return _liquidtemperature
-            End Get
-            Set(ByVal value As Double)
-                _liquidtemperature = value
-            End Set
-        End Property
-
-
-        Private _vapourtemperature As Double
-        Public Property VapourTemperature() As Double
-            Get
-                Return _vapourtemperature
-            End Get
-            Set(ByVal value As Double)
-                _vapourtemperature = value
-            End Set
-        End Property
-
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
             MyBase.CreateNew()
@@ -307,6 +221,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me.PipeInterphaseFriction = True
             Me.m_flowarea = 20.0
             Me.m_LengthofVolume = 0.0
             Me.m_VolumeofVolume = 1000000.0
@@ -647,38 +562,45 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 'control flags
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2.Volume Control Flags", "Thermal Stratification Model", True)
+                .Item.Add(("Thermal Front Tracking Model"), Me, "ThermalStratificationModel", False, "2.Volume Control Flags", "Thermal Front Tracking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", True, "2.Volume Control Flags", "Mixture Level Tracking Model", True)
+                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", False, "2.Volume Control Flags", "Mixture Level Tracking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Water Packing Scheme"), Me, "WaterPackingScheme", True, "2.Volume Control Flags", "Water Packing Scheme", True)
+                .Item.Add(("Water Packing Scheme"), Me, "WaterPackingScheme", False, "2.Volume Control Flags", "Water Packing Scheme", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Vertical Stratification Model"), Me, "VerticalStratificationModel", True, "2.Volume Control Flags", "Vertical Stratification Model", True)
+                .Item.Add(("Vertical Stratification Model"), Me, "VerticalStratificationModel", False, "2.Volume Control Flags", "Vertical Stratification Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", True, "2.Volume Control Flags", "Interphase Friction Model", True)
+                .Item.Add(("Pipe Interphase Friction Model"), Me, "PipeInterphaseFriction", False, "2.Volume Control Flags", "Pipe Interphase Friction Model", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = True
+                    .DefaultType = GetType(Boolean)
+                End With
+
+                .Item.Add(("Rod Bundle Interphase Friction Model"), Me, "RodInterphaseFriction", False, "2.Volume Control Flags", "Rod Bundle Interphase Friction Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", True, "2.Volume Control Flags", "Compute Wall Friction", True)
+
+                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "2.Volume Control Flags", "Compute Wall Friction", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2.Volume Control Flags", "Equilibrium Temperature", True)
+                .Item.Add(("Equilibrium Temperature Calculation"), Me, "EquilibriumTemperature", False, "2.Volume Control Flags", "Equilibrium Temperature Calculation", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)

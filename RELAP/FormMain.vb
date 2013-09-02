@@ -2539,6 +2539,14 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Function
 
+    Function boolto01(ByVal val) As String
+        If val = True Then
+            Return "0"
+        Else
+            Return "1"
+        End If
+    End Function
+
     Function GetUIDFromTag(ByVal tag) As String
         For Each obj As SimulationObjects_BaseClass In My.Application.ActiveSimulation.Collections.ObjectCollection.Values
             If obj.GraphicObject.Tag = tag Then
@@ -2686,6 +2694,48 @@ sim:                Dim myStream As System.IO.FileStream
 
                 output = ((((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " ") & kvp.Value.LengthofVolume.ToString("F") & " ") & kvp.Value.VolumeofVolume.ToString("F") & " ") & kvp.Value.Azimuthalangle.ToString("F") & " ") & kvp.Value.InclinationAngle.ToString("F") & " ") & kvp.Value.ElevationChange.ToString("F") & " ") & kvp.Value.WallRoughness.ToString("F") & " ") & kvp.Value.HydraulicDiameter.ToString("F") & " ") & "0000000"
                 generate.WriteLine(output)
+
+                If frmInitialSettings.optDefaultFluid.Checked = True Then
+                    fluidchk = "0"
+                ElseIf frmInitialSettings.optWater.Checked = True Then
+                    fluidchk = "1"
+                ElseIf frmInitialSettings.optHeavyWater.Checked = True Then
+                    fluidchk = "2"
+                End If
+
+                If frmInitialSettings.chklistboxBoron.Checked = False Then
+                    boronchk = "0"
+                Else : boronchk = "1"
+                End If
+
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    generate.WriteLine(kvp.Value.UID & "0200 " & fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType)
+                End If
+                Dim Counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    generate.WriteLine(kvp.Value.UID & "020" & Counter & kvp2.Value.StatesString)
+                    Counter = Counter + 1
+                Next kvp2
+                univID = univID + 1
+
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.SingleVolume) In ChildParent.Collections.CLCS_SingleVolumeCollection
+
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Single Volume '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ snglvol")
+
+                output = kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " "
+                output3 = boolto10(kvp.Value.PipeInterphaseFriction)
+                output4 = boolto10(kvp.Value.RodInterphaseFriction)
+                If output4 = "1" Then
+                    output2 = "1"
+                Else : output2 = "0"
+                End If
+                output1 = boolto10(kvp.Value.ThermalStratificationModel) & boolto10(kvp.Value.LevelTrackingModel) & boolto01(kvp.Value.WaterPackingScheme) & boolto01(kvp.Value.VerticalStratificationModel) & output2 & boolto01(kvp.Value.ComputeWallFriction) & boolto10(kvp.Value.EquilibriumTemperature)
+                generate.WriteLine(output & output1)
 
                 If frmInitialSettings.optDefaultFluid.Checked = True Then
                     fluidchk = "0"
