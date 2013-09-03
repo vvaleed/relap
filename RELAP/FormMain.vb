@@ -2814,6 +2814,74 @@ sim:                Dim myStream As System.IO.FileStream
                 '  MsgBox(kvp.Value.ComponentName)
             Next kvp
 
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Valve) In ChildParent.Collections.CLCS_ValveCollection
+                '  MsgBox(kvp.Key)
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Valve '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ valve")
+
+                'output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" '& " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
+                'generate.WriteLine(output)
+
+                'If kvp.Value.EnterVelocityOrMassFlowRate = False Then
+                '    output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
+                'ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
+                '    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseMassFlowRate
+                'End If
+                'generate.WriteLine(output)
+
+                generate.WriteLine(kvp.Value.UID & "0300 " + kvp.Value.ValveType.ValveTypeName)
+
+                If kvp.Value.ValveType.ValveTypeName = "chkvlv" Then
+                    'Static Pressure Controlled Check Valve
+                    'Static Pressure/Flow Controlled Check Valve
+                    'Static/Dynamic Pressure Controlled Check Valve
+
+                    If kvp.Value.ValveType.CheckType = "Static Pressure Controlled Check Valve" Then
+                        output1 = "+1"
+                    ElseIf kvp.Value.ValveType.CheckType = "Static Pressure/Flow Controlled Check Valve" Then
+                        output1 = "0"
+                    ElseIf kvp.Value.ValveType.CheckType = "Static/Dynamic Pressure Controlled Check Valve" Then
+                        output1 = "-1"
+                    Else
+                        output1 = "0"
+                    End If
+                    If kvp.Value.ValveType.checkPosition = "Closed" Then
+                        output2 = "1"
+                    ElseIf kvp.Value.ValveType.checkPosition = "Open" Then
+                        output2 = "0"
+                    Else
+                        MsgBox("Select initial position of check valve")
+                    End If
+                    output = output1 & " " & output2 & " " & CDbl(kvp.Value.ValveType.checkbackpressure).ToString("F") & " " & CDbl(kvp.Value.ValveType.checkleakratio).ToString("F")
+                ElseIf kvp.Value.ValveType.ValveTypeName = "trpvlv" Then
+                    output = CDbl(kvp.Value.ValveType.tripvalvetripno).ToString("F")
+                ElseIf kvp.Value.ValveType.ValveTypeName = "inrvlv" Then
+                    'opens and closes repeatedly
+                    'opens or closes only once
+                    If kvp.Value.ValveType.inertialLatchoption = "opens and closes repeatedly" Then
+                        output1 = "0"
+                    ElseIf kvp.Value.ValveType.inertialLatchoption = "opens or closes only once" Then
+                        output1 = "1"
+                    Else
+                        MsgBox("Select Inertial Valve Latch Option")
+                    End If
+                    If kvp.Value.ValveType.inertialInitialposition = "Closed" Then
+                        output2 = "1"
+                    ElseIf kvp.Value.ValveType.inertialInitialposition = "Open" Then
+                        output2 = "0"
+                    Else
+                        MsgBox("Select initial position of inertial valve")
+                    End If
+                    output = output1 & " " & output2 & " " & CDbl(kvp.Value.ValveType.inertialbackpressure).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialLeakratio).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialinitialangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialminangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmaxangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmomentinertia).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialangularvelocity).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmomentlength).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialradius).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmass).ToString("F")
+
+                End If
+                generate.WriteLine(kvp.Value.UID & "0301 " & output)
+                univID = univID + 1
+
+            Next kvp
+
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Pump) In ChildParent.Collections.CLCS_PumpCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")

@@ -34,17 +34,34 @@ Partial Class ucValveEditor
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.TxtTripvalve1 = New System.Windows.Forms.TextBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.CmbInertial2 = New System.Windows.Forms.ComboBox()
+        Me.CmbInertial1 = New System.Windows.Forms.ComboBox()
+        Me.TxtInertial4 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial3 = New System.Windows.Forms.TextBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial5 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial6 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial7 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial8 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial9 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial10 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial11 = New System.Windows.Forms.TextBox()
+        Me.TxtInertial12 = New System.Windows.Forms.TextBox()
+        Me.TextBox20 = New System.Windows.Forms.TextBox()
+        Me.TextBox23 = New System.Windows.Forms.TextBox()
+        Me.TextBox24 = New System.Windows.Forms.TextBox()
+        Me.TextBox21 = New System.Windows.Forms.TextBox()
+        Me.TextBox22 = New System.Windows.Forms.TextBox()
+        Me.TextBox25 = New System.Windows.Forms.TextBox()
+        Me.TextBox26 = New System.Windows.Forms.TextBox()
+        Me.TextBox27 = New System.Windows.Forms.TextBox()
+        Me.cmdSave = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -177,15 +194,22 @@ Partial Class ucValveEditor
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 296.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.TxtTripvalve1, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox8, 0, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(24, 181)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(21, 67)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(430, 26)
         Me.TableLayoutPanel2.TabIndex = 5
+        '
+        'TxtTripvalve1
+        '
+        Me.TxtTripvalve1.Location = New System.Drawing.Point(137, 3)
+        Me.TxtTripvalve1.Name = "TxtTripvalve1"
+        Me.TxtTripvalve1.Size = New System.Drawing.Size(288, 20)
+        Me.TxtTripvalve1.TabIndex = 19
         '
         'TextBox8
         '
@@ -198,75 +222,94 @@ Partial Class ucValveEditor
         Me.TextBox8.TabIndex = 12
         Me.TextBox8.Text = "Trip Number"
         '
-        'TxtTripvalve1
-        '
-        Me.TxtTripvalve1.Location = New System.Drawing.Point(137, 3)
-        Me.TxtTripvalve1.Name = "TxtTripvalve1"
-        Me.TxtTripvalve1.Size = New System.Drawing.Size(288, 20)
-        Me.TxtTripvalve1.TabIndex = 19
-        '
         'TableLayoutPanel3
         '
         Me.TableLayoutPanel3.AutoSize = True
         Me.TableLayoutPanel3.ColumnCount = 2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 296.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.ComboBox1, 1, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.ComboBox2, 1, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 1, 3)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 1, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.CmbInertial2, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.CmbInertial1, 1, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial4, 1, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial3, 1, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox6, 0, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox7, 0, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox9, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox11, 0, 3)
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(489, 13)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial5, 1, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial6, 1, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial7, 1, 6)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial8, 1, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial9, 1, 8)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial10, 1, 9)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial11, 1, 10)
+        Me.TableLayoutPanel3.Controls.Add(Me.TxtInertial12, 1, 11)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox20, 0, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox23, 0, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox24, 0, 6)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox21, 0, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox22, 0, 8)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox25, 0, 9)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox26, 0, 10)
+        Me.TableLayoutPanel3.Controls.Add(Me.TextBox27, 0, 11)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(24, 67)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 4
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel3.RowCount = 12
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333335!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(430, 108)
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(430, 324)
         Me.TableLayoutPanel3.TabIndex = 6
         '
-        'ComboBox1
+        'CmbInertial2
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Open", "Closed"})
-        Me.ComboBox1.Location = New System.Drawing.Point(137, 30)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(288, 21)
-        Me.ComboBox1.TabIndex = 20
+        Me.CmbInertial2.FormattingEnabled = True
+        Me.CmbInertial2.Items.AddRange(New Object() {"Open", "Closed"})
+        Me.CmbInertial2.Location = New System.Drawing.Point(137, 29)
+        Me.CmbInertial2.Name = "CmbInertial2"
+        Me.CmbInertial2.Size = New System.Drawing.Size(288, 21)
+        Me.CmbInertial2.TabIndex = 20
         '
-        'ComboBox2
+        'CmbInertial1
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"Static Pressure Controlled Check Valve", "Static Pressure/Flow Controlled Check Valve", "Static/Dynamic Pressure Controlled Check Valve"})
-        Me.ComboBox2.Location = New System.Drawing.Point(137, 3)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(289, 21)
-        Me.ComboBox2.TabIndex = 5
+        Me.CmbInertial1.FormattingEnabled = True
+        Me.CmbInertial1.Items.AddRange(New Object() {"opens and closes repeatedly", "opens or closes only once"})
+        Me.CmbInertial1.Location = New System.Drawing.Point(137, 3)
+        Me.CmbInertial1.Name = "CmbInertial1"
+        Me.CmbInertial1.Size = New System.Drawing.Size(289, 21)
+        Me.CmbInertial1.TabIndex = 5
         '
-        'TextBox1
+        'TxtInertial4
         '
-        Me.TextBox1.Location = New System.Drawing.Point(137, 84)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(288, 20)
-        Me.TextBox1.TabIndex = 19
+        Me.TxtInertial4.Location = New System.Drawing.Point(137, 81)
+        Me.TxtInertial4.Name = "TxtInertial4"
+        Me.TxtInertial4.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial4.TabIndex = 19
         '
-        'TextBox3
+        'TxtInertial3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(137, 57)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(288, 20)
-        Me.TextBox3.TabIndex = 18
+        Me.TxtInertial3.Location = New System.Drawing.Point(137, 55)
+        Me.TxtInertial3.Name = "TxtInertial3"
+        Me.TxtInertial3.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial3.TabIndex = 18
         '
         'TextBox6
         '
         Me.TextBox6.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox6.Location = New System.Drawing.Point(3, 57)
+        Me.TextBox6.Location = New System.Drawing.Point(3, 55)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.ReadOnly = True
         Me.TextBox6.Size = New System.Drawing.Size(128, 13)
@@ -277,12 +320,12 @@ Partial Class ucValveEditor
         '
         Me.TextBox7.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox7.Location = New System.Drawing.Point(3, 30)
+        Me.TextBox7.Location = New System.Drawing.Point(3, 29)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(128, 13)
         Me.TextBox7.TabIndex = 13
-        Me.TextBox7.Text = "Check Valve Initial Position"
+        Me.TextBox7.Text = "Valve Initial Position"
         '
         'TextBox9
         '
@@ -293,30 +336,184 @@ Partial Class ucValveEditor
         Me.TextBox9.ReadOnly = True
         Me.TextBox9.Size = New System.Drawing.Size(128, 13)
         Me.TextBox9.TabIndex = 12
-        Me.TextBox9.Text = "Check Valve Type"
+        Me.TextBox9.Text = "Latch Option"
         '
         'TextBox11
         '
         Me.TextBox11.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox11.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox11.Location = New System.Drawing.Point(3, 84)
+        Me.TextBox11.Location = New System.Drawing.Point(3, 81)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
         Me.TextBox11.Size = New System.Drawing.Size(128, 13)
         Me.TextBox11.TabIndex = 16
         Me.TextBox11.Text = "Leak Ratio"
         '
+        'TxtInertial5
+        '
+        Me.TxtInertial5.Location = New System.Drawing.Point(137, 107)
+        Me.TxtInertial5.Name = "TxtInertial5"
+        Me.TxtInertial5.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial5.TabIndex = 22
+        '
+        'TxtInertial6
+        '
+        Me.TxtInertial6.Location = New System.Drawing.Point(137, 133)
+        Me.TxtInertial6.Name = "TxtInertial6"
+        Me.TxtInertial6.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial6.TabIndex = 21
+        '
+        'TxtInertial7
+        '
+        Me.TxtInertial7.Location = New System.Drawing.Point(137, 159)
+        Me.TxtInertial7.Name = "TxtInertial7"
+        Me.TxtInertial7.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial7.TabIndex = 24
+        '
+        'TxtInertial8
+        '
+        Me.TxtInertial8.Location = New System.Drawing.Point(137, 185)
+        Me.TxtInertial8.Name = "TxtInertial8"
+        Me.TxtInertial8.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial8.TabIndex = 26
+        '
+        'TxtInertial9
+        '
+        Me.TxtInertial9.Location = New System.Drawing.Point(137, 211)
+        Me.TxtInertial9.Name = "TxtInertial9"
+        Me.TxtInertial9.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial9.TabIndex = 23
+        '
+        'TxtInertial10
+        '
+        Me.TxtInertial10.Location = New System.Drawing.Point(137, 237)
+        Me.TxtInertial10.Name = "TxtInertial10"
+        Me.TxtInertial10.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial10.TabIndex = 25
+        '
+        'TxtInertial11
+        '
+        Me.TxtInertial11.Location = New System.Drawing.Point(137, 263)
+        Me.TxtInertial11.Name = "TxtInertial11"
+        Me.TxtInertial11.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial11.TabIndex = 27
+        '
+        'TxtInertial12
+        '
+        Me.TxtInertial12.Location = New System.Drawing.Point(137, 289)
+        Me.TxtInertial12.Name = "TxtInertial12"
+        Me.TxtInertial12.Size = New System.Drawing.Size(288, 20)
+        Me.TxtInertial12.TabIndex = 28
+        '
+        'TextBox20
+        '
+        Me.TextBox20.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox20.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox20.Location = New System.Drawing.Point(3, 107)
+        Me.TextBox20.Name = "TextBox20"
+        Me.TextBox20.ReadOnly = True
+        Me.TextBox20.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox20.TabIndex = 29
+        Me.TextBox20.Text = "Initial Flapper Angle"
+        '
+        'TextBox23
+        '
+        Me.TextBox23.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox23.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox23.Location = New System.Drawing.Point(3, 133)
+        Me.TextBox23.Name = "TextBox23"
+        Me.TextBox23.ReadOnly = True
+        Me.TextBox23.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox23.TabIndex = 32
+        Me.TextBox23.Text = "Minimum Flapper Angle"
+        '
+        'TextBox24
+        '
+        Me.TextBox24.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox24.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox24.Location = New System.Drawing.Point(3, 159)
+        Me.TextBox24.Name = "TextBox24"
+        Me.TextBox24.ReadOnly = True
+        Me.TextBox24.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox24.TabIndex = 33
+        Me.TextBox24.Text = "Maximum Flapper Angle"
+        '
+        'TextBox21
+        '
+        Me.TextBox21.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox21.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox21.Location = New System.Drawing.Point(3, 185)
+        Me.TextBox21.Name = "TextBox21"
+        Me.TextBox21.ReadOnly = True
+        Me.TextBox21.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox21.TabIndex = 30
+        Me.TextBox21.Text = "Moment of Inertia"
+        '
+        'TextBox22
+        '
+        Me.TextBox22.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox22.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox22.Location = New System.Drawing.Point(3, 211)
+        Me.TextBox22.Name = "TextBox22"
+        Me.TextBox22.ReadOnly = True
+        Me.TextBox22.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox22.TabIndex = 31
+        Me.TextBox22.Text = "Initial Angular Velocity"
+        '
+        'TextBox25
+        '
+        Me.TextBox25.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox25.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox25.Location = New System.Drawing.Point(3, 237)
+        Me.TextBox25.Name = "TextBox25"
+        Me.TextBox25.ReadOnly = True
+        Me.TextBox25.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox25.TabIndex = 34
+        Me.TextBox25.Text = "Moment Length of Flapper"
+        '
+        'TextBox26
+        '
+        Me.TextBox26.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox26.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox26.Location = New System.Drawing.Point(3, 263)
+        Me.TextBox26.Name = "TextBox26"
+        Me.TextBox26.ReadOnly = True
+        Me.TextBox26.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox26.TabIndex = 35
+        Me.TextBox26.Text = "Radius of Flapper"
+        '
+        'TextBox27
+        '
+        Me.TextBox27.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox27.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox27.Location = New System.Drawing.Point(3, 289)
+        Me.TextBox27.Name = "TextBox27"
+        Me.TextBox27.ReadOnly = True
+        Me.TextBox27.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox27.TabIndex = 36
+        Me.TextBox27.Text = "Mass of Flapper"
+        '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(379, 397)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 7
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
         'ucValveEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.TableLayoutPanel3)
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.CmboboxSelectValve)
         Me.Name = "ucValveEditor"
-        Me.Size = New System.Drawing.Size(998, 488)
+        Me.Size = New System.Drawing.Size(579, 628)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.TableLayoutPanel2.ResumeLayout(False)
@@ -342,13 +539,30 @@ Partial Class ucValveEditor
     Friend WithEvents TxtTripvalve1 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents CmbInertial2 As System.Windows.Forms.ComboBox
+    Friend WithEvents CmbInertial1 As System.Windows.Forms.ComboBox
+    Friend WithEvents TxtInertial4 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial3 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox11 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial5 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial6 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial7 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial8 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial9 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial10 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial11 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtInertial12 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox20 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox23 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox24 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox21 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox22 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox25 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox26 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox27 As System.Windows.Forms.TextBox
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class
