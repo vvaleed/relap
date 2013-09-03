@@ -30,7 +30,7 @@ Partial Class frmValveEditor
         Me.UcValveEditor1.Location = New System.Drawing.Point(12, 12)
         Me.UcValveEditor1.Name = "UcValveEditor1"
         Me.UcValveEditor1.NumberFormat = Nothing
-        Me.UcValveEditor1.Size = New System.Drawing.Size(524, 448)
+        Me.UcValveEditor1.Size = New System.Drawing.Size(524, 633)
         Me.UcValveEditor1.SystemOfUnits = Nothing
         Me.UcValveEditor1.TabIndex = 0
         Me.UcValveEditor1.ValveType = Nothing
@@ -39,7 +39,7 @@ Partial Class frmValveEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(540, 462)
+        Me.ClientSize = New System.Drawing.Size(540, 657)
         Me.Controls.Add(Me.UcValveEditor1)
         Me.Name = "frmValveEditor"
         Me.Text = "frmValveEditor"
