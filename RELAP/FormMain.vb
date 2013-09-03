@@ -2838,44 +2838,26 @@ sim:                Dim myStream As System.IO.FileStream
                     'Static Pressure/Flow Controlled Check Valve
                     'Static/Dynamic Pressure Controlled Check Valve
 
-                    If kvp.Value.ValveType.CheckType = "Static Pressure Controlled Check Valve" Then
+                    If kvp.Value.ValveType.CheckType = "0" Then
                         output1 = "+1"
-                    ElseIf kvp.Value.ValveType.CheckType = "Static Pressure/Flow Controlled Check Valve" Then
+                    ElseIf kvp.Value.ValveType.CheckType = "1" Then
                         output1 = "0"
-                    ElseIf kvp.Value.ValveType.CheckType = "Static/Dynamic Pressure Controlled Check Valve" Then
+                    ElseIf kvp.Value.ValveType.CheckType = "2" Then
                         output1 = "-1"
                     Else
                         output1 = "0"
                     End If
-                    If kvp.Value.ValveType.checkPosition = "Closed" Then
-                        output2 = "1"
-                    ElseIf kvp.Value.ValveType.checkPosition = "Open" Then
-                        output2 = "0"
-                    Else
-                        MsgBox("Select initial position of check valve")
-                    End If
-                    output = output1 & " " & output2 & " " & CDbl(kvp.Value.ValveType.checkbackpressure).ToString("F") & " " & CDbl(kvp.Value.ValveType.checkleakratio).ToString("F")
+                    output = output1 & " " & kvp.Value.ValveType.checkPosition & " " & CDbl(kvp.Value.ValveType.checkbackpressure).ToString("F") & " " & CDbl(kvp.Value.ValveType.checkleakratio).ToString("F")
                 ElseIf kvp.Value.ValveType.ValveTypeName = "trpvlv" Then
-                    output = CDbl(kvp.Value.ValveType.tripvalvetripno).ToString("F")
+                    output = kvp.Value.ValveType.tripvalvetripno
                 ElseIf kvp.Value.ValveType.ValveTypeName = "inrvlv" Then
-                    'opens and closes repeatedly
-                    'opens or closes only once
-                    If kvp.Value.ValveType.inertialLatchoption = "opens and closes repeatedly" Then
-                        output1 = "0"
-                    ElseIf kvp.Value.ValveType.inertialLatchoption = "opens or closes only once" Then
-                        output1 = "1"
-                    Else
-                        MsgBox("Select Inertial Valve Latch Option")
-                    End If
-                    If kvp.Value.ValveType.inertialInitialposition = "Closed" Then
-                        output2 = "1"
-                    ElseIf kvp.Value.ValveType.inertialInitialposition = "Open" Then
-                        output2 = "0"
-                    Else
-                        MsgBox("Select initial position of inertial valve")
-                    End If
-                    output = output1 & " " & output2 & " " & CDbl(kvp.Value.ValveType.inertialbackpressure).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialLeakratio).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialinitialangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialminangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmaxangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmomentinertia).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialangularvelocity).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmomentlength).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialradius).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmass).ToString("F")
-
+                    output = kvp.Value.ValveType.inertialLatchoption & " " & kvp.Value.ValveType.inertialInitialposition & " " & CDbl(kvp.Value.ValveType.inertialbackpressure).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialLeakratio).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialinitialangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialminangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmaxangle).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmomentinertia).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialangularvelocity).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmomentlength).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialradius).ToString("F") & " " & CDbl(kvp.Value.ValveType.inertialmass).ToString("F")
+                ElseIf kvp.Value.ValveType.ValveTypeName = "mtrvlv" Then
+                    output = kvp.Value.ValveType.pmotor1 & " " & kvp.Value.ValveType.pmotor2 & " " & CDbl(kvp.Value.ValveType.pmotor3).ToString("F") & " " & CDbl(kvp.Value.ValveType.pmotor4).ToString("F") & " " & kvp.Value.ValveType.pmotor5
+                ElseIf kvp.Value.ValveType.ValveTypeName = "srvvlv" Then
+                    output = kvp.Value.ValveType.pservo1 & " " & kvp.Value.ValveType.pservo2
+                ElseIf kvp.Value.ValveType.ValveTypeName = "rlfvlv" Then
+                    output = kvp.Value.ValveType.prel1 & " " & CDbl(kvp.Value.ValveType.prel2).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel3).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel4).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel5).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel6).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel7).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel8).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel9).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel10).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel11).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel12).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel13).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel14).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel15).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel16).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel17).ToString("F")
                 End If
                 generate.WriteLine(kvp.Value.UID & "0301 " & output)
                 univID = univID + 1

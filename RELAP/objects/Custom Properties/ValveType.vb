@@ -11,6 +11,16 @@
         End Set
     End Property
 
+    Private _selectValveLoad As String
+    Public Property selectValveLoad() As String
+        Get
+            Return _selectValveLoad
+        End Get
+        Set(ByVal value As String)
+            _selectValveLoad = value
+        End Set
+    End Property
+
 
     Private _CheckType As String
     Public Property CheckType() As String
@@ -179,6 +189,246 @@
         End Get
         Set(ByVal value As String)
             _inertialmass = value
+        End Set
+    End Property
+
+    Private _pmotor1 As String
+    Public Property pmotor1() As String
+        Get
+            Return _pmotor1
+        End Get
+        Set(ByVal value As String)
+            _pmotor1 = value
+        End Set
+    End Property
+
+    Private _pmotor2 As String
+    Public Property pmotor2() As String
+        Get
+            Return _pmotor2
+        End Get
+        Set(ByVal value As String)
+            _pmotor2 = value
+        End Set
+    End Property
+    Private _pmotor3 As String
+    Public Property pmotor3() As String
+        Get
+            Return _pmotor3
+        End Get
+        Set(ByVal value As String)
+            _pmotor3 = value
+        End Set
+    End Property
+
+    Private _pmotor4 As String
+    Public Property pmotor4() As String
+        Get
+            Return _pmotor4
+        End Get
+        Set(ByVal value As String)
+            _pmotor4 = value
+        End Set
+    End Property
+    Private _pmotor5 As String
+    Public Property pmotor5() As String
+        Get
+            Return _pmotor5
+        End Get
+        Set(ByVal value As String)
+            _pmotor5 = value
+        End Set
+    End Property
+
+    Private _pservo1 As String
+    Public Property pservo1() As String
+        Get
+            Return _pservo1
+        End Get
+        Set(ByVal value As String)
+            _pservo1 = value
+        End Set
+    End Property
+
+    Private _pservo2 As String
+    Public Property pservo2() As String
+        Get
+            Return _pservo2
+        End Get
+        Set(ByVal value As String)
+            _pservo2 = value
+        End Set
+    End Property
+
+    Private _prel1 As String
+    Public Property prel1() As String
+        Get
+            Return _prel1
+        End Get
+        Set(ByVal value As String)
+            _prel1 = value
+        End Set
+    End Property
+
+    Private _prel2 As String
+    Public Property prel2() As String
+        Get
+            Return _prel2
+        End Get
+        Set(ByVal value As String)
+            _prel2 = value
+        End Set
+    End Property
+
+    Private _prel3 As String
+    Public Property prel3() As String
+        Get
+            Return _prel3
+        End Get
+        Set(ByVal value As String)
+            _prel3 = value
+        End Set
+    End Property
+
+    Private _prel4 As String
+    Public Property prel4() As String
+        Get
+            Return _prel4
+        End Get
+        Set(ByVal value As String)
+            _prel4 = value
+        End Set
+    End Property
+
+
+    Private _prel5 As String
+    Public Property prel5() As String
+        Get
+            Return _prel5
+        End Get
+        Set(ByVal value As String)
+            _prel5 = value
+        End Set
+    End Property
+
+    Private _prel6 As String
+    Public Property prel6() As String
+        Get
+            Return _prel6
+        End Get
+        Set(ByVal value As String)
+            _prel6 = value
+        End Set
+    End Property
+
+    Private _prel7 As String
+    Public Property prel7() As String
+        Get
+            Return _prel7
+        End Get
+        Set(ByVal value As String)
+            _prel7 = value
+        End Set
+    End Property
+
+    Private _prel8 As String
+    Public Property prel8() As String
+        Get
+            Return _prel8
+        End Get
+        Set(ByVal value As String)
+            _prel8 = value
+        End Set
+    End Property
+
+    Private _prel9 As String
+    Public Property prel9() As String
+        Get
+            Return _prel9
+        End Get
+        Set(ByVal value As String)
+            _prel9 = value
+        End Set
+    End Property
+
+    Private _prel10 As String
+    Public Property prel10() As String
+        Get
+            Return _prel10
+        End Get
+        Set(ByVal value As String)
+            _prel10 = value
+        End Set
+    End Property
+
+    Private _prel11 As String
+    Public Property prel11() As String
+        Get
+            Return _prel11
+        End Get
+        Set(ByVal value As String)
+            _prel11 = value
+        End Set
+    End Property
+
+    Private _prel12 As String
+    Public Property prel12() As String
+        Get
+            Return _prel12
+        End Get
+        Set(ByVal value As String)
+            _prel12 = value
+        End Set
+    End Property
+
+    Private _prel13 As String
+    Public Property prel13() As String
+        Get
+            Return _prel13
+        End Get
+        Set(ByVal value As String)
+            _prel13 = value
+        End Set
+    End Property
+
+
+    Private _prel14 As String
+    Public Property prel14() As String
+        Get
+            Return _prel14
+        End Get
+        Set(ByVal value As String)
+            _prel14 = value
+        End Set
+    End Property
+
+    Private _prel15 As String
+    Public Property prel15() As String
+        Get
+            Return _prel15
+        End Get
+        Set(ByVal value As String)
+            _prel15 = value
+        End Set
+    End Property
+
+    Private _prel16 As String
+    Public Property prel16() As String
+        Get
+            Return _prel16
+        End Get
+        Set(ByVal value As String)
+            _prel16 = value
+        End Set
+    End Property
+
+    Private _prel17 As String
+    Public Property prel17() As String
+        Get
+            Return _prel17
+        End Get
+        Set(ByVal value As String)
+            _prel17 = value
         End Set
     End Property
 
