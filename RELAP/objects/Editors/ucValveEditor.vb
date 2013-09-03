@@ -28,4 +28,6 @@
             _nf = value
         End Set
     End Property
+
+   
 End Class
