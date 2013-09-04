@@ -53,25 +53,6 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_InitialLiquidVelocity = value
             End Set
         End Property
-        Private _FromVolume As String
-        Public Property FromVolume() As String
-            Get
-                Return _FromVolume
-            End Get
-            Set(ByVal value As String)
-                _FromVolume = value
-            End Set
-        End Property
-        Private _ToVolume As String
-        Public Property ToVolume() As String
-            Get
-                Return _ToVolume
-            End Get
-            Set(ByVal value As String)
-                _ToVolume = value
-            End Set
-        End Property
-
 
         Private m_InitialVaporVelocity As Double
         Public Property InitialVaporVelocity() As Double
@@ -113,15 +94,25 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_InterphaseMassFlowRate As Double
-        Public Property InterphaseMassFlowRate() As Double
+        Private _FromVolume As String
+        Public Property FromVolume() As String
             Get
-                Return m_InterphaseMassFlowRate
+                Return _FromVolume
             End Get
-            Set(ByVal value As Double)
-                m_InterphaseMassFlowRate = value
+            Set(ByVal value As String)
+                _FromVolume = value
             End Set
         End Property
+        Private _ToVolume As String
+        Public Property ToVolume() As String
+            Get
+                Return _ToVolume
+            End Get
+            Set(ByVal value As String)
+                _ToVolume = value
+            End Set
+        End Property
+
         Private _FromDirection As Direction
         Public Property FromDirection() As Direction
             Get
@@ -283,6 +274,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.m_InitialLiquidMassFlowRate = 0.0
             Me.m_InitialVaporMassFlowRate = 0.0
+            Me.m_InterphaseVelocity = 0.0
             Me.m_EnterVelocityOrMassFlowRate = True
             Me.FillNodeItems()
             Me.QTFillNodeItems()
@@ -642,49 +634,40 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
+                valor = Format(Me.InitialLiquidVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Liquid Velocity", valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialVaporVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Vapor Velocity", True)
+                valor = Format(Me.InitialVaporVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Vapor Velocity", valor, False, "Single Junction Initial Conditions", "Initial Vapor Velocity", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InterphaseVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Interphase Velocity", True)
+                valor = Format(Me.InitialLiquidMassFlowRate, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Liquid Mass Flow Rate", valor, False, "Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
+                valor = Format(Me.InitialVaporMassFlowRate, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Vapor Mass Flow Rate", valor, False, "Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
+                valor = Format(Me.InterphaseVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Interphase Velocity", valor, False, "Single Junction Initial Conditions", "Interphase Velocity", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InterphaseMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Interphase Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-
                 ' valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
                 .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
