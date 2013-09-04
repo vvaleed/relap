@@ -1399,7 +1399,7 @@ Imports RELAP.RELAP.FormClasses
 
             ' karwai by waleed and afnan
 
-
+            'singlejunction
             If gObjTo.TipoObjeto = TipoObjeto.SingleJunction Then
                 Me.Collections.CLCS_SingleJunctionCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
                 FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
@@ -1410,7 +1410,6 @@ Imports RELAP.RELAP.FormClasses
                 ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
                 '  gObjTo.
             End If
-
 
             'time dependent junction
             If gObjTo.TipoObjeto = TipoObjeto.TimeDependentJunction Then
@@ -1424,7 +1423,17 @@ Imports RELAP.RELAP.FormClasses
                 '  gObjTo.
             End If
 
-
+            'valve
+            If gObjTo.TipoObjeto = TipoObjeto.Valve Then
+                Me.Collections.CLCS_ValveCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                '  gObjTo.
+            End If
+            If gObjFrom.TipoObjeto = TipoObjeto.Valve Then
+                Me.Collections.CLCS_ValveCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                '  gObjTo.
+            End If
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
             Dim InConSlot, OutConSlot As New ConnectionPoint

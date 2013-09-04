@@ -2775,7 +2775,7 @@ sim:                Dim myStream As System.IO.FileStream
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then
                     output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
                 ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
-                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseMassFlowRate
+                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseVelocity
                 End If
                 generate.WriteLine(output)
 
@@ -2820,20 +2820,60 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*         Component Valve '" & kvp.Value.GraphicObject.Tag & "'")
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ valve")
+                output1 = boolto10(kvp.Value.pvterm)
+                output2 = boolto10(kvp.Value.CCFL)
+                If kvp.Value.StratificationModel.ToString = "Dont_use_this_model" Then
+                    output3 = "0"
+                ElseIf kvp.Value.StratificationModel.ToString = "upward_oriented_junction" Then
+                    output3 = "1"
+                ElseIf kvp.Value.StratificationModel.ToString = "downward_oriented_junction" Then
+                    output3 = "2"
+                ElseIf kvp.Value.StratificationModel.ToString = "centrally_located_junction" Then
+                    output3 = "3"
+                End If
+                output4 = boolto01(kvp.Value.chokingModel)
+                If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output5 = "1"
+                ElseIf kvp.Value.AreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output5 = "2"
+                End If
+                If kvp.Value.MomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output6 = "0"
+                ElseIf kvp.Value.MomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output6 = "1"
+                End If
+                If kvp.Value.MomentumFlux.ToString = "To_and_From_Volume" Then
+                    output7 = "0"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_From_Volume" Then
+                    output7 = "1"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_To_Volume" Then
+                    output7 = "2"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
+                    output7 = "3"
+                End If
+                output = kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7
+                generate.WriteLine(kvp.Value.UID & "0101 " & output)
 
-                'output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" '& " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
-                'generate.WriteLine(output)
+                If kvp.Value.EnterVelocityOrMassFlowRate = False Then
+                    output = (((kvp.Value.UID & "0201 " & "0" & " ") & " " & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
+                ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
+                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & " " & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseVelocity
+                End If
+                generate.WriteLine(output)
 
-                'If kvp.Value.EnterVelocityOrMassFlowRate = False Then
-                '    output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
-                'ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
-                '    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseMassFlowRate
-                'End If
-                'generate.WriteLine(output)
+                univID = univID + 1
 
                 generate.WriteLine(kvp.Value.UID & "0300 " + kvp.Value.ValveType.ValveTypeName)
 
-                If kvp.Value.ValveType.ValveTypeName = "chkvlv" Then
+                If kvp.Value.ValveType.ValveTypeName = Nothing Then
+                    MsgBox("Select Valve type")
+                    output = ""
+
+                ElseIf kvp.Value.ValveType.ValveTypeName = "chkvlv" Then
                     'Static Pressure Controlled Check Valve
                     'Static Pressure/Flow Controlled Check Valve
                     'Static/Dynamic Pressure Controlled Check Valve
