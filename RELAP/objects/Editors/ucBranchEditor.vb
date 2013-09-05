@@ -29,10 +29,61 @@
         End Set
     End Property
 
+    Private Sub ucBranchEditor_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.BranchGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
+        Dim myCOTk As RELAP.SimulationObjects.UnitOps.Branch = My.Application.ActiveSimulation.Collections.CLCS_BranchCollection(gobj.Name)
+
+
+        For i = 1 To myCOTk.NumberofJunctions
+            dgvBranch.Rows.Add(i.ToString)
+        Next
+        'If myCOTk.BranchJunctionsGeometry.BranchGeometry.Count <> 0 Then
+        '    Dim i = 1
+        '    For Each row As DataGridViewRow In dgvBranch.Rows
+        '        '  row.Cells(0).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).FromComponent
+        '        row.Cells(1).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).FromComponentVolumeNumber
+        '        '  row.Cells(2).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).FromFaceNumber
+        '        '  row.Cells(3).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).ToComponent
+        '        row.Cells(4).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).ToComponentVolumeNumber
+        '        ' row.Cells(5).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).ToFaceNumber
+        '        row.Cells(6).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).JunctionArea
+        '        row.Cells(7).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).FFLossCo
+        '        row.Cells(8).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).RFlossCo
+        '        row.Cells(9).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).SubcooledDischargeCo
+        '        row.Cells(10).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).TwoPhaseDischargeCo
+        '        row.Cells(11).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).SuperheatedDischargeCo
+        '        row.Cells(12).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).LiquidMassFlow
+        '        row.Cells(13).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).VaporMassFlow
+        '        i = i + 1
+        '    Next
+
+        'Else
+
+        '    For Each row As DataGridViewRow In dgvBranch.Rows
+        '        'row.Cells(0).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).FromComponent
+        '        row.Cells(1).Value = 1
+        '        'row.Cells(2).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).FromFaceNumber
+        '        ' row.Cells(3).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).ToComponent
+        '        row.Cells(4).Value = 1
+        '        'row.Cells(5).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).ToFaceNumber
+        '        row.Cells(6).Value = 0.0
+        '        row.Cells(7).Value = 0.0
+        '        row.Cells(8).Value = 0.0
+        '        row.Cells(9).Value = 1.0
+        '        row.Cells(10).Value = 1.0
+        '        row.Cells(11).Value = 1.0
+        '        row.Cells(12).Value = 0.0
+        '        row.Cells(13).Value = 0.0
+
+
+        '    Next
+        'End If
+    End Sub
+
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19 As Object
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14 As Object
 
         If Not Me.BranchJunctionsGeometry Is Nothing Then
             Me.BranchJunctionsGeometry.BranchGeometry.Clear()
@@ -54,16 +105,11 @@
             v12 = row.Cells(11).Value
             v13 = row.Cells(12).Value
             v14 = row.Cells(13).Value
-            v15 = row.Cells(14).Value
-            v16 = row.Cells(15).Value
-            v17 = row.Cells(16).Value
-            v18 = row.Cells(17).Value
-            v19 = row.Cells(18).Value
-            Me.BranchJunctionsGeometry.BranchGeometry.Add(row.Index + 1, New BranchGeometry(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19))
+            Me.BranchJunctionsGeometry.BranchGeometry.Add(row.Index + 1, New BranchGeometry(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14))
         Next
     End Sub
 
-    Private Sub dgvBranch_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles dgvBranch.RowsAdded
+    Private Sub dgvBranch_RowsAdded(ByVal sender As Object, ByVal e As DataGridViewRowsAddedEventArgs) Handles dgvBranch.RowsAdded
         Try
 
             Dim cbo As DataGridViewComboBoxCell = dgvBranch.Rows(e.RowIndex).Cells(0)
@@ -83,4 +129,16 @@
 
         End Try
     End Sub
+
+    Private Sub CheckBoxEntermass_CheckStateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles CheckBoxEntermass.CheckStateChanged
+        If CheckBoxEntermass.Checked = True Then
+            dgvBranch.Columns(12).HeaderText = "Initial Liquid Mass Flow"
+            dgvBranch.Columns(13).HeaderText = "Initial Vapor Mass Flow"
+        ElseIf CheckBoxEntermass.Checked = False Then
+            dgvBranch.Columns(12).HeaderText = "Initial Liquid Velocity"
+            dgvBranch.Columns(13).HeaderText = "Initial Vapor Velocity"
+        End If
+    End Sub
+
+   
 End Class
