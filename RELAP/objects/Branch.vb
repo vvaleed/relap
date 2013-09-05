@@ -53,12 +53,12 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private _NumberofJunctions As Double
-        Public Property NumberofJunctions() As Double
+        Private _NumberofJunctions As Integer
+        Public Property NumberofJunctions() As Integer
             Get
                 Return _NumberofJunctions
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As Integer)
                 _NumberofJunctions = value
             End Set
         End Property
