@@ -2622,15 +2622,20 @@ sim:                Dim myStream As System.IO.FileStream
 
             ' 110  noncondensible gas
             Dim gascount As Integer = 1
+            Dim i = 1
             'If frmInitialSettings.chklistboxCondensibleGases.SelectedItems.Count = 0 Then
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*          Non condensible gases card")
             generate.WriteLine("*======================================================================")
 
-            output = frmInitialSettings.chklistboxCondensibleGases.CheckedItems(0).ToString
-
+            output = ""
+            For i = 0 To frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count - 1
+                output = output & " " & frmInitialSettings.chklistboxCondensibleGases.CheckedItems(i).ToString
+            Next
             generate.WriteLine("110 " & output)
             generate.WriteLine("115 " & "1.0")
+            generate.WriteLine("50000000 couple" & frmInitialSettings.cboCoupleStyle.SelectedText)
+            generate.WriteLine("51010000 1 " & RELAP.App.GetUIDFromTag(frmInitialSettings.cboDebrisVolume.SelectedText) & " " & frmInitialSettings.cboDebrisSource.SelectedValue & " " & frmInitialSettings.cboDebrisBreakup.SelectedValue & " " & frmInitialSettings.txtMaxHydraulicStep.Text & " " & frmInitialSettings.txtCoupleTimeStep.Text)
 
 
 
@@ -2641,7 +2646,7 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("201 " & output)
 
             'card 203
-            Dim i = 1
+            i = 1
             Dim row As DataGridViewRow
             For j = 0 To My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows.Count - 2
                 row = My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows(j)

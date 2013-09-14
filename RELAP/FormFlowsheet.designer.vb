@@ -137,7 +137,7 @@ Partial Class FormFlowsheet
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel4, Me.TSBtabela, Me.TSBTexto, Me.ToolStripButton19, Me.ToolStripButton12, Me.ToolStripSeparator5, Me.ToolStripButton1, Me.TSTBZoom, Me.ToolStripButton2, Me.ToolStripButton20, Me.ToolStripSeparator6, Me.ToolStripButton18, Me.ToolStripButton6, Me.ToolStripButton11, Me.ToolStripButton10, Me.ToolStripSeparator4, Me.ToolStripButton16, Me.ToolStripButton17})
         Me.ToolStrip4.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(421, 25)
+        Me.ToolStrip4.Size = New System.Drawing.Size(418, 25)
         Me.ToolStrip4.TabIndex = 4
         Me.ToolStrip4.Text = "Flowchart"
         Me.ToolStrip4.Visible = False
@@ -146,7 +146,7 @@ Partial Class FormFlowsheet
         '
         Me.ToolStripLabel4.Enabled = False
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
-        Me.ToolStripLabel4.Size = New System.Drawing.Size(55, 22)
+        Me.ToolStripLabel4.Size = New System.Drawing.Size(52, 22)
         Me.ToolStripLabel4.Text = "PFD Area"
         '
         'TSBtabela
@@ -315,13 +315,13 @@ Partial Class FormFlowsheet
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl1, Me.cboProblemType, Me.lbl2, Me.cboProblemOption, Me.lbll, Me.cboInputCheck, Me.ToolStripLabel3, Me.ToolStripComboBoxUnitSystem, Me.lbl3, Me.cboOutputUnits, Me.ToolStripSeparator2, Me.ToolStripLabel6, Me.ToolStripComboBoxNumberFormatting, Me.ToolStripSeparator3, Me.ToolStripLabel7, Me.ToolStripComboBoxNumberFractionFormatting})
         Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1047, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1006, 25)
         Me.ToolStrip1.TabIndex = 9
         '
         'lbl1
         '
         Me.lbl1.Name = "lbl1"
-        Me.lbl1.Size = New System.Drawing.Size(81, 22)
+        Me.lbl1.Size = New System.Drawing.Size(72, 22)
         Me.lbl1.Text = "Problem Type"
         '
         'cboProblemType
@@ -333,7 +333,7 @@ Partial Class FormFlowsheet
         'lbl2
         '
         Me.lbl2.Name = "lbl2"
-        Me.lbl2.Size = New System.Drawing.Size(92, 22)
+        Me.lbl2.Size = New System.Drawing.Size(80, 22)
         Me.lbl2.Text = "Problem Option"
         '
         'cboProblemOption
@@ -345,7 +345,7 @@ Partial Class FormFlowsheet
         'lbll
         '
         Me.lbll.Name = "lbll"
-        Me.lbll.Size = New System.Drawing.Size(71, 22)
+        Me.lbll.Size = New System.Drawing.Size(65, 22)
         Me.lbll.Text = "Input Check"
         '
         'cboInputCheck
@@ -357,7 +357,7 @@ Partial Class FormFlowsheet
         'ToolStripLabel3
         '
         Me.ToolStripLabel3.Name = "ToolStripLabel3"
-        Me.ToolStripLabel3.Size = New System.Drawing.Size(89, 22)
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(82, 22)
         Me.ToolStripLabel3.Text = "System of Units"
         '
         'ToolStripComboBoxUnitSystem
@@ -369,7 +369,7 @@ Partial Class FormFlowsheet
         'lbl3
         '
         Me.lbl3.Name = "lbl3"
-        Me.lbl3.Size = New System.Drawing.Size(75, 22)
+        Me.lbl3.Size = New System.Drawing.Size(68, 22)
         Me.lbl3.Text = "Output Units"
         '
         'cboOutputUnits
@@ -387,7 +387,7 @@ Partial Class FormFlowsheet
         '
         Me.ToolStripLabel6.Enabled = False
         Me.ToolStripLabel6.Name = "ToolStripLabel6"
-        Me.ToolStripLabel6.Size = New System.Drawing.Size(113, 24)
+        Me.ToolStripLabel6.Size = New System.Drawing.Size(99, 22)
         Me.ToolStripLabel6.Text = "Number Formatting"
         Me.ToolStripLabel6.Visible = False
         '
@@ -396,7 +396,7 @@ Partial Class FormFlowsheet
         Me.ToolStripComboBoxNumberFormatting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ToolStripComboBoxNumberFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
         Me.ToolStripComboBoxNumberFormatting.Name = "ToolStripComboBoxNumberFormatting"
-        Me.ToolStripComboBoxNumberFormatting.Size = New System.Drawing.Size(121, 27)
+        Me.ToolStripComboBoxNumberFormatting.Size = New System.Drawing.Size(121, 25)
         Me.ToolStripComboBoxNumberFormatting.Visible = False
         '
         'ToolStripSeparator3
@@ -408,7 +408,7 @@ Partial Class FormFlowsheet
         '
         Me.ToolStripLabel7.Enabled = False
         Me.ToolStripLabel7.Name = "ToolStripLabel7"
-        Me.ToolStripLabel7.Size = New System.Drawing.Size(112, 24)
+        Me.ToolStripLabel7.Size = New System.Drawing.Size(101, 22)
         Me.ToolStripLabel7.Text = "Fraction Formatting"
         Me.ToolStripLabel7.Visible = False
         '
@@ -428,7 +428,7 @@ Partial Class FormFlowsheet
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.ShowItemToolTips = True
-        Me.MenuStrip1.Size = New System.Drawing.Size(154, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(149, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         Me.MenuStrip1.Visible = False
@@ -439,7 +439,7 @@ Partial Class FormFlowsheet
         Me.ConfiguraçõesToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly
         Me.ConfiguraçõesToolStripMenuItem.MergeIndex = 0
         Me.ConfiguraçõesToolStripMenuItem.Name = "ConfiguraçõesToolStripMenuItem"
-        Me.ConfiguraçõesToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.ConfiguraçõesToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.ConfiguraçõesToolStripMenuItem.Text = "&Settings"
         '
         'ComponentesToolStripMenuItem
@@ -449,8 +449,8 @@ Partial Class FormFlowsheet
         Me.ComponentesToolStripMenuItem.MergeIndex = 0
         Me.ComponentesToolStripMenuItem.Name = "ComponentesToolStripMenuItem"
         Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+                    Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(243, 22)
         Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, "Opens the configuration window for the active simulation")
         Me.ComponentesToolStripMenuItem.Text = "Simulation Settings"
         '
@@ -475,7 +475,7 @@ Partial Class FormFlowsheet
         Me.TSMIMaterialStream.Image = Global.RELAP.My.Resources.Resources.arrow_right
         Me.TSMIMaterialStream.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIMaterialStream.Name = "TSMIMaterialStream"
-        Me.TSMIMaterialStream.Size = New System.Drawing.Size(157, 22)
+        Me.TSMIMaterialStream.Size = New System.Drawing.Size(160, 22)
         Me.TSMIMaterialStream.Text = "Material Stream"
         '
         'TSMIEnergyStream
@@ -483,7 +483,7 @@ Partial Class FormFlowsheet
         Me.TSMIEnergyStream.Image = Global.RELAP.My.Resources.Resources.arrow_right2
         Me.TSMIEnergyStream.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIEnergyStream.Name = "TSMIEnergyStream"
-        Me.TSMIEnergyStream.Size = New System.Drawing.Size(157, 22)
+        Me.TSMIEnergyStream.Size = New System.Drawing.Size(160, 22)
         Me.TSMIEnergyStream.Text = "Energy Stream"
         '
         'OperaçõesUnitáriasToolStripMenuItem
@@ -498,7 +498,7 @@ Partial Class FormFlowsheet
         Me.TSMIMixer.Image = Global.RELAP.My.Resources.Resources.node_in_copy
         Me.TSMIMixer.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIMixer.Name = "TSMIMixer"
-        Me.TSMIMixer.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIMixer.Size = New System.Drawing.Size(215, 22)
         Me.TSMIMixer.Text = "Mixer"
         '
         'TSMISplitter
@@ -506,7 +506,7 @@ Partial Class FormFlowsheet
         Me.TSMISplitter.Image = Global.RELAP.My.Resources.Resources.node_out_copy
         Me.TSMISplitter.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMISplitter.Name = "TSMISplitter"
-        Me.TSMISplitter.Size = New System.Drawing.Size(220, 22)
+        Me.TSMISplitter.Size = New System.Drawing.Size(215, 22)
         Me.TSMISplitter.Text = "Splitter"
         '
         'TSMICompressor
@@ -514,7 +514,7 @@ Partial Class FormFlowsheet
         Me.TSMICompressor.Image = Global.RELAP.My.Resources.Resources.compressor_copy
         Me.TSMICompressor.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMICompressor.Name = "TSMICompressor"
-        Me.TSMICompressor.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICompressor.Size = New System.Drawing.Size(215, 22)
         Me.TSMICompressor.Text = "Adiabatic Compressor"
         '
         'TSMIExpander
@@ -522,7 +522,7 @@ Partial Class FormFlowsheet
         Me.TSMIExpander.Image = Global.RELAP.My.Resources.Resources.turbina_copy
         Me.TSMIExpander.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIExpander.Name = "TSMIExpander"
-        Me.TSMIExpander.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIExpander.Size = New System.Drawing.Size(215, 22)
         Me.TSMIExpander.Text = "Adiabatic Expander"
         '
         'TSMIPump
@@ -530,7 +530,7 @@ Partial Class FormFlowsheet
         Me.TSMIPump.Image = Global.RELAP.My.Resources.Resources.pump_copy
         Me.TSMIPump.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIPump.Name = "TSMIPump"
-        Me.TSMIPump.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIPump.Size = New System.Drawing.Size(215, 22)
         Me.TSMIPump.Text = "Adiabatic Pump"
         '
         'TSMIPipe
@@ -538,7 +538,7 @@ Partial Class FormFlowsheet
         Me.TSMIPipe.Image = Global.RELAP.My.Resources.Resources.pipe_copy
         Me.TSMIPipe.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIPipe.Name = "TSMIPipe"
-        Me.TSMIPipe.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIPipe.Size = New System.Drawing.Size(215, 22)
         Me.TSMIPipe.Text = "Pipe Segment"
         '
         'TSMIValve
@@ -546,7 +546,7 @@ Partial Class FormFlowsheet
         Me.TSMIValve.Image = Global.RELAP.My.Resources.Resources.valve_copy
         Me.TSMIValve.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIValve.Name = "TSMIValve"
-        Me.TSMIValve.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIValve.Size = New System.Drawing.Size(215, 22)
         Me.TSMIValve.Text = "Valve (Isenthalpic)"
         '
         'TSMISeparator
@@ -554,7 +554,7 @@ Partial Class FormFlowsheet
         Me.TSMISeparator.Image = Global.RELAP.My.Resources.Resources.vessel_copy
         Me.TSMISeparator.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMISeparator.Name = "TSMISeparator"
-        Me.TSMISeparator.Size = New System.Drawing.Size(220, 22)
+        Me.TSMISeparator.Size = New System.Drawing.Size(215, 22)
         Me.TSMISeparator.Text = "Separator (Vessel)"
         '
         'TSMIHeater
@@ -562,7 +562,7 @@ Partial Class FormFlowsheet
         Me.TSMIHeater.Image = Global.RELAP.My.Resources.Resources.heater_copy
         Me.TSMIHeater.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIHeater.Name = "TSMIHeater"
-        Me.TSMIHeater.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIHeater.Size = New System.Drawing.Size(215, 22)
         Me.TSMIHeater.Text = "Heater"
         '
         'TSMICooler
@@ -570,7 +570,7 @@ Partial Class FormFlowsheet
         Me.TSMICooler.Image = Global.RELAP.My.Resources.Resources.cooler_copy
         Me.TSMICooler.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMICooler.Name = "TSMICooler"
-        Me.TSMICooler.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICooler.Size = New System.Drawing.Size(215, 22)
         Me.TSMICooler.Text = "Cooler"
         '
         'TSMIOrificePlate
@@ -578,7 +578,7 @@ Partial Class FormFlowsheet
         Me.TSMIOrificePlate.Image = Global.RELAP.My.Resources.Resources.orifice2
         Me.TSMIOrificePlate.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIOrificePlate.Name = "TSMIOrificePlate"
-        Me.TSMIOrificePlate.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIOrificePlate.Size = New System.Drawing.Size(215, 22)
         Me.TSMIOrificePlate.Text = "Orifice Plate"
         '
         'TSMIComponentSeparator
@@ -586,7 +586,7 @@ Partial Class FormFlowsheet
         Me.TSMIComponentSeparator.Image = Global.RELAP.My.Resources.Resources.comp_separator
         Me.TSMIComponentSeparator.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIComponentSeparator.Name = "TSMIComponentSeparator"
-        Me.TSMIComponentSeparator.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIComponentSeparator.Size = New System.Drawing.Size(215, 22)
         Me.TSMIComponentSeparator.Text = "Component Separator"
         '
         'TSMIHeatStructure
@@ -594,7 +594,7 @@ Partial Class FormFlowsheet
         Me.TSMIHeatStructure.Image = Global.RELAP.My.Resources.Resources.heater_copy
         Me.TSMIHeatStructure.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIHeatStructure.Name = "TSMIHeatStructure"
-        Me.TSMIHeatStructure.Size = New System.Drawing.Size(220, 22)
+        Me.TSMIHeatStructure.Size = New System.Drawing.Size(215, 22)
         Me.TSMIHeatStructure.Text = "Heat Exchanger"
         '
         'TSMITank
@@ -602,21 +602,21 @@ Partial Class FormFlowsheet
         Me.TSMITank.Image = Global.RELAP.My.Resources.Resources.tank_copy
         Me.TSMITank.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMITank.Name = "TSMITank"
-        Me.TSMITank.Size = New System.Drawing.Size(220, 22)
+        Me.TSMITank.Size = New System.Drawing.Size(215, 22)
         Me.TSMITank.Text = "Tank"
         '
         'TSMICUO
         '
         Me.TSMICUO.Image = Global.RELAP.My.Resources.Resources.greyscale_20
         Me.TSMICUO.Name = "TSMICUO"
-        Me.TSMICUO.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICUO.Size = New System.Drawing.Size(215, 22)
         Me.TSMICUO.Text = "Custom Unit Operation"
         '
         'TSMICOUO
         '
         Me.TSMICOUO.Image = Global.RELAP.My.Resources.Resources.colan2
         Me.TSMICOUO.Name = "TSMICOUO"
-        Me.TSMICOUO.Size = New System.Drawing.Size(220, 22)
+        Me.TSMICOUO.Size = New System.Drawing.Size(215, 22)
         Me.TSMICOUO.Text = "CAPE-OPEN Unit Operation"
         '
         'ColunasToolStripMenuItem
@@ -631,7 +631,7 @@ Partial Class FormFlowsheet
         Me.TSMIColShortcut.Image = Global.RELAP.My.Resources.Resources.vessel_copy
         Me.TSMIColShortcut.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColShortcut.Name = "TSMIColShortcut"
-        Me.TSMIColShortcut.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColShortcut.Size = New System.Drawing.Size(175, 22)
         Me.TSMIColShortcut.Text = "Shortcut Column"
         '
         'TSMIColDist
@@ -639,7 +639,7 @@ Partial Class FormFlowsheet
         Me.TSMIColDist.Image = Global.RELAP.My.Resources.Resources.vessel_copy
         Me.TSMIColDist.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColDist.Name = "TSMIColDist"
-        Me.TSMIColDist.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColDist.Size = New System.Drawing.Size(175, 22)
         Me.TSMIColDist.Text = "Distillation Column"
         '
         'TSMIColAbs
@@ -647,7 +647,7 @@ Partial Class FormFlowsheet
         Me.TSMIColAbs.Image = Global.RELAP.My.Resources.Resources.vessel_copy
         Me.TSMIColAbs.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColAbs.Name = "TSMIColAbs"
-        Me.TSMIColAbs.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColAbs.Size = New System.Drawing.Size(175, 22)
         Me.TSMIColAbs.Text = "Absorption Column"
         '
         'TSMIColAbsReb
@@ -655,7 +655,7 @@ Partial Class FormFlowsheet
         Me.TSMIColAbsReb.Image = Global.RELAP.My.Resources.Resources.vessel_copy
         Me.TSMIColAbsReb.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColAbsReb.Name = "TSMIColAbsReb"
-        Me.TSMIColAbsReb.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColAbsReb.Size = New System.Drawing.Size(175, 22)
         Me.TSMIColAbsReb.Text = "Reboiled Absorber"
         '
         'TSMIColAbsCond
@@ -663,7 +663,7 @@ Partial Class FormFlowsheet
         Me.TSMIColAbsCond.Image = Global.RELAP.My.Resources.Resources.vessel_copy
         Me.TSMIColAbsCond.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIColAbsCond.Name = "TSMIColAbsCond"
-        Me.TSMIColAbsCond.Size = New System.Drawing.Size(179, 22)
+        Me.TSMIColAbsCond.Size = New System.Drawing.Size(175, 22)
         Me.TSMIColAbsCond.Text = "Refluxed Absorber"
         '
         'ReatoresToolStripMenuItem
@@ -678,7 +678,7 @@ Partial Class FormFlowsheet
         Me.TSMIReactorConv.Image = Global.RELAP.My.Resources.Resources.r_conv2
         Me.TSMIReactorConv.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorConv.Name = "TSMIReactorConv"
-        Me.TSMIReactorConv.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorConv.Size = New System.Drawing.Size(180, 22)
         Me.TSMIReactorConv.Text = "Conversion Reactor"
         '
         'TSMIReactorEquilibrium
@@ -686,7 +686,7 @@ Partial Class FormFlowsheet
         Me.TSMIReactorEquilibrium.Image = Global.RELAP.My.Resources.Resources.r_equil1
         Me.TSMIReactorEquilibrium.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorEquilibrium.Name = "TSMIReactorEquilibrium"
-        Me.TSMIReactorEquilibrium.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorEquilibrium.Size = New System.Drawing.Size(180, 22)
         Me.TSMIReactorEquilibrium.Text = "Equilibrium Reactor"
         '
         'TSMIReactorGibbs
@@ -694,7 +694,7 @@ Partial Class FormFlowsheet
         Me.TSMIReactorGibbs.Image = Global.RELAP.My.Resources.Resources.r_gibbs1
         Me.TSMIReactorGibbs.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorGibbs.Name = "TSMIReactorGibbs"
-        Me.TSMIReactorGibbs.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorGibbs.Size = New System.Drawing.Size(180, 22)
         Me.TSMIReactorGibbs.Text = "Gibbs Reactor"
         '
         'TSMIReactorCSTR
@@ -702,7 +702,7 @@ Partial Class FormFlowsheet
         Me.TSMIReactorCSTR.Image = Global.RELAP.My.Resources.Resources.r_cstr
         Me.TSMIReactorCSTR.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorCSTR.Name = "TSMIReactorCSTR"
-        Me.TSMIReactorCSTR.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorCSTR.Size = New System.Drawing.Size(180, 22)
         Me.TSMIReactorCSTR.Text = "CSTR"
         '
         'TSMIReactorPFR
@@ -710,7 +710,7 @@ Partial Class FormFlowsheet
         Me.TSMIReactorPFR.Image = Global.RELAP.My.Resources.Resources.r_pfr
         Me.TSMIReactorPFR.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIReactorPFR.Name = "TSMIReactorPFR"
-        Me.TSMIReactorPFR.Size = New System.Drawing.Size(178, 22)
+        Me.TSMIReactorPFR.Size = New System.Drawing.Size(180, 22)
         Me.TSMIReactorPFR.Text = "PFR"
         '
         'OperaçõesLógicasToolStripMenuItem
@@ -725,7 +725,7 @@ Partial Class FormFlowsheet
         Me.TSMIRecycle.Image = Global.RELAP.My.Resources.Resources.reciclo_mini
         Me.TSMIRecycle.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIRecycle.Name = "TSMIRecycle"
-        Me.TSMIRecycle.Size = New System.Drawing.Size(168, 22)
+        Me.TSMIRecycle.Size = New System.Drawing.Size(171, 22)
         Me.TSMIRecycle.Text = "Recycle (Material)"
         '
         'TSMIEnergyRecycle
@@ -733,7 +733,7 @@ Partial Class FormFlowsheet
         Me.TSMIEnergyRecycle.Image = Global.RELAP.My.Resources.Resources.reciclo_e
         Me.TSMIEnergyRecycle.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIEnergyRecycle.Name = "TSMIEnergyRecycle"
-        Me.TSMIEnergyRecycle.Size = New System.Drawing.Size(168, 22)
+        Me.TSMIEnergyRecycle.Size = New System.Drawing.Size(171, 22)
         Me.TSMIEnergyRecycle.Text = "Recycle (Energy)"
         '
         'TSMIAdjust
@@ -741,7 +741,7 @@ Partial Class FormFlowsheet
         Me.TSMIAdjust.Image = Global.RELAP.My.Resources.Resources.ajuste_mini
         Me.TSMIAdjust.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMIAdjust.Name = "TSMIAdjust"
-        Me.TSMIAdjust.Size = New System.Drawing.Size(168, 22)
+        Me.TSMIAdjust.Size = New System.Drawing.Size(171, 22)
         Me.TSMIAdjust.Text = "Adjust"
         '
         'TSMISpecification
@@ -749,7 +749,7 @@ Partial Class FormFlowsheet
         Me.TSMISpecification.Image = Global.RELAP.My.Resources.Resources.especificacao_mini
         Me.TSMISpecification.ImageTransparentColor = System.Drawing.Color.White
         Me.TSMISpecification.Name = "TSMISpecification"
-        Me.TSMISpecification.Size = New System.Drawing.Size(168, 22)
+        Me.TSMISpecification.Size = New System.Drawing.Size(171, 22)
         Me.TSMISpecification.Text = "Specification"
         '
         'ArquivoToolStripMenuItem
@@ -758,7 +758,7 @@ Partial Class FormFlowsheet
         Me.ArquivoToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly
         Me.ArquivoToolStripMenuItem.MergeIndex = 0
         Me.ArquivoToolStripMenuItem.Name = "ArquivoToolStripMenuItem"
-        Me.ArquivoToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.ArquivoToolStripMenuItem.Size = New System.Drawing.Size(35, 20)
         Me.ArquivoToolStripMenuItem.Text = "&File"
         '
         'CloseToolStripMenuItem
@@ -768,7 +768,7 @@ Partial Class FormFlowsheet
         Me.CloseToolStripMenuItem.MergeIndex = 8
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.CloseToolStripMenuItem.Text = "Close Active Simulation"
         '
         'tsmiGroupComponents

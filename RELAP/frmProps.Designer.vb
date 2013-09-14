@@ -19,12 +19,8 @@ Partial Class frmProps
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProps))
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
-        Me.LblStatusObj = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel7 = New System.Windows.Forms.TableLayoutPanel()
         Me.LblTipoObj = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -37,7 +33,6 @@ Partial Class frmProps
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LblNomeObj = New System.Windows.Forms.Label()
         Me.TableLayoutPanel5.SuspendLayout()
-        Me.TableLayoutPanel8.SuspendLayout()
         Me.TableLayoutPanel7.SuspendLayout()
         CType(Me.FTSProps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FTSProps.SuspendLayout()
@@ -49,28 +44,10 @@ Partial Class frmProps
         'TableLayoutPanel5
         '
         resources.ApplyResources(Me.TableLayoutPanel5, "TableLayoutPanel5")
-        Me.TableLayoutPanel5.Controls.Add(Me.TableLayoutPanel8, 0, 2)
         Me.TableLayoutPanel5.Controls.Add(Me.TableLayoutPanel7, 0, 1)
         Me.TableLayoutPanel5.Controls.Add(Me.FTSProps, 0, 3)
         Me.TableLayoutPanel5.Controls.Add(Me.TableLayoutPanel6, 0, 0)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
-        '
-        'TableLayoutPanel8
-        '
-        resources.ApplyResources(Me.TableLayoutPanel8, "TableLayoutPanel8")
-        Me.TableLayoutPanel8.Controls.Add(Me.LblStatusObj, 1, 0)
-        Me.TableLayoutPanel8.Controls.Add(Me.Label4, 0, 0)
-        Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
-        '
-        'LblStatusObj
-        '
-        resources.ApplyResources(Me.LblStatusObj, "LblStatusObj")
-        Me.LblStatusObj.Name = "LblStatusObj"
-        '
-        'Label4
-        '
-        resources.ApplyResources(Me.Label4, "Label4")
-        Me.Label4.Name = "Label4"
         '
         'TableLayoutPanel7
         '
@@ -82,11 +59,13 @@ Partial Class frmProps
         'LblTipoObj
         '
         resources.ApplyResources(Me.LblTipoObj, "LblTipoObj")
+        Me.LblTipoObj.ImageKey = ""
         Me.LblTipoObj.Name = "LblTipoObj"
         '
         'Label3
         '
         resources.ApplyResources(Me.Label3, "Label3")
+        Me.Label3.ImageKey = ""
         Me.Label3.Name = "Label3"
         '
         'FTSProps
@@ -113,7 +92,7 @@ Partial Class frmProps
         '
         '
         Me.PGEx1.DocCommentDescription.AccessibleDescription = resources.GetString("PGEx1.DocCommentDescription.AccessibleDescription")
-        Me.PGEx1.DocCommentDescription.AccessibleName = resources.GetString("PGEx1.DocCommentDescription.AccessibleName")
+        Me.PGEx1.DocCommentDescription.AccessibleName = ""
         Me.PGEx1.DocCommentDescription.Anchor = CType(resources.GetObject("PGEx1.DocCommentDescription.Anchor"), System.Windows.Forms.AnchorStyles)
         Me.PGEx1.DocCommentDescription.AutoEllipsis = True
         Me.PGEx1.DocCommentDescription.AutoSize = CType(resources.GetObject("PGEx1.DocCommentDescription.AutoSize"), Boolean)
@@ -127,7 +106,6 @@ Partial Class frmProps
         Me.PGEx1.DocCommentDescription.ImageKey = resources.GetString("PGEx1.DocCommentDescription.ImageKey")
         Me.PGEx1.DocCommentDescription.ImeMode = CType(resources.GetObject("PGEx1.DocCommentDescription.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx1.DocCommentDescription.Location = CType(resources.GetObject("PGEx1.DocCommentDescription.Location"), System.Drawing.Point)
-        Me.PGEx1.DocCommentDescription.MaximumSize = CType(resources.GetObject("PGEx1.DocCommentDescription.MaximumSize"), System.Drawing.Size)
         Me.PGEx1.DocCommentDescription.Name = ""
         Me.PGEx1.DocCommentDescription.RightToLeft = CType(resources.GetObject("PGEx1.DocCommentDescription.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx1.DocCommentDescription.Size = CType(resources.GetObject("PGEx1.DocCommentDescription.Size"), System.Drawing.Size)
@@ -151,7 +129,6 @@ Partial Class frmProps
         Me.PGEx1.DocCommentTitle.ImageKey = resources.GetString("PGEx1.DocCommentTitle.ImageKey")
         Me.PGEx1.DocCommentTitle.ImeMode = CType(resources.GetObject("PGEx1.DocCommentTitle.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx1.DocCommentTitle.Location = CType(resources.GetObject("PGEx1.DocCommentTitle.Location"), System.Drawing.Point)
-        Me.PGEx1.DocCommentTitle.MaximumSize = CType(resources.GetObject("PGEx1.DocCommentTitle.MaximumSize"), System.Drawing.Size)
         Me.PGEx1.DocCommentTitle.Name = ""
         Me.PGEx1.DocCommentTitle.RightToLeft = CType(resources.GetObject("PGEx1.DocCommentTitle.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx1.DocCommentTitle.Size = CType(resources.GetObject("PGEx1.DocCommentTitle.Size"), System.Drawing.Size)
@@ -180,7 +157,6 @@ Partial Class frmProps
         Me.PGEx1.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.PGEx1.ToolStrip.ImeMode = CType(resources.GetObject("PGEx1.ToolStrip.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx1.ToolStrip.Location = CType(resources.GetObject("PGEx1.ToolStrip.Location"), System.Drawing.Point)
-        Me.PGEx1.ToolStrip.MaximumSize = CType(resources.GetObject("PGEx1.ToolStrip.MaximumSize"), System.Drawing.Size)
         Me.PGEx1.ToolStrip.Name = ""
         Me.PGEx1.ToolStrip.Padding = CType(resources.GetObject("PGEx1.ToolStrip.Padding"), System.Windows.Forms.Padding)
         Me.PGEx1.ToolStrip.RightToLeft = CType(resources.GetObject("PGEx1.ToolStrip.RightToLeft"), System.Windows.Forms.RightToLeft)
@@ -205,7 +181,7 @@ Partial Class frmProps
         '
         '
         Me.PGEx2.DocCommentDescription.AccessibleDescription = resources.GetString("PGEx2.DocCommentDescription.AccessibleDescription")
-        Me.PGEx2.DocCommentDescription.AccessibleName = resources.GetString("PGEx2.DocCommentDescription.AccessibleName")
+        Me.PGEx2.DocCommentDescription.AccessibleName = ""
         Me.PGEx2.DocCommentDescription.Anchor = CType(resources.GetObject("PGEx2.DocCommentDescription.Anchor"), System.Windows.Forms.AnchorStyles)
         Me.PGEx2.DocCommentDescription.AutoEllipsis = True
         Me.PGEx2.DocCommentDescription.AutoSize = CType(resources.GetObject("PGEx2.DocCommentDescription.AutoSize"), Boolean)
@@ -219,7 +195,6 @@ Partial Class frmProps
         Me.PGEx2.DocCommentDescription.ImageKey = resources.GetString("PGEx2.DocCommentDescription.ImageKey")
         Me.PGEx2.DocCommentDescription.ImeMode = CType(resources.GetObject("PGEx2.DocCommentDescription.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx2.DocCommentDescription.Location = CType(resources.GetObject("PGEx2.DocCommentDescription.Location"), System.Drawing.Point)
-        Me.PGEx2.DocCommentDescription.MaximumSize = CType(resources.GetObject("PGEx2.DocCommentDescription.MaximumSize"), System.Drawing.Size)
         Me.PGEx2.DocCommentDescription.Name = ""
         Me.PGEx2.DocCommentDescription.RightToLeft = CType(resources.GetObject("PGEx2.DocCommentDescription.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx2.DocCommentDescription.Size = CType(resources.GetObject("PGEx2.DocCommentDescription.Size"), System.Drawing.Size)
@@ -243,7 +218,6 @@ Partial Class frmProps
         Me.PGEx2.DocCommentTitle.ImageKey = resources.GetString("PGEx2.DocCommentTitle.ImageKey")
         Me.PGEx2.DocCommentTitle.ImeMode = CType(resources.GetObject("PGEx2.DocCommentTitle.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx2.DocCommentTitle.Location = CType(resources.GetObject("PGEx2.DocCommentTitle.Location"), System.Drawing.Point)
-        Me.PGEx2.DocCommentTitle.MaximumSize = CType(resources.GetObject("PGEx2.DocCommentTitle.MaximumSize"), System.Drawing.Size)
         Me.PGEx2.DocCommentTitle.Name = ""
         Me.PGEx2.DocCommentTitle.RightToLeft = CType(resources.GetObject("PGEx2.DocCommentTitle.RightToLeft"), System.Windows.Forms.RightToLeft)
         Me.PGEx2.DocCommentTitle.Size = CType(resources.GetObject("PGEx2.DocCommentTitle.Size"), System.Drawing.Size)
@@ -272,7 +246,6 @@ Partial Class frmProps
         Me.PGEx2.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.PGEx2.ToolStrip.ImeMode = CType(resources.GetObject("PGEx2.ToolStrip.ImeMode"), System.Windows.Forms.ImeMode)
         Me.PGEx2.ToolStrip.Location = CType(resources.GetObject("PGEx2.ToolStrip.Location"), System.Drawing.Point)
-        Me.PGEx2.ToolStrip.MaximumSize = CType(resources.GetObject("PGEx2.ToolStrip.MaximumSize"), System.Drawing.Size)
         Me.PGEx2.ToolStrip.Name = ""
         Me.PGEx2.ToolStrip.Padding = CType(resources.GetObject("PGEx2.ToolStrip.Padding"), System.Windows.Forms.Padding)
         Me.PGEx2.ToolStrip.RightToLeft = CType(resources.GetObject("PGEx2.ToolStrip.RightToLeft"), System.Windows.Forms.RightToLeft)
@@ -292,11 +265,13 @@ Partial Class frmProps
         'Label1
         '
         resources.ApplyResources(Me.Label1, "Label1")
+        Me.Label1.ImageKey = ""
         Me.Label1.Name = "Label1"
         '
         'LblNomeObj
         '
         resources.ApplyResources(Me.LblNomeObj, "LblNomeObj")
+        Me.LblNomeObj.ImageKey = ""
         Me.LblNomeObj.Name = "LblNomeObj"
         '
         'frmProps
@@ -311,8 +286,6 @@ Partial Class frmProps
         Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockLeft
         Me.TabText = "Selected Object"
         Me.TableLayoutPanel5.ResumeLayout(False)
-        Me.TableLayoutPanel8.ResumeLayout(False)
-        Me.TableLayoutPanel8.PerformLayout()
         Me.TableLayoutPanel7.ResumeLayout(False)
         Me.TableLayoutPanel7.PerformLayout()
         CType(Me.FTSProps, System.ComponentModel.ISupportInitialize).EndInit()
@@ -325,9 +298,6 @@ Partial Class frmProps
 
     End Sub
     Public WithEvents TableLayoutPanel5 As System.Windows.Forms.TableLayoutPanel
-    Public WithEvents TableLayoutPanel8 As System.Windows.Forms.TableLayoutPanel
-    Public WithEvents LblStatusObj As System.Windows.Forms.Label
-    Public WithEvents Label4 As System.Windows.Forms.Label
     Public WithEvents TableLayoutPanel7 As System.Windows.Forms.TableLayoutPanel
     Public WithEvents LblTipoObj As System.Windows.Forms.Label
     Public WithEvents Label3 As System.Windows.Forms.Label

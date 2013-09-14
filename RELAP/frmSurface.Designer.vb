@@ -33,7 +33,6 @@ Partial Class frmSurface
         Me.ToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CMS_Sel = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.TSMI_Label = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditCompTSMI = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ConectarAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -86,32 +85,32 @@ Partial Class frmSurface
         '
         Me.CMS_NoSel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem3, Me.ToolStripSeparator1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem})
         Me.CMS_NoSel.Name = "ContextMenuStrip1"
-        Me.CMS_NoSel.Size = New System.Drawing.Size(290, 98)
+        Me.CMS_NoSel.Size = New System.Drawing.Size(282, 98)
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Enabled = False
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(289, 22)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(281, 22)
         Me.ToolStripMenuItem3.Text = "Flowsheet"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(286, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(278, 6)
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Image = Global.RELAP.My.Resources.Resources.page_white_paint
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(289, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(281, 22)
         Me.ToolStripMenuItem2.Text = "Configure Style"
         '
         'ToolStripMenuItem5
         '
         Me.ToolStripMenuItem5.Image = Global.RELAP.My.Resources.Resources.printer
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(289, 22)
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(281, 22)
         Me.ToolStripMenuItem5.Text = "Print"
         '
         'CopiarParaAÁreaDeTransferênciaToolStripMenuItem
@@ -119,115 +118,110 @@ Partial Class frmSurface
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem4, Me.ToolStripMenuItem8, Me.ToolStripMenuItem10})
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.images
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Name = "CopiarParaAÁreaDeTransferênciaToolStripMenuItem"
-        Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Size = New System.Drawing.Size(289, 22)
+        Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Size = New System.Drawing.Size(281, 22)
         Me.CopiarParaAÁreaDeTransferênciaToolStripMenuItem.Text = "Capture Snapshot and Send to Clipboard"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem1.Text = "50%"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem4.Text = "100%"
         '
         'ToolStripMenuItem8
         '
         Me.ToolStripMenuItem8.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
-        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem8.Text = "200%"
         '
         'ToolStripMenuItem10
         '
         Me.ToolStripMenuItem10.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem10.Name = "ToolStripMenuItem10"
-        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem10.Text = "300%"
         '
         'CMS_Sel
         '
-        Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.ToolStripSeparator3, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
+        Me.CMS_Sel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMI_Label, Me.EditCompTSMI, Me.ToolStripSeparator6, Me.ConectarAToolStripMenuItem, Me.DesconectarDeToolStripMenuItem, Me.ToolStripSeparator4, Me.TSMI_Girar, Me.HorizontalmenteToolStripMenuItem, Me.ToolStripSeparator2, Me.ClonarToolStripMenuItem, Me.ExcluirToolStripMenuItem, Me.ToolStripSeparator5, Me.TabelaToolStripMenuItem})
         Me.CMS_Sel.Name = "CMS_Sel"
-        Me.CMS_Sel.Size = New System.Drawing.Size(247, 254)
+        Me.CMS_Sel.Size = New System.Drawing.Size(240, 226)
         '
         'TSMI_Label
         '
         Me.TSMI_Label.Enabled = False
         Me.TSMI_Label.Name = "TSMI_Label"
-        Me.TSMI_Label.Size = New System.Drawing.Size(246, 22)
+        Me.TSMI_Label.Size = New System.Drawing.Size(239, 22)
         Me.TSMI_Label.Text = "ToolStripMenuItem1"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(243, 6)
         '
         'EditCompTSMI
         '
         Me.EditCompTSMI.Image = Global.RELAP.My.Resources.Resources.Lab_icon
         Me.EditCompTSMI.Name = "EditCompTSMI"
         Me.EditCompTSMI.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.EditCompTSMI.Size = New System.Drawing.Size(246, 22)
+        Me.EditCompTSMI.Size = New System.Drawing.Size(239, 22)
         Me.EditCompTSMI.Text = "Edit Stream Composition"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(243, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(236, 6)
         Me.ToolStripSeparator6.Visible = False
         '
         'ConectarAToolStripMenuItem
         '
         Me.ConectarAToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.connect
         Me.ConectarAToolStripMenuItem.Name = "ConectarAToolStripMenuItem"
-        Me.ConectarAToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ConectarAToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.ConectarAToolStripMenuItem.Text = "Connect to..."
         '
         'DesconectarDeToolStripMenuItem
         '
         Me.DesconectarDeToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.disconnect
         Me.DesconectarDeToolStripMenuItem.Name = "DesconectarDeToolStripMenuItem"
-        Me.DesconectarDeToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.DesconectarDeToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.DesconectarDeToolStripMenuItem.Text = "Disconnect from..."
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(243, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(236, 6)
         '
         'TSMI_Girar
         '
         Me.TSMI_Girar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem6, Me.BToolStripMenuItem, Me.ToolStripMenuItem7})
         Me.TSMI_Girar.Image = Global.RELAP.My.Resources.Resources.arrow_rotate_clockwise
         Me.TSMI_Girar.Name = "TSMI_Girar"
-        Me.TSMI_Girar.Size = New System.Drawing.Size(246, 22)
+        Me.TSMI_Girar.Size = New System.Drawing.Size(239, 22)
         Me.TSMI_Girar.Text = "Rotate"
         '
         'ToolStripMenuItem6
         '
         Me.ToolStripMenuItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(100, 22)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(111, 22)
         Me.ToolStripMenuItem6.Text = "90 °"
         '
         'BToolStripMenuItem
         '
         Me.BToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.BToolStripMenuItem.Name = "BToolStripMenuItem"
-        Me.BToolStripMenuItem.Size = New System.Drawing.Size(100, 22)
+        Me.BToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.BToolStripMenuItem.Text = "180 °"
         '
         'ToolStripMenuItem7
         '
         Me.ToolStripMenuItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(100, 22)
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(111, 22)
         Me.ToolStripMenuItem7.Text = "270 °"
         '
         'HorizontalmenteToolStripMenuItem
@@ -235,20 +229,20 @@ Partial Class frmSurface
         Me.HorizontalmenteToolStripMenuItem.CheckOnClick = True
         Me.HorizontalmenteToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.shape_flip_horizontal
         Me.HorizontalmenteToolStripMenuItem.Name = "HorizontalmenteToolStripMenuItem"
-        Me.HorizontalmenteToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.HorizontalmenteToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.HorizontalmenteToolStripMenuItem.Text = "Invert Horizontally"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(243, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(236, 6)
         '
         'ClonarToolStripMenuItem
         '
         Me.ClonarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.sheep
         Me.ClonarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White
         Me.ClonarToolStripMenuItem.Name = "ClonarToolStripMenuItem"
-        Me.ClonarToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ClonarToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.ClonarToolStripMenuItem.Text = "Clone"
         Me.ClonarToolStripMenuItem.ToolTipText = "Creates an exact copy of the selected object."
         '
@@ -257,20 +251,20 @@ Partial Class frmSurface
         Me.ExcluirToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cross
         Me.ExcluirToolStripMenuItem.Name = "ExcluirToolStripMenuItem"
         Me.ExcluirToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.ExcluirToolStripMenuItem.Text = "Delete"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(243, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(236, 6)
         '
         'TabelaToolStripMenuItem
         '
         Me.TabelaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MostrarToolStripMenuItem, Me.ConfigurarToolStripMenuItem})
         Me.TabelaToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table
         Me.TabelaToolStripMenuItem.Name = "TabelaToolStripMenuItem"
-        Me.TabelaToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.TabelaToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.TabelaToolStripMenuItem.Text = "Table"
         '
         'MostrarToolStripMenuItem
@@ -278,14 +272,14 @@ Partial Class frmSurface
         Me.MostrarToolStripMenuItem.CheckOnClick = True
         Me.MostrarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table_go
         Me.MostrarToolStripMenuItem.Name = "MostrarToolStripMenuItem"
-        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.MostrarToolStripMenuItem.Text = "Show"
         '
         'ConfigurarToolStripMenuItem
         '
         Me.ConfigurarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
-        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ConfigurarToolStripMenuItem.Text = "Configure..."
         '
         'PreviewDialog
@@ -401,13 +395,14 @@ Partial Class frmSurface
         '
         Me.SpinningProgress1.ActiveSegmentColour = System.Drawing.SystemColors.ControlDark
         Me.SpinningProgress1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.SpinningProgress1.BehindTransistionSegmentIsActive = False
         Me.SpinningProgress1.InactiveSegmentColour = System.Drawing.SystemColors.Control
         Me.SpinningProgress1.Location = New System.Drawing.Point(2, 2)
         Me.SpinningProgress1.Margin = New System.Windows.Forms.Padding(2)
         Me.SpinningProgress1.Name = "SpinningProgress1"
         Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
         Me.SpinningProgress1.TabIndex = 11
-        Me.SpinningProgress1.TransistionSegment = 0
+        Me.SpinningProgress1.TransistionSegment = 10
         Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
         Me.SpinningProgress1.Visible = False
         '
@@ -536,7 +531,6 @@ Partial Class frmSurface
     Public WithEvents CMS_ItemsToDisconnect As System.Windows.Forms.ContextMenuStrip
     Public WithEvents ExcluirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
-    Public WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents Timer2 As System.Windows.Forms.Timer
     Public WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents EditCompTSMI As System.Windows.Forms.ToolStripMenuItem

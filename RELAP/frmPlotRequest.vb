@@ -9,7 +9,8 @@
 
 
     Private Sub frmPlotRequest_Load(sender As Object, e As EventArgs) Handles Me.Load
-        cboPlotVariableName.SelectedIndex = 9
+
+        cboRestartPlotSettings.SelectedIndex = 1
     End Sub
 
     Private Sub frmPlotRequest_Shown(sender As Object, e As EventArgs) Handles Me.Shown, Me.GotFocus, Me.Load, Me.LostFocus, DataGridView1.CellClick

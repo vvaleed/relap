@@ -92,44 +92,24 @@ Public Class frmSurface
             If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Tabela Then
                 ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Tabela")
                 ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("TabeladeDados")
-                ChildParent.FormProps.LblStatusObj.Text = "-"
-                ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+             
             ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_MasterTable Then
                 ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("MasterTable")
                 ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("MasterTable")
-                ChildParent.FormProps.LblStatusObj.Text = "-"
-                ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+              
             ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Figura Then
                 ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Figura")
                 ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("ImagemBitmap")
-                ChildParent.FormProps.LblStatusObj.Text = "-"
-                ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+               
             ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Texto Then
                 ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Texto")
                 ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("CaixadeTexto")
-                ChildParent.FormProps.LblStatusObj.Text = "-"
-                ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+              
             Else
                 '   Dim nodes = ChildParent.FormObjList.TreeViewObj.Nodes.Find(Me.FlowsheetDesignSurface.SelectedObject.Tag, True)
                 ChildParent.FormProps.LblNomeObj.Text = Me.FlowsheetDesignSurface.SelectedObject.Tag
                 ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString(ChildParent.Collections.ObjectCollection.Item(Me.FlowsheetDesignSurface.SelectedObject.Name).Descricao)
-                Select Case Me.FlowsheetDesignSurface.SelectedObject.Status
-                    Case Status.Calculated
-                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
-                    Case Status.Calculating
-                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculando")
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.YellowGreen
-                    Case Status.ErrorCalculating
-                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("NoCalculado")
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.Red
-                    Case Status.Inactive
-                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.Gray
-                    Case Status.Idle
-                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
-                End Select
+              
             End If
             ChildParent.PopulatePGEx2(Me.FlowsheetDesignSurface.SelectedObject)
             Try
@@ -229,50 +209,25 @@ Public Class frmSurface
                     If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Tabela Then
                         ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Tabela")
                         ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("TabeladeDados")
-                        ChildParent.FormProps.LblStatusObj.Text = "-"
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                       
                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_MasterTable Then
                         ChildParent.FormProps.LblNomeObj.Text = "MasterTable"
                         ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("MasterTable")
-                        ChildParent.FormProps.LblStatusObj.Text = "-"
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                       
                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Figura Then
                         ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Figura")
                         ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("ImagemBitmap")
-                        ChildParent.FormProps.LblStatusObj.Text = "-"
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                       
                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.GO_Texto Then
                         ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Texto")
                         ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString("CaixadeTexto")
-                        ChildParent.FormProps.LblStatusObj.Text = "-"
-                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                      
                     Else
                         '   Dim nodes = ChildParent.FormObjList.TreeViewObj.Nodes.Find(e.SelectedObject.Tag, True)
                         If Me.FlowsheetDesignSurface.SelectedObjects.Count < 2 Then
                             ChildParent.FormProps.LblNomeObj.Text = e.SelectedObject.Tag
                             ChildParent.FormProps.LblTipoObj.Text = RELAP.App.GetLocalString(ChildParent.Collections.ObjectCollection.Item(e.SelectedObject.Name).Descricao)
-                            If e.SelectedObject.Active = False Then
-                                ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
-                                ChildParent.FormProps.LblStatusObj.ForeColor = Color.DimGray
-                            Else
-                                Select Case Me.FlowsheetDesignSurface.SelectedObject.Status
-                                    Case Status.Calculated
-                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
-                                    Case Status.Calculating
-                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculando")
-                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.YellowGreen
-                                    Case Status.ErrorCalculating
-                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("NoCalculado")
-                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.Red
-                                    Case Status.Inactive
-                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
-                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.Gray
-                                    Case Status.Idle
-                                        ChildParent.FormProps.LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-                                        ChildParent.FormProps.LblStatusObj.ForeColor = Color.SteelBlue
-                                End Select
-                            End If
+                           
                         End If
                         End If
                         If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
@@ -331,8 +286,7 @@ Public Class frmSurface
                 Else
                     ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Nenhumselecionado")
                     ChildParent.FormProps.LblTipoObj.Text = "-"
-                    ChildParent.FormProps.LblStatusObj.Text = "-"
-                    ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+                   
                     'ChildParent.FormObjList.TreeViewObj.CollapseAll()
                     'ChildParent.FormObjList.TreeViewObj.SelectedNode = Nothing
                 End If
@@ -347,8 +301,7 @@ Public Class frmSurface
         If Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
             ChildParent.FormProps.LblNomeObj.Text = RELAP.App.GetLocalString("Nenhumselecionado")
             ChildParent.FormProps.LblTipoObj.Text = "-"
-            ChildParent.FormProps.LblStatusObj.Text = "-"
-            ChildParent.FormProps.LblStatusObj.ForeColor = Color.FromKnownColor(KnownColor.ControlText)
+           
         End If
     End Sub
 
@@ -661,7 +614,7 @@ Public Class frmSurface
 
         Me.DesconectarDeToolStripMenuItem.Visible = False
         Me.ConectarAToolStripMenuItem.Visible = False
-        Me.ToolStripSeparator3.Visible = False
+
 
         If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.GO_Figura And _
             Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto <> TipoObjeto.GO_Tabela And _
@@ -691,7 +644,7 @@ Public Class frmSurface
                             Me.CMS_ItemsToConnect.Items.Add(arr(i))
                             i = i + 1
                             Me.ConectarAToolStripMenuItem.Visible = True
-                            Me.ToolStripSeparator3.Visible = True
+
                             Me.ConectarAToolStripMenuItem.DropDown = Me.CMS_ItemsToConnect
                         Loop Until i = arr.Count
                     End If
@@ -706,7 +659,7 @@ Public Class frmSurface
                             i = i + 1
                         Loop Until i = arr.Count
                         Me.DesconectarDeToolStripMenuItem.Visible = True
-                        Me.ToolStripSeparator3.Visible = True
+
                         Me.DesconectarDeToolStripMenuItem.DropDown = Me.CMS_ItemsToDisconnect
                     End If
                 End If
@@ -720,7 +673,7 @@ Public Class frmSurface
                             i = i + 1
                         Loop Until i = arr.Count
                         Me.DesconectarDeToolStripMenuItem.Visible = True
-                        Me.ToolStripSeparator3.Visible = True
+
                         Me.DesconectarDeToolStripMenuItem.DropDown = Me.CMS_ItemsToDisconnect
                     End If
                 End If
@@ -793,8 +746,7 @@ Public Class frmSurface
     Private Sub ToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem2.Click
         Me.ChildParent = My.Application.ActiveSimulation
         With ChildParent.FormProps
-            .LblStatusObj.Text = "-"
-            .LblStatusObj.ForeColor = Color.Black
+          
             .LblNomeObj.Text = RELAP.App.GetLocalString("Fluxograma")
             .LblTipoObj.Text = "-"
         End With
@@ -2477,13 +2429,7 @@ Public Class frmSurface
 
     End Sub
 
-    'Private Sub RecalcularToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RecalcularToolStripMenuItem.Click
 
-    '    ChildParent = My.Application.ActiveSimulation
-    '    Dim obj As SimulationObjects_BaseClass = ChildParent.Collections.ObjectCollection(Me.FlowsheetDesignSurface.SelectedObject.Name)
-    '    CalculateObject(ChildParent, obj.Nome)
-
-    'End Sub
 
     Private Sub FlowsheetDesignSurface_MouseEnter(ByVal sender As Object, ByVal e As System.EventArgs) Handles FlowsheetDesignSurface.MouseEnter
 

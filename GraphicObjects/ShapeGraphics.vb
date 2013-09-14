@@ -656,10 +656,13 @@ Namespace GraphicObjects
 #End Region
 
         Public Overrides Sub Draw(ByVal g As System.Drawing.Graphics)
-
+            '  Dim icps As New System.Collections.Generic.List(Of ConnectionPoint)
             Dim myIC1 As New ConnectionPoint
             myIC1.Position = New Point(X, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
+            Dim myIC2 As New ConnectionPoint
+            myIC2.Position = New Point(X, Y + 0.5 * Height)
+            myIC2.Type = ConType.ConIn
 
             Dim myOC1 As New ConnectionPoint
             myOC1.Position = New Point(X + Width, Y + 0.5 * Height)
@@ -678,6 +681,7 @@ Namespace GraphicObjects
                     End If
                 Else
                     .Add(myIC1)
+                    .Add(myIC2)
                 End If
 
             End With
