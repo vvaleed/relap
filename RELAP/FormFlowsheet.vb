@@ -58,6 +58,7 @@ Imports RELAP.RELAP.FormClasses
     Public FormInitialSettings As New frmInitialSettings
     Public FormMaterials As New frmMaterials
     Public FormPlotReqest As New frmPlotRequest
+    Public FormMinorEditRequests As New frmMinorEditRequests
     'Public FormEBT As New frmEBT
     'Public FormObjList As New frmObjList
     'Public FormLog As New frmLog
@@ -250,13 +251,16 @@ Imports RELAP.RELAP.FormClasses
             FormMaterials.Show(dckPanel)
 
             FormPlotReqest.Show(dckPanel)
+            FormMinorEditRequests.Show(dckPanel)
             FormControlSystem.Show(dckPanel)
             Try
                 FormObjListView.DockState = Docking.DockState.DockRight
                 FormInitialSettings.DockState = Docking.DockState.DockLeftAutoHide
                 FormMaterials.DockState = Docking.DockState.DockLeftAutoHide
                 FormPlotReqest.DockState = Docking.DockState.DockLeftAutoHide
+                FormMinorEditRequests.DockState = Docking.DockState.DockLeftAutoHide
                 FormControlSystem.DockState = Docking.DockState.DockBottomAutoHide
+
                 'FormWatch.DockState = Docking.DockState.DockRight
                 'FormWatch.DockState = Docking.DockState.DockBottom
                 'FormCOReports.DockState = Docking.DockState.DockLeft
@@ -1648,7 +1652,7 @@ Imports RELAP.RELAP.FormClasses
 
 
         End If
-
+        Me.FormSurface.FlowsheetDesignSurface.Invalidate()
     End Sub
 
 #End Region

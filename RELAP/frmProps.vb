@@ -1309,20 +1309,7 @@ Public Class frmProps
 
     'End Sub
 
-    Private Sub FormChild_ObjectStatusChanged(ByVal obj As Microsoft.Msdn.Samples.GraphicObjects.GraphicObject) Handles Me.ObjectStatusChanged
 
-        If obj.Active = False Then
-            LblStatusObj.Text = RELAP.App.GetLocalString("Inativo")
-            LblStatusObj.ForeColor = Color.DimGray
-        ElseIf obj.Calculated = False Then
-            LblStatusObj.Text = RELAP.App.GetLocalString("NoCalculado")
-            LblStatusObj.ForeColor = Color.Red
-        Else
-            LblStatusObj.Text = RELAP.App.GetLocalString("Calculado")
-            LblStatusObj.ForeColor = Color.DarkGreen
-        End If
-
-    End Sub
 
 
     Private Sub PGEx2_PropertyValueChanged(ByVal s As Object, ByVal e As System.Windows.Forms.PropertyValueChangedEventArgs) Handles PGEx2.PropertyValueChanged

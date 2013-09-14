@@ -69,61 +69,23 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ascend">
-      <HintPath>References\Ascend.dll</HintPath>
-    </Reference>
-    <Reference Include="Ascend.Windows.Forms">
-      <HintPath>References\Ascend.Windows.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="CapeOpen">
       <HintPath>References\CapeOpen.dll</HintPath>
     </Reference>
     <Reference Include="Ciloci.Flee">
       <HintPath>References\Ciloci.Flee.dll</HintPath>
     </Reference>
-    <Reference Include="Cureos.Numerics">
-      <HintPath>References\Cureos.Numerics.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNumerics">
-      <HintPath>References\DotNumerics.dll</HintPath>
-    </Reference>
-    <Reference Include="DrawingBoard2">
-      <HintPath>C:\Users\ne1145\Downloads\DrawingBoard2.dll</HintPath>
-    </Reference>
     <Reference Include="EWSoftware.StatusBarText">
       <HintPath>References\EWSoftware.StatusBarText.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelDna.Integration">
-      <HintPath>References\ExcelDna.Integration.dll</HintPath>
-    </Reference>
-    <Reference Include="FileHelpers">
-      <HintPath>References\FileHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="GemBox.Spreadsheet">
-      <HintPath>References\GemBox.Spreadsheet.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>References\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>References\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Infralution.Localization">
       <HintPath>References\Infralution.Localization.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.CAPEOPEN110">
-      <HintPath>References\Interop.CAPEOPEN110.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Interop.Fitter">
-      <HintPath>References\Interop.Fitter.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="LabelWithDivider">
       <HintPath>References\LabelWithDivider.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamic">
-      <HintPath>References\Microsoft.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting">
       <HintPath>References\Microsoft.Scripting.dll</HintPath>
@@ -140,24 +102,10 @@
     <Reference Include="Nini">
       <HintPath>References\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookGrid">
-      <HintPath>References\OutlookGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Puzzle.SyntaxBox.NET2.0">
-      <HintPath>References\Puzzle.SyntaxBox.NET2.0.dll</HintPath>
-    </Reference>
-    <Reference Include="RichTextBoxExtended">
-      <HintPath>References\RichTextBoxExtended.dll</HintPath>
-    </Reference>
     <Reference Include="SpinningProgress">
       <HintPath>References\SpinningProgress.dll</HintPath>
     </Reference>
-    <Reference Include="SuperToolTip">
-      <HintPath>References\SuperToolTip.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -170,16 +118,12 @@
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>References\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
-    <Reference Include="ZedGraph">
-      <HintPath>References\ZedGraph.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
-    <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
     <Import Include="System.Windows.Forms" />
@@ -243,6 +187,12 @@
       <DependentUpon>frmMaterials.vb</DependentUpon>
     </Compile>
     <Compile Include="frmMaterials.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMinorEditRequests.Designer.vb">
+      <DependentUpon>frmMinorEditRequests.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMinorEditRequests.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPlotRequest.Designer.vb">
@@ -415,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaterials.resx">
       <DependentUpon>frmMaterials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMinorEditRequests.resx">
+      <DependentUpon>frmMinorEditRequests.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmBranchEditor.resx">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
