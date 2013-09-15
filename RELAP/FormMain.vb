@@ -2649,9 +2649,13 @@ sim:                Dim myStream As System.IO.FileStream
 
 
             'card 201
-            generate.WriteLine("*")
+
             output = frmInitialSettings.txtendtime.Text & " " & frmInitialSettings.txtminsteptime.Text & " " & frmInitialSettings.txtmaxsteptime.Text & " " & frmInitialSettings.txtcontroloption.Text & " " & frmInitialSettings.txtMinorFrequency.Text & " " & frmInitialSettings.txtMajorFrequency.Text & " " & frmInitialSettings.txtRestartFrequency.Text
             generate.WriteLine("201 " & output)
+
+            generate.WriteLine("*======================================================================")
+            generate.WriteLine("*                         PLOT REQUEST")
+            generate.WriteLine("*======================================================================")
 
             'card 203
             i = 1
@@ -2695,7 +2699,24 @@ sim:                Dim myStream As System.IO.FileStream
                 i = i + 1
                 generate.WriteLine(output)
             Next
+            generate.WriteLine("*======================================================================")
+            generate.WriteLine("*                            Minor Edits ")
+            generate.WriteLine("*======================================================================")
 
+            Dim card As Integer = 301
+            For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormMinorEditRequests.DataGridView1.Rows
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
+                card = card + 1
+            Next
+            generate.WriteLine("*======================================================================")
+            generate.WriteLine("*                            Trips ")
+            generate.WriteLine("*======================================================================")
+
+            card = 500
+            For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridView1.Rows
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
+                card = card + 1
+            Next
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
                 '  MsgBox(kvp.Key)
