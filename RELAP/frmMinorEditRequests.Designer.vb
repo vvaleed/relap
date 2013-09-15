@@ -25,6 +25,7 @@ Partial Class frmMinorEditRequests
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.cboVariableCode = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboParameter = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.txtParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -32,15 +33,16 @@ Partial Class frmMinorEditRequests
         '
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode, Me.cboParameter})
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 80)
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode, Me.cboParameter, Me.txtParameter})
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 12)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(322, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(393, 150)
         Me.DataGridView1.TabIndex = 0
         '
         'cboVariableCode
         '
         Me.cboVariableCode.HeaderText = "Variable Code"
+        Me.cboVariableCode.Items.AddRange(New Object() {"COUNT", "CPUTIME", "DT", "DTCRNT", "EMASS", "ERRMAX", "NULL", "SYSTMS", "STDTRN", "SYSMER", "TESTDA", "TIME", "TIMEOF", "TMASS", " ", "ACPGTG", "ACPNIT", "ACQTANK", "ACRHON", "ACTTANK", "ACVDM", "ACVGTG", "ACVLIQ", "AHFGTF", "AHFGTG", "AHFTG", "AHGTF", "AVGTG", "AVISCN", "BETAV", "CDIM", "DIM", "DMGDT", "GDRY", "OMEGA", "PMPHEAD", "PMPMT", "PMPNRT", "PMPTRQ", "PMPVEL", "THETA", "TUREFF", "TURPOW", "TURTRQ", "TURVEL", "VLVAREA", "VLVSTEM", "XCO", "XCU", "XI", " ", "AVOL", "BETAFF", "BETAGG", "BORON", "B", "CSUBPF", "CSUBPG", "DRFDP", "DRFDUF", "DRGDP", "DRGDUG", "DRGDXA", "DSNDDP", "DTDP", "DTDXA", "DTFDUF", "DTGDP", "DTGDUG", "DTGDXA", "FLOREG", "FWALF", "FWALG", "GAMMAC", "GAMMAI", "GAMMAW", "GAMANHY", "HVMIX", "P", "PECLTV", "PPS", "Q", "QUALA", "QUALE", "QUALHY", "QUALS", "QWG", "RHO", "RHOF", "RHOG", "RHOM", "SATHF", "SATHG", "SATTEMP", "SIGMA", "SOUNDE", "TEMPF", "TEMPG", "THCONF", "THCONG", "TSATT", "UF", "UG", "VAPGEN", "VELF", "VELG", "VISCF", "VISCG", "VOIDF", "VOIDG", "VOIDLA", "VOIDLB", "VOLLEV", "VVOL", "C0J", "CHOKEF", "FIJ", "FJUNFT", "FJUNRT", "FLORGJ", "FORMFJ", "FORMGJ", "FWALFJ", "FWALGJ", "IREGJ", "MFLOWJ", "QUALAJ", "RHOFJ", "RHOGJ", "SONICJ", "UFJ", "UGJ", "VELFJ", "VELGJ", "VGJJ", "VOIDFJ", "VOIDGJ", "VOIDJ", "XEJ", " ", "HTCHF", "HTHTC", "HTMODE", "HTRG", "HTRNR", "HTTEMP", "HTVAT", "PECL", "STANT", " ", "FINES", "TCHFQF", "TREWET", "ZQBOT", "ZQTOP", " ", "RKPOWA", "RKFIPOW", "RKGAPOW", "RKREAC", "RKRECPER", "RKTPOW", " ", "GNTBLVAL", "CNTRLVAR", " ", "BGMAT", "BGMCT", "BGNHG", "BGTFPRN", "BGTFPRS", "BGTH", "BGTHQ", "BGTHQU", "BGTHU", "CRUCB", "REPOOL", "SHQIN", "SHQOUT", "TCORAV"})
         Me.cboVariableCode.Name = "cboVariableCode"
         Me.cboVariableCode.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.cboVariableCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
@@ -50,11 +52,17 @@ Partial Class frmMinorEditRequests
         Me.cboParameter.HeaderText = "Parameter"
         Me.cboParameter.Name = "cboParameter"
         '
+        'txtParameter
+        '
+        Me.txtParameter.HeaderText = "Parameter"
+        Me.txtParameter.Name = "txtParameter"
+        Me.txtParameter.Visible = False
+        '
         'frmMinorEditRequests
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(346, 445)
+        Me.ClientSize = New System.Drawing.Size(428, 197)
         Me.Controls.Add(Me.DataGridView1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmMinorEditRequests"
@@ -66,4 +74,5 @@ Partial Class frmMinorEditRequests
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents cboVariableCode As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents cboParameter As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents txtParameter As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
