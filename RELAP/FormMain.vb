@@ -2079,18 +2079,26 @@ sim:                Dim myStream As System.IO.FileStream
     End Sub
 
     Private Sub NewToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripButton.Click, NewToolStripMenuItem.Click, NovoToolStripMenuItem.Click
+        Dim NewMDIChild As New FormFlowsheet
+        Try
 
-        Dim NewMDIChild As New FormFlowsheet()
 
-        'Set the Parent Form of the Child window.
-        NewMDIChild.MdiParent = Me
-        'Display the new form.
-        NewMDIChild.Text = "Simulation" & m_childcount
-        NewMDIChild.Show()
-        Application.DoEvents()
-        Me.ActivateMdiChild(NewMDIChild)
-        m_childcount += 1
 
+
+            'Set the Parent Form of the Child window.
+            NewMDIChild.MdiParent = Me
+            'Display the new form.
+            NewMDIChild.Text = "Simulation" & m_childcount
+            'System.Threading.Thread.Sleep(1000)
+            NewMDIChild.Show()
+            Application.DoEvents()
+            Me.ActivateMdiChild(NewMDIChild)
+            m_childcount += 1
+
+        Catch ex As Exception
+            ' MsgBox(ex.Message)
+            NewMDIChild.WindowState = FormWindowState.Maximized
+        End Try
     End Sub
 
     Private Sub CascadeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CascadeToolStripMenuItem.Click
@@ -2653,33 +2661,33 @@ sim:                Dim myStream As System.IO.FileStream
                 Dim _uid = RELAP.App.GetUIDFromTag(row.Cells(0).Value)
                 If row.Cells(0).Value = "HS000" Then
                     If row.Cells(1).Value = "Linear" Then
-                        If row.Cells(2).Value = "Right" Then
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 2"
+                        If row.Cells(3).Value = "Right" Then
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 2"
                         Else
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 1"
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 1"
                         End If
 
                     Else
-                        If row.Cells(2).Value = "Right" Then
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 -2"
+                        If row.Cells(3).Value = "Right" Then
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 -2"
                         Else
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000101 -1"
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 -1"
                         End If
 
                     End If
                 Else
                     If row.Cells(1).Value = "Linear" Then
-                        If row.Cells(2).Value = "Right" Then
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 2"
+                        If row.Cells(3).Value = "Right" Then
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 2"
                         Else
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 1"
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 1"
                         End If
 
                     Else
-                        If row.Cells(2).Value = "Right" Then
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -2"
+                        If row.Cells(3).Value = "Right" Then
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 -2"
                         Else
-                            output = "2030001" & i & " " & My.Application.ActiveSimulation.FormPlotReqest.cboPlotVariableName.Text.ToLower & " " & _uid & "000000 -1"
+                            output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 -1"
                         End If
 
                     End If

@@ -59,6 +59,7 @@ Imports RELAP.RELAP.FormClasses
     Public FormMaterials As New frmMaterials
     Public FormPlotReqest As New frmPlotRequest
     Public FormMinorEditRequests As New frmMinorEditRequests
+    Public FormTrips As New frmTrips
     'Public FormEBT As New frmEBT
     'Public FormObjList As New frmObjList
     'Public FormLog As New frmLog
@@ -249,7 +250,7 @@ Imports RELAP.RELAP.FormClasses
             FormSurface.Show(dckPanel)
             FormInitialSettings.Show(dckPanel)
             FormMaterials.Show(dckPanel)
-
+            FormTrips.Show(dckPanel)
             FormPlotReqest.Show(dckPanel)
             FormMinorEditRequests.Show(dckPanel)
             FormControlSystem.Show(dckPanel)
@@ -257,10 +258,10 @@ Imports RELAP.RELAP.FormClasses
                 FormObjListView.DockState = Docking.DockState.DockRight
                 FormInitialSettings.DockState = Docking.DockState.DockLeftAutoHide
                 FormMaterials.DockState = Docking.DockState.DockLeftAutoHide
-                FormPlotReqest.DockState = Docking.DockState.DockLeftAutoHide
-                FormMinorEditRequests.DockState = Docking.DockState.DockLeftAutoHide
+                FormPlotReqest.DockState = Docking.DockState.DockBottomAutoHide
+                FormMinorEditRequests.DockState = Docking.DockState.DockBottomAutoHide
                 FormControlSystem.DockState = Docking.DockState.DockBottomAutoHide
-
+                FormTrips.DockState = Docking.DockState.DockBottomAutoHide
                 'FormWatch.DockState = Docking.DockState.DockRight
                 'FormWatch.DockState = Docking.DockState.DockBottom
                 'FormCOReports.DockState = Docking.DockState.DockLeft
