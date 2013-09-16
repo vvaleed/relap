@@ -22,7 +22,9 @@ Partial Class frmTrips
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.lblSerial = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cboVariableCode1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboParameter1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboRelationship = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -33,21 +35,33 @@ Partial Class frmTrips
         Me.txtTimeof = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtParamter1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtParameter2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewX1 = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.cboTrip1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.cboOperator = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.cboTrip2 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.chkLatch2 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.txtTimeofQuantity2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewX1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
         '
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode1, Me.cboParameter1, Me.cboRelationship, Me.cboVariableCode2, Me.cboParameter2, Me.txtAdditiveConstant, Me.chkLatch, Me.txtTimeof, Me.txtParamter1, Me.txtParameter2})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblSerial, Me.cboVariableCode1, Me.cboParameter1, Me.cboRelationship, Me.cboVariableCode2, Me.cboParameter2, Me.txtAdditiveConstant, Me.chkLatch, Me.txtTimeof, Me.txtParamter1, Me.txtParameter2})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Top
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(840, 116)
+        Me.DataGridView1.Size = New System.Drawing.Size(892, 116)
         Me.DataGridView1.TabIndex = 0
+        '
+        'lblSerial
+        '
+        Me.lblSerial.HeaderText = "Serial"
+        Me.lblSerial.Name = "lblSerial"
+        Me.lblSerial.ReadOnly = True
+        Me.lblSerial.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'cboVariableCode1
         '
@@ -106,31 +120,74 @@ Partial Class frmTrips
         Me.txtParameter2.Name = "txtParameter2"
         Me.txtParameter2.Visible = False
         '
-        'DataGridView2
+        'DataGridViewX1
         '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 140)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(840, 109)
-        Me.DataGridView2.TabIndex = 1
+        Me.DataGridViewX1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewX1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboTrip1, Me.cboOperator, Me.cboTrip2, Me.chkLatch2, Me.txtTimeofQuantity2})
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewX1.DefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridViewX1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.DataGridViewX1.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.DataGridViewX1.Location = New System.Drawing.Point(0, 116)
+        Me.DataGridViewX1.Name = "DataGridViewX1"
+        Me.DataGridViewX1.Size = New System.Drawing.Size(892, 110)
+        Me.DataGridViewX1.TabIndex = 1
+        '
+        'cboTrip1
+        '
+        Me.cboTrip1.HeaderText = "Trip 1"
+        Me.cboTrip1.Name = "cboTrip1"
+        '
+        'cboOperator
+        '
+        Me.cboOperator.HeaderText = "Operator"
+        Me.cboOperator.Name = "cboOperator"
+        '
+        'cboTrip2
+        '
+        Me.cboTrip2.HeaderText = "Trip 2"
+        Me.cboTrip2.Name = "cboTrip2"
+        '
+        'chkLatch2
+        '
+        Me.chkLatch2.HeaderText = "Latch"
+        Me.chkLatch2.Name = "chkLatch2"
+        '
+        'txtTimeofQuantity2
+        '
+        Me.txtTimeofQuantity2.HeaderText = "Timeof Quantity"
+        Me.txtTimeofQuantity2.Name = "txtTimeofQuantity2"
         '
         'frmTrips
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(840, 249)
-        Me.Controls.Add(Me.DataGridView2)
+        Me.ClientSize = New System.Drawing.Size(892, 229)
+        Me.Controls.Add(Me.DataGridViewX1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmTrips"
         Me.Text = "Trips"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewX1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents DataGridViewX1 As DevComponents.DotNetBar.Controls.DataGridViewX
+    Friend WithEvents cboTrip1 As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents cboOperator As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents cboTrip2 As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents chkLatch2 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents txtTimeofQuantity2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lblSerial As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cboVariableCode1 As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents cboParameter1 As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents cboRelationship As System.Windows.Forms.DataGridViewComboBoxColumn
@@ -141,5 +198,4 @@ Partial Class frmTrips
     Friend WithEvents txtTimeof As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents txtParamter1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents txtParameter2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
 End Class
