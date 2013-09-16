@@ -218,12 +218,6 @@
     <Compile Include="Classes\General\TableGraphic.vb" />
     <Compile Include="Classes\General\TreeViewDataAccess.vb" />
     <Compile Include="Classes\Math\General.vb" />
-    <Compile Include="frmTrips.Designer.vb">
-      <DependentUpon>frmTrips.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmTrips.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="objects\Branch.vb" />
     <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
@@ -374,9 +368,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMinorEditRequests.resx">
       <DependentUpon>frmMinorEditRequests.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmTrips.resx">
-      <DependentUpon>frmTrips.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmBranchEditor.resx">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
