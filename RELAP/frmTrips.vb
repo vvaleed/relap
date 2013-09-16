@@ -9,4 +9,16 @@
             DataGridView1.Rows(e.RowIndex).Cells(9).Value = DataGridView1.Rows(e.RowIndex).Cells(4).Value
         End If
     End Sub
+
+    Private Sub DataGridView1_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles DataGridView1.RowsAdded
+        DataGridView1.Rows(e.RowIndex).Cells(0).Value = e.RowIndex + 1
+        cboTrip1.Items.Clear()
+        cboTrip2.Items.Clear()
+        For i = 1 To DataGridView1.RowCount
+            cboTrip1.Items.Add(i.ToString)
+            cboTrip1.Items.Add("-" & i.ToString)
+            cboTrip2.Items.Add(i.ToString)
+            cboTrip2.Items.Add("-" & i.ToString)
+        Next
+    End Sub
 End Class

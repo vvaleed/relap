@@ -75,6 +75,9 @@
     <Reference Include="Ciloci.Flee">
       <HintPath>References\Ciloci.Flee.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=11.0.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EWSoftware.StatusBarText">
       <HintPath>References\EWSoftware.StatusBarText.dll</HintPath>
     </Reference>
@@ -106,6 +109,7 @@
       <HintPath>References\SpinningProgress.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />

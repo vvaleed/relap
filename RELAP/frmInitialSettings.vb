@@ -10,7 +10,6 @@
 
         For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
             cboDebrisVolume.Items.Add(kvp.Value.GraphicObject.Tag)
-
         Next
     End Sub
 
