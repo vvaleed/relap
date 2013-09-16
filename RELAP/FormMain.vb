@@ -2723,6 +2723,15 @@ sim:                Dim myStream As System.IO.FileStream
                 card = card + 1
             Next
 
+
+            generate.WriteLine("*======================================================================")
+            generate.WriteLine("*                            Expanded Plot Variables ")
+            generate.WriteLine("*======================================================================")
+            card = 20800001
+            For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormPlotReqest.DataGridView2.Rows
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value))
+                card = card + 1
+            Next
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
                 '  MsgBox(kvp.Key)
                 'kvp.Value.FlowArea.cardno()
