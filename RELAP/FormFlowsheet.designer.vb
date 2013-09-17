@@ -66,12 +66,6 @@ Partial Class FormFlowsheet
         Me.ToolStripComboBoxUnitSystem = New System.Windows.Forms.ToolStripComboBox()
         Me.lbl3 = New System.Windows.Forms.ToolStripLabel()
         Me.cboOutputUnits = New System.Windows.Forms.ToolStripComboBox()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripLabel6 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripComboBoxNumberFormatting = New System.Windows.Forms.ToolStripComboBox()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripLabel7 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripComboBoxNumberFractionFormatting = New System.Windows.Forms.ToolStripComboBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ConfiguraçõesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComponentesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -312,10 +306,10 @@ Partial Class FormFlowsheet
         'ToolStrip1
         '
         Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl1, Me.cboProblemType, Me.lbl2, Me.cboProblemOption, Me.lbll, Me.cboInputCheck, Me.ToolStripLabel3, Me.ToolStripComboBoxUnitSystem, Me.lbl3, Me.cboOutputUnits, Me.ToolStripSeparator2, Me.ToolStripLabel6, Me.ToolStripComboBoxNumberFormatting, Me.ToolStripSeparator3, Me.ToolStripLabel7, Me.ToolStripComboBoxNumberFractionFormatting})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl1, Me.cboProblemType, Me.lbl2, Me.cboProblemOption, Me.lbll, Me.cboInputCheck, Me.ToolStripLabel3, Me.ToolStripComboBoxUnitSystem, Me.lbl3, Me.cboOutputUnits})
         Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1006, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1025, 25)
         Me.ToolStrip1.TabIndex = 9
         '
         'lbl1
@@ -377,48 +371,6 @@ Partial Class FormFlowsheet
         Me.cboOutputUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboOutputUnits.Name = "cboOutputUnits"
         Me.cboOutputUnits.Size = New System.Drawing.Size(121, 25)
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripLabel6
-        '
-        Me.ToolStripLabel6.Enabled = False
-        Me.ToolStripLabel6.Name = "ToolStripLabel6"
-        Me.ToolStripLabel6.Size = New System.Drawing.Size(99, 22)
-        Me.ToolStripLabel6.Text = "Number Formatting"
-        Me.ToolStripLabel6.Visible = False
-        '
-        'ToolStripComboBoxNumberFormatting
-        '
-        Me.ToolStripComboBoxNumberFormatting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ToolStripComboBoxNumberFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
-        Me.ToolStripComboBoxNumberFormatting.Name = "ToolStripComboBoxNumberFormatting"
-        Me.ToolStripComboBoxNumberFormatting.Size = New System.Drawing.Size(121, 25)
-        Me.ToolStripComboBoxNumberFormatting.Visible = False
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripLabel7
-        '
-        Me.ToolStripLabel7.Enabled = False
-        Me.ToolStripLabel7.Name = "ToolStripLabel7"
-        Me.ToolStripLabel7.Size = New System.Drawing.Size(101, 22)
-        Me.ToolStripLabel7.Text = "Fraction Formatting"
-        Me.ToolStripLabel7.Visible = False
-        '
-        'ToolStripComboBoxNumberFractionFormatting
-        '
-        Me.ToolStripComboBoxNumberFractionFormatting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ToolStripComboBoxNumberFractionFormatting.Items.AddRange(New Object() {"Fixed", "Standard", "Scientific", "General Number", "E", "E1", "E2", "E3", "E4", "E6", "#0.0#", "#0.0##", "#0.0###", "#0.0####", "#0.0#####", "#0.0######", "#0.#", "#0.##", "#0.###", "#0.####", "#0.#####", "#0.######", "#.#", "#.##", "#.###", "#.####", "#.#####", "#.######", "#.#######"})
-        Me.ToolStripComboBoxNumberFractionFormatting.Name = "ToolStripComboBoxNumberFractionFormatting"
-        Me.ToolStripComboBoxNumberFractionFormatting.Size = New System.Drawing.Size(121, 25)
-        Me.ToolStripComboBoxNumberFractionFormatting.Visible = False
         '
         'MenuStrip1
         '
@@ -961,12 +913,6 @@ Partial Class FormFlowsheet
     Public WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Public WithEvents ToolStripLabel3 As System.Windows.Forms.ToolStripLabel
     Public WithEvents ToolStripComboBoxUnitSystem As System.Windows.Forms.ToolStripComboBox
-    Public WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Public WithEvents ToolStripLabel6 As System.Windows.Forms.ToolStripLabel
-    Public WithEvents ToolStripComboBoxNumberFormatting As System.Windows.Forms.ToolStripComboBox
-    Public WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Public WithEvents ToolStripLabel7 As System.Windows.Forms.ToolStripLabel
-    Public WithEvents ToolStripComboBoxNumberFractionFormatting As System.Windows.Forms.ToolStripComboBox
     Public WithEvents TSMICUO As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripButton16 As System.Windows.Forms.ToolStripButton
