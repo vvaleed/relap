@@ -348,8 +348,7 @@ Imports RELAP.RELAP.FormClasses
                 End If
             End If
 
-            Me.ToolStripComboBoxNumberFormatting.SelectedItem = Me.Options.NumberFormat
-            Me.ToolStripComboBoxNumberFractionFormatting.SelectedItem = Me.Options.FractionNumberFormat
+           
         End If
 
         ' Me.FormLog.Grid1.Sort(Me.FormLog.Grid1.Columns(1), ListSortDirection.Descending)
@@ -911,15 +910,7 @@ Imports RELAP.RELAP.FormClasses
     '    fcc.ShowDialog(Me)
     'End Sub
 
-    Private Sub ToolStripComboBoxNumberFormatting_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ToolStripComboBoxNumberFormatting.SelectedIndexChanged
-        Me.Options.NumberFormat = Me.ToolStripComboBoxNumberFormatting.SelectedItem
-        Me.FormSurface.UpdateSelectedObject()
-    End Sub
 
-    Private Sub ToolStripComboBoxNumberFractionFormatting_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripComboBoxNumberFractionFormatting.SelectedIndexChanged
-        Me.Options.FractionNumberFormat = Me.ToolStripComboBoxNumberFractionFormatting.SelectedItem
-        Me.FormSurface.UpdateSelectedObject()
-    End Sub
 
     Private Sub ToolStripComboBoxUnitSystem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripComboBoxUnitSystem.SelectedIndexChanged
         Try
