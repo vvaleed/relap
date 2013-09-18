@@ -2603,9 +2603,6 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine(("*FILE :" & SaveFileDialog1.FileName & "   ") + DateTime.Now)
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*======================================================================")
-            generate.WriteLine("*======================================================================")
-            '  generate.WriteLine("= " + Class1.initial.tb_title)
-            generate.WriteLine("*======================================================================")
             generate.WriteLine("*          PROBLEM TYPE AND OPTIONS card")
             generate.WriteLine("*======================================================================")
 
