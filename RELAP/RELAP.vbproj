@@ -76,6 +76,8 @@
       <HintPath>References\Ciloci.Flee.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=11.0.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\DevComponents.DotNetBar2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EWSoftware.StatusBarText">
