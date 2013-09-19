@@ -2960,53 +2960,16 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ pump")
 
-                output1 = boolto10(kvp.Value.EquilibriumTemperature)
 
-                output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & "000000" & output1
+                output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & "0"
                 generate.WriteLine(output)
 
-                output1 = boolto10(kvp.Value.CCFLModel)
-                output2 = boolto10(kvp.Value.ChokingModel)
-                If kvp.Value.SmoothAreaChange = True Then
-                    output3 = "0"
-                ElseIf kvp.Value.FullAbruptAreaChange = True Then
-                    output3 = "1"
-                ElseIf kvp.Value.PartialAbruptAreaChange = True Then
-                    output3 = "2"
-                Else
-                    output3 = "0"
-                End If
-
-                If kvp.Value.TwoVelocityMomentumEquations = True Then
-                    output4 = "0"
-                ElseIf kvp.Value.SingleVelocityMomentumEquations = True Then
-                    output4 = "2"
-                Else
-                    output4 = "1"
-                End If
+               
 
                 output = (((kvp.Value.UID & "0108 " & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0" & output1 & "0" & output2 & output3 & output4 & "0"
                 generate.WriteLine(output)
 
-                output1 = boolto10(kvp.Value.OCCFLModel)
-                output2 = boolto10(kvp.Value.OChokingModel)
-                If kvp.Value.OSmoothAreaChange = True Then
-                    output3 = "0"
-                ElseIf kvp.Value.OFullAbruptAreaChange = True Then
-                    output3 = "1"
-                ElseIf kvp.Value.OPartialAbruptAreaChange = True Then
-                    output3 = "2"
-                Else
-                    output3 = "0"
-                End If
-
-                If kvp.Value.OTwoVelocityMomentumEquations = True Then
-                    output4 = "0"
-                ElseIf kvp.Value.OSingleVelocityMomentumEquations = True Then
-                    output4 = "2"
-                Else
-                    output4 = "1"
-                End If
+               
 
                 output = (((kvp.Value.UID & "0109 " & kvp.Value.OJunctionArea & " ") & kvp.Value.OFflowLossCo & " ") & kvp.Value.ORflowLossCo & " ") & "0" & output1 & "0" & output2 & output3 & output4 & "0"
                 generate.WriteLine(output)

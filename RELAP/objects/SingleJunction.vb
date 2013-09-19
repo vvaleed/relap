@@ -94,6 +94,27 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private m_from As String
+        Public Property FromComponent() As String
+            Get
+                Return m_from
+            End Get
+            Set(ByVal value As String)
+                m_from = value
+            End Set
+        End Property
+
+
+        Private m_to As String
+        Public Property ToComponent() As String
+            Get
+                Return m_to
+            End Get
+            Set(ByVal value As String)
+                m_to = value
+            End Set
+        End Property
+
         Private _FromVolume As String
         Public Property FromVolume() As String
             Get
@@ -182,26 +203,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_from As String
-        Public Property FromComponent() As String
-            Get
-                Return m_from
-            End Get
-            Set(ByVal value As String)
-                m_from = value
-            End Set
-        End Property
-
-
-        Private m_to As String
-        Public Property ToComponent() As String
-            Get
-                Return m_to
-            End Get
-            Set(ByVal value As String)
-                m_to = value
-            End Set
-        End Property
+ 
 
         Private m_area As Double
         Public Property JunctionArea() As Double
