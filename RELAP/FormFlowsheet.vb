@@ -1430,6 +1430,17 @@ Imports RELAP.RELAP.FormClasses
                 ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
                 '  gObjTo.
             End If
+
+            If gObjTo.TipoObjeto = TipoObjeto.Pump Then
+                Me.Collections.CLCS_PumpCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                '  gObjTo.
+            End If
+            If gObjFrom.TipoObjeto = TipoObjeto.Pump Then
+                Me.Collections.CLCS_PumpCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                '  gObjTo.
+            End If
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
             Dim InConSlot, OutConSlot As New ConnectionPoint

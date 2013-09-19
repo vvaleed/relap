@@ -36,7 +36,32 @@ Namespace RELAP.SimulationObjects.UnitOps
             Public wordno As String
         End Structure
 
+        Enum Direction
+            Inlet = 1
+            Outlet = 2
+        End Enum
+        Enum inletAreaChangeEnum
+            No_Area_Change
+            Smooth_Area_Change
+            Full_Abrupt_Area_Change
+            Partial_Abrupt_Area_Change
+        End Enum
 
+        Enum inletMomentumEquationEnum
+            Two_velocity_Momentum_Equations
+            Single_velocity_Momentum_Equations
+        End Enum
+        Enum outletAreaChangeEnum
+            No_Area_Change
+            Smooth_Area_Change
+            Full_Abrupt_Area_Change
+            Partial_Abrupt_Area_Change
+        End Enum
+
+        Enum outletMomentumEquationEnum
+            Two_velocity_Momentum_Equations
+            Single_velocity_Momentum_Equations
+        End Enum
         'basic properties start
 
         Private m_flowarea As Double
@@ -68,26 +93,6 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_VolumeofVolume = value
             End Set
         End Property
-
-        'Private m_HydraulicDiameter As Double
-        'Public Property HydraulicDiameter() As Double
-        '    Get
-        '        Return m_HydraulicDiameter
-        '    End Get
-        '    Set(ByVal value As Double)
-        '        m_HydraulicDiameter = value
-        '    End Set
-        'End Property
-
-        'Private m_WallRoughness As Double
-        'Public Property WallRoughness() As Double
-        '    Get
-        '        Return m_WallRoughness
-        '    End Get
-        '    Set(ByVal value As Double)
-        '        m_WallRoughness = value
-        '    End Set
-        'End Property
 
         Private m_ElevationChange As Double
         Public Property ElevationChange() As Double
@@ -121,80 +126,65 @@ Namespace RELAP.SimulationObjects.UnitOps
 
         'basic properties end
 
-
-
-
-        'control flags variable initialization
-
-        Private m_t As Boolean
-        Public Property ThermalStratificationModel() As Boolean
+        Private m_from As String
+        Public Property FromComponent() As String
             Get
-                Return m_t
+                Return m_from
             End Get
-            Set(ByVal value As Boolean)
-                m_t = value
+            Set(ByVal value As String)
+                m_from = value
             End Set
         End Property
 
-        Private m_l As Boolean
-        Public Property LevelTrackingModel() As Boolean
+
+        Private m_to As String
+        Public Property ToComponent() As String
             Get
-                Return m_l
+                Return m_to
             End Get
-            Set(ByVal value As Boolean)
-                m_l = value
+            Set(ByVal value As String)
+                m_to = value
             End Set
         End Property
 
-        Private m_p As Boolean
-        Public Property WaterPackingScheme() As Boolean
+        Private _FromVolume As String
+        Public Property FromVolume() As String
             Get
-                Return m_p
+                Return _FromVolume
             End Get
-            Set(ByVal value As Boolean)
-                m_p = value
+            Set(ByVal value As String)
+                _FromVolume = value
+            End Set
+        End Property
+        Private _ToVolume As String
+        Public Property ToVolume() As String
+            Get
+                Return _ToVolume
+            End Get
+            Set(ByVal value As String)
+                _ToVolume = value
             End Set
         End Property
 
-        Private m_v As Boolean
-        Public Property VerticalStratificationModel() As Boolean
+        Private _FromDirection As Direction
+        Public Property FromDirection() As Direction
             Get
-                Return m_v
+                Return _FromDirection
             End Get
-            Set(ByVal value As Boolean)
-                m_v = value
+            Set(ByVal value As Direction)
+                _FromDirection = value
+            End Set
+        End Property
+        Private _ToDirection As Direction
+        Public Property ToDirection() As Direction
+            Get
+                Return _ToDirection
+            End Get
+            Set(ByVal value As Direction)
+                _ToDirection = value
             End Set
         End Property
 
-        Private m_b As Boolean
-        Public Property InterphaseFriction() As Boolean
-            Get
-                Return m_b
-            End Get
-            Set(ByVal value As Boolean)
-                m_b = value
-            End Set
-        End Property
-
-        Private m_f As Boolean
-        Public Property ComputeWallFriction() As Boolean
-            Get
-                Return m_f
-            End Get
-            Set(ByVal value As Boolean)
-                m_f = value
-            End Set
-        End Property
-
-        Private m_e As Boolean
-        Public Property EquilibriumTemperature() As Boolean
-            Get
-                Return m_e
-            End Get
-            Set(ByVal value As Boolean)
-                m_e = value
-            End Set
-        End Property
 
 
 
@@ -229,73 +219,43 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_f_inlet As Boolean
-        Public Property CCFLModel() As Boolean
+        Private inlet_CCFL As Boolean
+        Public Property CCFL() As Boolean
             Get
-                Return m_f_inlet
+                Return inlet_CCFL
             End Get
             Set(ByVal value As Boolean)
-                m_f_inlet = value
+                inlet_CCFL = value
             End Set
         End Property
 
-        Private m_c_inlet As Boolean
-        Public Property ChokingModel() As Boolean
+        Private inlet_chokingModel As Boolean
+        Public Property chokingModel() As Boolean
             Get
-                Return m_c_inlet
+                Return inlet_chokingModel
             End Get
             Set(ByVal value As Boolean)
-                m_c_inlet = value
+                inlet_chokingModel = value
             End Set
         End Property
 
-        Private m_a_inlet_smooth As Boolean
-        Public Property SmoothAreaChange() As Boolean
+        Private inlet_AreaChange As inletAreaChangeEnum
+        Public Property AreaChange() As inletAreaChangeEnum
             Get
-                Return m_a_inlet_smooth
+                Return inlet_AreaChange
             End Get
-            Set(ByVal value As Boolean)
-                m_a_inlet_smooth = value
+            Set(ByVal value As inletAreaChangeEnum)
+                inlet_AreaChange = value
             End Set
         End Property
 
-        Private m_a_inlet_abrupt As Boolean
-        Public Property FullAbruptAreaChange() As Boolean
+        Private inlet_MomentumEquation As inletMomentumEquationEnum
+        Public Property MomentumEquation() As inletMomentumEquationEnum
             Get
-                Return m_a_inlet_abrupt
+                Return inlet_MomentumEquation
             End Get
-            Set(ByVal value As Boolean)
-                m_a_inlet_abrupt = value
-            End Set
-        End Property
-
-        Private m_a_inlet_partial As Boolean
-        Public Property PartialAbruptAreaChange() As Boolean
-            Get
-                Return m_a_inlet_partial
-            End Get
-            Set(ByVal value As Boolean)
-                m_a_inlet_partial = value
-            End Set
-        End Property
-
-        Private m_h_inlet_homogeneus As Boolean
-        Public Property TwoVelocityMomentumEquations() As Boolean
-            Get
-                Return m_h_inlet_homogeneus
-            End Get
-            Set(ByVal value As Boolean)
-                m_h_inlet_homogeneus = value
-            End Set
-        End Property
-
-        Private m_h_inlet_nonhomogeneus As Boolean
-        Public Property SingleVelocityMomentumEquations() As Boolean
-            Get
-                Return m_h_inlet_nonhomogeneus
-            End Get
-            Set(ByVal value As Boolean)
-                m_h_inlet_nonhomogeneus = value
+            Set(ByVal value As inletMomentumEquationEnum)
+                inlet_MomentumEquation = value
             End Set
         End Property
 
@@ -332,73 +292,43 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_f_outlet As Boolean
-        Public Property OCCFLModel() As Boolean
+        Private outlet_CCFL As Boolean
+        Public Property OCCFL() As Boolean
             Get
-                Return m_f_outlet
+                Return outlet_CCFL
             End Get
             Set(ByVal value As Boolean)
-                m_f_outlet = value
+                outlet_CCFL = value
             End Set
         End Property
 
-        Private m_c_outlet As Boolean
-        Public Property OChokingModel() As Boolean
+        Private outlet_chokingModel As Boolean
+        Public Property OchokingModel() As Boolean
             Get
-                Return m_c_outlet
+                Return outlet_chokingModel
             End Get
             Set(ByVal value As Boolean)
-                m_c_outlet = value
+                outlet_chokingModel = value
             End Set
         End Property
 
-        Private m_a_outlet_smooth As Boolean
-        Public Property OSmoothAreaChange() As Boolean
+        Private outlet_AreaChange As outletAreaChangeEnum
+        Public Property OAreaChange() As outletAreaChangeEnum
             Get
-                Return m_a_outlet_smooth
+                Return outlet_AreaChange
             End Get
-            Set(ByVal value As Boolean)
-                m_a_outlet_smooth = value
+            Set(ByVal value As outletAreaChangeEnum)
+                outlet_AreaChange = value
             End Set
         End Property
 
-        Private m_a_outlet_abrupt As Boolean
-        Public Property OFullAbruptAreaChange() As Boolean
+        Private outlet_MomentumEquation As outletMomentumEquationEnum
+        Public Property OMomentumEquation() As outletMomentumEquationEnum
             Get
-                Return m_a_outlet_abrupt
+                Return outlet_MomentumEquation
             End Get
-            Set(ByVal value As Boolean)
-                m_a_outlet_abrupt = value
-            End Set
-        End Property
-
-        Private m_a_outlet_partial As Boolean
-        Public Property OPartialAbruptAreaChange() As Boolean
-            Get
-                Return m_a_outlet_partial
-            End Get
-            Set(ByVal value As Boolean)
-                m_a_outlet_partial = value
-            End Set
-        End Property
-
-        Private m_h_outlet_homogeneus As Boolean
-        Public Property OTwoVelocityMomentumEquations() As Boolean
-            Get
-                Return m_h_outlet_homogeneus
-            End Get
-            Set(ByVal value As Boolean)
-                m_h_outlet_homogeneus = value
-            End Set
-        End Property
-
-        Private m_h_outlet_nonhomogeneus As Boolean
-        Public Property OSingleVelocityMomentumEquations() As Boolean
-            Get
-                Return m_h_outlet_nonhomogeneus
-            End Get
-            Set(ByVal value As Boolean)
-                m_h_outlet_nonhomogeneus = value
+            Set(ByVal value As outletMomentumEquationEnum)
+                outlet_MomentumEquation = value
             End Set
         End Property
 
@@ -643,16 +573,22 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me._ToVolume = 1
+            Me._FromVolume = 1
             Me.m_flowarea = 20.0
             Me.m_LengthofVolume = 0.0
             Me.m_VolumeofVolume = 1000000.0
             Me.m_Azimuthalangle = 0.0
             Me.m_InclinationAngle = -90.0
             Me.m_ElevationChange = -50000.0
-            'Me.m_WallRoughness = 0.0
-            'Me.m_HydraulicDiameter = 0
-
-            '& kvkvp.Value.HydraulicDiameter & " ") & "0000000"
+            Me.inlet_CCFL = False
+            Me.inlet_chokingModel = False
+            Me.AreaChange = inletAreaChangeEnum.No_Area_Change
+            Me.MomentumEquation = inletMomentumEquationEnum.Two_velocity_Momentum_Equations
+            Me.outlet_CCFL = False
+            Me.outlet_chokingModel = False
+            Me.OAreaChange = outletAreaChangeEnum.No_Area_Change
+            Me.OMomentumEquation = outletMomentumEquationEnum.Two_velocity_Momentum_Equations
 
         End Sub
 
@@ -961,72 +897,24 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                'valor = Format(Conversor.ConverterDoSI(su.distance, Me.WallRoughness), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Wall Roughness", su.distance), valor, False, "Parameters", "Wall Roughness", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-                'valor = Format(Conversor.ConverterDoSI(su.distance, Me.HydraulicDiameter), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT("Hydraulic Diameter", su.distance), valor, False, "Parameters", "Hydraulic Diameter", True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-
-
-                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
-                '.Item.Add(FT(RELAP.App.GetLocalString("TKVol"), su.volume), valor, False, "Parameters", RELAP.App.GetLocalString("TKVol"), True)
-                'With .Item(.Item.Count - 1)
-                '    .DefaultValue = Nothing
-                '    .DefaultType = GetType(Double)
-                'End With
-
-                'valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
-
-
-                'control flags
-
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "2.Volume Control Flags", "Thermal Stratification Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Mixture Level Tracking Model"), Me, "LevelTrackingModel", True, "2.Volume Control Flags", "Mixture Level Tracking Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Water Packing Scheme"), Me, "WaterPackingScheme", True, "2.Volume Control Flags", "Water Packing Scheme", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Vertical Stratification Model"), Me, "VerticalStratificationModel", True, "2.Volume Control Flags", "Vertical Stratification Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", True, "2.Volume Control Flags", "Interphase Friction Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", True, "2.Volume Control Flags", "Compute Wall Friction", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "2.Volume Control Flags", "Equilibrium Temperature", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
 
 
                 'pump suction
+                valor = App.GetTagFromUID(Me.FromComponent)
+                .Item.Add("From Component", valor, True, "3.Pump Suction Data", "From Component", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = (Me.FromVolume)
+                .Item.Add("From Volume", valor, False, "3.Pump Suction Data", "From Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .CustomEditor = New RELAP.Editors.UIVolumeSelector
+                End With
+
+                .Item.Add("From Direction", Me, "FromDirection", False, "3.Pump Suction Data", "From Direction", True)
+
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Inlet Junction Area", su.area), valor, False, "3.Pump Suction Data", "Inlet Junction Area", True)
                 With .Item(.Item.Count - 1)
@@ -1048,52 +936,42 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                .Item.Add(("Inlet CCFL Model"), Me, "CCFLModel", False, "3.Pump Suction Data", "Inlet CCFL Model", True)
+                .Item.Add(("Inlet CCFL Model"), Me, "CCFL", False, "3.Pump Suction Data", "CCFL Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Inlet Choking Model"), Me, "ChokingModel", False, "3.Pump Suction Data", "Inlet Choking Model", True)
+                .Item.Add(("Inlet Choking Model"), Me, "ChokingModel", False, "3.Pump Suction Data", "Choking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Inlet Smooth Area Change"), Me, "SmoothAreaChange", False, "3.Pump Suction Data", "Inlet Smooth Area Change", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+                .Item.Add("Inlet Area Change", Me, "AreaChange", False, "3.Pump Suction Data", "Area Change Options", True)
 
-                .Item.Add(("Inlet Full Abrupt Area Change"), Me, "FullAbruptAreaChange", False, "3.Pump Suction Data", "Inlet Full Abrupt Area Change", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Inlet Partial Abrupt Area Change"), Me, "PartialAbruptAreaChange", False, "3.Pump Suction Data", "Inlet Partial Abrupt Area Change", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Inlet Two Velocity Momentum Equations"), Me, "TwoVelocityMomentumEquations", False, "3.Pump Suction Data", "Inlet Two Velocity Momentum Equations", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Inlet Single Velocity Momentum Equations"), Me, "SingleVelocityMomentumEquations", False, "3.Pump Suction Data", "Inlet Single Velocity Momentum Equations", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+                .Item.Add("Inlet Momentum Equation", Me, "MomentumEquation", False, "3.Pump Suction Data", "Specify homogenius or nonhomogenius", True)
 
 
 
 
                 'pump discharge
+                valor = App.GetTagFromUID(Me.ToComponent)
+                .Item.Add("To Component", valor, True, "4.Pump Discharge Data", "To Component", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
+                valor = (Me.ToVolume)
+                .Item.Add("To Volume", valor, False, "4.Pump Discharge Data", "To Volume", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .CustomEditor = New RELAP.Editors.UIVolumeSelector
+                End With
+
+                .Item.Add("To Direction", Me, "ToDirection", False, "4.Pump Discharge Data", "To Direction", True)
+
                 valor = Format(Conversor.ConverterDoSI(su.area, Me.OJunctionArea), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Outlet Junction Area", su.area), valor, False, "4.Pump Discharge Data", "Outlet Junction Area", True)
                 With .Item(.Item.Count - 1)
@@ -1115,47 +993,21 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                .Item.Add(("Outlet CCFL Model"), Me, "OCCFLModel", False, "4.Pump Discharge Data", "Outlet CCFL Model", True)
+                .Item.Add(("Outlet CCFL Model"), Me, "OCCFL", False, "4.Pump Discharge Data", "CCFL Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Outlet Choking Model"), Me, "OChokingModel", False, "4.Pump Discharge Data", "Outlet Choking Model", True)
+                .Item.Add(("Outlet Choking Model"), Me, "OChokingModel", False, "4.Pump Discharge Data", "Choking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("Outlet Smooth Area Change"), Me, "OSmoothAreaChange", False, "4.Pump Discharge Data", "Outlet Smooth Area Change", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+                .Item.Add("Outlet Area Change", Me, "OAreaChange", False, "4.Pump Discharge Data", "Area Change Options", True)
 
-                .Item.Add(("Outlet Full Abrupt Area Change"), Me, "OFullAbruptAreaChange", False, "4.Pump Discharge Data", "Outlet Full Abrupt Area Change", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Outlet Partial Abrupt Area Change"), Me, "OPartialAbruptAreaChange", False, "4.Pump Discharge Data", "Outlet Partial Abrupt Area Change", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Outlet Two Velocity Momentum Equations"), Me, "OTwoVelocityMomentumEquations", False, "4.Pump Discharge Data", "Outlet Two Velocity Momentum Equations", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("Outlet Single Velocity Momentum Equations"), Me, "OSingleVelocityMomentumEquations", False, "4.Pump Discharge Data", "Outlet Single Velocity Momentum Equations", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+                .Item.Add("Outlet Momentum Equation", Me, "OMomentumEquation", False, "4.Pump Discharge Data", "Specify homogenius or nonhomogenius", True)
 
 
                 'pump suction initial conditions

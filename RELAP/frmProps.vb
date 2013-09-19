@@ -2477,288 +2477,242 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Elevation Change") Then
                 pp.ElevationChange = e.ChangedItem.Value
 
-                'control flags
-            ElseIf e.ChangedItem.Label.Contains("Thermal Stratification Model") Then
-                pp.ThermalStratificationModel = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Level Tracking Model") Then
-                pp.LevelTrackingModel = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Water Packing Scheme") Then
-                pp.WaterPackingScheme = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Vertical Stratification Model") Then
-                pp.VerticalStratificationModel = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Interphase Friction Model") Then
-                pp.InterphaseFriction = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Compute Wall Friction") Then
-                pp.ComputeWallFriction = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Equilibrium Temperature") Then
-                pp.EquilibriumTemperature = e.ChangedItem.Value
-
                 'pump suction
-            ElseIf e.ChangedItem.Label.Contains("Inlet Junction Area") Then
-                pp.JunctionArea = e.ChangedItem.Value
+                If e.ChangedItem.Label.Contains("From Component") Then
+                    pp.FromComponent = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Inlet Forward Flow Energy Loss Coefficient") Then
-                pp.FflowLossCo = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("To Component") Then
+                    pp.ToComponent = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("To Volume") Then
+                    pp.ToVolume = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("From Volume") Then
+                    pp.FromVolume = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Inlet Junction Area") Then
+                    pp.JunctionArea = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Inlet Reverse Flow Energy Loss Coefficient") Then
-                pp.RflowLossCo = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Inlet Forward Flow Energy Loss Coefficient") Then
+                    pp.FflowLossCo = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Inlet CCFL Model") Then
-                pp.CCFLModel = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Inlet Reverse Flow Energy Loss Coefficient") Then
+                    pp.RflowLossCo = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Inlet Choking Model") Then
-                pp.ChokingModel = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Inlet Smooth Area Change") Then
-                pp.SmoothAreaChange = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Inlet Full Abrupt Area Change") Then
-                pp.FullAbruptAreaChange = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Inlet Partial Abrupt Area Change") Then
-                pp.PartialAbruptAreaChange = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Inlet Two Velocity Momentum Equations") Then
-                pp.TwoVelocityMomentumEquations = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Inlet Single Velocity Momentum Equations") Then
-                pp.SingleVelocityMomentumEquations = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("inlet CCFL Model") Then
+                    pp.CCFL = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("inlet Choking Model") Then
+                    pp.chokingModel = e.ChangedItem.Value
 
 
-                'pump discharge
-            ElseIf e.ChangedItem.Label.Contains("Outlet Junction Area") Then
-                pp.OJunctionArea = e.ChangedItem.Value
+                    'pump discharge
+                ElseIf e.ChangedItem.Label.Contains("Outlet Junction Area") Then
+                    pp.OJunctionArea = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Forward Flow Energy Loss Coefficient") Then
-                pp.OFflowLossCo = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Outlet Forward Flow Energy Loss Coefficient") Then
+                    pp.OFflowLossCo = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Reverse Flow Energy Loss Coefficient") Then
-                pp.ORflowLossCo = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Outlet Reverse Flow Energy Loss Coefficient") Then
+                    pp.ORflowLossCo = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet CCFL Model") Then
-                pp.OCCFLModel = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Outlet CCFL Model") Then
+                    pp.CCFL = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Outlet Choking Model") Then
+                    pp.chokingModel = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Choking Model") Then
-                pp.OChokingModel = e.ChangedItem.Value
+                    'pump suction initial conditions
+                ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (suction)") Then
+                    pp.InterphaseVelocity = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Smooth Area Change") Then
-                pp.OSmoothAreaChange = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (suction)") Then
+                    pp.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Full Abrupt Area Change") Then
-                pp.OFullAbruptAreaChange = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (suction)") Then
+                    pp.InitialLiquidVelocity = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Partial Abrupt Area Change") Then
-                pp.OPartialAbruptAreaChange = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (suction)") Then
+                    pp.InitialVaporVelocity = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Two Velocity Momentum Equations") Then
-                pp.OTwoVelocityMomentumEquations = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (suction)") Then
+                    pp.InitialLiquidMassFlowRate = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Outlet Single Velocity Momentum Equations") Then
-                pp.OSingleVelocityMomentumEquations = e.ChangedItem.Value
-
-
-                'pump suction initial conditions
-            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (suction)") Then
-                pp.InterphaseVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (suction)") Then
-                pp.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (suction)") Then
-                pp.InitialLiquidVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (suction)") Then
-                pp.InitialVaporVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (suction)") Then
-                pp.InitialLiquidMassFlowRate = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (suction)") Then
-                pp.InitialVaporMassFlowRate = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (suction)") Then
+                    pp.InitialVaporMassFlowRate = e.ChangedItem.Value
 
 
 
-                'pump discharge initial conditions
-            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (discharge)") Then
-                pp.OInterphaseVelocity = e.ChangedItem.Value
+                    'pump discharge initial conditions
+                ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (discharge)") Then
+                    pp.OInterphaseVelocity = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (discharge)") Then
-                pp.OEnterVelocityOrMassFlowRate = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (discharge)") Then
+                    pp.OEnterVelocityOrMassFlowRate = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (discharge)") Then
-                pp.OInitialLiquidVelocity = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (discharge)") Then
+                    pp.OInitialLiquidVelocity = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (discharge)") Then
-                pp.OInitialVaporVelocity = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (discharge)") Then
+                    pp.OInitialVaporVelocity = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (discharge)") Then
-                pp.OInitialLiquidMassFlowRate = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (discharge)") Then
+                    pp.OInitialLiquidMassFlowRate = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
-                pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
+                    pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
 
 
-            End If
+                End If
 
 
 
 
 
-        ElseIf sobj.TipoObjeto = TipoObjeto.FuelRod Then
+            ElseIf sobj.TipoObjeto = TipoObjeto.FuelRod Then
 
 
-            Dim fr As RELAP.SimulationObjects.UnitOps.FuelRod = ChildParent.Collections.CLCS_FuelRodCollection.Item(sobj.Name)
-            If e.ChangedItem.Label.Contains("Average Burnup") Then
-                fr.AverageBurnup = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("No. of rods") Then
-                fr.NumberOfRods = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Fuel Rod Pitch") Then
-                fr.FuelRodPitch = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Plenum Length") Then
-                fr.PlenumLength = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Plenum Void Volume") Then
-                fr.PlenumVoidVolume = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Lower Plenum Void Volume") Then
-                fr.LowerPlenumVoidVolume = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Fuel Pellet Radius") Then
-                fr.FuelPelletRadius = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Inner Cladding Radius") Then
-                fr.InnerCladdingRadius = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Outer Cladding Radius") Then
-                fr.OuterCladdingRadius = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Fuel Rod Dimensions") Then
-                fr.FuelRodDimensionsAxialNode = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Control Volume Above") Then
-                fr.ControlVolumeAbove = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Control Volume Below") Then
-                fr.ControlVolumeBelow = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Control Volume Number") Then
-                fr.ControlVolumeNumber = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Increment") Then
-                fr.Increment = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Hydraulic Volumes") Then
-                fr.HydraulicVolumesAxialNode = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Radius To Radial Node 1") Then
-                fr.RadiusToRadialNode1 = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Radius To Radial Node N") Then
-                fr.RadiusToRadialNodeN = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Radial Mesh Spacing") Then
-                fr.RadialMeshSpacingAxialNode = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Temperature at Node 1") Then
-                fr.TemperatureAtNode1 = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Temperature at Node N") Then
-                fr.TemperatureAtNodeN = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Initial Temperature") Then
-                fr.InitialTemperaturesAxialNode = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Material Index Near Center") Then
-                fr.MaterialIndexNearCenter = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Material Index Next To Center") Then
-                fr.MaterialIndexNextToCenter = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Material Index Nth Layer") Then
-                fr.MaterialIndexNthLayer = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Fraction") Then
-                fr.Fraction = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.TimeForWhichAxialPowerProfileApplies = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Factor") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Radial Power Factor") Then
-                fr.RadialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
-            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                fr.AxialPowerFactor = e.ChangedItem.Value
-            End If
+                Dim fr As RELAP.SimulationObjects.UnitOps.FuelRod = ChildParent.Collections.CLCS_FuelRodCollection.Item(sobj.Name)
+                If e.ChangedItem.Label.Contains("Average Burnup") Then
+                    fr.AverageBurnup = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("No. of rods") Then
+                    fr.NumberOfRods = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Fuel Rod Pitch") Then
+                    fr.FuelRodPitch = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Plenum Length") Then
+                    fr.PlenumLength = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Plenum Void Volume") Then
+                    fr.PlenumVoidVolume = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Lower Plenum Void Volume") Then
+                    fr.LowerPlenumVoidVolume = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Fuel Pellet Radius") Then
+                    fr.FuelPelletRadius = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Inner Cladding Radius") Then
+                    fr.InnerCladdingRadius = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Outer Cladding Radius") Then
+                    fr.OuterCladdingRadius = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Fuel Rod Dimensions") Then
+                    fr.FuelRodDimensionsAxialNode = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Control Volume Above") Then
+                    fr.ControlVolumeAbove = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Control Volume Below") Then
+                    fr.ControlVolumeBelow = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Control Volume Number") Then
+                    fr.ControlVolumeNumber = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Increment") Then
+                    fr.Increment = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Hydraulic Volumes") Then
+                    fr.HydraulicVolumesAxialNode = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Radius To Radial Node 1") Then
+                    fr.RadiusToRadialNode1 = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Radius To Radial Node N") Then
+                    fr.RadiusToRadialNodeN = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Radial Mesh Spacing") Then
+                    fr.RadialMeshSpacingAxialNode = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Temperature at Node 1") Then
+                    fr.TemperatureAtNode1 = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Temperature at Node N") Then
+                    fr.TemperatureAtNodeN = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Initial Temperature") Then
+                    fr.InitialTemperaturesAxialNode = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Material Index Near Center") Then
+                    fr.MaterialIndexNearCenter = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Material Index Next To Center") Then
+                    fr.MaterialIndexNextToCenter = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Material Index Nth Layer") Then
+                    fr.MaterialIndexNthLayer = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Fraction") Then
+                    fr.Fraction = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.TimeForWhichAxialPowerProfileApplies = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Factor") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Radial Power Factor") Then
+                    fr.RadialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
+                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                    fr.AxialPowerFactor = e.ChangedItem.Value
+                End If
 
 
-        ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
-            Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
+            ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
+                Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
 
-            If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
-                hs.NumberOfAxialHS = e.ChangedItem.Value
+                If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
+                    hs.NumberOfAxialHS = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
-                hs.NumberOfRadialMP = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
+                    hs.NumberOfRadialMP = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
-                hs.LeftBoundaryCO = e.ChangedItem.Value
+                ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
+                    hs.LeftBoundaryCO = e.ChangedItem.Value
+
+
+                End If
 
 
             End If
-
-
-
 
 
             'If ChildParent.Options.CalculatorActivated Then
