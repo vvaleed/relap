@@ -233,20 +233,20 @@
     <Compile Include="frmTrips.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Branch.vb" />
+    <Compile Include="objects\Branch\Branch.vb" />
     <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
     <Compile Include="objects\Custom Properties\ValveType.vb" />
-    <Compile Include="objects\Editors\frmBranchEditor.Designer.vb">
+    <Compile Include="objects\Branch\frmBranchEditor.Designer.vb">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmBranchEditor.vb">
+    <Compile Include="objects\Branch\frmBranchEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\frmJunctionsEditor.Designer.vb">
+    <Compile Include="objects\Junction\frmJunctionsEditor.Designer.vb">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmJunctionsEditor.vb">
+    <Compile Include="objects\Junction\frmJunctionsEditor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="objects\Editors\frmValveEditor.Designer.vb">
@@ -255,16 +255,16 @@
     <Compile Include="objects\Editors\frmValveEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucBranchEditor.Designer.vb">
+    <Compile Include="objects\Branch\ucBranchEditor.Designer.vb">
       <DependentUpon>ucBranchEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucBranchEditor.vb">
+    <Compile Include="objects\Branch\ucBranchEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucJunctionsEditor.Designer.vb">
+    <Compile Include="objects\Junction\ucJunctionsEditor.Designer.vb">
       <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucJunctionsEditor.vb">
+    <Compile Include="objects\Junction\ucJunctionsEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="objects\Editors\ucValveEditor.Designer.vb">
@@ -273,40 +273,40 @@
     <Compile Include="objects\Editors\ucValveEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\UIBranchEditor.vb" />
-    <Compile Include="objects\Editors\UIJunctionsEditor.vb" />
+    <Compile Include="objects\Branch\UIBranchEditor.vb" />
+    <Compile Include="objects\Junction\UIJunctionsEditor.vb" />
     <Compile Include="objects\Editors\UIValveEditor.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureMeshData.vb" />
     <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />
-    <Compile Include="objects\Editors\frmHeatStructureEditor.Designer.vb">
+    <Compile Include="objects\HeatStructure\frmHeatStructureEditor.Designer.vb">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmHeatStructureEditor.vb">
+    <Compile Include="objects\HeatStructure\frmHeatStructureEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\frmHeatStructureEditor2.Designer.vb">
+    <Compile Include="objects\HeatStructure\frmHeatStructureEditor2.Designer.vb">
       <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmHeatStructureEditor2.vb">
+    <Compile Include="objects\HeatStructure\frmHeatStructureEditor2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucHeatStructureEditor.Designer.vb">
+    <Compile Include="objects\HeatStructure\ucHeatStructureEditor.Designer.vb">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucHeatStructureEditor.vb">
+    <Compile Include="objects\HeatStructure\ucHeatStructureEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucHeatStructureEditor2.Designer.vb">
+    <Compile Include="objects\HeatStructure\ucHeatStructureEditor2.Designer.vb">
       <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucHeatStructureEditor2.vb">
+    <Compile Include="objects\HeatStructure\ucHeatStructureEditor2.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\UIHeatStructureEditor.vb" />
-    <Compile Include="objects\Editors\UIHeatStructureEditor2.vb" />
+    <Compile Include="objects\HeatStructure\UIHeatStructureEditor.vb" />
+    <Compile Include="objects\HeatStructure\UIHeatStructureEditor2.vb" />
     <Compile Include="objects\Editors\UIVolumeSelector.vb" />
     <Compile Include="objects\Editors\UIComponentSelector.vb" />
     <Compile Include="objects\Editors\frmThermalHydraulicStatesditor.Designer.vb">
@@ -322,25 +322,25 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="objects\Editors\UIThermoDynamicStatesEditor.vb" />
-    <Compile Include="objects\Editors\frmPipeEditor.Designer.vb">
+    <Compile Include="objects\Pipe\frmPipeEditor.Designer.vb">
       <DependentUpon>frmPipeEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmPipeEditor.vb">
+    <Compile Include="objects\Pipe\frmPipeEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucPipeEditor.Designer.vb">
+    <Compile Include="objects\Pipe\ucPipeEditor.Designer.vb">
       <DependentUpon>ucPipeEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucPipeEditor.vb">
+    <Compile Include="objects\Pipe\ucPipeEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\UIPipeEditor.vb" />
+    <Compile Include="objects\Pipe\UIPipeEditor.vb" />
     <Compile Include="objects\Custom Properties\PipeProfile.vb" />
-    <Compile Include="objects\heat structure.vb" />
+    <Compile Include="objects\HeatStructure\heat structure.vb" />
     <Compile Include="objects\Pump.vb" />
     <Compile Include="objects\PWR Control Rod.vb" />
     <Compile Include="objects\Shroud.vb" />
-    <Compile Include="objects\Pipe.vb" />
+    <Compile Include="objects\Pipe\Pipe.vb" />
     <Compile Include="objects\SingleJunction.vb" />
     <Compile Include="objects\FuelRod.vb" />
     <Compile Include="Language\RELAP.Designer.vb" />
@@ -387,31 +387,31 @@
     <EmbeddedResource Include="frmTrips.resx">
       <DependentUpon>frmTrips.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmBranchEditor.resx">
+    <EmbeddedResource Include="objects\Branch\frmBranchEditor.resx">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor.resx">
+    <EmbeddedResource Include="objects\HeatStructure\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmHeatStructureEditor2.resx">
+    <EmbeddedResource Include="objects\HeatStructure\frmHeatStructureEditor2.resx">
       <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmJunctionsEditor.resx">
+    <EmbeddedResource Include="objects\Junction\frmJunctionsEditor.resx">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\frmValveEditor.resx">
       <DependentUpon>frmValveEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucBranchEditor.resx">
+    <EmbeddedResource Include="objects\Branch\ucBranchEditor.resx">
       <DependentUpon>ucBranchEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor.resx">
+    <EmbeddedResource Include="objects\HeatStructure\ucHeatStructureEditor.resx">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucHeatStructureEditor2.resx">
+    <EmbeddedResource Include="objects\HeatStructure\ucHeatStructureEditor2.resx">
       <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucJunctionsEditor.resx">
+    <EmbeddedResource Include="objects\Junction\ucJunctionsEditor.resx">
       <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucThermoDynamicStates.resx">
@@ -538,10 +538,10 @@
     <EmbeddedResource Include="objects\Editors\frmThermalHydraulicStatesditor.resx">
       <DependentUpon>frmThermalHydraulicStatesditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmPipeEditor.resx">
+    <EmbeddedResource Include="objects\Pipe\frmPipeEditor.resx">
       <DependentUpon>frmPipeEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucPipeEditor.resx">
+    <EmbeddedResource Include="objects\Pipe\ucPipeEditor.resx">
       <DependentUpon>ucPipeEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucValveEditor.resx">

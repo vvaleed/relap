@@ -438,10 +438,21 @@ Namespace GraphicObjects
     <Serializable()> Public Class BranchGraphic
         Inherits ShapeGraphic
 
+        Private _Volumes As Integer
+        Public Property Volumes() As Integer
+            Get
+                Return _Volumes
+            End Get
+            Set(ByVal value As Integer)
+                _Volumes = value
+            End Set
+        End Property
+
 #Region "Constructors"
         Public Sub New()
             Me.TipoObjeto = GraphicObjects.TipoObjeto.Branch
             Me.Description = "Branch"
+            Me.Volumes = 2
         End Sub
 
         Public Sub New(ByVal graphicPosition As Point)
@@ -497,23 +508,28 @@ Namespace GraphicObjects
         Public Overrides Sub Draw(ByVal g As System.Drawing.Graphics)
 
             Dim myIC1 As New ConnectionPoint
-            myIC1.Position = New Point(X, Y + 0.5 * Height)
+            myIC1.Position = New Point(X + 0.125 * Width, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
+            Dim coll As New System.Collections.Generic.List(Of ConnectionPoint)
+            For i As Integer = 0 To Volumes - 1
+                Dim conn As New ConnectionPoint
+                conn.Position = New Point(X + 0.827 * Width, Y + (i / (Volumes - 1)) * Height)
+                conn.Type = ConType.ConOut
+                coll.Add(conn)
 
-            Dim myOC1 As New ConnectionPoint
-            myOC1.Position = New Point(X + Width, Y + 0.5 * Height)
-            myOC1.Type = ConType.ConOut
+            Next
 
-            Me.EnergyConnector.Position = New Point(X + 0.5 * Width, Y + Height)
-            Me.EnergyConnector.Type = ConType.ConEn
+
+            'Me.EnergyConnector.Position = New Point(X + 0.827 * Width, Y + 0.5 * Height)
+            'Me.EnergyConnector.Type = ConType.ConEn
 
             With InputConnectors
 
                 If .Count <> 0 Then
                     If Me.FlippedH Then
-                        .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+                        .Item(0).Position = New Point(X + 0.875 * Width, Y + 0.5 * Height)
                     Else
-                        .Item(0).Position = New Point(X, Y + 0.5 * Height)
+                        .Item(0).Position = New Point(X + 0.125 * Width, Y + 0.5 * Height)
                     End If
                 Else
                     .Add(myIC1)
@@ -523,14 +539,16 @@ Namespace GraphicObjects
 
             With OutputConnectors
 
+                'If .Count = 2 Then .Add(myOC3)
+
                 If .Count <> 0 Then
-                    If Me.FlippedH Then
-                        .Item(0).Position = New Point(X, Y + 0.5 * Height)
-                    Else
-                        .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
-                    End If
+                    For i As Integer = 0 To Volumes - 1
+                        .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (Volumes - 1)) * Height)
+                    Next
                 Else
-                    .Add(myOC1)
+                    For i As Integer = 0 To Volumes - 1
+                        .Add(coll(i))
+                    Next
                 End If
 
             End With
@@ -556,45 +574,118 @@ Namespace GraphicObjects
                 pt.Y = Me.Y + raio * Math.Sin(angulo + Me.Rotation / 360 * 2 * Math.PI)
                 con.Position = pt
             Next
-            With Me.EnergyConnector
-                pt = .Position
-                raio = ((pt.X - Me.X) ^ 2 + (pt.Y - Me.Y) ^ 2) ^ 0.5
-                angulo = Math.Atan2(pt.Y - Me.Y, pt.X - Me.X)
-                pt.X = Me.X + raio * Math.Cos(angulo + Me.Rotation / 360 * 2 * Math.PI)
-                pt.Y = Me.Y + raio * Math.Sin(angulo + Me.Rotation / 360 * 2 * Math.PI)
-                .Position = pt
-            End With
+            'With Me.EnergyConnector
+            '    pt = .Position
+            '    raio = ((pt.X - Me.X) ^ 2 + (pt.Y - Me.Y) ^ 2) ^ 0.5
+            '    angulo = Math.Atan2(pt.Y - Me.Y, pt.X - Me.X)
+            '    pt.X = Me.X + raio * Math.Cos(angulo + Me.Rotation / 360 * 2 * Math.PI)
+            '    pt.Y = Me.Y + raio * Math.Sin(angulo + Me.Rotation / 360 * 2 * Math.PI)
+            '    .Position = pt
+            'End With
 
             Dim gContainer As System.Drawing.Drawing2D.GraphicsContainer
             Dim myMatrix As Drawing2D.Matrix
             gContainer = g.BeginContainer()
             myMatrix = g.Transform()
             If m_Rotation <> 0 Then
-                myMatrix.RotateAt(m_Rotation, New PointF(X, Y), _
-                    Drawing.Drawing2D.MatrixOrder.Append)
+                myMatrix.RotateAt(m_Rotation, New PointF(X, Y), Drawing.Drawing2D.MatrixOrder.Append)
                 g.Transform = myMatrix
             End If
-            Dim rect As New Rectangle(X, Y, Width, Height)
-            Dim lgb1 As New LinearGradientBrush(rect, Me.GradientColor1, Me.GradientColor2, LinearGradientMode.Vertical)
-            If Me.Fill Then
-                If Me.GradientMode = False Then
-                    g.FillRectangle(New SolidBrush(Me.FillColor), rect)
-                Else
-                    g.FillRectangle(lgb1, rect)
-                End If
+
+            Dim rect2 As New Rectangle(X + 0.123 * Width, Y + 0.5 * Height, 0.127 * Width, 0.127 * Height)
+            Dim rect3 As New Rectangle(X + 0.7 * Width, Y + 0.1 * Height, 0.127 * Width, 0.127 * Height)
+            Dim rect4 As New Rectangle(X + 0.7 * Width, Y + 0.773 * Height, 0.127 * Width, 0.127 * Height)
+            If Me.FlippedH = True Then
+                rect2 = New Rectangle(X + (1 - 0.123) * Width, Y + 0.5 * Height, 0.127 * Width, 0.127 * Height)
+                rect3 = New Rectangle(X + 0.3 * Width, Y + 0.1 * Height, 0.127 * Width, 0.127 * Height)
+                rect4 = New Rectangle(X + 0.3 * Width, Y + 0.773 * Height, 0.127 * Width, 0.127 * Height)
             End If
+
             Dim myPen As New Pen(Me.LineColor, Me.LineWidth)
+
+            Dim myPen2 As New Pen(Color.White, 0)
+
+            Dim rect As New Rectangle(X, Y, Width, Height)
+
             g.SmoothingMode = SmoothingMode.AntiAlias
-            g.DrawRectangle(myPen, rect)
+            'g.DrawRectangle(myPen2, rect)
+            If Me.FlippedH = True Then
+                Me.DrawRoundRect(g, myPen, X + 0.4 * Width, Y, 0.45 * Width, Height, 10, Brushes.Transparent)
+            Else
+                Me.DrawRoundRect(g, myPen, X + 0.25 * Width, Y, 0.45 * Width, Height, 10, Brushes.Transparent)
+            End If
+            g.DrawRectangle(myPen, rect2)
+            g.DrawRectangle(myPen, rect3)
+            g.DrawRectangle(myPen, rect4)
 
             Dim strdist As SizeF = g.MeasureString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New PointF(0, 0), New StringFormat(StringFormatFlags.NoClip, 0))
             Dim strx As Single = (Me.Width - strdist.Width) / 2
             'g.FillRectangle(Brushes.White, X + strx, Y + CSng(Height + 5), strdist.Width, strdist.Height)
             g.DrawString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New SolidBrush(Me.LineColor), X + strx, Y + Height + 5)
 
-            g.EndContainer(gContainer)
-        End Sub
+            Dim gp As Drawing2D.GraphicsPath = New Drawing2D.GraphicsPath
+            Dim radius As Integer = 3
+            gp.AddLine(X + radius, Y, X + Width - radius, Y)
+            gp.AddArc(X + Width - radius, Y, radius, radius, 270, 90)
+            gp.AddLine(X + Width, Y + radius, X + Width, Y + Height - radius)
+            gp.AddArc(X + Width - radius, Y + Height - radius, radius, radius, 0, 90)
+            gp.AddLine(X + Width - radius, Y + Height, X + radius, Y + Height)
+            gp.AddArc(X, Y + Height - radius, radius, radius, 90, 90)
+            gp.AddLine(X, Y + Height - radius, X, Y + radius)
+            gp.AddArc(X, Y, radius, radius, 180, 90)
+            Dim lgb1 As LinearGradientBrush
+            lgb1 = New LinearGradientBrush(rect, Me.GradientColor1, Me.GradientColor2, LinearGradientMode.Horizontal)
+            lgb1.SetBlendTriangularShape(0.5)
+            'lgb1.CenterColor = Me.GradientColor1
+            'lgb1.SetBlendTriangularShape(0.5)
+            'lgb1.SurroundColors = New Color() {Me.GradientColor2}
+            'lgb1.WrapMode = WrapMode.Tile
+            If Me.Fill Then
+                If Me.GradientMode = False Then
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect3)
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect4)
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect2)
+                    If Me.FlippedH = True Then
+                        Me.DrawRoundRect(g, myPen, X + 0.4 * Width, Y, 0.45 * Width, Height, 6, New SolidBrush(Me.FillColor))
+                    Else
+                        Me.DrawRoundRect(g, myPen, X + 0.25 * Width, Y, 0.45 * Width, Height, 6, New SolidBrush(Me.FillColor))
+                    End If
+                Else
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect3)
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect4)
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect2)
+                    If Me.FlippedH = True Then
+                        Me.DrawRoundRect(g, myPen, X + 0.4 * Width, Y, 0.45 * Width, Height, 6, lgb1)
+                    Else
+                        Me.DrawRoundRect(g, myPen, X + 0.25 * Width, Y, 0.45 * Width, Height, 6, lgb1)
+                    End If
+                End If
+            End If
 
+            g.EndContainer(gContainer)
+            gp.Dispose()
+        End Sub
+        Public Sub DrawRoundRect(ByVal g As Graphics, ByVal p As Pen, ByVal x As Integer, ByVal y As Integer, ByVal width As Integer, ByVal height As Integer, ByVal radius As Integer, ByVal myBrush As Brush)
+
+            Dim gp As Drawing2D.GraphicsPath = New Drawing2D.GraphicsPath
+
+            gp.AddLine(x + radius, y, x + width - radius, y)
+            gp.AddArc(x + width - radius, y, radius, radius, 270, 90)
+            gp.AddLine(x + width, y + radius, x + width, y + height - radius)
+            gp.AddArc(x + width - radius, y + height - radius, radius, radius, 0, 90)
+            gp.AddLine(x + width - radius, y + height, x + radius, y + height)
+            gp.AddArc(x, y + height - radius, radius, radius, 90, 90)
+            gp.AddLine(x, y + height - radius, x, y + radius)
+            gp.AddArc(x, y, radius, radius, 180, 90)
+
+            gp.CloseFigure()
+
+            g.DrawPath(p, gp)
+            g.FillPath(myBrush, gp)
+
+            gp.Dispose()
+
+        End Sub
     End Class
     <Serializable()> Public Class PipeGraphic
         Inherits ShapeGraphic
@@ -660,9 +751,7 @@ Namespace GraphicObjects
             Dim myIC1 As New ConnectionPoint
             myIC1.Position = New Point(X, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
-            Dim myIC2 As New ConnectionPoint
-            myIC2.Position = New Point(X, Y + 0.5 * Height)
-            myIC2.Type = ConType.ConIn
+           
 
             Dim myOC1 As New ConnectionPoint
             myOC1.Position = New Point(X + Width, Y + 0.5 * Height)
@@ -681,7 +770,7 @@ Namespace GraphicObjects
                     End If
                 Else
                     .Add(myIC1)
-                    .Add(myIC2)
+
                 End If
 
             End With

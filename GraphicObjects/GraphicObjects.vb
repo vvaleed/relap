@@ -23,7 +23,7 @@ Namespace GraphicObjects
 
         Public Sub DrawSelectedObject(ByVal g As Graphics, _
                 ByVal selectedObject As GraphicObject, _
-                ByVal Scale As Single)
+                ByVal Scale As Single, Optional ByVal volumes As Integer = -1)
             Dim gCon1, gCon2 As Drawing2D.GraphicsContainer
             gCon1 = g.BeginContainer
             g.ScaleTransform(Scale, Scale, _
@@ -108,7 +108,7 @@ Namespace GraphicObjects
             g.ScaleTransform(Scale, Scale)
             If Not Me.InnerList Is Nothing AndAlso Me.InnerList.Count > 0 Then
                 For i = 0 To Me.InnerList.Count - 1
-                    drawObj = CType(Me.InnerList(i), GraphicObject)
+                    drawObj = CType(Me.InnerList(i), GraphicObject)               
                     drawObj.Draw(g)
                 Next
             End If
