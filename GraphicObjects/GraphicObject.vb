@@ -508,6 +508,7 @@ Namespace GraphicObjects
 
         End Sub
 
+       
         Public Overridable Sub PositionConnectors()
 
             'To be implemented in derived classes.
