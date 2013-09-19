@@ -33,6 +33,31 @@ Namespace RELAP.SimulationObjects.UnitOps
             Inlet = 1
             Outlet = 2
         End Enum
+        Enum StratificationModelEnum
+            Dont_use_this_model
+            upward_oriented_junction
+            downward_oriented_junction
+            centrally_located_junction
+        End Enum
+
+        Enum AreaChangeEnum
+            No_Area_Change
+            Smooth_Area_Change
+            Full_Abrupt_Area_Change
+            Partial_Abrupt_Area_Change
+        End Enum
+
+        Enum MomentumEquationEnum
+            Two_velocity_Momentum_Equations
+            Single_velocity_Momentum_Equations
+        End Enum
+
+        Enum MomentumFluxEnum
+            To_and_From_Volume
+            Only_From_Volume
+            Only_To_Volume
+            Do_not_use_Momentum_Flux
+        End Enum
 
         Private _ThermoDynamicStates As ThermoDynamicStates
         Public Property ThermoDynamicStates() As ThermoDynamicStates
@@ -143,16 +168,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_EnterVelocityOrMassFlowRate As Boolean
-        Public Property EnterVelocityOrMassFlowRate() As Boolean
-            Get
-                Return m_EnterVelocityOrMassFlowRate
-            End Get
-            Set(ByVal value As Boolean)
-                m_EnterVelocityOrMassFlowRate = value
-            End Set
-        End Property
-
         Private m_InitialLiquidVelocity As Double
         Public Property InitialLiquidVelocity() As Double
             Get
@@ -178,57 +193,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As String)
                 _ToVolume = value
-            End Set
-        End Property
-
-
-        Private m_InitialVaporVelocity As Double
-        Public Property InitialVaporVelocity() As Double
-            Get
-                Return m_InitialVaporVelocity
-            End Get
-            Set(ByVal value As Double)
-                m_InitialVaporVelocity = value
-            End Set
-        End Property
-
-        Private m_InterphaseVelocity As Double
-        Public Property InterphaseVelocity() As Double
-            Get
-                Return m_InterphaseVelocity
-            End Get
-            Set(ByVal value As Double)
-                m_InterphaseVelocity = value
-            End Set
-        End Property
-
-        Private m_InitialLiquidMassFlowRate As Double
-        Public Property InitialLiquidMassFlowRate() As Double
-            Get
-                Return m_InitialLiquidMassFlowRate
-            End Get
-            Set(ByVal value As Double)
-                m_InitialLiquidMassFlowRate = value
-            End Set
-        End Property
-
-        Private m_InitialVaporMassFlowRate As Double
-        Public Property InitialVaporMassFlowRate() As Double
-            Get
-                Return m_InitialVaporMassFlowRate
-            End Get
-            Set(ByVal value As Double)
-                m_InitialVaporMassFlowRate = value
-            End Set
-        End Property
-
-        Private m_InterphaseMassFlowRate As Double
-        Public Property InterphaseMassFlowRate() As Double
-            Get
-                Return m_InterphaseMassFlowRate
-            End Get
-            Set(ByVal value As Double)
-                m_InterphaseMassFlowRate = value
             End Set
         End Property
 
@@ -282,7 +246,75 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private _pvterm As Boolean
+        Public Property pvterm() As Boolean
+            Get
+                Return _pvterm
+            End Get
+            Set(ByVal value As Boolean)
+                _pvterm = value
+            End Set
+        End Property
 
+        Private _CCFL As Boolean
+        Public Property CCFL() As Boolean
+            Get
+                Return _CCFL
+            End Get
+            Set(ByVal value As Boolean)
+                _CCFL = value
+            End Set
+        End Property
+
+        Private _StratificationModel As StratificationModelEnum
+        Public Property StratificationModel() As StratificationModelEnum
+            Get
+                Return _StratificationModel
+            End Get
+            Set(ByVal value As StratificationModelEnum)
+                _StratificationModel = value
+            End Set
+        End Property
+
+        Private _chokingModel As Boolean
+        Public Property chokingModel() As Boolean
+            Get
+                Return _chokingModel
+            End Get
+            Set(ByVal value As Boolean)
+                _chokingModel = value
+            End Set
+        End Property
+
+        Private _AreaChange As AreaChangeEnum
+        Public Property AreaChange() As AreaChangeEnum
+            Get
+                Return _AreaChange
+            End Get
+            Set(ByVal value As AreaChangeEnum)
+                _AreaChange = value
+            End Set
+        End Property
+
+        Private _MomentumEquation As MomentumEquationEnum
+        Public Property MomentumEquation() As MomentumEquationEnum
+            Get
+                Return _MomentumEquation
+            End Get
+            Set(ByVal value As MomentumEquationEnum)
+                _MomentumEquation = value
+            End Set
+        End Property
+
+        Private _MomentumFlux As MomentumFluxEnum
+        Public Property MomentumFlux() As MomentumFluxEnum
+            Get
+                Return _MomentumFlux
+            End Get
+            Set(ByVal value As MomentumFluxEnum)
+                _MomentumFlux = value
+            End Set
+        End Property
 
         Public Sub New(ByVal nome As String, ByVal descricao As String)
 
@@ -302,9 +334,13 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ElevationChange = -50000.0
             Me.m_WallRoughness = 0.0
             Me.m_HydraulicDiameter = 0
-            Me.m_InitialLiquidMassFlowRate = 0.0
-            Me.m_InitialVaporMassFlowRate = 0.0
-            Me.m_EnterVelocityOrMassFlowRate = True
+            Me._pvterm = False
+            Me._CCFL = False
+            Me.StratificationModel = StratificationModelEnum.Dont_use_this_model
+            Me._chokingModel = False
+            Me.AreaChange = AreaChangeEnum.No_Area_Change
+            Me.MomentumEquation = MomentumEquationEnum.Two_velocity_Momentum_Equations
+            Me.MomentumFlux = MomentumFluxEnum.To_and_From_Volume
             Me.FillNodeItems()
             Me.QTFillNodeItems()
         End Sub
@@ -655,55 +691,32 @@ Namespace RELAP.SimulationObjects.UnitOps
          
 
 
-                .Item.Add(("True for Mass Flow rate"), Me, "EnterVelocityOrMassFlowRate", False, "Single Junction Initial Conditions", "True for Mass Flow rate", True)
+                .Item.Add(("Modified PV term Applied"), Me, "pvterm", False, "3. Junction Control Flags", "Modified PV term Applied", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
+                .Item.Add(("CCFL Model"), Me, "CCFL", False, "3. Junction Control Flags", "CCFL Model", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialVaporVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Initial Vapor Velocity", True)
+                .Item.Add("Stratification Entrainment Model", Me, "StratificationModel", False, "3. Junction Control Flags", "Horizontal Stratification Entrainment/Pullthrough Model", True)
+
+                .Item.Add(("Choking Model"), Me, "ChokingModel", False, "3. Junction Control Flags", "Choking Model", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InterphaseVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Velocity", su.velocity), valor, False, "Single Junction Initial Conditions", "Interphase Velocity", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                .Item.Add("Area Change", Me, "AreaChange", False, "3. Junction Control Flags", "Area Change Options", True)
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                .Item.Add("Momentum Equation", Me, "MomentumEquation", False, "3. Junction Control Flags", "Specify homogenius or nonhomogenius", True)
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InterphaseMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Mass Flow Rate", su.spmp_massflow), valor, False, "Single Junction Initial Conditions", "Interphase Mass Flow Rate", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
+                .Item.Add("Momentum Flux Options", Me, "MomentumFlux", False, "3. Junction Control Flags", "", True)
+               
 
                 ' valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
