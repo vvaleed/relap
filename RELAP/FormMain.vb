@@ -2590,6 +2590,8 @@ sim:                Dim myStream As System.IO.FileStream
             Dim output5 As String = Nothing
             Dim output6 As String = Nothing
             Dim output7 As String = Nothing
+            Dim output8 As String = Nothing
+            Dim output9 As String = Nothing
             Dim fluidchk As String = Nothing
             Dim boronchk As String = Nothing
             Dim filename As String() = SaveFileDialog1.FileName.Split("\")
@@ -3218,6 +3220,43 @@ sim:                Dim myStream As System.IO.FileStream
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
                     generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
                 Next kvp2
+                output1 = boolto10(kvp.Value.pvterm)
+                output2 = boolto10(kvp.Value.CCFL)
+                If kvp.Value.StratificationModel.ToString = "Dont_use_this_model" Then
+                    output3 = "0"
+                ElseIf kvp.Value.StratificationModel.ToString = "upward_oriented_junction" Then
+                    output3 = "1"
+                ElseIf kvp.Value.StratificationModel.ToString = "downward_oriented_junction" Then
+                    output3 = "2"
+                ElseIf kvp.Value.StratificationModel.ToString = "centrally_located_junction" Then
+                    output3 = "3"
+                End If
+                output4 = boolto01(kvp.Value.chokingModel)
+                If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output5 = "1"
+                ElseIf kvp.Value.AreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output5 = "2"
+                End If
+                If kvp.Value.MomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output6 = "0"
+                ElseIf kvp.Value.MomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output6 = "1"
+                End If
+                If kvp.Value.MomentumFlux.ToString = "To_and_From_Volume" Then
+                    output7 = "0"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_From_Volume" Then
+                    output7 = "1"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_To_Volume" Then
+                    output7 = "2"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
+                    output7 = "3"
+                End If
+                output8 = output1 & output2 & output3 & output4 & output5 & output6 & output7
+
                 univID = univID + 1
 
             Next kvp

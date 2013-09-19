@@ -2330,7 +2330,12 @@ Public Class frmProps
 
             ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
                 bb.HydraulicDiameter = e.ChangedItem.Value
-
+            ElseIf e.ChangedItem.Label.Contains("Modified PV term Applied") Then
+                bb.pvterm = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("CCFL Model") Then
+                bb.CCFL = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Choking Model") Then
+                bb.chokingModel = e.ChangedItem.Value
                 'control flags
             End If
 
