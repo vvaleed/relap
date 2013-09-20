@@ -281,9 +281,7 @@ Namespace GraphicObjects
             myIC1.Position = New Point(X, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
 
-            Dim myIC2 As New ConnectionPoint
-            myIC2.Position = New Point(X + 0.5 * Width, Y + Height)
-            myIC2.Type = ConType.ConEn
+         
 
             Dim myOC1 As New ConnectionPoint
             myOC1.Position = New Point(X + Width, Y + 0.1 * Height)
@@ -294,17 +292,17 @@ Namespace GraphicObjects
                 If .Count = 2 Then
                     If Me.FlippedH Then
                         .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
-                        .Item(1).Position = New Point(X + 0.5 * Width, Y + Height)
+
                     Else
                         .Item(0).Position = New Point(X, Y + 0.5 * Height)
-                        .Item(1).Position = New Point(X + 0.5 * Width, Y + Height)
+
                     End If
                 ElseIf .Count = 1 Then
                     .Item(0).Position = New Point(X, Y + 0.5 * Height)
-                    .Add(myIC2)
+
                 Else
                     .Add(myIC1)
-                    .Add(myIC2)
+
                 End If
 
             End With
