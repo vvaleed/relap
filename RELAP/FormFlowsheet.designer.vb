@@ -309,7 +309,7 @@ Partial Class FormFlowsheet
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl1, Me.cboProblemType, Me.lbl2, Me.cboProblemOption, Me.lbll, Me.cboInputCheck, Me.ToolStripLabel3, Me.ToolStripComboBoxUnitSystem, Me.lbl3, Me.cboOutputUnits})
         Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1035, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1025, 25)
         Me.ToolStrip1.TabIndex = 9
         '
         'lbl1
