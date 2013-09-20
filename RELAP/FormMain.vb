@@ -2706,8 +2706,11 @@ sim:                Dim myStream As System.IO.FileStream
 
             Dim card As Integer = 301
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormMinorEditRequests.DataGridView1.Rows
-                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
-                card = card + 1
+                If temprow.Cells(0).Value <> "" Then
+
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
+                    card = card + 1
+                End If
             Next
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*                            Trips ")
@@ -2715,12 +2718,19 @@ sim:                Dim myStream As System.IO.FileStream
 
             card = 501
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridView1.Rows
-                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
-                card = card + 1
+                If temprow.Cells(0).Value <> "" Then
+
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
+                    card = card + 1
+                End If
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
-                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
+                If temprow.Cells(0).Value <> "" Then
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
+
+                End If
+
                 card = card + 1
             Next
 
@@ -2730,7 +2740,10 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*======================================================================")
             card = 20800001
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormPlotReqest.DataGridView2.Rows
-                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value))
+                If temprow.Cells(0).Value <> "" Then
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value))
+
+                End If
                 card = card + 1
             Next
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
