@@ -212,22 +212,9 @@ Public Class frmProps
             If e.ChangedItem.Label.Contains("Number of Junctions") Then
                 bb.NumberofJunctions = e.ChangedItem.Value
 
-                'Dim gobj As new GraphicObject = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
-
-                If FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface) Is Nothing Then
-                    Try
-                        If Not ChildParent.Collections.ObjectCollection(ChildParent.FormSurface.FlowsheetDesignSurface.SelectedObject.Name).Tabela Is Nothing Then
-                            ChildParent.Collections.ObjectCollection(ChildParent.FormSurface.FlowsheetDesignSurface.SelectedObject.Name).Tabela.HeaderText = ChildParent.FormSurface.FlowsheetDesignSurface.SelectedObject.Tag
-                        End If
-                        'ChildParent.FormObjList.TreeViewObj.Nodes.Find(ChildParent.FormSurface.FlowsheetDesignSurface.SelectedObject.Name, True)(0).Text = e.ChangedItem.Value
-                    Catch ex As Exception
-                        'ChildParent.WriteToLog(ex.ToString, Color.Red, FormClasses.TipoAviso.Erro)
-                    Finally
-                        CType(FormFlowsheet.SearchSurfaceObjectsByTag(e.OldValue, ChildParent.FormSurface.FlowsheetDesignSurface), GraphicObject).Tag = e.ChangedItem.Value
-                    End Try
-                Else
-                    VDialog.Show(RELAP.App.GetLocalString("JaExisteObjetoNome"), RELAP.App.GetLocalString("Erro"), MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
+                Dim gObj As BranchGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
+                gObj.Volumes = e.ChangedItem.Value
+              
             ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
                 bb.FlowArea = e.ChangedItem.Value
 

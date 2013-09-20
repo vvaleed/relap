@@ -539,12 +539,12 @@ Namespace GraphicObjects
 
                 'If .Count = 2 Then .Add(myOC3)
 
-                If .Count <> 0 Then
+                If .Count = Volumes Then
                     For i As Integer = 0 To Volumes - 1
                         .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (Volumes - 1)) * Height)
                     Next
                 Else
-                    For i As Integer = 0 To Volumes - 1
+                    For i As Integer = .Count To Volumes - 1
                         .Add(coll(i))
                     Next
                 End If
