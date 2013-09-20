@@ -1155,11 +1155,6 @@ Imports RELAP.RELAP.FormClasses
                 Dim msgresult As MsgBoxResult
                 If confirmation Then
                     If SelectedObj.TipoObjeto = TipoObjeto.GO_Figura Then
-                        msgresult = VDialog.Show(RELAP.App.GetLocalString("Excluirafiguraseleci"), RELAP.App.GetLocalString("Excluirobjeto"), MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                    ElseIf SelectedObj.TipoObjeto = TipoObjeto.GO_Tabela Then
-                        VDialog.Show(RELAP.App.GetLocalString("Atabelapodeseroculta") & vbCrLf & RELAP.App.GetLocalString("doobjetoqualelaperte"), RELAP.App.GetLocalString("Nopossvelexcluirtabe"), MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    ElseIf SelectedObj.TipoObjeto = TipoObjeto.GO_Texto Then
-                        msgresult = VDialog.Show(RELAP.App.GetLocalString("Excluiracaixadetexto"), RELAP.App.GetLocalString("Excluirobjeto"), MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     Else
                         msgresult = VDialog.Show(RELAP.App.GetLocalString("Excluir") & Me.FormSurface.FlowsheetDesignSurface.SelectedObject.Tag & "?", RELAP.App.GetLocalString("Excluirobjeto"), MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     End If
@@ -1170,75 +1165,14 @@ Imports RELAP.RELAP.FormClasses
 
                     If SelectedObj.IsEnergyStream Then
 
-                        'DeCalculateObject(Me, SelectedObj)
-                        Dim InCon, OutCon As ConnectionPoint
-                        For Each InCon In Me.FormSurface.FlowsheetDesignSurface.SelectedObject.InputConnectors
-                            If InCon.IsAttached = True Then
-                                If InCon.AttachedConnector.AttachedFrom.EnergyConnector.IsAttached Then
-                                    With InCon.AttachedConnector.AttachedFrom.EnergyConnector
-                                        .IsAttached = False
-                                        Me.FormSurface.FlowsheetDesignSurface.SelectedObject = .AttachedConnector
-                                        Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                                        .AttachedConnector = Nothing
-                                    End With
-                                Else
-                                    With InCon.AttachedConnector.AttachedFrom.OutputConnectors(InCon.AttachedConnector.AttachedFromConnectorIndex)
-                                        .IsAttached = False
-                                        Me.FormSurface.FlowsheetDesignSurface.SelectedObject = .AttachedConnector
-                                        Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                                        .AttachedConnector = Nothing
-                                    End With
-                                End If
-                            End If
-                        Next
-                        Me.FormSurface.FlowsheetDesignSurface.SelectedObject = SelectedObj
-                        For Each OutCon In Me.FormSurface.FlowsheetDesignSurface.SelectedObject.OutputConnectors
-                            If OutCon.IsAttached = True Then
-                                With OutCon.AttachedConnector.AttachedTo.InputConnectors(OutCon.AttachedConnector.AttachedToConnectorIndex)
-                                    .IsAttached = False
-                                    Me.FormSurface.FlowsheetDesignSurface.SelectedObject = .AttachedConnector
-                                    Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                                    .AttachedConnector = Nothing
-                                End With
-                            End If
-                        Next
-                        Me.FormSurface.FlowsheetDesignSurface.SelectedObject = SelectedObj
-
-                        Me.Collections.EnergyStreamCollection.Remove(namesel)
-                        ' Me.FormObjList.TreeViewObj.Nodes("NodeEN").Nodes.RemoveByKey(namesel)
-                        'RELAP
-                        ' Me.Collections.CLCS_EnergyStreamCollection(namesel).Dispose()
-                        ' Me.Collections.CLCS_EnergyStreamCollection.Remove(namesel)
-                        Me.Collections.ObjectCollection.Remove(namesel)
-                        Me.Collections.ObjectCollection.Remove(namesel)
-                        Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
+                      
                     Else
 
                         If SelectedObj.TipoObjeto = TipoObjeto.GO_Figura Then
-                            Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                        ElseIf SelectedObj.TipoObjeto = TipoObjeto.GO_Tabela Then
-                            'Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                        ElseIf SelectedObj.TipoObjeto = TipoObjeto.GO_MasterTable Then
-                            Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                        ElseIf SelectedObj.TipoObjeto = TipoObjeto.GO_Texto Then
-                            Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                        ElseIf SelectedObj.TipoObjeto = TipoObjeto.GO_TabelaRapida Then
-                            Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
+                       
                         Else
                             Dim obj As SimulationObjects_BaseClass = Me.Collections.ObjectCollection(SelectedObj.Name)
-                            If Not obj.Tabela Is Nothing Then
-                                'deletar tabela
-                                Me.FormSurface.FlowsheetDesignSurface.drawingObjects.Remove(obj.Tabela)
-                            End If
-                            ' DeCalculateObject(Me, SelectedObj)
-                            If Me.FormSurface.FlowsheetDesignSurface.SelectedObject.EnergyConnector.IsAttached = True Then
-                                With Me.FormSurface.FlowsheetDesignSurface.SelectedObject.EnergyConnector.AttachedConnector.AttachedTo.InputConnectors(0)
-                                    .IsAttached = False
-                                    Me.FormSurface.FlowsheetDesignSurface.SelectedObject = .AttachedConnector
-                                    Me.FormSurface.FlowsheetDesignSurface.DeleteSelectedObject()
-                                    .AttachedConnector = Nothing
-                                End With
-                            End If
+                          
                             Me.FormSurface.FlowsheetDesignSurface.SelectedObject = SelectedObj
                             Dim InCon, OutCon As ConnectionPoint
                             For Each InCon In Me.FormSurface.FlowsheetDesignSurface.SelectedObject.InputConnectors
@@ -1275,7 +1209,28 @@ Imports RELAP.RELAP.FormClasses
 
                             'dispose object
                             Me.Collections.ObjectCollection(namesel).Dispose()
+                            Me.Collections.ObjectCollection.Remove(namesel)
+
                             Select Case SelectedObj.TipoObjeto
+                                Case TipoObjeto.SingleVolume
+                                    Me.Collections.CLCS_SingleVolumeCollection.Remove(namesel)
+                                Case TipoObjeto.SingleJunction
+                                    Me.Collections.CLCS_SingleVolumeCollection.Remove(namesel)
+                                Case TipoObjeto.TimeDependentJunction
+                                    Me.Collections.CLCS_TimeDependentJunctionCollection.Remove(namesel)
+                                Case TipoObjeto.Pipe
+                                    Me.Collections.CLCS_PipeCollection.Remove(namesel)
+                                Case TipoObjeto.Branch
+                                    Me.Collections.CLCS_BranchCollection.Remove(namesel)
+                                Case TipoObjeto.Tank
+                                    Me.Collections.CLCS_TankCollection.Remove(namesel)
+
+                                Case TipoObjeto.FuelRod
+                                    Me.Collections.CLCS_FuelRodCollection.Remove(namesel)
+                                Case TipoObjeto.Simulator
+                                    Me.Collections.CLCS_SimulatorCollection.Remove(namesel)
+                                Case TipoObjeto.Valve
+                                    Me.Collections.CLCS_ValveCollection.Remove(namesel)
 
                             End Select
 
@@ -1284,21 +1239,7 @@ Imports RELAP.RELAP.FormClasses
                         End If
 
                         Dim arrays(Me.Collections.ObjectCollection.Count - 1) As String
-                        ' Dim aNode, aNode2 As TreeNode
-                        Dim i As Integer = 0
-                        'For Each aNode In Me.FormObjList.TreeViewObj.Nodes
-                        '    For Each aNode2 In aNode.Nodes
-                        '        Try
-                        '            arrays(i) = aNode2.Text
-                        '        Catch ex As Exception
-                        '        End Try
-                        '        i += 1
-                        '    Next
-                        'Next
-                        'Me.FormObjList.ACSC.Clear()
-                        'Me.FormObjList.ACSC.AddRange(arrays)
-                        'Me.FormObjList.TBSearch.AutoCompleteCustomSource = Me.FormObjList.ACSC
-
+                       
                     End If
                 End If
             End If
