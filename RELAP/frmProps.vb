@@ -386,238 +386,84 @@ Public Class frmProps
                 pp.ElevationChange = e.ChangedItem.Value
 
                 'pump suction
-                If e.ChangedItem.Label.Contains("From Component") Then
-                    pp.FromComponent = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("From Component") Then
+                pp.FromComponent = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("To Component") Then
-                    pp.ToComponent = e.ChangedItem.Value
-                ElseIf e.ChangedItem.Label.Contains("To Volume") Then
-                    pp.ToVolume = e.ChangedItem.Value
-                ElseIf e.ChangedItem.Label.Contains("From Volume") Then
-                    pp.FromVolume = e.ChangedItem.Value
-                ElseIf e.ChangedItem.Label.Contains("Inlet Junction Area") Then
-                    pp.JunctionArea = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("To Component") Then
+                pp.ToComponent = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("To Volume") Then
+                pp.ToVolume = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("From Volume") Then
+                pp.FromVolume = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Inlet Junction Area") Then
+                pp.JunctionArea = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Inlet Forward Flow Energy Loss Coefficient") Then
-                    pp.FflowLossCo = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Inlet Forward Flow Energy Loss Coefficient") Then
+                pp.FflowLossCo = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Inlet Reverse Flow Energy Loss Coefficient") Then
-                    pp.RflowLossCo = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Inlet Reverse Flow Energy Loss Coefficient") Then
+                pp.RflowLossCo = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("inlet CCFL Model") Then
-                    pp.CCFL = e.ChangedItem.Value
-                ElseIf e.ChangedItem.Label.Contains("inlet Choking Model") Then
-                    pp.chokingModel = e.ChangedItem.Value
-
-
-                    'pump discharge
-                ElseIf e.ChangedItem.Label.Contains("Outlet Junction Area") Then
-                    pp.OJunctionArea = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Outlet Forward Flow Energy Loss Coefficient") Then
-                    pp.OFflowLossCo = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Outlet Reverse Flow Energy Loss Coefficient") Then
-                    pp.ORflowLossCo = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Outlet CCFL Model") Then
-                    pp.CCFL = e.ChangedItem.Value
-                ElseIf e.ChangedItem.Label.Contains("Outlet Choking Model") Then
-                    pp.chokingModel = e.ChangedItem.Value
-
-                    'pump suction initial conditions
-                ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (suction)") Then
-                    pp.InterphaseVelocity = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (suction)") Then
-                    pp.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (suction)") Then
-                    pp.InitialLiquidVelocity = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (suction)") Then
-                    pp.InitialVaporVelocity = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (suction)") Then
-                    pp.InitialLiquidMassFlowRate = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (suction)") Then
-                    pp.InitialVaporMassFlowRate = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("inlet CCFL Model") Then
+                pp.CCFL = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("inlet Choking Model") Then
+                pp.chokingModel = e.ChangedItem.Value
 
 
+                'pump discharge
+            ElseIf e.ChangedItem.Label.Contains("Outlet Junction Area") Then
+                pp.OJunctionArea = e.ChangedItem.Value
 
-                    'pump discharge initial conditions
-                ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (discharge)") Then
-                    pp.OInterphaseVelocity = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Outlet Forward Flow Energy Loss Coefficient") Then
+                pp.OFflowLossCo = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (discharge)") Then
-                    pp.OEnterVelocityOrMassFlowRate = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Outlet Reverse Flow Energy Loss Coefficient") Then
+                pp.ORflowLossCo = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (discharge)") Then
-                    pp.OInitialLiquidVelocity = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Outlet CCFL Model") Then
+                pp.CCFL = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Outlet Choking Model") Then
+                pp.chokingModel = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (discharge)") Then
-                    pp.OInitialVaporVelocity = e.ChangedItem.Value
+                'pump suction initial conditions
+            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (suction)") Then
+                pp.InterphaseVelocity = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (discharge)") Then
-                    pp.OInitialLiquidMassFlowRate = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (suction)") Then
+                pp.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
-                    pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (suction)") Then
+                pp.InitialLiquidVelocity = e.ChangedItem.Value
 
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (suction)") Then
+                pp.InitialVaporVelocity = e.ChangedItem.Value
 
-                End If
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (suction)") Then
+                pp.InitialLiquidMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (suction)") Then
+                pp.InitialVaporMassFlowRate = e.ChangedItem.Value
 
 
 
+                'pump discharge initial conditions
+            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (discharge)") Then
+                pp.OInterphaseVelocity = e.ChangedItem.Value
 
+            ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (discharge)") Then
+                pp.OEnterVelocityOrMassFlowRate = e.ChangedItem.Value
 
-            ElseIf sobj.TipoObjeto = TipoObjeto.FuelRod Then
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Velocity (discharge)") Then
+                pp.OInitialLiquidVelocity = e.ChangedItem.Value
 
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity (discharge)") Then
+                pp.OInitialVaporVelocity = e.ChangedItem.Value
 
-                Dim fr As RELAP.SimulationObjects.UnitOps.FuelRod = ChildParent.Collections.CLCS_FuelRodCollection.Item(sobj.Name)
-                If e.ChangedItem.Label.Contains("Average Burnup") Then
-                    fr.AverageBurnup = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("No. of rods") Then
-                    fr.NumberOfRods = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Fuel Rod Pitch") Then
-                    fr.FuelRodPitch = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Plenum Length") Then
-                    fr.PlenumLength = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Plenum Void Volume") Then
-                    fr.PlenumVoidVolume = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Lower Plenum Void Volume") Then
-                    fr.LowerPlenumVoidVolume = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Fuel Pellet Radius") Then
-                    fr.FuelPelletRadius = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Inner Cladding Radius") Then
-                    fr.InnerCladdingRadius = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Outer Cladding Radius") Then
-                    fr.OuterCladdingRadius = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Fuel Rod Dimensions") Then
-                    fr.FuelRodDimensionsAxialNode = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Control Volume Above") Then
-                    fr.ControlVolumeAbove = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Control Volume Below") Then
-                    fr.ControlVolumeBelow = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Control Volume Number") Then
-                    fr.ControlVolumeNumber = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Increment") Then
-                    fr.Increment = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Hydraulic Volumes") Then
-                    fr.HydraulicVolumesAxialNode = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Radius To Radial Node 1") Then
-                    fr.RadiusToRadialNode1 = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Radius To Radial Node N") Then
-                    fr.RadiusToRadialNodeN = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Radial Mesh Spacing") Then
-                    fr.RadialMeshSpacingAxialNode = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Temperature at Node 1") Then
-                    fr.TemperatureAtNode1 = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Temperature at Node N") Then
-                    fr.TemperatureAtNodeN = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Initial Temperature") Then
-                    fr.InitialTemperaturesAxialNode = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Material Index Near Center") Then
-                    fr.MaterialIndexNearCenter = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Material Index Next To Center") Then
-                    fr.MaterialIndexNextToCenter = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Material Index Nth Layer") Then
-                    fr.MaterialIndexNthLayer = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Fraction") Then
-                    fr.Fraction = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.TimeForWhichAxialPowerProfileApplies = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Factor") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Radial Power Factor") Then
-                    fr.RadialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
-                If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
-                    fr.AxialPowerFactor = e.ChangedItem.Value
-                End If
+            ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate (discharge)") Then
+                pp.OInitialLiquidMassFlowRate = e.ChangedItem.Value
 
-
-            ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
-                Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
-
-                If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
-                    hs.NumberOfAxialHS = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
-                    hs.NumberOfRadialMP = e.ChangedItem.Value
-
-                ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
-                    hs.LeftBoundaryCO = e.ChangedItem.Value
-
-
-                End If
+            ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
+                pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
 
 
             End If
@@ -626,402 +472,161 @@ Public Class frmProps
 
 
 
-            'If ChildParent.Options.CalculatorActivated Then
+        ElseIf sobj.TipoObjeto = TipoObjeto.FuelRod Then
+
+
+            Dim fr As RELAP.SimulationObjects.UnitOps.FuelRod = ChildParent.Collections.CLCS_FuelRodCollection.Item(sobj.Name)
+            If e.ChangedItem.Label.Contains("Average Burnup") Then
+                fr.AverageBurnup = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("No. of rods") Then
+                fr.NumberOfRods = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Fuel Rod Pitch") Then
+                fr.FuelRodPitch = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Plenum Length") Then
+                fr.PlenumLength = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Plenum Void Volume") Then
+                fr.PlenumVoidVolume = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Lower Plenum Void Volume") Then
+                fr.LowerPlenumVoidVolume = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Fuel Pellet Radius") Then
+                fr.FuelPelletRadius = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Inner Cladding Radius") Then
+                fr.InnerCladdingRadius = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Outer Cladding Radius") Then
+                fr.OuterCladdingRadius = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Fuel Rod Dimensions") Then
+                fr.FuelRodDimensionsAxialNode = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Control Volume Above") Then
+                fr.ControlVolumeAbove = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Control Volume Below") Then
+                fr.ControlVolumeBelow = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Control Volume Number") Then
+                fr.ControlVolumeNumber = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Increment") Then
+                fr.Increment = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Hydraulic Volumes") Then
+                fr.HydraulicVolumesAxialNode = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Radius To Radial Node 1") Then
+                fr.RadiusToRadialNode1 = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Radius To Radial Node N") Then
+                fr.RadiusToRadialNodeN = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Radial Mesh Spacing") Then
+                fr.RadialMeshSpacingAxialNode = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Temperature at Node 1") Then
+                fr.TemperatureAtNode1 = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Temperature at Node N") Then
+                fr.TemperatureAtNodeN = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Initial Temperature") Then
+                fr.InitialTemperaturesAxialNode = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Material Index Near Center") Then
+                fr.MaterialIndexNearCenter = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Material Index Next To Center") Then
+                fr.MaterialIndexNextToCenter = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Material Index Nth Layer") Then
+                fr.MaterialIndexNthLayer = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Fraction") Then
+                fr.Fraction = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.TimeForWhichAxialPowerProfileApplies = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Factor") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Radial Power Factor") Then
+                fr.RadialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+            If e.ChangedItem.Label.Contains("Axial Power Profile Time") Then
+                fr.AxialPowerFactor = e.ChangedItem.Value
+            End If
+
+
+        ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
+            Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
+            Dim gObj As HeatStructureGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
+
+            If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
+            hs.NumberOfAxialHS = e.ChangedItem.Value
+
+        ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
+            hs.NumberOfRadialMP = e.ChangedItem.Value
+
+        ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
+            hs.LeftBoundaryCO = e.ChangedItem.Value
 
-            '    'Call function to calculate flowsheet
-            '    Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '    With objargs
-            '        .Tag = sobj.Tag
-            '        .Calculado = False
-            '        .Nome = sobj.Name
-            '        .Tipo = TipoObjeto.Tank
-            '        .Emissor = "PropertyGrid"
-            '    End With
-
-            '    If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '    ChildParent.CalculationQueue.Enqueue(objargs)
-
-            'End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.OT_Ajuste Then
-
-            '    Dim adj As RELAP.SimulationObjects.SpecialOps.Adjust = ChildParent.Collections.CLCS_AdjustCollection.Item(sobj.Name)
-
-            '    With adj
-            '        If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Controlada")) Then
-            '            .ControlledObject = ChildParent.Collections.ObjectCollection(.ControlledObjectData.m_ID)
-            '            .ControlledVariable = .ControlledObjectData.m_Property
-            '            CType(ChildParent.Collections.AdjustCollection(adj.Nome), AdjustGraphic).ConnectedToCv = .ControlledObject.GraphicObject
-            '            .ReferenceObject = Nothing
-            '            .ReferenceVariable = Nothing
-            '            With .ReferencedObjectData
-            '                .m_ID = ""
-            '                .m_Name = ""
-            '                .m_Property = ""
-            '                .m_Type = ""
-            '            End With
-            '        ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Manipulada")) Then
-            '            .ManipulatedObject = ChildParent.Collections.ObjectCollection(.ManipulatedObjectData.m_ID)
-            '            Dim gr As AdjustGraphic = ChildParent.Collections.AdjustCollection(adj.Nome)
-            '            gr.ConnectedToMv = .ManipulatedObject.GraphicObject
-            '            .ManipulatedVariable = .ManipulatedObjectData.m_Property
-            '        ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("ObjetoVariveldeRefer")) Then
-            '            .ReferenceObject = ChildParent.Collections.ObjectCollection(.ReferencedObjectData.m_ID)
-            '            .ReferenceVariable = .ReferencedObjectData.m_Property
-            '            Dim gr As AdjustGraphic = ChildParent.Collections.AdjustCollection(adj.Nome)
-            '            gr.ConnectedToRv = .ReferenceObject.GraphicObject
-            '        ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Valormnimoopcional")) Then
-            '            adj.MinVal = Conversor.ConverterParaSI(adj.ManipulatedObject.GetPropertyUnit(adj.ManipulatedObjectData.m_Property, ChildParent.Options.SelectedUnitSystem), e.ChangedItem.Value)
-            '        ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Valormximoopcional")) Then
-            '            adj.MaxVal = Conversor.ConverterParaSI(adj.ManipulatedObject.GetPropertyUnit(adj.ManipulatedObjectData.m_Property, ChildParent.Options.SelectedUnitSystem), e.ChangedItem.Value)
-            '        ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("ValordeAjusteouOffse")) Then
-            '            adj.AdjustValue = Conversor.ConverterParaSI(adj.ControlledObject.GetPropertyUnit(adj.ControlledObjectData.m_Property, ChildParent.Options.SelectedUnitSystem), e.ChangedItem.Value)
-            '        End If
-            '    End With
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.OT_Especificacao Then
-
-            '    Dim spec As RELAP.SimulationObjects.SpecialOps.Spec = ChildParent.Collections.CLCS_SpecCollection.Item(sobj.Name)
-
-            '    With spec
-            '        If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Destino")) Then
-            '            .TargetObject = ChildParent.Collections.ObjectCollection(.TargetObjectData.m_ID)
-            '            .TargetVariable = .TargetObjectData.m_Property
-            '            CType(ChildParent.Collections.SpecCollection(spec.Nome), SpecGraphic).ConnectedToTv = .TargetObject.GraphicObject
-            '        ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Fonte")) Then
-            '            .SourceObject = ChildParent.Collections.ObjectCollection(.SourceObjectData.m_ID)
-            '            Dim gr As SpecGraphic = ChildParent.Collections.SpecCollection(spec.Nome)
-            '            gr.ConnectedToSv = .SourceObject.GraphicObject
-            '            .SourceVariable = .SourceObjectData.m_Property
-            '        End If
-            '    End With
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.Vessel Then
-
-            '    Dim vessel As RELAP.SimulationObjects.UnitOps.Vessel = ChildParent.Collections.CLCS_VesselCollection.Item(sobj.Name)
-
-            '    Dim T, P As Double
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Temperatura")) Then
-            '        T = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_temperature, e.ChangedItem.Value)
-            '        vessel.FlashTemperature = T
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Presso")) Then
-            '        P = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_pressure, e.ChangedItem.Value)
-            '        vessel.FlashPressure = P
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Tag = sobj.Tag
-            '            .Calculado = False
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.Vessel
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If vessel.IsSpecAttached = True And vessel.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(vessel.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.OT_Reciclo Then
-
-            '    Dim rec As RELAP.SimulationObjects.SpecialOps.Recycle = ChildParent.Collections.CLCS_RecycleCollection.Item(sobj.Name)
-
-            '    Dim T, P, W As Double
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Temperatura")) Then
-            '        T = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaT, e.ChangedItem.Value)
-            '        rec.ConvergenceParameters.Temperatura = T
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Presso")) Then
-            '        P = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-            '        rec.ConvergenceParameters.Pressao = P
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("mssica")) Then
-            '        W = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_massflow, e.ChangedItem.Value)
-            '        rec.ConvergenceParameters.VazaoMassica = W
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.RCT_Conversion Then
-
-            '    Dim bb As RELAP.SimulationObjects.Reactors.Reactor_Conversion = ChildParent.Collections.CLCS_ReactorConversionCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Quedadepresso")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.DeltaP = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Calculado = False
-            '            .Tag = sobj.Tag
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.RCT_Conversion
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.RCT_Equilibrium Then
-
-            '    Dim bb As RELAP.SimulationObjects.Reactors.Reactor_Equilibrium = ChildParent.Collections.CLCS_ReactorEquilibriumCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Quedadepresso")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.DeltaP = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Calculado = False
-            '            .Tag = sobj.Tag
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.RCT_Equilibrium
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.RCT_Gibbs Then
-
-            '    Dim bb As RELAP.SimulationObjects.Reactors.Reactor_Gibbs = ChildParent.Collections.CLCS_ReactorGibbsCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Quedadepresso")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.DeltaP = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Calculado = False
-            '            .Tag = sobj.Tag
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.RCT_Gibbs
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.RCT_CSTR Then
-
-            '    Dim bb As RELAP.SimulationObjects.Reactors.Reactor_CSTR = ChildParent.Collections.CLCS_ReactorCSTRCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Quedadepresso")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.DeltaP = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("RCSTRPGridItem1")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.Volume = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.volume, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Calculado = False
-            '            .Tag = sobj.Tag
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.RCT_CSTR
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.RCT_PFR Then
-
-            '    Dim bb As RELAP.SimulationObjects.Reactors.Reactor_PFR = ChildParent.Collections.CLCS_ReactorPFRCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Quedadepresso")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.DeltaP = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("RCSTRPGridItem1")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.Volume = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.volume, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Calculado = False
-            '            .Tag = sobj.Tag
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.RCT_PFR
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
-
-            '    Dim bb As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("OverallHeatTranferCoefficient")) Then
-
-            '        If e.ChangedItem.Value < 0 Then Throw New InvalidCastException(RELAP.App.GetLocalString("Ovalorinformadonovli"))
-            '        bb.OverallCoefficient = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.heat_transf_coeff, e.ChangedItem.Value)
-
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("Area")) Then
-
-            '        bb.Area = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.area, e.ChangedItem.Value)
-
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("HeatLoad")) Then
-
-            '        bb.Q = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_heatflow, e.ChangedItem.Value)
-
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("HXHotSidePressureDrop")) Then
-
-            '        bb.HotSidePressureDrop = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("HXColdSidePressureDrop")) Then
-
-            '        bb.ColdSidePressureDrop = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_deltaP, e.ChangedItem.Value)
-
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("HXTempHotOut")) Then
-
-            '        bb.HotSideOutletTemperature = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_temperature, e.ChangedItem.Value)
-
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("HXTempColdOut")) Then
-
-            '        bb.ColdSideOutletTemperature = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_temperature, e.ChangedItem.Value)
-
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Tag = sobj.Tag
-            '            .Calculado = False
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.HeatStructure
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If bb.IsSpecAttached = True And bb.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(bb.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.ShortcutColumn Then
-
-            '    Dim sc As RELAP.SimulationObjects.UnitOps.ShortcutColumn = ChildParent.Collections.CLCS_ShortcutColumnCollection.Item(sobj.Name)
-            '    Dim Pr, Pc As Double
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("SCCondenserType")) Then
-            '        sc.GraphicObject.Shape = sc.condtype
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("SCCondenserPressure")) Then
-            '        Pc = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_pressure, e.ChangedItem.Value)
-            '        sc.m_condenserpressure = Pc
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("SCReboilerPressure")) Then
-            '        Pr = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.spmp_pressure, e.ChangedItem.Value)
-            '        sc.m_boilerpressure = Pr
-            '    ElseIf e.ChangedItem.Label.Equals(RELAP.App.GetLocalString("SCLightKey")) Then
-            '        sc.m_lightkey = e.ChangedItem.Value
-            '    ElseIf e.ChangedItem.Label.Equals(RELAP.App.GetLocalString("SCHeavyKey")) Then
-            '        sc.m_heavykey = e.ChangedItem.Value
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Tag = sobj.Tag
-            '            .Calculado = False
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.ShortcutColumn
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If sc.IsSpecAttached = True And sc.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(sc.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-            'ElseIf sobj.TipoObjeto = TipoObjeto.OrificePlate Then
-
-            '    Dim op As RELAP.SimulationObjects.UnitOps.OrificePlate = ChildParent.Collections.CLCS_OrificePlateCollection.Item(sobj.Name)
-
-            '    If e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("OPOrificeDiameter")) Then
-            '        op.OrificeDiameter = Conversor.ConverterParaSI(ChildParent.Options.SelectedUnitSystem.diameter, e.ChangedItem.Value)
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("OPBeta")) Then
-            '        op.Beta = e.ChangedItem.Value
-            '    ElseIf e.ChangedItem.Label.Contains(RELAP.App.GetLocalString("OPCorrectionFactor")) Then
-            '        op.CorrectionFactor = e.ChangedItem.Value
-            '    End If
-
-            '    If ChildParent.Options.CalculatorActivated Then
-
-            '        'Call function to calculate flowsheet
-            '        Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            '        With objargs
-            '            .Calculado = False
-            '            .Tag = sobj.Tag
-            '            .Nome = sobj.Name
-            '            .Tipo = TipoObjeto.OrificePlate
-            '            .Emissor = "PropertyGrid"
-            '        End With
-
-            '        If op.IsSpecAttached = True And op.SpecVarType = RELAP.SimulationObjects.SpecialOps.Helpers.Spec.TipoVar.Fonte Then ChildParent.Collections.CLCS_SpecCollection(op.AttachedSpecId).Calculate()
-            '        ChildParent.CalculationQueue.Enqueue(objargs)
-
-            '    End If
-
-
-            'End If
 
         End If
+
+
+        End If
+
 
         Call ChildParent.FormSurface.UpdateSelectedObject()
         Call ChildParent.FormSurface.FlowsheetDesignSurface.Invalidate()
         Application.DoEvents()
-        '    If ChildParent.Options.CalculatorActivated Then ProcessCalculationQueue(ChildParent)
-
+       
     End Sub
 End Class

@@ -6974,75 +6974,37 @@ Namespace GraphicObjects
 
         Public Overrides Sub Draw(ByVal g As Graphics)
 
-            'Initializes drawing.
-            MyBase.Draw(g)
+
 
             UpdateStatus(Me)
 
-            Dim gContainer As Drawing2D.GraphicsContainer
+            Dim pt As Point
+            Dim raio, angulo As Double
+            Dim con As ConnectionPoint
+          
+
+            Dim gContainer As System.Drawing.Drawing2D.GraphicsContainer
             Dim myMatrix As Drawing2D.Matrix
-
             gContainer = g.BeginContainer()
-
             myMatrix = g.Transform()
             If m_Rotation <> 0 Then
                 myMatrix.RotateAt(m_Rotation, New PointF(X, Y), _
-                    Drawing2D.MatrixOrder.Prepend)
+                    Drawing.Drawing2D.MatrixOrder.Append)
                 g.Transform = myMatrix
             End If
-
-            'Dim rect2 As New Rectangle(X - Width * 1 / 2, Y - Height * 1 / 2, Width * 2, Height * 2)
-            'Dim rect2 As New Rectangle(X, Y, Width, Height)
-            ' Create a path that consists of a single ellipse.
-            'Dim path2 As New GraphicsPath()
-            'path2.AddEllipse(rect2)
-
-            '' Use the path to construct a brush.
-            'Dim pthGrBrush2 As New PathGradientBrush(path2)
-            '' Set the color at the center of the path to blue.
-            'If Me.Calculated Then
-            '    pthGrBrush2.CenterColor = Color.SteelBlue
-            'Else
-            '    pthGrBrush2.CenterColor = Color.Red
-            'End If
-            '' Set the color along the entire boundary 
-            '' of the path to aqua.
-            'Dim colors2 As Color() = {Color.Transparent}
-            'pthGrBrush2.SurroundColors = colors2
-            'pthGrBrush2.SetSigmaBellShape(1)
-            'g.FillEllipse(pthGrBrush2, rect2)
-
             Dim rect As New Rectangle(X, Y, Width, Height)
-
-            ' Create a path that consists of a single ellipse.
-            Dim path As New GraphicsPath()
-            path.AddEllipse(rect)
-            ' Use the path to construct a brush.
-            Dim pthGrBrush As New PathGradientBrush(path)
-            ' Set the color at the center of the path to blue.
-            pthGrBrush.CenterColor = Me.GradientColor2
-
-            ' Set the color along the entire boundary 
-            ' of the path to aqua.
-            Dim colors As Color() = {Me.GradientColor1}
-            pthGrBrush.SurroundColors = colors
-            pthGrBrush.SetSigmaBellShape(1)
-
-            Dim myPen As New Pen(Me.LineColor, Me.LineWidth)
-            g.SmoothingMode = SmoothingMode.AntiAlias
-            g.DrawEllipse(myPen, rect)
+            Dim lgb1 As New LinearGradientBrush(rect, Me.GradientColor1, Color.Red, LinearGradientMode.Vertical)
             If Me.Fill Then
                 If Me.GradientMode = False Then
-                    g.FillEllipse(New SolidBrush(Me.FillColor), rect)
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect)
                 Else
-                    g.FillEllipse(pthGrBrush, rect)
+                    g.FillRectangle(lgb1, rect)
                 End If
             End If
-            g.DrawLine(myPen, CInt(X), CInt(Y + Height), CInt(X + (2 / 8) * Width), CInt(Y + (3 / 8) * Height))
-            g.DrawLine(myPen, CInt(X + (2 / 8) * Width), CInt(Y + (3 / 8) * Height), CInt(X + (6 / 8) * Width), CInt(Y + (5 / 8) * Height))
-            g.DrawLine(myPen, CInt(X + (6 / 8) * Width), CInt(Y + (5 / 8) * Height), CInt(X + Width), CInt(Y))
-
-            g.TextRenderingHint = Text.TextRenderingHint.SystemDefault
+            ' g.FillRectangle(lgb1, rect)
+            Dim myPen As New Pen(Me.LineColor, Me.LineWidth)
+            g.SmoothingMode = SmoothingMode.AntiAlias
+            g.DrawRectangle(myPen, rect)
 
             Dim strdist As SizeF = g.MeasureString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New PointF(0, 0), New StringFormat(StringFormatFlags.NoClip, 0))
             Dim strx As Single = (Me.Width - strdist.Width) / 2
