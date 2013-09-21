@@ -398,10 +398,7 @@ Public Class frmSurface
 
                     Select Case ChildParent.ClickedToolStripMenuItem.Name
 
-                        Case "TSMIMaterialStream"
-                            tobj = TipoObjeto.MaterialStream
-                        Case "TSMIEnergyStream"
-                            tobj = TipoObjeto.EnergyStream
+              
                         Case "TSMIMixer"
                             tobj = TipoObjeto.NodeIn
                         Case "TSMISplitter"
@@ -428,46 +425,12 @@ Public Class frmSurface
                             tobj = TipoObjeto.SingleJunction
                         Case "TSMICooler"
                             tobj = TipoObjeto.TimeDependentJunction
-                        Case "TSMIOrificePlate"
-                            tobj = TipoObjeto.OrificePlate
-                        Case "TSMIComponentSeparator"
-                            tobj = TipoObjeto.ComponentSeparator
+
                         Case "TSMIHeatStructure"
                             tobj = TipoObjeto.HeatStructure
                         Case "TSMITank"
                             tobj = TipoObjeto.Tank
-                        Case "TSMIColShortcut"
-                            tobj = TipoObjeto.ShortcutColumn
-                        Case "TSMIColDist"
-                            tobj = TipoObjeto.DistillationColumn
-                        Case "TSMIColAbs"
-                            tobj = TipoObjeto.AbsorptionColumn
-                        Case "TSMIColAbsReb"
-                            tobj = TipoObjeto.ReboiledAbsorber
-                        Case "TSMIColAbsCond"
-                            tobj = TipoObjeto.RefluxedAbsorber
-                        Case "TSMIReactorConv"
-                            tobj = TipoObjeto.RCT_Conversion
-                        Case "TSMIReactorEquilibrium"
-                            tobj = TipoObjeto.RCT_Equilibrium
-                        Case "TSMIReactorGibbs"
-                            tobj = TipoObjeto.RCT_Gibbs
-                        Case "TSMIReactorCSTR"
-                            tobj = TipoObjeto.RCT_CSTR
-                        Case "TSMIReactorPFR"
-                            tobj = TipoObjeto.RCT_PFR
-                        Case "TSMIRecycle"
-                            tobj = TipoObjeto.OT_Reciclo
-                        Case "TSMIEnergyRecycle"
-                            tobj = TipoObjeto.OT_EnergyRecycle
-                        Case "TSMIAdjust"
-                            tobj = TipoObjeto.OT_Ajuste
-                        Case "TSMISpecification"
-                            tobj = TipoObjeto.OT_Especificacao
-                        Case "TSMICUO"
-                            tobj = TipoObjeto.CustomUO
-                        Case "TSMICOUO"
-                            tobj = TipoObjeto.CapeOpenUO
+                  
                     End Select
 
                     AddObjectToSurface(tobj, mpx, mpy)
@@ -479,36 +442,7 @@ Public Class frmSurface
 
             End If
 
-            'If Not Me.FlowsheetDesignSurface.SelectedObject Is Nothing Then
-
-            '    If Me.FlowsheetDesignSurface.SelectedObject.IsConnector = False Then
-
-            '        ChildParent.PopulatePGEx2(Me.FlowsheetDesignSurface.SelectedObject)
-            '        Try
-            '            ChildParent.Collections.ObjectCollection(Me.FlowsheetDesignSurface.SelectedObject.Name).PopulatePropertyGrid(PGEx1, ChildParent.Options.SelectedUnitSystem)
-            '            ChildParent.FormProps.ResumeLayout()
-            '        Catch ex As Exception
-            '            PGEx1.SelectedObject = Nothing
-            '            'VDialog.Show(ex.Message & " - " & ex.StackTrace, RELAP.App.GetLocalString("Erro"), MessageBoxButtons.OK, MessageBoxIcon.Error)
-            '        Finally
-            '            ChildParent.FormSurface.Select()
-            '        End Try
-
-            '    Else
-
-            '        Me.FlowsheetDesignSurface.SelectedObject = Nothing
-
-            '    End If
-
-
-            'Else
-
-            '    PGEx2.SelectedObject = Nothing
-            '    PGEx1.SelectedObject = Nothing
-
-            'End If
-            'PGEx2.Refresh()
-            'PGEx1.Refresh()
+        
 
         ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
 
@@ -984,9 +918,7 @@ Public Class frmSurface
         gObj = myTank
         gObj.Name = "SS-" & Guid.NewGuid.ToString
         ChildParent.Collections.SubSystemCollection.Add(gObj.Name, myTank)
-        'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-        'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-        'OBJETO RELAP
+       
         Dim myCOTK As RELAP.SimulationObjects.UnitOps.Subsystem = New RELAP.SimulationObjects.UnitOps.Subsystem(myTank.Name, "Subsystem")
         myCOTK.GraphicObject = myTank
         ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
@@ -998,15 +930,7 @@ Public Class frmSurface
             Dim arrays(ChildParent.Collections.ObjectCollection.Count - 1) As String
             '   Dim aNode, aNode2 As TreeNode
             Dim i As Integer = 0
-            'For Each aNode In ChildParent.FormObjList.TreeViewObj.Nodes
-            '    For Each aNode2 In aNode.Nodes
-            '        arrays(i) = aNode2.Text
-            '        i += 1
-            '    Next
-            'Next
-            'ChildParent.FormObjList.ACSC.Clear()
-            'ChildParent.FormObjList.ACSC.AddRange(arrays)
-            'ChildParent.FormObjList.TBSearch.AutoCompleteCustomSource = ChildParent.FormObjList.ACSC
+           
         End If
 
         Me.FlowsheetDesignSurface.Cursor = Cursors.Arrow
@@ -1039,9 +963,7 @@ Public Class frmSurface
                 gObj = myTank
                 gObj.Name = "TQ-" & Guid.NewGuid.ToString
                 ChildParent.Collections.TankCollection.Add(gObj.Name, myTank)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+               
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Tank = New RELAP.SimulationObjects.UnitOps.Tank(myTank.Name, "Tanque")
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
@@ -1058,9 +980,7 @@ Public Class frmSurface
                 gObj = myVolume
                 gObj.Name = "SNGLVOL-" & Guid.NewGuid.ToString
                 ChildParent.Collections.SingleVolumeCollection.Add(gObj.Name, myVolume)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+               
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.SingleVolume = New RELAP.SimulationObjects.UnitOps.SingleVolume(myVolume.Name, "SingleVolume")
                 myCOTK.GraphicObject = myVolume
                 ChildParent.Collections.ObjectCollection.Add(myVolume.Name, myCOTK)
@@ -1077,9 +997,7 @@ Public Class frmSurface
                 gObj = myPump
                 gObj.Name = "PUMP-" & Guid.NewGuid.ToString
                 ChildParent.Collections.PumpCollection.Add(gObj.Name, myPump)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+                
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Pump = New RELAP.SimulationObjects.UnitOps.Pump(myPump.Name, "Bomba")
                 myCOTK.GraphicObject = myPump
                 ChildParent.Collections.ObjectCollection.Add(myPump.Name, myCOTK)
@@ -1096,9 +1014,7 @@ Public Class frmSurface
                 gObj = myCooler
                 gObj.Name = "SNGLJUN-" & Guid.NewGuid.ToString
                 ChildParent.Collections.SingleJunctionCollection.Add(gObj.Name, myCooler)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+               
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.SingleJunction = New RELAP.SimulationObjects.UnitOps.SingleJunction(myCooler.Name, "SingleJunction")
                 myCOTK.GraphicObject = myCooler
                 ChildParent.Collections.ObjectCollection.Add(myCooler.Name, myCOTK)
@@ -1116,16 +1032,14 @@ Public Class frmSurface
                 gObj = myTMDPJUN
                 gObj.Name = "TMDPJUN-" & Guid.NewGuid.ToString
                 ChildParent.Collections.TimeDependentJunctionCollection.Add(gObj.Name, myTMDPJUN)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+                
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.TimeDependentJunction = New RELAP.SimulationObjects.UnitOps.TimeDependentJunction(myTMDPJUN.Name, "TimeDependentJunction")
                 myCOTK.GraphicObject = myTMDPJUN
                 ChildParent.Collections.ObjectCollection.Add(myTMDPJUN.Name, myCOTK)
                 ChildParent.Collections.CLCS_TimeDependentJunctionCollection.Add(myTMDPJUN.Name, myCOTK)
 
             Case TipoObjeto.HeatStructure
-                Dim myHeatStructure As New HeatStructureGraphic(mpx, mpy, 15, 15, 0)
+                Dim myHeatStructure As New HeatStructureGraphic(mpx, mpy, 50, 8, 0)
                 myHeatStructure.LineWidth = 2
                 myHeatStructure.Fill = True
                 myHeatStructure.FillColor = fillclr
@@ -1136,9 +1050,7 @@ Public Class frmSurface
                 gObj = myHeatStructure
                 gObj.Name = "HEATST-" & Guid.NewGuid.ToString
                 ChildParent.Collections.HeatStructureCollection.Add(gObj.Name, myHeatStructure)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+               
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.HeatStructure = New RELAP.SimulationObjects.UnitOps.HeatStructure(myHeatStructure.Name, "HeatStructure")
                 myCOTK.GraphicObject = myHeatStructure
                 ChildParent.Collections.ObjectCollection.Add(myHeatStructure.Name, myCOTK)
@@ -1156,9 +1068,7 @@ Public Class frmSurface
                 gObj = mybranch
                 gObj.Name = "BRANCH" & Guid.NewGuid.ToString
                 ChildParent.Collections.BranchCollection.Add(gObj.Name, mybranch)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+                
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Branch = New RELAP.SimulationObjects.UnitOps.Branch(mybranch.Name, "Branch")
                 myCOTK.GraphicObject = mybranch
                 ChildParent.Collections.ObjectCollection.Add(mybranch.Name, myCOTK)
@@ -1176,9 +1086,6 @@ Public Class frmSurface
                 gObj = myPipe
                 gObj.Name = "PIPE-" & Guid.NewGuid.ToString
                 ChildParent.Collections.PipeCollection.Add(gObj.Name, myPipe)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.pipe = New RELAP.SimulationObjects.UnitOps.pipe(myPipe.Name, "Pipe")
                 myCOTK.GraphicObject = myPipe
                 ChildParent.Collections.ObjectCollection.Add(myPipe.Name, myCOTK)
@@ -1195,9 +1102,7 @@ Public Class frmSurface
                 gObj = myValve
                 gObj.Name = "VALVE-" & Guid.NewGuid.ToString
                 ChildParent.Collections.ValveCollection.Add(gObj.Name, myValve)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+           
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Valve = New RELAP.SimulationObjects.UnitOps.Valve(myValve.Name, "Valve")
                 myCOTK.GraphicObject = myValve
                 ChildParent.Collections.ObjectCollection.Add(myValve.Name, myCOTK)
@@ -1214,9 +1119,7 @@ Public Class frmSurface
                 gObj = myTank
                 gObj.Name = "FR-" & Guid.NewGuid.ToString
                 ChildParent.Collections.FuelRodCollection.Add(gObj.Name, myTank)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+               
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.FuelRod = New RELAP.SimulationObjects.UnitOps.FuelRod(myTank.Name, "FuelRod")
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
@@ -1233,9 +1136,7 @@ Public Class frmSurface
                 gObj = myTank
                 gObj.Name = "SIM-" & Guid.NewGuid.ToString
                 ChildParent.Collections.SimulatorCollection.Add(gObj.Name, myTank)
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes.Add(gObj.Name, gObj.Tag).Name = gObj.Name
-                'ChildParent.FormObjList.TreeViewObj.Nodes("NodeTQ").Nodes(gObj.Name).ContextMenuStrip = ChildParent.FormObjList.ContextMenuStrip1
-                'OBJETO RELAP
+                
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Simulator = New RELAP.SimulationObjects.UnitOps.Simulator(myTank.Name, "Simulator")
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
@@ -1251,15 +1152,7 @@ Public Class frmSurface
             Dim arrays(ChildParent.Collections.ObjectCollection.Count - 1) As String
             '   Dim aNode, aNode2 As TreeNode
             Dim i As Integer = 0
-            'For Each aNode In ChildParent.FormObjList.TreeViewObj.Nodes
-            '    For Each aNode2 In aNode.Nodes
-            '        arrays(i) = aNode2.Text
-            '        i += 1
-            '    Next
-            'Next
-            'ChildParent.FormObjList.ACSC.Clear()
-            'ChildParent.FormObjList.ACSC.AddRange(arrays)
-            'ChildParent.FormObjList.TBSearch.AutoCompleteCustomSource = ChildParent.FormObjList.ACSC
+           
         End If
 
         Me.FlowsheetDesignSurface.Cursor = Cursors.Arrow
