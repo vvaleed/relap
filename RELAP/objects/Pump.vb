@@ -63,18 +63,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             Single_velocity_Momentum_Equations
         End Enum
 
-        Enum pumptableEnum
-            Single_Phase_Homologous_Table
-            Obtain_Single_Phase_Tables_for_this_Number
-            Use_builtin_data_for_Bingham_pump
-            Use_builtin_data_for_Westinghouse_pump
-        End Enum
-
-        Enum TwoPhaseIndexEnum
-            Do_Not_USe_Two_Phase_Option
-
-        End Enum
-
 
         'basic properties start
 
@@ -145,6 +133,16 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As ThermoDynamicStates)
                 _ThermoDynamicStates = value
+            End Set
+        End Property
+
+        Private _PumpData As PumpData
+        Public Property PumpData() As PumpData
+            Get
+                Return _PumpData
+            End Get
+            Set(ByVal value As PumpData)
+                _PumpData = value
             End Set
         End Property
 
@@ -481,17 +479,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        'pump index cards
-        Private _PumpTable As pumptableEnum
-        Public Property PumpTable() As pumptableEnum
-            Get
-                Return _PumpTable
-            End Get
-            Set(ByVal value As pumptableEnum)
-                _PumpTable = value
-            End Set
-        End Property
-
         'pump description
         Private _Ratedpumpvelocity As Double
         Public Property Ratedpumpvelocity() As String
@@ -613,6 +600,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.FillNodeItems()
             Me.QTFillNodeItems()
             Me._ThermoDynamicStates = New ThermoDynamicStates
+            Me._PumpData = New PumpData
             Me._ToVolume = 1
             Me._FromVolume = 1
             Me.m_flowarea = 20.0
@@ -629,7 +617,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.outlet_chokingModel = False
             Me.OAreaChange = outletAreaChangeEnum.No_Area_Change
             Me.OMomentumEquation = outletMomentumEquationEnum.Two_velocity_Momentum_Equations
-            Me._PumpTable = pumptableEnum.Obtain_Single_Phase_Tables_for_this_Number
 
 
 
@@ -1143,7 +1130,12 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                .Item.Add("Pump Table Data Indicator", Me, "PumpTable", False, "7.Pump Index and Option Data", "Pump Table Data Indicator", True)
+                .Item.Add("Pump Index and Option Data", Me, "PumpData", False, "7.Pump Index and Option Data", "Pump Index and Option Data", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(PumpData)
+                    .CustomEditor = New RELAP.Editors.UIPumpEditor
+                End With
             End With
 
         End Sub

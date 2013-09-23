@@ -1659,7 +1659,7 @@ Public Class FormMain
         'End Try
         'Dim fs10 As New FileStream(rndfolder & "10.bin", FileMode.Create)
         'Try
-        '    mySerializer.Serialize(fs10, form.FormSpreadsheet.dt2)
+        '    mySerializer.Serialize(fs10, form.Formbr-readsheet.dt2)
         'Catch ex As System.Runtime.Serialization.SerializationException
         '    Console.WriteLine("Failed to serialize. Reason: " & ex.Message)
         '    VDialog.Show(ex.Message)
@@ -3010,6 +3010,47 @@ sim:                Dim myStream As System.IO.FileStream
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
                     generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
                 Next kvp2
+                'pump index
+                If kvp.Value.PumpData.cmbboxindex1 = Nothing Then
+                    kvp.Value.PumpData.cmbboxindex1 = 0
+                End If
+                output1 = kvp.Value.PumpData.cmbboxindex1 - 2
+
+                If kvp.Value.PumpData.cmbboxindex2 = Nothing Then
+                    kvp.Value.PumpData.cmbboxindex2 = 0
+                End If
+                output2 = kvp.Value.PumpData.cmbboxindex2 - 1
+
+                If kvp.Value.PumpData.cmbboxindex3 = Nothing Then
+                    kvp.Value.PumpData.cmbboxindex3 = 0
+                End If
+                output3 = kvp.Value.PumpData.cmbboxindex3 - 3
+
+                If kvp.Value.PumpData.cmbboxindex4 = Nothing Then
+                    kvp.Value.PumpData.cmbboxindex4 = 0
+                End If
+                output4 = kvp.Value.PumpData.cmbboxindex4 - 1
+
+                If kvp.Value.PumpData.cmbboxindex5 = Nothing Then
+                    kvp.Value.PumpData.cmbboxindex5 = 0
+                End If
+                output5 = kvp.Value.PumpData.cmbboxindex5 - 1
+                generate.WriteLine(kvp.Value.UID & "0301 " & output1 & " " & output2 & " " & output3 & " " & output4 & " " & output5 & " ")
+
+                If output2 = 0 Then
+                    generate.WriteLine(kvp.Value.UID & "3000 0")
+                    Dim counter = 1
+                    For Each kvp2 As KeyValuePair(Of Integer, pumpdata201) In kvp.Value.PumpData.Propumpdata201
+                        generate.WriteLine(kvp.Value.UID & "30" & counter.ToString("D2") & " " & kvp2.Value.Voidfraction1.ToString("F") & " " & kvp2.Value.head.ToString("F"))
+                        counter = counter + 1
+                    Next kvp2
+                    counter = 1
+                    For Each kvp2 As KeyValuePair(Of Integer, pumpdata202) In kvp.Value.PumpData.Propumpdata202
+                        generate.WriteLine(kvp.Value.UID & "31" & counter.ToString("D2") & " " & kvp2.Value.Voidfraction2.ToString("F") & " " & kvp2.Value.Torque.ToString("F"))
+                        counter = counter + 1
+                    Next kvp2
+                End If
+
                 univID = univID + 1
             Next kvp
 

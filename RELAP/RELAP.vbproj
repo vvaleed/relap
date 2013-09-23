@@ -236,6 +236,7 @@
     <Compile Include="objects\Branch\Branch.vb" />
     <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
+    <Compile Include="objects\Custom Properties\PumpData.vb" />
     <Compile Include="objects\Custom Properties\ValveType.vb" />
     <Compile Include="objects\Branch\frmBranchEditor.Designer.vb">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
@@ -243,6 +244,19 @@
     <Compile Include="objects\Branch\frmBranchEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="objects\Editors\frmPumpEditor.Designer.vb">
+      <DependentUpon>frmPumpEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmPumpEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\ucPump.Designer.vb">
+      <DependentUpon>ucPump.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\ucPump.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="objects\Editors\UIPumpEditor.vb" />
     <Compile Include="objects\Junction\frmJunctionsEditor.Designer.vb">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </Compile>
@@ -390,6 +404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Branch\frmBranchEditor.resx">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmPumpEditor.resx">
+      <DependentUpon>frmPumpEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\ucPump.resx">
+      <DependentUpon>ucPump.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\HeatStructure\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
