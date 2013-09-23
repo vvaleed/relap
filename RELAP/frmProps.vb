@@ -505,7 +505,29 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
                 pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
 
-
+            ElseIf e.ChangedItem.Label.Contains("Rated pump velocity") Then
+                pp.Ratedpumpvelocity = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Ratio of Velocities") Then
+                pp.RatioRatedVelocity = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Rated Flow") Then
+                pp.RatedFlow = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Rated Head") Then
+                pp.RatedHead = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Rated Torque") Then
+                pp.RatedTorque = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Moment of Inertia") Then
+                pp.MomentofInertia = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Rated Density") Then
+                pp.RatedDensity = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Rated pump Motor Torque") Then
+                pp.RatedMotorTorque = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("TF2, Friction Torque Cooefficient") Then
+                pp.TF2 = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("TF0, Friction Torque Cooefficient") Then
+                pp.TF0 = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("TF3, Friction Torque Cooefficient") Then
+                pp.TF3 = e.ChangedItem.Value
+            
             End If
 
 

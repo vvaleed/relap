@@ -481,11 +481,11 @@ Namespace RELAP.SimulationObjects.UnitOps
 
         'pump description
         Private _Ratedpumpvelocity As Double
-        Public Property Ratedpumpvelocity() As String
+        Public Property Ratedpumpvelocity() As Double
             Get
                 Return _Ratedpumpvelocity
             End Get
-            Set(ByVal value As String)
+            Set(ByVal value As Double)
                 _Ratedpumpvelocity = value
             End Set
         End Property
@@ -617,7 +617,17 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.outlet_chokingModel = False
             Me.OAreaChange = outletAreaChangeEnum.No_Area_Change
             Me.OMomentumEquation = outletMomentumEquationEnum.Two_velocity_Momentum_Equations
-
+            Me._Ratedpumpvelocity = 300.0
+            Me._RatioRatedVelocity = 1.0
+            Me._RatedFlow = 1.0
+            Me._RateHead = 30.0
+            Me._RatedTorque = 500.0
+            Me._MomentofInertia = 1.0
+            Me._RatedDensity = 0.0
+            Me._RatedMotorTorque = 0.0
+            Me._TF2 = 150.0
+            Me._TF0 = 0.003
+            Me._TF3 = 0.0
 
 
         End Sub
@@ -1136,6 +1146,73 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(PumpData)
                     .CustomEditor = New RELAP.Editors.UIPumpEditor
                 End With
+                valor = Format(Me.Ratedpumpvelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Rated pump velocity", valor, False, "7.Pump Index and Option Data", "Rated pump velocity", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.RatioRatedVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Ratio of Velocities", valor, False, "7.Pump Index and Option Data", "Ratio of initial pump velocity to rated pump velocity", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.RatedFlow, FlowSheet.Options.NumberFormat)
+                .Item.Add("Rated Flow", valor, False, "7.Pump Index and Option Data", "Rated Flow", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.RatedHead, FlowSheet.Options.NumberFormat)
+                .Item.Add("Rated Head", valor, False, "7.Pump Index and Option Data", "Rated Head", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.RatedTorque, FlowSheet.Options.NumberFormat)
+                .Item.Add("Rated Torque", valor, False, "7.Pump Index and Option Data", "Rated Torque", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.MomentofInertia, FlowSheet.Options.NumberFormat)
+                .Item.Add("Moment of Inertia", valor, False, "7.Pump Index and Option Data", "Moment of Inertia", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.RatedDensity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Rated Density", valor, False, "7.Pump Index and Option Data", "Rated Density", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.RatedMotorTorque, FlowSheet.Options.NumberFormat)
+                .Item.Add("Rated pump Motor Torque", valor, False, "7.Pump Index and Option Data", "Rated pump Motor Torque", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.TF2, FlowSheet.Options.NumberFormat)
+                .Item.Add("TF2, Friction Torque Cooefficient", valor, False, "7.Pump Index and Option Data", "This multiplies the speed ratio to the second power", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.TF0, FlowSheet.Options.NumberFormat)
+                .Item.Add("TF0, Friction Torque Cooefficient", valor, False, "7.Pump Index and Option Data", "This multiplies the speed ratio to the first power", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.TF3, FlowSheet.Options.NumberFormat)
+                .Item.Add("TF3, Friction Torque Cooefficient", valor, False, "7.Pump Index and Option Data", "This multiplies the speed ratio to the third power", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+
             End With
 
         End Sub
