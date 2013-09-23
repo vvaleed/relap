@@ -43,7 +43,7 @@
             dgvtab1.Rows(0).Cells(6).Value = 5.0
             dgvtab1.Rows(0).Cells(7).Value = myCOTK.NumberOfAxialHS
         Else
-           
+
             dgvtab1.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count)
             Dim i = 1
             'For Each row As DataGridViewRow In dgvtab1.Rows
@@ -117,7 +117,7 @@
             dgvTab3.Rows(0).Cells(3).Value = 0
             dgvTab3.Rows(0).Cells(4).Value = myCOTK.NumberOfAxialHS
         Else
-            
+
             dgvTab3.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count)
             Dim i = 1
             For i = 1 To myCOTK.HeatStructureBoundaryCond.BoundaryCondTab3.Count
@@ -147,7 +147,7 @@
             dgvTab4.Rows(0).Cells(10).Value = 1.0
             dgvTab4.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-          
+
 
             dgvTab4.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab4.Count)
 
@@ -185,7 +185,7 @@
             dgvTab5.Rows(0).Cells(10).Value = 1.0
             dgvTab5.Rows(0).Cells(11).Value = myCOTK.NumberOfAxialHS
         Else
-           
+
 
             dgvTab5.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab5.Count)
             Dim i = 1
