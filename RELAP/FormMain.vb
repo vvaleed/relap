@@ -2718,11 +2718,11 @@ sim:                Dim myStream As System.IO.FileStream
 
             card = 501
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridView1.Rows
-                '         If temprow.Cells(0).Value <> "" Then
+                If temprow.Cells(0).Value.ToString <> "" Then
 
-                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
-                card = card + 1
-                ' End If
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
+                    card = card + 1
+                    ' End If
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
