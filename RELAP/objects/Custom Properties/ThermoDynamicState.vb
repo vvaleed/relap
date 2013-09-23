@@ -20,7 +20,8 @@
         End Set
     End Property
     Protected m_collection As Generic.SortedDictionary(Of Integer, ThermoDynamicState)
-    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+    ' Protected m_status As 
+    'EditorStatus = PipeEditorStatus.Definir
 
     Public Property State() As Generic.SortedDictionary(Of Integer, ThermoDynamicState)
         Get

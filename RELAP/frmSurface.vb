@@ -242,6 +242,8 @@ Public Class frmSurface
                                     My.Application.ActiveSimulation.ComponentType = ""
                                     If Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pipe Then
                                         My.Application.ActiveSimulation.ComponentType = "pipe"
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Annulus Then
+                                        My.Application.ActiveSimulation.ComponentType = "Annulus"
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleVolume Then
                                         My.Application.ActiveSimulation.ComponentType = "SingleVolume"
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Branch Then
@@ -419,6 +421,8 @@ Public Class frmSurface
                             tobj = TipoObjeto.Separator
                         Case "TSMIPipe"
                             tobj = TipoObjeto.Pipe
+                        Case "TSMIAnnulus"
+                            tobj = TipoObjeto.Annulus
                         Case "TSMIValve"
                             tobj = TipoObjeto.Valve
                         Case "TSMISeparator"
@@ -1113,6 +1117,22 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myPipe
                 ChildParent.Collections.ObjectCollection.Add(myPipe.Name, myCOTK)
                 ChildParent.Collections.CLCS_PipeCollection.Add(myPipe.Name, myCOTK)
+            Case TipoObjeto.Annulus
+                Dim myPipe As New PipeGraphic(mpx, mpy, 50, 10, 0)
+                myPipe.LineWidth = 2
+                myPipe.Fill = True
+                myPipe.FillColor = fillclr
+                myPipe.LineColor = lineclr
+                myPipe.Tag = "ANN" & Format(ChildParent.Collections.ObjectCounter("Annulus"), "00#")
+                ChildParent.Collections.UpdateCounter("Annulus")
+                If tag <> "" Then myPipe.Tag = tag
+                gObj = myPipe
+                gObj.Name = "ANN-" & Guid.NewGuid.ToString
+                ChildParent.Collections.AnnulusCollection.Add(gObj.Name, myPipe)
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Annulus = New RELAP.SimulationObjects.UnitOps.Annulus(myPipe.Name, "Annulus")
+                myCOTK.GraphicObject = myPipe
+                ChildParent.Collections.ObjectCollection.Add(myPipe.Name, myCOTK)
+                ChildParent.Collections.CLCS_AnnulusCollection.Add(myPipe.Name, myCOTK)
             Case TipoObjeto.Valve
                 Dim myValve As New ValveGraphic(mpx, mpy, 50, 50, 0)
                 myValve.LineWidth = 2
@@ -1249,6 +1269,8 @@ Public Class frmSurface
                     tobj = TipoObjeto.Separator
                 Case "Tubulao"
                     tobj = TipoObjeto.Pipe
+                Case "Tubulao"
+                    tobj = TipoObjeto.Annulus
                 Case "Vlvula"
                     tobj = TipoObjeto.Valve
                 Case "ReatorConversao"

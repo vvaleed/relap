@@ -17,6 +17,7 @@
             .Rows.Add(New Object() {"TimeDependentJunction", Me.ImageList2.Images(26), "Time Dependent Junction"})
 
             .Rows.Add(New Object() {"Tubulao", Me.ImageList2.Images(5), "Pipe"})
+            .Rows.Add(New Object() {"Tubulao", Me.ImageList2.Images(5), "Annulus"})
             .Rows.Add(New Object() {"Branch", Me.ImageList2.Images(16), "Branch"})
             .Rows.Add(New Object() {"Separator", Me.ImageList2.Images(16), "Separator"})
             .Rows.Add(New Object() {"Vlvula", Me.ImageList2.Images(15), "Valve"})
