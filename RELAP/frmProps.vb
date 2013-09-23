@@ -246,7 +246,47 @@ Public Class frmProps
                 bb.chokingModel = e.ChangedItem.Value
                 'control flags
             End If
+        ElseIf sobj.TipoObjeto = TipoObjeto.Separator Then
 
+            Dim bb As RELAP.SimulationObjects.UnitOps.Separator = ChildParent.Collections.CLCS_SeparatorCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("Number of Junctions") Then
+                bb.NumberofJunctions = e.ChangedItem.Value
+
+                Dim gObj As SeparatorGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
+                gObj.Volumes = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
+                bb.FlowArea = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Length of Volume") Then
+                bb.LengthofVolume = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Volume of Volume") Then
+                bb.VolumeofVolume = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Azimuthal Angle") Then
+                bb.Azimuthalangle = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inclination Angle") Then
+                bb.InclinationAngle = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Elevation Change") Then
+                bb.ElevationChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Wall Roughness") Then
+                bb.WallRoughness = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
+                bb.HydraulicDiameter = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Modified PV term Applied") Then
+                bb.pvterm = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("CCFL Model") Then
+                bb.CCFL = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Choking Model") Then
+                bb.chokingModel = e.ChangedItem.Value
+                'control flags
+            End If
         ElseIf sobj.TipoObjeto = TipoObjeto.Valve Then
 
             Dim sjn As RELAP.SimulationObjects.UnitOps.Valve = ChildParent.Collections.CLCS_ValveCollection.Item(sobj.Name)
