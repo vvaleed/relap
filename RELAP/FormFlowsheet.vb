@@ -637,6 +637,8 @@ Imports RELAP.RELAP.FormClasses
         '     If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, VesselGraphic)
         If Collections.CompressorCollection Is Nothing Then Collections.CompressorCollection = New Dictionary(Of String, CompressorGraphic)
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
+        If Collections.AnnulusCollection Is Nothing Then Collections.AnnulusCollection = New Dictionary(Of String, PipeGraphic)
+
         If Collections.BranchCollection Is Nothing Then Collections.BranchCollection = New Dictionary(Of String, BranchGraphic)
         If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, SeparatorGraphic)
         If Collections.ValveCollection Is Nothing Then Collections.ValveCollection = New Dictionary(Of String, ValveGraphic)
@@ -1221,6 +1223,8 @@ Imports RELAP.RELAP.FormClasses
                                     Me.Collections.CLCS_TimeDependentJunctionCollection.Remove(namesel)
                                 Case TipoObjeto.Pipe
                                     Me.Collections.CLCS_PipeCollection.Remove(namesel)
+                                Case TipoObjeto.Annulus
+                                    Me.Collections.CLCS_AnnulusCollection.Remove(namesel)
                                 Case TipoObjeto.Branch
                                     Me.Collections.CLCS_BranchCollection.Remove(namesel)
                                 Case TipoObjeto.Separator
@@ -1477,6 +1481,8 @@ Imports RELAP.RELAP.FormClasses
                             Case TipoObjeto.TimeDependentJunction
                                 GoTo 100
                             Case TipoObjeto.Pipe
+                                GoTo 100
+                            Case TipoObjeto.Annulus
                                 GoTo 100
                             Case TipoObjeto.Branch
                                 GoTo 100

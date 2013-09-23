@@ -233,6 +233,7 @@
     <Compile Include="frmTrips.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="objects\Annulus.vb" />
     <Compile Include="objects\Branch\Branch.vb" />
     <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />

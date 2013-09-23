@@ -70,6 +70,9 @@ Partial Class ucValveEditor
         Me.TextBox31 = New System.Windows.Forms.TextBox()
         Me.TextBox29 = New System.Windows.Forms.TextBox()
         Me.dgvValve = New System.Windows.Forms.DataGridView()
+        Me.NormalizedFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ForwardCSUBV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ReverseCSUBV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -114,9 +117,6 @@ Partial Class ucValveEditor
         Me.TextBox54 = New System.Windows.Forms.TextBox()
         Me.TextBox55 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
-        Me.NormalizedFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ForwardCSUBV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ReverseCSUBV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox15 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -652,6 +652,21 @@ Partial Class ucValveEditor
         Me.dgvValve.Size = New System.Drawing.Size(335, 364)
         Me.dgvValve.TabIndex = 11
         '
+        'NormalizedFlowArea
+        '
+        Me.NormalizedFlowArea.HeaderText = "Normalized Flow Area or Stem Position"
+        Me.NormalizedFlowArea.Name = "NormalizedFlowArea"
+        '
+        'ForwardCSUBV
+        '
+        Me.ForwardCSUBV.HeaderText = "Forward CSUBV"
+        Me.ForwardCSUBV.Name = "ForwardCSUBV"
+        '
+        'ReverseCSUBV
+        '
+        Me.ReverseCSUBV.HeaderText = "Reverse CSUBV"
+        Me.ReverseCSUBV.Name = "ReverseCSUBV"
+        '
         'TextBox5
         '
         Me.TextBox5.BackColor = System.Drawing.SystemColors.Control
@@ -1123,21 +1138,6 @@ Partial Class ucValveEditor
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.931669!))
         Me.TableLayoutPanel6.Size = New System.Drawing.Size(430, 527)
         Me.TableLayoutPanel6.TabIndex = 10
-        '
-        'NormalizedFlowArea
-        '
-        Me.NormalizedFlowArea.HeaderText = "Normalized Flow Area or Stem Position"
-        Me.NormalizedFlowArea.Name = "NormalizedFlowArea"
-        '
-        'ForwardCSUBV
-        '
-        Me.ForwardCSUBV.HeaderText = "Forward CSUBV"
-        Me.ForwardCSUBV.Name = "ForwardCSUBV"
-        '
-        'ReverseCSUBV
-        '
-        Me.ReverseCSUBV.HeaderText = "Reverse CSUBV"
-        Me.ReverseCSUBV.Name = "ReverseCSUBV"
         '
         'TextBox15
         '

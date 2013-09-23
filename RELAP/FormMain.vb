@@ -2966,6 +2966,11 @@ sim:                Dim myStream As System.IO.FileStream
                     output = kvp.Value.ValveType.prel1 & " " & CDbl(kvp.Value.ValveType.prel2).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel3).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel4).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel5).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel6).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel7).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel8).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel9).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel10).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel11).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel12).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel13).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel14).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel15).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel16).ToString("F") & " " & CDbl(kvp.Value.ValveType.prel17).ToString("F")
                 End If
                 generate.WriteLine(kvp.Value.UID & "0301 " & output)
+                Dim counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, ValveCSUB) In kvp.Value.ValveType.ProValveCSUB
+                    generate.WriteLine(kvp.Value.UID & "04" & counter.ToString("D2") & " " & kvp2.Value.NormalizedFlowArea.ToString("F") & " " & kvp2.Value.ForwardCSUBV.ToString("F") & " " & kvp2.Value.ReverseCSUBV.ToString("F"))
+                    counter = counter + 1
+                Next kvp2
                 univID = univID + 1
 
             Next kvp

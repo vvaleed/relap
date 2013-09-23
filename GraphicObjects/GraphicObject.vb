@@ -36,6 +36,7 @@ Namespace GraphicObjects
         TimeDependentJunction
         Heater
         Pipe
+        Annulus
         Branch
         Separator
         Valve
