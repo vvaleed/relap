@@ -43,7 +43,6 @@ Partial Class frmInitialSettings
         Me.txtRestartFrequency = New System.Windows.Forms.TextBox()
         Me.txtMajorFrequency = New System.Windows.Forms.TextBox()
         Me.txtMinorFrequency = New System.Windows.Forms.TextBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.cboDebrisBreakup = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cboDebrisSource = New System.Windows.Forms.ComboBox()
@@ -59,28 +58,28 @@ Partial Class frmInitialSettings
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.DoubleInput3 = New DevComponents.Editors.DoubleInput()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.DoubleInput2 = New DevComponents.Editors.DoubleInput()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.txtCPUTimeAllocated = New DevComponents.Editors.DoubleInput()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.txtCPURemaining2 = New DevComponents.Editors.DoubleInput()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtCPURemaining1 = New DevComponents.Editors.DoubleInput()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.txtCPUTimeAllocated = New DevComponents.Editors.DoubleInput()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.DoubleInput2 = New DevComponents.Editors.DoubleInput()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.DoubleInput3 = New DevComponents.Editors.DoubleInput()
         Me.chklistboxFluid.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DoubleInput2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCPUTimeAllocated, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCPURemaining2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCPURemaining1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtCPUTimeAllocated, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chklistboxCondensibleGases
@@ -278,30 +277,11 @@ Partial Class frmInitialSettings
         Me.txtMinorFrequency.TabIndex = 36
         Me.txtMinorFrequency.Text = "1"
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.cboDebrisBreakup)
-        Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.cboDebrisSource)
-        Me.GroupBox2.Controls.Add(Me.txtCoupleTimeStep)
-        Me.GroupBox2.Controls.Add(Me.Label14)
-        Me.GroupBox2.Controls.Add(Me.txtMaxHydraulicStep)
-        Me.GroupBox2.Controls.Add(Me.Label13)
-        Me.GroupBox2.Controls.Add(Me.Label11)
-        Me.GroupBox2.Controls.Add(Me.cboDebrisVolume)
-        Me.GroupBox2.Controls.Add(Me.Label10)
-        Me.GroupBox2.Location = New System.Drawing.Point(20, 62)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(223, 147)
-        Me.GroupBox2.TabIndex = 34
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Debris Bed"
-        '
         'cboDebrisBreakup
         '
         Me.cboDebrisBreakup.FormattingEnabled = True
         Me.cboDebrisBreakup.Items.AddRange(New Object() {"Debris may be broken up", "Debris is never broken up"})
-        Me.cboDebrisBreakup.Location = New System.Drawing.Point(104, 73)
+        Me.cboDebrisBreakup.Location = New System.Drawing.Point(131, 162)
         Me.cboDebrisBreakup.Name = "cboDebrisBreakup"
         Me.cboDebrisBreakup.Size = New System.Drawing.Size(100, 21)
         Me.cboDebrisBreakup.TabIndex = 0
@@ -309,7 +289,7 @@ Partial Class frmInitialSettings
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(16, 76)
+        Me.Label12.Location = New System.Drawing.Point(21, 165)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(52, 13)
         Me.Label12.TabIndex = 33
@@ -319,14 +299,14 @@ Partial Class frmInitialSettings
         '
         Me.cboDebrisSource.FormattingEnabled = True
         Me.cboDebrisSource.Items.AddRange(New Object() {"No sluming", "Debris received from core components", "User-defined slumping", "Depends on components above mesh", "Corium hydro model"})
-        Me.cboDebrisSource.Location = New System.Drawing.Point(104, 46)
+        Me.cboDebrisSource.Location = New System.Drawing.Point(131, 135)
         Me.cboDebrisSource.Name = "cboDebrisSource"
         Me.cboDebrisSource.Size = New System.Drawing.Size(100, 21)
         Me.cboDebrisSource.TabIndex = 0
         '
         'txtCoupleTimeStep
         '
-        Me.txtCoupleTimeStep.Location = New System.Drawing.Point(132, 126)
+        Me.txtCoupleTimeStep.Location = New System.Drawing.Point(159, 215)
         Me.txtCoupleTimeStep.Name = "txtCoupleTimeStep"
         Me.txtCoupleTimeStep.Size = New System.Drawing.Size(72, 20)
         Me.txtCoupleTimeStep.TabIndex = 34
@@ -335,7 +315,7 @@ Partial Class frmInitialSettings
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(16, 129)
+        Me.Label14.Location = New System.Drawing.Point(21, 218)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(65, 13)
         Me.Label14.TabIndex = 33
@@ -343,7 +323,7 @@ Partial Class frmInitialSettings
         '
         'txtMaxHydraulicStep
         '
-        Me.txtMaxHydraulicStep.Location = New System.Drawing.Point(132, 100)
+        Me.txtMaxHydraulicStep.Location = New System.Drawing.Point(159, 189)
         Me.txtMaxHydraulicStep.Name = "txtMaxHydraulicStep"
         Me.txtMaxHydraulicStep.Size = New System.Drawing.Size(72, 20)
         Me.txtMaxHydraulicStep.TabIndex = 34
@@ -352,7 +332,7 @@ Partial Class frmInitialSettings
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(15, 103)
+        Me.Label13.Location = New System.Drawing.Point(20, 192)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(104, 13)
         Me.Label13.TabIndex = 33
@@ -361,7 +341,7 @@ Partial Class frmInitialSettings
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(16, 49)
+        Me.Label11.Location = New System.Drawing.Point(21, 138)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(41, 13)
         Me.Label11.TabIndex = 33
@@ -370,7 +350,7 @@ Partial Class frmInitialSettings
         'cboDebrisVolume
         '
         Me.cboDebrisVolume.FormattingEnabled = True
-        Me.cboDebrisVolume.Location = New System.Drawing.Point(104, 19)
+        Me.cboDebrisVolume.Location = New System.Drawing.Point(131, 108)
         Me.cboDebrisVolume.Name = "cboDebrisVolume"
         Me.cboDebrisVolume.Size = New System.Drawing.Size(100, 21)
         Me.cboDebrisVolume.TabIndex = 0
@@ -378,7 +358,7 @@ Partial Class frmInitialSettings
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(16, 22)
+        Me.Label10.Location = New System.Drawing.Point(21, 111)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(42, 13)
         Me.Label10.TabIndex = 33
@@ -439,9 +419,19 @@ Partial Class frmInitialSettings
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.GroupBox2)
+        Me.TabPage2.Controls.Add(Me.cboDebrisBreakup)
+        Me.TabPage2.Controls.Add(Me.Label12)
         Me.TabPage2.Controls.Add(Me.cboCoupleStyle)
+        Me.TabPage2.Controls.Add(Me.cboDebrisSource)
         Me.TabPage2.Controls.Add(Me.Label9)
+        Me.TabPage2.Controls.Add(Me.txtCoupleTimeStep)
+        Me.TabPage2.Controls.Add(Me.Label20)
+        Me.TabPage2.Controls.Add(Me.Label10)
+        Me.TabPage2.Controls.Add(Me.Label14)
+        Me.TabPage2.Controls.Add(Me.cboDebrisVolume)
+        Me.TabPage2.Controls.Add(Me.txtMaxHydraulicStep)
+        Me.TabPage2.Controls.Add(Me.Label11)
+        Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -449,6 +439,16 @@ Partial Class frmInitialSettings
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Couple Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(21, 79)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(63, 13)
+        Me.Label20.TabIndex = 33
+        Me.Label20.Text = "Debri Bed"
         '
         'TabPage3
         '
@@ -469,6 +469,85 @@ Partial Class frmInitialSettings
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "CPU Time Remaining"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'DoubleInput3
+        '
+        '
+        '
+        '
+        Me.DoubleInput3.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.DoubleInput3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.DoubleInput3.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.DoubleInput3.Increment = 1.0R
+        Me.DoubleInput3.Location = New System.Drawing.Point(155, 143)
+        Me.DoubleInput3.Name = "DoubleInput3"
+        Me.DoubleInput3.ShowUpDown = True
+        Me.DoubleInput3.Size = New System.Drawing.Size(80, 20)
+        Me.DoubleInput3.TabIndex = 1
+        Me.DoubleInput3.Value = 20.0R
+        Me.DoubleInput3.Visible = False
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(21, 143)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(115, 13)
+        Me.Label19.TabIndex = 0
+        Me.Label19.Text = "CPU Remaining Limit 2"
+        Me.Label19.Visible = False
+        '
+        'DoubleInput2
+        '
+        '
+        '
+        '
+        Me.DoubleInput2.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.DoubleInput2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.DoubleInput2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.DoubleInput2.Increment = 1.0R
+        Me.DoubleInput2.Location = New System.Drawing.Point(155, 117)
+        Me.DoubleInput2.Name = "DoubleInput2"
+        Me.DoubleInput2.ShowUpDown = True
+        Me.DoubleInput2.Size = New System.Drawing.Size(80, 20)
+        Me.DoubleInput2.TabIndex = 1
+        Me.DoubleInput2.Value = 20.0R
+        Me.DoubleInput2.Visible = False
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(21, 117)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(115, 13)
+        Me.Label18.TabIndex = 0
+        Me.Label18.Text = "CPU Remaining Limit 2"
+        Me.Label18.Visible = False
+        '
+        'txtCPUTimeAllocated
+        '
+        '
+        '
+        '
+        Me.txtCPUTimeAllocated.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtCPUTimeAllocated.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtCPUTimeAllocated.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtCPUTimeAllocated.Increment = 1.0R
+        Me.txtCPUTimeAllocated.Location = New System.Drawing.Point(155, 91)
+        Me.txtCPUTimeAllocated.Name = "txtCPUTimeAllocated"
+        Me.txtCPUTimeAllocated.ShowUpDown = True
+        Me.txtCPUTimeAllocated.Size = New System.Drawing.Size(80, 20)
+        Me.txtCPUTimeAllocated.TabIndex = 1
+        Me.txtCPUTimeAllocated.Value = 200.0R
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(21, 91)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(102, 13)
+        Me.Label17.TabIndex = 0
+        Me.Label17.Text = "CPU Time Allocated"
         '
         'txtCPURemaining2
         '
@@ -520,85 +599,6 @@ Partial Class frmInitialSettings
         Me.Label15.TabIndex = 0
         Me.Label15.Text = "CPU Remaining Limit 1"
         '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(21, 91)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(102, 13)
-        Me.Label17.TabIndex = 0
-        Me.Label17.Text = "CPU Time Allocated"
-        '
-        'txtCPUTimeAllocated
-        '
-        '
-        '
-        '
-        Me.txtCPUTimeAllocated.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtCPUTimeAllocated.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtCPUTimeAllocated.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtCPUTimeAllocated.Increment = 1.0R
-        Me.txtCPUTimeAllocated.Location = New System.Drawing.Point(155, 91)
-        Me.txtCPUTimeAllocated.Name = "txtCPUTimeAllocated"
-        Me.txtCPUTimeAllocated.ShowUpDown = True
-        Me.txtCPUTimeAllocated.Size = New System.Drawing.Size(80, 20)
-        Me.txtCPUTimeAllocated.TabIndex = 1
-        Me.txtCPUTimeAllocated.Value = 200.0R
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(21, 117)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(115, 13)
-        Me.Label18.TabIndex = 0
-        Me.Label18.Text = "CPU Remaining Limit 2"
-        Me.Label18.Visible = False
-        '
-        'DoubleInput2
-        '
-        '
-        '
-        '
-        Me.DoubleInput2.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput2.Increment = 1.0R
-        Me.DoubleInput2.Location = New System.Drawing.Point(155, 117)
-        Me.DoubleInput2.Name = "DoubleInput2"
-        Me.DoubleInput2.ShowUpDown = True
-        Me.DoubleInput2.Size = New System.Drawing.Size(80, 20)
-        Me.DoubleInput2.TabIndex = 1
-        Me.DoubleInput2.Value = 20.0R
-        Me.DoubleInput2.Visible = False
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(21, 143)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(115, 13)
-        Me.Label19.TabIndex = 0
-        Me.Label19.Text = "CPU Remaining Limit 2"
-        Me.Label19.Visible = False
-        '
-        'DoubleInput3
-        '
-        '
-        '
-        '
-        Me.DoubleInput3.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput3.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput3.Increment = 1.0R
-        Me.DoubleInput3.Location = New System.Drawing.Point(155, 143)
-        Me.DoubleInput3.Name = "DoubleInput3"
-        Me.DoubleInput3.ShowUpDown = True
-        Me.DoubleInput3.Size = New System.Drawing.Size(80, 20)
-        Me.DoubleInput3.TabIndex = 1
-        Me.DoubleInput3.Value = 20.0R
-        Me.DoubleInput3.Visible = False
-        '
         'frmInitialSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -614,8 +614,6 @@ Partial Class frmInitialSettings
         Me.Text = "Initial Settings"
         Me.chklistboxFluid.ResumeLayout(False)
         Me.chklistboxFluid.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -623,11 +621,11 @@ Partial Class frmInitialSettings
         Me.TabPage2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
+        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DoubleInput2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCPUTimeAllocated, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCPURemaining2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCPURemaining1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtCPUTimeAllocated, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -655,7 +653,6 @@ Partial Class frmInitialSettings
     Friend WithEvents txtMinorFrequency As System.Windows.Forms.TextBox
     Friend WithEvents cboCoupleStyle As System.Windows.Forms.ComboBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents cboDebrisBreakup As System.Windows.Forms.ComboBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents cboDebrisSource As System.Windows.Forms.ComboBox
@@ -680,4 +677,5 @@ Partial Class frmInitialSettings
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents txtCPUTimeAllocated As DevComponents.Editors.DoubleInput
     Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents Label20 As System.Windows.Forms.Label
 End Class

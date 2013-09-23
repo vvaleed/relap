@@ -1127,6 +1127,7 @@ Public Class FormMain
                 form.Options = Nothing
                 form.Options = DirectCast(mySerializer.Deserialize(fs2), RELAP.FormClasses.ClsFormOptions)
                 'If form.Options.PropertyPackages.Count = 0 Then form.Options.PropertyPackages = Me.PropertyPackages
+                My.Application.ActiveSimulation.FormInitialSettings.loadsettings()
             Catch ex As System.Runtime.Serialization.SerializationException
                 Console.WriteLine("Failed to serialize. Reason: " & ex.Message)
                 VDialog.Show(ex.Message)
@@ -1593,6 +1594,7 @@ Public Class FormMain
         End Try
         Dim fs2 As New FileStream(rndfolder & "2.bin", FileMode.Create)
         Try
+            My.Application.ActiveSimulation.FormInitialSettings.Save()
             mySerializer.Serialize(fs2, form.Options)
         Catch ex As System.Runtime.Serialization.SerializationException
             Console.WriteLine("Failed to serialize. Reason: " & ex.Message)
@@ -1617,7 +1619,9 @@ Public Class FormMain
         Finally
 
         End Try
+        ' Dim fs5 As New FileStream(rndfolder & "5.bin", FileMode.Create)
         Try
+            'mySerializer.Serialize(fs5, frmInitialSettings)
             '   TreeViewDataAccess.SaveTreeViewData(form.FormObjList.TreeViewObj, rndfolder & "5.bin")
         Catch ex As System.Runtime.Serialization.SerializationException
             Console.WriteLine("Failed to serialize. Reason: " & ex.Message)
@@ -2706,7 +2710,7 @@ sim:                Dim myStream As System.IO.FileStream
 
             Dim card As Integer = 301
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormMinorEditRequests.DataGridView1.Rows
-                If temprow.Cells(0).Value <> "" Then
+                If temprow.Cells(0).Value.ToString <> "" Then
 
                     generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
                     card = card + 1
@@ -2726,7 +2730,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
-                If temprow.Cells(0).Value <> "" Then
+                If temprow.Cells(0).Value.ToString <> "" Then
                     generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
 
                 End If
@@ -2740,7 +2744,7 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*======================================================================")
             card = 20800001
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormPlotReqest.DataGridView2.Rows
-                If temprow.Cells(0).Value <> "" Then
+                If temprow.Cells(0).Value.ToString <> "" Then
                     generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value))
 
                 End If

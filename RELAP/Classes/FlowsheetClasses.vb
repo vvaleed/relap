@@ -18,6 +18,8 @@
 
 Imports Microsoft.MSDN.Samples.GraphicObjects
 Imports RELAP.RELAP.ClassesBasicasTermodinamica
+Imports System.Windows.Forms.CheckedListBox
+
 'Imports RELAP.RELAP.SimulationObjects
 
 Namespace RELAP.FormClasses
@@ -197,7 +199,13 @@ Namespace RELAP.FormClasses
 
         Public AvailableUnitSystems As New Dictionary(Of String, RELAP.SistemasDeUnidades.Unidades)
 
-
+        Public ins_clcTextboxes As New List(Of String)
+        Public ins_clcComboBox As New List(Of String)
+        Public ins_chklistCondensibleGases As New List(Of Integer)
+        Public ins_hasboron As Boolean
+        Public ins_defaultfluid As Boolean
+        Public ins_water As Boolean
+        Public ins_heavywater As Boolean
 
         Public SelectedComponents As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
         Public NotSelectedComponents As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
@@ -237,6 +245,8 @@ Namespace RELAP.FormClasses
         Public Password As String = ""
         Public UsePassword As Boolean = False
 
+
+
         Sub New()
 
             SelectedComponents = New Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
@@ -254,7 +264,9 @@ Namespace RELAP.FormClasses
         End Sub
 
     End Class
+    <System.Serializable()> Public Class InitialSettings
 
+    End Class
     <System.Serializable()> Public Class FlowsheetState
 
         Public Collections As Byte()
