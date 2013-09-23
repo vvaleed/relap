@@ -276,6 +276,7 @@
     <Compile Include="objects\Branch\UIBranchEditor.vb" />
     <Compile Include="objects\Junction\UIJunctionsEditor.vb" />
     <Compile Include="objects\Editors\UIValveEditor.vb" />
+    <Compile Include="objects\Separator.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
     <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />

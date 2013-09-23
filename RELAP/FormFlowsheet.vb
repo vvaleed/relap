@@ -634,10 +634,11 @@ Imports RELAP.RELAP.FormClasses
         If Collections.MaterialStreamCollection Is Nothing Then Collections.MaterialStreamCollection = New Dictionary(Of String, MaterialStreamGraphic)
         If Collections.EnergyStreamCollection Is Nothing Then Collections.EnergyStreamCollection = New Dictionary(Of String, EnergyStreamGraphic)
         If Collections.PumpCollection Is Nothing Then Collections.PumpCollection = New Dictionary(Of String, PumpGraphic)
-        If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, VesselGraphic)
+        '     If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, VesselGraphic)
         If Collections.CompressorCollection Is Nothing Then Collections.CompressorCollection = New Dictionary(Of String, CompressorGraphic)
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
         If Collections.BranchCollection Is Nothing Then Collections.BranchCollection = New Dictionary(Of String, BranchGraphic)
+        If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, SeparatorGraphic)
         If Collections.ValveCollection Is Nothing Then Collections.ValveCollection = New Dictionary(Of String, ValveGraphic)
         If Collections.SingleVolumeCollection Is Nothing Then Collections.SingleVolumeCollection = New Dictionary(Of String, SingleVolumeGraphic)
         If Collections.SingleJunctionCollection Is Nothing Then Collections.SingleJunctionCollection = New Dictionary(Of String, SingleJunctionGraphic)
@@ -1222,6 +1223,8 @@ Imports RELAP.RELAP.FormClasses
                                     Me.Collections.CLCS_PipeCollection.Remove(namesel)
                                 Case TipoObjeto.Branch
                                     Me.Collections.CLCS_BranchCollection.Remove(namesel)
+                                Case TipoObjeto.Separator
+                                    Me.Collections.CLCS_SeparatorCollection.Remove(namesel)
                                 Case TipoObjeto.Tank
                                     Me.Collections.CLCS_TankCollection.Remove(namesel)
 
@@ -1476,6 +1479,8 @@ Imports RELAP.RELAP.FormClasses
                             Case TipoObjeto.Pipe
                                 GoTo 100
                             Case TipoObjeto.Branch
+                                GoTo 100
+                            Case TipoObjeto.Separator
                                 GoTo 100
                             Case TipoObjeto.Tank
                                 GoTo 100

@@ -37,6 +37,7 @@ Namespace GraphicObjects
         Heater
         Pipe
         Branch
+        Separator
         Valve
         Nenhum
         GO_Tabela

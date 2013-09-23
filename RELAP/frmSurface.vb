@@ -246,6 +246,8 @@ Public Class frmSurface
                                         My.Application.ActiveSimulation.ComponentType = "SingleVolume"
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Branch Then
                                         My.Application.ActiveSimulation.ComponentType = "Branch"
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Separator Then
+                                        My.Application.ActiveSimulation.ComponentType = "Separator"
 
 
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleJunction Then
@@ -411,6 +413,8 @@ Public Class frmSurface
                             tobj = TipoObjeto.Pump
                         Case "TSMIBranch"
                             tobj = TipoObjeto.Branch
+                        Case "TSMISeparator"
+                            tobj = TipoObjeto.Separator
                         Case "TSMIPipe"
                             tobj = TipoObjeto.Pipe
                         Case "TSMIValve"
@@ -1073,7 +1077,24 @@ Public Class frmSurface
                 myCOTK.GraphicObject = mybranch
                 ChildParent.Collections.ObjectCollection.Add(mybranch.Name, myCOTK)
                 ChildParent.Collections.CLCS_BranchCollection.Add(mybranch.Name, myCOTK)
+            Case TipoObjeto.Separator
+                Dim mySeperator As New SeparatorGraphic(mpx, mpy, 50, 50, 0)
+                mySeperator.LineWidth = 2
+                mySeperator.Fill = True
 
+                mySeperator.FillColor = fillclr
+                mySeperator.LineColor = lineclr
+                mySeperator.Tag = "SP" & Format(ChildParent.Collections.ObjectCounter("Separator"), "00#")
+                ChildParent.Collections.UpdateCounter("Separator")
+                If tag <> "" Then mySeperator.Tag = tag
+                gObj = mySeperator
+                gObj.Name = "SEPARATOR" & Guid.NewGuid.ToString
+                ChildParent.Collections.SeparatorCollection.Add(gObj.Name, mySeperator)
+
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Separator = New RELAP.SimulationObjects.UnitOps.Separator(mySeperator.Name, "Separator")
+                myCOTK.GraphicObject = mySeperator
+                ChildParent.Collections.ObjectCollection.Add(mySeperator.Name, myCOTK)
+                ChildParent.Collections.CLCS_SeparatorCollection.Add(mySeperator.Name, myCOTK)
             Case TipoObjeto.Pipe
                 Dim myPipe As New PipeGraphic(mpx, mpy, 50, 10, 0)
                 myPipe.LineWidth = 2
@@ -1222,6 +1243,8 @@ Public Class frmSurface
                     tobj = TipoObjeto.Heater
                 Case "Branch"
                     tobj = TipoObjeto.Branch
+                Case "Separator"
+                    tobj = TipoObjeto.Separator
                 Case "Tubulao"
                     tobj = TipoObjeto.Pipe
                 Case "Vlvula"
