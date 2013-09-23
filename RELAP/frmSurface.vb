@@ -248,6 +248,8 @@ Public Class frmSurface
                                         My.Application.ActiveSimulation.ComponentType = "Branch"
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Separator Then
                                         My.Application.ActiveSimulation.ComponentType = "Separator"
+                                    ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.Pump Then
+                                        My.Application.ActiveSimulation.ComponentType = "Pump"
 
 
                                     ElseIf Me.FlowsheetDesignSurface.SelectedObject.TipoObjeto = TipoObjeto.SingleJunction Then

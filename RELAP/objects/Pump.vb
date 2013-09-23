@@ -62,6 +62,20 @@ Namespace RELAP.SimulationObjects.UnitOps
             Two_velocity_Momentum_Equations
             Single_velocity_Momentum_Equations
         End Enum
+
+        Enum pumptableEnum
+            Single_Phase_Homologous_Table
+            Obtain_Single_Phase_Tables_for_this_Number
+            Use_builtin_data_for_Bingham_pump
+            Use_builtin_data_for_Westinghouse_pump
+        End Enum
+
+        Enum TwoPhaseIndexEnum
+            Do_Not_USe_Two_Phase_Option
+
+        End Enum
+
+
         'basic properties start
 
         Private m_flowarea As Double
@@ -121,6 +135,16 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As Double)
                 m_Azimuthalangle = value
+            End Set
+        End Property
+
+        Private _ThermoDynamicStates As ThermoDynamicStates
+        Public Property ThermoDynamicStates() As ThermoDynamicStates
+            Get
+                Return _ThermoDynamicStates
+            End Get
+            Set(ByVal value As ThermoDynamicStates)
+                _ThermoDynamicStates = value
             End Set
         End Property
 
@@ -457,112 +481,127 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-
-
-
-
-
-        Private m_pressure As Double
-        Public Property Pressure() As Double
+        'pump index cards
+        Private _PumpTable As pumptableEnum
+        Public Property PumpTable() As pumptableEnum
             Get
-                Return m_pressure
+                Return _PumpTable
             End Get
-            Set(ByVal value As Double)
-                m_pressure = value
+            Set(ByVal value As pumptableEnum)
+                _PumpTable = value
             End Set
         End Property
 
-
-        Private m_temperature As Double
-        Public Property Temperature() As Double
+        'pump description
+        Private _Ratedpumpvelocity As Double
+        Public Property Ratedpumpvelocity() As String
             Get
-                Return m_temperature
+                Return _Ratedpumpvelocity
             End Get
-            Set(ByVal value As Double)
-                m_temperature = value
+            Set(ByVal value As String)
+                _Ratedpumpvelocity = value
             End Set
         End Property
 
-        Private m_liquidspecificinternalenergy As Double
-        Public Property LiquidSpecificInternalEnergy() As Double
+        Private _RatioRatedVelocity As Double
+        Public Property RatioRatedVelocity() As Double
             Get
-                Return m_liquidspecificinternalenergy
+                Return _RatioRatedVelocity
             End Get
             Set(ByVal value As Double)
-                m_liquidspecificinternalenergy = value
+                _RatioRatedVelocity = value
             End Set
         End Property
 
-
-        Private _vapourspecificinternalEnergy As Double
-        Public Property VapourSpecificInternalEnergy() As Double
+        Private _RatedFlow As Double
+        Public Property RatedFlow() As Double
             Get
-                Return _vapourspecificinternalEnergy
+                Return _RatedFlow
             End Get
             Set(ByVal value As Double)
-                _vapourspecificinternalEnergy = value
+                _RatedFlow = value
             End Set
         End Property
 
-        Private _voidFraction As Double
-        Public Property VoidFraction() As Double
+        Private _RateHead As Double
+        Public Property RatedHead() As Double
             Get
-                Return _voidFraction
+                Return _RateHead
             End Get
             Set(ByVal value As Double)
-                _voidFraction = value
+                _RateHead = value
             End Set
         End Property
 
-        Private _staticquality As Double
-        Public Property StaticQuality() As Double
+        Private _RatedTorque As Double
+        Public Property RatedTorque() As Double
             Get
-                Return _staticquality
+                Return _RatedTorque
             End Get
             Set(ByVal value As Double)
-                _staticquality = value
+                _RatedTorque = value
             End Set
         End Property
 
-        Private _noncondensablequality As Double
-        Public Property NonCondensableQuality() As Double
+        Private _MomentofInertia As Double
+        Public Property MomentofInertia() As Double
             Get
-                Return _noncondensablequality
+                Return _MomentofInertia
             End Get
             Set(ByVal value As Double)
-                _noncondensablequality = value
+                _MomentofInertia = value
             End Set
         End Property
 
-
-
-        Private _liquidtemperature As Double
-        Public Property LiquidTemperature() As Double
+        Private _RatedDensity As Double
+        Public Property RatedDensity() As Double
             Get
-                Return _liquidtemperature
+                Return _RatedDensity
             End Get
             Set(ByVal value As Double)
-                _liquidtemperature = value
+                _RatedDensity = value
             End Set
         End Property
 
-
-        Private _vapourtemperature As Double
-        Public Property VapourTemperature() As Double
+        Private _RatedMotorTorque As Double
+        Public Property RatedMotorTorque() As Double
             Get
-                Return _vapourtemperature
+                Return _RatedMotorTorque
             End Get
             Set(ByVal value As Double)
-                _vapourtemperature = value
+                _RatedMotorTorque = value
             End Set
         End Property
 
+        Private _TF2 As Double
+        Public Property TF2() As Double
+            Get
+                Return _TF2
+            End Get
+            Set(ByVal value As Double)
+                _TF2 = value
+            End Set
+        End Property
 
+        Private _TF0 As Double
+        Public Property TF0() As Double
+            Get
+                Return _TF0
+            End Get
+            Set(ByVal value As Double)
+                _TF0 = value
+            End Set
+        End Property
 
-
-
-
-    
+        Private _TF3 As Double
+        Public Property TF3() As Double
+            Get
+                Return _TF3
+            End Get
+            Set(ByVal value As Double)
+                _TF3 = value
+            End Set
+        End Property
 
 
 
@@ -573,6 +612,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me._ThermoDynamicStates = New ThermoDynamicStates
             Me._ToVolume = 1
             Me._FromVolume = 1
             Me.m_flowarea = 20.0
@@ -589,6 +629,9 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.outlet_chokingModel = False
             Me.OAreaChange = outletAreaChangeEnum.No_Area_Change
             Me.OMomentumEquation = outletMomentumEquationEnum.Two_velocity_Momentum_Equations
+            Me._PumpTable = pumptableEnum.Obtain_Single_Phase_Tables_for_this_Number
+
+
 
         End Sub
 
@@ -861,43 +904,48 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.FlowArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume Flow Area", su.area), valor, False, "1.Parameters", "Volume Flow Area", True)
+                valor = Format(Me.FlowArea, FlowSheet.Options.NumberFormat)
+                .Item.Add("Volume Flow Area", valor, False, "1.Parameters", "Volume Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.LengthofVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Length of Volume", su.distance), valor, False, "1.Parameters", "Length of Volume", True)
+                valor = Format(Me.LengthofVolume, FlowSheet.Options.NumberFormat)
+                .Item.Add("Length of Volume", valor, False, "1.Parameters", "Length of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeofVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Volume of Volume", su.volume), valor, False, "1.Parameters", "Volume of Volume", True)
+                valor = Format(Me.VolumeofVolume, FlowSheet.Options.NumberFormat)
+                .Item.Add("Volume of Volume", valor, False, "1.Parameters", "Volume of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.angle, Me.Azimuthalangle), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Azimuthal Angle", su.angle), valor, False, "1.Parameters", "Azimuthal Angle", True)
+                valor = Format(Me.Azimuthalangle, FlowSheet.Options.NumberFormat)
+                .Item.Add("Azimuthal Angle", valor, False, "1.Parameters", "Azimuthal Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.angle, Me.InclinationAngle), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Inclination Angle", su.angle), valor, False, "1.Parameters", "Inclination Angle", True)
+                valor = Format(Me.InclinationAngle, FlowSheet.Options.NumberFormat)
+                .Item.Add("Inclination Angle", valor, False, "1.Parameters", "Inclination Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.ElevationChange), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Elevation Change", su.distance), valor, False, "1.Parameters", "Elevation Change", True)
+                valor = Format(Me.ElevationChange, FlowSheet.Options.NumberFormat)
+                .Item.Add("Elevation Change", valor, False, "1.Parameters", "Elevation Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-
+                .Item.Add("Thermo Dynamic States", Me, "ThermoDynamicStates", False, "1.Parameters", "Thermo Dynamic States", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(ThermoDynamicState)
+                    .CustomEditor = New RELAP.Editors.UIThermoDynamicStatesEditor
+                End With
 
                 'pump suction
                 valor = App.GetTagFromUID(Me.FromComponent)
@@ -915,22 +963,22 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 .Item.Add("From Direction", Me, "FromDirection", False, "3.Pump Suction Data", "From Direction", True)
 
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.JunctionArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Inlet Junction Area", su.area), valor, False, "3.Pump Suction Data", "Inlet Junction Area", True)
+                valor = Format(Me.JunctionArea, FlowSheet.Options.NumberFormat)
+                .Item.Add("Inlet Junction Area", valor, False, "3.Pump Suction Data", "Inlet Junction Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.FflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Inlet Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "3.Pump Suction Data", "Inlet Forward Flow Energy Loss Coefficient", True)
+                valor = Format(Me.FflowLossCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Inlet Forward Flow Energy Loss Coefficient", valor, False, "3.Pump Suction Data", "Inlet Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.RflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Inlet Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "3.Pump Suction Data", "Inlet Reverse Flow Energy Loss Coefficient", True)
+                valor = Format(Me.RflowLossCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Inlet Reverse Flow Energy Loss Coefficient", valor, False, "3.Pump Suction Data", "Inlet Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -972,22 +1020,22 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 .Item.Add("To Direction", Me, "ToDirection", False, "4.Pump Discharge Data", "To Direction", True)
 
-                valor = Format(Conversor.ConverterDoSI(su.area, Me.OJunctionArea), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Outlet Junction Area", su.area), valor, False, "4.Pump Discharge Data", "Outlet Junction Area", True)
+                valor = Format(Me.OJunctionArea, FlowSheet.Options.NumberFormat)
+                .Item.Add("Outlet Junction Area", valor, False, "4.Pump Discharge Data", "Outlet Junction Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.OFflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Outlet Forward Flow Energy Loss Coefficient", su.no_unit), valor, False, "4.Pump Discharge Data", "Outlet Forward Flow Energy Loss Coefficient", True)
+                valor = Format(Me.OFflowLossCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Outlet Forward Flow Energy Loss Coefficient", valor, False, "4.Pump Discharge Data", "Outlet Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.ORflowLossCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Outlet Reverse Flow Energy Loss Coefficient", su.no_unit), valor, False, "4.Pump Discharge Data", "Outlet Reverse Flow Energy Loss Coefficient", True)
+                valor = Format(Me.ORflowLossCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Outlet Reverse Flow Energy Loss Coefficient", valor, False, "4.Pump Discharge Data", "Outlet Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -1011,8 +1059,8 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 'pump suction initial conditions
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InterphaseVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Velocity (suction)", su.velocity), valor, False, "5.Pump Suction Initial Conditions", "Interphase Velocity (suction)", True)
+                valor = Format(Me.InterphaseVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Interphase Velocity (suction)", valor, False, "5.Pump Suction Initial Conditions", "Interphase Velocity (suction)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -1024,29 +1072,29 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Boolean)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialLiquidVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Velocity (suction)", su.velocity), valor, False, "5.Pump Suction Initial Conditions", "Initial Liquid Velocity (suction)", True)
+                valor = Format(Me.InitialLiquidVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Liquid Velocity (suction)", valor, False, "5.Pump Suction Initial Conditions", "Initial Liquid Velocity (suction)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.InitialVaporVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Velocity (suction)", su.velocity), valor, False, "5.Pump Suction Initial Conditions", "Initial Vapor Velocity (suction)", True)
+                valor = Format(Me.InitialVaporVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Vapor Velocity (suction)", valor, False, "5.Pump Suction Initial Conditions", "Initial Vapor Velocity (suction)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Mass Flow Rate (suction)", su.spmp_massflow), valor, False, "5.Pump Suction Initial Conditions", "Initial Liquid Mass Flow Rate (suction)", True)
+                valor = Format(Me.InitialLiquidMassFlowRate, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Liquid Mass Flow Rate (suction)", valor, False, "5.Pump Suction Initial Conditions", "Initial Liquid Mass Flow Rate (suction)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.InitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Mass Flow Rate (suction)", su.spmp_massflow), valor, False, "5.Pump Suction Initial Conditions", "Initial Vapor Mass Flow Rate (suction)", True)
+                valor = Format(Me.InitialVaporMassFlowRate, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Vapor Mass Flow Rate (suction)", valor, False, "5.Pump Suction Initial Conditions", "Initial Vapor Mass Flow Rate (suction)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -1054,8 +1102,8 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 'pump discharge initial conditions
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.OInterphaseVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Interphase Velocity (discharge)", su.velocity), valor, False, "6.Pump discharge Initial Conditions", "Interphase Velocity (discharge)", True)
+                valor = Format(Me.OInterphaseVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Interphase Velocity (discharge)", valor, False, "6.Pump discharge Initial Conditions", "Interphase Velocity (discharge)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -1067,35 +1115,35 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Boolean)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.OInitialLiquidVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Velocity (discharge)", su.velocity), valor, False, "6.Pump discharge Initial Conditions", "Initial Liquid Velocity (discharge)", True)
+                valor = Format(Me.OInitialLiquidVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Liquid Velocity (discharge)", valor, False, "6.Pump discharge Initial Conditions", "Initial Liquid Velocity (discharge)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.velocity, Me.OInitialVaporVelocity), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Velocity (discharge)", su.velocity), valor, False, "6.Pump discharge Initial Conditions", "Initial Vapor Velocity (discharge)", True)
+                valor = Format(Me.OInitialVaporVelocity, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Vapor Velocity (discharge)", valor, False, "6.Pump discharge Initial Conditions", "Initial Vapor Velocity (discharge)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.OInitialLiquidMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Liquid Mass Flow Rate (discharge)", su.spmp_massflow), valor, False, "6.Pump discharge Initial Conditions", "Initial Liquid Mass Flow Rate (discharge)", True)
+                valor = Format(Me.OInitialLiquidMassFlowRate, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Liquid Mass Flow Rate (discharge)", valor, False, "6.Pump discharge Initial Conditions", "Initial Liquid Mass Flow Rate (discharge)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_massflow, Me.OInitialVaporMassFlowRate), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Initial Vapor Mass Flow Rate (discharge)", su.spmp_massflow), valor, False, "6.Pump discharge Initial Conditions", "Initial Vapor Mass Flow Rate (discharge)", True)
+                valor = Format(Me.OInitialVaporMassFlowRate, FlowSheet.Options.NumberFormat)
+                .Item.Add("Initial Vapor Mass Flow Rate (discharge)", valor, False, "6.Pump discharge Initial Conditions", "Initial Vapor Mass Flow Rate (discharge)", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-
+                .Item.Add("Pump Table Data Indicator", Me, "PumpTable", False, "7.Pump Index and Option Data", "Pump Table Data Indicator", True)
             End With
 
         End Sub
