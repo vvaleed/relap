@@ -2718,11 +2718,11 @@ sim:                Dim myStream As System.IO.FileStream
 
             card = 501
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridView1.Rows
-                If temprow.Cells(0).Value <> "" Then
+                '         If temprow.Cells(0).Value <> "" Then
 
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
-                    card = card + 1
-                End If
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
+                card = card + 1
+                ' End If
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
@@ -2977,16 +2977,35 @@ sim:                Dim myStream As System.IO.FileStream
                 output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & "0"
                 generate.WriteLine(output)
 
-               
+
 
                 output = (((kvp.Value.UID & "0108 " & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0" & output1 & "0" & output2 & output3 & output4 & "0"
                 generate.WriteLine(output)
 
-               
+
 
                 output = (((kvp.Value.UID & "0109 " & kvp.Value.OJunctionArea & " ") & kvp.Value.OFflowLossCo & " ") & kvp.Value.ORflowLossCo & " ") & "0" & output1 & "0" & output2 & output3 & output4 & "0"
                 generate.WriteLine(output)
+                If frmInitialSettings.optDefaultFluid.Checked = True Then
+                    fluidchk = "0"
+                ElseIf frmInitialSettings.optWater.Checked = True Then
+                    fluidchk = "1"
+                ElseIf frmInitialSettings.optHeavyWater.Checked = True Then
+                    fluidchk = "2"
+                End If
 
+                If frmInitialSettings.chklistboxBoron.Checked = False Then
+                    boronchk = "0"
+                Else : boronchk = "1"
+                End If
+
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    output = fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType
+                End If
+
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
+                Next kvp2
                 univID = univID + 1
             Next kvp
 
