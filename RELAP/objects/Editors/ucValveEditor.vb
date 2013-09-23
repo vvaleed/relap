@@ -34,6 +34,9 @@
         If CmboboxSelectValve.SelectedIndex = 0 Then
             ValveType.selectValveLoad = "0"
             ValveType.ValveTypeName = "chkvlv"
+            TextBox15.Hide()
+            dgvValve.Hide()
+            dgvValve.Rows.Clear()
             TableLayoutPanel1.Show()
             TableLayoutPanel2.Hide()
             TableLayoutPanel3.Hide()
@@ -47,6 +50,9 @@
         ElseIf CmboboxSelectValve.SelectedIndex = 1 Then
             ValveType.selectValveLoad = "1"
             ValveType.ValveTypeName = "trpvlv"
+            TextBox15.Hide()
+            dgvValve.Hide()
+            dgvValve.Rows.Clear()
             TableLayoutPanel1.Hide()
             TableLayoutPanel2.Show()
             TableLayoutPanel3.Hide()
@@ -57,6 +63,9 @@
         ElseIf CmboboxSelectValve.SelectedIndex = 2 Then
             ValveType.selectValveLoad = "2"
             ValveType.ValveTypeName = "inrvlv"
+            TextBox15.Hide()
+            dgvValve.Hide()
+            dgvValve.Rows.Clear()
             TableLayoutPanel1.Hide()
             TableLayoutPanel2.Hide()
             TableLayoutPanel3.Show()
@@ -78,6 +87,8 @@
         ElseIf CmboboxSelectValve.SelectedIndex = 3 Then
             ValveType.selectValveLoad = "3"
             ValveType.ValveTypeName = "mtrvlv"
+            TextBox15.Show()
+            dgvValve.Show()
             TableLayoutPanel1.Hide()
             TableLayoutPanel2.Hide()
             TableLayoutPanel3.Hide()
@@ -92,6 +103,8 @@
         ElseIf CmboboxSelectValve.SelectedIndex = 4 Then
             ValveType.selectValveLoad = "4"
             ValveType.ValveTypeName = "srvvlv"
+            TextBox15.Show()
+            dgvValve.Show()
             TableLayoutPanel1.Hide()
             TableLayoutPanel2.Hide()
             TableLayoutPanel3.Hide()
@@ -103,6 +116,9 @@
         ElseIf CmboboxSelectValve.SelectedIndex = 5 Then
             ValveType.selectValveLoad = "5"
             ValveType.ValveTypeName = "rlfvlv"
+            TextBox15.Hide()
+            dgvValve.Hide()
+            dgvValve.Rows.Clear()
             TableLayoutPanel1.Hide()
             TableLayoutPanel2.Hide()
             TableLayoutPanel3.Hide()
@@ -179,14 +195,44 @@
         ValveType.prel15 = relief15.Text
         ValveType.prel16 = relief16.Text
         ValveType.prel17 = relief17.Text
+
+        Dim row As New DataGridViewRow
+        Dim cv As New RELAP.SistemasDeUnidades.Conversor
+        Dim v1, v2, v3, v4, v5 As Object
+
+        If Not Me.ValveType Is Nothing Then
+            Me.ValveType.ProValveCSUB.Clear()
+        End If
+        For i = 0 To dgvValve.Rows.Count - 2
+            row = dgvValve.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            v3 = row.Cells(2).Value
+            Me.ValveType.ProValveCSUB.Add(row.Index + 1, New ValveCSUB(v1, v2, v3))
+        Next
     End Sub
 
 
     Private Sub ucValveEditor_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.ValveGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
+        Dim myCOTK As RELAP.SimulationObjects.UnitOps.Valve = My.Application.ActiveSimulation.Collections.CLCS_ValveCollection(gobj.Name)
         If ValveType.selectValveLoad = Nothing Then
         Else : CmboboxSelectValve.SelectedIndex = ValveType.selectValveLoad
         End If
-
+        If myCOTK.ValveType.ProValveCSUB.Count = 0 Then
+            dgvValve.Rows.Add(1)
+            dgvValve.Hide()
+            TextBox15.Hide()
+        Else
+            dgvValve.Rows.Add(myCOTK.ValveType.ProValveCSUB.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.ValveType.ProValveCSUB.Count
+                Dim row As DataGridViewRow = dgvValve.Rows(i - 1)
+                row.Cells(0).Value = myCOTK.ValveType.ProValveCSUB(i).NormalizedFlowArea
+                row.Cells(1).Value = myCOTK.ValveType.ProValveCSUB(i).ForwardCSUBV
+                row.Cells(2).Value = myCOTK.ValveType.ProValveCSUB(i).ReverseCSUBV
+            Next
+        End If
         CmbChckValve1.SelectedIndex = ValveType.CheckType
         Cmbchkvalve2.SelectedIndex = ValveType.checkPosition
         Txtchkvalve3.Text = ValveType.checkbackpressure

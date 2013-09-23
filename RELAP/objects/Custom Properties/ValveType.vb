@@ -431,9 +431,58 @@
             _prel17 = value
         End Set
     End Property
+    Protected m_collection1 As Generic.SortedDictionary(Of Integer, ValveCSUB)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
-
+    Public Property ProValveCSUB() As Generic.SortedDictionary(Of Integer, ValveCSUB)
+        Get
+            Return m_collection1
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, ValveCSUB))
+            m_collection1 = value
+        End Set
+    End Property
+    Public Sub New()
+        m_collection1 = New Generic.SortedDictionary(Of Integer, ValveCSUB)
+    End Sub
     Public Overrides Function ToString() As String
         Return "Click to Edit..."
     End Function
+End Class
+<System.Serializable()> Public Class ValveCSUB
+    Private _NormalizedFlowArea As Double
+    Public Property NormalizedFlowArea() As Double
+        Get
+            Return _NormalizedFlowArea
+        End Get
+        Set(ByVal value As Double)
+            _NormalizedFlowArea = value
+        End Set
+    End Property
+
+    Private _ForwardCSUBV As Double
+    Public Property ForwardCSUBV() As Double
+        Get
+            Return _ForwardCSUBV
+        End Get
+        Set(ByVal value As Double)
+            _ForwardCSUBV = value
+        End Set
+    End Property
+
+    Private _ReverseCSUBV As Double
+    Public Property ReverseCSUBV() As Double
+        Get
+            Return _ReverseCSUBV
+        End Get
+        Set(ByVal value As Double)
+            _ReverseCSUBV = value
+        End Set
+    End Property
+
+    Public Sub New(ByVal NormalizedFlowArea As Double, ByVal ForwardCSUBV As Double, ByVal ReverseCSUBV As Double)
+        Me._NormalizedFlowArea = NormalizedFlowArea
+        Me._ForwardCSUBV = ForwardCSUBV
+        Me._ReverseCSUBV = ReverseCSUBV
+    End Sub
 End Class

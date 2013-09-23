@@ -24,15 +24,6 @@ Partial Class ucValveEditor
     Private Sub InitializeComponent()
         Me.CmboboxSelectValve = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Cmbchkvalve2 = New System.Windows.Forms.ComboBox()
-        Me.CmbChckValve1 = New System.Windows.Forms.ComboBox()
-        Me.Txtchkvalve4 = New System.Windows.Forms.TextBox()
-        Me.Txtchkvalve3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.TxtTripvalve1 = New System.Windows.Forms.TextBox()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
@@ -78,46 +69,61 @@ Partial Class ucValveEditor
         Me.Servo2 = New System.Windows.Forms.TextBox()
         Me.TextBox31 = New System.Windows.Forms.TextBox()
         Me.TextBox29 = New System.Windows.Forms.TextBox()
-        Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TextBox55 = New System.Windows.Forms.TextBox()
-        Me.TextBox54 = New System.Windows.Forms.TextBox()
-        Me.TextBox56 = New System.Windows.Forms.TextBox()
-        Me.TextBox57 = New System.Windows.Forms.TextBox()
-        Me.relief12 = New System.Windows.Forms.TextBox()
-        Me.relief13 = New System.Windows.Forms.TextBox()
-        Me.relief14 = New System.Windows.Forms.TextBox()
-        Me.relief15 = New System.Windows.Forms.TextBox()
-        Me.relief16 = New System.Windows.Forms.TextBox()
-        Me.relief17 = New System.Windows.Forms.TextBox()
-        Me.relief1 = New System.Windows.Forms.ComboBox()
-        Me.TextBox36 = New System.Windows.Forms.TextBox()
-        Me.relief2 = New System.Windows.Forms.TextBox()
-        Me.relief3 = New System.Windows.Forms.TextBox()
-        Me.relief4 = New System.Windows.Forms.TextBox()
-        Me.relief5 = New System.Windows.Forms.TextBox()
-        Me.relief6 = New System.Windows.Forms.TextBox()
-        Me.relief7 = New System.Windows.Forms.TextBox()
-        Me.relief8 = New System.Windows.Forms.TextBox()
-        Me.relief9 = New System.Windows.Forms.TextBox()
-        Me.relief10 = New System.Windows.Forms.TextBox()
-        Me.relief11 = New System.Windows.Forms.TextBox()
-        Me.TextBox53 = New System.Windows.Forms.TextBox()
-        Me.TextBox45 = New System.Windows.Forms.TextBox()
-        Me.TextBox44 = New System.Windows.Forms.TextBox()
-        Me.TextBox43 = New System.Windows.Forms.TextBox()
-        Me.TextBox42 = New System.Windows.Forms.TextBox()
-        Me.TextBox41 = New System.Windows.Forms.TextBox()
-        Me.TextBox40 = New System.Windows.Forms.TextBox()
-        Me.TextBox39 = New System.Windows.Forms.TextBox()
-        Me.TextBox38 = New System.Windows.Forms.TextBox()
-        Me.TextBox37 = New System.Windows.Forms.TextBox()
-        Me.TextBox34 = New System.Windows.Forms.TextBox()
+        Me.dgvValve = New System.Windows.Forms.DataGridView()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Txtchkvalve3 = New System.Windows.Forms.TextBox()
+        Me.Txtchkvalve4 = New System.Windows.Forms.TextBox()
+        Me.CmbChckValve1 = New System.Windows.Forms.ComboBox()
+        Me.Cmbchkvalve2 = New System.Windows.Forms.ComboBox()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TextBox35 = New System.Windows.Forms.TextBox()
-        Me.TableLayoutPanel1.SuspendLayout()
+        Me.TextBox34 = New System.Windows.Forms.TextBox()
+        Me.TextBox37 = New System.Windows.Forms.TextBox()
+        Me.TextBox38 = New System.Windows.Forms.TextBox()
+        Me.TextBox39 = New System.Windows.Forms.TextBox()
+        Me.TextBox40 = New System.Windows.Forms.TextBox()
+        Me.TextBox41 = New System.Windows.Forms.TextBox()
+        Me.TextBox42 = New System.Windows.Forms.TextBox()
+        Me.TextBox43 = New System.Windows.Forms.TextBox()
+        Me.TextBox44 = New System.Windows.Forms.TextBox()
+        Me.TextBox45 = New System.Windows.Forms.TextBox()
+        Me.TextBox53 = New System.Windows.Forms.TextBox()
+        Me.relief11 = New System.Windows.Forms.TextBox()
+        Me.relief10 = New System.Windows.Forms.TextBox()
+        Me.relief9 = New System.Windows.Forms.TextBox()
+        Me.relief8 = New System.Windows.Forms.TextBox()
+        Me.relief7 = New System.Windows.Forms.TextBox()
+        Me.relief6 = New System.Windows.Forms.TextBox()
+        Me.relief5 = New System.Windows.Forms.TextBox()
+        Me.relief4 = New System.Windows.Forms.TextBox()
+        Me.relief3 = New System.Windows.Forms.TextBox()
+        Me.relief2 = New System.Windows.Forms.TextBox()
+        Me.TextBox36 = New System.Windows.Forms.TextBox()
+        Me.relief1 = New System.Windows.Forms.ComboBox()
+        Me.relief17 = New System.Windows.Forms.TextBox()
+        Me.relief16 = New System.Windows.Forms.TextBox()
+        Me.relief15 = New System.Windows.Forms.TextBox()
+        Me.relief14 = New System.Windows.Forms.TextBox()
+        Me.relief13 = New System.Windows.Forms.TextBox()
+        Me.relief12 = New System.Windows.Forms.TextBox()
+        Me.TextBox57 = New System.Windows.Forms.TextBox()
+        Me.TextBox56 = New System.Windows.Forms.TextBox()
+        Me.TextBox54 = New System.Windows.Forms.TextBox()
+        Me.TextBox55 = New System.Windows.Forms.TextBox()
+        Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
+        Me.NormalizedFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ForwardCSUBV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ReverseCSUBV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TextBox15 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.TableLayoutPanel5.SuspendLayout()
+        CType(Me.dgvValve, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel6.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -138,107 +144,6 @@ Partial Class ucValveEditor
         Me.Label1.Size = New System.Drawing.Size(94, 13)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Select Valve Type"
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.AutoSize = True
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 296.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Cmbchkvalve2, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.CmbChckValve1, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Txtchkvalve4, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Txtchkvalve3, 1, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox4, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox2, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox10, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox5, 0, 3)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(21, 67)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 4
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(430, 108)
-        Me.TableLayoutPanel1.TabIndex = 4
-        '
-        'Cmbchkvalve2
-        '
-        Me.Cmbchkvalve2.FormattingEnabled = True
-        Me.Cmbchkvalve2.Items.AddRange(New Object() {"Open", "Closed"})
-        Me.Cmbchkvalve2.Location = New System.Drawing.Point(137, 30)
-        Me.Cmbchkvalve2.Name = "Cmbchkvalve2"
-        Me.Cmbchkvalve2.Size = New System.Drawing.Size(288, 21)
-        Me.Cmbchkvalve2.TabIndex = 20
-        '
-        'CmbChckValve1
-        '
-        Me.CmbChckValve1.FormattingEnabled = True
-        Me.CmbChckValve1.Items.AddRange(New Object() {"Static Pressure Controlled Check Valve", "Static Pressure/Flow Controlled Check Valve", "Static/Dynamic Pressure Controlled Check Valve"})
-        Me.CmbChckValve1.Location = New System.Drawing.Point(137, 3)
-        Me.CmbChckValve1.Name = "CmbChckValve1"
-        Me.CmbChckValve1.Size = New System.Drawing.Size(289, 21)
-        Me.CmbChckValve1.TabIndex = 5
-        '
-        'Txtchkvalve4
-        '
-        Me.Txtchkvalve4.Location = New System.Drawing.Point(137, 84)
-        Me.Txtchkvalve4.Name = "Txtchkvalve4"
-        Me.Txtchkvalve4.Size = New System.Drawing.Size(288, 20)
-        Me.Txtchkvalve4.TabIndex = 19
-        '
-        'Txtchkvalve3
-        '
-        Me.Txtchkvalve3.Location = New System.Drawing.Point(137, 57)
-        Me.Txtchkvalve3.Name = "Txtchkvalve3"
-        Me.Txtchkvalve3.Size = New System.Drawing.Size(288, 20)
-        Me.Txtchkvalve3.TabIndex = 18
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Location = New System.Drawing.Point(3, 57)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox4.TabIndex = 15
-        Me.TextBox4.Text = "Closing Back Pressure"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Location = New System.Drawing.Point(3, 30)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox2.TabIndex = 13
-        Me.TextBox2.Text = "Check Valve Initial Position"
-        '
-        'TextBox10
-        '
-        Me.TextBox10.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox10.Location = New System.Drawing.Point(3, 3)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.ReadOnly = True
-        Me.TextBox10.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox10.TabIndex = 12
-        Me.TextBox10.Text = "Check Valve Type"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.Location = New System.Drawing.Point(3, 84)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox5.TabIndex = 16
-        Me.TextBox5.Text = "Leak Ratio"
         '
         'TableLayoutPanel2
         '
@@ -737,6 +642,425 @@ Partial Class ucValveEditor
         Me.TextBox29.TabIndex = 12
         Me.TextBox29.Text = "Control Variable Number"
         '
+        'dgvValve
+        '
+        Me.dgvValve.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvValve.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvValve.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NormalizedFlowArea, Me.ForwardCSUBV, Me.ReverseCSUBV})
+        Me.dgvValve.Location = New System.Drawing.Point(473, 64)
+        Me.dgvValve.Name = "dgvValve"
+        Me.dgvValve.Size = New System.Drawing.Size(335, 364)
+        Me.dgvValve.TabIndex = 11
+        '
+        'TextBox5
+        '
+        Me.TextBox5.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox5.Location = New System.Drawing.Point(3, 84)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.ReadOnly = True
+        Me.TextBox5.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox5.TabIndex = 16
+        Me.TextBox5.Text = "Leak Ratio"
+        '
+        'TextBox10
+        '
+        Me.TextBox10.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox10.Location = New System.Drawing.Point(3, 3)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.ReadOnly = True
+        Me.TextBox10.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox10.TabIndex = 12
+        Me.TextBox10.Text = "Check Valve Type"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Location = New System.Drawing.Point(3, 30)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox2.TabIndex = 13
+        Me.TextBox2.Text = "Check Valve Initial Position"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox4.Location = New System.Drawing.Point(3, 57)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.ReadOnly = True
+        Me.TextBox4.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox4.TabIndex = 15
+        Me.TextBox4.Text = "Closing Back Pressure"
+        '
+        'Txtchkvalve3
+        '
+        Me.Txtchkvalve3.Location = New System.Drawing.Point(137, 57)
+        Me.Txtchkvalve3.Name = "Txtchkvalve3"
+        Me.Txtchkvalve3.Size = New System.Drawing.Size(288, 20)
+        Me.Txtchkvalve3.TabIndex = 18
+        '
+        'Txtchkvalve4
+        '
+        Me.Txtchkvalve4.Location = New System.Drawing.Point(137, 84)
+        Me.Txtchkvalve4.Name = "Txtchkvalve4"
+        Me.Txtchkvalve4.Size = New System.Drawing.Size(288, 20)
+        Me.Txtchkvalve4.TabIndex = 19
+        '
+        'CmbChckValve1
+        '
+        Me.CmbChckValve1.FormattingEnabled = True
+        Me.CmbChckValve1.Items.AddRange(New Object() {"Static Pressure Controlled Check Valve", "Static Pressure/Flow Controlled Check Valve", "Static/Dynamic Pressure Controlled Check Valve"})
+        Me.CmbChckValve1.Location = New System.Drawing.Point(137, 3)
+        Me.CmbChckValve1.Name = "CmbChckValve1"
+        Me.CmbChckValve1.Size = New System.Drawing.Size(289, 21)
+        Me.CmbChckValve1.TabIndex = 5
+        '
+        'Cmbchkvalve2
+        '
+        Me.Cmbchkvalve2.FormattingEnabled = True
+        Me.Cmbchkvalve2.Items.AddRange(New Object() {"Open", "Closed"})
+        Me.Cmbchkvalve2.Location = New System.Drawing.Point(137, 30)
+        Me.Cmbchkvalve2.Name = "Cmbchkvalve2"
+        Me.Cmbchkvalve2.Size = New System.Drawing.Size(288, 21)
+        Me.Cmbchkvalve2.TabIndex = 20
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.AutoSize = True
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 296.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.Cmbchkvalve2, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.CmbChckValve1, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.Txtchkvalve4, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Txtchkvalve3, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox4, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox2, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox10, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox5, 0, 3)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(21, 67)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 4
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(430, 108)
+        Me.TableLayoutPanel1.TabIndex = 4
+        '
+        'TextBox35
+        '
+        Me.TextBox35.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox35.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox35.Location = New System.Drawing.Point(3, 65)
+        Me.TextBox35.Name = "TextBox35"
+        Me.TextBox35.ReadOnly = True
+        Me.TextBox35.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox35.TabIndex = 13
+        Me.TextBox35.Text = "Valve Seat Diameter"
+        '
+        'TextBox34
+        '
+        Me.TextBox34.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox34.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox34.Location = New System.Drawing.Point(3, 96)
+        Me.TextBox34.Name = "TextBox34"
+        Me.TextBox34.ReadOnly = True
+        Me.TextBox34.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox34.TabIndex = 15
+        Me.TextBox34.Text = "Valve Piston Diamter"
+        '
+        'TextBox37
+        '
+        Me.TextBox37.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox37.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox37.Location = New System.Drawing.Point(3, 127)
+        Me.TextBox37.Name = "TextBox37"
+        Me.TextBox37.ReadOnly = True
+        Me.TextBox37.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox37.TabIndex = 16
+        Me.TextBox37.Text = "Valve Lift"
+        '
+        'TextBox38
+        '
+        Me.TextBox38.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox38.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox38.Location = New System.Drawing.Point(3, 158)
+        Me.TextBox38.Name = "TextBox38"
+        Me.TextBox38.ReadOnly = True
+        Me.TextBox38.Size = New System.Drawing.Size(164, 13)
+        Me.TextBox38.TabIndex = 29
+        Me.TextBox38.Text = "Max. Outer Diameter of inner Ring"
+        '
+        'TextBox39
+        '
+        Me.TextBox39.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox39.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox39.Location = New System.Drawing.Point(3, 189)
+        Me.TextBox39.Name = "TextBox39"
+        Me.TextBox39.ReadOnly = True
+        Me.TextBox39.Size = New System.Drawing.Size(146, 13)
+        Me.TextBox39.TabIndex = 32
+        Me.TextBox39.Text = "Height of Outside Shoulder"
+        '
+        'TextBox40
+        '
+        Me.TextBox40.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox40.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox40.Location = New System.Drawing.Point(3, 220)
+        Me.TextBox40.Name = "TextBox40"
+        Me.TextBox40.ReadOnly = True
+        Me.TextBox40.Size = New System.Drawing.Size(164, 13)
+        Me.TextBox40.TabIndex = 33
+        Me.TextBox40.Text = "Min. inside Diameter of outer Ring"
+        '
+        'TextBox41
+        '
+        Me.TextBox41.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox41.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox41.Location = New System.Drawing.Point(3, 251)
+        Me.TextBox41.Name = "TextBox41"
+        Me.TextBox41.ReadOnly = True
+        Me.TextBox41.Size = New System.Drawing.Size(146, 13)
+        Me.TextBox41.TabIndex = 30
+        Me.TextBox41.Text = "Height of Inside Bottom Edge"
+        '
+        'TextBox42
+        '
+        Me.TextBox42.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox42.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox42.Location = New System.Drawing.Point(3, 282)
+        Me.TextBox42.Name = "TextBox42"
+        Me.TextBox42.ReadOnly = True
+        Me.TextBox42.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox42.TabIndex = 31
+        Me.TextBox42.Text = "Bellows Average Diameter"
+        '
+        'TextBox43
+        '
+        Me.TextBox43.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox43.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox43.Location = New System.Drawing.Point(3, 313)
+        Me.TextBox43.Name = "TextBox43"
+        Me.TextBox43.ReadOnly = True
+        Me.TextBox43.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox43.TabIndex = 34
+        Me.TextBox43.Text = "Valve Spring Constant"
+        '
+        'TextBox44
+        '
+        Me.TextBox44.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox44.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox44.Location = New System.Drawing.Point(3, 344)
+        Me.TextBox44.Name = "TextBox44"
+        Me.TextBox44.ReadOnly = True
+        Me.TextBox44.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox44.TabIndex = 35
+        Me.TextBox44.Text = "Valve Setpoint Pressure"
+        '
+        'TextBox45
+        '
+        Me.TextBox45.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox45.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox45.Location = New System.Drawing.Point(3, 375)
+        Me.TextBox45.Name = "TextBox45"
+        Me.TextBox45.ReadOnly = True
+        Me.TextBox45.Size = New System.Drawing.Size(164, 13)
+        Me.TextBox45.TabIndex = 36
+        Me.TextBox45.Text = "Piston, Rod, Spring, Bellows mass"
+        '
+        'TextBox53
+        '
+        Me.TextBox53.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox53.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox53.Location = New System.Drawing.Point(3, 406)
+        Me.TextBox53.Name = "TextBox53"
+        Me.TextBox53.ReadOnly = True
+        Me.TextBox53.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox53.TabIndex = 37
+        Me.TextBox53.Text = "Valve Damping Coefficient"
+        '
+        'relief11
+        '
+        Me.relief11.Location = New System.Drawing.Point(173, 313)
+        Me.relief11.Name = "relief11"
+        Me.relief11.Size = New System.Drawing.Size(254, 20)
+        Me.relief11.TabIndex = 46
+        '
+        'relief10
+        '
+        Me.relief10.Location = New System.Drawing.Point(173, 282)
+        Me.relief10.Name = "relief10"
+        Me.relief10.Size = New System.Drawing.Size(254, 20)
+        Me.relief10.TabIndex = 45
+        '
+        'relief9
+        '
+        Me.relief9.Location = New System.Drawing.Point(173, 251)
+        Me.relief9.Name = "relief9"
+        Me.relief9.Size = New System.Drawing.Size(254, 20)
+        Me.relief9.TabIndex = 44
+        '
+        'relief8
+        '
+        Me.relief8.Location = New System.Drawing.Point(173, 220)
+        Me.relief8.Name = "relief8"
+        Me.relief8.Size = New System.Drawing.Size(254, 20)
+        Me.relief8.TabIndex = 43
+        '
+        'relief7
+        '
+        Me.relief7.Location = New System.Drawing.Point(173, 189)
+        Me.relief7.Name = "relief7"
+        Me.relief7.Size = New System.Drawing.Size(254, 20)
+        Me.relief7.TabIndex = 42
+        '
+        'relief6
+        '
+        Me.relief6.Location = New System.Drawing.Point(173, 158)
+        Me.relief6.Name = "relief6"
+        Me.relief6.Size = New System.Drawing.Size(254, 20)
+        Me.relief6.TabIndex = 41
+        '
+        'relief5
+        '
+        Me.relief5.Location = New System.Drawing.Point(173, 127)
+        Me.relief5.Name = "relief5"
+        Me.relief5.Size = New System.Drawing.Size(254, 20)
+        Me.relief5.TabIndex = 40
+        '
+        'relief4
+        '
+        Me.relief4.Location = New System.Drawing.Point(173, 96)
+        Me.relief4.Name = "relief4"
+        Me.relief4.Size = New System.Drawing.Size(254, 20)
+        Me.relief4.TabIndex = 39
+        '
+        'relief3
+        '
+        Me.relief3.Location = New System.Drawing.Point(173, 65)
+        Me.relief3.Name = "relief3"
+        Me.relief3.Size = New System.Drawing.Size(254, 20)
+        Me.relief3.TabIndex = 38
+        '
+        'relief2
+        '
+        Me.relief2.Location = New System.Drawing.Point(173, 34)
+        Me.relief2.Name = "relief2"
+        Me.relief2.Size = New System.Drawing.Size(254, 20)
+        Me.relief2.TabIndex = 37
+        '
+        'TextBox36
+        '
+        Me.TextBox36.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox36.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox36.Location = New System.Drawing.Point(3, 3)
+        Me.TextBox36.Name = "TextBox36"
+        Me.TextBox36.ReadOnly = True
+        Me.TextBox36.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox36.TabIndex = 12
+        Me.TextBox36.Text = "Valve Initial Position"
+        '
+        'relief1
+        '
+        Me.relief1.FormattingEnabled = True
+        Me.relief1.Items.AddRange(New Object() {"Closed", "Open"})
+        Me.relief1.Location = New System.Drawing.Point(173, 3)
+        Me.relief1.Name = "relief1"
+        Me.relief1.Size = New System.Drawing.Size(254, 21)
+        Me.relief1.TabIndex = 5
+        '
+        'relief17
+        '
+        Me.relief17.Location = New System.Drawing.Point(173, 499)
+        Me.relief17.Name = "relief17"
+        Me.relief17.Size = New System.Drawing.Size(254, 20)
+        Me.relief17.TabIndex = 52
+        '
+        'relief16
+        '
+        Me.relief16.Location = New System.Drawing.Point(173, 468)
+        Me.relief16.Name = "relief16"
+        Me.relief16.Size = New System.Drawing.Size(254, 20)
+        Me.relief16.TabIndex = 51
+        '
+        'relief15
+        '
+        Me.relief15.Location = New System.Drawing.Point(173, 437)
+        Me.relief15.Name = "relief15"
+        Me.relief15.Size = New System.Drawing.Size(254, 20)
+        Me.relief15.TabIndex = 50
+        '
+        'relief14
+        '
+        Me.relief14.Location = New System.Drawing.Point(173, 406)
+        Me.relief14.Name = "relief14"
+        Me.relief14.Size = New System.Drawing.Size(254, 20)
+        Me.relief14.TabIndex = 49
+        '
+        'relief13
+        '
+        Me.relief13.Location = New System.Drawing.Point(173, 375)
+        Me.relief13.Name = "relief13"
+        Me.relief13.Size = New System.Drawing.Size(254, 20)
+        Me.relief13.TabIndex = 48
+        '
+        'relief12
+        '
+        Me.relief12.Location = New System.Drawing.Point(173, 344)
+        Me.relief12.Name = "relief12"
+        Me.relief12.Size = New System.Drawing.Size(254, 20)
+        Me.relief12.TabIndex = 47
+        '
+        'TextBox57
+        '
+        Me.TextBox57.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox57.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox57.Location = New System.Drawing.Point(3, 499)
+        Me.TextBox57.Name = "TextBox57"
+        Me.TextBox57.ReadOnly = True
+        Me.TextBox57.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox57.TabIndex = 41
+        Me.TextBox57.Text = "Initial Valve Piston Velocity"
+        '
+        'TextBox56
+        '
+        Me.TextBox56.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox56.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox56.Location = New System.Drawing.Point(3, 468)
+        Me.TextBox56.Name = "TextBox56"
+        Me.TextBox56.ReadOnly = True
+        Me.TextBox56.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox56.TabIndex = 40
+        Me.TextBox56.Text = "Initial Stem Position"
+        '
+        'TextBox54
+        '
+        Me.TextBox54.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox54.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox54.Location = New System.Drawing.Point(3, 34)
+        Me.TextBox54.Name = "TextBox54"
+        Me.TextBox54.ReadOnly = True
+        Me.TextBox54.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox54.TabIndex = 38
+        Me.TextBox54.Text = "Inlet Diameter"
+        '
+        'TextBox55
+        '
+        Me.TextBox55.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox55.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox55.Location = New System.Drawing.Point(3, 437)
+        Me.TextBox55.Name = "TextBox55"
+        Me.TextBox55.ReadOnly = True
+        Me.TextBox55.Size = New System.Drawing.Size(128, 13)
+        Me.TextBox55.TabIndex = 39
+        Me.TextBox55.Text = "Bellows inside pressure"
+        '
         'TableLayoutPanel6
         '
         Me.TableLayoutPanel6.AutoSize = True
@@ -800,318 +1124,39 @@ Partial Class ucValveEditor
         Me.TableLayoutPanel6.Size = New System.Drawing.Size(430, 527)
         Me.TableLayoutPanel6.TabIndex = 10
         '
-        'TextBox55
+        'NormalizedFlowArea
         '
-        Me.TextBox55.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox55.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox55.Location = New System.Drawing.Point(3, 437)
-        Me.TextBox55.Name = "TextBox55"
-        Me.TextBox55.ReadOnly = True
-        Me.TextBox55.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox55.TabIndex = 39
-        Me.TextBox55.Text = "Bellows inside pressure"
+        Me.NormalizedFlowArea.HeaderText = "Normalized Flow Area or Stem Position"
+        Me.NormalizedFlowArea.Name = "NormalizedFlowArea"
         '
-        'TextBox54
+        'ForwardCSUBV
         '
-        Me.TextBox54.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox54.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox54.Location = New System.Drawing.Point(3, 34)
-        Me.TextBox54.Name = "TextBox54"
-        Me.TextBox54.ReadOnly = True
-        Me.TextBox54.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox54.TabIndex = 38
-        Me.TextBox54.Text = "Inlet Diameter"
+        Me.ForwardCSUBV.HeaderText = "Forward CSUBV"
+        Me.ForwardCSUBV.Name = "ForwardCSUBV"
         '
-        'TextBox56
+        'ReverseCSUBV
         '
-        Me.TextBox56.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox56.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox56.Location = New System.Drawing.Point(3, 468)
-        Me.TextBox56.Name = "TextBox56"
-        Me.TextBox56.ReadOnly = True
-        Me.TextBox56.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox56.TabIndex = 40
-        Me.TextBox56.Text = "Initial Stem Position"
+        Me.ReverseCSUBV.HeaderText = "Reverse CSUBV"
+        Me.ReverseCSUBV.Name = "ReverseCSUBV"
         '
-        'TextBox57
+        'TextBox15
         '
-        Me.TextBox57.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox57.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox57.Location = New System.Drawing.Point(3, 499)
-        Me.TextBox57.Name = "TextBox57"
-        Me.TextBox57.ReadOnly = True
-        Me.TextBox57.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox57.TabIndex = 41
-        Me.TextBox57.Text = "Initial Valve Piston Velocity"
-        '
-        'relief12
-        '
-        Me.relief12.Location = New System.Drawing.Point(173, 344)
-        Me.relief12.Name = "relief12"
-        Me.relief12.Size = New System.Drawing.Size(254, 20)
-        Me.relief12.TabIndex = 47
-        '
-        'relief13
-        '
-        Me.relief13.Location = New System.Drawing.Point(173, 375)
-        Me.relief13.Name = "relief13"
-        Me.relief13.Size = New System.Drawing.Size(254, 20)
-        Me.relief13.TabIndex = 48
-        '
-        'relief14
-        '
-        Me.relief14.Location = New System.Drawing.Point(173, 406)
-        Me.relief14.Name = "relief14"
-        Me.relief14.Size = New System.Drawing.Size(254, 20)
-        Me.relief14.TabIndex = 49
-        '
-        'relief15
-        '
-        Me.relief15.Location = New System.Drawing.Point(173, 437)
-        Me.relief15.Name = "relief15"
-        Me.relief15.Size = New System.Drawing.Size(254, 20)
-        Me.relief15.TabIndex = 50
-        '
-        'relief16
-        '
-        Me.relief16.Location = New System.Drawing.Point(173, 468)
-        Me.relief16.Name = "relief16"
-        Me.relief16.Size = New System.Drawing.Size(254, 20)
-        Me.relief16.TabIndex = 51
-        '
-        'relief17
-        '
-        Me.relief17.Location = New System.Drawing.Point(173, 499)
-        Me.relief17.Name = "relief17"
-        Me.relief17.Size = New System.Drawing.Size(254, 20)
-        Me.relief17.TabIndex = 52
-        '
-        'relief1
-        '
-        Me.relief1.FormattingEnabled = True
-        Me.relief1.Items.AddRange(New Object() {"Closed", "Open"})
-        Me.relief1.Location = New System.Drawing.Point(173, 3)
-        Me.relief1.Name = "relief1"
-        Me.relief1.Size = New System.Drawing.Size(254, 21)
-        Me.relief1.TabIndex = 5
-        '
-        'TextBox36
-        '
-        Me.TextBox36.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox36.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox36.Location = New System.Drawing.Point(3, 3)
-        Me.TextBox36.Name = "TextBox36"
-        Me.TextBox36.ReadOnly = True
-        Me.TextBox36.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox36.TabIndex = 12
-        Me.TextBox36.Text = "Valve Initial Position"
-        '
-        'relief2
-        '
-        Me.relief2.Location = New System.Drawing.Point(173, 34)
-        Me.relief2.Name = "relief2"
-        Me.relief2.Size = New System.Drawing.Size(254, 20)
-        Me.relief2.TabIndex = 37
-        '
-        'relief3
-        '
-        Me.relief3.Location = New System.Drawing.Point(173, 65)
-        Me.relief3.Name = "relief3"
-        Me.relief3.Size = New System.Drawing.Size(254, 20)
-        Me.relief3.TabIndex = 38
-        '
-        'relief4
-        '
-        Me.relief4.Location = New System.Drawing.Point(173, 96)
-        Me.relief4.Name = "relief4"
-        Me.relief4.Size = New System.Drawing.Size(254, 20)
-        Me.relief4.TabIndex = 39
-        '
-        'relief5
-        '
-        Me.relief5.Location = New System.Drawing.Point(173, 127)
-        Me.relief5.Name = "relief5"
-        Me.relief5.Size = New System.Drawing.Size(254, 20)
-        Me.relief5.TabIndex = 40
-        '
-        'relief6
-        '
-        Me.relief6.Location = New System.Drawing.Point(173, 158)
-        Me.relief6.Name = "relief6"
-        Me.relief6.Size = New System.Drawing.Size(254, 20)
-        Me.relief6.TabIndex = 41
-        '
-        'relief7
-        '
-        Me.relief7.Location = New System.Drawing.Point(173, 189)
-        Me.relief7.Name = "relief7"
-        Me.relief7.Size = New System.Drawing.Size(254, 20)
-        Me.relief7.TabIndex = 42
-        '
-        'relief8
-        '
-        Me.relief8.Location = New System.Drawing.Point(173, 220)
-        Me.relief8.Name = "relief8"
-        Me.relief8.Size = New System.Drawing.Size(254, 20)
-        Me.relief8.TabIndex = 43
-        '
-        'relief9
-        '
-        Me.relief9.Location = New System.Drawing.Point(173, 251)
-        Me.relief9.Name = "relief9"
-        Me.relief9.Size = New System.Drawing.Size(254, 20)
-        Me.relief9.TabIndex = 44
-        '
-        'relief10
-        '
-        Me.relief10.Location = New System.Drawing.Point(173, 282)
-        Me.relief10.Name = "relief10"
-        Me.relief10.Size = New System.Drawing.Size(254, 20)
-        Me.relief10.TabIndex = 45
-        '
-        'relief11
-        '
-        Me.relief11.Location = New System.Drawing.Point(173, 313)
-        Me.relief11.Name = "relief11"
-        Me.relief11.Size = New System.Drawing.Size(254, 20)
-        Me.relief11.TabIndex = 46
-        '
-        'TextBox53
-        '
-        Me.TextBox53.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox53.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox53.Location = New System.Drawing.Point(3, 406)
-        Me.TextBox53.Name = "TextBox53"
-        Me.TextBox53.ReadOnly = True
-        Me.TextBox53.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox53.TabIndex = 37
-        Me.TextBox53.Text = "Valve Damping Coefficient"
-        '
-        'TextBox45
-        '
-        Me.TextBox45.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox45.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox45.Location = New System.Drawing.Point(3, 375)
-        Me.TextBox45.Name = "TextBox45"
-        Me.TextBox45.ReadOnly = True
-        Me.TextBox45.Size = New System.Drawing.Size(164, 13)
-        Me.TextBox45.TabIndex = 36
-        Me.TextBox45.Text = "Piston, Rod, Spring, Bellows mass"
-        '
-        'TextBox44
-        '
-        Me.TextBox44.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox44.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox44.Location = New System.Drawing.Point(3, 344)
-        Me.TextBox44.Name = "TextBox44"
-        Me.TextBox44.ReadOnly = True
-        Me.TextBox44.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox44.TabIndex = 35
-        Me.TextBox44.Text = "Valve Setpoint Pressure"
-        '
-        'TextBox43
-        '
-        Me.TextBox43.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox43.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox43.Location = New System.Drawing.Point(3, 313)
-        Me.TextBox43.Name = "TextBox43"
-        Me.TextBox43.ReadOnly = True
-        Me.TextBox43.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox43.TabIndex = 34
-        Me.TextBox43.Text = "Valve Spring Constant"
-        '
-        'TextBox42
-        '
-        Me.TextBox42.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox42.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox42.Location = New System.Drawing.Point(3, 282)
-        Me.TextBox42.Name = "TextBox42"
-        Me.TextBox42.ReadOnly = True
-        Me.TextBox42.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox42.TabIndex = 31
-        Me.TextBox42.Text = "Bellows Average Diameter"
-        '
-        'TextBox41
-        '
-        Me.TextBox41.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox41.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox41.Location = New System.Drawing.Point(3, 251)
-        Me.TextBox41.Name = "TextBox41"
-        Me.TextBox41.ReadOnly = True
-        Me.TextBox41.Size = New System.Drawing.Size(146, 13)
-        Me.TextBox41.TabIndex = 30
-        Me.TextBox41.Text = "Height of Inside Bottom Edge"
-        '
-        'TextBox40
-        '
-        Me.TextBox40.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox40.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox40.Location = New System.Drawing.Point(3, 220)
-        Me.TextBox40.Name = "TextBox40"
-        Me.TextBox40.ReadOnly = True
-        Me.TextBox40.Size = New System.Drawing.Size(164, 13)
-        Me.TextBox40.TabIndex = 33
-        Me.TextBox40.Text = "Min. inside Diameter of outer Ring"
-        '
-        'TextBox39
-        '
-        Me.TextBox39.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox39.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox39.Location = New System.Drawing.Point(3, 189)
-        Me.TextBox39.Name = "TextBox39"
-        Me.TextBox39.ReadOnly = True
-        Me.TextBox39.Size = New System.Drawing.Size(146, 13)
-        Me.TextBox39.TabIndex = 32
-        Me.TextBox39.Text = "Height of Outside Shoulder"
-        '
-        'TextBox38
-        '
-        Me.TextBox38.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox38.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox38.Location = New System.Drawing.Point(3, 158)
-        Me.TextBox38.Name = "TextBox38"
-        Me.TextBox38.ReadOnly = True
-        Me.TextBox38.Size = New System.Drawing.Size(164, 13)
-        Me.TextBox38.TabIndex = 29
-        Me.TextBox38.Text = "Max. Outer Diameter of inner Ring"
-        '
-        'TextBox37
-        '
-        Me.TextBox37.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox37.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox37.Location = New System.Drawing.Point(3, 127)
-        Me.TextBox37.Name = "TextBox37"
-        Me.TextBox37.ReadOnly = True
-        Me.TextBox37.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox37.TabIndex = 16
-        Me.TextBox37.Text = "Valve Lift"
-        '
-        'TextBox34
-        '
-        Me.TextBox34.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox34.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox34.Location = New System.Drawing.Point(3, 96)
-        Me.TextBox34.Name = "TextBox34"
-        Me.TextBox34.ReadOnly = True
-        Me.TextBox34.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox34.TabIndex = 15
-        Me.TextBox34.Text = "Valve Piston Diamter"
-        '
-        'TextBox35
-        '
-        Me.TextBox35.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox35.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox35.Location = New System.Drawing.Point(3, 65)
-        Me.TextBox35.Name = "TextBox35"
-        Me.TextBox35.ReadOnly = True
-        Me.TextBox35.Size = New System.Drawing.Size(128, 13)
-        Me.TextBox35.TabIndex = 13
-        Me.TextBox35.Text = "Valve Seat Diameter"
+        Me.TextBox15.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox15.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox15.Location = New System.Drawing.Point(473, 45)
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.ReadOnly = True
+        Me.TextBox15.Size = New System.Drawing.Size(225, 13)
+        Me.TextBox15.TabIndex = 29
+        Me.TextBox15.Text = "Valve CSUBV Table"
         '
         'ucValveEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.TextBox15)
+        Me.Controls.Add(Me.dgvValve)
         Me.Controls.Add(Me.TableLayoutPanel6)
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.TableLayoutPanel3)
@@ -1122,9 +1167,7 @@ Partial Class ucValveEditor
         Me.Controls.Add(Me.TableLayoutPanel4)
         Me.Controls.Add(Me.TableLayoutPanel5)
         Me.Name = "ucValveEditor"
-        Me.Size = New System.Drawing.Size(484, 627)
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
+        Me.Size = New System.Drawing.Size(822, 627)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
         Me.TableLayoutPanel3.ResumeLayout(False)
@@ -1133,6 +1176,9 @@ Partial Class ucValveEditor
         Me.TableLayoutPanel4.PerformLayout()
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.TableLayoutPanel5.PerformLayout()
+        CType(Me.dgvValve, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
         Me.TableLayoutPanel6.ResumeLayout(False)
         Me.TableLayoutPanel6.PerformLayout()
         Me.ResumeLayout(False)
@@ -1141,15 +1187,6 @@ Partial Class ucValveEditor
     End Sub
     Friend WithEvents CmboboxSelectValve As System.Windows.Forms.ComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents Cmbchkvalve2 As System.Windows.Forms.ComboBox
-    Friend WithEvents CmbChckValve1 As System.Windows.Forms.ComboBox
-    Friend WithEvents Txtchkvalve4 As System.Windows.Forms.TextBox
-    Friend WithEvents Txtchkvalve3 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents TxtTripvalve1 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
@@ -1195,40 +1232,54 @@ Partial Class ucValveEditor
     Friend WithEvents Servo2 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox31 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox29 As System.Windows.Forms.TextBox
-    Friend WithEvents TableLayoutPanel6 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents TextBox55 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox54 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox56 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox57 As System.Windows.Forms.TextBox
-    Friend WithEvents relief12 As System.Windows.Forms.TextBox
-    Friend WithEvents relief13 As System.Windows.Forms.TextBox
-    Friend WithEvents relief14 As System.Windows.Forms.TextBox
-    Friend WithEvents relief15 As System.Windows.Forms.TextBox
-    Friend WithEvents relief16 As System.Windows.Forms.TextBox
-    Friend WithEvents relief17 As System.Windows.Forms.TextBox
-    Friend WithEvents relief1 As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox36 As System.Windows.Forms.TextBox
-    Friend WithEvents relief2 As System.Windows.Forms.TextBox
-    Friend WithEvents relief3 As System.Windows.Forms.TextBox
-    Friend WithEvents relief4 As System.Windows.Forms.TextBox
-    Friend WithEvents relief5 As System.Windows.Forms.TextBox
-    Friend WithEvents relief6 As System.Windows.Forms.TextBox
-    Friend WithEvents relief7 As System.Windows.Forms.TextBox
-    Friend WithEvents relief8 As System.Windows.Forms.TextBox
-    Friend WithEvents relief9 As System.Windows.Forms.TextBox
-    Friend WithEvents relief10 As System.Windows.Forms.TextBox
-    Friend WithEvents relief11 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox53 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox45 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox44 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox43 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox42 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox41 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox40 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox39 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox38 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox37 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox34 As System.Windows.Forms.TextBox
+    Friend WithEvents dgvValve As System.Windows.Forms.DataGridView
+    Friend WithEvents NormalizedFlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ForwardCSUBV As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ReverseCSUBV As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents Txtchkvalve3 As System.Windows.Forms.TextBox
+    Friend WithEvents Txtchkvalve4 As System.Windows.Forms.TextBox
+    Friend WithEvents CmbChckValve1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Cmbchkvalve2 As System.Windows.Forms.ComboBox
+    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents TextBox35 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox34 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox37 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox38 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox39 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox40 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox41 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox42 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox43 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox44 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox45 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox53 As System.Windows.Forms.TextBox
+    Friend WithEvents relief11 As System.Windows.Forms.TextBox
+    Friend WithEvents relief10 As System.Windows.Forms.TextBox
+    Friend WithEvents relief9 As System.Windows.Forms.TextBox
+    Friend WithEvents relief8 As System.Windows.Forms.TextBox
+    Friend WithEvents relief7 As System.Windows.Forms.TextBox
+    Friend WithEvents relief6 As System.Windows.Forms.TextBox
+    Friend WithEvents relief5 As System.Windows.Forms.TextBox
+    Friend WithEvents relief4 As System.Windows.Forms.TextBox
+    Friend WithEvents relief3 As System.Windows.Forms.TextBox
+    Friend WithEvents relief2 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox36 As System.Windows.Forms.TextBox
+    Friend WithEvents relief1 As System.Windows.Forms.ComboBox
+    Friend WithEvents relief17 As System.Windows.Forms.TextBox
+    Friend WithEvents relief16 As System.Windows.Forms.TextBox
+    Friend WithEvents relief15 As System.Windows.Forms.TextBox
+    Friend WithEvents relief14 As System.Windows.Forms.TextBox
+    Friend WithEvents relief13 As System.Windows.Forms.TextBox
+    Friend WithEvents relief12 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox57 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox56 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox54 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox55 As System.Windows.Forms.TextBox
+    Friend WithEvents TableLayoutPanel6 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents TextBox15 As System.Windows.Forms.TextBox
 
 End Class
