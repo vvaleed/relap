@@ -31,7 +31,7 @@ Partial Class frmPumpEditor
         Me.UcPump1.Name = "UcPump1"
         Me.UcPump1.NumberFormat = Nothing
         Me.UcPump1.PumpData = Nothing
-        Me.UcPump1.Size = New System.Drawing.Size(758, 503)
+        Me.UcPump1.Size = New System.Drawing.Size(794, 503)
         Me.UcPump1.SystemOfUnits = Nothing
         Me.UcPump1.TabIndex = 0
         '
@@ -39,7 +39,7 @@ Partial Class frmPumpEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(771, 510)
+        Me.ClientSize = New System.Drawing.Size(807, 510)
         Me.Controls.Add(Me.UcPump1)
         Me.Name = "frmPumpEditor"
         Me.Text = "Pump Data"

@@ -2710,11 +2710,11 @@ sim:                Dim myStream As System.IO.FileStream
 
             Dim card As Integer = 301
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormMinorEditRequests.DataGridView1.Rows
-                If temprow.Cells(0).Value.ToString <> "" Then
+                '  If temprow.Cells(0).Value.ToString <> "" Then
 
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
-                    card = card + 1
-                End If
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
+                card = card + 1
+                ' End If
             Next
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*                            Trips ")
@@ -2730,10 +2730,10 @@ sim:                Dim myStream As System.IO.FileStream
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
-                If temprow.Cells(0).Value.ToString <> "" Then
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
+                '      If temprow.Cells(0).Value.ToString <> "" Then
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
 
-                End If
+                '      End If
 
                 card = card + 1
             Next
@@ -2744,10 +2744,10 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*======================================================================")
             card = 20800001
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormPlotReqest.DataGridView2.Rows
-                If temprow.Cells(0).Value.ToString <> "" Then
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value))
+                '     If temprow.Cells(0).Value.ToString <> "" Then
+                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value))
 
-                End If
+                ' End If
                 card = card + 1
             Next
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
@@ -3036,7 +3036,7 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
                 output5 = kvp.Value.PumpData.cmbboxindex5 - 1
                 generate.WriteLine(kvp.Value.UID & "0301 " & output1 & " " & output2 & " " & output3 & " " & output4 & " " & output5 & " ")
-
+                generate.WriteLine(kvp.Value.UID & "0302 " & kvp.Value.Ratedpumpvelocity.ToString("F") & " " & kvp.Value.RatioRatedVelocity.ToString("F") & " " & kvp.Value.RatedFlow.ToString("F") & " " & kvp.Value.RatedHead.ToString("F") & " " & kvp.Value.RatedTorque.ToString("F") & " " & kvp.Value.MomentofInertia.ToString("F") & " " & kvp.Value.RatedDensity.ToString("F") & " " & kvp.Value.RatedMotorTorque.ToString("F") & " " & kvp.Value.TF2.ToString("F") & " " & kvp.Value.TF0.ToString("F") & " " & kvp.Value.TF3.ToString("F"))
                 If output2 = 0 Then
                     generate.WriteLine(kvp.Value.UID & "3000 0")
                     Dim counter = 1
