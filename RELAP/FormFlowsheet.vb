@@ -637,7 +637,7 @@ Imports RELAP.RELAP.FormClasses
         '     If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, VesselGraphic)
         If Collections.CompressorCollection Is Nothing Then Collections.CompressorCollection = New Dictionary(Of String, CompressorGraphic)
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
-        If Collections.AnnulusCollection Is Nothing Then Collections.AnnulusCollection = New Dictionary(Of String, PipeGraphic)
+        If Collections.AnnulusCollection Is Nothing Then Collections.AnnulusCollection = New Dictionary(Of String, AnnulusGraphic)
 
         If Collections.BranchCollection Is Nothing Then Collections.BranchCollection = New Dictionary(Of String, BranchGraphic)
         If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, SeparatorGraphic)

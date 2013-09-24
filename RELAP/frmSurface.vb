@@ -1118,21 +1118,21 @@ Public Class frmSurface
                 ChildParent.Collections.ObjectCollection.Add(myPipe.Name, myCOTK)
                 ChildParent.Collections.CLCS_PipeCollection.Add(myPipe.Name, myCOTK)
             Case TipoObjeto.Annulus
-                Dim myPipe As New PipeGraphic(mpx, mpy, 50, 10, 0)
-                myPipe.LineWidth = 2
-                myPipe.Fill = True
-                myPipe.FillColor = fillclr
-                myPipe.LineColor = lineclr
-                myPipe.Tag = "ANN" & Format(ChildParent.Collections.ObjectCounter("Annulus"), "00#")
+                Dim myAnn As New AnnulusGraphic(mpx, mpy, 50, 10, 0)
+                myAnn.LineWidth = 2
+                myAnn.Fill = True
+                myAnn.FillColor = fillclr
+                myAnn.LineColor = lineclr
+                myAnn.Tag = "ANN" & Format(ChildParent.Collections.ObjectCounter("Annulus"), "00#")
                 ChildParent.Collections.UpdateCounter("Annulus")
-                If tag <> "" Then myPipe.Tag = tag
-                gObj = myPipe
+                If tag <> "" Then myAnn.Tag = tag
+                gObj = myAnn
                 gObj.Name = "ANN-" & Guid.NewGuid.ToString
-                ChildParent.Collections.AnnulusCollection.Add(gObj.Name, myPipe)
-                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Annulus = New RELAP.SimulationObjects.UnitOps.Annulus(myPipe.Name, "Annulus")
-                myCOTK.GraphicObject = myPipe
-                ChildParent.Collections.ObjectCollection.Add(myPipe.Name, myCOTK)
-                ChildParent.Collections.CLCS_AnnulusCollection.Add(myPipe.Name, myCOTK)
+                ChildParent.Collections.AnnulusCollection.Add(gObj.Name, myAnn)
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Annulus = New RELAP.SimulationObjects.UnitOps.Annulus(myAnn.Name, "Annulus")
+                myCOTK.GraphicObject = myAnn
+                ChildParent.Collections.ObjectCollection.Add(myAnn.Name, myCOTK)
+                ChildParent.Collections.CLCS_AnnulusCollection.Add(myAnn.Name, myCOTK)
             Case TipoObjeto.Valve
                 Dim myValve As New ValveGraphic(mpx, mpy, 50, 50, 0)
                 myValve.LineWidth = 2
@@ -1269,7 +1269,7 @@ Public Class frmSurface
                     tobj = TipoObjeto.Separator
                 Case "Tubulao"
                     tobj = TipoObjeto.Pipe
-                Case "Tubulao"
+                Case "Annulus"
                     tobj = TipoObjeto.Annulus
                 Case "Vlvula"
                     tobj = TipoObjeto.Valve
