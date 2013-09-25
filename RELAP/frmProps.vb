@@ -253,8 +253,8 @@ Public Class frmProps
             If e.ChangedItem.Label.Contains("Number of Junctions") Then
                 bb.NumberofJunctions = e.ChangedItem.Value
 
-                Dim gObj As SeparatorGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
-                gObj.Volumes = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Number of Separator Components") Then
+                bb.Noseparator = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
                 bb.FlowArea = e.ChangedItem.Value

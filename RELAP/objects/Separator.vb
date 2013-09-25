@@ -39,6 +39,12 @@ Namespace RELAP.SimulationObjects.UnitOps
             downward_oriented_junction
             centrally_located_junction
         End Enum
+        Enum SeparatorOptionEnum
+            Simple_Separator
+            General_Electric_dryer_model_Separator
+            General_Electric_two_stage_Separator
+            General_Electric_three_stage_Separator
+        End Enum
 
         Enum AreaChangeEnum
             No_Area_Change
@@ -85,6 +91,26 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Get
             Set(ByVal value As Integer)
                 _NumberofJunctions = value
+            End Set
+        End Property
+
+        Private _SeparatorOption As SeparatorOptionEnum
+        Public Property SeparatorOption() As SeparatorOptionEnum
+            Get
+                Return _SeparatorOption
+            End Get
+            Set(ByVal value As SeparatorOptionEnum)
+                _SeparatorOption = value
+            End Set
+        End Property
+
+        Private _Noseparator As Integer
+        Public Property Noseparator() As Integer
+            Get
+                Return _Noseparator
+            End Get
+            Set(ByVal value As Integer)
+                _Noseparator = value
             End Set
         End Property
 
@@ -325,7 +351,9 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me._BranchJunctionsGeometry = New BranchJunctionsGeometry
             Me._ThermoDynamicStates = New ThermoDynamicStates
-            Me._NumberofJunctions = 2
+            Me._NumberofJunctions = 3
+            Me.SeparatorOption = SeparatorOptionEnum.General_Electric_two_stage_Separator
+            Me._Noseparator = 1
             Me.m_flowarea = 20.0
             Me.m_LengthofVolume = 0.0
             Me.m_VolumeofVolume = 1000000.0
@@ -618,11 +646,20 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultValue = Nothing
                 '    .DefaultType = GetType(Double)
                 'End With
-
-                .Item.Add(("Number of Junctions"), Me, "NumberofJunctions", False, "1.Parameters", "Number of Junctions", True)
+                valor = Format(Me.NumberofJunctions, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Number of Junctions"), Me, "NumberofJunctions", True, "1.Parameters", "Number of Junctions", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Double)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Integer)
+                End With
+
+                .Item.Add("Separator Option", Me, "SeparatorOption", False, "1.Parameters", "Separator Option", True)
+
+                valor = Format(Me.Noseparator, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Number of Separator Components"), Me, "Noseparator", False, "1.Parameters", "Number of Separator Components represented by this RELAP5 component", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Integer)
                 End With
 
                 valor = Format(Me.FlowArea, FlowSheet.Options.NumberFormat)
