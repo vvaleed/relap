@@ -510,79 +510,7 @@ Namespace RELAP.SimulationObjects.UnitOps
         Public Overrides Function Calculate(Optional ByVal args As Object = Nothing) As Integer
 
 
-            'Dim form As Global.RELAP.FormFlowsheet = My.Application.ActiveSimulation
-            'Dim Ti, Pi, Hi, Wi, rho_li, qli, qvi, ei, ein, P2, Q As Double
-
-            'qvi = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(2).SPMProperties.volumetric_flow.GetValueOrDefault.ToString
-
-            'Dim objargs As New RELAP.Outros.StatusChangeEventArgs
-            'If qvi > 0 Then
-            '    'Call function to calculate flowsheet
-            '    With objargs
-            '        .Calculado = False
-            '        .Nome = Me.Nome
-            '        .Tipo = TipoObjeto.Tank
-            '    End With
-            '    CalculateFlowsheet(FlowSheet, objargs, Nothing)
-            '    Throw New Exception(RELAP.App.GetLocalString("Existeumafasevaporna2"))
-            'ElseIf Not Me.GraphicObject.OutputConnectors(0).IsAttached Then
-            '    'Call function to calculate flowsheet
-            '    With objargs
-            '        .Calculado = False
-            '        .Nome = Me.Nome
-            '        .Tipo = TipoObjeto.Tank
-            '    End With
-            '    CalculateFlowsheet(FlowSheet, objargs, Nothing)
-            '    Throw New Exception(RELAP.App.GetLocalString("Verifiqueasconexesdo"))
-            'ElseIf Not Me.GraphicObject.InputConnectors(0).IsAttached Then
-            '    'Call function to calculate flowsheet
-            '    With objargs
-            '        .Calculado = False
-            '        .Nome = Me.Nome
-            '        .Tipo = TipoObjeto.Tank
-            '    End With
-            '    CalculateFlowsheet(FlowSheet, objargs, Nothing)
-            '    Throw New Exception(RELAP.App.GetLocalString("Verifiqueasconexesdo"))
-            'End If
-
-            'Me.PropertyPackage.CurrentMaterialStream = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name)
-            'Ti = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).SPMProperties.temperature.GetValueOrDefault.ToString
-            'Pi = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).SPMProperties.pressure.GetValueOrDefault.ToString
-            'rho_li = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(1).SPMProperties.density.GetValueOrDefault.ToString
-            'qli = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(1).SPMProperties.volumetric_flow.GetValueOrDefault.ToString
-            'Hi = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).SPMProperties.enthalpy.GetValueOrDefault.ToString
-            'Wi = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).SPMProperties.massflow.GetValueOrDefault.ToString
-            'Q = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).SPMProperties.volumetric_flow.GetValueOrDefault
-            'ei = Hi * Wi
-            'ein = ei
-
-            'P2 = Pi - Me.DeltaP.GetValueOrDefault
-
-            ''Atribuir valores à corrente de matéria conectada à jusante
-            'With form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.OutputConnectors(0).AttachedConnector.AttachedTo.Name)
-            '    .Fases(0).SPMProperties.temperature = Ti
-            '    .Fases(0).SPMProperties.pressure = P2
-            '    .Fases(0).SPMProperties.enthalpy = Hi
-            '    Dim comp As RELAP.ClassesBasicasTermodinamica.Substancia
-            '    Dim i As Integer = 0
-            '    For Each comp In .Fases(0).Componentes.Values
-            '        comp.FracaoMolar = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).Componentes(comp.Nome).FracaoMolar
-            '        comp.FracaoMassica = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).Componentes(comp.Nome).FracaoMassica
-            '        i += 1
-            '    Next
-            '    .Fases(0).SPMProperties.massflow = form.Collections.CLCS_MaterialStreamCollection(Me.GraphicObject.InputConnectors(0).AttachedConnector.AttachedFrom.Name).Fases(0).SPMProperties.massflow.GetValueOrDefault
-            'End With
-
-            'Me.ResidenceTime = Me.Volume / Q
-
-            ''Call function to calculate flowsheet
-            'With objargs
-            '    .Calculado = True
-            '    .Nome = Me.Nome
-            '    .Tipo = TipoObjeto.Tank
-            'End With
-
-            'form.CalculationQueue.Enqueue(objargs)
+          
             Return 0
         End Function
 
@@ -756,7 +684,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.FuelRodPitch), FlowSheet.Options.NumberFormat)
+                valor = Format((Me.FuelRodPitch), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Fuel Rod Pitch", su.distance), valor, False, "No. of Rods", "0.0126 M ≤ x ≤ 0.0187 m.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -769,43 +697,43 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.PlenumLength), FlowSheet.Options.NumberFormat)
+                valor = Format((Me.PlenumLength), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Plenum Length", su.distance), valor, False, "Fuel Rod Plenum Geometry", "Range is 3 – 11%", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.PlenumVoidVolume), FlowSheet.Options.NumberFormat)
+                valor = Format((Me.PlenumVoidVolume), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT("Plenum Void Volume", su.volume), valor, False, "Fuel Rod Plenum Geometry", "0.0 < x ≤ 0.000049, Volume of Spring", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.LowerPlenumVoidVolume), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Lower Plenum Void Volume ", su.volume), valor, False, "Fuel Rod Plenum Geometry", "Volume of gas", True)
+                valor = Format((Me.LowerPlenumVoidVolume), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Lower plenum Void Volume ", su.volume), valor, False, "Fuel Rod Plenum Geometry", "Volume of gas", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.FuelPelletRadius), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Fuel pellet radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.00385 m ≤ x ≤ 0.00685 m", True)
+                valor = Format((Me.FuelPelletRadius), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Fuel pellet radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.00385 m ≤ x ≤ 0.00685 m", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.InnerCladdingRadius), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Inner cladding radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.003935 m ≤ x ≤ 0.00634 m", True)
+                valor = Format((Me.InnerCladdingRadius), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Inner cladding radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.003935 m ≤ x ≤ 0.00634 m", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.OuterCladdingRadius), FlowSheet.Options.NumberFormat)
+                valor = Format((Me.OuterCladdingRadius), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT(RELAP.App.GetLocalString("Outer cladding radius"), su.distance), valor, False, "Fuel Rod Dimensions", "0.00457 m ≤ x ≤ 0.00715 m", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -819,15 +747,15 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.ControlVolumeAbove), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Control Volume Above"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
+                valor = Format((Me.ControlVolumeAbove), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Control Volume Above"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.ControlVolumeBelow), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Control Volume Below"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
+                valor = Format((Me.ControlVolumeBelow), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Control Volume Below"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -854,15 +782,15 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.RadiusToRadialNode1), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Radius To Radial Node 1"), su.distance), valor, False, "Radial Mesh Spacing", "", True)
+                valor = Format((Me.RadiusToRadialNode1), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Radius To Radial Node 1"), su.distance), valor, False, "Radial Mesh Spacing", "", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.RadiusToRadialNodeN), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Radius To Radial Node N"), su.distance), valor, False, "Radial Mesh Spacing", "Enter radial node N. Ascending order and last node placed on the cladding outer surface.", True)
+                valor = Format((Me.RadiusToRadialNodeN), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Radius To Radial Node N"), su.distance), valor, False, "Radial Mesh Spacing", "Enter radial node N. Ascending order and last node placed on the cladding outer surface.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -875,15 +803,15 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.TemperatureAtNode1), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Temperature at Node 1"), su.spmp_temperature), valor, False, "Initial Temperatures", "The range is 300 K ≤ x ≤ 3123 K. Initial temperature of Node 1", True)
+                valor = Format((Me.TemperatureAtNode1), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Temperature at Node 1"), su.spmp_temperature), valor, False, "Initial Temperatures", "The range is 300 K ≤ x ≤ 3123 K. Initial temperature of Node 1", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.TemperatureAtNodeN), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Temperature at Node N"), su.spmp_temperature), valor, False, "Initial Temperatures", "Initial temperature for each radial node to radial node N. Range is same as above.", True)
+                valor = Format((Me.TemperatureAtNodeN), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Temperature at Node N"), su.spmp_temperature), valor, False, "Initial Temperatures", "Initial temperature for each radial node to radial node N. Range is same as above.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -924,15 +852,15 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.time, Me.TimeForWhichAxialPowerProfileApplies), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Time"), su.time), valor, False, "Axial Power Profile Time", "'P' is axial power profile number (start with Number 1).", True)
+                valor = Format((Me.TimeForWhichAxialPowerProfileApplies), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Axial Power Profile Time"), su.time), valor, False, "Axial Power Profile Time", "'P' is axial power profile number (start with Number 1).", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Me.AxialPowerFactor
-                .Item.Add("AxialPowerFactor", valor, False, "Axial Power Profile Data", "The range is 0.1 ≤ x ≤ 1.4, default is 1.0.", True)
+                .Item.Add("Axial Power Factor", valor, False, "Axial Power Profile Data", "The range is 0.1 ≤ x ≤ 1.4, default is 1.0.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -946,14 +874,14 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
                 valor = Me.RadialNode
-                .Item.Add("Radial Node", valor, False, "Radial Power Profile", "At which the power factor applies", True)
+                .Item.Add("Radial node", valor, False, "Radial Power Profile", "At which the power factor applies", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.time, Me.ShutdownTime), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Time"), su.time), valor, False, "Shutdown Time and Fuel Density", "", True)
+                valor = Format((Me.ShutdownTime), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Shutdown Time"), su.time), valor, False, "Shutdown Time and Fuel Density", "", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -966,50 +894,50 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.powerdensity, Me.PowerHistory), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Power History"), su.powerdensity), valor, False, "Previous Power History", "Range is 40.57×106 W/m3 ≤ x ≤ 279.3×106 W/m3", True)
+                valor = Format((Me.PowerHistory), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Power history"), su.powerdensity), valor, False, "Previous Power History", "Range is 40.57×106 W/m3 ≤ x ≤ 279.3×106 W/m3", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.time, Me.TimeOfPowerHistory), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Time"), su.time), valor, False, "Previous Power History", " ", True)
+                valor = Format((Me.TimeOfPowerHistory), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT("Previous Power History Time", su.time), valor, False, "Previous Power History", " ", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.mass, Me.HeliumGasInventory), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Helium Gas Inventory"), su.mass), valor, False, "Gas Internal Pressure", "In an individual fuel rod", True)
+                valor = Format((Me.HeliumGasInventory), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Helium Gas Inventory"), su.mass), valor, False, "Gas Internal Pressure", "In an individual fuel rod", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_pressure, Me.InternalGasPressure), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Internal Gas Pressure"), su.spmp_pressure), valor, False, "Gas Internal Pressure", "In a rod", True)
+                valor = Format((Me.InternalGasPressure), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Internal Gas Pressure"), su.spmp_pressure), valor, False, "Gas Internal Pressure", "In a rod", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.time, Me.Time), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Time"), su.time), valor, False, "Time-Temperature-Pressure Profile", "The time to which the axial surface temperature profile and fuel average hydrostatic pressure are used", True)
+                valor = Format((Me.Time), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Time Profile"), su.time), valor, False, "Time-Temperature-Pressure Profile", "The time to which the axial surface temperature profile and fuel average hydrostatic pressure are used", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.Temperature), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Temperature"), su.spmp_temperature), valor, False, "Time-Temperature-Pressure Profile", "Cladding surface temperature", True)
+                valor = Format((Me.Temperature), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Temperature"), su.spmp_temperature), valor, False, "Time-Temperature-Pressure Profile", "Cladding surface temperature", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_pressure, Me.Pressure), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Pressure"), su.spmp_pressure), valor, False, "Time-Temperature-Pressure Profile", "Fuel hydrostatic pressure", True)
+                valor = Format((Me.Pressure), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Pressure"), su.spmp_pressure), valor, False, "Time-Temperature-Pressure Profile", "Fuel hydrostatic pressure", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -1029,8 +957,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Boolean)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.conductance, Me.GapConductance), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Gap Conductance"), su.conductance), valor, False, "Gap Conductance", "At steady-state conditions just before start of transient", True)
+                valor = Format((Me.GapConductance), FlowSheet.Options.NumberFormat)
+                .Item.Add(FT(("Gap Conductance"), su.conductance), valor, False, "Gap Conductance", "At steady-state conditions just before start of transient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
@@ -1051,7 +979,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
                 valor = Me.m_FuelThermalConductivityAxialNode
-                .Item.Add("Axial Node", valor, False, "Fuel Thermal Conductivity", " ", True)
+                .Item.Add("Fuel Thermal Conductivity  Axial Node", valor, False, "Fuel Thermal Conductivity", " ", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Integer)

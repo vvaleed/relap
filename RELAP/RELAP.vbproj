@@ -235,7 +235,7 @@
     </Compile>
     <Compile Include="objects\Annulus.vb" />
     <Compile Include="objects\Branch\Branch.vb" />
-    <Compile Include="objects\Custom Properties\BranchJunctionsGeometry.vb" />
+    <Compile Include="objects\Branch\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
     <Compile Include="objects\Custom Properties\PumpData.vb" />
     <Compile Include="objects\Custom Properties\ValveType.vb" />
@@ -258,6 +258,13 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="objects\Editors\UIPumpEditor.vb" />
+    <Compile Include="objects\FuelRod\ucFuelRodEditor.Designer.vb">
+      <DependentUpon>ucFuelRodEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\FuelRod\ucFuelRodEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="objects\FuelRod\UIFuelRodEditor.vb" />
     <Compile Include="objects\Junction\frmJunctionsEditor.Designer.vb">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </Compile>
@@ -294,8 +301,8 @@
     <Compile Include="objects\Separator.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
-    <Compile Include="objects\Custom Properties\HeatStructureBoundaryCond.vb" />
-    <Compile Include="objects\Custom Properties\HeatStructureMeshData.vb" />
+    <Compile Include="objects\HeatStructure\HeatStructureBoundaryCond.vb" />
+    <Compile Include="objects\HeatStructure\HeatStructureMeshData.vb" />
     <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />
     <Compile Include="objects\HeatStructure\frmHeatStructureEditor.Designer.vb">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
@@ -351,14 +358,14 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="objects\Pipe\UIPipeEditor.vb" />
-    <Compile Include="objects\Custom Properties\PipeProfile.vb" />
+    <Compile Include="objects\Pipe\PipeProfile.vb" />
     <Compile Include="objects\HeatStructure\heat structure.vb" />
     <Compile Include="objects\Pump.vb" />
     <Compile Include="objects\PWR Control Rod.vb" />
     <Compile Include="objects\Shroud.vb" />
     <Compile Include="objects\Pipe\Pipe.vb" />
     <Compile Include="objects\SingleJunction.vb" />
-    <Compile Include="objects\FuelRod.vb" />
+    <Compile Include="objects\FuelRod\FuelRod.vb" />
     <Compile Include="Language\RELAP.Designer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -411,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucPump.resx">
       <DependentUpon>ucPump.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\FuelRod\ucFuelRodEditor.resx">
+      <DependentUpon>ucFuelRodEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\HeatStructure\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
