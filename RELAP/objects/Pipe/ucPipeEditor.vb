@@ -34,7 +34,7 @@ Public Class ucPipeEditor
     End Property
 
     Private Sub ucPipeEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.PipeGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
+        Dim gobj As Microsoft.MSDN.Samples.GraphicObjects.PipeGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myPipe As RELAP.SimulationObjects.UnitOps.pipe = My.Application.ActiveSimulation.Collections.CLCS_PipeCollection(gobj.Name)
 
 

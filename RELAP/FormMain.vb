@@ -3306,6 +3306,86 @@ sim:                Dim myStream As System.IO.FileStream
 
             Next kvp
 
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Separator) In ChildParent.Collections.CLCS_SeparatorCollection
+
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Separator '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ separatr")
+
+                generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions)
+
+                output = kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " "
+                'output3 = boolto10(kvp.Value.PipeInterphaseFriction)
+                'output4 = boolto10(kvp.Value.RodInterphaseFriction)
+                'If output4 = "1" Then
+                '    output2 = "1"
+                'Else : output2 = "0"
+                'End If
+                'output1 = boolto10(kvp.Value.ThermalStratificationModel) & boolto10(kvp.Value.LevelTrackingModel) & boolto01(kvp.Value.WaterPackingScheme) & boolto01(kvp.Value.VerticalStratificationModel) & output2 & boolto01(kvp.Value.ComputeWallFriction) & boolto10(kvp.Value.EquilibriumTemperature)
+                generate.WriteLine(output)
+
+                If frmInitialSettings.optDefaultFluid.Checked = True Then
+                    fluidchk = "0"
+                ElseIf frmInitialSettings.optWater.Checked = True Then
+                    fluidchk = "1"
+                ElseIf frmInitialSettings.optHeavyWater.Checked = True Then
+                    fluidchk = "2"
+                End If
+
+                If frmInitialSettings.chklistboxBoron.Checked = False Then
+                    boronchk = "0"
+                Else : boronchk = "1"
+                End If
+
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    output = fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType
+                End If
+
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
+                Next kvp2
+                output1 = boolto10(kvp.Value.pvterm)
+                output2 = boolto10(kvp.Value.CCFL)
+                If kvp.Value.StratificationModel.ToString = "Dont_use_this_model" Then
+                    output3 = "0"
+                ElseIf kvp.Value.StratificationModel.ToString = "upward_oriented_junction" Then
+                    output3 = "1"
+                ElseIf kvp.Value.StratificationModel.ToString = "downward_oriented_junction" Then
+                    output3 = "2"
+                ElseIf kvp.Value.StratificationModel.ToString = "centrally_located_junction" Then
+                    output3 = "3"
+                End If
+                output4 = boolto01(kvp.Value.chokingModel)
+                If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output5 = "1"
+                ElseIf kvp.Value.AreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output5 = "2"
+                End If
+                If kvp.Value.MomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output6 = "0"
+                ElseIf kvp.Value.MomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output6 = "1"
+                End If
+                If kvp.Value.MomentumFlux.ToString = "To_and_From_Volume" Then
+                    output7 = "0"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_From_Volume" Then
+                    output7 = "1"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_To_Volume" Then
+                    output7 = "2"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
+                    output7 = "3"
+                End If
+                output8 = output1 & output2 & output3 & output4 & output5 & output6 & output7
+
+                univID = univID + 1
+
+            Next kvp
+
             If frmMaterials.checkMaterial = 1 Then
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*         Materials ")
