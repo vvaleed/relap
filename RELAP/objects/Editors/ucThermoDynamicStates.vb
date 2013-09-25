@@ -47,6 +47,46 @@ Public Class ucThermoDynamicStates
         Else
             cmbothermostates.SelectedIndex = 0
         End If
+
+        '  Dim str As String = ""
+
+        If ThermoDynamicStates.State.Count > 0 Then
+            Dim j As Integer = 0
+            Dim i As Integer
+            DataGridView1.Rows.Add(ThermoDynamicStates.State.Count)
+            If My.Application.ActiveSimulation.ComponentType <> "pipe" Then
+
+                For Each state In ThermoDynamicStates.State
+                    Dim str() As String = state.Value.StatesString.Split(" ")
+
+                    i = 1
+                    Dim row As DataGridViewRow = DataGridView1.Rows(j)
+                    For Each cell As DataGridViewCell In row.Cells
+                        cell.Value = str(i)
+                        i = i + 1
+                        cmbothermostates.SelectedIndex = state.Value.StateType
+                        'str = str & " " & CDbl(cell.Value).ToString("F")
+                    Next
+                    j = j + 1
+                Next
+
+
+            Else
+                For Each state In ThermoDynamicStates.State
+                    Dim str() As String = state.Value.StatesString.Split(" ")
+                    i = 1
+                    Dim row As DataGridViewRow = DataGridView1.Rows(j)
+                    For Each cell As DataGridViewCell In row.Cells
+                        cell.Value = str(i)
+                        i = i + 1
+                        cmbothermostates.SelectedIndex = state.Value.StateType
+                        'str = str & " " & CDbl(cell.Value).ToString("F")
+                    Next
+                    j = j + 1
+                Next
+
+            End If
+        End If
     End Sub
 
     Private Sub cmbothermostates_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbothermostates.SelectedValueChanged
