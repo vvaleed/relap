@@ -52,6 +52,7 @@ Imports RELAP.RELAP.FormClasses
     Public ComponentType As String
     Public FromComponent As String
     Public ToComponent As String
+    Public FormGeneralCoreInput As New frmCoreInput
     Public FormSurface As New frmSurface
     Public FormProps As New frmProps
     Public FormControlSystem As New frmControlSystem
@@ -242,7 +243,7 @@ Imports RELAP.RELAP.FormClasses
             'FormStatus.Show(dckPanel)
             '  FormLog.Show(dckPanel)
             FormObjListView.Show(dckPanel)
-
+            FormGeneralCoreInput.Show(dckPanel)
             '  FormObjList.Show(dckPanel)
             FormProps.Show(dckPanel)
             '  FormMatList.Show(dckPanel)
@@ -262,6 +263,7 @@ Imports RELAP.RELAP.FormClasses
                 FormMinorEditRequests.DockState = Docking.DockState.DockBottomAutoHide
                 FormControlSystem.DockState = Docking.DockState.DockBottomAutoHide
                 FormTrips.DockState = Docking.DockState.DockBottomAutoHide
+                FormGeneralCoreInput.DockState = Docking.DockState.DockBottomAutoHide
                 'FormWatch.DockState = Docking.DockState.DockRight
                 'FormWatch.DockState = Docking.DockState.DockBottom
                 'FormCOReports.DockState = Docking.DockState.DockLeft

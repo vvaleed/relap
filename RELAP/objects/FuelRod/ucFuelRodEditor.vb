@@ -34,7 +34,9 @@ Public Class ucFuelRodEditor
     End Property
 
     Private Sub ucPipeEditor_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        
+        If dgvFuelRodDimensions.RowCount = 0 Then
+            dgvFuelRodDimensions.Rows.Add(My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value)
+        End If
     End Sub
 
     Dim selectedcells As New List(Of Object)  

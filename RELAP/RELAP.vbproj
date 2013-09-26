@@ -186,6 +186,12 @@
     <Compile Include="frmControlSystem.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmCoreInput.Designer.vb">
+      <DependentUpon>frmCoreInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCoreInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmInitialSettings.Designer.vb">
       <DependentUpon>frmInitialSettings.vb</DependentUpon>
     </Compile>
@@ -414,6 +420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmControlSystem.resx">
       <DependentUpon>frmControlSystem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCoreInput.resx">
+      <DependentUpon>frmCoreInput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaterials.resx">
       <DependentUpon>frmMaterials.vb</DependentUpon>
