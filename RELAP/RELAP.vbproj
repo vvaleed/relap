@@ -238,6 +238,13 @@
     <Compile Include="objects\Branch\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
     <Compile Include="objects\Custom Properties\PumpData.vb" />
+    <Compile Include="objects\Editors\frmSeparator.Designer.vb">
+      <DependentUpon>frmSeparator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Editors\frmSeparator.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Separator\SeparatorJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\ValveType.vb" />
     <Compile Include="objects\Branch\frmBranchEditor.Designer.vb">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
@@ -257,7 +264,14 @@
     <Compile Include="objects\Editors\ucPump.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="objects\Separator\ucSeparatorEditor.Designer.vb">
+      <DependentUpon>ucSeparatorEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Separator\ucSeparatorEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="objects\Editors\UIPumpEditor.vb" />
+    <Compile Include="objects\Separator\UISeparatorEditor.vb" />
     <Compile Include="objects\FuelRod\ucFuelRodEditor.Designer.vb">
       <DependentUpon>ucFuelRodEditor.vb</DependentUpon>
     </Compile>
@@ -298,7 +312,7 @@
     <Compile Include="objects\Branch\UIBranchEditor.vb" />
     <Compile Include="objects\Junction\UIJunctionsEditor.vb" />
     <Compile Include="objects\Editors\UIValveEditor.vb" />
-    <Compile Include="objects\Separator.vb" />
+    <Compile Include="objects\Separator\Separator.vb" />
     <Compile Include="objects\Single Volume.vb" />
     <Compile Include="objects\Subsystem.vb" />
     <Compile Include="objects\HeatStructure\HeatStructureBoundaryCond.vb" />
@@ -416,8 +430,14 @@
     <EmbeddedResource Include="objects\Editors\frmPumpEditor.resx">
       <DependentUpon>frmPumpEditor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="objects\Editors\frmSeparator.resx">
+      <DependentUpon>frmSeparator.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucPump.resx">
       <DependentUpon>ucPump.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Separator\ucSeparatorEditor.resx">
+      <DependentUpon>ucSeparatorEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\FuelRod\ucFuelRodEditor.resx">
       <DependentUpon>ucFuelRodEditor.vb</DependentUpon>

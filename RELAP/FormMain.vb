@@ -3315,14 +3315,21 @@ sim:                Dim myStream As System.IO.FileStream
 
                 generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions)
 
-                output = kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " "
-                'output3 = boolto10(kvp.Value.PipeInterphaseFriction)
-                'output4 = boolto10(kvp.Value.RodInterphaseFriction)
-                'If output4 = "1" Then
-                '    output2 = "1"
-                'Else : output2 = "0"
-                'End If
-                'output1 = boolto10(kvp.Value.ThermalStratificationModel) & boolto10(kvp.Value.LevelTrackingModel) & boolto01(kvp.Value.WaterPackingScheme) & boolto01(kvp.Value.VerticalStratificationModel) & output2 & boolto01(kvp.Value.ComputeWallFriction) & boolto10(kvp.Value.EquilibriumTemperature)
+                If kvp.Value.SeparatorOption.ToString = "Simple_Separator" Then
+                    output1 = "0"
+                ElseIf kvp.Value.SeparatorOption.ToString = "General_Electric_dryer_model_Separator" Then
+                    output1 = "1"
+                ElseIf kvp.Value.SeparatorOption.ToString = "General_Electric_two_stage_Separator" Then
+                    output1 = "2"
+                ElseIf kvp.Value.SeparatorOption.ToString = "General_Electric_three_stage_Separator" Then
+                    output1 = "3"
+                End If
+                If output1 = "2" Or output1 = "3" Then
+                    generate.WriteLine(kvp.Value.UID & "0002 " & output1 & " " & kvp.Value.Noseparator)
+                Else
+                    generate.WriteLine(kvp.Value.UID & "0002 " & output1)
+                End If
+                output = (kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " 0")
                 generate.WriteLine(output)
 
                 If frmInitialSettings.optDefaultFluid.Checked = True Then

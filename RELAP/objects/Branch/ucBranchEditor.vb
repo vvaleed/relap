@@ -33,12 +33,7 @@
         Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.BranchGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTk As RELAP.SimulationObjects.UnitOps.Branch = My.Application.ActiveSimulation.Collections.CLCS_BranchCollection(gobj.Name)
 
-        Dim gobj1 As Microsoft.MSDN.Samples.GraphicObjects.SeparatorGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
-        Dim mySEP As RELAP.SimulationObjects.UnitOps.Separator = My.Application.ActiveSimulation.Collections.CLCS_SeparatorCollection(gobj1.Name)
-        CheckBoxEntermass.Checked = True
-        dgvBranch.Hide()
-        If My.Application.ActiveSimulation.ComponentType = "branch" Then
-            dgvBranch.Columns(8).Visible = False
+       CheckBoxEntermass.Checked = True
             For i = 1 To myCOTk.NumberofJunctions - 1
                 dgvBranch.Rows.Add(i.ToString)
             Next
@@ -81,49 +76,7 @@
                     row.Cells(13).Value = 0.0
                 Next
             End If
-        ElseIf My.Application.ActiveSimulation.ComponentType = "Separator" Then
-            dgvBranch.Columns(8).Visible = False
-            dgvBranch.Rows.Add(3)
-            'If mySEP.BranchJunctionsGeometry.BranchGeometry.Count <> 0 Then
-            '    Dim i = 1
-            '    For Each row As DataGridViewRow In dgvBranch.Rows
-            '        row.Cells(0).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).FromComponent
-            '        row.Cells(1).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).FromComponentVolumeNumber
-            '        row.Cells(2).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).FromFaceNumber
-            '        row.Cells(3).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).ToComponent
-            '        row.Cells(4).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).ToComponentVolumeNumber
-            '        row.Cells(5).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).ToFaceNumber
-            '        row.Cells(6).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).JunctionArea
-            '        row.Cells(7).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).FFLossCo
-            '        row.Cells(8).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).RFlossCo
-            '        row.Cells(9).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).SubcooledDischargeCo
-            '        row.Cells(10).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).TwoPhaseDischargeCo
-            '        row.Cells(11).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).SuperheatedDischargeCo
-            '        row.Cells(12).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).LiquidMassFlow
-            '        row.Cells(13).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).VaporMassFlow
-            '        i = i + 1
-            '    Next
-
-            'Else
-            '    Dim i = 1
-            '    For Each row As DataGridViewRow In dgvBranch.Rows
-            '        'row.Cells(0).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).FromComponent
-            '        row.Cells(1).Value = 1
-            '        'row.Cells(2).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).FromFaceNumber
-            '        ' row.Cells(3).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).ToComponent
-            '        row.Cells(4).Value = 1
-            '        'row.Cells(5).Value = mySEP.BranchJunctionsGeometry.BranchGeometry(i).ToFaceNumber
-            '        row.Cells(6).Value = 0.0
-            '        row.Cells(7).Value = 0.0
-            '        row.Cells(8).Value = 0.0
-            '        row.Cells(9).Value = 1.0
-            '        row.Cells(10).Value = 1.0
-            '        row.Cells(11).Value = 1.0
-            '        row.Cells(12).Value = 0.0
-            '        row.Cells(13).Value = 0.0
-            '    Next
-            'End If
-        End If
+       
 
     End Sub
 

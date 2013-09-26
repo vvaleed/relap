@@ -74,13 +74,13 @@ Namespace RELAP.SimulationObjects.UnitOps
                 _ThermoDynamicStates = value
             End Set
         End Property
-        Private _BranchJunctionsGeometry As BranchJunctionsGeometry
-        Public Property BranchJunctionsGeometry() As BranchJunctionsGeometry
+        Private _SeparatorJunctionsGeometry As SeparatorJunctionsGeometry
+        Public Property SeparatorJunctionsGeometry() As SeparatorJunctionsGeometry
             Get
-                Return _BranchJunctionsGeometry
+                Return _SeparatorJunctionsGeometry
             End Get
-            Set(ByVal value As BranchJunctionsGeometry)
-                _BranchJunctionsGeometry = value
+            Set(ByVal value As SeparatorJunctionsGeometry)
+                _SeparatorJunctionsGeometry = value
             End Set
         End Property
 
@@ -194,6 +194,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+
         Private m_InitialLiquidVelocity As Double
         Public Property InitialLiquidVelocity() As Double
             Get
@@ -222,55 +223,6 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_ThermalStratificationModel As Boolean
-        Public Property ThermalStratificationModel() As Boolean
-            Get
-                Return m_ThermalStratificationModel
-            End Get
-            Set(ByVal value As Boolean)
-                m_ThermalStratificationModel = value
-            End Set
-        End Property
-
-        Private m_LevelTrackingModel As Boolean
-        Public Property LevelTrackingModel() As Boolean
-            Get
-                Return m_LevelTrackingModel
-            End Get
-            Set(ByVal value As Boolean)
-                m_LevelTrackingModel = value
-            End Set
-        End Property
-
-        Private m_InterphaseFriction As Boolean
-        Public Property InterphaseFriction() As Boolean
-            Get
-                Return m_InterphaseFriction
-            End Get
-            Set(ByVal value As Boolean)
-                m_InterphaseFriction = value
-            End Set
-        End Property
-
-        Private m_ComputeWallFriction As Boolean
-        Public Property ComputeWallFriction() As Boolean
-            Get
-                Return m_ComputeWallFriction
-            End Get
-            Set(ByVal value As Boolean)
-                m_ComputeWallFriction = value
-            End Set
-        End Property
-
-        Private m_EquilibriumTemp As Boolean
-        Public Property EquilibriumTemperature() As Boolean
-            Get
-                Return m_EquilibriumTemp
-            End Get
-            Set(ByVal value As Boolean)
-                m_EquilibriumTemp = value
-            End Set
-        End Property
 
         Private _pvterm As Boolean
         Public Property pvterm() As Boolean
@@ -349,7 +301,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me._ToVolume = 1
             Me._FromVolume = 1
             Me.m_ComponentDescription = descricao
-            Me._BranchJunctionsGeometry = New BranchJunctionsGeometry
+            Me._SeparatorJunctionsGeometry = New SeparatorJunctionsGeometry
             Me._ThermoDynamicStates = New ThermoDynamicStates
             Me._NumberofJunctions = 3
             Me.SeparatorOption = SeparatorOptionEnum.General_Electric_two_stage_Separator
@@ -719,69 +671,38 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .CustomEditor = New RELAP.Editors.UIThermoDynamicStatesEditor
                 End With
 
-                .Item.Add("Set Branch Junctions Geometry", Me, "BranchJunctionsGeometry", False, "1.Parameters", "Set Branch Junctions Geometry", True)
+                .Item.Add("Set Separator Junctions Geometry", Me, "SeparatorJunctionsGeometry", False, "1.Parameters", "Set Separator Junctions Geometry", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultType = GetType(BranchJunctionsGeometry)
-                    .CustomEditor = New RELAP.Editors.UIBranchEditor
+                    .DefaultType = GetType(SeparatorJunctionsGeometry)
+                    .CustomEditor = New RELAP.Editors.UISeparatorEditor
                 End With
 
 
-
-
-                .Item.Add(("Modified PV term Applied"), Me, "pvterm", False, "3. Junction Control Flags", "Modified PV term Applied", True)
+                .Item.Add(("Modified PV term Applied"), Me, "pvterm", False, "2. Junction Control Flags", "Modified PV term Applied", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add(("CCFL Model"), Me, "CCFL", False, "3. Junction Control Flags", "CCFL Model", True)
+                .Item.Add(("CCFL Model"), Me, "CCFL", False, "2. Junction Control Flags", "CCFL Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add("Stratification Entrainment Model", Me, "StratificationModel", False, "3. Junction Control Flags", "Horizontal Stratification Entrainment/Pullthrough Model", True)
+                .Item.Add("Stratification Entrainment Model", Me, "StratificationModel", False, "2. Junction Control Flags", "Horizontal Stratification Entrainment/Pullthrough Model", True)
 
-                .Item.Add(("Choking Model"), Me, "ChokingModel", False, "3. Junction Control Flags", "Choking Model", True)
+                .Item.Add(("Choking Model"), Me, "ChokingModel", False, "2. Junction Control Flags", "Choking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
 
-                .Item.Add("Area Change", Me, "AreaChange", False, "3. Junction Control Flags", "Area Change Options", True)
+                .Item.Add("Area Change", Me, "AreaChange", False, "2. Junction Control Flags", "Area Change Options", True)
 
-                .Item.Add("Momentum Equation", Me, "MomentumEquation", False, "3. Junction Control Flags", "Specify homogenius or nonhomogenius", True)
+                .Item.Add("Momentum Equation", Me, "MomentumEquation", False, "2. Junction Control Flags", "Specify homogenius or nonhomogenius", True)
 
-                .Item.Add("Momentum Flux Options", Me, "MomentumFlux", False, "3. Junction Control Flags", "", True)
-
-
-                ' valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
-
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "Volume Control Flags", "Level Tracking Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "Volume Control Flags", "Interphase Friction Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "Volume Control Flags", "Compute Wall Friction", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "Volume Control Flags", "Equilibrium Temperature", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+                .Item.Add("Momentum Flux Options", Me, "MomentumFlux", False, "2. Junction Control Flags", "", True)
 
 
 
