@@ -24,7 +24,6 @@ Partial Class ucSeparatorEditor
     Private Sub InitializeComponent()
         Me.CheckBoxEntermass = New System.Windows.Forms.CheckBox()
         Me.dgvSeparator = New System.Windows.Forms.DataGridView()
-        Me.cmdSave = New System.Windows.Forms.Button()
         Me.FromComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.FromComponentVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FromFaceNumber = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -37,13 +36,14 @@ Partial Class ucSeparatorEditor
         Me.SubcooledDischargeCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LiquidMassFlow = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VaporMassFlow = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdSave = New System.Windows.Forms.Button()
         CType(Me.dgvSeparator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CheckBoxEntermass
         '
         Me.CheckBoxEntermass.AutoSize = True
-        Me.CheckBoxEntermass.Location = New System.Drawing.Point(15, 13)
+        Me.CheckBoxEntermass.Location = New System.Drawing.Point(14, 14)
         Me.CheckBoxEntermass.Name = "CheckBoxEntermass"
         Me.CheckBoxEntermass.Size = New System.Drawing.Size(109, 17)
         Me.CheckBoxEntermass.TabIndex = 3
@@ -56,19 +56,10 @@ Partial Class ucSeparatorEditor
         Me.dgvSeparator.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvSeparator.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSeparator.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FromComponent, Me.FromComponentVolumeNumber, Me.FromFaceNumber, Me.ToComponent, Me.ToComponentVolumeNumber, Me.ToFaceNumber, Me.JunctionArea, Me.FFLossCo, Me.RFlossCo, Me.SubcooledDischargeCo, Me.LiquidMassFlow, Me.VaporMassFlow})
-        Me.dgvSeparator.Location = New System.Drawing.Point(15, 36)
+        Me.dgvSeparator.Location = New System.Drawing.Point(14, 37)
         Me.dgvSeparator.Name = "dgvSeparator"
-        Me.dgvSeparator.Size = New System.Drawing.Size(1178, 202)
+        Me.dgvSeparator.Size = New System.Drawing.Size(1172, 255)
         Me.dgvSeparator.TabIndex = 4
-        '
-        'cmdSave
-        '
-        Me.cmdSave.Location = New System.Drawing.Point(1118, 259)
-        Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
-        Me.cmdSave.TabIndex = 5
-        Me.cmdSave.Text = "Save"
-        Me.cmdSave.UseVisualStyleBackColor = True
         '
         'FromComponent
         '
@@ -132,15 +123,24 @@ Partial Class ucSeparatorEditor
         Me.VaporMassFlow.HeaderText = "Initial Vapor Velocity"
         Me.VaporMassFlow.Name = "VaporMassFlow"
         '
-        'ucSeparatorEditor
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(1111, 298)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 5
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
+        'ucBranchEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.dgvSeparator)
         Me.Controls.Add(Me.CheckBoxEntermass)
-        Me.Name = "ucSeparatorEditor"
-        Me.Size = New System.Drawing.Size(1204, 296)
+        Me.Name = "ucBranchEditor"
+        Me.Size = New System.Drawing.Size(1196, 340)
         CType(Me.dgvSeparator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -148,7 +148,6 @@ Partial Class ucSeparatorEditor
     End Sub
     Friend WithEvents CheckBoxEntermass As System.Windows.Forms.CheckBox
     Friend WithEvents dgvSeparator As System.Windows.Forms.DataGridView
-    Friend WithEvents cmdSave As System.Windows.Forms.Button
     Friend WithEvents FromComponent As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents FromComponentVolumeNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FromFaceNumber As System.Windows.Forms.DataGridViewComboBoxColumn
@@ -161,5 +160,6 @@ Partial Class ucSeparatorEditor
     Friend WithEvents SubcooledDischargeCo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LiquidMassFlow As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents VaporMassFlow As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class

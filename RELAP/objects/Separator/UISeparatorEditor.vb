@@ -19,15 +19,15 @@ Namespace RELAP.Editors
             End If
 
             If (editorService IsNot Nothing) Then
-                Dim selectionControl As New frmSeparator
+                Dim selectionControl As New formSeparatorEditor
 
-                'selectionControl.UcSeparatorEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
-                'selectionControl.UcSeparatorEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
-                'selectionControl.UcSeparatorEditor1.SeparatorJunctionsGeometry = value
+                selectionControl.UcSeparatorEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
+                selectionControl.UcSeparatorEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
+                selectionControl.UcSeparatorEditor1.SeparatorJunctionsGeometry = value
 
-                'editorService.ShowDialog(selectionControl)
+                editorService.ShowDialog(selectionControl)
 
-                'value = selectionControl.UcSeparatorEditor1.SeparatorJunctionsGeometry
+                value = selectionControl.UcSeparatorEditor1.SeparatorJunctionsGeometry
 
             End If
 

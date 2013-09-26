@@ -9,7 +9,24 @@
     '        _EnterMassorVelocity = value
     '    End Set
     'End Property
-
+    Private _toN As Integer
+    Public Property toN() As Integer
+        Get
+            Return _toN
+        End Get
+        Set(ByVal value As Integer)
+            _toN = value
+        End Set
+    End Property
+    Private _fromN As Integer
+    Public Property fromN() As Integer
+        Get
+            Return _fromN
+        End Get
+        Set(ByVal value As Integer)
+            _fromN = value
+        End Set
+    End Property
     Protected m_collection As Generic.SortedDictionary(Of Integer, SeparatorGeometry)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
@@ -138,24 +155,6 @@ End Class
             _SubcooledDischargeCo = value
         End Set
     End Property
-    Private _TwoPhaseDischargeCo As Double
-    Public Property TwoPhaseDischargeCo() As Double
-        Get
-            Return _TwoPhaseDischargeCo
-        End Get
-        Set(ByVal value As Double)
-            _TwoPhaseDischargeCo = value
-        End Set
-    End Property
-    Private _SuperheatedDischargeCo As Double
-    Public Property SuperheatedDischargeCo() As Double
-        Get
-            Return _SuperheatedDischargeCo
-        End Get
-        Set(ByVal value As Double)
-            _SuperheatedDischargeCo = value
-        End Set
-    End Property
 
     Private _LiquidMassFlow As Double
     Public Property LiquidMassFlow() As Double
@@ -176,11 +175,12 @@ End Class
             _VaporMassFlow = value
         End Set
     End Property
+   
 
 
 
     Public Sub New(ByVal FromComponent As String, ByVal FromComponentVolumeNumber As Double, ByVal FromFaceNumber As String, ByVal ToComponent As String, ByVal ToComponentVolumeNumber As Double, ByVal ToFaceNumber As String, ByVal JunctionArea As Double, ByVal FFLossCo As Double, ByVal RFlossCo As Double, _
-                   ByVal SubcooledDischargeCo As Double, ByVal TwoPhaseDischargeCo As Double, ByVal SuperheatedDischargeCo As Double, ByVal LiquidMassFlow As Double, ByVal VaporMassFlow As Double)
+                   ByVal SubcooledDischargeCo As Double, ByVal LiquidMassFlow As Double, ByVal VaporMassFlow As Double)
         Me._FromComponent = FromComponent
         Me._FromComponentVolumeNumber = FromComponentVolumeNumber
         Me._FromFaceNumber = FromFaceNumber
@@ -191,8 +191,6 @@ End Class
         Me._FFLossCo = FFLossCo
         Me._RFlossCo = RFlossCo
         Me._SubcooledDischargeCo = SubcooledDischargeCo
-        Me._TwoPhaseDischargeCo = TwoPhaseDischargeCo
-        Me._SuperheatedDischargeCo = SuperheatedDischargeCo
         Me._LiquidMassFlow = LiquidMassFlow
         Me._VaporMassFlow = VaporMassFlow
     End Sub

@@ -204,25 +204,6 @@ Namespace RELAP.SimulationObjects.UnitOps
                 m_InitialLiquidVelocity = value
             End Set
         End Property
-        Private _FromVolume As String
-        Public Property FromVolume() As String
-            Get
-                Return _FromVolume
-            End Get
-            Set(ByVal value As String)
-                _FromVolume = value
-            End Set
-        End Property
-        Private _ToVolume As String
-        Public Property ToVolume() As String
-            Get
-                Return _ToVolume
-            End Get
-            Set(ByVal value As String)
-                _ToVolume = value
-            End Set
-        End Property
-
 
         Private _pvterm As Boolean
         Public Property pvterm() As Boolean
@@ -298,8 +279,6 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             MyBase.CreateNew()
             Me.m_ComponentName = nome
-            Me._ToVolume = 1
-            Me._FromVolume = 1
             Me.m_ComponentDescription = descricao
             Me._SeparatorJunctionsGeometry = New SeparatorJunctionsGeometry
             Me._ThermoDynamicStates = New ThermoDynamicStates
@@ -677,26 +656,6 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .CustomEditor = New RELAP.Editors.UISeparatorEditor
                 End With
 
-
-                .Item.Add(("Modified PV term Applied"), Me, "pvterm", False, "2. Junction Control Flags", "Modified PV term Applied", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add(("CCFL Model"), Me, "CCFL", False, "2. Junction Control Flags", "CCFL Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-
-                .Item.Add("Stratification Entrainment Model", Me, "StratificationModel", False, "2. Junction Control Flags", "Horizontal Stratification Entrainment/Pullthrough Model", True)
-
-                .Item.Add(("Choking Model"), Me, "ChokingModel", False, "2. Junction Control Flags", "Choking Model", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
 
                 .Item.Add("Area Change", Me, "AreaChange", False, "2. Junction Control Flags", "Area Change Options", True)
 
