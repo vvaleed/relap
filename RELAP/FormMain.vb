@@ -3352,18 +3352,7 @@ sim:                Dim myStream As System.IO.FileStream
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
                     generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
                 Next kvp2
-                output1 = boolto10(kvp.Value.pvterm)
-                output2 = boolto10(kvp.Value.CCFL)
-                If kvp.Value.StratificationModel.ToString = "Dont_use_this_model" Then
-                    output3 = "0"
-                ElseIf kvp.Value.StratificationModel.ToString = "upward_oriented_junction" Then
-                    output3 = "1"
-                ElseIf kvp.Value.StratificationModel.ToString = "downward_oriented_junction" Then
-                    output3 = "2"
-                ElseIf kvp.Value.StratificationModel.ToString = "centrally_located_junction" Then
-                    output3 = "3"
-                End If
-                output4 = boolto01(kvp.Value.chokingModel)
+
                 If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
                     output5 = "0"
                 ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
@@ -3387,8 +3376,13 @@ sim:                Dim myStream As System.IO.FileStream
                 ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
                     output7 = "3"
                 End If
-                output8 = output1 & output2 & output3 & output4 & output5 & output6 & output7
+                output8 = output5 & output6 & output7
+                Dim counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, SeparatorGeometry) In kvp.Value.SeparatorJunctionsGeometry.SeparatorGeometry
 
+                    generate.WriteLine(kvp.Value.UID & counter & "101 " & kvp2.Value.FromComponent & CInt(kvp2.Value.FromComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.FromFaceNumber & " " & kvp2.Value.ToComponent & CInt(kvp2.Value.ToComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.ToFaceNumber & " " & kvp2.Value.JunctionArea.ToString("F") & " " & kvp2.Value.FFLossCo.ToString("F") & " " & kvp2.Value.RFlossCo.ToString("F") & " " & output8 & " " & kvp2.Value.SubcooledDischargeCo.ToString("F"))
+                    counter = counter + 1
+                Next kvp2
                 univID = univID + 1
 
             Next kvp

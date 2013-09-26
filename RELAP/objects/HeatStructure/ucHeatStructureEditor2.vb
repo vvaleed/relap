@@ -46,7 +46,6 @@
 
             dgvtab1.Rows.Add(myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count)
             Dim i = 1
-            'For Each row As DataGridViewRow In dgvtab1.Rows
             For i = 1 To myCOTK.HeatStructureBoundaryCond.BoundaryCondTab1.Count
 
                 Dim row As DataGridViewRow = dgvtab1.Rows(i - 1)
