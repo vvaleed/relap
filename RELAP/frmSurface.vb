@@ -1151,6 +1151,9 @@ Public Class frmSurface
                 ChildParent.Collections.ObjectCollection.Add(myValve.Name, myCOTK)
                 ChildParent.Collections.CLCS_ValveCollection.Add(myValve.Name, myCOTK)
             Case TipoObjeto.FuelRod
+                If My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value > 0 Then
+
+              
                 Dim myTank As New FuelRodGraphic(mpx, mpy, 10, 50, 0)
                 myTank.LineWidth = 2
                 myTank.Fill = True
@@ -1162,11 +1165,15 @@ Public Class frmSurface
                 gObj = myTank
                 gObj.Name = "FR-" & Guid.NewGuid.ToString
                 ChildParent.Collections.FuelRodCollection.Add(gObj.Name, myTank)
-               
+
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.FuelRod = New RELAP.SimulationObjects.UnitOps.FuelRod(myTank.Name, "FuelRod")
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
-                ChildParent.Collections.CLCS_FuelRodCollection.Add(myTank.Name, myCOTK)
+                    ChildParent.Collections.CLCS_FuelRodCollection.Add(myTank.Name, myCOTK)
+                Else
+                    MsgBox("Please Enter the Number of Axial Nodes before Adding Fuel Rod")
+                    Return ""
+                End If
             Case TipoObjeto.Simulator
                 Dim myTank As New SimulatorGraphic(mpx, mpy, 50, 50, 0)
                 myTank.LineWidth = 2
@@ -1179,7 +1186,7 @@ Public Class frmSurface
                 gObj = myTank
                 gObj.Name = "SIM-" & Guid.NewGuid.ToString
                 ChildParent.Collections.SimulatorCollection.Add(gObj.Name, myTank)
-                
+
                 Dim myCOTK As RELAP.SimulationObjects.UnitOps.Simulator = New RELAP.SimulationObjects.UnitOps.Simulator(myTank.Name, "Simulator")
                 myCOTK.GraphicObject = myTank
                 ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)

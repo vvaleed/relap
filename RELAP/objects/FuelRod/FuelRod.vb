@@ -668,13 +668,13 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-                valor = Me.ComponentName
-                'Tank Volume,Calculation parameters, Tank Volume
-                .Item.Add("Component Name", valor, False, "Initial Settings", "Word 2 is 'fuel' which is constant for fuel", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(String)
-                End With
+                'valor = Me.ComponentName
+                ''Tank Volume,Calculation parameters, Tank Volume
+                '.Item.Add("Component Name", valor, False, "Initial Settings", "Word 2 is 'fuel' which is constant for fuel", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(String)
+                'End With
 
 
                 valor = Me.NumberOfRods
@@ -719,33 +719,33 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format((Me.FuelPelletRadius), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Fuel pellet radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.00385 m ≤ x ≤ 0.00685 m", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.FuelPelletRadius), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Fuel pellet radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.00385 m ≤ x ≤ 0.00685 m", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format((Me.InnerCladdingRadius), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Inner cladding radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.003935 m ≤ x ≤ 0.00634 m", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.InnerCladdingRadius), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Inner cladding radius "), su.distance), valor, False, "Fuel Rod Dimensions", "0.003935 m ≤ x ≤ 0.00634 m", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format((Me.OuterCladdingRadius), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(RELAP.App.GetLocalString("Outer cladding radius"), su.distance), valor, False, "Fuel Rod Dimensions", "0.00457 m ≤ x ≤ 0.00715 m", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.OuterCladdingRadius), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(RELAP.App.GetLocalString("Outer cladding radius"), su.distance), valor, False, "Fuel Rod Dimensions", "0.00457 m ≤ x ≤ 0.00715 m", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Me.FuelRodDimensionsAxialNode
-                .Item.Add("Axial node", valor, False, "Fuel Rod Dimensions", "Hypothetical axis lines", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.FuelRodDimensionsAxialNode
+                '.Item.Add("Axial node", valor, False, "Fuel Rod Dimensions", "Hypothetical axis lines", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
                 valor = Format((Me.ControlVolumeAbove), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT(("Control Volume Above"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
@@ -761,26 +761,26 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.ControlVolumeNumber
-                .Item.Add("Control Volume Number", valor, False, "Hydraulic Volumes", "Starting from node 1 upwards axially", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.ControlVolumeNumber
+                '.Item.Add("Control Volume Number", valor, False, "Hydraulic Volumes", "Starting from node 1 upwards axially", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
-                valor = Me.Increment
-                .Item.Add("Increment", valor, False, "Hydraulic Volumes", "From 1st to last node.Can be 0,+ve,-ve", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.Increment
+                '.Item.Add("Increment", valor, False, "Hydraulic Volumes", "From 1st to last node.Can be 0,+ve,-ve", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
-                valor = Me.HydraulicVolumesAxialNode
-                .Item.Add("Axial Node", valor, False, "Hydraulic Volumes", " ", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.HydraulicVolumesAxialNode
+                '.Item.Add("Axial Node", valor, False, "Hydraulic Volumes", " ", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
                 valor = Format((Me.RadiusToRadialNode1), FlowSheet.Options.NumberFormat)
                 .Item.Add(FT(("Radius To Radial Node 1"), su.distance), valor, False, "Radial Mesh Spacing", "", True)

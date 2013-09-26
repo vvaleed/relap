@@ -122,7 +122,7 @@ Partial Class FormMain
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NovoToolStripMenuItem, Me.OpenToolStripMenuItem, Me.toolStripSeparator, Me.SaveToolStripMenuItem, Me.SaveAllToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripSeparator2, Me.CloseAllToolstripMenuItem, Me.toolStripSeparator1, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(35, 20)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'NovoToolStripMenuItem
@@ -138,7 +138,7 @@ Partial Class FormMain
         Me.NewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
         Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.NewToolStripMenuItem.Text = "&Steady-state Simulation"
         Me.NewToolStripMenuItem.Visible = False
         '
@@ -146,7 +146,7 @@ Partial Class FormMain
         '
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.page_white
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Name = "NovoEstudoDoCriadorDeComponentesToolStripMenuItem"
-        Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Text = "Compound Creator Study"
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem.Visible = False
         '
@@ -154,7 +154,7 @@ Partial Class FormMain
         '
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.page_white
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Name = "NovoEstudoDeRegressãoDeDadosToolStripMenuItem"
-        Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Text = "Data Regression Study"
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem.Visible = False
         '
@@ -232,14 +232,14 @@ Partial Class FormMain
         Me.VerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreferênciasDoRELAPToolStripMenuItem, Me.MostrarBarraDeFerramentasToolStripMenuItem})
         Me.VerToolStripMenuItem.Name = "VerToolStripMenuItem"
         Me.VerToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.VerToolStripMenuItem.Text = "&Settings"
         '
         'PreferênciasDoRELAPToolStripMenuItem
         '
         Me.PreferênciasDoRELAPToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_edit
         Me.PreferênciasDoRELAPToolStripMenuItem.Name = "PreferênciasDoRELAPToolStripMenuItem"
-        Me.PreferênciasDoRELAPToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.PreferênciasDoRELAPToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.PreferênciasDoRELAPToolStripMenuItem.Text = "General Settings"
         '
         'MostrarBarraDeFerramentasToolStripMenuItem
@@ -248,7 +248,7 @@ Partial Class FormMain
         Me.MostrarBarraDeFerramentasToolStripMenuItem.CheckOnClick = True
         Me.MostrarBarraDeFerramentasToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.MostrarBarraDeFerramentasToolStripMenuItem.Name = "MostrarBarraDeFerramentasToolStripMenuItem"
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.MostrarBarraDeFerramentasToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.MostrarBarraDeFerramentasToolStripMenuItem.Text = "Show Toolstrip"
         '
         'RunToolStripMenuItem
@@ -262,13 +262,13 @@ Partial Class FormMain
         'GenerateInputFileOnlyToolStripMenuItem
         '
         Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
-        Me.GenerateInputFileOnlyToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
+        Me.GenerateInputFileOnlyToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.GenerateInputFileOnlyToolStripMenuItem.Text = "Generate Input File Only"
         '
         'GenerateInputFileAndRunToolStripMenuItem
         '
         Me.GenerateInputFileAndRunToolStripMenuItem.Name = "GenerateInputFileAndRunToolStripMenuItem"
-        Me.GenerateInputFileAndRunToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
+        Me.GenerateInputFileAndRunToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.GenerateInputFileAndRunToolStripMenuItem.Text = "Generate Input File and Run"
         '
         'WindowsMenu
@@ -276,7 +276,7 @@ Partial Class FormMain
         Me.WindowsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CascadeToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.TileHorizontalToolStripMenuItem})
         Me.WindowsMenu.MergeIndex = 102
         Me.WindowsMenu.Name = "WindowsMenu"
-        Me.WindowsMenu.Size = New System.Drawing.Size(62, 20)
+        Me.WindowsMenu.Size = New System.Drawing.Size(68, 20)
         Me.WindowsMenu.Text = "&Windows"
         '
         'CascadeToolStripMenuItem
@@ -285,7 +285,7 @@ Partial Class FormMain
         Me.CascadeToolStripMenuItem.CheckOnClick = True
         Me.CascadeToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_cascade
         Me.CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
-        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.CascadeToolStripMenuItem.Text = "&Cascade"
         '
         'TileVerticalToolStripMenuItem
@@ -294,7 +294,7 @@ Partial Class FormMain
         Me.TileVerticalToolStripMenuItem.CheckOnClick = True
         Me.TileVerticalToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_tile_horizontal
         Me.TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
-        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.TileVerticalToolStripMenuItem.Text = "Group &Vertically"
         '
         'TileHorizontalToolStripMenuItem
@@ -303,7 +303,7 @@ Partial Class FormMain
         Me.TileHorizontalToolStripMenuItem.CheckOnClick = True
         Me.TileHorizontalToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_tile_vertical
         Me.TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
-        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.TileHorizontalToolStripMenuItem.Text = "Group &Horizontally"
         '
         'HelpToolStripMenuItem
@@ -312,7 +312,7 @@ Partial Class FormMain
         Me.HelpToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.HelpToolStripMenuItem.MergeIndex = 102
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "&Help"
         '
         'ContentsToolStripMenuItem
@@ -320,59 +320,59 @@ Partial Class FormMain
         Me.ContentsToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.help
         Me.ContentsToolStripMenuItem.Name = "ContentsToolStripMenuItem"
         Me.ContentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.ContentsToolStripMenuItem.Text = "&Show Help"
         '
         'toolStripSeparator5
         '
         Me.toolStripSeparator5.Name = "toolStripSeparator5"
-        Me.toolStripSeparator5.Size = New System.Drawing.Size(182, 6)
+        Me.toolStripSeparator5.Size = New System.Drawing.Size(175, 6)
         '
         'RELAPNaInternetToolStripMenuItem
         '
         Me.RELAPNaInternetToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlogDeDesenvolvimentoToolStripMenuItem, Me.DownloadsToolStripMenuItem, Me.WikiToolStripMenuItem, Me.ForumToolStripMenuItem, Me.RastreamentoDeBugsToolStripMenuItem})
         Me.RELAPNaInternetToolStripMenuItem.Name = "RELAPNaInternetToolStripMenuItem"
-        Me.RELAPNaInternetToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.RELAPNaInternetToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.RELAPNaInternetToolStripMenuItem.Text = "RELAP on the Web"
         '
         'BlogDeDesenvolvimentoToolStripMenuItem
         '
         Me.BlogDeDesenvolvimentoToolStripMenuItem.Image = CType(resources.GetObject("BlogDeDesenvolvimentoToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlogDeDesenvolvimentoToolStripMenuItem.Name = "BlogDeDesenvolvimentoToolStripMenuItem"
-        Me.BlogDeDesenvolvimentoToolStripMenuItem.Size = New System.Drawing.Size(304, 22)
+        Me.BlogDeDesenvolvimentoToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
         Me.BlogDeDesenvolvimentoToolStripMenuItem.Text = "Development Blog"
         '
         'DownloadsToolStripMenuItem
         '
         Me.DownloadsToolStripMenuItem.Image = CType(resources.GetObject("DownloadsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.DownloadsToolStripMenuItem.Name = "DownloadsToolStripMenuItem"
-        Me.DownloadsToolStripMenuItem.Size = New System.Drawing.Size(304, 22)
+        Me.DownloadsToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
         Me.DownloadsToolStripMenuItem.Text = "Downloads"
         '
         'WikiToolStripMenuItem
         '
         Me.WikiToolStripMenuItem.Image = CType(resources.GetObject("WikiToolStripMenuItem.Image"), System.Drawing.Image)
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(304, 22)
+        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
         Me.WikiToolStripMenuItem.Text = "Wiki"
         '
         'ForumToolStripMenuItem
         '
         Me.ForumToolStripMenuItem.Name = "ForumToolStripMenuItem"
-        Me.ForumToolStripMenuItem.Size = New System.Drawing.Size(304, 22)
+        Me.ForumToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
         '
         'RastreamentoDeBugsToolStripMenuItem
         '
         Me.RastreamentoDeBugsToolStripMenuItem.Image = CType(resources.GetObject("RastreamentoDeBugsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.RastreamentoDeBugsToolStripMenuItem.Name = "RastreamentoDeBugsToolStripMenuItem"
-        Me.RastreamentoDeBugsToolStripMenuItem.Size = New System.Drawing.Size(304, 22)
+        Me.RastreamentoDeBugsToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
         Me.RastreamentoDeBugsToolStripMenuItem.Text = "Bug Tracking / Feature and Support Requests"
         '
         'RegistroToolStripMenuItem
         '
         Me.RegistroToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegistrarTiposCOMToolStripMenuItem, Me.DeToolStripMenuItem})
         Me.RegistroToolStripMenuItem.Name = "RegistroToolStripMenuItem"
-        Me.RegistroToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.RegistroToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.RegistroToolStripMenuItem.Text = "Registry"
         '
         'RegistrarTiposCOMToolStripMenuItem
@@ -391,7 +391,7 @@ Partial Class FormMain
         '
         Me.DonateToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.money_add
         Me.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem"
-        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.DonateToolStripMenuItem.Text = "Donate!"
         '
         'AboutToolStripMenuItem
@@ -399,7 +399,7 @@ Partial Class FormMain
         Me.AboutToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.information
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.AboutToolStripMenuItem.Text = "&About RELAP..."
         '
         'ToolStrip1
