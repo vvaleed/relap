@@ -607,7 +607,6 @@ Partial Class FormMain
         '
         'TimerBackup
         '
-        Me.TimerBackup.Enabled = True
         '
         'bgSaveBackup
         '
