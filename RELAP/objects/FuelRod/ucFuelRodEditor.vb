@@ -13,6 +13,9 @@ Public Class ucFuelRodEditor
         End Set
     End Property
 
+
+
+
     Private Sub ucFuelRodEditor_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If dgvFuelRodDimensions.RowCount = 0 Then
             dgvFuelRodDimensions.Rows.Add(My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value)
@@ -40,24 +43,27 @@ Public Class ucFuelRodEditor
             Next
 
         End If
+        cboControlVolumeAbove.DisplayMember = "Tag"
+        cboControlVolumeAbove.ValueMember = "Value"
+        cboControlVolumeBelow.DisplayMember = "Tag"
+        cboControlVolumeBelow.ValueMember = "Value"
+        cboComponent.DisplayMember = "Tag"
+        cboComponent.ValueMember = "Value"
+
         Try
-            cboControlVolumeAbove.DisplayMember = "Tag"
-            cboControlVolumeAbove.ValueMember = "Value"
-            cboControlVolumeBelow.DisplayMember = "Tag"
-            cboControlVolumeBelow.ValueMember = "Value"
-           
+            cboComponent.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
             cboControlVolumeAbove.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
             cboControlVolumeBelow.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
 
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
     End Sub
 
     Private Sub cmdSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSave.Click
         Dim obj = My.Application.ActiveSimulation.Collections.CLCS_FuelRodCollection(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject.Name)
-        obj.ControlVolumeAbove = cboControlVolumeAbove.SelectedValue & txtVolumeAbove.Text.ToString("D2") & "0000"
-        obj.ControlVolumeBelow = cboControlVolumeBelow.SelectedValue & txtVolumebelow.Text.ToString("D2") & "0000"
+        obj.ControlVolumeAbove = cboControlVolumeAbove.SelectedItem.value & txtVolumeAbove.Text.ToString("D2") & "0000"
+        obj.ControlVolumeBelow = cboControlVolumeBelow.SelectedItem.value & txtVolumebelow.Text.ToString("D2") & "0000"
         
 
         If Not Me.FuelRodDetails Is Nothing Then
@@ -67,8 +73,23 @@ Public Class ucFuelRodEditor
         For Each row As DataGridViewRow In Me.dgvFuelRodDimensions.Rows
             Me.FuelRodDetails.FuelRodDimensions.Add(row.Index + 1, New FuelRodDimensions(row.Cells(1).Value, row.Cells(2).Value, row.Cells(3).Value, row.Cells(0).Value))
         Next
+        For Each row As DataGridViewRow In Me.dgvHyrdraulicVolumes.Rows
+            Me.FuelRodDetails.HyrdraulicVolumes.Add(row.Index + 1, New HydraulicVolumes(RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000", row.Cells(2).Value, row.Cells(3).Value))
+        Next
+        For Each row As DataGridViewRow In Me.dgvRadialMeshSpacing.Rows
+            Me.FuelRodDetails.RadialMeshSpacing.Add(row.Index + 1, New RadialMeshSpacing(row.Cells(0).Value, row.Cells(2).Value, row.Cells(1).Value, row.Cells(3).Value))
+        Next
+        For Each row As DataGridViewRow In Me.dgvInitialTemperatures.Rows
+            Dim str As String = ""
+            For Each cell As DataGridViewCell In row.Cells
+                str = str & " " & cell.Value
+            Next
+            Me.FuelRodDetails.InitialTemperatures.Add(row.Index + 1, str)
+        Next
+        obj.MaterialIndexNearCenter = cboMaterial1.SelectedItem.value
+        obj.MaterialIndexNextToCenter = cboMaterial2.SelectedItem.value
+        obj.MaterialIndexNthLayer = cboMaterial3.SelectedItem.value
 
-        
     End Sub
 
     Private Sub cmdCopy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCopy.Click
@@ -107,6 +128,21 @@ Public Class ucFuelRodEditor
 
 
         Next
+    End Sub
+
+    Private Sub dgvFuelRodDimensions_RowHeaderMouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvFuelRodDimensions.RowHeaderMouseClick
+        If dgvFuelRodDimensions.SelectedRows.Count = 1 Then
+            cmdCopy.Enabled = True
+            cmdCopytoAll.Enabled = True
+        Else
+            cmdCopy.Enabled = False
+            cmdCopytoAll.Enabled = False
+        End If
+        If dgvFuelRodDimensions.SelectedRows.Count > 0 Then
+            cmdPaste.Enabled = True
+        Else
+            cmdPaste.Enabled = True
+        End If
     End Sub
 End Class
 
