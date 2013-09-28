@@ -30,7 +30,7 @@ Partial Class frmPipeEditor
         Me.VerticalAngle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VolumeofVolume = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WallRoughness = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UcPipeEditor1 = New ucFuelRodEditor()
+        Me.UcPipeEditor1 = New ucPipeEditor()
         Me.SuspendLayout()
         '
         'VolumeNumber
@@ -104,5 +104,5 @@ Partial Class frmPipeEditor
     Friend WithEvents VerticalAngle As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents VolumeofVolume As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents WallRoughness As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents UcPipeEditor1 As ucFuelRodEditor
+    Friend WithEvents UcPipeEditor1 As ucPipeEditor
 End Class

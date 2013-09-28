@@ -94,45 +94,17 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_FuelPelletRadius As Double
-        Public Property FuelPelletRadius() As Double
+        Private m_FuelRodDetails As FuelRodDetails
+        Public Property FuelRodDetails() As FuelRodDetails
             Get
-                Return m_FuelPelletRadius
+                Return m_FuelRodDetails
             End Get
-            Set(ByVal value As Double)
-                m_FuelPelletRadius = value
+            Set(ByVal value As FuelRodDetails)
+                m_FuelRodDetails = value
             End Set
         End Property
 
-        Private m_InnerCladdingRadius As Double
-        Public Property InnerCladdingRadius() As Double
-            Get
-                Return m_InnerCladdingRadius
-            End Get
-            Set(ByVal value As Double)
-                m_InnerCladdingRadius = value
-            End Set
-        End Property
 
-        Private m_OuterCladdingRadius As Double
-        Public Property OuterCladdingRadius() As Double
-            Get
-                Return m_OuterCladdingRadius
-            End Get
-            Set(ByVal value As Double)
-                m_OuterCladdingRadius = value
-            End Set
-        End Property
-
-        Private m_FuelRodDimensionsAxialNode As Integer
-        Public Property FuelRodDimensionsAxialNode() As Integer
-            Get
-                Return m_FuelRodDimensionsAxialNode
-            End Get
-            Set(ByVal value As Integer)
-                m_FuelRodDimensionsAxialNode = value
-            End Set
-        End Property
 
         Private m_ControlVolumeAbove As Double
         Public Property ControlVolumeAbove() As Double
@@ -747,19 +719,19 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultType = GetType(Integer)
                 'End With
 
-                valor = Format((Me.ControlVolumeAbove), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Control Volume Above"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.ControlVolumeAbove), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Control Volume Above"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format((Me.ControlVolumeBelow), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Control Volume Below"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.ControlVolumeBelow), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Control Volume Below"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Heat sinks for bottom", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
                 'valor = Me.ControlVolumeNumber
                 '.Item.Add("Control Volume Number", valor, False, "Hydraulic Volumes", "Starting from node 1 upwards axially", True)
@@ -824,26 +796,26 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Me.MaterialIndexNearCenter
-                .Item.Add("Material Index Near Center", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.MaterialIndexNearCenter
+                '.Item.Add("Material Index Near Center", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
-                valor = Me.MaterialIndexNextToCenter
-                .Item.Add("Material Index Next To Center", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.MaterialIndexNextToCenter
+                '.Item.Add("Material Index Next To Center", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
-                valor = Me.MaterialIndexNthLayer
-                .Item.Add("Material Index Nth Layer", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.MaterialIndexNthLayer
+                '.Item.Add("Material Index Nth Layer", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
                 valor = Me.Fraction
                 .Item.Add("Fraction", valor, False, "Power Multiplier", "The range is 0.0 ≤ x ≤ 1.0, default is 0.0", True)
@@ -1076,7 +1048,75 @@ Namespace RELAP.SimulationObjects.UnitOps
             Return value
         End Function
     End Class
+    <Serializable()> Public Class FuelRodDetails
+        Protected m_collection As Generic.SortedDictionary(Of Integer, FuelRodDimensions)
+        ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
+        Public Property FuelRodDimensions() As Generic.SortedDictionary(Of Integer, FuelRodDimensions)
+            Get
+                Return m_collection
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, FuelRodDimensions))
+                m_collection = value
+            End Set
+        End Property
+
+        Public Sub New()
+            m_collection = New Generic.SortedDictionary(Of Integer, FuelRodDimensions)
+
+        End Sub
+        Public Overrides Function ToString() As String
+            Return "Click to Edit..."
+        End Function
+
+    End Class
+    <Serializable()> Public Class FuelRodDimensions
+        Private m_FuelPelletRadius As Double
+        Public Property FuelPelletRadius() As Double
+            Get
+                Return m_FuelPelletRadius
+            End Get
+            Set(ByVal value As Double)
+                m_FuelPelletRadius = value
+            End Set
+        End Property
+
+        Private m_InnerCladdingRadius As Double
+        Public Property InnerCladdingRadius() As Double
+            Get
+                Return m_InnerCladdingRadius
+            End Get
+            Set(ByVal value As Double)
+                m_InnerCladdingRadius = value
+            End Set
+        End Property
+
+        Private m_OuterCladdingRadius As Double
+        Public Property OuterCladdingRadius() As Double
+            Get
+                Return m_OuterCladdingRadius
+            End Get
+            Set(ByVal value As Double)
+                m_OuterCladdingRadius = value
+            End Set
+        End Property
+
+        Private m_FuelRodDimensionsAxialNode As Integer
+        Public Property FuelRodDimensionsAxialNode() As Integer
+            Get
+                Return m_FuelRodDimensionsAxialNode
+            End Get
+            Set(ByVal value As Integer)
+                m_FuelRodDimensionsAxialNode = value
+            End Set
+        End Property
+        Public Sub New(ByVal FuelPelletRadius As Double, ByVal InnerCladdingRadius As Double, ByVal OuterCladdingRadius As Double, ByVal AxialNode As Integer)
+            Me.m_FuelPelletRadius = FuelPelletRadius
+            Me.m_FuelRodDimensionsAxialNode = AxialNode
+            m_InnerCladdingRadius = InnerCladdingRadius
+            m_OuterCladdingRadius = OuterCladdingRadius
+        End Sub
+    End Class
 End Namespace
 
 

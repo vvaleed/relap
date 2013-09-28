@@ -3103,24 +3103,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next kvp
 
 
-            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
-                generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
-                generate.WriteLine("*======================================================================")
-                Dim temp As Int16
-                temp = kvp.Value.UID
-                Dim CID As String
-                CID = temp.ToString("D2")
-                generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
-
-                output = "40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup
-                generate.WriteLine(output)
-                output = "40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume
-                generate.WriteLine(output)
-                output = "40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow
-                generate.WriteLine(output)
-
-            Next kvp
+          
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.pipe) In ChildParent.Collections.CLCS_PipeCollection
                 '  MsgBox(kvp.Key)
@@ -3625,6 +3608,64 @@ sim:                Dim myStream As System.IO.FileStream
                 Next kvp2
             Next kvp
 
+            generate.WriteLine("*======================================================================")
+            generate.WriteLine("*          General Core Input                                          ")
+            generate.WriteLine("*======================================================================")
+
+            generate.WriteLine("40000100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Text & " 1 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPowerHistoryTy.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboOxideShatteringTrip.SelectedValue)
+
+            card = 40000201
+            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvAxialNodeHeights.Rows
+                generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(0).Value)
+                card = card + 1
+            Next
+
+
+            generate.WriteLine("40000300 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTemperatureforFailure.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtFractionofOxidation.Text &
+                                " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtHoopStrainThreshold.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboModelsforFailure.SelectedValue)
+
+            generate.WriteLine("40000310 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtFractionofSurfaceArea.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtSurfaceTemperature.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtVelocityofDropsofCladding.Text)
+
+            generate.WriteLine("40000320 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMultiplicationFactor.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFractionalFlowArea.Text)
+
+            generate.WriteLine("40000330 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboFuelRodDisintegration.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTemperatureaboveSaturation.Text)
+
+            generate.WriteLine("40000400 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtGammaHeatingFraction.Text)
+
+            generate.WriteLine("40000500 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtRuptureStrain.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTransitionStrain.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtLimitsStrain.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPressureDropFlag.SelectedValue)
+
+            generate.WriteLine("40000600 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboSourceofData.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTableorControlVariableNumber.Text)
+            output = "40001000 "
+            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvGridSpacer.Rows
+                output = output & " " & row.Cells(0).Value
+            Next
+            generate.WriteLine(output)
+            card = 40001001
+            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvGridSpacer.Rows
+                generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(2).Value & " " & row.Cells(3).Value & " " & row.Cells(4).Value & " " & row.Cells(0).Value)
+                card = card + 1
+            Next
+
+            generate.WriteLine("40001100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboCoreSlumpingModel.SelectedValue)
+
+            card = 40001101
+
+            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
+                generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
+                card = card + 1
+
+            Next
+
+            card = 40001201
+            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
+                generate.WriteLine(card & " " & row.Cells(2).Value)
+                card = card + 1
+            Next
+
+
+            generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
+
+
             Dim a As Integer = 1
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*          Control Components                                          ")
@@ -3722,6 +3763,23 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
 
             Next
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                Dim temp As Int16
+                temp = kvp.Value.UID
+                Dim CID As String
+                CID = temp.ToString("D2")
+                generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
+
+                generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
+                generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
+
+                generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
+          
+            Next kvp
             generate.WriteLine(".")
             generate.Close()
             MsgBox("File Saved")

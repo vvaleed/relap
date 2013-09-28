@@ -19,15 +19,14 @@ Namespace RELAP.Editors
             End If
 
             If (editorService IsNot Nothing) Then
-                Dim selectionControl As New frmPipeEditor
+                Dim selectionControl As New frmFuelRodEditor
 
-                selectionControl.UcPipeEditor1.SystemOfUnits = My.Application.ActiveSimulation.Options.SelectedUnitSystem
-                selectionControl.UcPipeEditor1.NumberFormat = My.Application.ActiveSimulation.Options.NumberFormat
-                selectionControl.UcPipeEditor1.Profile = value
+        
+                'selectionControl.UcPipeEditor1.Profile = value
 
-                editorService.ShowDialog(selectionControl)
+                'editorService.ShowDialog(selectionControl)
 
-                value = selectionControl.UcPipeEditor1.Profile
+                'value = selectionControl.UcPipeEditor1.Profile
 
             End If
 
