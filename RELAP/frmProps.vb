@@ -521,6 +521,8 @@ Public Class frmProps
                 pp.TF2 = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("TF0, Friction Torque Cooefficient") Then
                 pp.TF0 = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("TF1, Friction Torque Cooefficient") Then
+                pp.TF1 = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("TF3, Friction Torque Cooefficient") Then
                 pp.TF3 = e.ChangedItem.Value
             

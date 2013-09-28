@@ -70,6 +70,23 @@ Public Class ucPump
                 row.Cells(1).Value = myCOTK.PumpData.Propumpdata202(i).Torque
             Next
         End If
+
+        TxtTab501.Text = PumpData.TripNumberTab5
+        TxtTab502.Text = PumpData.AlphanumericTab5
+        TxtTab503.Text = PumpData.NumericTab5
+        If myCOTK.PumpData.Propumpdata501.Count = 0 Then
+            dgvTab501.Rows.Add(1)
+            dgvTab501.Rows(0).Cells(0).Value = 0
+            dgvTab501.Rows(0).Cells(1).Value = 0
+        Else
+            dgvTab501.Rows.Add(myCOTK.PumpData.Propumpdata501.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.PumpData.Propumpdata501.Count
+                Dim row As DataGridViewRow = dgvTab501.Rows(i - 1)
+                row.Cells(0).Value = myCOTK.PumpData.Propumpdata501(i).SearchVariable
+                row.Cells(1).Value = myCOTK.PumpData.Propumpdata501(i).PumpVelocity
+            Next
+        End If
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
@@ -94,6 +111,19 @@ Public Class ucPump
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             Me.PumpData.Propumpdata202.Add(row.Index + 1, New pumpdata202(v1, v2))
+        Next
+
+        PumpData.TripNumberTab5 = TxtTab501.Text
+        PumpData.AlphanumericTab5 = TxtTab502.Text
+        PumpData.NumericTab5 = TxtTab503.Text
+        If Not Me.PumpData Is Nothing Then
+            Me.PumpData.Propumpdata501.Clear()
+        End If
+        For i = 0 To dgvTab501.Rows.Count - 2
+            row = dgvTab501.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.PumpData.Propumpdata501.Add(row.Index + 1, New pumpdata501(v1, v2))
         Next
     End Sub
     Private Sub CmbBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbBox1.SelectedIndexChanged
@@ -163,10 +193,36 @@ Public Class ucPump
     Private Sub CmbBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbBox5.SelectedIndexChanged
         If CmbBox5.SelectedIndex = 0 Then
             PumpData.cmbboxindex5 = "0"
+            TextBox8.Hide()
+            TextBox9.Hide()
+            TextBox10.Hide()
+            TextBox13.Hide()
+            TxtTab501.Hide()
+            TxtTab502.Hide()
+            TxtTab503.Hide()
+            dgvTab501.Hide()
+            dgvTab501.Rows.Clear()
         ElseIf CmbBox5.SelectedIndex = 1 Then
             PumpData.cmbboxindex5 = "1"
+            TextBox8.Show()
+            TextBox9.Show()
+            TextBox10.Show()
+            TextBox13.Show()
+            TxtTab501.Show()
+            TxtTab502.Show()
+            TxtTab503.Show()
+            dgvTab501.Show()
         ElseIf CmbBox5.SelectedIndex = 2 Then
             PumpData.cmbboxindex5 = "2"
+            TextBox8.Hide()
+            TextBox9.Hide()
+            TextBox10.Hide()
+            TextBox13.Hide()
+            TxtTab501.Hide()
+            TxtTab502.Hide()
+            TxtTab503.Hide()
+            dgvTab501.Hide()
+            dgvTab501.Rows.Clear()
         End If
     End Sub
    

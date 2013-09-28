@@ -22,9 +22,9 @@ Partial Class ucPump
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Tab11 = New System.Windows.Forms.TabPage()
         Me.CmbBox1 = New System.Windows.Forms.ComboBox()
@@ -50,6 +50,16 @@ Partial Class ucPump
         Me.CmbBox5 = New System.Windows.Forms.ComboBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.cmdSave = New System.Windows.Forms.Button()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.TxtTab503 = New System.Windows.Forms.TextBox()
+        Me.TxtTab502 = New System.Windows.Forms.TextBox()
+        Me.TxtTab501 = New System.Windows.Forms.TextBox()
+        Me.dgvTab501 = New System.Windows.Forms.DataGridView()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.SearchVariable = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PumpVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.Tab11.SuspendLayout()
         Me.Tab2.SuspendLayout()
@@ -58,6 +68,7 @@ Partial Class ucPump
         Me.Tab3.SuspendLayout()
         Me.Tab4.SuspendLayout()
         Me.Tab5.SuspendLayout()
+        CType(Me.dgvTab501, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -80,7 +91,7 @@ Partial Class ucPump
         Me.Tab11.Location = New System.Drawing.Point(4, 22)
         Me.Tab11.Name = "Tab11"
         Me.Tab11.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab11.Size = New System.Drawing.Size(759, 429)
+        Me.Tab11.Size = New System.Drawing.Size(762, 414)
         Me.Tab11.TabIndex = 0
         Me.Tab11.Text = "Pump Table Data Indicator"
         Me.Tab11.UseVisualStyleBackColor = True
@@ -117,7 +128,7 @@ Partial Class ucPump
         Me.Tab2.Location = New System.Drawing.Point(4, 22)
         Me.Tab2.Name = "Tab2"
         Me.Tab2.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab2.Size = New System.Drawing.Size(759, 429)
+        Me.Tab2.Size = New System.Drawing.Size(762, 414)
         Me.Tab2.TabIndex = 1
         Me.Tab2.Text = "Two Phase Index"
         Me.Tab2.UseVisualStyleBackColor = True
@@ -149,34 +160,34 @@ Partial Class ucPump
         'dgvtab202
         '
         Me.dgvtab202.AccessibleDescription = "                            "
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvtab202.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvtab202.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvtab202.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvtab202.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Voidfraction2, Me.Torque})
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvtab202.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvtab202.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvtab202.Location = New System.Drawing.Point(309, 85)
         Me.dgvtab202.Name = "dgvtab202"
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvtab202.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvtab202.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvtab202.Size = New System.Drawing.Size(256, 316)
         Me.dgvtab202.TabIndex = 31
         '
@@ -240,7 +251,7 @@ Partial Class ucPump
         Me.Tab3.Location = New System.Drawing.Point(4, 22)
         Me.Tab3.Name = "Tab3"
         Me.Tab3.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab3.Size = New System.Drawing.Size(759, 429)
+        Me.Tab3.Size = New System.Drawing.Size(762, 414)
         Me.Tab3.TabIndex = 2
         Me.Tab3.Text = "Two Phase Difference Table Index"
         Me.Tab3.UseVisualStyleBackColor = True
@@ -302,6 +313,14 @@ Partial Class ucPump
         '
         'Tab5
         '
+        Me.Tab5.Controls.Add(Me.TextBox13)
+        Me.Tab5.Controls.Add(Me.dgvTab501)
+        Me.Tab5.Controls.Add(Me.TxtTab501)
+        Me.Tab5.Controls.Add(Me.TxtTab502)
+        Me.Tab5.Controls.Add(Me.TxtTab503)
+        Me.Tab5.Controls.Add(Me.TextBox10)
+        Me.Tab5.Controls.Add(Me.TextBox9)
+        Me.Tab5.Controls.Add(Me.TextBox8)
         Me.Tab5.Controls.Add(Me.CmbBox5)
         Me.Tab5.Controls.Add(Me.TextBox5)
         Me.Tab5.Location = New System.Drawing.Point(4, 22)
@@ -342,6 +361,96 @@ Partial Class ucPump
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
         '
+        'TextBox8
+        '
+        Me.TextBox8.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox8.Location = New System.Drawing.Point(18, 79)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.ReadOnly = True
+        Me.TextBox8.Size = New System.Drawing.Size(83, 13)
+        Me.TextBox8.TabIndex = 30
+        Me.TextBox8.Text = "Trip Number"
+        '
+        'TextBox9
+        '
+        Me.TextBox9.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox9.Location = New System.Drawing.Point(185, 79)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.ReadOnly = True
+        Me.TextBox9.Size = New System.Drawing.Size(250, 13)
+        Me.TextBox9.TabIndex = 31
+        Me.TextBox9.Text = "Alphanumeric part of variable request code"
+        '
+        'TextBox10
+        '
+        Me.TextBox10.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox10.Location = New System.Drawing.Point(520, 79)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.ReadOnly = True
+        Me.TextBox10.Size = New System.Drawing.Size(225, 13)
+        Me.TextBox10.TabIndex = 32
+        Me.TextBox10.Text = "Numeric part of variable request code"
+        '
+        'TxtTab503
+        '
+        Me.TxtTab503.Location = New System.Drawing.Point(571, 107)
+        Me.TxtTab503.Name = "TxtTab503"
+        Me.TxtTab503.Size = New System.Drawing.Size(100, 20)
+        Me.TxtTab503.TabIndex = 33
+        '
+        'TxtTab502
+        '
+        Me.TxtTab502.Location = New System.Drawing.Point(249, 107)
+        Me.TxtTab502.Name = "TxtTab502"
+        Me.TxtTab502.Size = New System.Drawing.Size(139, 20)
+        Me.TxtTab502.TabIndex = 34
+        '
+        'TxtTab501
+        '
+        Me.TxtTab501.Location = New System.Drawing.Point(18, 107)
+        Me.TxtTab501.Name = "TxtTab501"
+        Me.TxtTab501.Size = New System.Drawing.Size(100, 20)
+        Me.TxtTab501.TabIndex = 35
+        '
+        'dgvTab501
+        '
+        Me.dgvTab501.AccessibleDescription = "                            "
+        Me.dgvTab501.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTab501.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SearchVariable, Me.PumpVelocity})
+        Me.dgvTab501.Location = New System.Drawing.Point(18, 171)
+        Me.dgvTab501.Name = "dgvTab501"
+        Me.dgvTab501.Size = New System.Drawing.Size(250, 237)
+        Me.dgvTab501.TabIndex = 36
+        '
+        'TextBox13
+        '
+        Me.TextBox13.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBox13.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox13.Location = New System.Drawing.Point(18, 152)
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.ReadOnly = True
+        Me.TextBox13.Size = New System.Drawing.Size(225, 13)
+        Me.TextBox13.TabIndex = 37
+        Me.TextBox13.Text = "Time Dependent Pump Velocity Data"
+        '
+        'SearchVariable
+        '
+        Me.SearchVariable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.SearchVariable.HeaderText = "Search Variable ( e.g Time)"
+        Me.SearchVariable.Name = "SearchVariable"
+        '
+        'PumpVelocity
+        '
+        Me.PumpVelocity.HeaderText = "Pump Velocity"
+        Me.PumpVelocity.Name = "PumpVelocity"
+        '
         'ucPump
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -363,6 +472,7 @@ Partial Class ucPump
         Me.Tab4.PerformLayout()
         Me.Tab5.ResumeLayout(False)
         Me.Tab5.PerformLayout()
+        CType(Me.dgvTab501, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -391,5 +501,15 @@ Partial Class ucPump
     Friend WithEvents Torque As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Voidfraction1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents head As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox13 As System.Windows.Forms.TextBox
+    Friend WithEvents dgvTab501 As System.Windows.Forms.DataGridView
+    Friend WithEvents TxtTab501 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtTab502 As System.Windows.Forms.TextBox
+    Friend WithEvents TxtTab503 As System.Windows.Forms.TextBox
+    Friend WithEvents SearchVariable As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PumpVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

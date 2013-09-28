@@ -580,6 +580,15 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
+        Private _TF1 As Double
+        Public Property TF1() As Double
+            Get
+                Return _TF1
+            End Get
+            Set(ByVal value As Double)
+                _TF1 = value
+            End Set
+        End Property
         Private _TF3 As Double
         Public Property TF3() As Double
             Get
@@ -1191,7 +1200,13 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
                 valor = Format(Me.TF0, FlowSheet.Options.NumberFormat)
-                .Item.Add("TF0, Friction Torque Cooefficient", valor, False, "7.Pump Index and Option Data", "This multiplies the speed ratio to the first power", True)
+                .Item.Add("TF0, Friction Torque Cooefficient", valor, False, "7.Pump Index and Option Data", "This is constant frictional torque", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Double)
+                End With
+                valor = Format(Me.TF1, FlowSheet.Options.NumberFormat)
+                .Item.Add("TF1, Friction Torque Cooefficient", valor, False, "7.Pump Index and Option Data", "This multiplies the speed ratio to the first power", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

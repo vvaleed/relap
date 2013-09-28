@@ -3084,7 +3084,8 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
                 output5 = kvp.Value.PumpData.cmbboxindex5 - 1
                 generate.WriteLine(kvp.Value.UID & "0301 " & output1 & " " & output2 & " " & output3 & " " & output4 & " " & output5 & " ")
-                generate.WriteLine(kvp.Value.UID & "0302 " & kvp.Value.Ratedpumpvelocity.ToString("F") & " " & kvp.Value.RatioRatedVelocity.ToString("F") & " " & kvp.Value.RatedFlow.ToString("F") & " " & kvp.Value.RatedHead.ToString("F") & " " & kvp.Value.RatedTorque.ToString("F") & " " & kvp.Value.MomentofInertia.ToString("F") & " " & kvp.Value.RatedDensity.ToString("F") & " " & kvp.Value.RatedMotorTorque.ToString("F") & " " & kvp.Value.TF2.ToString("F") & " " & kvp.Value.TF0.ToString("F") & " " & kvp.Value.TF3.ToString("F"))
+                generate.WriteLine(kvp.Value.UID & "0302 " & kvp.Value.Ratedpumpvelocity.ToString("F") & " " & kvp.Value.RatioRatedVelocity.ToString("F") & " " & kvp.Value.RatedFlow.ToString("F") & " " & kvp.Value.RatedHead.ToString("F") & " " & kvp.Value.RatedTorque.ToString("F") & " " & kvp.Value.MomentofInertia.ToString("F") & " " & kvp.Value.RatedDensity.ToString("F") & " " & kvp.Value.RatedMotorTorque.ToString("F") & " " & kvp.Value.TF2.ToString("F") & " " & kvp.Value.TF0.ToString("F") & " " & kvp.Value.TF1.ToString("F") & " " & kvp.Value.TF3.ToString("F"))
+
                 If output2 = 0 Then
                     generate.WriteLine(kvp.Value.UID & "3000 0")
                     Dim counter = 1
@@ -3092,9 +3093,19 @@ sim:                Dim myStream As System.IO.FileStream
                         generate.WriteLine(kvp.Value.UID & "30" & counter.ToString("D2") & " " & kvp2.Value.Voidfraction1.ToString("F") & " " & kvp2.Value.head.ToString("F"))
                         counter = counter + 1
                     Next kvp2
+                    generate.WriteLine(kvp.Value.UID & "3100 0")
                     counter = 1
                     For Each kvp2 As KeyValuePair(Of Integer, pumpdata202) In kvp.Value.PumpData.Propumpdata202
                         generate.WriteLine(kvp.Value.UID & "31" & counter.ToString("D2") & " " & kvp2.Value.Voidfraction2.ToString("F") & " " & kvp2.Value.Torque.ToString("F"))
+                        counter = counter + 1
+                    Next kvp2
+                End If
+
+                If output5 = 0 Then
+                    generate.WriteLine(kvp.Value.UID & "6100 " & kvp.Value.PumpData.TripNumberTab5 & " " & kvp.Value.PumpData.AlphanumericTab5 & " " & kvp.Value.PumpData.NumericTab5)
+                    Dim counter = 1
+                    For Each kvp2 As KeyValuePair(Of Integer, pumpdata501) In kvp.Value.PumpData.Propumpdata501
+                        generate.WriteLine(kvp.Value.UID & "61" & counter.ToString("D2") & " " & kvp2.Value.SearchVariable.ToString("F") & " " & kvp2.Value.PumpVelocity.ToString("F"))
                         counter = counter + 1
                     Next kvp2
                 End If
@@ -3651,7 +3662,7 @@ sim:                Dim myStream As System.IO.FileStream
             card = 40001101
 
             For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
-                generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
+                '  generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
                 card = card + 1
 
             Next
@@ -3663,7 +3674,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next
 
 
-            generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
+            ' generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
 
 
             Dim a As Integer = 1
