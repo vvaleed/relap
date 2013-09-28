@@ -2596,6 +2596,7 @@ sim:                Dim myStream As System.IO.FileStream
             Dim output7 As String = Nothing
             Dim output8 As String = Nothing
             Dim output9 As String = Nothing
+            Dim output10 As String = Nothing
             Dim fluidchk As String = Nothing
             Dim boronchk As String = Nothing
             Dim filename As String() = SaveFileDialog1.FileName.Split("\")
@@ -3269,17 +3270,17 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ branch")
 
-                generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions)
+                generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions & " " & kvp.Value.BranchJunctionsGeometry.EnterMassorVelocity)
 
                 output = kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " "
-                'output3 = boolto10(kvp.Value.PipeInterphaseFriction)
-                'output4 = boolto10(kvp.Value.RodInterphaseFriction)
-                'If output4 = "1" Then
-                '    output2 = "1"
-                'Else : output2 = "0"
-                'End If
-                'output1 = boolto10(kvp.Value.ThermalStratificationModel) & boolto10(kvp.Value.LevelTrackingModel) & boolto01(kvp.Value.WaterPackingScheme) & boolto01(kvp.Value.VerticalStratificationModel) & output2 & boolto01(kvp.Value.ComputeWallFriction) & boolto10(kvp.Value.EquilibriumTemperature)
-                generate.WriteLine(output)
+                output3 = boolto10(kvp.Value.PipeInterphaseFriction)
+                output4 = boolto10(kvp.Value.RodInterphaseFriction)
+                If output4 = "1" Then
+                    output2 = "1"
+                Else : output2 = "0"
+                End If
+                output1 = boolto10(kvp.Value.ThermalStratificationModel) & boolto10(kvp.Value.LevelTrackingModel) & boolto01(kvp.Value.WaterPackingScheme) & boolto01(kvp.Value.VerticalStratificationModel) & output2 & boolto01(kvp.Value.ComputeWallFriction) & boolto10(kvp.Value.EquilibriumTemperature)
+                generate.WriteLine(output & output1)
 
                 If frmInitialSettings.optDefaultFluid.Checked = True Then
                     fluidchk = "0"
@@ -3337,7 +3338,44 @@ sim:                Dim myStream As System.IO.FileStream
                     output7 = "3"
                 End If
                 output8 = output1 & output2 & output3 & output4 & output5 & output6 & output7
-
+                Dim counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, BranchGeometry) In kvp.Value.BranchJunctionsGeometry.BranchGeometry
+                    If kvp2.Value.FromFaceNumber = "inlet x-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "1"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet x-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "2"
+                    ElseIf kvp2.Value.FromFaceNumber = "inlet y-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "3"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet y-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "4"
+                    ElseIf kvp2.Value.FromFaceNumber = "inlet z-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "5"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet z-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "6"
+                    End If
+                    If kvp2.Value.ToFaceNumber = "inlet x-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "1"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet x-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "2"
+                    ElseIf kvp2.Value.ToFaceNumber = "inlet y-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "3"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet y-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "4"
+                    ElseIf kvp2.Value.ToFaceNumber = "inlet z-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "5"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet z-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "6"
+                    End If
+                    output9 = RELAP.App.GetUIDFromTag(kvp2.Value.FromComponent)
+                    output10 = RELAP.App.GetUIDFromTag(kvp2.Value.ToComponent)
+                    generate.WriteLine(kvp.Value.UID & counter & "101 " & output9 & CInt(kvp2.Value.FromComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.FromFaceNumber & " " & output10 & CInt(kvp2.Value.ToComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.ToFaceNumber & " " & kvp2.Value.JunctionArea.ToString("F") & " " & kvp2.Value.FFLossCo.ToString("F") & " " & kvp2.Value.RFlossCo.ToString("F") & " " & output8 & " " & kvp2.Value.SubcooledDischargeCo.ToString("F") & " " & kvp2.Value.TwoPhaseDischargeCo.ToString("F") & " " & kvp2.Value.SuperheatedDischargeCo.ToString("F"))
+                    counter = counter + 1
+                Next kvp2
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, BranchGeometry) In kvp.Value.BranchJunctionsGeometry.BranchGeometry
+                    generate.WriteLine(kvp.Value.UID & counter & "201 " & kvp2.Value.LiquidMassFlow.ToString("F") & " " & kvp2.Value.VaporMassFlow.ToString("F") & " 0")
+                    counter = counter + 1
+                Next kvp2
                 univID = univID + 1
 
             Next kvp
@@ -3349,7 +3387,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ separatr")
 
-                generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions)
+                generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions & " " & kvp.Value.SeparatorJunctionsGeometry.EnterMassorVelocity)
 
                 If kvp.Value.SeparatorOption.ToString = "Simple_Separator" Then
                     output1 = "0"
@@ -3415,8 +3453,40 @@ sim:                Dim myStream As System.IO.FileStream
                 output8 = output5 & output6 & output7
                 Dim counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, SeparatorGeometry) In kvp.Value.SeparatorJunctionsGeometry.SeparatorGeometry
-
-                    generate.WriteLine(kvp.Value.UID & counter & "101 " & kvp2.Value.FromComponent & CInt(kvp2.Value.FromComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.FromFaceNumber & " " & kvp2.Value.ToComponent & CInt(kvp2.Value.ToComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.ToFaceNumber & " " & kvp2.Value.JunctionArea.ToString("F") & " " & kvp2.Value.FFLossCo.ToString("F") & " " & kvp2.Value.RFlossCo.ToString("F") & " " & output8 & " " & kvp2.Value.SubcooledDischargeCo.ToString("F"))
+                    If kvp2.Value.FromFaceNumber = "inlet x-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "1"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet x-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "2"
+                    ElseIf kvp2.Value.FromFaceNumber = "inlet y-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "3"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet y-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "4"
+                    ElseIf kvp2.Value.FromFaceNumber = "inlet z-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "5"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet z-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "6"
+                    End If
+                    If kvp2.Value.ToFaceNumber = "inlet x-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "1"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet x-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "2"
+                    ElseIf kvp2.Value.ToFaceNumber = "inlet y-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "3"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet y-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "4"
+                    ElseIf kvp2.Value.ToFaceNumber = "inlet z-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "5"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet z-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "6"
+                    End If
+                    output1 = RELAP.App.GetUIDFromTag(kvp2.Value.FromComponent)
+                    output2 = RELAP.App.GetUIDFromTag(kvp2.Value.ToComponent)
+                    generate.WriteLine(kvp.Value.UID & counter & "101 " & output1 & CInt(kvp2.Value.FromComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.FromFaceNumber & " " & output2 & CInt(kvp2.Value.ToComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.ToFaceNumber & " " & kvp2.Value.JunctionArea.ToString("F") & " " & kvp2.Value.FFLossCo.ToString("F") & " " & kvp2.Value.RFlossCo.ToString("F") & " " & output8 & " " & kvp2.Value.SubcooledDischargeCo.ToString("F"))
+                    counter = counter + 1
+                Next kvp2
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, SeparatorGeometry) In kvp.Value.SeparatorJunctionsGeometry.SeparatorGeometry
+                    generate.WriteLine(kvp.Value.UID & counter & "201 " & kvp2.Value.LiquidMassFlow.ToString("F") & " " & kvp2.Value.VaporMassFlow.ToString("F") & " 0")
                     counter = counter + 1
                 Next kvp2
                 univID = univID + 1
@@ -3619,18 +3689,18 @@ sim:                Dim myStream As System.IO.FileStream
             Next kvp
             Try
 
-          
-            generate.WriteLine("*======================================================================")
-            generate.WriteLine("*          General Core Input                                          ")
-            generate.WriteLine("*======================================================================")
+
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*          General Core Input                                          ")
+                generate.WriteLine("*======================================================================")
                 Dim str As String = My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value
                 generate.WriteLine("40000100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Text & " 1 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPowerHistoryTy.SelectedItem.value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboOxideShatteringTrip.SelectedText)
 
                 card = 40000201
-            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvAxialNodeHeights.Rows
-                generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(0).Value)
-                card = card + 1
-            Next
+                For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvAxialNodeHeights.Rows
+                    generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(0).Value)
+                    card = card + 1
+                Next
 
 
                 generate.WriteLine("40000300 " & ChildParent.FormGeneralCoreInput.txtTemperatureforFailure.Text & " " & ChildParent.FormGeneralCoreInput.txtFractionofOxidation.Text & " " & ChildParent.FormGeneralCoreInput.txtHoopStrainThreshold.Text & " " & ChildParent.FormGeneralCoreInput.cboModelsforFailure.SelectedItem.Value)
@@ -3650,8 +3720,8 @@ sim:                Dim myStream As System.IO.FileStream
                 For Each row In ChildParent.FormGeneralCoreInput.dgvGridSpacer.Rows
                     output = output & " " & row.Cells(0).Value
                 Next
-            generate.WriteLine(output)
-            card = 40001001
+                generate.WriteLine(output)
+                card = 40001001
                 For Each row In ChildParent.FormGeneralCoreInput.dgvGridSpacer.Rows
                     generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(2).Value & " " & row.Cells(3).Value & " " & row.Cells(4).Value & " " & row.Cells(0).Value)
                     card = card + 1
@@ -3677,122 +3747,122 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(ChildParent.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedItem.Value) & ChildParent.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & ChildParent.FormGeneralCoreInput.cboComponentatTopCenter.SelectedItem.value & ChildParent.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & ChildParent.FormGeneralCoreInput.txtMinimumFlowArea.Text)
 
 
-            Dim a As Integer = 1
-            generate.WriteLine("*======================================================================")
-            generate.WriteLine("*          Control Components                                          ")
-            generate.WriteLine("*======================================================================")
-            Dim i1 = 1
-            Dim dgvrow As DataGridViewRow
-
-            Dim frm As frmControlSystem = My.Application.ActiveSimulation.FormControlSystem
-
-            For j = 0 To frm.dgv1.Rows.Count - 2
-                dgvrow = My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows(j)
-                Dim _uid = RELAP.App.GetUIDFromTag(dgvrow.Cells(0).Value)
-                If dgvrow.Cells(5).Value = "Both" Then
-                    output = "2050010" & i & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value & " " & dgvrow.Cells(2).Value & " " & dgvrow.Cells(3).Value & " " & dgvrow.Cells(4).Value & " " & "2" & " " & dgvrow.Cells(6).Value & " " & dgvrow.Cells(7).Value
-                End If
-                i = i + 1
-                generate.WriteLine(output)
-
-                If dgvrow.Cells(1).Value = "SUM" Then
-
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-
-                ElseIf dgvrow.Cells(1).Value = "MULT" Then
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-                ElseIf dgvrow.Cells(1).Value = "DIFFEREND" Then
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-                ElseIf dgvrow.Cells(1).Value = "INTEGRAL" Then
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-                ElseIf dgvrow.Cells(1).Value = "DIV" Then
-
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-                ElseIf dgvrow.Cells(1).Value = "DELAY" Then
-
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-                ElseIf dgvrow.Cells(1).Value = "TRIPUNIT" Then
-
-                    Dim dgvrow1 As DataGridViewRow
-                    For k = 0 To frm.dgv2.Rows.Count - 2
-                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value
-
-                        i = i + 1
-                        generate.WriteLine(output)
-                    Next
-
-                End If
-
-            Next
-
-            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
+                Dim a As Integer = 1
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*          Control Components                                          ")
                 generate.WriteLine("*======================================================================")
-                Dim temp As Int16
-                temp = kvp.Value.UID
-                Dim CID As String
-                CID = temp.ToString("D2")
-                generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
+                Dim i1 = 1
+                Dim dgvrow As DataGridViewRow
 
-                generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
-                generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
-                card = Val("40" & CID & "0301")
-                For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.FuelRodDimensions) In kvp.Value.FuelRodDetails.FuelRodDimensions
-                    generate.WriteLine(card & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
-                    card = card + 1
+                Dim frm As frmControlSystem = My.Application.ActiveSimulation.FormControlSystem
+
+                For j = 0 To frm.dgv1.Rows.Count - 2
+                    dgvrow = My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows(j)
+                    Dim _uid = RELAP.App.GetUIDFromTag(dgvrow.Cells(0).Value)
+                    If dgvrow.Cells(5).Value = "Both" Then
+                        output = "2050010" & i & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value & " " & dgvrow.Cells(2).Value & " " & dgvrow.Cells(3).Value & " " & dgvrow.Cells(4).Value & " " & "2" & " " & dgvrow.Cells(6).Value & " " & dgvrow.Cells(7).Value
+                    End If
+                    i = i + 1
+                    generate.WriteLine(output)
+
+                    If dgvrow.Cells(1).Value = "SUM" Then
+
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+
+                    ElseIf dgvrow.Cells(1).Value = "MULT" Then
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+                    ElseIf dgvrow.Cells(1).Value = "DIFFEREND" Then
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+                    ElseIf dgvrow.Cells(1).Value = "INTEGRAL" Then
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+                    ElseIf dgvrow.Cells(1).Value = "DIV" Then
+
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+                    ElseIf dgvrow.Cells(1).Value = "DELAY" Then
+
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+                    ElseIf dgvrow.Cells(1).Value = "TRIPUNIT" Then
+
+                        Dim dgvrow1 As DataGridViewRow
+                        For k = 0 To frm.dgv2.Rows.Count - 2
+                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value
+
+                            i = i + 1
+                            generate.WriteLine(output)
+                        Next
+
+                    End If
+
                 Next
-                generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
+
+                For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
+                    generate.WriteLine("*======================================================================")
+                    generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
+                    generate.WriteLine("*======================================================================")
+                    Dim temp As Int16
+                    temp = kvp.Value.UID
+                    Dim CID As String
+                    CID = temp.ToString("D2")
+                    generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
+
+                    generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
+                    generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
+                    card = Val("40" & CID & "0301")
+                    For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.FuelRodDimensions) In kvp.Value.FuelRodDetails.FuelRodDimensions
+                        generate.WriteLine(card & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
+                        card = card + 1
+                    Next
+                    generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
 
                 Next kvp
             Catch ex As Exception

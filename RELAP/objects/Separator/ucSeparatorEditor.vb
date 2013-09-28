@@ -33,11 +33,40 @@
         Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.SeparatorGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
         Dim myCOTk As RELAP.SimulationObjects.UnitOps.Separator = My.Application.ActiveSimulation.Collections.CLCS_SeparatorCollection(gobj.Name)
 
-        CheckBoxEntermass.Checked = True
+        CheckBoxEntermass.Checked = False
         For i = 1 To 3
             dgvSeparator.Rows.Add(i.ToString)
         Next
-        If myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry.Count = 0 Then
+        If myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry.Count <> 0 Then
+            Dim i = 1
+            For Each row As DataGridViewRow In dgvSeparator.Rows
+                ' Dim row As DataGridViewRow = dgvSeparator.Rows(i - 1)
+                Dim CBox As DataGridViewComboBoxCell = CType(row.Cells(0), DataGridViewComboBoxCell)
+                Dim CBox2 As DataGridViewComboBoxCell = CType(row.Cells(2), DataGridViewComboBoxCell)
+                Dim CBox3 As DataGridViewComboBoxCell = CType(row.Cells(3), DataGridViewComboBoxCell)
+                Dim CBox4 As DataGridViewComboBoxCell = CType(row.Cells(5), DataGridViewComboBoxCell)
+                '  Dim CCol As DataGridViewComboBoxColumn = CType(dgvtab1.Columns(0), DataGridViewComboBoxColumn)
+
+                CBox.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FromComponent
+                row.Cells(0).Value = CBox.Value
+                row.Cells(1).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FromComponentVolumeNumber
+                CBox2.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FromFaceNumber
+                row.Cells(2).Value = CBox2.Value
+                CBox3.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).ToComponent
+                row.Cells(3).Value = CBox3.Value
+                row.Cells(4).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).ToComponentVolumeNumber
+                CBox4.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).ToFaceNumber
+                row.Cells(5).Value = CBox4.Value
+                row.Cells(6).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).JunctionArea
+                row.Cells(7).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FFLossCo
+                row.Cells(8).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).RFlossCo
+                row.Cells(9).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).SubcooledDischargeCo
+                row.Cells(10).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).LiquidMassFlow
+                row.Cells(11).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).VaporMassFlow
+            Next
+
+        Else
+
             Dim i = 0
             For Each row As DataGridViewRow In dgvSeparator.Rows
                 dgvSeparator.Rows(i).Cells(1).Value = 1
@@ -50,42 +79,8 @@
                 dgvSeparator.Rows(i).Cells(9).Value = 0.5
                 dgvSeparator.Rows(i).Cells(10).Value = 0.0
                 dgvSeparator.Rows(i).Cells(11).Value = 0.0
-                
+
                 i = i + 1
-            Next
-
-        Else
-            dgvSeparator.Rows.Add(myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry.Count)
-            Dim i = 1
-            For i = 1 To myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry.Count
-
-
-
-                Dim row As DataGridViewRow = dgvSeparator.Rows(i - 1)
-                Dim CBox As DataGridViewComboBoxCell = CType(row.Cells(0), DataGridViewComboBoxCell)
-                Dim CBox2 As DataGridViewComboBoxCell = CType(row.Cells(2), DataGridViewComboBoxCell)
-                Dim CBox3 As DataGridViewComboBoxCell = CType(row.Cells(3), DataGridViewComboBoxCell)
-                Dim CBox4 As DataGridViewComboBoxCell = CType(row.Cells(5), DataGridViewComboBoxCell)
-                '  Dim CCol As DataGridViewComboBoxColumn = CType(dgvtab1.Columns(0), DataGridViewComboBoxColumn)
-
-                CBox.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FromComponent
-                row.Cells(0).Value = CBox.Value
-
-                row.Cells(1).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FromComponentVolumeNumber
-                CBox2.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FromFaceNumber
-                row.Cells(2).Value = CBox2.Value
-                CBox3.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).ToComponent
-                row.Cells(3).Value = CBox3.Value
-                row.Cells(4).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).ToComponentVolumeNumber
-                CBox4.Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).ToFaceNumber
-                row.Cells(5).Value = CBox4.Value
-
-                row.Cells(6).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).JunctionArea
-                row.Cells(7).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).FFLossCo
-                row.Cells(8).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).RFlossCo
-                row.Cells(9).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).SubcooledDischargeCo
-                row.Cells(10).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).LiquidMassFlow
-                row.Cells(11).Value = myCOTk.SeparatorJunctionsGeometry.SeparatorGeometry(i).VaporMassFlow
             Next
         End If
 
@@ -101,8 +96,7 @@
             Me.SeparatorJunctionsGeometry.SeparatorGeometry.Clear()
         End If
 
-        For i = 0 To dgvSeparator.Rows.Count - 2
-            row = dgvSeparator.Rows(i)
+        For Each row In Me.dgvSeparator.Rows
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             v3 = row.Cells(2).Value
@@ -150,9 +144,11 @@
 
     Private Sub CheckBoxEntermass_CheckStateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles CheckBoxEntermass.CheckStateChanged
         If CheckBoxEntermass.Checked = True Then
+            SeparatorJunctionsGeometry.EnterMassorVelocity = "1"
             dgvSeparator.Columns(10).HeaderText = "Initial Liquid Mass Flow"
             dgvSeparator.Columns(11).HeaderText = "Initial Vapor Mass Flow"
         ElseIf CheckBoxEntermass.Checked = False Then
+            SeparatorJunctionsGeometry.EnterMassorVelocity = "0"
             dgvSeparator.Columns(10).HeaderText = "Initial Liquid Velocity"
             dgvSeparator.Columns(11).HeaderText = "Initial Vapor Velocity"
         End If

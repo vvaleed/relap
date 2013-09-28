@@ -1,14 +1,15 @@
 ﻿<System.Serializable()> Public Class SeparatorJunctionsGeometry
 
-    'Private _EnterMassorVelocity As Double
-    'Public Property EnterMassorVelocity() As Double
-    '    Get
-    '        Return _EnterMassorVelocity
-    '    End Get
-    '    Set(ByVal value As Double)
-    '        _EnterMassorVelocity = value
-    '    End Set
-    'End Property
+    Private _EnterMassorVelocity As String
+    Public Property EnterMassorVelocity() As String
+        Get
+            Return _EnterMassorVelocity
+        End Get
+        Set(ByVal value As String)
+            _EnterMassorVelocity = value
+        End Set
+    End Property
+
     Private _toN As Integer
     Public Property toN() As Integer
         Get

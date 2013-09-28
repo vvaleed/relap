@@ -52,6 +52,8 @@ Partial Class ucSeparatorEditor
         '
         'dgvSeparator
         '
+        Me.dgvSeparator.AllowUserToAddRows = False
+        Me.dgvSeparator.AllowUserToDeleteRows = False
         Me.dgvSeparator.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvSeparator.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvSeparator.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -132,14 +134,14 @@ Partial Class ucSeparatorEditor
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
         '
-        'ucBranchEditor
+        'ucSeparatorEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.dgvSeparator)
         Me.Controls.Add(Me.CheckBoxEntermass)
-        Me.Name = "ucBranchEditor"
+        Me.Name = "ucSeparatorEditor"
         Me.Size = New System.Drawing.Size(1196, 340)
         CType(Me.dgvSeparator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

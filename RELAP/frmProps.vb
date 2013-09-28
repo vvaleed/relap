@@ -95,7 +95,7 @@ Public Class frmProps
 
         ElseIf sobj.TipoObjeto = TipoObjeto.MaterialStream Then
 
-          
+
 
         ElseIf sobj.TipoObjeto = TipoObjeto.Tank Then
 
@@ -183,7 +183,7 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Thermal Front Tracking Model") Then
                 bb.ThermalStratificationModel = e.ChangedItem.Value
 
-            ElseIf e.ChangedItem.Label.Contains("Level Tracking Model") Then
+            ElseIf e.ChangedItem.Label.Contains("Mixture Level Tracking Model") Then
                 bb.LevelTrackingModel = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Water Packing Scheme") Then
@@ -214,7 +214,7 @@ Public Class frmProps
 
                 Dim gObj As BranchGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
                 gObj.Volumes = e.ChangedItem.Value
-              
+
             ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
                 bb.FlowArea = e.ChangedItem.Value
 
@@ -238,6 +238,32 @@ Public Class frmProps
 
             ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
                 bb.HydraulicDiameter = e.ChangedItem.Value
+
+                'control flags
+            ElseIf e.ChangedItem.Label.Contains("Thermal Front Tracking Model") Then
+                bb.ThermalStratificationModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Mixture Level Tracking Model") Then
+                bb.LevelTrackingModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Water Packing Scheme") Then
+                bb.WaterPackingScheme = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Vertical Stratification Model") Then
+                bb.VerticalStratificationModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Pipe Interphase Friction Model") Then
+                bb.PipeInterphaseFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Rod Bundle Interphase Friction Model") Then
+                bb.RodInterphaseFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Compute Wall Friction") Then
+                bb.ComputeWallFriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Equilibrium Temperature Calculation") Then
+                bb.EquilibriumTemperature = e.ChangedItem.Value
+
             ElseIf e.ChangedItem.Label.Contains("Modified PV term Applied") Then
                 bb.pvterm = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("CCFL Model") Then
@@ -322,7 +348,7 @@ Public Class frmProps
                 sjn.InitialLiquidMassFlowRate = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate") Then
                 sjn.InitialVaporMassFlowRate = e.ChangedItem.Value
-            
+
             End If
 
         ElseIf sobj.TipoObjeto = TipoObjeto.TimeDependentJunction Then
@@ -525,7 +551,7 @@ Public Class frmProps
                 pp.TF1 = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("TF3, Friction Torque Cooefficient") Then
                 pp.TF3 = e.ChangedItem.Value
-            
+
             End If
 
 
@@ -549,12 +575,12 @@ Public Class frmProps
                 fr.PlenumVoidVolume = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Lower plenum Void Volume") Then
                 fr.LowerPlenumVoidVolume = e.ChangedItem.Value
-           
+
             ElseIf e.ChangedItem.Label.Contains("Control Volume Above") Then
                 fr.ControlVolumeAbove = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Control Volume Below") Then
                 fr.ControlVolumeBelow = e.ChangedItem.Value
-           
+
             ElseIf e.ChangedItem.Label.Contains("Radius To Radial Node 1") Then
                 fr.RadiusToRadialNode1 = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Radius To Radial Node N") Then
@@ -618,28 +644,28 @@ Public Class frmProps
 
 
         ElseIf sobj.TipoObjeto = TipoObjeto.HeatStructure Then
-                Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
-                Dim gObj As HeatStructureGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
+            Dim hs As RELAP.SimulationObjects.UnitOps.HeatStructure = ChildParent.Collections.CLCS_HeatStructureCollection.Item(sobj.Name)
+            Dim gObj As HeatStructureGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
 
-                If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
-                    hs.NumberOfAxialHS = e.ChangedItem.Value
+            If e.ChangedItem.Label.Contains("No. of axial Heat structures") Then
+                hs.NumberOfAxialHS = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
-                    hs.NumberOfRadialMP = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("No. of Radial Mesh Points") Then
+                hs.NumberOfRadialMP = e.ChangedItem.Value
 
-                ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
-                    hs.LeftBoundaryCO = e.ChangedItem.Value
-
-
-                End If
+            ElseIf e.ChangedItem.Label.Contains("Left Boundary Coordinate") Then
+                hs.LeftBoundaryCO = e.ChangedItem.Value
 
 
             End If
 
 
-            Call ChildParent.FormSurface.UpdateSelectedObject()
-            Call ChildParent.FormSurface.FlowsheetDesignSurface.Invalidate()
-            Application.DoEvents()
+        End If
+
+
+        Call ChildParent.FormSurface.UpdateSelectedObject()
+        Call ChildParent.FormSurface.FlowsheetDesignSurface.Invalidate()
+        Application.DoEvents()
 
     End Sub
 End Class
