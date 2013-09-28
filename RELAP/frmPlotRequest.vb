@@ -13,16 +13,14 @@
         cboRestartPlotSettings.SelectedIndex = 1
     End Sub
 
-    Private Sub frmPlotRequest_Shown(sender As Object, e As EventArgs) Handles Me.Shown, Me.GotFocus, Me.Load, Me.LostFocus, DataGridView1.CellClick
+   
+
+    Private Sub frmPlotRequest_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Me.Paint
         Try
+            cboObjects.DisplayMember = "Tag"
+            cboObjects.ValueMember = "Value"
 
-
-            cboObjects.Items.Clear()
-
-            For Each kvp As KeyValuePair(Of String, SimulationObjects_BaseClass) In My.Application.ActiveSimulation.Collections.ObjectCollection
-                cboObjects.Items.Add(kvp.Value.GraphicObject.Tag)
-
-            Next
+            cboObjects.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
         Catch ex As Exception
 
         End Try

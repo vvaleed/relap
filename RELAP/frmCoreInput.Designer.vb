@@ -47,6 +47,9 @@ Partial Class frmCoreInput
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
+        Me.cmdCopy = New System.Windows.Forms.Button()
+        Me.cmdPaste = New System.Windows.Forms.Button()
         Me.dgvAxialNodeHeights = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.lblNode = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
         Me.txtHeight = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
@@ -101,16 +104,21 @@ Partial Class frmCoreInput
         Me.LabelX12 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX10 = New DevComponents.DotNetBar.LabelX()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.cmdCopytoAll2 = New System.Windows.Forms.Button()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
         Me.dgvGridSpacer = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.lblGridSpacerNumber = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
         Me.cboGridSpacerMaterial = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.txtMassofGridSpacer = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtHeighofGridSpacer = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtPlateThicknessofGridSpacer = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtRadiusofContact = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
+        Me.txtMassofGridSpacer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtHeighofGridSpacer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtPlateThicknessofGridSpacer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtRadiusofContact = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtGridSpacerElevation2 = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
         Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
+        Me.txtControlVolume2 = New DevComponents.Editors.IntegerInput()
+        Me.txtControlVolume1 = New DevComponents.Editors.IntegerInput()
         Me.txtMinimumFlowArea = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.cboComponentatTopCenter = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.cboComponenttoReceiveSlumped = New DevComponents.DotNetBar.Controls.ComboBoxEx()
@@ -123,12 +131,10 @@ Partial Class frmCoreInput
         Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.dgvCoreBypassVolumes = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.LabelX15 = New DevComponents.DotNetBar.LabelX()
         Me.cboComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.txtVolume = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         Me.txtElevation = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtControlVolume1 = New DevComponents.Editors.IntegerInput()
-        Me.txtControlVolume2 = New DevComponents.Editors.IntegerInput()
+        Me.LabelX15 = New DevComponents.DotNetBar.LabelX()
         CType(Me.txtAxialNodes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -158,10 +164,10 @@ Partial Class frmCoreInput
         Me.TabPage8.SuspendLayout()
         CType(Me.dgvGridSpacer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage9.SuspendLayout()
+        CType(Me.txtControlVolume2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtControlVolume1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage10.SuspendLayout()
         CType(Me.dgvCoreBypassVolumes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtControlVolume1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtControlVolume2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -336,21 +342,54 @@ Partial Class frmCoreInput
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage1.Size = New System.Drawing.Size(862, 335)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "SCDAP Control"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.cmdCopytoAll)
+        Me.TabPage2.Controls.Add(Me.cmdCopy)
+        Me.TabPage2.Controls.Add(Me.cmdPaste)
         Me.TabPage2.Controls.Add(Me.dgvAxialNodeHeights)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage2.Size = New System.Drawing.Size(862, 335)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Axial Node Heights"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'cmdCopytoAll
+        '
+        Me.cmdCopytoAll.Enabled = False
+        Me.cmdCopytoAll.Location = New System.Drawing.Point(343, 253)
+        Me.cmdCopytoAll.Name = "cmdCopytoAll"
+        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll.TabIndex = 12
+        Me.cmdCopytoAll.Text = "Copy to All"
+        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        '
+        'cmdCopy
+        '
+        Me.cmdCopy.Enabled = False
+        Me.cmdCopy.Location = New System.Drawing.Point(167, 253)
+        Me.cmdCopy.Name = "cmdCopy"
+        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy.TabIndex = 10
+        Me.cmdCopy.Text = "Copy"
+        Me.cmdCopy.UseVisualStyleBackColor = True
+        '
+        'cmdPaste
+        '
+        Me.cmdPaste.Enabled = False
+        Me.cmdPaste.Location = New System.Drawing.Point(248, 253)
+        Me.cmdPaste.Name = "cmdPaste"
+        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste.TabIndex = 11
+        Me.cmdPaste.Text = "Paste"
+        Me.cmdPaste.UseVisualStyleBackColor = True
         '
         'dgvAxialNodeHeights
         '
@@ -405,7 +444,7 @@ Partial Class frmCoreInput
         Me.txtHoopStrainThreshold.Location = New System.Drawing.Point(4, 22)
         Me.txtHoopStrainThreshold.Name = "txtHoopStrainThreshold"
         Me.txtHoopStrainThreshold.Padding = New System.Windows.Forms.Padding(3)
-        Me.txtHoopStrainThreshold.Size = New System.Drawing.Size(802, 335)
+        Me.txtHoopStrainThreshold.Size = New System.Drawing.Size(862, 335)
         Me.txtHoopStrainThreshold.TabIndex = 2
         Me.txtHoopStrainThreshold.Text = "Oxide Shell Stability"
         Me.txtHoopStrainThreshold.UseVisualStyleBackColor = True
@@ -526,7 +565,7 @@ Partial Class frmCoreInput
         Me.txtVelocityofDropsofCladding.Location = New System.Drawing.Point(4, 22)
         Me.txtVelocityofDropsofCladding.Name = "txtVelocityofDropsofCladding"
         Me.txtVelocityofDropsofCladding.Padding = New System.Windows.Forms.Padding(3)
-        Me.txtVelocityofDropsofCladding.Size = New System.Drawing.Size(802, 335)
+        Me.txtVelocityofDropsofCladding.Size = New System.Drawing.Size(862, 335)
         Me.txtVelocityofDropsofCladding.TabIndex = 3
         Me.txtVelocityofDropsofCladding.Text = "Metallic Meltdown"
         Me.txtVelocityofDropsofCladding.UseVisualStyleBackColor = True
@@ -617,7 +656,7 @@ Partial Class frmCoreInput
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage3.Size = New System.Drawing.Size(862, 335)
         Me.TabPage3.TabIndex = 4
         Me.TabPage3.Text = "Molten Pool"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -690,7 +729,7 @@ Partial Class frmCoreInput
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage4.Size = New System.Drawing.Size(862, 335)
         Me.TabPage4.TabIndex = 5
         Me.TabPage4.Text = "Core Fragmentation"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -767,7 +806,7 @@ Partial Class frmCoreInput
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage5.Size = New System.Drawing.Size(862, 335)
         Me.TabPage5.TabIndex = 6
         Me.TabPage5.Text = "Gamma Heating"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -793,10 +832,11 @@ Partial Class frmCoreInput
         Me.txtGammaHeatingFraction.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtGammaHeatingFraction.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtGammaHeatingFraction.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtGammaHeatingFraction.DisplayFormat = "0.0000"
         Me.txtGammaHeatingFraction.Increment = 1.0R
         Me.txtGammaHeatingFraction.Location = New System.Drawing.Point(30, 47)
-        Me.txtGammaHeatingFraction.MaxValue = 0.0R
-        Me.txtGammaHeatingFraction.MinValue = 0.057R
+        Me.txtGammaHeatingFraction.MaxValue = 0.057R
+        Me.txtGammaHeatingFraction.MinValue = 0.0R
         Me.txtGammaHeatingFraction.Name = "txtGammaHeatingFraction"
         Me.txtGammaHeatingFraction.ShowUpDown = True
         Me.txtGammaHeatingFraction.Size = New System.Drawing.Size(80, 20)
@@ -816,7 +856,7 @@ Partial Class frmCoreInput
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage6.Size = New System.Drawing.Size(862, 335)
         Me.TabPage6.TabIndex = 7
         Me.TabPage6.Text = "Cladding Deformation"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -954,7 +994,7 @@ Partial Class frmCoreInput
         Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage7.Size = New System.Drawing.Size(862, 335)
         Me.TabPage7.TabIndex = 8
         Me.TabPage7.Text = "Source of Component Power Data"
         Me.TabPage7.UseVisualStyleBackColor = True
@@ -1022,15 +1062,48 @@ Partial Class frmCoreInput
         '
         'TabPage8
         '
+        Me.TabPage8.Controls.Add(Me.cmdCopytoAll2)
+        Me.TabPage8.Controls.Add(Me.cmdCopy2)
+        Me.TabPage8.Controls.Add(Me.cmdPaste2)
         Me.TabPage8.Controls.Add(Me.dgvGridSpacer)
         Me.TabPage8.Controls.Add(Me.LabelX13)
         Me.TabPage8.Location = New System.Drawing.Point(4, 22)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage8.Size = New System.Drawing.Size(862, 335)
         Me.TabPage8.TabIndex = 9
         Me.TabPage8.Text = "Grid Spacer"
         Me.TabPage8.UseVisualStyleBackColor = True
+        '
+        'cmdCopytoAll2
+        '
+        Me.cmdCopytoAll2.Enabled = False
+        Me.cmdCopytoAll2.Location = New System.Drawing.Point(421, 225)
+        Me.cmdCopytoAll2.Name = "cmdCopytoAll2"
+        Me.cmdCopytoAll2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll2.TabIndex = 15
+        Me.cmdCopytoAll2.Text = "Copy to All"
+        Me.cmdCopytoAll2.UseVisualStyleBackColor = True
+        '
+        'cmdCopy2
+        '
+        Me.cmdCopy2.Enabled = False
+        Me.cmdCopy2.Location = New System.Drawing.Point(245, 225)
+        Me.cmdCopy2.Name = "cmdCopy2"
+        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy2.TabIndex = 13
+        Me.cmdCopy2.Text = "Copy"
+        Me.cmdCopy2.UseVisualStyleBackColor = True
+        '
+        'cmdPaste2
+        '
+        Me.cmdPaste2.Enabled = False
+        Me.cmdPaste2.Location = New System.Drawing.Point(326, 225)
+        Me.cmdPaste2.Name = "cmdPaste2"
+        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste2.TabIndex = 14
+        Me.cmdPaste2.Text = "Paste"
+        Me.cmdPaste2.UseVisualStyleBackColor = True
         '
         'dgvGridSpacer
         '
@@ -1069,59 +1142,27 @@ Partial Class frmCoreInput
         '
         'txtMassofGridSpacer
         '
-        '
-        '
-        '
-        Me.txtMassofGridSpacer.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtMassofGridSpacer.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtMassofGridSpacer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtMassofGridSpacer.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
         Me.txtMassofGridSpacer.HeaderText = "Mass of grid spacer"
-        Me.txtMassofGridSpacer.Increment = 1.0R
-        Me.txtMassofGridSpacer.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtMassofGridSpacer.Name = "txtMassofGridSpacer"
+        Me.txtMassofGridSpacer.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'txtHeighofGridSpacer
         '
-        '
-        '
-        '
-        Me.txtHeighofGridSpacer.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtHeighofGridSpacer.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtHeighofGridSpacer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtHeighofGridSpacer.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
         Me.txtHeighofGridSpacer.HeaderText = "Height of grid spacer"
-        Me.txtHeighofGridSpacer.Increment = 1.0R
-        Me.txtHeighofGridSpacer.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtHeighofGridSpacer.Name = "txtHeighofGridSpacer"
+        Me.txtHeighofGridSpacer.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'txtPlateThicknessofGridSpacer
         '
-        '
-        '
-        '
-        Me.txtPlateThicknessofGridSpacer.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtPlateThicknessofGridSpacer.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtPlateThicknessofGridSpacer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtPlateThicknessofGridSpacer.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
         Me.txtPlateThicknessofGridSpacer.HeaderText = "Plate thickness of grid spacer"
-        Me.txtPlateThicknessofGridSpacer.Increment = 1.0R
-        Me.txtPlateThicknessofGridSpacer.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtPlateThicknessofGridSpacer.Name = "txtPlateThicknessofGridSpacer"
+        Me.txtPlateThicknessofGridSpacer.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'txtRadiusofContact
         '
-        '
-        '
-        '
-        Me.txtRadiusofContact.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtRadiusofContact.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtRadiusofContact.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtRadiusofContact.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
         Me.txtRadiusofContact.HeaderText = "Radius of contact"
-        Me.txtRadiusofContact.Increment = 1.0R
-        Me.txtRadiusofContact.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtRadiusofContact.Name = "txtRadiusofContact"
+        Me.txtRadiusofContact.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'txtGridSpacerElevation2
         '
@@ -1132,6 +1173,7 @@ Partial Class frmCoreInput
         Me.txtGridSpacerElevation2.BackgroundStyle.Class = "DataGridViewNumericBorder"
         Me.txtGridSpacerElevation2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtGridSpacerElevation2.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtGridSpacerElevation2.DisplayFormat = "0.0000"
         Me.txtGridSpacerElevation2.HeaderText = "Grid Spacer Elevation"
         Me.txtGridSpacerElevation2.Increment = 1.0R
         Me.txtGridSpacerElevation2.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
@@ -1168,6 +1210,34 @@ Partial Class frmCoreInput
         Me.TabPage9.TabIndex = 10
         Me.TabPage9.Text = "Core Slumping Model"
         Me.TabPage9.UseVisualStyleBackColor = True
+        '
+        'txtControlVolume2
+        '
+        '
+        '
+        '
+        Me.txtControlVolume2.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtControlVolume2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtControlVolume2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtControlVolume2.Location = New System.Drawing.Point(724, 176)
+        Me.txtControlVolume2.Name = "txtControlVolume2"
+        Me.txtControlVolume2.ShowUpDown = True
+        Me.txtControlVolume2.Size = New System.Drawing.Size(113, 20)
+        Me.txtControlVolume2.TabIndex = 5
+        '
+        'txtControlVolume1
+        '
+        '
+        '
+        '
+        Me.txtControlVolume1.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtControlVolume1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtControlVolume1.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtControlVolume1.Location = New System.Drawing.Point(724, 150)
+        Me.txtControlVolume1.Name = "txtControlVolume1"
+        Me.txtControlVolume1.ShowUpDown = True
+        Me.txtControlVolume1.Size = New System.Drawing.Size(113, 20)
+        Me.txtControlVolume1.TabIndex = 5
         '
         'txtMinimumFlowArea
         '
@@ -1285,7 +1355,7 @@ Partial Class frmCoreInput
         Me.TabPage10.Location = New System.Drawing.Point(4, 22)
         Me.TabPage10.Name = "TabPage10"
         Me.TabPage10.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage10.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage10.Size = New System.Drawing.Size(862, 335)
         Me.TabPage10.TabIndex = 11
         Me.TabPage10.Text = "Core Bypass Volumes"
         Me.TabPage10.UseVisualStyleBackColor = True
@@ -1308,20 +1378,6 @@ Partial Class frmCoreInput
         Me.dgvCoreBypassVolumes.Name = "dgvCoreBypassVolumes"
         Me.dgvCoreBypassVolumes.Size = New System.Drawing.Size(390, 150)
         Me.dgvCoreBypassVolumes.TabIndex = 1
-        '
-        'LabelX15
-        '
-        '
-        '
-        '
-        Me.LabelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX15.Location = New System.Drawing.Point(42, 6)
-        Me.LabelX15.Name = "LabelX15"
-        Me.LabelX15.Size = New System.Drawing.Size(426, 54)
-        Me.LabelX15.TabIndex = 0
-        Me.LabelX15.Text = "These cards are used to specify the core bypass hydrodynamic volumes, which are u" & _
-            "sed by model for radial spreading of core melt."
-        Me.LabelX15.WordWrap = True
         '
         'cboComponent
         '
@@ -1357,33 +1413,19 @@ Partial Class frmCoreInput
         Me.txtElevation.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtElevation.Name = "txtElevation"
         '
-        'txtControlVolume1
+        'LabelX15
         '
         '
         '
         '
-        Me.txtControlVolume1.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtControlVolume1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtControlVolume1.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtControlVolume1.Location = New System.Drawing.Point(724, 150)
-        Me.txtControlVolume1.Name = "txtControlVolume1"
-        Me.txtControlVolume1.ShowUpDown = True
-        Me.txtControlVolume1.Size = New System.Drawing.Size(113, 20)
-        Me.txtControlVolume1.TabIndex = 5
-        '
-        'txtControlVolume2
-        '
-        '
-        '
-        '
-        Me.txtControlVolume2.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtControlVolume2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtControlVolume2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtControlVolume2.Location = New System.Drawing.Point(724, 176)
-        Me.txtControlVolume2.Name = "txtControlVolume2"
-        Me.txtControlVolume2.ShowUpDown = True
-        Me.txtControlVolume2.Size = New System.Drawing.Size(113, 20)
-        Me.txtControlVolume2.TabIndex = 5
+        Me.LabelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX15.Location = New System.Drawing.Point(42, 6)
+        Me.LabelX15.Name = "LabelX15"
+        Me.LabelX15.Size = New System.Drawing.Size(426, 54)
+        Me.LabelX15.TabIndex = 0
+        Me.LabelX15.Text = "These cards are used to specify the core bypass hydrodynamic volumes, which are u" & _
+            "sed by model for radial spreading of core melt."
+        Me.LabelX15.WordWrap = True
         '
         'frmCoreInput
         '
@@ -1427,10 +1469,10 @@ Partial Class frmCoreInput
         Me.TabPage8.ResumeLayout(False)
         CType(Me.dgvGridSpacer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage9.ResumeLayout(False)
+        CType(Me.txtControlVolume2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtControlVolume1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage10.ResumeLayout(False)
         CType(Me.dgvCoreBypassVolumes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtControlVolume1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtControlVolume2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1519,13 +1561,6 @@ Partial Class frmCoreInput
     Friend WithEvents TabPage10 As System.Windows.Forms.TabPage
     Friend WithEvents dgvCoreBypassVolumes As DevComponents.DotNetBar.Controls.DataGridViewX
     Friend WithEvents LabelX15 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents lblGridSpacerNumber As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
-    Friend WithEvents cboGridSpacerMaterial As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents txtMassofGridSpacer As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtHeighofGridSpacer As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtPlateThicknessofGridSpacer As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtRadiusofContact As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtGridSpacerElevation2 As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
     Friend WithEvents cboComponenttoReceiveSlumped As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents LabelX18 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX17 As DevComponents.DotNetBar.LabelX
@@ -1537,4 +1572,17 @@ Partial Class frmCoreInput
     Friend WithEvents txtElevation As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
     Friend WithEvents txtControlVolume2 As DevComponents.Editors.IntegerInput
     Friend WithEvents txtControlVolume1 As DevComponents.Editors.IntegerInput
+    Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
+    Friend WithEvents cmdCopy As System.Windows.Forms.Button
+    Friend WithEvents cmdPaste As System.Windows.Forms.Button
+    Friend WithEvents cmdCopytoAll2 As System.Windows.Forms.Button
+    Friend WithEvents cmdCopy2 As System.Windows.Forms.Button
+    Friend WithEvents cmdPaste2 As System.Windows.Forms.Button
+    Friend WithEvents lblGridSpacerNumber As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
+    Friend WithEvents cboGridSpacerMaterial As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents txtMassofGridSpacer As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtHeighofGridSpacer As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtPlateThicknessofGridSpacer As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtRadiusofContact As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtGridSpacerElevation2 As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
 End Class
