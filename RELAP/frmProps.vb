@@ -466,8 +466,6 @@ Public Class frmProps
                 pp.chokingModel = e.ChangedItem.Value
 
                 'pump suction initial conditions
-            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (suction)") Then
-                pp.InterphaseVelocity = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (suction)") Then
                 pp.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
@@ -487,8 +485,6 @@ Public Class frmProps
 
 
                 'pump discharge initial conditions
-            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity (discharge)") Then
-                pp.OInterphaseVelocity = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate (discharge)") Then
                 pp.OEnterVelocityOrMassFlowRate = e.ChangedItem.Value

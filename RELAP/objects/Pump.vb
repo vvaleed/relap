@@ -617,6 +617,8 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.outlet_chokingModel = False
             Me.OAreaChange = outletAreaChangeEnum.No_Area_Change
             Me.OMomentumEquation = outletMomentumEquationEnum.Two_velocity_Momentum_Equations
+            Me.m_EnterVelocityOrMassFlowRate = False
+            Me._EnterVelocityOrMassFlowRate = False
             Me._Ratedpumpvelocity = 300.0
             Me._RatioRatedVelocity = 1.0
             Me._RatedFlow = 1.0
@@ -937,7 +939,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                .Item.Add("Thermo Dynamic States", Me, "ThermoDynamicStates", False, "1.Parameters", "Thermo Dynamic States", True)
+                .Item.Add("Thermo Dynamic States", Me, "ThermoDynamicStates", False, "2.Thermodynamic States Data", "Thermo Dynamic States", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(ThermoDynamicState)
@@ -1056,12 +1058,6 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 'pump suction initial conditions
-                valor = Format(Me.InterphaseVelocity, FlowSheet.Options.NumberFormat)
-                .Item.Add("Interphase Velocity (suction)", valor, False, "5.Pump Suction Initial Conditions", "Interphase Velocity (suction)", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
 
                 .Item.Add(("True for Mass Flow rate (suction)"), Me, "EnterVelocityOrMassFlowRate", False, "5.Pump Suction Initial Conditions", "True for Mass Flow rate (suction)", True)
                 With .Item(.Item.Count - 1)
@@ -1099,12 +1095,6 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 'pump discharge initial conditions
-                valor = Format(Me.OInterphaseVelocity, FlowSheet.Options.NumberFormat)
-                .Item.Add("Interphase Velocity (discharge)", valor, False, "6.Pump discharge Initial Conditions", "Interphase Velocity (discharge)", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
 
                 .Item.Add(("True for Mass Flow rate (discharge)"), Me, "OEnterVelocityOrMassFlowRate", False, "6.Pump discharge Initial Conditions", "True for Mass Flow rate (discharge)", True)
                 With .Item(.Item.Count - 1)
