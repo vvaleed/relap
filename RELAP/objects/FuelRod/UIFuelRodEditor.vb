@@ -22,11 +22,11 @@ Namespace RELAP.Editors
                 Dim selectionControl As New frmFuelRodEditor
 
         
-                'selectionControl.UcPipeEditor1.Profile = value
+                selectionControl.UcFuelRodEditor1.FuelRodDetails = value
 
-                'editorService.ShowDialog(selectionControl)
+                editorService.ShowDialog(selectionControl)
 
-                'value = selectionControl.UcPipeEditor1.Profile
+                value = selectionControl.UcFuelRodEditor1.FuelRodDetails
 
             End If
 

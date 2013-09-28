@@ -1,37 +1,26 @@
 ﻿
 Public Class ucFuelRodEditor
-   
-    Private _us As RELAP.SistemasDeUnidades.Unidades
 
-    Public Property SystemOfUnits() As RELAP.SistemasDeUnidades.Unidades
+
+    Private m_FuelRodDetails As RELAP.SimulationObjects.UnitOps.FuelRodDetails
+    Public Property FuelRodDetails() As RELAP.SimulationObjects.UnitOps.FuelRodDetails
         Get
-            Return _us
+            Return m_FuelRodDetails
         End Get
-        Set(ByVal value As RELAP.SistemasDeUnidades.Unidades)
-            _us = value
+        Set(ByVal value As RELAP.SimulationObjects.UnitOps.FuelRodDetails)
+            m_FuelRodDetails = value
         End Set
     End Property
 
-    Private _nf As String
-
-    Public Property NumberFormat() As String
-        Get
-            Return _nf
-        End Get
-        Set(ByVal value As String)
-            _nf = value
-        End Set
-    End Property
-
-    Private Sub ucPipeEditor_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub ucFuelRodEditor_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If dgvFuelRodDimensions.RowCount = 0 Then
             dgvFuelRodDimensions.Rows.Add(My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value)
         End If
     End Sub
 
-    Dim selectedcells As New List(Of Object)  
+    Dim selectedcells As New List(Of Object)
     Dim selectedcells2 As New List(Of Object)
- 
+
 
 
     Private Sub TabControl1_Selected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlEventArgs) Handles TabControl1.Selected

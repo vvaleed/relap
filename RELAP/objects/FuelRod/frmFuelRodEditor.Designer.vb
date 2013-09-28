@@ -22,16 +22,28 @@ Partial Class frmFuelRodEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.UcFuelRodEditor1 = New ucFuelRodEditor()
         Me.SuspendLayout()
+        '
+        'UcFuelRodEditor1
+        '
+        Me.UcFuelRodEditor1.Location = New System.Drawing.Point(12, 12)
+        Me.UcFuelRodEditor1.Name = "UcFuelRodEditor1"
+
+        Me.UcFuelRodEditor1.Size = New System.Drawing.Size(688, 382)
+        Me.UcFuelRodEditor1.TabIndex = 0
         '
         'frmFuelRodEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(923, 524)
+        Me.ClientSize = New System.Drawing.Size(717, 414)
+        Me.Controls.Add(Me.UcFuelRodEditor1)
         Me.Name = "frmFuelRodEditor"
         Me.Text = "Fuel Rod Editor"
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents UcFuelRodEditor1 As ucFuelRodEditor
+
 End Class
