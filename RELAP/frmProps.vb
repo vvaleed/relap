@@ -554,12 +554,7 @@ Public Class frmProps
                 fr.ControlVolumeAbove = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Control Volume Below") Then
                 fr.ControlVolumeBelow = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Control Volume Number") Then
-                fr.ControlVolumeNumber = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Increment") Then
-                fr.Increment = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Axial Node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Hydraulic Volumes") Then
-                fr.HydraulicVolumesAxialNode = e.ChangedItem.Value
+           
             ElseIf e.ChangedItem.Label.Contains("Radius To Radial Node 1") Then
                 fr.RadiusToRadialNode1 = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Radius To Radial Node N") Then

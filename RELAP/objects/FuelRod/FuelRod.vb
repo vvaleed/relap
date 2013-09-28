@@ -24,6 +24,9 @@ Namespace RELAP.SimulationObjects.UnitOps
 
         Inherits SimulationObjects_UnitOpBaseClass
 
+
+     
+
         Private m_InitialSettingComponentName As String
         Public Property InitialSettingComponentName() As String
             Get
@@ -126,35 +129,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_ControlVolumeNumber As Integer
-        Public Property ControlVolumeNumber() As Integer
-            Get
-                Return m_ControlVolumeNumber
-            End Get
-            Set(ByVal value As Integer)
-                m_ControlVolumeNumber = value
-            End Set
-        End Property
-
-        Private m_Increment As Integer
-        Public Property Increment() As Integer
-            Get
-                Return m_Increment
-            End Get
-            Set(ByVal value As Integer)
-                m_Increment = value
-            End Set
-        End Property
-
-        Private m_HydraulicVolumesAxialNode As Integer
-        Public Property HydraulicVolumesAxialNode() As Integer
-            Get
-                Return m_HydraulicVolumesAxialNode
-            End Get
-            Set(ByVal value As Integer)
-                m_HydraulicVolumesAxialNode = value
-            End Set
-        End Property
+       
 
         Private m_RadiusToRadialNode1 As Double
         Public Property RadiusToRadialNode1() As Double
@@ -1050,14 +1025,43 @@ Namespace RELAP.SimulationObjects.UnitOps
     End Class
     <Serializable()> Public Class FuelRodDetails
         Protected m_collection As Generic.SortedDictionary(Of Integer, FuelRodDimensions)
+        Protected m_collection2 As Generic.SortedDictionary(Of Integer, HydraulicVolumes)
+        Protected m_collection3 As Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
         ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
+        Private _InitialTemperatures As Generic.SortedDictionary(Of Integer, String)
+        Public Property InitialTemperatures() As Generic.SortedDictionary(Of Integer, String)
+            Get
+                Return _InitialTemperatures
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, String))
+                _InitialTemperatures = value
+            End Set
+        End Property
+
+        Public Property RadialMeshSpacing() As Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
+            Get
+                Return m_collection3
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, RadialMeshSpacing))
+                m_collection3 = value
+            End Set
+        End Property
         Public Property FuelRodDimensions() As Generic.SortedDictionary(Of Integer, FuelRodDimensions)
             Get
                 Return m_collection
             End Get
             Set(ByVal value As Generic.SortedDictionary(Of Integer, FuelRodDimensions))
                 m_collection = value
+            End Set
+        End Property
+
+        Public Property HyrdraulicVolumes() As Generic.SortedDictionary(Of Integer, HydraulicVolumes)
+            Get
+                Return m_collection2
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, HydraulicVolumes))
+                m_collection2 = value
             End Set
         End Property
 
@@ -1117,6 +1121,100 @@ Namespace RELAP.SimulationObjects.UnitOps
             m_OuterCladdingRadius = OuterCladdingRadius
         End Sub
     End Class
+
+    <Serializable()> Public Class HydraulicVolumes
+
+        Private m_ControlVolumeNumber As Integer
+        Public Property ControlVolumeNumber() As Integer
+            Get
+                Return m_ControlVolumeNumber
+            End Get
+            Set(ByVal value As Integer)
+                m_ControlVolumeNumber = value
+            End Set
+        End Property
+
+        Private m_Increment As Integer
+        Public Property Increment() As Integer
+            Get
+                Return m_Increment
+            End Get
+            Set(ByVal value As Integer)
+                m_Increment = value
+            End Set
+        End Property
+
+        Private m_AxialNode As Integer
+        Public Property AxialNode() As Integer
+            Get
+                Return m_AxialNode
+            End Get
+            Set(ByVal value As Integer)
+                m_AxialNode = value
+            End Set
+        End Property
+
+
+
+        Public Sub New(ByVal HydralicVolume As Integer, ByVal Increment As Integer, ByVal AxialNode As Integer)
+            m_AxialNode = AxialNode
+            m_ControlVolumeNumber = HydralicVolume
+            m_Increment = Increment
+        End Sub
+    End Class
+
+    <Serializable()> Public Class RadialMeshSpacing
+
+        Private _NumberofIntervalsAcrossFuel As Integer
+        Public Property NumberofIntervalsAcrossFuel() As Integer
+            Get
+                Return _NumberofIntervalsAcrossFuel
+            End Get
+            Set(ByVal value As Integer)
+                _NumberofIntervalsAcrossFuel = value
+            End Set
+        End Property
+
+        Private _NumberofIntervalsAcrossGap As Integer
+        Public Property NumberofIntervalsAcrossGap() As Integer
+            Get
+                Return _NumberofIntervalsAcrossGap
+            End Get
+            Set(ByVal value As Integer)
+                _NumberofIntervalsAcrossGap = value
+            End Set
+        End Property
+
+
+        Private _NumberofIntervalsAcrossCladding As Integer
+        Public Property NumberofIntervalsAcrossCladding() As Integer
+            Get
+                Return _NumberofIntervalsAcrossCladding
+            End Get
+            Set(ByVal value As Integer)
+                _NumberofIntervalsAcrossCladding = value
+            End Set
+        End Property
+
+
+        Private _AxialNode As Integer
+        Public Property AxialNode() As Integer
+            Get
+                Return _AxialNode
+            End Get
+            Set(ByVal value As Integer)
+                _AxialNode = value
+            End Set
+        End Property
+
+        Public Sub New(ByVal IntervalsAcrossFuel As Integer, ByVal AcrossCladding As Integer, ByVal AcrossGap As Integer, ByVal AxialNode As Integer)
+            _NumberofIntervalsAcrossCladding = AcrossCladding
+            _NumberofIntervalsAcrossFuel = IntervalsAcrossFuel
+            _NumberofIntervalsAcrossGap = AcrossGap
+            _AxialNode = AxialNode
+        End Sub
+    End Class
+  
 End Namespace
 
 

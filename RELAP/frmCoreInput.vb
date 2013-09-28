@@ -85,19 +85,74 @@
 
 
     Private Sub TabControl1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TabControl1.SelectedIndexChanged
+        cboComponent.DisplayMember = "Tag"
+        cboComponent.ValueMember = "Value"
+        cboComponentatTopCenter.DisplayMember = "Tag"
+        cboComponentatTopCenter.ValueMember = "Value"
+        cboComponenttoReceiveSlumped.DisplayMember = "Tag"
+        cboComponenttoReceiveSlumped.ValueMember = "Value"
         Try
-            cboComponent.DisplayMember = "Tag"
-            cboComponent.ValueMember = "Value"
-            cboComponentatTopCenter.DisplayMember = "Tag"
-            cboComponentatTopCenter.ValueMember = "Value"
-            cboComponenttoReceiveSlumped.DisplayMember = "Tag"
-            cboComponenttoReceiveSlumped.ValueMember = "Value"
+
             cboComponent.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
             cboComponentatTopCenter.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
             cboComponenttoReceiveSlumped.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
 
     End Sub
+
+    Private Sub dgvAxialNodeHeights_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvAxialNodeHeights.CellClick
+        cmdCopy.Enabled = False
+        cmdCopytoAll.Enabled = False
+        cmdPaste.Enabled = False
+    End Sub
+
+    Private Sub dgvAxialNodeHeights_RowHeaderMouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvAxialNodeHeights.RowHeaderMouseClick
+        If dgvAxialNodeHeights.SelectedRows.Count = 1 Then
+            cmdCopy.Enabled = True
+            cmdCopytoAll.Enabled = True
+        Else
+            cmdCopy.Enabled = False
+            cmdCopytoAll.Enabled = False
+        End If
+        If dgvAxialNodeHeights.SelectedRows.Count > 0 Then
+            cmdPaste.Enabled = True
+        Else
+            cmdPaste.Enabled = True
+        End If
+    End Sub
+
+    Private Sub dgvGridSpacer_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvGridSpacer.CellClick
+        cmdCopy2.Enabled = False
+        cmdCopytoAll2.Enabled = False
+        cmdPaste2.Enabled = False
+    End Sub
+
+    Private Sub dgvGridSpacer_RowHeaderMouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvGridSpacer.RowHeaderMouseClick
+        If dgvGridSpacer.SelectedRows.Count = 1 Then
+            cmdCopy2.Enabled = True
+            cmdCopytoAll2.Enabled = True
+        Else
+            cmdCopy2.Enabled = False
+            cmdCopytoAll2.Enabled = False
+        End If
+        If dgvGridSpacer.SelectedRows.Count > 0 Then
+            cmdPaste2.Enabled = True
+        Else
+            cmdPaste2.Enabled = True
+        End If
+    End Sub
+
+    Private Sub frmCoreInput_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        cboCoreSlumpingModel.SelectedIndex = 0
+        cboFuelRodDisintegration.SelectedIndex = 0
+        cboModelsforFailure.SelectedIndex = 0
+        cboPowerHistoryTy.SelectedIndex = 0
+        cboPressureDropFlag.SelectedIndex = 0
+        cboReactorEnvironment.SelectedIndex = 0
+        cboSourceofData.SelectedIndex = 0
+    End Sub
+
+   
 End Class

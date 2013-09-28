@@ -2710,11 +2710,10 @@ sim:                Dim myStream As System.IO.FileStream
 
             Dim card As Integer = 301
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormMinorEditRequests.DataGridView1.Rows
-                '  If temprow.Cells(0).Value.ToString <> "" Then
-
-                generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
-                card = card + 1
-                ' End If
+                If temprow.Cells(0).Value.ToString <> "" Then
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
+                    card = card + 1
+                End If
             Next
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*                            Trips ")
@@ -3624,59 +3623,58 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*          General Core Input                                          ")
             generate.WriteLine("*======================================================================")
+                Dim str As String = My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value
+                generate.WriteLine("40000100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Text & " 1 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPowerHistoryTy.SelectedItem.value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboOxideShatteringTrip.SelectedText)
 
-            generate.WriteLine("40000100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Text & " 1 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPowerHistoryTy.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboOxideShatteringTrip.SelectedValue)
-
-            card = 40000201
+                card = 40000201
             For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvAxialNodeHeights.Rows
                 generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(0).Value)
                 card = card + 1
             Next
 
 
-            generate.WriteLine("40000300 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTemperatureforFailure.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtFractionofOxidation.Text &
-                                " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtHoopStrainThreshold.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboModelsforFailure.SelectedValue)
+                generate.WriteLine("40000300 " & ChildParent.FormGeneralCoreInput.txtTemperatureforFailure.Text & " " & ChildParent.FormGeneralCoreInput.txtFractionofOxidation.Text & " " & ChildParent.FormGeneralCoreInput.txtHoopStrainThreshold.Text & " " & ChildParent.FormGeneralCoreInput.cboModelsforFailure.SelectedItem.Value)
 
-            generate.WriteLine("40000310 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtFractionofSurfaceArea.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtSurfaceTemperature.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtVelocityofDropsofCladding.Text)
+                generate.WriteLine("40000310 " & ChildParent.FormGeneralCoreInput.txtFractionofSurfaceArea.Text & " " & ChildParent.FormGeneralCoreInput.txtSurfaceTemperature.Text & " " & ChildParent.FormGeneralCoreInput.txtVelocityofDropsofCladding.Text)
 
-            generate.WriteLine("40000320 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMultiplicationFactor.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFractionalFlowArea.Text)
+                generate.WriteLine("40000320 " & ChildParent.FormGeneralCoreInput.txtMultiplicationFactor.Text & " " & ChildParent.FormGeneralCoreInput.txtMinimumFractionalFlowArea.Text)
 
-            generate.WriteLine("40000330 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboFuelRodDisintegration.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTemperatureaboveSaturation.Text)
+                generate.WriteLine("40000330 " & ChildParent.FormGeneralCoreInput.cboFuelRodDisintegration.SelectedItem.Value & " " & ChildParent.FormGeneralCoreInput.txtTemperatureaboveSaturation.Text)
 
-            generate.WriteLine("40000400 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtGammaHeatingFraction.Text)
+                generate.WriteLine("40000400 " & ChildParent.FormGeneralCoreInput.txtGammaHeatingFraction.Text)
 
-            generate.WriteLine("40000500 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtRuptureStrain.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTransitionStrain.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtLimitsStrain.Text & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPressureDropFlag.SelectedValue)
+                generate.WriteLine("40000500 " & ChildParent.FormGeneralCoreInput.txtRuptureStrain.Text & " " & ChildParent.FormGeneralCoreInput.txtTransitionStrain.Text & " " & ChildParent.FormGeneralCoreInput.txtLimitsStrain.Text & " " & ChildParent.FormGeneralCoreInput.cboPressureDropFlag.SelectedItem.Value)
 
-            generate.WriteLine("40000600 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboSourceofData.SelectedValue & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtTableorControlVariableNumber.Text)
-            output = "40001000 "
-            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvGridSpacer.Rows
-                output = output & " " & row.Cells(0).Value
-            Next
+                generate.WriteLine("40000600 " & ChildParent.FormGeneralCoreInput.cboSourceofData.SelectedItem.value & " " & ChildParent.FormGeneralCoreInput.txtTableorControlVariableNumber.Text)
+                output = "40001000 "
+                For Each row In ChildParent.FormGeneralCoreInput.dgvGridSpacer.Rows
+                    output = output & " " & row.Cells(0).Value
+                Next
             generate.WriteLine(output)
             card = 40001001
-            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvGridSpacer.Rows
-                generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(2).Value & " " & row.Cells(3).Value & " " & row.Cells(4).Value & " " & row.Cells(0).Value)
-                card = card + 1
-            Next
+                For Each row In ChildParent.FormGeneralCoreInput.dgvGridSpacer.Rows
+                    generate.WriteLine(card & " " & row.Cells(1).Value & " " & row.Cells(2).Value & " " & row.Cells(3).Value & " " & row.Cells(4).Value & " " & row.Cells(0).Value)
+                    card = card + 1
+                Next
 
-            generate.WriteLine("40001100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboCoreSlumpingModel.SelectedValue)
+                generate.WriteLine("40001100 " & ChildParent.FormGeneralCoreInput.cboCoreSlumpingModel.SelectedItem.Value)
 
-            card = 40001101
+                card = 40001101
 
-            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
-                generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
-                card = card + 1
+                For Each row In ChildParent.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
+                    generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
+                    card = card + 1
 
-            Next
+                Next
 
-            card = 40001201
-            For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
-                generate.WriteLine(card & " " & row.Cells(2).Value)
-                card = card + 1
-            Next
+                card = 40001201
+                For Each row In ChildParent.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
+                    generate.WriteLine(card & " " & row.Cells(2).Value)
+                    card = card + 1
+                Next
 
 
-            generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
+                generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(ChildParent.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedItem.Value) & ChildParent.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & ChildParent.FormGeneralCoreInput.cboComponentatTopCenter.SelectedItem.value & ChildParent.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & ChildParent.FormGeneralCoreInput.txtMinimumFlowArea.Text)
 
 
             Dim a As Integer = 1
