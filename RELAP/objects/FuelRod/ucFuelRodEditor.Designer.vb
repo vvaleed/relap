@@ -22,23 +22,22 @@ Partial Class ucFuelRodEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
+        Me.cmdCopy = New System.Windows.Forms.Button()
+        Me.cmdPaste = New System.Windows.Forms.Button()
         Me.dgvFuelRodDimensions = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.lblAxialNode = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
-        Me.txtFuelPelletRadius = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtInnerCladdingRadius = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtOuterCladdingRadius = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvRadialMeshSpacing = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.lblAxialNodeNumber = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
@@ -49,31 +48,6 @@ Partial Class ucFuelRodEditor
         Me.dgvInitialTemperatures = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.lblAxialNode_InitialTemp = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
-        Me.cboMaterial1 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.ComboItem1 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem2 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem3 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem4 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem5 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem6 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem7 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem8 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem9 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem10 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem11 = New DevComponents.Editors.ComboItem()
-        Me.cboMaterial2 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.ComboItem12 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem13 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem14 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem15 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem16 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem17 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem18 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem19 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem20 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem21 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem22 = New DevComponents.Editors.ComboItem()
         Me.cboMaterial3 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.ComboItem23 = New DevComponents.Editors.ComboItem()
         Me.ComboItem24 = New DevComponents.Editors.ComboItem()
@@ -86,8 +60,33 @@ Partial Class ucFuelRodEditor
         Me.ComboItem31 = New DevComponents.Editors.ComboItem()
         Me.ComboItem32 = New DevComponents.Editors.ComboItem()
         Me.ComboItem33 = New DevComponents.Editors.ComboItem()
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.cboMaterial2 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.ComboItem12 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem13 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem14 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem15 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem16 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem17 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem18 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem19 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem20 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem21 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem22 = New DevComponents.Editors.ComboItem()
+        Me.cboMaterial1 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.ComboItem1 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem2 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem3 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem4 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem5 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem6 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem7 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem8 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem9 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem10 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem11 = New DevComponents.Editors.ComboItem()
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.dgvAxialPowerfactor = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.txtAxialPowerFactor = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
@@ -106,9 +105,10 @@ Partial Class ucFuelRodEditor
         Me.txtVolumeAbove = New DevComponents.Editors.IntegerInput()
         Me.txtVolumebelow = New DevComponents.Editors.IntegerInput()
         Me.cmdSave = New System.Windows.Forms.Button()
-        Me.cmdCopytoAll = New System.Windows.Forms.Button()
-        Me.cmdCopy = New System.Windows.Forms.Button()
-        Me.cmdPaste = New System.Windows.Forms.Button()
+        Me.lblAxialNode = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
+        Me.txtFuelPelletRadius = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
+        Me.txtInnerCladdingRadius = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
+        Me.txtOuterCladdingRadius = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvFuelRodDimensions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,90 +156,73 @@ Partial Class ucFuelRodEditor
         Me.TabPage1.Text = "Fuel Rod Dimensions"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'cmdCopytoAll
+        '
+        Me.cmdCopytoAll.Enabled = False
+        Me.cmdCopytoAll.Location = New System.Drawing.Point(317, 198)
+        Me.cmdCopytoAll.Name = "cmdCopytoAll"
+        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll.TabIndex = 12
+        Me.cmdCopytoAll.Text = "Copy to All"
+        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        '
+        'cmdCopy
+        '
+        Me.cmdCopy.Enabled = False
+        Me.cmdCopy.Location = New System.Drawing.Point(141, 198)
+        Me.cmdCopy.Name = "cmdCopy"
+        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy.TabIndex = 10
+        Me.cmdCopy.Text = "Copy"
+        Me.cmdCopy.UseVisualStyleBackColor = True
+        '
+        'cmdPaste
+        '
+        Me.cmdPaste.Enabled = False
+        Me.cmdPaste.Location = New System.Drawing.Point(222, 198)
+        Me.cmdPaste.Name = "cmdPaste"
+        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste.TabIndex = 11
+        Me.cmdPaste.Text = "Paste"
+        Me.cmdPaste.UseVisualStyleBackColor = True
+        '
         'dgvFuelRodDimensions
         '
         Me.dgvFuelRodDimensions.AllowUserToAddRows = False
         Me.dgvFuelRodDimensions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvFuelRodDimensions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle41.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvFuelRodDimensions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle41
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvFuelRodDimensions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvFuelRodDimensions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvFuelRodDimensions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblAxialNode, Me.txtFuelPelletRadius, Me.txtInnerCladdingRadius, Me.txtOuterCladdingRadius})
-        DataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle42.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvFuelRodDimensions.DefaultCellStyle = DataGridViewCellStyle42
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvFuelRodDimensions.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvFuelRodDimensions.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvFuelRodDimensions.Location = New System.Drawing.Point(21, 24)
         Me.dgvFuelRodDimensions.Name = "dgvFuelRodDimensions"
-        DataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle43.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvFuelRodDimensions.RowHeadersDefaultCellStyle = DataGridViewCellStyle43
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvFuelRodDimensions.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvFuelRodDimensions.Size = New System.Drawing.Size(586, 150)
         Me.dgvFuelRodDimensions.TabIndex = 0
-        '
-        'lblAxialNode
-        '
-        Me.lblAxialNode.HeaderText = "Axial Node"
-        Me.lblAxialNode.Name = "lblAxialNode"
-        '
-        'txtFuelPelletRadius
-        '
-        '
-        '
-        '
-        Me.txtFuelPelletRadius.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtFuelPelletRadius.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtFuelPelletRadius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtFuelPelletRadius.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtFuelPelletRadius.HeaderText = "Fuel Pellet Radius"
-        Me.txtFuelPelletRadius.Increment = 1.0R
-        Me.txtFuelPelletRadius.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtFuelPelletRadius.Name = "txtFuelPelletRadius"
-        '
-        'txtInnerCladdingRadius
-        '
-        '
-        '
-        '
-        Me.txtInnerCladdingRadius.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtInnerCladdingRadius.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtInnerCladdingRadius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtInnerCladdingRadius.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtInnerCladdingRadius.HeaderText = "Inner cladding radius"
-        Me.txtInnerCladdingRadius.Increment = 1.0R
-        Me.txtInnerCladdingRadius.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtInnerCladdingRadius.Name = "txtInnerCladdingRadius"
-        '
-        'txtOuterCladdingRadius
-        '
-        '
-        '
-        '
-        Me.txtOuterCladdingRadius.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtOuterCladdingRadius.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtOuterCladdingRadius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtOuterCladdingRadius.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtOuterCladdingRadius.HeaderText = "Outer cladding radius"
-        Me.txtOuterCladdingRadius.Increment = 1.0R
-        Me.txtOuterCladdingRadius.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtOuterCladdingRadius.Name = "txtOuterCladdingRadius"
         '
         'TabPage2
         '
@@ -255,35 +238,35 @@ Partial Class ucFuelRodEditor
         'dgvRadialMeshSpacing
         '
         Me.dgvRadialMeshSpacing.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle44.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvRadialMeshSpacing.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle44
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvRadialMeshSpacing.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvRadialMeshSpacing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvRadialMeshSpacing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblAxialNodeNumber, Me.txtNumberofIntervals, Me.txtNumberofIntervalsAcrossGap, Me.txtIntervalsAcrossCladding})
-        DataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle45.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle45.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle45.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle45.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvRadialMeshSpacing.DefaultCellStyle = DataGridViewCellStyle45
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvRadialMeshSpacing.DefaultCellStyle = DataGridViewCellStyle5
         Me.dgvRadialMeshSpacing.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvRadialMeshSpacing.Location = New System.Drawing.Point(17, 26)
         Me.dgvRadialMeshSpacing.Name = "dgvRadialMeshSpacing"
-        DataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle46.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvRadialMeshSpacing.RowHeadersDefaultCellStyle = DataGridViewCellStyle46
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvRadialMeshSpacing.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvRadialMeshSpacing.Size = New System.Drawing.Size(564, 175)
         Me.dgvRadialMeshSpacing.TabIndex = 0
         '
@@ -353,14 +336,14 @@ Partial Class ucFuelRodEditor
         Me.dgvInitialTemperatures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvInitialTemperatures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvInitialTemperatures.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblAxialNode_InitialTemp})
-        DataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle47.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvInitialTemperatures.DefaultCellStyle = DataGridViewCellStyle47
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvInitialTemperatures.DefaultCellStyle = DataGridViewCellStyle7
         Me.dgvInitialTemperatures.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvInitialTemperatures.Location = New System.Drawing.Point(30, 28)
         Me.dgvInitialTemperatures.Name = "dgvInitialTemperatures"
@@ -388,154 +371,6 @@ Partial Class ucFuelRodEditor
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Material Specification"
         Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'LabelX1
-        '
-        '
-        '
-        '
-        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX1.Location = New System.Drawing.Point(28, 53)
-        Me.LabelX1.Name = "LabelX1"
-        Me.LabelX1.Size = New System.Drawing.Size(202, 20)
-        Me.LabelX1.TabIndex = 0
-        Me.LabelX1.Text = "Material layer closest to center of rod."
-        '
-        'cboMaterial1
-        '
-        Me.cboMaterial1.DisplayMember = "Text"
-        Me.cboMaterial1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboMaterial1.FormattingEnabled = True
-        Me.cboMaterial1.ItemHeight = 14
-        Me.cboMaterial1.Items.AddRange(New Object() {Me.ComboItem1, Me.ComboItem2, Me.ComboItem3, Me.ComboItem4, Me.ComboItem5, Me.ComboItem6, Me.ComboItem7, Me.ComboItem8, Me.ComboItem9, Me.ComboItem10, Me.ComboItem11})
-        Me.cboMaterial1.Location = New System.Drawing.Point(216, 53)
-        Me.cboMaterial1.Name = "cboMaterial1"
-        Me.cboMaterial1.Size = New System.Drawing.Size(121, 20)
-        Me.cboMaterial1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboMaterial1.TabIndex = 1
-        '
-        'ComboItem1
-        '
-        Me.ComboItem1.Text = "Unirradiated fuel, UO2"
-        Me.ComboItem1.Value = "6"
-        '
-        'ComboItem2
-        '
-        Me.ComboItem2.Text = "Cracked fuel, UO2"
-        Me.ComboItem2.Value = "7"
-        '
-        'ComboItem3
-        '
-        Me.ComboItem3.Text = "Relocated fuel, UO2"
-        Me.ComboItem3.Value = "8"
-        '
-        'ComboItem4
-        '
-        Me.ComboItem4.Text = "Steam-gas atmosphere."
-        Me.ComboItem4.Value = "9"
-        '
-        'ComboItem5
-        '
-        Me.ComboItem5.Text = "Metallic uranium"
-        Me.ComboItem5.Value = "13"
-        '
-        'ComboItem6
-        '
-        Me.ComboItem6.Text = "Disabled"
-        Me.ComboItem6.Value = "14"
-        '
-        'ComboItem7
-        '
-        Me.ComboItem7.Text = "Aluminum"
-        Me.ComboItem7.Value = "15"
-        '
-        'ComboItem8
-        '
-        Me.ComboItem8.Text = "Al2O3"
-        Me.ComboItem8.Value = "16"
-        '
-        'ComboItem9
-        '
-        Me.ComboItem9.Text = "Lithium"
-        Me.ComboItem9.Value = "17"
-        '
-        'ComboItem10
-        '
-        Me.ComboItem10.Text = "Stainless steel 3304"
-        Me.ComboItem10.Value = "19"
-        '
-        'ComboItem11
-        '
-        Me.ComboItem11.Text = "Control rod absorber material (Ag/In/Cd or B4C"
-        Me.ComboItem11.Value = "20"
-        '
-        'cboMaterial2
-        '
-        Me.cboMaterial2.DisplayMember = "Text"
-        Me.cboMaterial2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboMaterial2.FormattingEnabled = True
-        Me.cboMaterial2.ItemHeight = 14
-        Me.cboMaterial2.Items.AddRange(New Object() {Me.ComboItem12, Me.ComboItem13, Me.ComboItem14, Me.ComboItem15, Me.ComboItem16, Me.ComboItem17, Me.ComboItem18, Me.ComboItem19, Me.ComboItem20, Me.ComboItem21, Me.ComboItem22})
-        Me.cboMaterial2.Location = New System.Drawing.Point(216, 79)
-        Me.cboMaterial2.Name = "cboMaterial2"
-        Me.cboMaterial2.Size = New System.Drawing.Size(121, 20)
-        Me.cboMaterial2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboMaterial2.TabIndex = 1
-        '
-        'ComboItem12
-        '
-        Me.ComboItem12.Text = "Unirradiated fuel, UO2"
-        Me.ComboItem12.Value = "6"
-        '
-        'ComboItem13
-        '
-        Me.ComboItem13.Text = "Cracked fuel, UO2"
-        Me.ComboItem13.Value = "7"
-        '
-        'ComboItem14
-        '
-        Me.ComboItem14.Text = "Relocated fuel, UO2"
-        Me.ComboItem14.Value = "8"
-        '
-        'ComboItem15
-        '
-        Me.ComboItem15.Text = "Steam-gas atmosphere."
-        Me.ComboItem15.Value = "9"
-        '
-        'ComboItem16
-        '
-        Me.ComboItem16.Text = "Metallic uranium"
-        Me.ComboItem16.Value = "13"
-        '
-        'ComboItem17
-        '
-        Me.ComboItem17.Text = "Disabled"
-        Me.ComboItem17.Value = "14"
-        '
-        'ComboItem18
-        '
-        Me.ComboItem18.Text = "Aluminum"
-        Me.ComboItem18.Value = "15"
-        '
-        'ComboItem19
-        '
-        Me.ComboItem19.Text = "Al2O3"
-        Me.ComboItem19.Value = "16"
-        '
-        'ComboItem20
-        '
-        Me.ComboItem20.Text = "Lithium"
-        Me.ComboItem20.Value = "17"
-        '
-        'ComboItem21
-        '
-        Me.ComboItem21.Text = "Stainless steel 3304"
-        Me.ComboItem21.Value = "19"
-        '
-        'ComboItem22
-        '
-        Me.ComboItem22.Text = "Control rod absorber material (Ag/In/Cd or B4C"
-        Me.ComboItem22.Value = "20"
         '
         'cboMaterial3
         '
@@ -605,17 +440,141 @@ Partial Class ucFuelRodEditor
         Me.ComboItem33.Text = "Control rod absorber material (Ag/In/Cd or B4C"
         Me.ComboItem33.Value = "20"
         '
-        'LabelX2
+        'cboMaterial2
         '
+        Me.cboMaterial2.DisplayMember = "Text"
+        Me.cboMaterial2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cboMaterial2.FormattingEnabled = True
+        Me.cboMaterial2.ItemHeight = 14
+        Me.cboMaterial2.Items.AddRange(New Object() {Me.ComboItem12, Me.ComboItem13, Me.ComboItem14, Me.ComboItem15, Me.ComboItem16, Me.ComboItem17, Me.ComboItem18, Me.ComboItem19, Me.ComboItem20, Me.ComboItem21, Me.ComboItem22})
+        Me.cboMaterial2.Location = New System.Drawing.Point(216, 79)
+        Me.cboMaterial2.Name = "cboMaterial2"
+        Me.cboMaterial2.Size = New System.Drawing.Size(121, 20)
+        Me.cboMaterial2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cboMaterial2.TabIndex = 1
         '
+        'ComboItem12
         '
+        Me.ComboItem12.Text = "Unirradiated fuel, UO2"
+        Me.ComboItem12.Value = "6"
         '
-        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX2.Location = New System.Drawing.Point(28, 79)
-        Me.LabelX2.Name = "LabelX2"
-        Me.LabelX2.Size = New System.Drawing.Size(202, 20)
-        Me.LabelX2.TabIndex = 0
-        Me.LabelX2.Text = "Material layer 2"
+        'ComboItem13
+        '
+        Me.ComboItem13.Text = "Cracked fuel, UO2"
+        Me.ComboItem13.Value = "7"
+        '
+        'ComboItem14
+        '
+        Me.ComboItem14.Text = "Relocated fuel, UO2"
+        Me.ComboItem14.Value = "8"
+        '
+        'ComboItem15
+        '
+        Me.ComboItem15.Text = "Steam-gas atmosphere."
+        Me.ComboItem15.Value = "9"
+        '
+        'ComboItem16
+        '
+        Me.ComboItem16.Text = "Metallic uranium"
+        Me.ComboItem16.Value = "13"
+        '
+        'ComboItem17
+        '
+        Me.ComboItem17.Text = "Disabled"
+        Me.ComboItem17.Value = "14"
+        '
+        'ComboItem18
+        '
+        Me.ComboItem18.Text = "Aluminum"
+        Me.ComboItem18.Value = "15"
+        '
+        'ComboItem19
+        '
+        Me.ComboItem19.Text = "Al2O3"
+        Me.ComboItem19.Value = "16"
+        '
+        'ComboItem20
+        '
+        Me.ComboItem20.Text = "Lithium"
+        Me.ComboItem20.Value = "17"
+        '
+        'ComboItem21
+        '
+        Me.ComboItem21.Text = "Stainless steel 3304"
+        Me.ComboItem21.Value = "19"
+        '
+        'ComboItem22
+        '
+        Me.ComboItem22.Text = "Control rod absorber material (Ag/In/Cd or B4C"
+        Me.ComboItem22.Value = "20"
+        '
+        'cboMaterial1
+        '
+        Me.cboMaterial1.DisplayMember = "Text"
+        Me.cboMaterial1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cboMaterial1.FormattingEnabled = True
+        Me.cboMaterial1.ItemHeight = 14
+        Me.cboMaterial1.Items.AddRange(New Object() {Me.ComboItem1, Me.ComboItem2, Me.ComboItem3, Me.ComboItem4, Me.ComboItem5, Me.ComboItem6, Me.ComboItem7, Me.ComboItem8, Me.ComboItem9, Me.ComboItem10, Me.ComboItem11})
+        Me.cboMaterial1.Location = New System.Drawing.Point(216, 53)
+        Me.cboMaterial1.Name = "cboMaterial1"
+        Me.cboMaterial1.Size = New System.Drawing.Size(121, 20)
+        Me.cboMaterial1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cboMaterial1.TabIndex = 1
+        '
+        'ComboItem1
+        '
+        Me.ComboItem1.Text = "Unirradiated fuel, UO2"
+        Me.ComboItem1.Value = "6"
+        '
+        'ComboItem2
+        '
+        Me.ComboItem2.Text = "Cracked fuel, UO2"
+        Me.ComboItem2.Value = "7"
+        '
+        'ComboItem3
+        '
+        Me.ComboItem3.Text = "Relocated fuel, UO2"
+        Me.ComboItem3.Value = "8"
+        '
+        'ComboItem4
+        '
+        Me.ComboItem4.Text = "Steam-gas atmosphere."
+        Me.ComboItem4.Value = "9"
+        '
+        'ComboItem5
+        '
+        Me.ComboItem5.Text = "Metallic uranium"
+        Me.ComboItem5.Value = "13"
+        '
+        'ComboItem6
+        '
+        Me.ComboItem6.Text = "Disabled"
+        Me.ComboItem6.Value = "14"
+        '
+        'ComboItem7
+        '
+        Me.ComboItem7.Text = "Aluminum"
+        Me.ComboItem7.Value = "15"
+        '
+        'ComboItem8
+        '
+        Me.ComboItem8.Text = "Al2O3"
+        Me.ComboItem8.Value = "16"
+        '
+        'ComboItem9
+        '
+        Me.ComboItem9.Text = "Lithium"
+        Me.ComboItem9.Value = "17"
+        '
+        'ComboItem10
+        '
+        Me.ComboItem10.Text = "Stainless steel 3304"
+        Me.ComboItem10.Value = "19"
+        '
+        'ComboItem11
+        '
+        Me.ComboItem11.Text = "Control rod absorber material (Ag/In/Cd or B4C"
+        Me.ComboItem11.Value = "20"
         '
         'LabelX3
         '
@@ -628,6 +587,30 @@ Partial Class ucFuelRodEditor
         Me.LabelX3.Size = New System.Drawing.Size(202, 20)
         Me.LabelX3.TabIndex = 0
         Me.LabelX3.Text = "Material layer 3"
+        '
+        'LabelX2
+        '
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX2.Location = New System.Drawing.Point(28, 79)
+        Me.LabelX2.Name = "LabelX2"
+        Me.LabelX2.Size = New System.Drawing.Size(202, 20)
+        Me.LabelX2.TabIndex = 0
+        Me.LabelX2.Text = "Material layer 2"
+        '
+        'LabelX1
+        '
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX1.Location = New System.Drawing.Point(28, 53)
+        Me.LabelX1.Name = "LabelX1"
+        Me.LabelX1.Size = New System.Drawing.Size(202, 20)
+        Me.LabelX1.TabIndex = 0
+        Me.LabelX1.Text = "Material layer closest to center of rod."
         '
         'TabPage5
         '
@@ -645,14 +628,14 @@ Partial Class ucFuelRodEditor
         Me.dgvAxialPowerfactor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAxialPowerfactor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAxialPowerfactor.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.txtAxialPowerFactor})
-        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle48.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle48.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle48.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvAxialPowerfactor.DefaultCellStyle = DataGridViewCellStyle48
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvAxialPowerfactor.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgvAxialPowerfactor.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvAxialPowerfactor.Location = New System.Drawing.Point(32, 17)
         Me.dgvAxialPowerfactor.Name = "dgvAxialPowerfactor"
@@ -691,14 +674,14 @@ Partial Class ucFuelRodEditor
         Me.dgvRadialPowerProfile.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvRadialPowerProfile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvRadialPowerProfile.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.txtRadialPowerFactor, Me.txtRadialnode})
-        DataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle49.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle49.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle49.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle49.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle49.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle49.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvRadialPowerProfile.DefaultCellStyle = DataGridViewCellStyle49
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvRadialPowerProfile.DefaultCellStyle = DataGridViewCellStyle9
         Me.dgvRadialPowerProfile.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvRadialPowerProfile.Location = New System.Drawing.Point(34, 26)
         Me.dgvRadialPowerProfile.Name = "dgvRadialPowerProfile"
@@ -748,14 +731,14 @@ Partial Class ucFuelRodEditor
         Me.dgvPowerHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPowerHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPowerHistory.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.txtPowerHistory, Me.txtTime})
-        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle50.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle50.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPowerHistory.DefaultCellStyle = DataGridViewCellStyle50
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPowerHistory.DefaultCellStyle = DataGridViewCellStyle10
         Me.dgvPowerHistory.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvPowerHistory.Location = New System.Drawing.Point(40, 28)
         Me.dgvPowerHistory.Name = "dgvPowerHistory"
@@ -857,35 +840,55 @@ Partial Class ucFuelRodEditor
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
         '
-        'cmdCopytoAll
+        'lblAxialNode
         '
-        Me.cmdCopytoAll.Enabled = False
-        Me.cmdCopytoAll.Location = New System.Drawing.Point(317, 198)
-        Me.cmdCopytoAll.Name = "cmdCopytoAll"
-        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopytoAll.TabIndex = 12
-        Me.cmdCopytoAll.Text = "Copy to All"
-        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        Me.lblAxialNode.HeaderText = "Axial Node"
+        Me.lblAxialNode.Name = "lblAxialNode"
         '
-        'cmdCopy
+        'txtFuelPelletRadius
         '
-        Me.cmdCopy.Enabled = False
-        Me.cmdCopy.Location = New System.Drawing.Point(141, 198)
-        Me.cmdCopy.Name = "cmdCopy"
-        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy.TabIndex = 10
-        Me.cmdCopy.Text = "Copy"
-        Me.cmdCopy.UseVisualStyleBackColor = True
         '
-        'cmdPaste
         '
-        Me.cmdPaste.Enabled = False
-        Me.cmdPaste.Location = New System.Drawing.Point(222, 198)
-        Me.cmdPaste.Name = "cmdPaste"
-        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste.TabIndex = 11
-        Me.cmdPaste.Text = "Paste"
-        Me.cmdPaste.UseVisualStyleBackColor = True
+        '
+        Me.txtFuelPelletRadius.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtFuelPelletRadius.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtFuelPelletRadius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtFuelPelletRadius.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtFuelPelletRadius.DisplayFormat = "0.0000"
+        Me.txtFuelPelletRadius.HeaderText = "Fuel Pellet Radius"
+        Me.txtFuelPelletRadius.Increment = 1.0R
+        Me.txtFuelPelletRadius.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtFuelPelletRadius.Name = "txtFuelPelletRadius"
+        '
+        'txtInnerCladdingRadius
+        '
+        '
+        '
+        '
+        Me.txtInnerCladdingRadius.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtInnerCladdingRadius.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtInnerCladdingRadius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtInnerCladdingRadius.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtInnerCladdingRadius.DisplayFormat = "0.0000"
+        Me.txtInnerCladdingRadius.HeaderText = "Inner cladding radius"
+        Me.txtInnerCladdingRadius.Increment = 1.0R
+        Me.txtInnerCladdingRadius.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtInnerCladdingRadius.Name = "txtInnerCladdingRadius"
+        '
+        'txtOuterCladdingRadius
+        '
+        '
+        '
+        '
+        Me.txtOuterCladdingRadius.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtOuterCladdingRadius.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtOuterCladdingRadius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtOuterCladdingRadius.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtOuterCladdingRadius.DisplayFormat = "0.0000"
+        Me.txtOuterCladdingRadius.HeaderText = "Outer cladding radius"
+        Me.txtOuterCladdingRadius.Increment = 1.0R
+        Me.txtOuterCladdingRadius.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtOuterCladdingRadius.Name = "txtOuterCladdingRadius"
         '
         'ucFuelRodEditor
         '
@@ -924,10 +927,6 @@ Partial Class ucFuelRodEditor
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents dgvFuelRodDimensions As DevComponents.DotNetBar.Controls.DataGridViewX
-    Friend WithEvents lblAxialNode As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
-    Friend WithEvents txtFuelPelletRadius As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtInnerCladdingRadius As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtOuterCladdingRadius As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
     Friend WithEvents dgvRadialMeshSpacing As DevComponents.DotNetBar.Controls.DataGridViewX
     Friend WithEvents lblAxialNodeNumber As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
     Friend WithEvents txtNumberofIntervals As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
@@ -997,5 +996,9 @@ Partial Class ucFuelRodEditor
     Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
     Friend WithEvents cmdCopy As System.Windows.Forms.Button
     Friend WithEvents cmdPaste As System.Windows.Forms.Button
+    Friend WithEvents lblAxialNode As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
+    Friend WithEvents txtFuelPelletRadius As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
+    Friend WithEvents txtInnerCladdingRadius As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
+    Friend WithEvents txtOuterCladdingRadius As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
 
 End Class

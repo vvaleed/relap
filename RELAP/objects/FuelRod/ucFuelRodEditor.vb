@@ -1,4 +1,5 @@
-﻿
+﻿Imports RELAP.RELAP.SimulationObjects.UnitOps
+
 Public Class ucFuelRodEditor
 
 
@@ -39,14 +40,35 @@ Public Class ucFuelRodEditor
             Next
 
         End If
+        Try
+            cboControlVolumeAbove.DisplayMember = "Tag"
+            cboControlVolumeAbove.ValueMember = "Value"
+            cboControlVolumeBelow.DisplayMember = "Tag"
+            cboControlVolumeBelow.ValueMember = "Value"
+           
+            cboControlVolumeAbove.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
+            cboControlVolumeBelow.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub cmdSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSave.Click
         Dim obj = My.Application.ActiveSimulation.Collections.CLCS_FuelRodCollection(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject.Name)
         obj.ControlVolumeAbove = cboControlVolumeAbove.SelectedValue & txtVolumeAbove.Text.ToString("D2") & "0000"
         obj.ControlVolumeBelow = cboControlVolumeBelow.SelectedValue & txtVolumebelow.Text.ToString("D2") & "0000"
+        
 
+        If Not Me.FuelRodDetails Is Nothing Then
+            Me.FuelRodDetails.FuelRodDimensions.Clear()
+        End If
 
+        For Each row As DataGridViewRow In Me.dgvFuelRodDimensions.Rows
+            Me.FuelRodDetails.FuelRodDimensions.Add(row.Index + 1, New FuelRodDimensions(row.Cells(1).Value, row.Cells(2).Value, row.Cells(3).Value, row.Cells(0).Value))
+        Next
+
+        
     End Sub
 
     Private Sub cmdCopy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCopy.Click
@@ -62,12 +84,9 @@ Public Class ucFuelRodEditor
     Private Sub cmdPaste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdPaste.Click
         For Each row As DataGridViewRow In dgvFuelRodDimensions.SelectedRows
             Dim i = 0
-
-
             For i = 1 To row.Cells.Count - 1
                 row.Cells(i).Value = selectedcells(i)
             Next
-
 
         Next
     End Sub
