@@ -3114,7 +3114,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next kvp
 
 
-          
+
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.pipe) In ChildParent.Collections.CLCS_PipeCollection
                 '  MsgBox(kvp.Key)
@@ -3618,7 +3618,9 @@ sim:                Dim myStream As System.IO.FileStream
                     Counter = Counter + 1
                 Next kvp2
             Next kvp
+            Try
 
+          
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*          General Core Input                                          ")
             generate.WriteLine("*======================================================================")
@@ -3662,7 +3664,7 @@ sim:                Dim myStream As System.IO.FileStream
             card = 40001101
 
             For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
-                  generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
+                generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
                 card = card + 1
 
             Next
@@ -3674,7 +3676,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next
 
 
-             generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
+            generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
 
 
             Dim a As Integer = 1
@@ -3794,7 +3796,10 @@ sim:                Dim myStream As System.IO.FileStream
                 Next
                 generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
 
-            Next kvp
+                Next kvp
+            Catch ex As Exception
+
+            End Try
             generate.WriteLine(".")
             generate.Close()
             MsgBox("File Saved")
