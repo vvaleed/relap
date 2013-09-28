@@ -23,8 +23,6 @@ Partial Class ucBranchEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dgvBranch = New System.Windows.Forms.DataGridView()
-        Me.cmdSave = New System.Windows.Forms.Button()
-        Me.CheckBoxEntermass = New System.Windows.Forms.CheckBox()
         Me.FromComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.FromComponentVolumeNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FromFaceNumber = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -39,11 +37,15 @@ Partial Class ucBranchEditor
         Me.SuperheatedDischargeCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LiquidMassFlow = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VaporMassFlow = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdSave = New System.Windows.Forms.Button()
+        Me.CheckBoxEntermass = New System.Windows.Forms.CheckBox()
         CType(Me.dgvBranch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvBranch
         '
+        Me.dgvBranch.AllowUserToAddRows = False
+        Me.dgvBranch.AllowUserToDeleteRows = False
         Me.dgvBranch.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvBranch.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvBranch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -52,25 +54,6 @@ Partial Class ucBranchEditor
         Me.dgvBranch.Name = "dgvBranch"
         Me.dgvBranch.Size = New System.Drawing.Size(1273, 374)
         Me.dgvBranch.TabIndex = 0
-        '
-        'cmdSave
-        '
-        Me.cmdSave.Location = New System.Drawing.Point(1169, 424)
-        Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
-        Me.cmdSave.TabIndex = 1
-        Me.cmdSave.Text = "Save"
-        Me.cmdSave.UseVisualStyleBackColor = True
-        '
-        'CheckBoxEntermass
-        '
-        Me.CheckBoxEntermass.AutoSize = True
-        Me.CheckBoxEntermass.Location = New System.Drawing.Point(18, 12)
-        Me.CheckBoxEntermass.Name = "CheckBoxEntermass"
-        Me.CheckBoxEntermass.Size = New System.Drawing.Size(109, 17)
-        Me.CheckBoxEntermass.TabIndex = 2
-        Me.CheckBoxEntermass.Text = "Enter Mass Flows"
-        Me.CheckBoxEntermass.UseVisualStyleBackColor = True
         '
         'FromComponent
         '
@@ -143,6 +126,25 @@ Partial Class ucBranchEditor
         '
         Me.VaporMassFlow.HeaderText = "Initial Vapor Velocity"
         Me.VaporMassFlow.Name = "VaporMassFlow"
+        '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(1169, 424)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 1
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
+        'CheckBoxEntermass
+        '
+        Me.CheckBoxEntermass.AutoSize = True
+        Me.CheckBoxEntermass.Location = New System.Drawing.Point(18, 12)
+        Me.CheckBoxEntermass.Name = "CheckBoxEntermass"
+        Me.CheckBoxEntermass.Size = New System.Drawing.Size(109, 17)
+        Me.CheckBoxEntermass.TabIndex = 2
+        Me.CheckBoxEntermass.Text = "Enter Mass Flows"
+        Me.CheckBoxEntermass.UseVisualStyleBackColor = True
         '
         'ucBranchEditor
         '

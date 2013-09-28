@@ -1,14 +1,14 @@
 ﻿<System.Serializable()> Public Class BranchJunctionsGeometry
 
-    'Private _EnterMassorVelocity As Double
-    'Public Property EnterMassorVelocity() As Double
-    '    Get
-    '        Return _EnterMassorVelocity
-    '    End Get
-    '    Set(ByVal value As Double)
-    '        _EnterMassorVelocity = value
-    '    End Set
-    'End Property
+    Private _EnterMassorVelocity As String
+    Public Property EnterMassorVelocity() As String
+        Get
+            Return _EnterMassorVelocity
+        End Get
+        Set(ByVal value As String)
+            _EnterMassorVelocity = value
+        End Set
+    End Property
 
     Protected m_collection As Generic.SortedDictionary(Of Integer, BranchGeometry)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir

@@ -60,7 +60,7 @@ Partial Class frmMaterials
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(301, 381)
+        Me.ClientSize = New System.Drawing.Size(295, 381)
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.TxtBoxSelectMaterial)
         Me.Controls.Add(Me.CmboboxSelectMaterial)
