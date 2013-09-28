@@ -2484,7 +2484,7 @@ sim:                Dim myStream As System.IO.FileStream
         End If
 
         If Directory.Exists(folder) Then
-            If Not Me.bgSaveBackup.IsBusy Then Me.bgSaveBackup.RunWorkerAsync()
+            '     If Not Me.bgSaveBackup.IsBusy Then Me.bgSaveBackup.RunWorkerAsync()
         End If
 
     End Sub
@@ -3662,7 +3662,7 @@ sim:                Dim myStream As System.IO.FileStream
             card = 40001101
 
             For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvCoreBypassVolumes.Rows
-                '  generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
+                  generate.WriteLine(card & " " & RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000")
                 card = card + 1
 
             Next
@@ -3674,7 +3674,7 @@ sim:                Dim myStream As System.IO.FileStream
             Next
 
 
-            ' generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
+             generate.WriteLine("40002000 " & RELAP.App.GetUIDFromTag(My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponenttoReceiveSlumped.SelectedValue) & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume1.Text.ToString("D2") & "0000 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboComponentatTopCenter.SelectedValue & My.Application.ActiveSimulation.FormGeneralCoreInput.txtControlVolume2.Text.ToString("D2") & "0000" & My.Application.ActiveSimulation.FormGeneralCoreInput.txtMinimumFlowArea.Text)
 
 
             Dim a As Integer = 1
@@ -3787,9 +3787,13 @@ sim:                Dim myStream As System.IO.FileStream
 
                 generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
                 generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
-
+                card = Val("40" & CID & "0301")
+                For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.FuelRodDimensions) In kvp.Value.FuelRodDetails.FuelRodDimensions
+                    generate.WriteLine(card & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
+                    card = card + 1
+                Next
                 generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
-          
+
             Next kvp
             generate.WriteLine(".")
             generate.Close()
