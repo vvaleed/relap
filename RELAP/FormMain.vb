@@ -2730,10 +2730,10 @@ sim:                Dim myStream As System.IO.FileStream
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
-                If temprow.Cells(0).Value.ToString <> "" Then
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
+                'If temprow.Cells(0).Value.ToString <> "" Then
+                '    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
 
-                      End If
+                '      End If
 
                 card = card + 1
             Next
@@ -2982,18 +2982,45 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ pump")
 
-
                 output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & "0"
                 generate.WriteLine(output)
 
-
-
-                output = (((kvp.Value.UID & "0108 " & kvp.Value.JunctionArea & " ") & kvp.Value.FflowLossCo & " ") & kvp.Value.RflowLossCo & " ") & "0" & output1 & "0" & output2 & output3 & output4 & "0"
+                output1 = boolto10(kvp.Value.CCFL)
+                output2 = boolto01(kvp.Value.chokingModel)
+                If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
+                    output3 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
+                    output3 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output3 = "1"
+                ElseIf kvp.Value.AreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output3 = "2"
+                End If
+                If kvp.Value.MomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output4 = "0"
+                ElseIf kvp.Value.MomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output4 = "1"
+                End If
+                output = kvp.Value.UID & "0108 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0" & output1 & "0" & output2 & output3 & output4 & "0"
                 generate.WriteLine(output)
 
-
-
-                output = (((kvp.Value.UID & "0109 " & kvp.Value.OJunctionArea & " ") & kvp.Value.OFflowLossCo & " ") & kvp.Value.ORflowLossCo & " ") & "0" & output1 & "0" & output2 & output3 & output4 & "0"
+                output1 = boolto10(kvp.Value.OCCFL)
+                output2 = boolto01(kvp.Value.OchokingModel)
+                If kvp.Value.OAreaChange.ToString = "No_Area_Change" Then
+                    output3 = "0"
+                ElseIf kvp.Value.OAreaChange.ToString = "Smooth_Area_Change" Then
+                    output3 = "0"
+                ElseIf kvp.Value.OAreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output3 = "1"
+                ElseIf kvp.Value.OAreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output3 = "2"
+                End If
+                If kvp.Value.OMomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output4 = "0"
+                ElseIf kvp.Value.OMomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output4 = "1"
+                End If
+                output = kvp.Value.UID & "0109 " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.OJunctionArea & " " & kvp.Value.OFflowLossCo & " " & kvp.Value.ORflowLossCo & " " & "0" & output1 & "0" & output2 & output3 & output4 & "0"
                 generate.WriteLine(output)
                 If frmInitialSettings.optDefaultFluid.Checked = True Then
                     fluidchk = "0"
@@ -3014,7 +3041,23 @@ sim:                Dim myStream As System.IO.FileStream
 
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
                     generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
-                Next kvp2
+                Next
+
+                If kvp.Value.EnterVelocityOrMassFlowRate = False Then
+                    output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity.ToString("F") & " ") & kvp.Value.InitialVaporVelocity.ToString("F") & " ") & "0"
+                    generate.WriteLine(output)
+                ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
+                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate.ToString("F") & " ") & kvp.Value.InitialVaporMassFlowRate.ToString("F") & " ") & "0"
+                    generate.WriteLine(output)
+                End If
+
+                If kvp.Value.OEnterVelocityOrMassFlowRate = False Then
+                    output = (((kvp.Value.UID & "0202 " & "0" & " ") & kvp.Value.OInitialLiquidVelocity.ToString("F") & " ") & kvp.Value.OInitialVaporVelocity.ToString("F") & " ") & "0"
+                    generate.WriteLine(output)
+                ElseIf kvp.Value.OEnterVelocityOrMassFlowRate = True Then
+                    output = (((kvp.Value.UID & "0202 " & "1" & " ") & kvp.Value.OInitialLiquidMassFlowRate.ToString("F") & " ") & kvp.Value.OInitialVaporMassFlowRate.ToString("F") & " ") & "0"
+                    generate.WriteLine(output)
+                End If
                 'pump index
                 If kvp.Value.PumpData.cmbboxindex1 = Nothing Then
                     kvp.Value.PumpData.cmbboxindex1 = 0
