@@ -260,6 +260,12 @@
     <Compile Include="objects\Branch\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
     <Compile Include="objects\Custom Properties\PumpData.vb" />
+    <Compile Include="objects\FuelRod\frmFuelRodEditor.Designer.vb">
+      <DependentUpon>frmFuelRodEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\FuelRod\frmFuelRodEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="objects\Separator\formSeparatorEditor.Designer.vb">
       <DependentUpon>formSeparatorEditor.vb</DependentUpon>
     </Compile>
@@ -457,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucPump.resx">
       <DependentUpon>ucPump.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\FuelRod\frmFuelRodEditor.resx">
+      <DependentUpon>frmFuelRodEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\FuelRod\ucFuelRodEditor.resx">
       <DependentUpon>ucFuelRodEditor.vb</DependentUpon>

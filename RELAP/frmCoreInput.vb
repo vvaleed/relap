@@ -4,9 +4,12 @@
 
 
     Private Sub txtAxialNodes_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtAxialNodes.ValueChanged
-        If dgvAxialNodeHeights.RowCount = 0 And txtAxialNodes.Value > 0 Then
+        If txtAxialNodes.Value > 0 Then
             dgvAxialNodeHeights.Rows.Clear()
-            dgvAxialNodeHeights.Rows.Add(txtAxialNodes.Value)
+            For i As Integer = 1 To txtAxialNodes.Text
+                dgvAxialNodeHeights.Rows.Add(i.ToString)
+            Next
+
         End If
     End Sub
 

@@ -111,24 +111,24 @@ Partial Class frmCoreInput
         Me.txtGridSpacerElevation2 = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
         Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
+        Me.txtMinimumFlowArea = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.cboComponentatTopCenter = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.cboComponenttoReceiveSlumped = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX17 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX16 = New DevComponents.DotNetBar.LabelX()
         Me.cboCoreSlumpingModel = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.ComboItem23 = New DevComponents.Editors.ComboItem()
         Me.ComboItem24 = New DevComponents.Editors.ComboItem()
         Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.dgvCoreBypassVolumes = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.cboComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.cboVolume = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.txtElevation = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
         Me.LabelX15 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX16 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX17 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
-        Me.cboComponenttoReceiveSlumped = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.cboComponentatTopCenter = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.cboControlVolume = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.cboVolumeatTopCenter = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.txtMinimumFlowArea = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.cboComponent = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.txtVolume = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
+        Me.txtElevation = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
+        Me.txtControlVolume1 = New DevComponents.Editors.IntegerInput()
+        Me.txtControlVolume2 = New DevComponents.Editors.IntegerInput()
         CType(Me.txtAxialNodes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -160,6 +160,8 @@ Partial Class frmCoreInput
         Me.TabPage9.SuspendLayout()
         Me.TabPage10.SuspendLayout()
         CType(Me.dgvCoreBypassVolumes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtControlVolume1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtControlVolume2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -318,7 +320,7 @@ Partial Class frmCoreInput
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(810, 361)
+        Me.TabControl1.Size = New System.Drawing.Size(870, 361)
         Me.TabControl1.TabIndex = 3
         '
         'TabPage1
@@ -1149,10 +1151,10 @@ Partial Class frmCoreInput
         '
         'TabPage9
         '
+        Me.TabPage9.Controls.Add(Me.txtControlVolume2)
+        Me.TabPage9.Controls.Add(Me.txtControlVolume1)
         Me.TabPage9.Controls.Add(Me.txtMinimumFlowArea)
-        Me.TabPage9.Controls.Add(Me.cboVolumeatTopCenter)
         Me.TabPage9.Controls.Add(Me.cboComponentatTopCenter)
-        Me.TabPage9.Controls.Add(Me.cboControlVolume)
         Me.TabPage9.Controls.Add(Me.cboComponenttoReceiveSlumped)
         Me.TabPage9.Controls.Add(Me.LabelX18)
         Me.TabPage9.Controls.Add(Me.LabelX17)
@@ -1162,10 +1164,83 @@ Partial Class frmCoreInput
         Me.TabPage9.Location = New System.Drawing.Point(4, 22)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(802, 335)
+        Me.TabPage9.Size = New System.Drawing.Size(862, 335)
         Me.TabPage9.TabIndex = 10
         Me.TabPage9.Text = "Core Slumping Model"
         Me.TabPage9.UseVisualStyleBackColor = True
+        '
+        'txtMinimumFlowArea
+        '
+        '
+        '
+        '
+        Me.txtMinimumFlowArea.Border.Class = "TextBoxBorder"
+        Me.txtMinimumFlowArea.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtMinimumFlowArea.Location = New System.Drawing.Point(584, 203)
+        Me.txtMinimumFlowArea.Name = "txtMinimumFlowArea"
+        Me.txtMinimumFlowArea.Size = New System.Drawing.Size(121, 20)
+        Me.txtMinimumFlowArea.TabIndex = 4
+        '
+        'cboComponentatTopCenter
+        '
+        Me.cboComponentatTopCenter.DisplayMember = "Text"
+        Me.cboComponentatTopCenter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cboComponentatTopCenter.FormattingEnabled = True
+        Me.cboComponentatTopCenter.ItemHeight = 14
+        Me.cboComponentatTopCenter.Location = New System.Drawing.Point(584, 176)
+        Me.cboComponentatTopCenter.Name = "cboComponentatTopCenter"
+        Me.cboComponentatTopCenter.Size = New System.Drawing.Size(121, 20)
+        Me.cboComponentatTopCenter.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cboComponentatTopCenter.TabIndex = 3
+        '
+        'cboComponenttoReceiveSlumped
+        '
+        Me.cboComponenttoReceiveSlumped.DisplayMember = "Text"
+        Me.cboComponenttoReceiveSlumped.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cboComponenttoReceiveSlumped.FormattingEnabled = True
+        Me.cboComponenttoReceiveSlumped.ItemHeight = 14
+        Me.cboComponenttoReceiveSlumped.Location = New System.Drawing.Point(584, 150)
+        Me.cboComponenttoReceiveSlumped.Name = "cboComponenttoReceiveSlumped"
+        Me.cboComponenttoReceiveSlumped.Size = New System.Drawing.Size(121, 20)
+        Me.cboComponenttoReceiveSlumped.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cboComponenttoReceiveSlumped.TabIndex = 3
+        '
+        'LabelX18
+        '
+        '
+        '
+        '
+        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX18.Location = New System.Drawing.Point(36, 198)
+        Me.LabelX18.Name = "LabelX18"
+        Me.LabelX18.Size = New System.Drawing.Size(323, 20)
+        Me.LabelX18.TabIndex = 2
+        Me.LabelX18.Text = "Minimum flow area per fuel rod in cohesive debris in core region"
+        '
+        'LabelX17
+        '
+        '
+        '
+        '
+        Me.LabelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX17.Location = New System.Drawing.Point(36, 176)
+        Me.LabelX17.Name = "LabelX17"
+        Me.LabelX17.Size = New System.Drawing.Size(538, 16)
+        Me.LabelX17.TabIndex = 2
+        Me.LabelX17.Text = "RELAP5 volume at top center of core. The bottom of this volume should be contiguo" & _
+            "us with the top of the core. "
+        '
+        'LabelX16
+        '
+        '
+        '
+        '
+        Me.LabelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX16.Location = New System.Drawing.Point(36, 156)
+        Me.LabelX16.Name = "LabelX16"
+        Me.LabelX16.Size = New System.Drawing.Size(450, 14)
+        Me.LabelX16.TabIndex = 2
+        Me.LabelX16.Text = "Number of the RELAP5 control volume to receive any slumped core material"
         '
         'cboCoreSlumpingModel
         '
@@ -1198,7 +1273,7 @@ Partial Class frmCoreInput
         Me.LabelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX14.Location = New System.Drawing.Point(36, 17)
         Me.LabelX14.Name = "LabelX14"
-        Me.LabelX14.Size = New System.Drawing.Size(758, 106)
+        Me.LabelX14.Size = New System.Drawing.Size(818, 106)
         Me.LabelX14.TabIndex = 0
         Me.LabelX14.Text = resources.GetString("LabelX14.Text")
         Me.LabelX14.WordWrap = True
@@ -1219,7 +1294,7 @@ Partial Class frmCoreInput
         '
         Me.dgvCoreBypassVolumes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvCoreBypassVolumes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCoreBypassVolumes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboComponent, Me.cboVolume, Me.txtElevation})
+        Me.dgvCoreBypassVolumes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboComponent, Me.txtVolume, Me.txtElevation})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1233,30 +1308,6 @@ Partial Class frmCoreInput
         Me.dgvCoreBypassVolumes.Name = "dgvCoreBypassVolumes"
         Me.dgvCoreBypassVolumes.Size = New System.Drawing.Size(390, 150)
         Me.dgvCoreBypassVolumes.TabIndex = 1
-        '
-        'cboComponent
-        '
-        Me.cboComponent.HeaderText = "Component"
-        Me.cboComponent.Name = "cboComponent"
-        '
-        'cboVolume
-        '
-        Me.cboVolume.HeaderText = "Volume"
-        Me.cboVolume.Name = "cboVolume"
-        '
-        'txtElevation
-        '
-        '
-        '
-        '
-        Me.txtElevation.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtElevation.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtElevation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtElevation.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtElevation.HeaderText = "Elevation"
-        Me.txtElevation.Increment = 1.0R
-        Me.txtElevation.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtElevation.Name = "txtElevation"
         '
         'LabelX15
         '
@@ -1272,108 +1323,73 @@ Partial Class frmCoreInput
             "sed by model for radial spreading of core melt."
         Me.LabelX15.WordWrap = True
         '
-        'LabelX16
+        'cboComponent
+        '
+        Me.cboComponent.HeaderText = "Component"
+        Me.cboComponent.Name = "cboComponent"
+        '
+        'txtVolume
         '
         '
         '
         '
-        Me.LabelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX16.Location = New System.Drawing.Point(36, 156)
-        Me.LabelX16.Name = "LabelX16"
-        Me.LabelX16.Size = New System.Drawing.Size(450, 14)
-        Me.LabelX16.TabIndex = 2
-        Me.LabelX16.Text = "Number of the RELAP5 control volume to receive any slumped core material"
+        Me.txtVolume.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtVolume.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtVolume.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtVolume.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtVolume.HeaderText = "Volume"
+        Me.txtVolume.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtVolume.Name = "txtVolume"
+        Me.txtVolume.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.txtVolume.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'LabelX17
-        '
-        '
-        '
-        '
-        Me.LabelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX17.Location = New System.Drawing.Point(36, 176)
-        Me.LabelX17.Name = "LabelX17"
-        Me.LabelX17.Size = New System.Drawing.Size(538, 16)
-        Me.LabelX17.TabIndex = 2
-        Me.LabelX17.Text = "RELAP5 volume at top center of core. The bottom of this volume should be contiguo" & _
-            "us with the top of the core. "
-        '
-        'LabelX18
+        'txtElevation
         '
         '
         '
         '
-        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX18.Location = New System.Drawing.Point(36, 198)
-        Me.LabelX18.Name = "LabelX18"
-        Me.LabelX18.Size = New System.Drawing.Size(323, 20)
-        Me.LabelX18.TabIndex = 2
-        Me.LabelX18.Text = "Minimum flow area per fuel rod in cohesive debris in core region"
+        Me.txtElevation.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtElevation.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtElevation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtElevation.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtElevation.HeaderText = "Elevation"
+        Me.txtElevation.Increment = 1.0R
+        Me.txtElevation.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtElevation.Name = "txtElevation"
         '
-        'cboComponenttoReceiveSlumped
-        '
-        Me.cboComponenttoReceiveSlumped.DisplayMember = "Text"
-        Me.cboComponenttoReceiveSlumped.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboComponenttoReceiveSlumped.FormattingEnabled = True
-        Me.cboComponenttoReceiveSlumped.ItemHeight = 14
-        Me.cboComponenttoReceiveSlumped.Location = New System.Drawing.Point(584, 150)
-        Me.cboComponenttoReceiveSlumped.Name = "cboComponenttoReceiveSlumped"
-        Me.cboComponenttoReceiveSlumped.Size = New System.Drawing.Size(121, 20)
-        Me.cboComponenttoReceiveSlumped.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboComponenttoReceiveSlumped.TabIndex = 3
-        '
-        'cboComponentatTopCenter
-        '
-        Me.cboComponentatTopCenter.DisplayMember = "Text"
-        Me.cboComponentatTopCenter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboComponentatTopCenter.FormattingEnabled = True
-        Me.cboComponentatTopCenter.ItemHeight = 14
-        Me.cboComponentatTopCenter.Location = New System.Drawing.Point(584, 176)
-        Me.cboComponentatTopCenter.Name = "cboComponentatTopCenter"
-        Me.cboComponentatTopCenter.Size = New System.Drawing.Size(121, 20)
-        Me.cboComponentatTopCenter.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboComponentatTopCenter.TabIndex = 3
-        '
-        'cboControlVolume
-        '
-        Me.cboControlVolume.DisplayMember = "Text"
-        Me.cboControlVolume.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboControlVolume.FormattingEnabled = True
-        Me.cboControlVolume.ItemHeight = 14
-        Me.cboControlVolume.Location = New System.Drawing.Point(711, 150)
-        Me.cboControlVolume.Name = "cboControlVolume"
-        Me.cboControlVolume.Size = New System.Drawing.Size(121, 20)
-        Me.cboControlVolume.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboControlVolume.TabIndex = 3
-        '
-        'cboVolumeatTopCenter
-        '
-        Me.cboVolumeatTopCenter.DisplayMember = "Text"
-        Me.cboVolumeatTopCenter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboVolumeatTopCenter.FormattingEnabled = True
-        Me.cboVolumeatTopCenter.ItemHeight = 14
-        Me.cboVolumeatTopCenter.Location = New System.Drawing.Point(711, 176)
-        Me.cboVolumeatTopCenter.Name = "cboVolumeatTopCenter"
-        Me.cboVolumeatTopCenter.Size = New System.Drawing.Size(121, 20)
-        Me.cboVolumeatTopCenter.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboVolumeatTopCenter.TabIndex = 3
-        '
-        'txtMinimumFlowArea
+        'txtControlVolume1
         '
         '
         '
         '
-        Me.txtMinimumFlowArea.Border.Class = "TextBoxBorder"
-        Me.txtMinimumFlowArea.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtMinimumFlowArea.Location = New System.Drawing.Point(584, 203)
-        Me.txtMinimumFlowArea.Name = "txtMinimumFlowArea"
-        Me.txtMinimumFlowArea.Size = New System.Drawing.Size(121, 20)
-        Me.txtMinimumFlowArea.TabIndex = 4
+        Me.txtControlVolume1.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtControlVolume1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtControlVolume1.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtControlVolume1.Location = New System.Drawing.Point(724, 150)
+        Me.txtControlVolume1.Name = "txtControlVolume1"
+        Me.txtControlVolume1.ShowUpDown = True
+        Me.txtControlVolume1.Size = New System.Drawing.Size(113, 20)
+        Me.txtControlVolume1.TabIndex = 5
+        '
+        'txtControlVolume2
+        '
+        '
+        '
+        '
+        Me.txtControlVolume2.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtControlVolume2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtControlVolume2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtControlVolume2.Location = New System.Drawing.Point(724, 176)
+        Me.txtControlVolume2.Name = "txtControlVolume2"
+        Me.txtControlVolume2.ShowUpDown = True
+        Me.txtControlVolume2.Size = New System.Drawing.Size(113, 20)
+        Me.txtControlVolume2.TabIndex = 5
         '
         'frmCoreInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(810, 361)
+        Me.ClientSize = New System.Drawing.Size(870, 361)
         Me.CloseButton = False
         Me.Controls.Add(Me.TabControl1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1413,6 +1429,8 @@ Partial Class frmCoreInput
         Me.TabPage9.ResumeLayout(False)
         Me.TabPage10.ResumeLayout(False)
         CType(Me.dgvCoreBypassVolumes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtControlVolume1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtControlVolume2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1508,15 +1526,15 @@ Partial Class frmCoreInput
     Friend WithEvents txtPlateThicknessofGridSpacer As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
     Friend WithEvents txtRadiusofContact As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
     Friend WithEvents txtGridSpacerElevation2 As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents cboComponent As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents cboVolume As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents txtElevation As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
     Friend WithEvents cboComponenttoReceiveSlumped As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents LabelX18 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX17 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX16 As DevComponents.DotNetBar.LabelX
     Friend WithEvents cboComponentatTopCenter As DevComponents.DotNetBar.Controls.ComboBoxEx
-    Friend WithEvents cboControlVolume As DevComponents.DotNetBar.Controls.ComboBoxEx
-    Friend WithEvents cboVolumeatTopCenter As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents txtMinimumFlowArea As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents cboComponent As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents txtVolume As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
+    Friend WithEvents txtElevation As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
+    Friend WithEvents txtControlVolume2 As DevComponents.Editors.IntegerInput
+    Friend WithEvents txtControlVolume1 As DevComponents.Editors.IntegerInput
 End Class

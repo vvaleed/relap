@@ -419,7 +419,7 @@ Partial Class FormMain
         Me.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.NewToolStripButton.Name = "NewToolStripButton"
         Me.NewToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.NewToolStripButton.Text = "New Steady-State Simulation"
+        Me.NewToolStripButton.Text = "New  Simulation"
         '
         'OpenToolStripButton
         '

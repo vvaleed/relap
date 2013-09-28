@@ -117,46 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="lblNode.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtHeight.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="LabelX2.Text" xml:space="preserve">
-    <value>Minimum fractional flow area for outer-most flow channel in reactor core after fuel rods in this channel have become molten. This parameter is intended to provide a means of comparing analyses to severe accident results which may exhibit non-symmetrical molten pools</value>
-  </data>
-  <metadata name="lblGridSpacerNumber.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cboGridSpacerMaterial.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtMassofGridSpacer.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtHeighofGridSpacer.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtPlateThicknessofGridSpacer.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtRadiusofContact.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtGridSpacerElevation2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="LabelX14.Text" xml:space="preserve">
-    <value>This card is used to define the model for determining when a pool of molten material in the core region slumps to the lower head.  If this parameter is set to a value of one, then the molten pool is considered to slump to the lower head whenever material at the periphery of the core has become molten. In this modeling option, solidified material at the periphery of the core is considered to have no strength for supporting a molten pool. This value of the input parameter provides an estimate of the earliest possible time of molten pool slumping. If the parameter is set to a value of zero, then the crust supporting the molten pool is considered to always have the strength necessary for supporting a molten pool. The molten pool does not slump to the lower head until its supporting crust at some point is calculated to melt. This value of the input parameter provides an estimate of the latest possible time for slumping of the molten pool. For both values of the input parameter, if the molten pool is calculated to slump, all of the molten material is calculated to slump. The assumption is applied that the initial point of failure of the crust is eroded to a depth sufficient to allow drainage of the entire molten pool.</value>
-  </data>
-  <metadata name="cboComponent.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtVolume.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtElevation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

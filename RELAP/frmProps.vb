@@ -547,14 +547,7 @@ Public Class frmProps
                 fr.PlenumVoidVolume = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Lower plenum Void Volume") Then
                 fr.LowerPlenumVoidVolume = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Fuel pellet radius") Then
-                fr.FuelPelletRadius = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Inner cladding radius") Then
-                fr.InnerCladdingRadius = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Outer cladding radius") Then
-                fr.OuterCladdingRadius = e.ChangedItem.Value
-            ElseIf e.ChangedItem.Label.Contains("Axial node") And e.ChangedItem.PropertyDescriptor.Category.Contains("Fuel Rod Dimensions") Then
-                fr.FuelRodDimensionsAxialNode = e.ChangedItem.Value
+           
             ElseIf e.ChangedItem.Label.Contains("Control Volume Above") Then
                 fr.ControlVolumeAbove = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Control Volume Below") Then
