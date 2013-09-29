@@ -3758,6 +3758,11 @@ sim:                Dim myStream As System.IO.FileStream
                 Next
 
                 generate.WriteLine("40002000 " & ChildParent.FormGeneralCoreInput.txtControlVolume1.Value.ToString("D2") & ChildParent.FormGeneralCoreInput.txtControlVolume1.Value.ToString("D2") & "0000 " & RELAP.App.GetUIDFromTag(ChildParent.FormGeneralCoreInput.cboComponentatTopCenter.SelectedItem.Tag) & ChildParent.FormGeneralCoreInput.txtControlVolume2.Value.ToString("D2") & "0000 " & ChildParent.FormGeneralCoreInput.txtMinimumFlowArea.Text)
+            Catch ex As Exception
+
+            End Try
+            Try
+
 
                 Dim a As Integer = 1
                 generate.WriteLine("*======================================================================")
