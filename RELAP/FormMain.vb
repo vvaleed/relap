@@ -3694,7 +3694,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*          General Core Input                                          ")
                 generate.WriteLine("*======================================================================")
                 Dim str As String = My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value
-                generate.WriteLine("40000100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Text & " 1 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPowerHistoryTy.SelectedItem.value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboOxideShatteringTrip.SelectedText)
+                generate.WriteLine("40000100 " & My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value & " 1 " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboReactorEnvironment.SelectedItem.Value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboPowerHistoryTy.SelectedItem.Value & " " & My.Application.ActiveSimulation.FormGeneralCoreInput.cboOxideShatteringTrip.SelectedText)
 
                 card = 40000201
                 For Each row In My.Application.ActiveSimulation.FormGeneralCoreInput.dgvAxialNodeHeights.Rows
@@ -3703,9 +3703,9 @@ sim:                Dim myStream As System.IO.FileStream
                 Next
 
 
-                generate.WriteLine("40000300 " & ChildParent.FormGeneralCoreInput.txtTemperatureforFailure.Text & " " & ChildParent.FormGeneralCoreInput.txtFractionofOxidation.Text & " " & ChildParent.FormGeneralCoreInput.txtHoopStrainThreshold.Text & " " & ChildParent.FormGeneralCoreInput.cboModelsforFailure.SelectedItem.Value)
+                generate.WriteLine("40000300 " & ChildParent.FormGeneralCoreInput.txtTemperatureforFailure.Value & " " & ChildParent.FormGeneralCoreInput.txtFractionofOxidation.Value & " " & ChildParent.FormGeneralCoreInput.txtHoopStrainThreshold.Value & " " & ChildParent.FormGeneralCoreInput.cboModelsforFailure.SelectedItem.Value)
 
-                generate.WriteLine("40000310 " & ChildParent.FormGeneralCoreInput.txtFractionofSurfaceArea.Text & " " & ChildParent.FormGeneralCoreInput.txtSurfaceTemperature.Text & " " & ChildParent.FormGeneralCoreInput.txtVelocityofDropsofCladding.Text)
+                generate.WriteLine("40000310 " & ChildParent.FormGeneralCoreInput.txtFractionofSurfaceArea.Text & " " & ChildParent.FormGeneralCoreInput.txtSurfaceTemperature.Value & " " & ChildParent.FormGeneralCoreInput.txtVelocityofDrops.Value)
 
                 generate.WriteLine("40000320 " & ChildParent.FormGeneralCoreInput.txtMultiplicationFactor.Text & " " & ChildParent.FormGeneralCoreInput.txtMinimumFractionalFlowArea.Text)
 
