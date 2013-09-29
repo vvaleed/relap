@@ -636,34 +636,34 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format((Me.FuelRodPitch), FlowSheet.Options.NumberFormat)
+                valor = (Me.FuelRodPitch)
                 .Item.Add(FT("Fuel Rod Pitch", su.distance), valor, False, "No. of Rods", "0.0126 M ≤ x ≤ 0.0187 m.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Conversor.ConverterDoSI(su.burnup, Me.AverageBurnup), FlowSheet.Options.NumberFormat)
+                valor = Me.AverageBurnup
                 .Item.Add(FT("Average Burnup", su.burnup), valor, False, "No. of Rods", "0.0 ≤ x ≤ 4752000.0 ", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.PlenumLength), FlowSheet.Options.NumberFormat)
+                valor = (Me.PlenumLength)
                 .Item.Add(FT("Plenum Length", su.distance), valor, False, "Fuel Rod Plenum Geometry", "Range is 3 – 11%", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.PlenumVoidVolume), FlowSheet.Options.NumberFormat)
+                valor = (Me.PlenumVoidVolume)
                 .Item.Add(FT("Plenum Void Volume", su.volume), valor, False, "Fuel Rod Plenum Geometry", "0.0 < x ≤ 0.000049, Volume of Spring", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.LowerPlenumVoidVolume), FlowSheet.Options.NumberFormat)
+                valor = (Me.LowerPlenumVoidVolume)
                 .Item.Add(FT("Lower plenum Void Volume ", su.volume), valor, False, "Fuel Rod Plenum Geometry", "Volume of gas", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -804,7 +804,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.TimeForWhichAxialPowerProfileApplies), FlowSheet.Options.NumberFormat)
+                valor = (Me.TimeForWhichAxialPowerProfileApplies)
                 .Item.Add(FT(("Axial Power Profile Time"), su.time), valor, False, "Axial Power Profile Time", "'P' is axial power profile number (start with Number 1).", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -832,7 +832,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format((Me.ShutdownTime), FlowSheet.Options.NumberFormat)
+                valor = (Me.ShutdownTime)
                 .Item.Add(FT(("Shutdown Time"), su.time), valor, False, "Shutdown Time and Fuel Density", "", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -853,42 +853,42 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.TimeOfPowerHistory), FlowSheet.Options.NumberFormat)
+                valor = (Me.TimeOfPowerHistory)
                 .Item.Add(FT("Previous Power History Time", su.time), valor, False, "Previous Power History", " ", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.HeliumGasInventory), FlowSheet.Options.NumberFormat)
+                valor = (Me.HeliumGasInventory)
                 .Item.Add(FT(("Helium Gas Inventory"), su.mass), valor, False, "Gas Internal Pressure", "In an individual fuel rod", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.InternalGasPressure), FlowSheet.Options.NumberFormat)
+                valor = (Me.InternalGasPressure)
                 .Item.Add(FT(("Internal Gas Pressure"), su.spmp_pressure), valor, False, "Gas Internal Pressure", "In a rod", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.Time), FlowSheet.Options.NumberFormat)
+                valor = (Me.Time)
                 .Item.Add(FT(("Time Profile"), su.time), valor, False, "Time-Temperature-Pressure Profile", "The time to which the axial surface temperature profile and fuel average hydrostatic pressure are used", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.Temperature), FlowSheet.Options.NumberFormat)
+                valor = (Me.Temperature)
                 .Item.Add(FT(("Temperature"), su.spmp_temperature), valor, False, "Time-Temperature-Pressure Profile", "Cladding surface temperature", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format((Me.Pressure), FlowSheet.Options.NumberFormat)
+                valor = (Me.Pressure)
                 .Item.Add(FT(("Pressure"), su.spmp_pressure), valor, False, "Time-Temperature-Pressure Profile", "Fuel hydrostatic pressure", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -909,7 +909,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Boolean)
                 End With
 
-                valor = Format((Me.GapConductance), FlowSheet.Options.NumberFormat)
+                valor = (Me.GapConductance)
                 .Item.Add(FT(("Gap Conductance"), su.conductance), valor, False, "Gap Conductance", "At steady-state conditions just before start of transient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing

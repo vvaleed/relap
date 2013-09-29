@@ -24,15 +24,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
         Inherits SimulationObjects_UnitOpBaseClass
 
-        Private m_PWRComponentName As String
-        Public Property PWRComponentName() As String
-            Get
-                Return m_PWRComponentName
-            End Get
-            Set(ByVal value As String)
-                m_PWRComponentName = value
-            End Set
-        End Property
+
 
         Private m_NumberOfRods As Integer
         Public Property NumberOfRods() As Integer
@@ -529,13 +521,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-                valor = Me.PWRComponentName
-                'Tank Volume,Calculation parameters, Tank Volume
-                .Item.Add("Component Name", valor, False, "Component Name", "Word 2 is 'fuel' which is constant for fuel", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(String)
-                End With
+
 
 
                 valor = Me.NumberOfRods
@@ -545,7 +531,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.RodPitch), FlowSheet.Options.NumberFormat)
+                valor = Me.RodPitch
                 .Item.Add(FT("Rod Pitch", su.distance), valor, False, "No. of Rods", "If a fuel rod component is entered, the control rod pitch should be equal to the pitch of the fuel rod, if it is in the same bundle.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -574,14 +560,14 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.OuterRadius1), FlowSheet.Options.NumberFormat)
+                valor = Me.OuterRadius1
                 .Item.Add(FT(RELAP.App.GetLocalString("Outer cladding radius"), su.distance), valor, False, "Geometry", "Control rod absorber. Range is 0.0 < x < W2", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.OuterRadius1), FlowSheet.Options.NumberFormat)
+                valor = Me.OuterRadius1
                 .Item.Add(FT(RELAP.App.GetLocalString("Outer radius CR Absorber"), su.distance), valor, False, "Geometry", "Control rod absorber. Range is 0.0 < x < W2", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -589,7 +575,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.OuterRadius2), FlowSheet.Options.NumberFormat)
+                valor = Me.OuterRadius2
                 .Item.Add(FT(RELAP.App.GetLocalString("Outer radius SS Sheath"), su.distance), valor, False, "Geometry", "Stainless steel sheath. Range is W1< x ≤W3", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -605,7 +591,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.OuterRadius4), FlowSheet.Options.NumberFormat)
+                valor = Me.OuterRadius4
                 .Item.Add(FT(RELAP.App.GetLocalString("Outer radius Guide Tube"), su.distance), valor, False, "Geometry", "Zr guide tube.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -620,14 +606,14 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeAbove), FlowSheet.Options.NumberFormat)
+                valor = Me.VolumeAbove
                 .Item.Add(FT(RELAP.App.GetLocalString("Volume Above"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Volume located above control rod.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.volume, Me.VolumeBelow), FlowSheet.Options.NumberFormat)
+                valor = Me.VolumeBelow
                 .Item.Add(FT(RELAP.App.GetLocalString("Volume Below"), su.volume), valor, False, "Upper and Lower Hydraulic Volumes", "Volume located below control rod.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -655,14 +641,14 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.RadiusToRadialNode1), FlowSheet.Options.NumberFormat)
+                valor = Me.RadiusToRadialNode1
                 .Item.Add(FT(RELAP.App.GetLocalString("Radial dimension of Node 1"), su.distance), valor, False, "Radial Mesh Spacing", "", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.distance, Me.RadiusToRadialNodeN), FlowSheet.Options.NumberFormat)
+                valor = Me.RadiusToRadialNodeN
                 .Item.Add(FT(RELAP.App.GetLocalString("Radial dimension of Node N"), su.distance), valor, False, "Radial Mesh Spacing", "", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -676,14 +662,14 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Integer)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.TemperatureAtNode1), FlowSheet.Options.NumberFormat)
+                valor = Me.TemperatureAtNode1
                 .Item.Add(FT(RELAP.App.GetLocalString("Temperature at Node 1"), su.spmp_temperature), valor, False, "Initial Temperatures", "The range is 300 K ≤ x ≤ 3123 K. Initial temperature of Node 1", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.spmp_temperature, Me.TemperatureAtNodeN), FlowSheet.Options.NumberFormat)
+                valor = Me.TemperatureAtNodeN
                 .Item.Add(FT(RELAP.App.GetLocalString("Temperature at Node N"), su.spmp_temperature), valor, False, "Initial Temperatures", "Initial temperature for each radial node to radial node N. Range is same as above.", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
@@ -698,21 +684,21 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
 
              
-                valor = Format(Conversor.ConverterDoSI(su.spmp_pressure, Me.InternalGasPressure), FlowSheet.Options.NumberFormat)
+                valor = Me.InternalGasPressure
                 .Item.Add(FT(RELAP.App.GetLocalString("Internal Gas Pressure"), su.spmp_pressure), valor, False, "Internal Gas Pressure", "In a rod", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.mass, Me.MassOfTin), FlowSheet.Options.NumberFormat)
+                valor = Me.MassOfTin
                 .Item.Add(FT(RELAP.App.GetLocalString("Initial mass of Tin"), su.mass), valor, False, "Initial Masses of Fission Products, Tin and Silver", "In kg", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.mass, Me.MassOfSilver), FlowSheet.Options.NumberFormat)
+                valor = Me.MassOfSilver
                 .Item.Add(FT(RELAP.App.GetLocalString("Initial mass of Silver"), su.mass), valor, False, "Initial Masses of Fission Products, Tin and Silver", "In kg", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing

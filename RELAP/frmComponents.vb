@@ -30,7 +30,7 @@
 
             .Rows.Add(New Object() {"FuelRod", Me.ImageList2.Images(5), "Fuel Rod"})
             .Rows.Add(New Object() {"Simulator", Me.ImageList2.Images(16), "Simulator"})
-            .Rows.Add(New Object() {"PWRControlRod", Me.ImageList2.Images(8), "PWR Control Rod"})
+            .Rows.Add(New Object() {"PWRControlRod", Me.ImageList2.Images(5), "PWR Control Rod"})
             .Rows.Add(New Object() {"Shroud", Me.ImageList2.Images(9), "Shroud"})
 
             ' .Sort(.Columns(2), System.ComponentModel.ListSortDirection.Ascending)
