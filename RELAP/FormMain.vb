@@ -1101,7 +1101,7 @@ Public Class FormMain
 
             Try
                 form.FormSurface.FlowsheetDesignSurface.m_drawingObjects = Nothing
-                form.FormSurface.FlowsheetDesignSurface.m_drawingObjects = DirectCast(mySerializer.Deserialize(fs3), Microsoft.MSDN.Samples.GraphicObjects.GraphicObjectCollection)
+                form.FormSurface.FlowsheetDesignSurface.m_drawingObjects = DirectCast(mySerializer.Deserialize(fs3), Microsoft.Msdn.Samples.GraphicObjects.GraphicObjectCollection)
             Catch ex As System.Runtime.Serialization.SerializationException
                 Console.WriteLine("Failed to serialize. Reason: " & ex.Message)
                 VDialog.Show(ex.Message)
@@ -1222,7 +1222,7 @@ Public Class FormMain
             form.CheckCollections()
 
             With form.Collections
-                Dim gObj As Microsoft.MSDN.Samples.GraphicObjects.GraphicObject
+                Dim gObj As Microsoft.Msdn.Samples.GraphicObjects.GraphicObject
                 For Each gObj In form.FormSurface.FlowsheetDesignSurface.drawingObjects
                     Select Case gObj.TipoObjeto
 
@@ -1327,7 +1327,7 @@ Public Class FormMain
                 form.FormSurface.FlowsheetDesignSurface.VerticalScroll.Value = 3500
                 form.FormSurface.FlowsheetDesignSurface.HorizontalScroll.Maximum = 10000
                 form.FormSurface.FlowsheetDesignSurface.HorizontalScroll.Value = 5000
-                For Each obj As Microsoft.MSDN.Samples.GraphicObjects.GraphicObject In form.FormSurface.FlowsheetDesignSurface.drawingObjects
+                For Each obj As Microsoft.Msdn.Samples.GraphicObjects.GraphicObject In form.FormSurface.FlowsheetDesignSurface.drawingObjects
                     obj.X += 5000
                     obj.Y += 3500
                 Next
@@ -1417,7 +1417,7 @@ Public Class FormMain
             Dim fs3 As New FileStream(My.Computer.FileSystem.SpecialDirectories.Temp & "\3.bin", FileMode.Open)
             Try
                 formc.FormSurface.FlowsheetDesignSurface.m_drawingObjects = Nothing
-                formc.FormSurface.FlowsheetDesignSurface.m_drawingObjects = DirectCast(mySerializer.Deserialize(fs3), Microsoft.MSDN.Samples.GraphicObjects.GraphicObjectCollection)
+                formc.FormSurface.FlowsheetDesignSurface.m_drawingObjects = DirectCast(mySerializer.Deserialize(fs3), Microsoft.Msdn.Samples.GraphicObjects.GraphicObjectCollection)
             Catch ex As System.Runtime.Serialization.SerializationException
                 Console.WriteLine("Failed to serialize. Reason: " & ex.Message)
                 VDialog.Show(ex.Message)
@@ -1469,7 +1469,7 @@ Public Class FormMain
             End If
 
             With formc.Collections
-                Dim gObj As Microsoft.MSDN.Samples.GraphicObjects.GraphicObject
+                Dim gObj As Microsoft.Msdn.Samples.GraphicObjects.GraphicObject
                 For Each gObj In formc.FormSurface.FlowsheetDesignSurface.drawingObjects
                     Select Case gObj.TipoObjeto
 
@@ -2543,7 +2543,7 @@ sim:                Dim myStream As System.IO.FileStream
 
 #End Region
     Private ChildParent As FormFlowsheet
-    Function boolto10(val) As String
+    Function boolto10(ByVal val) As String
         If val = True Then
             Return "1"
         Else
@@ -2568,7 +2568,7 @@ sim:                Dim myStream As System.IO.FileStream
         Return 0
     End Function
 
-    Private Sub GenerateInputFileToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles GenerateInputFileOnlyToolStripMenuItem.Click
+    Private Sub GenerateInputFileToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GenerateInputFileOnlyToolStripMenuItem.Click
         Dim collect As New RELAP.FormClasses.ClsObjectCollections
         Dim ChildParent = My.Application.ActiveSimulation
 
@@ -3794,76 +3794,93 @@ sim:                Dim myStream As System.IO.FileStream
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
                             output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
 
-                            i = i + 1
-                            generate.WriteLine(output)
-                        Next
-                    ElseIf dgvrow.Cells(1).Value = "INTEGRAL" Then
-                        Dim dgvrow1 As DataGridViewRow
-                        For k = 0 To frm.dgv2.Rows.Count - 2
-                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "INTEGRAL" Then
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
 
-                            i = i + 1
-                            generate.WriteLine(output)
-                        Next
-                    ElseIf dgvrow.Cells(1).Value = "DIV" Then
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "DIV" Then
 
-                        Dim dgvrow1 As DataGridViewRow
-                        For k = 0 To frm.dgv2.Rows.Count - 2
-                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
 
-                            i = i + 1
-                            generate.WriteLine(output)
-                        Next
-                    ElseIf dgvrow.Cells(1).Value = "DELAY" Then
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "DELAY" Then
 
-                        Dim dgvrow1 As DataGridViewRow
-                        For k = 0 To frm.dgv2.Rows.Count - 2
-                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
 
-                            i = i + 1
-                            generate.WriteLine(output)
-                        Next
-                    ElseIf dgvrow.Cells(1).Value = "TRIPUNIT" Then
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
+                ElseIf dgvrow.Cells(1).Value = "TRIPUNIT" Then
 
-                        Dim dgvrow1 As DataGridViewRow
-                        For k = 0 To frm.dgv2.Rows.Count - 2
-                            dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
-                            Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value
+                    Dim dgvrow1 As DataGridViewRow
+                    For k = 0 To frm.dgv2.Rows.Count - 2
+                        dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
+                        Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
+                        output = "2050010" & i & " " & dgvrow1.Cells(0).Value
 
-                            i = i + 1
-                            generate.WriteLine(output)
-                        Next
+                        i = i + 1
+                        generate.WriteLine(output)
+                    Next
 
-                    End If
+                End If
 
+            Next
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                Dim temp As Int16
+                temp = kvp.Value.UID
+                Dim CID As String
+                CID = temp.ToString("D2")
+                generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
+
+                generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
+                generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
+                card = Val("40" & CID & "0301")
+                For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.FuelRodDimensions) In kvp.Value.FuelRodDetails.FuelRodDimensions
+                    generate.WriteLine(card & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
+                    card = card + 1
                 Next
+                generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
 
-                For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.FuelRod) In ChildParent.Collections.CLCS_FuelRodCollection
-                    generate.WriteLine("*======================================================================")
-                    generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
-                    generate.WriteLine("*======================================================================")
-                    Dim temp As Int16
-                    temp = kvp.Value.UID
-                    Dim CID As String
-                    CID = temp.ToString("D2")
-                    generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
-
-                    generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
-                    generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
-                    card = Val("40" & CID & "0301")
-                    For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.FuelRodDimensions) In kvp.Value.FuelRodDetails.FuelRodDimensions
-                        generate.WriteLine(card & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
+                    card = Val("40" & CID & "1311")
+                    For Each row2 As KeyValuePair(Of Integer, Double) In kvp.Value.FuelRodDetails.AxialPowerFactor
+                        generate.WriteLine(card & " " & row2.Value)
                         card = card + 1
                     Next
-                    generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
-
+                    card = Val("40" & CID & "1401")
+                    For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.RadialPowerProfile) In kvp.Value.FuelRodDetails.RadialPowerProfile
+                        generate.WriteLine(card & " " & row2.Value.RadialPowerFactor & " " & row2.Value.RadialNode)
+                        card = card + 1
+                    Next
+                    generate.WriteLine("40" & CID & "1500 " & kvp.Value.ShutdownTime & " " & kvp.Value.FractionOfFuelDensity)
+                    card = Val("40" & CID & "1601")
+                    For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.PreviousPowerHistory) In kvp.Value.FuelRodDetails.PreviousPowerHistory
+                        generate.WriteLine(card & " " & row2.Value.PowerHistory & " " & row2.Value.Time)
+                        card = card + 1
+                    Next
+                    generate.WriteLine("40" & CID & "3000 " & kvp.Value.HeliumGasInventory & " " & kvp.Value.InternalGasPressure)
                 Next kvp
             Catch ex As Exception
 
@@ -3883,7 +3900,7 @@ sim:                Dim myStream As System.IO.FileStream
 
 
 
-    Private Sub GenerateInputFileAndRunToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerateInputFileAndRunToolStripMenuItem.Click
+    Private Sub GenerateInputFileAndRunToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles GenerateInputFileAndRunToolStripMenuItem.Click
 
         If My.Settings.RELAPPath = "" Then
             FolderBrowserDialog1.Description = "Select RELAP's Installation Folder"
@@ -3970,7 +3987,7 @@ sim:                Dim myStream As System.IO.FileStream
         SetDeviceTime(olddate)
     End Sub
     'System time structure used to pass to P/Invoke...
-    <structlayoutattribute(layoutkind.sequential)> _
+    <StructLayoutAttribute(LayoutKind.Sequential)> _
     Private Structure SYSTEMTIME
         Public year As Short
         Public month As Short
