@@ -3,10 +3,10 @@
 
     Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
         If e.ColumnIndex = 1 Then
-            DataGridView1.Rows(e.RowIndex).Cells(10).Value = DataGridView1.Rows(e.RowIndex).Cells(1).Value
+            DataGridView1.Rows(e.RowIndex).Cells(11).Value = DataGridView1.Rows(e.RowIndex).Cells(2).Value
         End If
         If e.ColumnIndex = 4 Then
-            DataGridView1.Rows(e.RowIndex).Cells(11).Value = DataGridView1.Rows(e.RowIndex).Cells(4).Value
+            DataGridView1.Rows(e.RowIndex).Cells(12).Value = DataGridView1.Rows(e.RowIndex).Cells(6).Value
         End If
     End Sub
 
@@ -23,6 +23,7 @@
     End Sub
 
     Private Sub frmTrips_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         cboParameter1.DisplayMember = "Tag"
         cboParameter2.DisplayMember = "Tag"
 
