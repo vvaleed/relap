@@ -41,10 +41,6 @@ Partial Class ucFuelRodEditor
         Me.dgvFuelRodDimensions = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvRadialMeshSpacing = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.lblAxialNodeNumber = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
-        Me.txtNumberofIntervals = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
-        Me.txtNumberofIntervalsAcrossGap = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
-        Me.txtIntervalsAcrossCladding = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.dgvInitialTemperatures = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.lblAxialNode_InitialTemp = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
@@ -116,6 +112,10 @@ Partial Class ucFuelRodEditor
         Me.txtVolume = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         Me.txtIncrement = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         Me.txtAxialNode = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
+        Me.lblAxialNodeNumber = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
+        Me.txtNumberofIntervals = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
+        Me.txtNumberofIntervalsAcrossGap = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
+        Me.txtIntervalsAcrossCladding = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvFuelRodDimensions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -279,54 +279,6 @@ Partial Class ucFuelRodEditor
         Me.dgvRadialMeshSpacing.RowHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.dgvRadialMeshSpacing.Size = New System.Drawing.Size(564, 175)
         Me.dgvRadialMeshSpacing.TabIndex = 0
-        '
-        'lblAxialNodeNumber
-        '
-        Me.lblAxialNodeNumber.HeaderText = "Axial Node"
-        Me.lblAxialNodeNumber.Name = "lblAxialNodeNumber"
-        Me.lblAxialNodeNumber.ReadOnly = True
-        '
-        'txtNumberofIntervals
-        '
-        '
-        '
-        '
-        Me.txtNumberofIntervals.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtNumberofIntervals.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtNumberofIntervals.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNumberofIntervals.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtNumberofIntervals.HeaderText = "Number of Intervals across Fuel"
-        Me.txtNumberofIntervals.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtNumberofIntervals.Name = "txtNumberofIntervals"
-        Me.txtNumberofIntervals.ReadOnly = True
-        '
-        'txtNumberofIntervalsAcrossGap
-        '
-        '
-        '
-        '
-        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtNumberofIntervalsAcrossGap.HeaderText = "Number of intervals across gap"
-        Me.txtNumberofIntervalsAcrossGap.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtNumberofIntervalsAcrossGap.Name = "txtNumberofIntervalsAcrossGap"
-        Me.txtNumberofIntervalsAcrossGap.ReadOnly = True
-        '
-        'txtIntervalsAcrossCladding
-        '
-        '
-        '
-        '
-        Me.txtIntervalsAcrossCladding.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtIntervalsAcrossCladding.BackgroundStyle.Class = "DataGridViewNumericBorder"
-        Me.txtIntervalsAcrossCladding.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtIntervalsAcrossCladding.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
-        Me.txtIntervalsAcrossCladding.HeaderText = "Number of intervals across cladding"
-        Me.txtIntervalsAcrossCladding.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
-        Me.txtIntervalsAcrossCladding.Name = "txtIntervalsAcrossCladding"
-        Me.txtIntervalsAcrossCladding.ReadOnly = True
         '
         'TabPage3
         '
@@ -974,6 +926,60 @@ Partial Class ucFuelRodEditor
         Me.txtAxialNode.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtAxialNode.Name = "txtAxialNode"
         '
+        'lblAxialNodeNumber
+        '
+        '
+        '
+        '
+        Me.lblAxialNodeNumber.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.lblAxialNodeNumber.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.lblAxialNodeNumber.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lblAxialNodeNumber.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.lblAxialNodeNumber.HeaderText = "Axial Node"
+        Me.lblAxialNodeNumber.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.lblAxialNodeNumber.Name = "lblAxialNodeNumber"
+        Me.lblAxialNodeNumber.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.lblAxialNodeNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'txtNumberofIntervals
+        '
+        '
+        '
+        '
+        Me.txtNumberofIntervals.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtNumberofIntervals.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtNumberofIntervals.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNumberofIntervals.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtNumberofIntervals.HeaderText = "Number of Intervals across Fuel"
+        Me.txtNumberofIntervals.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtNumberofIntervals.Name = "txtNumberofIntervals"
+        '
+        'txtNumberofIntervalsAcrossGap
+        '
+        '
+        '
+        '
+        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNumberofIntervalsAcrossGap.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtNumberofIntervalsAcrossGap.HeaderText = "Number of intervals across gap"
+        Me.txtNumberofIntervalsAcrossGap.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtNumberofIntervalsAcrossGap.Name = "txtNumberofIntervalsAcrossGap"
+        '
+        'txtIntervalsAcrossCladding
+        '
+        '
+        '
+        '
+        Me.txtIntervalsAcrossCladding.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtIntervalsAcrossCladding.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtIntervalsAcrossCladding.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtIntervalsAcrossCladding.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtIntervalsAcrossCladding.HeaderText = "Number of intervals across cladding"
+        Me.txtIntervalsAcrossCladding.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtIntervalsAcrossCladding.Name = "txtIntervalsAcrossCladding"
+        '
         'ucFuelRodEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1014,10 +1020,6 @@ Partial Class ucFuelRodEditor
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents dgvFuelRodDimensions As DevComponents.DotNetBar.Controls.DataGridViewX
     Friend WithEvents dgvRadialMeshSpacing As DevComponents.DotNetBar.Controls.DataGridViewX
-    Friend WithEvents lblAxialNodeNumber As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
-    Friend WithEvents txtNumberofIntervals As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
-    Friend WithEvents txtNumberofIntervalsAcrossGap As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
-    Friend WithEvents txtIntervalsAcrossCladding As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents dgvInitialTemperatures As DevComponents.DotNetBar.Controls.DataGridViewX
     Friend WithEvents lblAxialNode_InitialTemp As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
@@ -1092,5 +1094,9 @@ Partial Class ucFuelRodEditor
     Friend WithEvents txtVolume As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
     Friend WithEvents txtIncrement As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
     Friend WithEvents txtAxialNode As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
+    Friend WithEvents lblAxialNodeNumber As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
+    Friend WithEvents txtNumberofIntervals As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
+    Friend WithEvents txtNumberofIntervalsAcrossGap As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
+    Friend WithEvents txtIntervalsAcrossCladding As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
 
 End Class
