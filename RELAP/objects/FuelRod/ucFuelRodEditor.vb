@@ -45,60 +45,76 @@ Public Class ucFuelRodEditor
                 row.Cells(2).Value = myFuelRod.FuelRodDetails.FuelRodDimensions(row.Index + 1).InnerCladdingRadius
                 row.Cells(3).Value = myFuelRod.FuelRodDetails.FuelRodDimensions(row.Index + 1).OuterCladdingRadius
             Next
-            dgvHyrdraulicVolumes.Rows.Add(myFuelRod.FuelRodDetails.HyrdraulicVolumes.Count)
-            For Each row As DataGridViewRow In Me.dgvHyrdraulicVolumes.Rows
-                row.Cells(0).Value = RELAP.App.GetUIDFromTag(myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).ControlVolumeNumber.ToString.Substring(0, 3))
-                row.Cells(1).Value = RELAP.App.GetUIDFromTag(myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).ControlVolumeNumber.ToString.Substring(3, 2))
-                row.Cells(2).Value = myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).Increment
-                row.Cells(3).Value = myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).AxialNode
+            If myFuelRod.FuelRodDetails.HyrdraulicVolumes.Count <> 0 Then
+                dgvHyrdraulicVolumes.Rows.Add(myFuelRod.FuelRodDetails.HyrdraulicVolumes.Count)
+                For Each row As DataGridViewRow In Me.dgvHyrdraulicVolumes.Rows
+                    row.Cells(0).Value = RELAP.App.GetUIDFromTag(myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).ControlVolumeNumber.ToString.Substring(0, 3))
+                    row.Cells(1).Value = RELAP.App.GetUIDFromTag(myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).ControlVolumeNumber.ToString.Substring(3, 2))
+                    row.Cells(2).Value = myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).Increment
+                    row.Cells(3).Value = myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).AxialNode
 
-            Next
-            dgvRadialMeshSpacing.Rows.Add(myFuelRod.FuelRodDetails.RadialMeshSpacing.Count)
-            For Each row As DataGridViewRow In Me.dgvRadialMeshSpacing.Rows
-                row.Cells(0).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossFuel
-                row.Cells(1).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossGap
-                row.Cells(2).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossCladding
-                row.Cells(3).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).AxialNode
-            Next
-            Dim total As Integer
-            dgvInitialTemperatures.Columns.Clear()
-            dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
-            Try
-                total = Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
-            Catch ex As Exception
-                total = 0
-            End Try
-
-            For i As Integer = 1 To total
-                dgvInitialTemperatures.Columns.Add("txtRadialNode" & i, "Radial Node " & i)
-            Next
-            For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
-                dgvInitialTemperatures.Rows.Add(i.ToString)
-            Next
-            For Each row As DataGridViewRow In Me.dgvInitialTemperatures.Rows
-                Dim str As String() = myFuelRod.FuelRodDetails.InitialTemperatures(row.Index + 1).Split(" ")
-                For Each cell As DataGridViewCell In row.Cells
-                    cell.Value = str(cell.ColumnIndex + 1)
                 Next
-            Next
+            End If
+            If myFuelRod.FuelRodDetails.RadialMeshSpacing.Count <> 0 Then
+                dgvRadialMeshSpacing.Rows.Add(myFuelRod.FuelRodDetails.RadialMeshSpacing.Count)
+                For Each row As DataGridViewRow In Me.dgvRadialMeshSpacing.Rows
+                    row.Cells(0).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossFuel
+                    row.Cells(1).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossGap
+                    row.Cells(2).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossCladding
+                    row.Cells(3).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).AxialNode
+                Next
+            End If
+            If myFuelRod.FuelRodDetails.InitialTemperatures.Count <> 0 Then
+                Dim total As Integer
+                dgvInitialTemperatures.Columns.Clear()
+                dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
+                Try
+                    total = Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
+                Catch ex As Exception
+                    total = 0
+                End Try
+
+                For i As Integer = 1 To total
+                    dgvInitialTemperatures.Columns.Add("txtRadialNode" & i, "Radial Node " & i)
+                Next
+                For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
+                    dgvInitialTemperatures.Rows.Add(i.ToString)
+                Next
+                For Each row As DataGridViewRow In Me.dgvInitialTemperatures.Rows
+                    Dim str As String() = myFuelRod.FuelRodDetails.InitialTemperatures(row.Index + 1).Split(" ")
+                    For Each cell As DataGridViewCell In row.Cells
+                        cell.Value = str(cell.ColumnIndex + 1)
+                    Next
+                Next
+            End If
             cboMaterial1.SelectedText = myFuelRod.MaterialIndexNearCenter
             cboMaterial2.SelectedText = myFuelRod.MaterialIndexNextToCenter
             cboMaterial3.SelectedText = myFuelRod.MaterialIndexNthLayer
-            dgvAxialPowerfactor.Rows.Add(myFuelRod.FuelRodDetails.AxialPowerFactor.Count)
-            For Each row As DataGridViewRow In Me.dgvAxialPowerfactor.Rows
-                row.Cells(0).Value = myFuelRod.FuelRodDetails.AxialPowerFactor(row.Index + 1)
-            Next
-            dgvRadialPowerProfile.Rows.Add(myFuelRod.FuelRodDetails.RadialPowerProfile.Count)
-            For Each row As DataGridViewRow In Me.dgvRadialPowerProfile.Rows
-              
-                row.Cells(0).Value = myFuelRod.FuelRodDetails.RadialPowerProfile(row.Index + 1).RadialPowerFactor
-                row.Cells(1).Value = myFuelRod.FuelRodDetails.RadialPowerProfile(row.Index + 1).RadialNode
-            Next
-            dgvPowerHistory.Rows.Add(myFuelRod.FuelRodDetails.PreviousPowerHistory.Count)
-            For Each row As DataGridViewRow In Me.dgvPowerHistory.Rows
-                row.Cells(0).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).PowerHistory
-                row.Cells(1).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).Time
-            Next
+            If myFuelRod.FuelRodDetails.AxialPowerFactor.Count <> 0 Then
+                dgvAxialPowerfactor.Rows.Add(myFuelRod.FuelRodDetails.AxialPowerFactor.Count)
+                For Each row As DataGridViewRow In Me.dgvAxialPowerfactor.Rows
+                    row.Cells(0).Value = myFuelRod.FuelRodDetails.AxialPowerFactor(row.Index + 1)
+                Next
+            End If
+            If myFuelRod.FuelRodDetails.RadialPowerProfile.Count <> 0 Then
+
+
+                dgvRadialPowerProfile.Rows.Add(myFuelRod.FuelRodDetails.RadialPowerProfile.Count)
+                For Each row As DataGridViewRow In Me.dgvRadialPowerProfile.Rows
+
+                    row.Cells(0).Value = myFuelRod.FuelRodDetails.RadialPowerProfile(row.Index + 1).RadialPowerFactor
+                    row.Cells(1).Value = myFuelRod.FuelRodDetails.RadialPowerProfile(row.Index + 1).RadialNode
+                Next
+            End If
+            If myFuelRod.FuelRodDetails.PreviousPowerHistory.Count <> 0 Then
+
+
+                dgvPowerHistory.Rows.Add(myFuelRod.FuelRodDetails.PreviousPowerHistory.Count)
+                For Each row As DataGridViewRow In Me.dgvPowerHistory.Rows
+                    row.Cells(0).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).PowerHistory
+                    row.Cells(1).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).Time
+                Next
+            End If
         End If
     End Sub
 
@@ -129,7 +145,7 @@ Public Class ucFuelRodEditor
         cboControlVolumeAbove.DisplayMember = "Tag"
         cboControlVolumeBelow.DisplayMember = "Tag"
         cboComponent.DisplayMember = "Tag"
-        
+
         Try
             cboComponent.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
             cboControlVolumeAbove.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
@@ -148,6 +164,12 @@ Public Class ucFuelRodEditor
 
         If Not Me.FuelRodDetails Is Nothing Then
             Me.FuelRodDetails.FuelRodDimensions.Clear()
+            Me.FuelRodDetails.HyrdraulicVolumes.Clear()
+            Me.FuelRodDetails.AxialPowerFactor.Clear()
+            Me.FuelRodDetails.InitialTemperatures.Clear()
+            Me.FuelRodDetails.RadialMeshSpacing.Clear()
+            Me.FuelRodDetails.PreviousPowerHistory.Clear()
+            Me.FuelRodDetails.RadialPowerProfile.Clear()
         End If
 
         For Each row As DataGridViewRow In Me.dgvFuelRodDimensions.Rows
@@ -238,6 +260,12 @@ Public Class ucFuelRodEditor
         Next
     End Sub
 
+    Private Sub dgvFuelRodDimensions_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvFuelRodDimensions.CellClick
+        cmdCopy.Enabled = False
+        cmdPaste.Enabled = False
+        cmdCopytoAll.Enabled = False
+    End Sub
+
     Private Sub dgvFuelRodDimensions_RowHeaderMouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvFuelRodDimensions.RowHeaderMouseClick
         If dgvFuelRodDimensions.SelectedRows.Count = 1 Then
             cmdCopy.Enabled = True
@@ -250,6 +278,62 @@ Public Class ucFuelRodEditor
             cmdPaste.Enabled = True
         Else
             cmdPaste.Enabled = True
+        End If
+    End Sub
+
+    Private Sub cmdCopy2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCopy2.Click
+        If dgvInitialTemperatures.SelectedRows.Count = 1 Then
+            selectedcells.Clear()
+            For Each cell As DataGridViewCell In dgvInitialTemperatures.SelectedRows(0).Cells
+                selectedcells.Add(cell.Value)
+            Next
+
+        End If
+    End Sub
+
+    Private Sub cmdCopytoAll2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCopytoAll2.Click
+        If dgvInitialTemperatures.SelectedRows.Count = 1 Then
+            selectedcells.Clear()
+            For Each cell As DataGridViewCell In dgvInitialTemperatures.SelectedRows(0).Cells
+                selectedcells.Add(cell.Value)
+            Next
+
+        End If
+        For Each row As DataGridViewRow In dgvInitialTemperatures.Rows
+            Dim i = 0
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = selectedcells(i)
+            Next
+        Next
+    End Sub
+
+    Private Sub cmdPaste2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdPaste2.Click
+        For Each row As DataGridViewRow In dgvInitialTemperatures.SelectedRows
+            Dim i = 0
+            For i = 1 To row.Cells.Count - 1
+                row.Cells(i).Value = selectedcells(i)
+            Next
+        Next
+    End Sub
+
+    Private Sub dgvInitialTemperatures_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvInitialTemperatures.CellClick
+        cmdCopy2.Enabled = False
+        cmdPaste2.Enabled = False
+        cmdCopytoAll2.Enabled = False
+    End Sub
+
+    Private Sub dgvInitialTemperatures_RowHeaderMouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvInitialTemperatures.RowHeaderMouseClick
+        If dgvInitialTemperatures.SelectedRows.Count = 1 Then
+            cmdCopy2.Enabled = True
+            cmdCopytoAll2.Enabled = True
+        Else
+            cmdCopy2.Enabled = False
+            cmdCopytoAll2.Enabled = False
+        End If
+        If dgvInitialTemperatures.SelectedRows.Count > 0 Then
+            cmdPaste2.Enabled = True
+        Else
+            cmdPaste2.Enabled = True
         End If
     End Sub
 End Class
