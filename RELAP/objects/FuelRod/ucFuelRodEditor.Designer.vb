@@ -117,13 +117,13 @@ Partial Class ucFuelRodEditor
         Me.dgvPowerHistory = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.txtPowerHistory = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cboControlVolumeAbove = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
-        Me.cboControlVolumeBelow = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.txtVolumeAbove = New DevComponents.Editors.IntegerInput()
         Me.txtVolumebelow = New DevComponents.Editors.IntegerInput()
         Me.cmdSave = New System.Windows.Forms.Button()
+        Me.cboControlVolumeAbove = New System.Windows.Forms.ComboBox()
+        Me.cboControlVolumeBelow = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvFuelRodDimensions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -962,18 +962,6 @@ Partial Class ucFuelRodEditor
         Me.txtTime.HeaderText = "Time"
         Me.txtTime.Name = "txtTime"
         '
-        'cboControlVolumeAbove
-        '
-        Me.cboControlVolumeAbove.DisplayMember = "Text"
-        Me.cboControlVolumeAbove.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboControlVolumeAbove.FormattingEnabled = True
-        Me.cboControlVolumeAbove.ItemHeight = 14
-        Me.cboControlVolumeAbove.Location = New System.Drawing.Point(242, 316)
-        Me.cboControlVolumeAbove.Name = "cboControlVolumeAbove"
-        Me.cboControlVolumeAbove.Size = New System.Drawing.Size(121, 20)
-        Me.cboControlVolumeAbove.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboControlVolumeAbove.TabIndex = 2
-        '
         'LabelX4
         '
         '
@@ -985,18 +973,6 @@ Partial Class ucFuelRodEditor
         Me.LabelX4.Size = New System.Drawing.Size(213, 20)
         Me.LabelX4.TabIndex = 3
         Me.LabelX4.Text = "Control volume located just above fuel rod"
-        '
-        'cboControlVolumeBelow
-        '
-        Me.cboControlVolumeBelow.DisplayMember = "Text"
-        Me.cboControlVolumeBelow.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboControlVolumeBelow.FormattingEnabled = True
-        Me.cboControlVolumeBelow.ItemHeight = 14
-        Me.cboControlVolumeBelow.Location = New System.Drawing.Point(242, 342)
-        Me.cboControlVolumeBelow.Name = "cboControlVolumeBelow"
-        Me.cboControlVolumeBelow.Size = New System.Drawing.Size(121, 20)
-        Me.cboControlVolumeBelow.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cboControlVolumeBelow.TabIndex = 2
         '
         'LabelX5
         '
@@ -1047,18 +1023,34 @@ Partial Class ucFuelRodEditor
         Me.cmdSave.Text = "Save"
         Me.cmdSave.UseVisualStyleBackColor = True
         '
+        'cboControlVolumeAbove
+        '
+        Me.cboControlVolumeAbove.FormattingEnabled = True
+        Me.cboControlVolumeAbove.Location = New System.Drawing.Point(260, 314)
+        Me.cboControlVolumeAbove.Name = "cboControlVolumeAbove"
+        Me.cboControlVolumeAbove.Size = New System.Drawing.Size(121, 21)
+        Me.cboControlVolumeAbove.TabIndex = 5
+        '
+        'cboControlVolumeBelow
+        '
+        Me.cboControlVolumeBelow.FormattingEnabled = True
+        Me.cboControlVolumeBelow.Location = New System.Drawing.Point(260, 342)
+        Me.cboControlVolumeBelow.Name = "cboControlVolumeBelow"
+        Me.cboControlVolumeBelow.Size = New System.Drawing.Size(121, 21)
+        Me.cboControlVolumeBelow.TabIndex = 5
+        '
         'ucFuelRodEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.cboControlVolumeBelow)
+        Me.Controls.Add(Me.cboControlVolumeAbove)
         Me.Controls.Add(Me.txtVolumebelow)
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.txtVolumeAbove)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.LabelX5)
         Me.Controls.Add(Me.LabelX4)
-        Me.Controls.Add(Me.cboControlVolumeAbove)
-        Me.Controls.Add(Me.cboControlVolumeBelow)
         Me.Name = "ucFuelRodEditor"
         Me.Size = New System.Drawing.Size(688, 382)
         Me.TabControl1.ResumeLayout(False)
@@ -1145,8 +1137,6 @@ Partial Class ucFuelRodEditor
     Friend WithEvents txtVolumeAbove As DevComponents.Editors.IntegerInput
     Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents cboControlVolumeBelow As DevComponents.DotNetBar.Controls.ComboBoxEx
-    Friend WithEvents cboControlVolumeAbove As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents cmdSave As System.Windows.Forms.Button
     Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
     Friend WithEvents cmdCopy As System.Windows.Forms.Button
@@ -1173,5 +1163,7 @@ Partial Class ucFuelRodEditor
     Friend WithEvents cmdCopytoAll2 As System.Windows.Forms.Button
     Friend WithEvents cmdCopy2 As System.Windows.Forms.Button
     Friend WithEvents cmdPaste2 As System.Windows.Forms.Button
+    Friend WithEvents cboControlVolumeAbove As System.Windows.Forms.ComboBox
+    Friend WithEvents cboControlVolumeBelow As System.Windows.Forms.ComboBox
 
 End Class
