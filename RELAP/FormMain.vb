@@ -2722,15 +2722,26 @@ sim:                Dim myStream As System.IO.FileStream
 
             card = 501
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridView1.Rows
-                If temprow.Cells(0).Value.ToString <> "" Then
+                If Not temprow.Cells(1).Value Is Nothing Then
                     card = 500 + temprow.Cells(0).Value
                     Dim latch As String
-                    If temprow.Cells(0).Value.ToString.ToLower = "true" Then
+                    If temprow.Cells(9).Value = True Then
                         latch = "l"
                     Else
                         latch = "n"
                     End If
-                    generate.WriteLine(card & " " & temprow.Cells(1).Value & " " & RELAP.App.GetUIDFromTag(temprow.Cells(10).Value) & temprow.Cells(3).Value.ToString("D2") & " " & temprow.Cells(4).Value & " " & temprow.Cells(5).Value & " " & RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) & temprow.Cells(7).Value.ToString("D2") & " " & temprow.Cells(8).Value & " " & latch & " " & temprow.Cells(10).Value)
+                    Dim parameter1, parameter2 As String
+                    If RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) Is Nothing Then
+                        parameter1 = "0 "
+                    Else
+                        parameter1 = RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) & temprow.Cells(3).Value.ToString("D2") & "0000 "
+                    End If
+                    If RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) Is Nothing Then
+                        parameter2 = "0 "
+                    Else
+                        parameter2 = RELAP.App.GetUIDFromTag(temprow.Cells(12).Value) & temprow.Cells(7).Value.ToString("D2") & "0000 "
+                    End If
+                    generate.WriteLine(card & " " & temprow.Cells(1).Value & " " & parameter1 & temprow.Cells(4).Value & " " & temprow.Cells(5).Value & " " & parameter2 & temprow.Cells(8).Value & " " & latch & " " & temprow.Cells(10).Value)
 
                 End If
             Next
