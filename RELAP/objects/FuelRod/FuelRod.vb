@@ -1163,12 +1163,12 @@ Namespace RELAP.SimulationObjects.UnitOps
 
     <Serializable()> Public Class HydraulicVolumes
 
-        Private m_ControlVolumeNumber As Integer
-        Public Property ControlVolumeNumber() As Integer
+        Private m_ControlVolumeNumber As String
+        Public Property ControlVolumeNumber() As String
             Get
                 Return m_ControlVolumeNumber
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As String)
                 m_ControlVolumeNumber = value
             End Set
         End Property
@@ -1195,7 +1195,7 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
 
-        Public Sub New(ByVal HydralicVolume As Integer, ByVal Increment As Integer, ByVal AxialNode As Integer)
+        Public Sub New(ByVal HydralicVolume As String, ByVal Increment As Integer, ByVal AxialNode As Integer)
             m_AxialNode = AxialNode
             m_ControlVolumeNumber = HydralicVolume
             m_Increment = Increment
