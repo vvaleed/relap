@@ -623,7 +623,11 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultType = GetType(String)
                 'End With
 
-
+                .Item.Add("Set Fuel Rod Details", Me, "FuelRodDetails", False, "Details", "Set Fuel Rod Details", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultType = GetType(FuelRodDetails)
+                    .CustomEditor = New RELAP.Editors.UIFuelRodEditor
+                End With
                 valor = Me.NumberOfRods
                 .Item.Add("No. of rods", valor, False, "No. of Rods", " ", True)
                 With .Item(.Item.Count - 1)
@@ -729,47 +733,47 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultType = GetType(Integer)
                 'End With
 
-                valor = Format((Me.RadiusToRadialNode1), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Radius To Radial Node 1"), su.distance), valor, False, "Radial Mesh Spacing", "", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.RadiusToRadialNode1), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Radius To Radial Node 1"), su.distance), valor, False, "Radial Mesh Spacing", "", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format((Me.RadiusToRadialNodeN), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Radius To Radial Node N"), su.distance), valor, False, "Radial Mesh Spacing", "Enter radial node N. Ascending order and last node placed on the cladding outer surface.", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.RadiusToRadialNodeN), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Radius To Radial Node N"), su.distance), valor, False, "Radial Mesh Spacing", "Enter radial node N. Ascending order and last node placed on the cladding outer surface.", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Me.RadialMeshSpacingAxialNode
-                .Item.Add("Axial Node", valor, False, "Radial Mesh Spacing", " ", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.RadialMeshSpacingAxialNode
+                '.Item.Add("Axial Node", valor, False, "Radial Mesh Spacing", " ", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
-                valor = Format((Me.TemperatureAtNode1), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Temperature at Node 1"), su.spmp_temperature), valor, False, "Initial Temperatures", "The range is 300 K ≤ x ≤ 3123 K. Initial temperature of Node 1", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.TemperatureAtNode1), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Temperature at Node 1"), su.spmp_temperature), valor, False, "Initial Temperatures", "The range is 300 K ≤ x ≤ 3123 K. Initial temperature of Node 1", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Format((Me.TemperatureAtNodeN), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT(("Temperature at Node N"), su.spmp_temperature), valor, False, "Initial Temperatures", "Initial temperature for each radial node to radial node N. Range is same as above.", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
+                'valor = Format((Me.TemperatureAtNodeN), FlowSheet.Options.NumberFormat)
+                '.Item.Add(FT(("Temperature at Node N"), su.spmp_temperature), valor, False, "Initial Temperatures", "Initial temperature for each radial node to radial node N. Range is same as above.", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Double)
+                'End With
 
-                valor = Me.InitialTemperaturesAxialNode
-                .Item.Add("Axial Node", valor, False, "Initial Temperature", " ", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Integer)
-                End With
+                'valor = Me.InitialTemperaturesAxialNode
+                '.Item.Add("Axial Node", valor, False, "Initial Temperature", " ", True)
+                'With .Item(.Item.Count - 1)
+                '    .DefaultValue = Nothing
+                '    .DefaultType = GetType(Integer)
+                'End With
 
                 'valor = Me.MaterialIndexNearCenter
                 '.Item.Add("Material Index Near Center", valor, False, "Material Specification", "Defaults for a fuel rod component are UO2 (index=6), Gap (index=9), and Zircaloy (index=1).", True)
@@ -1027,6 +1031,35 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_collection As Generic.SortedDictionary(Of Integer, FuelRodDimensions)
         Protected m_collection2 As Generic.SortedDictionary(Of Integer, HydraulicVolumes)
         Protected m_collection3 As Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
+        Protected m_collection4 As Generic.SortedDictionary(Of Integer, RadialPowerProfile)
+        Protected m_collection5 As Generic.SortedDictionary(Of Integer, PreviousPowerHistory)
+
+        Private m_AxialPowerFactor As Generic.SortedDictionary(Of Integer, Double)
+        Public Property AxialPowerFactor() As Generic.SortedDictionary(Of Integer, Double)
+            Get
+                Return m_AxialPowerFactor
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, Double))
+                m_AxialPowerFactor = value
+            End Set
+        End Property
+        Public Property RadialPowerProfile() As Generic.SortedDictionary(Of Integer, RadialPowerProfile)
+            Get
+                Return m_collection4
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, RadialPowerProfile))
+                m_collection4 = value
+            End Set
+        End Property
+        Public Property PreviousPowerHistory() As Generic.SortedDictionary(Of Integer, PreviousPowerHistory)
+            Get
+                Return m_collection5
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, PreviousPowerHistory))
+                m_collection5 = value
+            End Set
+        End Property
+
         ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
         Private _InitialTemperatures As Generic.SortedDictionary(Of Integer, String)
@@ -1214,7 +1247,64 @@ Namespace RELAP.SimulationObjects.UnitOps
             _AxialNode = AxialNode
         End Sub
     End Class
-  
+    <Serializable()> Public Class RadialPowerProfile
+
+        Private _RadialPowerFactor As Double
+        Public Property RadialPowerFactor() As Double
+            Get
+                Return _RadialPowerFactor
+            End Get
+            Set(ByVal value As Double)
+                _RadialPowerFactor = value
+            End Set
+        End Property
+
+        Private _RadialNode As Integer
+        Public Property RadialNode() As Integer
+            Get
+                Return _RadialNode
+            End Get
+            Set(ByVal value As Integer)
+                _RadialNode = value
+            End Set
+        End Property
+
+
+        Public Sub New(ByVal RadialPowerFactor As Double, ByVal RadialNode As Integer)
+            _RadialNode = RadialNode
+            _RadialPowerFactor = RadialPowerFactor
+        End Sub
+    End Class
+    <Serializable()> Public Class PreviousPowerHistory
+
+        Private _PowerHistory As Double
+        Public Property PowerHistory() As Double
+            Get
+                Return _PowerHistory
+            End Get
+            Set(ByVal value As Double)
+                _PowerHistory = value
+            End Set
+        End Property
+
+
+        Private _Time As Double
+        Public Property Time() As Double
+            Get
+                Return _Time
+            End Get
+            Set(ByVal value As Double)
+                _Time = value
+            End Set
+        End Property
+
+
+
+        Public Sub New(ByVal PowerHistory As Double, ByVal Time As Double)
+            _Time = Time
+            _PowerHistory = PowerHistory
+        End Sub
+    End Class
 End Namespace
 
 
