@@ -20,6 +20,84 @@ Public Class ucFuelRodEditor
         If dgvFuelRodDimensions.RowCount = 0 Then
             For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
                 dgvFuelRodDimensions.Rows.Add(i.ToString)
+
+            Next
+        End If
+        cboMaterial1.SelectedIndex = 5
+        cboMaterial2.SelectedIndex = 8
+        cboMaterial3.SelectedIndex = 0
+
+
+        Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.FuelRodGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
+
+        Dim myFuelRod As RELAP.SimulationObjects.UnitOps.FuelRod = My.Application.ActiveSimulation.Collections.CLCS_FuelRodCollection(gobj.Name)
+
+        If myFuelRod.FuelRodDetails.FuelRodDimensions.Count <> 0 Then
+            cboControlVolumeAbove.SelectedText = RELAP.App.GetTagFromUID(myFuelRod.ControlVolumeAbove.Substring(0, 3))
+            cboControlVolumeBelow.SelectedText = RELAP.App.GetTagFromUID(myFuelRod.ControlVolumeBelow.Substring(0, 3))
+            txtVolumeAbove.Value = myFuelRod.ControlVolumeAbove.Substring(3, 2)
+            txtVolumebelow.Value = myFuelRod.ControlVolumeBelow.Substring(3, 2)
+
+            dgvFuelRodDimensions.Rows.Add(myFuelRod.FuelRodDetails.FuelRodDimensions.Count)
+            For Each row As DataGridViewRow In Me.dgvFuelRodDimensions.Rows
+                row.Cells(0).Value = myFuelRod.FuelRodDetails.FuelRodDimensions(row.Index + 1).FuelRodDimensionsAxialNode
+                row.Cells(1).Value = myFuelRod.FuelRodDetails.FuelRodDimensions(row.Index + 1).FuelPelletRadius
+                row.Cells(2).Value = myFuelRod.FuelRodDetails.FuelRodDimensions(row.Index + 1).InnerCladdingRadius
+                row.Cells(3).Value = myFuelRod.FuelRodDetails.FuelRodDimensions(row.Index + 1).OuterCladdingRadius
+            Next
+            dgvHyrdraulicVolumes.Rows.Add(myFuelRod.FuelRodDetails.HyrdraulicVolumes.Count)
+            For Each row As DataGridViewRow In Me.dgvHyrdraulicVolumes.Rows
+                row.Cells(0).Value = RELAP.App.GetUIDFromTag(myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).ControlVolumeNumber.ToString.Substring(0, 3))
+                row.Cells(1).Value = RELAP.App.GetUIDFromTag(myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).ControlVolumeNumber.ToString.Substring(3, 2))
+                row.Cells(2).Value = myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).Increment
+                row.Cells(3).Value = myFuelRod.FuelRodDetails.HyrdraulicVolumes(row.Index + 1).AxialNode
+
+            Next
+            dgvRadialMeshSpacing.Rows.Add(myFuelRod.FuelRodDetails.RadialMeshSpacing.Count)
+            For Each row As DataGridViewRow In Me.dgvRadialMeshSpacing.Rows
+                row.Cells(0).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossFuel
+                row.Cells(1).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossGap
+                row.Cells(2).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).NumberofIntervalsAcrossCladding
+                row.Cells(3).Value = myFuelRod.FuelRodDetails.RadialMeshSpacing(row.Index + 1).AxialNode
+            Next
+            Dim total As Integer
+            dgvInitialTemperatures.Columns.Clear()
+            dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
+            Try
+                total = Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
+            Catch ex As Exception
+                total = 0
+            End Try
+
+            For i As Integer = 1 To total
+                dgvInitialTemperatures.Columns.Add("txtRadialNode" & i, "Radial Node " & i)
+            Next
+            For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
+                dgvInitialTemperatures.Rows.Add(i.ToString)
+            Next
+            For Each row As DataGridViewRow In Me.dgvInitialTemperatures.Rows
+                Dim str As String() = myFuelRod.FuelRodDetails.InitialTemperatures(row.Index + 1).Split(" ")
+                For Each cell As DataGridViewCell In row.Cells
+                    cell.Value = str(cell.ColumnIndex + 1)
+                Next
+            Next
+            cboMaterial1.SelectedText = myFuelRod.MaterialIndexNearCenter
+            cboMaterial2.SelectedText = myFuelRod.MaterialIndexNextToCenter
+            cboMaterial3.SelectedText = myFuelRod.MaterialIndexNthLayer
+            dgvAxialPowerfactor.Rows.Add(myFuelRod.FuelRodDetails.AxialPowerFactor.Count)
+            For Each row As DataGridViewRow In Me.dgvAxialPowerfactor.Rows
+                row.Cells(0).Value = myFuelRod.FuelRodDetails.AxialPowerFactor(row.Index + 1)
+            Next
+            dgvRadialPowerProfile.Rows.Add(myFuelRod.FuelRodDetails.RadialPowerProfile.Count)
+            For Each row As DataGridViewRow In Me.dgvRadialPowerProfile.Rows
+              
+                row.Cells(0).Value = myFuelRod.FuelRodDetails.RadialPowerProfile(row.Index + 1).RadialPowerFactor
+                row.Cells(1).Value = myFuelRod.FuelRodDetails.RadialPowerProfile(row.Index + 1).RadialNode
+            Next
+            dgvPowerHistory.Rows.Add(myFuelRod.FuelRodDetails.PreviousPowerHistory.Count)
+            For Each row As DataGridViewRow In Me.dgvPowerHistory.Rows
+                row.Cells(0).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).PowerHistory
+                row.Cells(1).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).Time
             Next
         End If
     End Sub
@@ -43,7 +121,10 @@ Public Class ucFuelRodEditor
             For i As Integer = 1 To total
                 dgvInitialTemperatures.Columns.Add("txtRadialNode" & i, "Radial Node " & i)
             Next
+            For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
+                dgvInitialTemperatures.Rows.Add(i.ToString)
 
+            Next
         End If
         cboControlVolumeAbove.DisplayMember = "Tag"
         cboControlVolumeBelow.DisplayMember = "Tag"
@@ -61,42 +142,56 @@ Public Class ucFuelRodEditor
 
     Private Sub cmdSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSave.Click
         Dim obj = My.Application.ActiveSimulation.Collections.CLCS_FuelRodCollection(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject.Name)
-        obj.ControlVolumeAbove = cboControlVolumeAbove.SelectedItem.value & txtVolumeAbove.Text.ToString("D2") & "0000"
-        obj.ControlVolumeBelow = cboControlVolumeBelow.SelectedItem.value & txtVolumebelow.Text.ToString("D2") & "0000"
-        
+        obj.ControlVolumeAbove = RELAP.App.GetUIDFromTag(cboControlVolumeAbove.SelectedItem.Tag) & txtVolumeAbove.Value.ToString("D2") & "0000"
+        obj.ControlVolumeBelow = RELAP.App.GetUIDFromTag(cboControlVolumeBelow.SelectedItem.Tag) & txtVolumebelow.Value.ToString("D2") & "0000"
+
 
         If Not Me.FuelRodDetails Is Nothing Then
             Me.FuelRodDetails.FuelRodDimensions.Clear()
         End If
 
         For Each row As DataGridViewRow In Me.dgvFuelRodDimensions.Rows
-            Me.FuelRodDetails.FuelRodDimensions.Add(row.Index + 1, New FuelRodDimensions(row.Cells(1).Value, row.Cells(2).Value, row.Cells(3).Value, row.Cells(0).Value))
+            If Not row.Cells(0).Value Is Nothing Then
+                Me.FuelRodDetails.FuelRodDimensions.Add(row.Index + 1, New FuelRodDimensions(row.Cells(1).Value, row.Cells(2).Value, row.Cells(3).Value, row.Cells(0).Value))
+            End If
         Next
         For Each row As DataGridViewRow In Me.dgvHyrdraulicVolumes.Rows
-            Me.FuelRodDetails.HyrdraulicVolumes.Add(row.Index + 1, New HydraulicVolumes(RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000", row.Cells(2).Value, row.Cells(3).Value))
+            If Not row.Cells(0).Value Is Nothing Then
+                Me.FuelRodDetails.HyrdraulicVolumes.Add(row.Index + 1, New HydraulicVolumes(RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000", row.Cells(2).Value, row.Cells(3).Value))
+            End If
         Next
         For Each row As DataGridViewRow In Me.dgvRadialMeshSpacing.Rows
-            Me.FuelRodDetails.RadialMeshSpacing.Add(row.Index + 1, New RadialMeshSpacing(row.Cells(0).Value, row.Cells(2).Value, row.Cells(1).Value, row.Cells(3).Value))
+            If Not row.Cells(0).Value Is Nothing Then
+                Me.FuelRodDetails.RadialMeshSpacing.Add(row.Index + 1, New RadialMeshSpacing(row.Cells(0).Value, row.Cells(2).Value, row.Cells(1).Value, row.Cells(3).Value))
+            End If
         Next
         For Each row As DataGridViewRow In Me.dgvInitialTemperatures.Rows
-            Dim str As String = ""
-            For Each cell As DataGridViewCell In row.Cells
-                str = cell.Value & " " & str
-            Next
-            Me.FuelRodDetails.InitialTemperatures.Add(row.Index + 1, str)
+            If Not row.Cells(0).Value Is Nothing Then
+                Dim str As String = ""
+                For Each cell As DataGridViewCell In row.Cells
+                    str = cell.Value & " " & str
+                Next
+                Me.FuelRodDetails.InitialTemperatures.Add(row.Index + 1, str)
+            End If
         Next
         obj.MaterialIndexNearCenter = cboMaterial1.SelectedItem.value
         obj.MaterialIndexNextToCenter = cboMaterial2.SelectedItem.value
         obj.MaterialIndexNthLayer = cboMaterial3.SelectedItem.value
         For Each row As DataGridViewRow In Me.dgvAxialPowerfactor.Rows
-            FuelRodDetails.AxialPowerFactor.Add(row.Index + 1, row.Cells(0).Value)
+            If Not row.Cells(0).Value Is Nothing Then
+                FuelRodDetails.AxialPowerFactor.Add(row.Index + 1, row.Cells(0).Value)
+            End If
         Next
         For Each row As DataGridViewRow In Me.dgvRadialPowerProfile.Rows
-            FuelRodDetails.RadialPowerProfile.Add(row.Index + 1, New RadialPowerProfile(row.Cells(0).Value, row.Cells(1).Value))
+            If Not row.Cells(0).Value Is Nothing Then
+                FuelRodDetails.RadialPowerProfile.Add(row.Index + 1, New RadialPowerProfile(row.Cells(0).Value, row.Cells(1).Value))
+            End If
         Next
 
         For Each row As DataGridViewRow In Me.dgvPowerHistory.Rows
-            FuelRodDetails.PreviousPowerHistory.Add(row.Index + 1, New PreviousPowerHistory(row.Cells(0).Value, row.Cells(1).Value))
+            If Not row.Cells(0).Value Is Nothing Then
+                FuelRodDetails.PreviousPowerHistory.Add(row.Index + 1, New PreviousPowerHistory(row.Cells(0).Value, row.Cells(1).Value))
+            End If
         Next
     End Sub
 

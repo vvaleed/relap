@@ -77,22 +77,22 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_PlenumVoidVolume As Double
-        Public Property PlenumVoidVolume() As Double
+        Private m_PlenumVoidVolume As String
+        Public Property PlenumVoidVolume() As String
             Get
                 Return m_PlenumVoidVolume
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_PlenumVoidVolume = value
             End Set
         End Property
 
-        Private m_LowerPlenumVoidVolume As Double
-        Public Property LowerPlenumVoidVolume() As Double
+        Private m_LowerPlenumVoidVolume As String
+        Public Property LowerPlenumVoidVolume() As String
             Get
                 Return m_LowerPlenumVoidVolume
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_LowerPlenumVoidVolume = value
             End Set
         End Property
@@ -109,22 +109,22 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
 
-        Private m_ControlVolumeAbove As Double
-        Public Property ControlVolumeAbove() As Double
+        Private m_ControlVolumeAbove As String
+        Public Property ControlVolumeAbove() As String
             Get
                 Return m_ControlVolumeAbove
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_ControlVolumeAbove = value
             End Set
         End Property
 
-        Private m_ControlVolumeBelow As Double
-        Public Property ControlVolumeBelow() As Double
+        Private m_ControlVolumeBelow As String
+        Public Property ControlVolumeBelow() As String
             Get
                 Return m_ControlVolumeBelow
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_ControlVolumeBelow = value
             End Set
         End Property
@@ -451,6 +451,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            Me.FuelRodDetails = New FuelRodDetails
         End Sub
 
         
@@ -1100,7 +1101,12 @@ Namespace RELAP.SimulationObjects.UnitOps
 
         Public Sub New()
             m_collection = New Generic.SortedDictionary(Of Integer, FuelRodDimensions)
-
+            m_collection2 = New Generic.SortedDictionary(Of Integer, HydraulicVolumes)
+            m_collection3 = New Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
+            m_collection4 = New Generic.SortedDictionary(Of Integer, RadialPowerProfile)
+            _InitialTemperatures = New Generic.SortedDictionary(Of Integer, String)
+            m_collection5 = New Generic.SortedDictionary(Of Integer, PreviousPowerHistory)
+            m_AxialPowerFactor = New Generic.SortedDictionary(Of Integer, Double)
         End Sub
         Public Overrides Function ToString() As String
             Return "Click to Edit..."
