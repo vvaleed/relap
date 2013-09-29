@@ -26,6 +26,7 @@ Partial Class frmMinorEditRequests
         Me.cboVariableCode = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboParameter = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.txtParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtVolume = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -33,10 +34,10 @@ Partial Class frmMinorEditRequests
         '
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode, Me.cboParameter, Me.txtParameter})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode, Me.cboParameter, Me.txtParameter, Me.txtVolume})
         Me.DataGridView1.Location = New System.Drawing.Point(12, 12)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(393, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(580, 150)
         Me.DataGridView1.TabIndex = 0
         '
         'cboVariableCode
@@ -51,6 +52,7 @@ Partial Class frmMinorEditRequests
         '
         Me.cboParameter.HeaderText = "Parameter"
         Me.cboParameter.Name = "cboParameter"
+        Me.cboParameter.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'txtParameter
         '
@@ -58,11 +60,24 @@ Partial Class frmMinorEditRequests
         Me.txtParameter.Name = "txtParameter"
         Me.txtParameter.Visible = False
         '
+        'txtVolume
+        '
+        '
+        '
+        '
+        Me.txtVolume.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtVolume.BackgroundStyle.Class = "DataGridViewNumericBorder"
+        Me.txtVolume.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtVolume.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText
+        Me.txtVolume.HeaderText = "Volume"
+        Me.txtVolume.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.txtVolume.Name = "txtVolume"
+        '
         'frmMinorEditRequests
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(428, 197)
+        Me.ClientSize = New System.Drawing.Size(648, 197)
         Me.Controls.Add(Me.DataGridView1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmMinorEditRequests"
@@ -75,4 +90,5 @@ Partial Class frmMinorEditRequests
     Friend WithEvents cboVariableCode As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents cboParameter As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents txtParameter As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtVolume As DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn
 End Class
