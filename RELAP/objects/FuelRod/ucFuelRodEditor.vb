@@ -18,7 +18,9 @@ Public Class ucFuelRodEditor
 
     Private Sub ucFuelRodEditor_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If dgvFuelRodDimensions.RowCount = 0 Then
-            dgvFuelRodDimensions.Rows.Add(My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value)
+            For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
+                dgvFuelRodDimensions.Rows.Add(i.ToString)
+            Next
         End If
     End Sub
 
@@ -44,12 +46,9 @@ Public Class ucFuelRodEditor
 
         End If
         cboControlVolumeAbove.DisplayMember = "Tag"
-        cboControlVolumeAbove.ValueMember = "Value"
         cboControlVolumeBelow.DisplayMember = "Tag"
-        cboControlVolumeBelow.ValueMember = "Value"
         cboComponent.DisplayMember = "Tag"
-        cboComponent.ValueMember = "Value"
-
+        
         Try
             cboComponent.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
             cboControlVolumeAbove.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)

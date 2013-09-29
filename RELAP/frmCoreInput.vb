@@ -86,11 +86,11 @@
 
     Private Sub TabControl1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TabControl1.SelectedIndexChanged
         cboComponent.DisplayMember = "Tag"
-        cboComponent.ValueMember = "Value"
+
         cboComponentatTopCenter.DisplayMember = "Tag"
-        cboComponentatTopCenter.ValueMember = "Value"
+
         cboComponenttoReceiveSlumped.DisplayMember = "Tag"
-        cboComponenttoReceiveSlumped.ValueMember = "Value"
+
         Try
 
             cboComponent.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
