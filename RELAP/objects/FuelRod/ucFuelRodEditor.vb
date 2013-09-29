@@ -30,7 +30,7 @@ Public Class ucFuelRodEditor
 
 
     Private Sub TabControl1_Selected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlEventArgs) Handles TabControl1.Selected
-        If e.TabPageIndex = 2 Then
+        If e.TabPageIndex = 3 Then
             Dim total As Integer
             dgvInitialTemperatures.Columns.Clear()
             dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
