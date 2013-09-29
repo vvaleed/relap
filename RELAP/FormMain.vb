@@ -2712,8 +2712,24 @@ sim:                Dim myStream As System.IO.FileStream
             Dim card As Integer = 301
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormMinorEditRequests.DataGridView1.Rows
                 If Not temprow.Cells(0).Value Is Nothing Then
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(1).Value)
+                    Dim parameter1 As String
+                    If RELAP.App.GetUIDFromTag(temprow.Cells(1).Value) Is Nothing Then
+                        parameter1 = temprow.Cells(1).Value
+                    Else
+                        Dim tmpstr As String
+                        Dim tmpint As Integer
+                        tmpint = Val(temprow.Cells(3).Value)
+                        tmpstr = tmpint.ToString("D2")
+                        parameter1 = RELAP.App.GetUIDFromTag(temprow.Cells(1).Value) & tmpstr & "0000 "
+                    End If
+                    Dim str As String = temprow.Cells(0).Value
+                    If str = "CNTRLVAR" Or str = "CPUTIME" Or str = "BGNHG" Or str = "BGMCT" Then
+                        parameter1 = temprow.Cells(2).Value
+                    End If
+
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & parameter1)
                     card = card + 1
+
                 End If
             Next
             generate.WriteLine("*======================================================================")
@@ -2747,10 +2763,15 @@ sim:                Dim myStream As System.IO.FileStream
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
-                'If temprow.Cells(0).Value.ToString <> "" Then
-                '    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & (temprow.Cells(3).Value) & " " & temprow.Cells(4).Value)
-
-                '      End If
+                If Not temprow.Cells(0).Value Is Nothing Then
+                    Dim latch As String
+                    If temprow.Cells(3).Value = True Then
+                        latch = "l"
+                    Else
+                        latch = "n"
+                    End If
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & latch & " " & temprow.Cells(4).Value)
+                End If
 
                 card = card + 1
             Next

@@ -14,7 +14,7 @@
         DataGridView1.Rows(e.RowIndex).Cells(0).Value = e.RowIndex + 1
         cboTrip1.Items.Clear()
         cboTrip2.Items.Clear()
-        For i = 1 To DataGridView1.RowCount
+        For i = 1 To DataGridView1.RowCount - 1
             cboTrip1.Items.Add(i.ToString)
             cboTrip1.Items.Add("-" & i.ToString)
             cboTrip2.Items.Add(i.ToString)
