@@ -82,14 +82,23 @@ Public Class ucFuelRodEditor
         For Each row As DataGridViewRow In Me.dgvInitialTemperatures.Rows
             Dim str As String = ""
             For Each cell As DataGridViewCell In row.Cells
-                str = str & " " & cell.Value
+                str = cell.Value & " " & str
             Next
             Me.FuelRodDetails.InitialTemperatures.Add(row.Index + 1, str)
         Next
         obj.MaterialIndexNearCenter = cboMaterial1.SelectedItem.value
         obj.MaterialIndexNextToCenter = cboMaterial2.SelectedItem.value
         obj.MaterialIndexNthLayer = cboMaterial3.SelectedItem.value
+        For Each row As DataGridViewRow In Me.dgvAxialPowerfactor.Rows
+            FuelRodDetails.AxialPowerFactor.Add(row.Index + 1, row.Cells(0).Value)
+        Next
+        For Each row As DataGridViewRow In Me.dgvRadialPowerProfile.Rows
+            FuelRodDetails.RadialPowerProfile.Add(row.Index + 1, New RadialPowerProfile(row.Cells(0).Value, row.Cells(1).Value))
+        Next
 
+        For Each row As DataGridViewRow In Me.dgvPowerHistory.Rows
+            FuelRodDetails.PreviousPowerHistory.Add(row.Index + 1, New PreviousPowerHistory(row.Cells(0).Value, row.Cells(1).Value))
+        Next
     End Sub
 
     Private Sub cmdCopy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCopy.Click
