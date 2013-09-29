@@ -52,6 +52,7 @@ Namespace RELAP.FormClasses
         Public HeaterCollection As Dictionary(Of String, HeaterGraphic)
         Public TankCollection As Dictionary(Of String, TankGraphic)
         Public FuelRodCollection As Dictionary(Of String, FuelRodGraphic)
+        Public PWRControlRodCollection As Dictionary(Of String, PWRControlRodGraphic)
         Public SimulatorCollection As Dictionary(Of String, SimulatorGraphic)
         Public ConnectorCollection As Dictionary(Of String, ConnectorGraphic)
         Public TPSeparatorCollection As Dictionary(Of String, TPVesselGraphic)
@@ -83,6 +84,7 @@ Namespace RELAP.FormClasses
 
         'These are collections for holding the actual unit operations instances.
         Public CLCS_FuelRodCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
+        Public CLCS_PWRControlRodCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.PWRControlRod)
         Public CLCS_SubSystemCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Subsystem)
         Public CLCS_TankCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Tank)
         Public CLCS_HeatStructureCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure)
@@ -120,6 +122,7 @@ Namespace RELAP.FormClasses
             HeaterCollection = New Dictionary(Of String, HeaterGraphic)
             TankCollection = New Dictionary(Of String, TankGraphic)
             FuelRodCollection = New Dictionary(Of String, FuelRodGraphic)
+            PWRControlRodCollection = New Dictionary(Of String, PWRControlRodGraphic)
             SimulatorCollection = New Dictionary(Of String, SimulatorGraphic)
             ConnectorCollection = New Dictionary(Of String, ConnectorGraphic)
             TPSeparatorCollection = New Dictionary(Of String, TPVesselGraphic)
@@ -162,6 +165,7 @@ Namespace RELAP.FormClasses
             CLCS_SeparatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Separator)
             CLCS_ValveCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
             CLCS_FuelRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
+            CLCS_PWRControlRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.PWRControlRod)
             CLCS_SimulatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
             CLCS_SubSystemCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Subsystem)
 
@@ -186,6 +190,7 @@ Namespace RELAP.FormClasses
                 .Add("Separator", Me.SeparatorCollection.Count)
                 .Add("Valve", Me.ValveCollection.Count)
                 .Add("FuelRod", Me.FuelRodCollection.Count)
+                .Add("PCR", Me.PWRControlRodCollection.Count)
                 .Add("Simulator", Me.SimulatorCollection.Count)
                 .Add("SubSystem", Me.SubSystemCollection.Count)
             End With

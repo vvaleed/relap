@@ -1174,6 +1174,24 @@ Public Class frmSurface
                     MsgBox("Please Enter the Number of Axial Nodes before Adding Fuel Rod")
                     Return ""
                 End If
+            Case TipoObjeto.PWRControlRod
+                Dim myTank As New PWRControlRodGraphic(mpx, mpy, 10, 50, 0)
+                    myTank.LineWidth = 2
+                    myTank.Fill = True
+                    myTank.FillColor = fillclr
+                    myTank.LineColor = lineclr
+                myTank.Tag = "PCR" & Format(ChildParent.Collections.ObjectCounter("PCR"), "00#")
+                ChildParent.Collections.UpdateCounter("PCR")
+                    If tag <> "" Then myTank.Tag = tag
+                    gObj = myTank
+                gObj.Name = "PCR-" & Guid.NewGuid.ToString
+                ChildParent.Collections.PWRControlRodCollection.Add(gObj.Name, myTank)
+
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.PWRControlRod = New RELAP.SimulationObjects.UnitOps.PWRControlRod(myTank.Name, "PWRControlRod")
+                    myCOTK.GraphicObject = myTank
+                    ChildParent.Collections.ObjectCollection.Add(myTank.Name, myCOTK)
+                ChildParent.Collections.CLCS_PWRControlRodCollection.Add(myTank.Name, myCOTK)
+                
             Case TipoObjeto.Simulator
                 Dim myTank As New SimulatorGraphic(mpx, mpy, 50, 50, 0)
                 myTank.LineWidth = 2
@@ -1232,6 +1250,8 @@ Public Class frmSurface
             Dim mpy = mousePT.Y
             Dim text As String = ChildParent.FormObjListView.DataGridView1.Rows(obj.Index).Cells(0).Value.ToString.TrimEnd(" ")
             Select Case text
+                Case "PWRControlRod"
+                    tobj = TipoObjeto.PWRControlRod
                 Case "FuelRod"
                     tobj = TipoObjeto.FuelRod
                 Case "Simulator"

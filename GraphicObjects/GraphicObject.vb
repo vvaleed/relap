@@ -25,6 +25,7 @@ Namespace GraphicObjects
         Pump
         Tank
         FuelRod
+        PWRControlRod
         Vessel
         MaterialStream
         EnergyStream

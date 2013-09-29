@@ -2723,9 +2723,15 @@ sim:                Dim myStream As System.IO.FileStream
             card = 501
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridView1.Rows
                 If temprow.Cells(0).Value.ToString <> "" Then
+                    card = 500 + temprow.Cells(0).Value
+                    Dim latch As String
+                    If temprow.Cells(0).Value.ToString.ToLower = "true" Then
+                        latch = "l"
+                    Else
+                        latch = "n"
+                    End If
+                    generate.WriteLine(card & " " & temprow.Cells(1).Value & " " & RELAP.App.GetUIDFromTag(temprow.Cells(10).Value) & temprow.Cells(3).Value.ToString("D2") & " " & temprow.Cells(4).Value & " " & temprow.Cells(5).Value & " " & RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) & temprow.Cells(7).Value.ToString("D2") & " " & temprow.Cells(8).Value & " " & latch & " " & temprow.Cells(10).Value)
 
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & temprow.Cells(8).Value & " " & temprow.Cells(2).Value & " " & temprow.Cells(3).Value & " " & temprow.Cells(9).Value & " " & temprow.Cells(5).Value & " " & temprow.Cells(6).Value & " " & temprow.Cells(7).Value)
-                    card = card + 1
                 End If
             Next
             card = 601
@@ -3921,6 +3927,21 @@ sim:                Dim myStream As System.IO.FileStream
                     Next
                     generate.WriteLine("40" & CID & "3000 " & kvp.Value.HeliumGasInventory & " " & kvp.Value.InternalGasPressure)
                 Next kvp
+            Catch ex As Exception
+
+            End Try
+            Try
+
+                'For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.PWRControlRod) In ChildParent.Collections.CLCS_
+                '    generate.WriteLine("*======================================================================")
+                '    generate.WriteLine("*         Component Fuel Rod '" & kvp.Value.GraphicObject.Tag & "'")
+                '    generate.WriteLine("*======================================================================")
+                '    Dim temp As Int16
+                '    temp = kvp.Value.UID
+                '    Dim CID As String
+                '    CID = temp.ToString("D2")
+                '    generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
+                'Next
             Catch ex As Exception
 
             End Try

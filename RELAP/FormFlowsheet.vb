@@ -202,7 +202,7 @@ Imports RELAP.RELAP.FormClasses
   
 
     Private Sub FormChild_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        My.Application.ActiveSimulation = Me
         Dim rand As New Random
         Dim str As String = rand.Next(10000000, 99999999)
 
@@ -317,6 +317,7 @@ Imports RELAP.RELAP.FormClasses
     End Sub
 
     Private Sub FormChild_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        My.Application.ActiveSimulation = Me
         Dim array1(FormMain.AvailableUnitSystems.Count - 1) As String
         FormMain.AvailableUnitSystems.Keys.CopyTo(array1, 0)
       

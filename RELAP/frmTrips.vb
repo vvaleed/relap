@@ -3,10 +3,10 @@
 
     Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
         If e.ColumnIndex = 1 Then
-            DataGridView1.Rows(e.RowIndex).Cells(8).Value = DataGridView1.Rows(e.RowIndex).Cells(1).Value
+            DataGridView1.Rows(e.RowIndex).Cells(10).Value = DataGridView1.Rows(e.RowIndex).Cells(1).Value
         End If
         If e.ColumnIndex = 4 Then
-            DataGridView1.Rows(e.RowIndex).Cells(9).Value = DataGridView1.Rows(e.RowIndex).Cells(4).Value
+            DataGridView1.Rows(e.RowIndex).Cells(11).Value = DataGridView1.Rows(e.RowIndex).Cells(4).Value
         End If
     End Sub
 
@@ -20,5 +20,18 @@
             cboTrip2.Items.Add(i.ToString)
             cboTrip2.Items.Add("-" & i.ToString)
         Next
+    End Sub
+
+    Private Sub frmTrips_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cboParameter1.DisplayMember = "Tag"
+        cboParameter2.DisplayMember = "Tag"
+
+        Try
+            cboParameter1.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
+            cboParameter2.DataSource = New BindingSource(My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.drawingObjects, Nothing)
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class
