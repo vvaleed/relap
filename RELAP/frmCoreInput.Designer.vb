@@ -22,10 +22,10 @@ Partial Class frmCoreInput
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCoreInput))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtAxialNodes = New DevComponents.Editors.IntegerInput()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -53,19 +53,19 @@ Partial Class frmCoreInput
         Me.dgvAxialNodeHeights = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.lblNode = New DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn()
         Me.txtHeight = New DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn()
-        Me.txtHoopStrainThreshold = New System.Windows.Forms.TabPage()
+        Me.TabPage11 = New System.Windows.Forms.TabPage()
         Me.cboModelsforFailure = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.ComboItem17 = New DevComponents.Editors.ComboItem()
         Me.ComboItem18 = New DevComponents.Editors.ComboItem()
-        Me.DoubleInput3 = New DevComponents.Editors.DoubleInput()
+        Me.txtHoopStrainThreshold = New DevComponents.Editors.DoubleInput()
         Me.txtFractionofOxidation = New DevComponents.Editors.DoubleInput()
         Me.txtTemperatureforFailure = New DevComponents.Editors.DoubleInput()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtVelocityofDropsofCladding = New System.Windows.Forms.TabPage()
-        Me.DoubleInput4 = New DevComponents.Editors.DoubleInput()
+        Me.TabPage12 = New System.Windows.Forms.TabPage()
+        Me.txtVelocityofDrops = New DevComponents.Editors.DoubleInput()
         Me.txtSurfaceTemperature = New DevComponents.Editors.DoubleInput()
         Me.txtFractionofSurfaceArea = New DevComponents.Editors.DoubleInput()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -140,12 +140,12 @@ Partial Class frmCoreInput
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.dgvAxialNodeHeights, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.txtHoopStrainThreshold.SuspendLayout()
-        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage11.SuspendLayout()
+        CType(Me.txtHoopStrainThreshold, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFractionofOxidation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTemperatureforFailure, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.txtVelocityofDropsofCladding.SuspendLayout()
-        CType(Me.DoubleInput4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage12.SuspendLayout()
+        CType(Me.txtVelocityofDrops, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSurfaceTemperature, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFractionofSurfaceArea, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -312,8 +312,8 @@ Partial Class frmCoreInput
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.txtHoopStrainThreshold)
-        Me.TabControl1.Controls.Add(Me.txtVelocityofDropsofCladding)
+        Me.TabControl1.Controls.Add(Me.TabPage11)
+        Me.TabControl1.Controls.Add(Me.TabPage12)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
@@ -397,14 +397,14 @@ Partial Class frmCoreInput
         Me.dgvAxialNodeHeights.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAxialNodeHeights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAxialNodeHeights.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblNode, Me.txtHeight})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvAxialNodeHeights.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvAxialNodeHeights.DefaultCellStyle = DataGridViewCellStyle4
         Me.dgvAxialNodeHeights.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvAxialNodeHeights.Location = New System.Drawing.Point(18, 16)
         Me.dgvAxialNodeHeights.Name = "dgvAxialNodeHeights"
@@ -431,23 +431,23 @@ Partial Class frmCoreInput
         Me.txtHeight.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
         Me.txtHeight.Name = "txtHeight"
         '
-        'txtHoopStrainThreshold
+        'TabPage11
         '
-        Me.txtHoopStrainThreshold.Controls.Add(Me.cboModelsforFailure)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.DoubleInput3)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.txtFractionofOxidation)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.txtTemperatureforFailure)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.Label8)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.Label7)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.Label6)
-        Me.txtHoopStrainThreshold.Controls.Add(Me.Label5)
-        Me.txtHoopStrainThreshold.Location = New System.Drawing.Point(4, 22)
-        Me.txtHoopStrainThreshold.Name = "txtHoopStrainThreshold"
-        Me.txtHoopStrainThreshold.Padding = New System.Windows.Forms.Padding(3)
-        Me.txtHoopStrainThreshold.Size = New System.Drawing.Size(862, 335)
-        Me.txtHoopStrainThreshold.TabIndex = 2
-        Me.txtHoopStrainThreshold.Text = "Oxide Shell Stability"
-        Me.txtHoopStrainThreshold.UseVisualStyleBackColor = True
+        Me.TabPage11.Controls.Add(Me.cboModelsforFailure)
+        Me.TabPage11.Controls.Add(Me.txtHoopStrainThreshold)
+        Me.TabPage11.Controls.Add(Me.txtFractionofOxidation)
+        Me.TabPage11.Controls.Add(Me.txtTemperatureforFailure)
+        Me.TabPage11.Controls.Add(Me.Label8)
+        Me.TabPage11.Controls.Add(Me.Label7)
+        Me.TabPage11.Controls.Add(Me.Label6)
+        Me.TabPage11.Controls.Add(Me.Label5)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage11.Name = "TabPage11"
+        Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage11.Size = New System.Drawing.Size(862, 335)
+        Me.TabPage11.TabIndex = 2
+        Me.TabPage11.Text = "Oxide Shell Stability"
+        Me.TabPage11.UseVisualStyleBackColor = True
         '
         'cboModelsforFailure
         '
@@ -473,20 +473,20 @@ Partial Class frmCoreInput
         Me.ComboItem18.Text = "cladding oxide shell to fail also at locations with single-sided oxidation"
         Me.ComboItem18.Value = "1"
         '
-        'DoubleInput3
+        'txtHoopStrainThreshold
         '
         '
         '
         '
-        Me.DoubleInput3.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput3.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput3.Increment = 1.0R
-        Me.DoubleInput3.Location = New System.Drawing.Point(267, 94)
-        Me.DoubleInput3.Name = "DoubleInput3"
-        Me.DoubleInput3.ShowUpDown = True
-        Me.DoubleInput3.Size = New System.Drawing.Size(80, 20)
-        Me.DoubleInput3.TabIndex = 1
+        Me.txtHoopStrainThreshold.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtHoopStrainThreshold.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtHoopStrainThreshold.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtHoopStrainThreshold.Increment = 1.0R
+        Me.txtHoopStrainThreshold.Location = New System.Drawing.Point(267, 94)
+        Me.txtHoopStrainThreshold.Name = "txtHoopStrainThreshold"
+        Me.txtHoopStrainThreshold.ShowUpDown = True
+        Me.txtHoopStrainThreshold.Size = New System.Drawing.Size(80, 20)
+        Me.txtHoopStrainThreshold.TabIndex = 1
         '
         'txtFractionofOxidation
         '
@@ -554,37 +554,37 @@ Partial Class frmCoreInput
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Temperature for failure of oxide shell"
         '
-        'txtVelocityofDropsofCladding
+        'TabPage12
         '
-        Me.txtVelocityofDropsofCladding.Controls.Add(Me.DoubleInput4)
-        Me.txtVelocityofDropsofCladding.Controls.Add(Me.txtSurfaceTemperature)
-        Me.txtVelocityofDropsofCladding.Controls.Add(Me.txtFractionofSurfaceArea)
-        Me.txtVelocityofDropsofCladding.Controls.Add(Me.Label11)
-        Me.txtVelocityofDropsofCladding.Controls.Add(Me.Label10)
-        Me.txtVelocityofDropsofCladding.Controls.Add(Me.Label9)
-        Me.txtVelocityofDropsofCladding.Location = New System.Drawing.Point(4, 22)
-        Me.txtVelocityofDropsofCladding.Name = "txtVelocityofDropsofCladding"
-        Me.txtVelocityofDropsofCladding.Padding = New System.Windows.Forms.Padding(3)
-        Me.txtVelocityofDropsofCladding.Size = New System.Drawing.Size(862, 335)
-        Me.txtVelocityofDropsofCladding.TabIndex = 3
-        Me.txtVelocityofDropsofCladding.Text = "Metallic Meltdown"
-        Me.txtVelocityofDropsofCladding.UseVisualStyleBackColor = True
+        Me.TabPage12.Controls.Add(Me.txtVelocityofDrops)
+        Me.TabPage12.Controls.Add(Me.txtSurfaceTemperature)
+        Me.TabPage12.Controls.Add(Me.txtFractionofSurfaceArea)
+        Me.TabPage12.Controls.Add(Me.Label11)
+        Me.TabPage12.Controls.Add(Me.Label10)
+        Me.TabPage12.Controls.Add(Me.Label9)
+        Me.TabPage12.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage12.Name = "TabPage12"
+        Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage12.Size = New System.Drawing.Size(862, 335)
+        Me.TabPage12.TabIndex = 3
+        Me.TabPage12.Text = "Metallic Meltdown"
+        Me.TabPage12.UseVisualStyleBackColor = True
         '
-        'DoubleInput4
-        '
-        '
+        'txtVelocityofDrops
         '
         '
-        Me.DoubleInput4.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput4.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput4.Increment = 1.0R
-        Me.DoubleInput4.Location = New System.Drawing.Point(11, 146)
-        Me.DoubleInput4.Name = "DoubleInput4"
-        Me.DoubleInput4.ShowUpDown = True
-        Me.DoubleInput4.Size = New System.Drawing.Size(80, 20)
-        Me.DoubleInput4.TabIndex = 1
-        Me.DoubleInput4.Value = 0.5R
+        '
+        '
+        Me.txtVelocityofDrops.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtVelocityofDrops.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtVelocityofDrops.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtVelocityofDrops.Increment = 1.0R
+        Me.txtVelocityofDrops.Location = New System.Drawing.Point(11, 146)
+        Me.txtVelocityofDrops.Name = "txtVelocityofDrops"
+        Me.txtVelocityofDrops.ShowUpDown = True
+        Me.txtVelocityofDrops.Size = New System.Drawing.Size(80, 20)
+        Me.txtVelocityofDrops.TabIndex = 1
+        Me.txtVelocityofDrops.Value = 0.5R
         '
         'txtSurfaceTemperature
         '
@@ -1112,14 +1112,14 @@ Partial Class frmCoreInput
         Me.dgvGridSpacer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvGridSpacer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvGridSpacer.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblGridSpacerNumber, Me.cboGridSpacerMaterial, Me.txtMassofGridSpacer, Me.txtHeighofGridSpacer, Me.txtPlateThicknessofGridSpacer, Me.txtRadiusofContact, Me.txtGridSpacerElevation2})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvGridSpacer.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvGridSpacer.DefaultCellStyle = DataGridViewCellStyle5
         Me.dgvGridSpacer.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvGridSpacer.Location = New System.Drawing.Point(18, 40)
         Me.dgvGridSpacer.Name = "dgvGridSpacer"
@@ -1365,14 +1365,14 @@ Partial Class frmCoreInput
         Me.dgvCoreBypassVolumes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvCoreBypassVolumes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCoreBypassVolumes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboComponent, Me.txtVolume, Me.txtElevation})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvCoreBypassVolumes.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvCoreBypassVolumes.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvCoreBypassVolumes.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvCoreBypassVolumes.Location = New System.Drawing.Point(42, 66)
         Me.dgvCoreBypassVolumes.Name = "dgvCoreBypassVolumes"
@@ -1443,14 +1443,14 @@ Partial Class frmCoreInput
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         CType(Me.dgvAxialNodeHeights, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.txtHoopStrainThreshold.ResumeLayout(False)
-        Me.txtHoopStrainThreshold.PerformLayout()
-        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage11.ResumeLayout(False)
+        Me.TabPage11.PerformLayout()
+        CType(Me.txtHoopStrainThreshold, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFractionofOxidation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTemperatureforFailure, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.txtVelocityofDropsofCladding.ResumeLayout(False)
-        Me.txtVelocityofDropsofCladding.PerformLayout()
-        CType(Me.DoubleInput4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage12.ResumeLayout(False)
+        Me.TabPage12.PerformLayout()
+        CType(Me.txtVelocityofDrops, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSurfaceTemperature, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFractionofSurfaceArea, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
@@ -1500,9 +1500,9 @@ Partial Class frmCoreInput
     Friend WithEvents dgvAxialNodeHeights As DevComponents.DotNetBar.Controls.DataGridViewX
     Friend WithEvents lblNode As DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn
     Friend WithEvents txtHeight As DevComponents.DotNetBar.Controls.DataGridViewDoubleInputColumn
-    Friend WithEvents txtHoopStrainThreshold As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage11 As System.Windows.Forms.TabPage
     Friend WithEvents cboModelsforFailure As DevComponents.DotNetBar.Controls.ComboBoxEx
-    Friend WithEvents DoubleInput3 As DevComponents.Editors.DoubleInput
+    Friend WithEvents txtHoopStrainThreshold As DevComponents.Editors.DoubleInput
     Friend WithEvents txtFractionofOxidation As DevComponents.Editors.DoubleInput
     Friend WithEvents txtTemperatureforFailure As DevComponents.Editors.DoubleInput
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -1511,10 +1511,10 @@ Partial Class frmCoreInput
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents ComboItem17 As DevComponents.Editors.ComboItem
     Friend WithEvents ComboItem18 As DevComponents.Editors.ComboItem
-    Friend WithEvents txtVelocityofDropsofCladding As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage12 As System.Windows.Forms.TabPage
     Friend WithEvents txtSurfaceTemperature As DevComponents.Editors.DoubleInput
     Friend WithEvents txtFractionofSurfaceArea As DevComponents.Editors.DoubleInput
-    Friend WithEvents DoubleInput4 As DevComponents.Editors.DoubleInput
+    Friend WithEvents txtVelocityofDrops As DevComponents.Editors.DoubleInput
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
