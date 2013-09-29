@@ -157,7 +157,12 @@ Public Class ucFuelRodEditor
         Next
         For Each row As DataGridViewRow In Me.dgvHyrdraulicVolumes.Rows
             If Not row.Cells(0).Value Is Nothing Then
-                Me.FuelRodDetails.HyrdraulicVolumes.Add(row.Index + 1, New HydraulicVolumes(RELAP.App.GetUIDFromTag(row.Cells(0).Value) & row.Cells(1).Value.ToString("D2") & "0000", row.Cells(2).Value, row.Cells(3).Value))
+                Dim tmpint As Integer
+                Dim tmpstr As String
+                tmpint = row.Cells(1).Value
+                tmpstr = tmpint.ToString("D2")
+
+                Me.FuelRodDetails.HyrdraulicVolumes.Add(row.Index + 1, New HydraulicVolumes(RELAP.App.GetUIDFromTag(row.Cells(0).Value) & tmpstr & "0000", row.Cells(2).Value, row.Cells(3).Value))
             End If
         Next
         For Each row As DataGridViewRow In Me.dgvRadialMeshSpacing.Rows
