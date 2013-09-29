@@ -17,12 +17,7 @@ Public Class ucFuelRodEditor
 
 
     Private Sub ucFuelRodEditor_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        If dgvFuelRodDimensions.RowCount = 0 Then
-            For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
-                dgvFuelRodDimensions.Rows.Add(i.ToString)
-
-            Next
-        End If
+      
         cboMaterial1.SelectedIndex = 5
         cboMaterial2.SelectedIndex = 8
         cboMaterial3.SelectedIndex = 0
@@ -69,7 +64,7 @@ Public Class ucFuelRodEditor
                 dgvInitialTemperatures.Columns.Clear()
                 dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
                 Try
-                    total = Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
+                    total = Val(dgvRadialMeshSpacing.Rows(0).Cells(0).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
                 Catch ex As Exception
                     total = 0
                 End Try
@@ -115,6 +110,12 @@ Public Class ucFuelRodEditor
                     row.Cells(1).Value = myFuelRod.FuelRodDetails.PreviousPowerHistory(row.Index + 1).Time
                 Next
             End If
+        Else
+            If dgvFuelRodDimensions.RowCount = 0 Then
+                For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
+                    dgvFuelRodDimensions.Rows.Add(i.ToString)
+                Next
+            End If
         End If
     End Sub
 
@@ -129,7 +130,7 @@ Public Class ucFuelRodEditor
             dgvInitialTemperatures.Columns.Clear()
             dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
             Try
-                total = Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
+                total = Val(dgvRadialMeshSpacing.Rows(0).Cells(0).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
             Catch ex As Exception
                 total = 0
             End Try
