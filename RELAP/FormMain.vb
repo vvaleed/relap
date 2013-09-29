@@ -3873,13 +3873,35 @@ sim:                Dim myStream As System.IO.FileStream
                     generate.WriteLine("40" & CID & "0000 """ + kvp.Value.GraphicObject.Tag & """ fuel")
 
                     generate.WriteLine("40" & CID & "0100 " & kvp.Value.NumberOfRods & " " & kvp.Value.FuelRodPitch & " " & kvp.Value.AverageBurnup)
-                    generate.WriteLine("40" & CID & "0200" & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
+                    generate.WriteLine("40" & CID & "0200 " & kvp.Value.PlenumLength & " " & kvp.Value.PlenumVoidVolume & " " & kvp.Value.LowerPlenumVoidVolume)
                     card = Val("40" & CID & "0301")
                     For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.FuelRodDimensions) In kvp.Value.FuelRodDetails.FuelRodDimensions
-                        generate.WriteLine(card & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
+                        generate.WriteLine(card & " " & row2.Value.FuelPelletRadius & " " & row2.Value.InnerCladdingRadius & " " & row2.Value.OuterCladdingRadius & " " & row2.Value.FuelRodDimensionsAxialNode)
                         card = card + 1
                     Next
-                    generate.WriteLine("40" & CID & "0400" & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
+                    generate.WriteLine("40" & CID & "0400 " & kvp.Value.ControlVolumeAbove & " " & kvp.Value.ControlVolumeBelow)
+
+                    card = Val("40" & CID & "0401")
+                    For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.HydraulicVolumes) In kvp.Value.FuelRodDetails.HyrdraulicVolumes
+                        generate.WriteLine(card & " " & row2.Value.ControlVolumeNumber & " " & row2.Value.Increment & " " & row2.Value.AxialNode)
+                        card = card + 1
+                    Next
+
+                    card = Val("40" & CID & "0501")
+                    For Each row2 As KeyValuePair(Of Integer, RELAP.SimulationObjects.UnitOps.RadialMeshSpacing) In kvp.Value.FuelRodDetails.RadialMeshSpacing
+                        generate.WriteLine(card & " " & row2.Value.NumberofIntervalsAcrossFuel & " " & row2.Value.NumberofIntervalsAcrossGap & " " & row2.Value.NumberofIntervalsAcrossCladding & " " & row2.Value.AxialNode)
+                        card = card + 1
+                    Next
+                    card = Val("40" & CID & "0601")
+                    For Each row2 As KeyValuePair(Of Integer, String) In kvp.Value.FuelRodDetails.InitialTemperatures
+                        generate.WriteLine(card & " " & row2.Value)
+                        card = card + 1
+                    Next
+                    generate.WriteLine("40" & CID & "0801 " & kvp.Value.MaterialIndexNearCenter & " " & kvp.Value.MaterialIndexNextToCenter & " " & kvp.Value.MaterialIndexNthLayer)
+
+                    generate.WriteLine("40" & CID & "1100 " & kvp.Value.Fraction)
+
+                    generate.WriteLine("40" & CID & "1310 " & kvp.Value.TimeForWhichAxialPowerProfileApplies)
 
                     card = Val("40" & CID & "1311")
                     For Each row2 As KeyValuePair(Of Integer, Double) In kvp.Value.FuelRodDetails.AxialPowerFactor
