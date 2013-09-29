@@ -35,13 +35,13 @@ Public Class ucFuelRodEditor
             dgvInitialTemperatures.Columns.Clear()
             dgvInitialTemperatures.Columns.Add("lblAxialNode_InitialTemp", "Axial Node")
             Try
-                total = dgvRadialMeshSpacing.Rows(0).Cells(1).Value + dgvRadialMeshSpacing.Rows(0).Cells(2).Value + dgvRadialMeshSpacing.Rows(0).Cells(1).Value + 1
+                total = Val(dgvRadialMeshSpacing.Rows(0).Cells(1).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + Val(dgvRadialMeshSpacing.Rows(0).Cells(2).Value) + 1
             Catch ex As Exception
                 total = 0
             End Try
 
-            For i As Integer = 0 To total
-                dgvInitialTemperatures.Columns.Add("txtRadialNode" & i + 1, "Radial Node " & i + 1)
+            For i As Integer = 1 To total
+                dgvInitialTemperatures.Columns.Add("txtRadialNode" & i, "Radial Node " & i)
             Next
 
         End If
