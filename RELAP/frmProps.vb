@@ -426,6 +426,15 @@ Public Class frmProps
 
 
             End If
+        ElseIf sobj.TipoObjeto = TipoObjeto.Annulus Then
+
+            Dim pip As RELAP.SimulationObjects.UnitOps.Annulus = ChildParent.Collections.CLCS_AnnulusCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("Number of Volumes") Then
+                pip.NumberOfVoulmes = e.ChangedItem.Value
+
+
+            End If
 
         ElseIf sobj.TipoObjeto = TipoObjeto.Pump Then
 

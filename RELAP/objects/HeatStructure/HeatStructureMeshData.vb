@@ -104,6 +104,17 @@
         End Set
     End Property
 
+    Private _selectComp As String
+    Public Property SelectComp() As String
+        Get
+            Return _selectComp
+        End Get
+        Set(ByVal value As String)
+            _selectComp = value
+        End Set
+    End Property
+
+
     Protected m_collection0 As Generic.SortedDictionary(Of Integer, HSGapDeformation)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
@@ -171,6 +182,17 @@
             m_collection5 = value
         End Set
     End Property
+    Protected m_collection52 As Generic.SortedDictionary(Of Integer, HSMeshDataComposition2)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property MeshDataComposition2() As Generic.SortedDictionary(Of Integer, HSMeshDataComposition2)
+        Get
+            Return m_collection52
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSMeshDataComposition2))
+            m_collection52 = value
+        End Set
+    End Property
     Protected m_collection6 As Generic.SortedDictionary(Of Integer, HSTemp1)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
@@ -201,6 +223,7 @@
         m_collection3 = New Generic.SortedDictionary(Of Integer, HSMeshDataNoDecay)
         m_collection4 = New Generic.SortedDictionary(Of Integer, HSMeshDataWithDecay)
         m_collection5 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition)
+        m_collection52 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition2)
         m_collection6 = New Generic.SortedDictionary(Of Integer, HSTemp1)
         m_collection7 = New Generic.SortedDictionary(Of Integer, HSTemp2)
     End Sub
@@ -394,6 +417,30 @@ End Class
     Public Sub New(ByVal CompositionNumber As Double, ByVal MeshIntervalNumber3 As Double)
         Me._CompositionNumber = CompositionNumber
         Me._MeshIntervalNumber3 = MeshIntervalNumber3
+    End Sub
+End Class
+<System.Serializable()> Public Class HSMeshDataComposition2
+    Private _CompositionNumber2 As Double
+    Public Property CompositionNumber2() As Double
+        Get
+            Return _CompositionNumber2
+        End Get
+        Set(ByVal value As Double)
+            _CompositionNumber2 = value
+        End Set
+    End Property
+    Private _MeshIntervalNumber4 As Double
+    Public Property MeshIntervalNumber4() As Double
+        Get
+            Return _MeshIntervalNumber4
+        End Get
+        Set(ByVal value As Double)
+            _MeshIntervalNumber4 = value
+        End Set
+    End Property
+    Public Sub New(ByVal CompositionNumber2 As Double, ByVal MeshIntervalNumber4 As Double)
+        Me._CompositionNumber2 = CompositionNumber2
+        Me._MeshIntervalNumber4 = MeshIntervalNumber4
     End Sub
 End Class
 <System.Serializable()> Public Class HSTemp1

@@ -38,10 +38,6 @@ Partial Class ucHeatStructureEditor
         Me.dgvWithDecay = New System.Windows.Forms.DataGridView()
         Me.GammaAttenuationCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvComposition = New System.Windows.Forms.DataGridView()
-        Me.CompositionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MeshIntervalNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.CmbBoxSelectFormat = New System.Windows.Forms.ComboBox()
         Me.cmdsave = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -72,11 +68,19 @@ Partial Class ucHeatStructureEditor
         Me.dgvTemp2 = New System.Windows.Forms.DataGridView()
         Me.Temp2GammaAttenCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Temp2MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tab4 = New System.Windows.Forms.TabPage()
+        Me.dgvComposition = New System.Windows.Forms.DataGridView()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.ComboBoxComp = New System.Windows.Forms.ComboBox()
+        Me.dgvComposition2 = New System.Windows.Forms.DataGridView()
+        Me.CompositionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompositionNumber2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvWithDecay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.Tab1.SuspendLayout()
         CType(Me.dgvGapDeformation, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +88,9 @@ Partial Class ucHeatStructureEditor
         Me.Tab3.SuspendLayout()
         CType(Me.dgvTemp1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTemp2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Tab4.SuspendLayout()
+        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkboxmeshgeometry
@@ -211,39 +218,6 @@ Partial Class ucHeatStructureEditor
         Me.MeshIntervalNumber2.HeaderText = "Mesh Interval Number"
         Me.MeshIntervalNumber2.Name = "MeshIntervalNumber2"
         '
-        'dgvComposition
-        '
-        Me.dgvComposition.AccessibleDescription = "                            "
-        Me.dgvComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
-        Me.dgvComposition.Location = New System.Drawing.Point(17, 283)
-        Me.dgvComposition.Name = "dgvComposition"
-        Me.dgvComposition.Size = New System.Drawing.Size(256, 125)
-        Me.dgvComposition.TabIndex = 10
-        '
-        'CompositionNumber
-        '
-        Me.CompositionNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.CompositionNumber.HeaderText = "Composition Number"
-        Me.CompositionNumber.Name = "CompositionNumber"
-        '
-        'MeshIntervalNumber3
-        '
-        Me.MeshIntervalNumber3.HeaderText = "Mesh Interval Number"
-        Me.MeshIntervalNumber3.Name = "MeshIntervalNumber3"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(17, 264)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(100, 13)
-        Me.TextBox4.TabIndex = 11
-        Me.TextBox4.Text = "Composition Data"
-        '
         'CmbBoxSelectFormat
         '
         Me.CmbBoxSelectFormat.FormattingEnabled = True
@@ -267,6 +241,7 @@ Partial Class ucHeatStructureEditor
         Me.TabControl1.Controls.Add(Me.Tab1)
         Me.TabControl1.Controls.Add(Me.Tab2)
         Me.TabControl1.Controls.Add(Me.Tab3)
+        Me.TabControl1.Controls.Add(Me.Tab4)
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -438,8 +413,6 @@ Partial Class ucHeatStructureEditor
         Me.Tab2.Controls.Add(Me.dgvNoDecay)
         Me.Tab2.Controls.Add(Me.TextBox2)
         Me.Tab2.Controls.Add(Me.txtboxDecayHeat)
-        Me.Tab2.Controls.Add(Me.dgvComposition)
-        Me.Tab2.Controls.Add(Me.TextBox4)
         Me.Tab2.Controls.Add(Me.CmbBoxSelectFormat)
         Me.Tab2.Controls.Add(Me.dgvformat1)
         Me.Tab2.Controls.Add(Me.dgvformat2)
@@ -526,6 +499,84 @@ Partial Class ucHeatStructureEditor
         Me.Temp2MeshIntervalNumber.HeaderText = "Mesh Interval Number"
         Me.Temp2MeshIntervalNumber.Name = "Temp2MeshIntervalNumber"
         '
+        'Tab4
+        '
+        Me.Tab4.Controls.Add(Me.dgvComposition2)
+        Me.Tab4.Controls.Add(Me.ComboBoxComp)
+        Me.Tab4.Controls.Add(Me.TextBox4)
+        Me.Tab4.Controls.Add(Me.dgvComposition)
+        Me.Tab4.Location = New System.Drawing.Point(4, 22)
+        Me.Tab4.Name = "Tab4"
+        Me.Tab4.Padding = New System.Windows.Forms.Padding(3)
+        Me.Tab4.Size = New System.Drawing.Size(721, 436)
+        Me.Tab4.TabIndex = 3
+        Me.Tab4.Text = "Composition"
+        Me.Tab4.UseVisualStyleBackColor = True
+        '
+        'dgvComposition
+        '
+        Me.dgvComposition.AccessibleDescription = "                            "
+        Me.dgvComposition.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
+        Me.dgvComposition.Location = New System.Drawing.Point(16, 78)
+        Me.dgvComposition.Name = "dgvComposition"
+        Me.dgvComposition.Size = New System.Drawing.Size(264, 352)
+        Me.dgvComposition.TabIndex = 11
+        '
+        'TextBox4
+        '
+        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox4.Location = New System.Drawing.Point(16, 19)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.ReadOnly = True
+        Me.TextBox4.Size = New System.Drawing.Size(100, 13)
+        Me.TextBox4.TabIndex = 12
+        Me.TextBox4.Text = "Composition Data"
+        '
+        'ComboBoxComp
+        '
+        Me.ComboBoxComp.FormattingEnabled = True
+        Me.ComboBoxComp.Items.AddRange(New Object() {"s-steel", "c-steel", "uo2", "zr", "Insert Table"})
+        Me.ComboBoxComp.Location = New System.Drawing.Point(16, 38)
+        Me.ComboBoxComp.Name = "ComboBoxComp"
+        Me.ComboBoxComp.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxComp.TabIndex = 13
+        '
+        'dgvComposition2
+        '
+        Me.dgvComposition2.AccessibleDescription = "                            "
+        Me.dgvComposition2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber2, Me.MeshIntervalNumber4})
+        Me.dgvComposition2.Location = New System.Drawing.Point(352, 78)
+        Me.dgvComposition2.Name = "dgvComposition2"
+        Me.dgvComposition2.Size = New System.Drawing.Size(256, 352)
+        Me.dgvComposition2.TabIndex = 14
+        '
+        'CompositionNumber
+        '
+        Me.CompositionNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber.HeaderText = "Temperature"
+        Me.CompositionNumber.Name = "CompositionNumber"
+        '
+        'MeshIntervalNumber3
+        '
+        Me.MeshIntervalNumber3.HeaderText = "Thermal Conductivity"
+        Me.MeshIntervalNumber3.Name = "MeshIntervalNumber3"
+        '
+        'CompositionNumber2
+        '
+        Me.CompositionNumber2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber2.HeaderText = "Temperature"
+        Me.CompositionNumber2.Name = "CompositionNumber2"
+        '
+        'MeshIntervalNumber4
+        '
+        Me.MeshIntervalNumber4.HeaderText = "Heat Capacity"
+        Me.MeshIntervalNumber4.Name = "MeshIntervalNumber4"
+        '
         'ucHeatStructureEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -538,7 +589,6 @@ Partial Class ucHeatStructureEditor
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvWithDecay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.Tab1.ResumeLayout(False)
         Me.Tab1.PerformLayout()
@@ -549,6 +599,10 @@ Partial Class ucHeatStructureEditor
         Me.Tab3.PerformLayout()
         CType(Me.dgvTemp1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvTemp2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Tab4.ResumeLayout(False)
+        Me.Tab4.PerformLayout()
+        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -564,14 +618,10 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents RightCoordinate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshInterval As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IntervalNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgvComposition As System.Windows.Forms.DataGridView
     Friend WithEvents SourceValue As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshIntervalNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GammaAttenuationCo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshIntervalNumber2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CompositionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MeshIntervalNumber3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
     Friend WithEvents CmbBoxSelectFormat As System.Windows.Forms.ComboBox
     Friend WithEvents cmdsave As System.Windows.Forms.Button
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
@@ -602,5 +652,14 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents ChkboxGapConductance As System.Windows.Forms.CheckBox
     Friend WithEvents ChkBoxInitialTemp As System.Windows.Forms.CheckBox
+    Friend WithEvents Tab4 As System.Windows.Forms.TabPage
+    Friend WithEvents ComboBoxComp As System.Windows.Forms.ComboBox
+    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents dgvComposition As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvComposition2 As System.Windows.Forms.DataGridView
+    Friend WithEvents CompositionNumber2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MeshIntervalNumber4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CompositionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MeshIntervalNumber3 As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

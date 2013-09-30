@@ -54,7 +54,7 @@ Public Class ucThermoDynamicStates
             Dim j As Integer = 0
             Dim i As Integer
             DataGridView1.Rows.Add(ThermoDynamicStates.State.Count)
-            If My.Application.ActiveSimulation.ComponentType <> "pipe" Then
+            If My.Application.ActiveSimulation.ComponentType <> "pipe" And My.Application.ActiveSimulation.ComponentType <> "Annulus" Then
 
                 For Each state In ThermoDynamicStates.State
                     Dim str() As String = state.Value.StatesString.Split(" ")
@@ -69,7 +69,6 @@ Public Class ucThermoDynamicStates
                     Next
                     j = j + 1
                 Next
-
 
             Else
                 For Each state In ThermoDynamicStates.State
@@ -172,7 +171,7 @@ Public Class ucThermoDynamicStates
         If Not Me.ThermoDynamicStates Is Nothing Then
             Me.ThermoDynamicStates.State.Clear()
         End If
-        If My.Application.ActiveSimulation.ComponentType <> "pipe" Then
+        If My.Application.ActiveSimulation.ComponentType <> "pipe" And My.Application.ActiveSimulation.ComponentType <> "Annulus" Then
             For i = 0 To DataGridView1.Rows.Count - 2
                 str = ""
                 row = DataGridView1.Rows(i)
