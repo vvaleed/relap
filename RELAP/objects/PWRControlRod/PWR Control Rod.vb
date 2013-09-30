@@ -26,6 +26,16 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
 
+        Private _ControlRodDetails As ControlRodDetails
+        Public Property ControlRodDetails() As ControlRodDetails
+            Get
+                Return _ControlRodDetails
+            End Get
+            Set(ByVal value As ControlRodDetails)
+                _ControlRodDetails = value
+            End Set
+        End Property
+
         Private m_NumberOfRods As Integer
         Public Property NumberOfRods() As Integer
             Get
@@ -130,22 +140,22 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_VolumeAbove As Double
-        Public Property VolumeAbove() As Double
+        Private m_VolumeAbove As String
+        Public Property VolumeAbove() As String
             Get
                 Return m_VolumeAbove
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_VolumeAbove = value
             End Set
         End Property
 
-        Private m_VolumeBelow As Double
-        Public Property VolumeBelow() As Double
+        Private m_VolumeBelow As String
+        Public Property VolumeBelow() As String
             Get
                 Return m_VolumeBelow
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As String)
                 m_VolumeBelow = value
             End Set
         End Property
@@ -285,6 +295,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me.FillNodeItems()
             Me.QTFillNodeItems()
+            ControlRodDetails = New ControlRodDetails
         End Sub
 
 
@@ -520,8 +531,6 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 ' '''''''''''''
-
-
 
 
                 valor = Me.NumberOfRods
@@ -795,6 +804,138 @@ Namespace RELAP.SimulationObjects.UnitOps
 
             Return value
         End Function
+    End Class
+    <Serializable()> Public Class ControlRodDetails
+        Protected m_collection As Generic.SortedDictionary(Of Integer, Geometry)
+        Protected m_collection2 As Generic.SortedDictionary(Of Integer, HydraulicVolumes)
+        Protected m_collection3 As Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
+  
+
+        Private m_AxialPowerFactor As Generic.SortedDictionary(Of Integer, Double)
+        Public Property AxialPowerFactor() As Generic.SortedDictionary(Of Integer, Double)
+            Get
+                Return m_AxialPowerFactor
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, Double))
+                m_AxialPowerFactor = value
+            End Set
+        End Property
+       
+      
+
+        ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+        Private _InitialTemperatures As Generic.SortedDictionary(Of Integer, String)
+        Public Property InitialTemperatures() As Generic.SortedDictionary(Of Integer, String)
+            Get
+                Return _InitialTemperatures
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, String))
+                _InitialTemperatures = value
+            End Set
+        End Property
+
+        Public Property RadialMeshSpacing() As Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
+            Get
+                Return m_collection3
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, RadialMeshSpacing))
+                m_collection3 = value
+            End Set
+        End Property
+        Public Property ControlRodDimensions() As Generic.SortedDictionary(Of Integer, Geometry)
+            Get
+                Return m_collection
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, Geometry))
+                m_collection = value
+            End Set
+        End Property
+
+        Public Property HyrdraulicVolumes() As Generic.SortedDictionary(Of Integer, HydraulicVolumes)
+            Get
+                Return m_collection2
+            End Get
+            Set(ByVal value As Generic.SortedDictionary(Of Integer, HydraulicVolumes))
+                m_collection2 = value
+            End Set
+        End Property
+
+        Public Sub New()
+            m_collection = New Generic.SortedDictionary(Of Integer, Geometry)
+            m_collection2 = New Generic.SortedDictionary(Of Integer, HydraulicVolumes)
+            m_collection3 = New Generic.SortedDictionary(Of Integer, RadialMeshSpacing)
+
+            _InitialTemperatures = New Generic.SortedDictionary(Of Integer, String)
+
+            m_AxialPowerFactor = New Generic.SortedDictionary(Of Integer, Double)
+        End Sub
+        Public Overrides Function ToString() As String
+            Return "Click to Edit..."
+        End Function
+
+    End Class
+    <Serializable()> Public Class Geometry
+
+        Private _OutRadiusofControlRodAbsorber As Double
+        Public Property OuterRadiusofControlRodAbsorber() As Double
+            Get
+                Return _OutRadiusofControlRodAbsorber
+            End Get
+            Set(ByVal value As Double)
+                _OutRadiusofControlRodAbsorber = value
+            End Set
+        End Property
+
+        Private _OuterRadiusofSS As Double
+        Public Property OuterRadiusofSS() As Double
+            Get
+                Return _OuterRadiusofSS
+            End Get
+            Set(ByVal value As Double)
+                _OuterRadiusofSS = value
+            End Set
+        End Property
+
+        Private _InnerofZircaloy As Double
+        Public Property InnerofZr() As Double
+            Get
+                Return _InnerofZircaloy
+            End Get
+            Set(ByVal value As Double)
+                _InnerofZircaloy = value
+            End Set
+        End Property
+
+        Private _OuterofZr As Double
+        Public Property OuterofZr() As Double
+            Get
+                Return _OuterofZr
+            End Get
+            Set(ByVal value As Double)
+                _OuterofZr = value
+            End Set
+        End Property
+
+
+        Private _AxialNode As Integer
+        Public Property AxialNode() As Integer
+            Get
+                Return _AxialNode
+            End Get
+            Set(ByVal value As Integer)
+                _AxialNode = value
+            End Set
+        End Property
+
+
+        Public Sub New(ByVal OuterofCRAbsorber As Double, ByVal OuterofSS As Double, ByVal OuterofZr As Double, ByVal InnerofZr As Double, ByVal AxialNode As Integer)
+            _AxialNode = AxialNode
+            _OuterofZr = OuterofZr
+            _InnerofZircaloy = InnerofZr
+            _OuterRadiusofSS = OuterofSS
+            _OutRadiusofControlRodAbsorber = OuterofCRAbsorber
+        End Sub
     End Class
 
 End Namespace
