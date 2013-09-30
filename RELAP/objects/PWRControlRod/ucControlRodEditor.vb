@@ -99,9 +99,9 @@ Public Class ucControlRodEditor
                     End If
                 Next
             End If
-            
-           
-            
+
+
+
         Else
             If dgvFuelRodDimensions.RowCount = 0 Then
                 For i = 1 To My.Application.ActiveSimulation.FormGeneralCoreInput.txtAxialNodes.Value
