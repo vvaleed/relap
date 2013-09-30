@@ -1001,8 +1001,9 @@ Namespace GraphicObjects
             Dim myIC1 As New ConnectionPoint
             myIC1.Position = New Point(X, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
-           
-
+            Dim myIC2 As New ConnectionPoint
+            myIC2.Position = New Point(X, Y + 0.5 * Height)
+            myIC2.Type = ConType.ConIn
             Dim myOC1 As New ConnectionPoint
             myOC1.Position = New Point(X + Width, Y + 0.5 * Height)
             myOC1.Type = ConType.ConOut
@@ -1015,12 +1016,14 @@ Namespace GraphicObjects
                 If .Count <> 0 Then
                     If Me.FlippedH Then
                         .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+                        .Item(1).Position = New Point(X + Width, Y + 0.5 * Height)
                     Else
                         .Item(0).Position = New Point(X, Y + 0.5 * Height)
+                        .Item(1).Position = New Point(X, Y + 0.5 * Height)
                     End If
                 Else
                     .Add(myIC1)
-
+                    .Add(myIC2)
                 End If
 
             End With
@@ -1164,8 +1167,9 @@ Namespace GraphicObjects
             Dim myIC1 As New ConnectionPoint
             myIC1.Position = New Point(X, Y + 0.5 * Height)
             myIC1.Type = ConType.ConIn
-
-
+            Dim myIC2 As New ConnectionPoint
+            myIC2.Position = New Point(X, Y + 0.5 * Height)
+            myIC2.Type = ConType.ConIn
             Dim myOC1 As New ConnectionPoint
             myOC1.Position = New Point(X + Width, Y + 0.5 * Height)
             myOC1.Type = ConType.ConOut
@@ -1178,12 +1182,14 @@ Namespace GraphicObjects
                 If .Count <> 0 Then
                     If Me.FlippedH Then
                         .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+                        .Item(1).Position = New Point(X + Width, Y + 0.5 * Height)
                     Else
                         .Item(0).Position = New Point(X, Y + 0.5 * Height)
+                        .Item(1).Position = New Point(X, Y + 0.5 * Height)
                     End If
                 Else
                     .Add(myIC1)
-
+                    .Add(myIC2)
                 End If
 
             End With
@@ -1261,6 +1267,7 @@ Namespace GraphicObjects
 
             g.EndContainer(gContainer)
         End Sub
+
 
     End Class
     <Serializable()> Public Class SubSystemGraphic
