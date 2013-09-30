@@ -1034,12 +1034,14 @@ Public Class FormMain
                 '      Return Me.tmpform2.FormObjList
             Case "RELAP.frmPlotRequest"
                 Return Me.tmpform2.FormPlotReqest
+            Case "RELAP.frmTrips"
+                Return Me.tmpform2.FormTrips
             Case "RELAP.frmSurface"
                 Return Me.tmpform2.FormSurface
             Case "RELAP.frmInitialSettings"
                 Return Me.tmpform2.FormInitialSettings
-            Case "RELAP.frmMaterials"
-                Return Me.tmpform2.FormMaterials
+                'Case "RELAP.frmMaterials"
+                '    Return Me.tmpform2.FormMaterials
             Case "RELAP.frmObjListView"
                 Return Me.tmpform2.FormObjListView
             Case "RELAP.frmWatch"
@@ -1287,7 +1289,7 @@ Public Class FormMain
             '
             form.FormProps.Show(form.dckPanel)
             form.FormInitialSettings.Show(form.dckPanel)
-            form.FormMaterials.Show(form.dckPanel)
+            '  form.FormMaterials.Show(form.dckPanel)
             form.FormPlotReqest.Show(form.dckPanel)
             '
 
@@ -2575,7 +2577,7 @@ sim:                Dim myStream As System.IO.FileStream
         univID = 1
 
         Dim frmInitialSettings = My.Application.ActiveSimulation.FormInitialSettings
-        Dim frmMaterials = My.Application.ActiveSimulation.FormMaterials
+        '  Dim frmMaterials = My.Application.ActiveSimulation.FormMaterials
 
         ' input file generation code
 
@@ -3300,6 +3302,152 @@ sim:                Dim myStream As System.IO.FileStream
                     counter = counter + 1
                 Next kvp2
             Next kvp
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Annulus) In ChildParent.Collections.CLCS_AnnulusCollection
+                '  MsgBox(kvp.Key)
+                'kvp.Value.FlowArea.cardno()
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*         Component Annulus '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ Annulus")
+                output = kvp.Value.UID & "0001 " & kvp.Value.NumberOfVoulmes
+                generate.WriteLine(output)
+                Dim counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                'counter = 1
+                'For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                '    output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange & " " & vol
+                '    generate.WriteLine(output)
+                '    counter = counter + 1
+                'Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness.ToString("F") & " " & kvp2.Value.HydraulicDiameter.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    output1 = boolto10(kvp2.Value.ThermalStratificationModel)
+                    output2 = boolto10(kvp2.Value.LevelTrackingModel)
+                    output3 = boolto10(kvp2.Value.WaterPackingScheme)
+                    output4 = boolto10(kvp2.Value.VerticalStratificationModel)
+                    output5 = boolto10(kvp2.Value.InterphaseFriction)
+                    output6 = boolto10(kvp2.Value.ComputeWallFriction)
+                    output7 = boolto10(kvp2.Value.EquilibriumTemperature)
+                    output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
+                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
+                    output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
+                    output1 = boolto10(kvp2.Value.PVterm)
+                    output2 = boolto10(kvp2.Value.CCFLModel)
+                    output3 = boolto10(kvp2.Value.ChokingModel)
+                    If kvp2.Value.SmoothAreaChange = "Smooth Area Change" Then
+                        output4 = "0"
+                    ElseIf kvp2.Value.SmoothAreaChange = "Full Abrupt Area Change" Then
+                        output4 = "1"
+                    ElseIf kvp2.Value.SmoothAreaChange = "Partial Abrupt Area Change" Then
+                        output4 = "2"
+                    End If
+
+                    If kvp2.Value.TwoVelocityMomentumEquations = "Two velocity Momentum Equations" Then
+                        output5 = "0"
+                    ElseIf kvp2.Value.TwoVelocityMomentumEquations = "Single velocity Momentum Equations" Then
+                        output5 = "2"
+                    End If
+
+                    If kvp2.Value.MomentumFlux = "To and From Volume" Then
+                        output6 = "0"
+                    ElseIf kvp2.Value.MomentumFlux = "Only From Volume" Then
+                        output6 = "1"
+                    ElseIf kvp2.Value.MomentumFlux = "Only To Volume" Then
+                        output6 = "2"
+                    ElseIf kvp2.Value.MomentumFlux = "Do not use Momentum Flux" Then
+                        output6 = "3"
+                    End If
+
+                    output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    output1 = fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType
+                End If
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
+                    counter = counter + 1
+                Next kvp2
+
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
+                    output1 = boolto10(kvp2.Value.EnterVelocityOrMassFlowRate)
+                    output = kvp.Value.UID & "1300 " & output1
+                Next kvp2
+                generate.WriteLine(output)
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
+                    If kvp2.Value.EnterVelocityOrMassFlowRate = False Then
+                        output1 = kvp2.Value.InitialLiquidVelocity.ToString("F") & " " & kvp2.Value.InitialVaporVelocity.ToString("F")
+                    ElseIf kvp2.Value.EnterVelocityOrMassFlowRate = True Then
+                        output1 = kvp2.Value.InitialLiquidMassFlowRate.ToString("F") & " " & kvp2.Value.InitialVaporMassFlowRate.ToString("F")
+                    End If
+                    output = kvp.Value.UID & "130" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity.ToString("F") & " " & counter
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+            Next kvp
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Branch) In ChildParent.Collections.CLCS_BranchCollection
 
@@ -3583,12 +3731,12 @@ sim:                Dim myStream As System.IO.FileStream
                     Counter = Counter + 1
                 Next kvp2
 
-                Counter = 1
-                For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataComposition) In kvp.Value.HeatStructureMeshData.MeshDataComposition
-                    output = "1" & kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.CompositionNumber & " " & kvp2.Value.MeshIntervalNumber3
-                    generate.WriteLine(output)
-                    Counter = Counter + 1
-                Next kvp2
+                'Counter = 1
+                'For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataComposition) In kvp.Value.HeatStructureMeshData.MeshDataComposition
+                '    output = "1" & kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.CompositionNumber & " " & kvp2.Value.MeshIntervalNumber3
+                '    generate.WriteLine(output)
+                '    Counter = Counter + 1
+                'Next kvp2
 
                 If kvp.Value.HeatStructureMeshData.DecayHeat = "0" Then
                     Counter = 1
@@ -3725,6 +3873,7 @@ sim:                Dim myStream As System.IO.FileStream
                     Counter = Counter + 1
                 Next kvp2
             Next kvp
+
             Try
 
 

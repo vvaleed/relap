@@ -863,13 +863,13 @@ Imports System.Runtime.Serialization
                 Dim detents As Integer = e.Delta / 120
 
                 If detents > 0 Then
-                    If Me.VerticalScroll.Value > 4 * My.Computer.Mouse.WheelScrollLines Then
-                        If 4 * My.Computer.Mouse.WheelScrollLines > Me.VerticalScroll.SmallChange Then
-                            Me.VerticalScroll.Value -= 4 * My.Computer.Mouse.WheelScrollLines
-                        End If
-                    Else
-                        Me.VerticalScroll.Value = 0
-                    End If
+                    'If Me.VerticalScroll.Value > 4 * My.Computer.Mouse.WheelScrollLines Then
+                    '    If 4 * My.Computer.Mouse.WheelScrollLines > Me.VerticalScroll.SmallChange Then
+                    '        Me.VerticalScroll.Value -= 4 * My.Computer.Mouse.WheelScrollLines
+                    '    End If
+                    'Else
+                    '    Me.VerticalScroll.Value = 0
+                    'End If
                 ElseIf detents < 0 Then
                     If Me.VerticalScroll.Value > 4 * My.Computer.Mouse.WheelScrollLines Then
                         If 4 * My.Computer.Mouse.WheelScrollLines > Me.VerticalScroll.SmallChange Then

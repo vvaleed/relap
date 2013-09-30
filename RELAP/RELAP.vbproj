@@ -255,7 +255,21 @@
     <Compile Include="frmTrips.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Annulus.vb" />
+    <Compile Include="objects\Annulus\Annulus.vb" />
+    <Compile Include="objects\Annulus\AnnulusProfile.vb" />
+    <Compile Include="objects\Annulus\frmAnnulusEditor.Designer.vb">
+      <DependentUpon>frmAnnulusEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Annulus\frmAnnulusEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Annulus\ucAnnulusEditor.Designer.vb">
+      <DependentUpon>ucAnnulusEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Annulus\ucAnnulusEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="objects\Annulus\UIAnnulus.vb" />
     <Compile Include="objects\Branch\Branch.vb" />
     <Compile Include="objects\Branch\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
@@ -467,6 +481,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTrips.resx">
       <DependentUpon>frmTrips.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Annulus\frmAnnulusEditor.resx">
+      <DependentUpon>frmAnnulusEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Annulus\ucAnnulusEditor.resx">
+      <DependentUpon>ucAnnulusEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Branch\frmBranchEditor.resx">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>

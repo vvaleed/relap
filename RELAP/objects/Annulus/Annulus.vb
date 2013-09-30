@@ -33,12 +33,12 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
 
-        Protected m_profile As PipeProfile
-        Public Property Profile() As PipeProfile
+        Protected m_profile As AnnulusProfile
+        Public Property Profile() As AnnulusProfile
             Get
                 Return m_profile
             End Get
-            Set(ByVal value As PipeProfile)
+            Set(ByVal value As AnnulusProfile)
                 m_profile = value
             End Set
         End Property
@@ -166,7 +166,7 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me._ThermoDynamicStates = New ThermoDynamicStates
             Me.m_NumberOfVoulmes = 5
             Me.m_ComponentDescription = descricao
-            Me.Profile = New PipeProfile
+            Me.Profile = New AnnulusProfile
             ' Me.m_LengthofVolume = 5.0
             ' Me.m_VerticalAngle = -90.0
             ' Me.m_FlowArea = 1.0
@@ -454,8 +454,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                 End With
                 .Item.Add("Set Volume Parameters", Me, "Profile", False, "Parameters", "Set Volume Parameters", True)
                 With .Item(.Item.Count - 1)
-                    .DefaultType = GetType(PipeProfile)
-                    .CustomEditor = New RELAP.Editors.UIPipeEditor
+                    .DefaultType = GetType(AnnulusProfile)
+                    .CustomEditor = New RELAP.Editors.UIAnnulus
                 End With
                 .Item.Add("Set Thermo Dynamic States", Me, "ThermoDynamicStates", False, "Parameters", "Set Thermo Dynamic States", True)
                 With .Item(.Item.Count - 1)

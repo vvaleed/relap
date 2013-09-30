@@ -1,5 +1,5 @@
 ﻿Public Class frmMaterials
-    Inherits WeifenLuo.WinFormsUI.Docking.DockContent
+    ' Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
 
     Private _checkMaterial As Double
