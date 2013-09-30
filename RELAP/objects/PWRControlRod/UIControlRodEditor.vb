@@ -19,14 +19,14 @@ Namespace RELAP.Editors
             End If
 
             If (editorService IsNot Nothing) Then
-                'Dim selectionControl As New frmControlRodEditor
+                Dim selectionControl As New frmControlRodEditor
 
 
-                'selectionControl.UcFuelRodEditor1.FuelRodDetails = value
+                selectionControl.UcControlRodEditor1.ControlRodDetails = value
 
-                'editorService.ShowDialog(selectionControl)
+                editorService.ShowDialog(selectionControl)
 
-                'value = selectionControl.UcFuelRodEditor1.FuelRodDetails
+                value = selectionControl.UcControlRodEditor1.ControlRodDetails
 
             End If
 

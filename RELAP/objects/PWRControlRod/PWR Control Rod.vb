@@ -532,7 +532,11 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-
+                .Item.Add("Set Control Rod Details", Me, "ControlRodDetails", False, "Details", "Set Control Rod Details", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultType = GetType(ControlRodDetails)
+                    .CustomEditor = New RELAP.Editors.UIControlRodEditor
+                End With
                 valor = Me.NumberOfRods
                 .Item.Add("No. of rods", valor, False, "No. of Rods", " ", True)
                 With .Item(.Item.Count - 1)

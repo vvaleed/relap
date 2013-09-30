@@ -266,6 +266,12 @@
     <Compile Include="objects\FuelRod\frmFuelRodEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="objects\PWRControlRod\frmControlRodEditor.Designer.vb">
+      <DependentUpon>frmControlRodEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\PWRControlRod\frmControlRodEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="objects\PWRControlRod\ucControlRodEditor.Designer.vb">
       <DependentUpon>ucControlRodEditor.vb</DependentUpon>
     </Compile>
@@ -633,6 +639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Editors\ucValveEditor.resx">
       <DependentUpon>ucValveEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\PWRControlRod\frmControlRodEditor.resx">
+      <DependentUpon>frmControlRodEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="objects\PWRControlRod\ucControlRodEditor.resx">
       <DependentUpon>ucControlRodEditor.vb</DependentUpon>
