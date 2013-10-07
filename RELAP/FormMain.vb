@@ -1287,12 +1287,14 @@ Public Class FormMain
             '
             form.FormSurface.Show(form.dckPanel)
             '
+
             form.FormProps.Show(form.dckPanel)
             form.FormInitialSettings.Show(form.dckPanel)
             '  form.FormMaterials.Show(form.dckPanel)
             form.FormPlotReqest.Show(form.dckPanel)
             '
-
+            form.FormMinorEditRequests.Show(form.dckPanel)
+            form.FormGeneralCoreInput.Show(form.dckPanel)
             form.dckPanel.ResumeLayout(True, True)
             form.dckPanel.BringToFront()
 
@@ -1579,7 +1581,7 @@ Public Class FormMain
     Sub SaveF(ByVal caminho As String, ByRef form As FormFlowsheet)
 
         Dim rndfolder As String = My.Computer.FileSystem.SpecialDirectories.Temp & pathsep & RandomString(8, True) & pathsep
-
+        form.FormMinorEditRequests.Save()
         Directory.CreateDirectory(rndfolder)
 
         ' Insert code to set properties and fields of the object.
@@ -2794,7 +2796,7 @@ sim:                Dim myStream As System.IO.FileStream
                 '  MsgBox(kvp.Key)
                 'kvp.Value.FlowArea.cardno()
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Time Dependent Volume '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*    Component Time Dependent Volume '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpvol")
 
@@ -2829,7 +2831,7 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.SingleVolume) In ChildParent.Collections.CLCS_SingleVolumeCollection
 
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Single Volume '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*    Component Single Volume '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ snglvol")
 
@@ -2871,17 +2873,51 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.SingleJunction) In ChildParent.Collections.CLCS_SingleJunctionCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Single Junction '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*       Component Single Junction '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ sngljun")
-
-                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea & " " & kvp.Value.FflowLossCo & " " & kvp.Value.RflowLossCo & " " & "0000100" '& " " & kvp.Value.SubcooledDishargeCo & " " & kvp.Value.TwoPhaseDischargeCo & " " & kvp.Value.SuperheatedDishargeCo
+                output1 = boolto10(kvp.Value.pvterm)
+                output2 = boolto10(kvp.Value.CCFL)
+                If kvp.Value.StratificationModel.ToString = "Dont_use_this_model" Then
+                    output3 = "0"
+                ElseIf kvp.Value.StratificationModel.ToString = "upward_oriented_junction" Then
+                    output3 = "1"
+                ElseIf kvp.Value.StratificationModel.ToString = "downward_oriented_junction" Then
+                    output3 = "2"
+                ElseIf kvp.Value.StratificationModel.ToString = "centrally_located_junction" Then
+                    output3 = "3"
+                End If
+                output4 = boolto01(kvp.Value.chokingModel)
+                If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output5 = "1"
+                ElseIf kvp.Value.AreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output5 = "2"
+                End If
+                If kvp.Value.MomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output6 = "0"
+                ElseIf kvp.Value.MomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output6 = "1"
+                End If
+                If kvp.Value.MomentumFlux.ToString = "To_and_From_Volume" Then
+                    output7 = "0"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_From_Volume" Then
+                    output7 = "1"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_To_Volume" Then
+                    output7 = "2"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
+                    output7 = "3"
+                End If
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea.ToString("F") & " " & kvp.Value.FflowLossCo.ToString("F") & " " & kvp.Value.RflowLossCo.ToString("F") & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7
                 generate.WriteLine(output)
 
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then
-                    output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity & " ") & kvp.Value.InitialVaporVelocity & " ") & kvp.Value.InterphaseVelocity
+                    output = (((kvp.Value.UID & "0201 " & "0" & " ") & kvp.Value.InitialLiquidVelocity.ToString("F") & " ") & kvp.Value.InitialVaporVelocity.ToString("F") & " ") & "0.0"
                 ElseIf kvp.Value.EnterVelocityOrMassFlowRate = True Then
-                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate & " ") & kvp.Value.InitialVaporMassFlowRate & " ") & kvp.Value.InterphaseVelocity
+                    output = (((kvp.Value.UID & "0201 " & "1" & " ") & kvp.Value.InitialLiquidMassFlowRate.ToString("F") & " ") & kvp.Value.InitialVaporMassFlowRate.ToString("F") & " ") & "0.0"
                 End If
                 generate.WriteLine(output)
 
@@ -2892,11 +2928,11 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.TimeDependentJunction) In ChildParent.Collections.CLCS_TimeDependentJunctionCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Time Dependent Junction '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*    Component Time Dependent Junction '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpjun")
 
-                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea.ToString("F")
                 generate.WriteLine(output)
 
                 output = kvp.Value.UID & "0200 " & kvp.Value.JunctionsData.EnterMassorVelocity
@@ -2904,17 +2940,12 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Dim Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, JunctionDatavelocity) In kvp.Value.JunctionsData.JunctionDatavelocity
-                    output = kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.TimeVelocity.ToString("F") & " " & kvp2.Value.LiquidVelocity.ToString("F") & " " & kvp2.Value.VaporVelocity.ToString("F") & " " & kvp2.Value.InterfaceVelocityv.ToString("F")
+                    output = kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.TimeVelocity.ToString("F") & " " & kvp2.Value.LiquidVelocity.ToString("F") & " " & kvp2.Value.VaporVelocity.ToString("F") & " 0.0"
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
 
-                Counter = 1
-                For Each kvp2 As KeyValuePair(Of Integer, JunctionDataMass) In kvp.Value.JunctionsData.JunctionDataMass
-                    output = kvp.Value.UID & "0" & "20" & Counter & " " & kvp2.Value.TimeMass.ToString("F") & " " & kvp2.Value.LiquidMassFlow.ToString("F") & " " & kvp2.Value.VaporMassFlow.ToString("F") & " " & kvp2.Value.InterfaceVelocitym.ToString("F")
-                    generate.WriteLine(output)
-                    Counter = Counter + 1
-                Next kvp2
+               
 
                 univID = univID + 1
                 '  MsgBox(kvp.Value.ComponentName)
@@ -2923,7 +2954,7 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Valve) In ChildParent.Collections.CLCS_ValveCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Valve '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*    Component Valve '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ valve")
                 output1 = boolto10(kvp.Value.pvterm)
@@ -3018,11 +3049,11 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Pump) In ChildParent.Collections.CLCS_PumpCollection
                 '  MsgBox(kvp.Key)
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Pump '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*  Component Pump '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ pump")
 
-                output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea & " ") & kvp.Value.LengthofVolume & " ") & kvp.Value.VolumeofVolume & " ") & kvp.Value.Azimuthalangle & " ") & kvp.Value.InclinationAngle & " ") & kvp.Value.ElevationChange & " ") & "0"
+                output = ((((((kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " ") & kvp.Value.LengthofVolume.ToString("F") & " ") & kvp.Value.VolumeofVolume.ToString("F") & " ") & kvp.Value.Azimuthalangle.ToString("F") & " ") & kvp.Value.InclinationAngle.ToString("F") & " ") & kvp.Value.ElevationChange.ToString("F") & " ") & "0"
                 generate.WriteLine(output)
 
                 output1 = boolto10(kvp.Value.CCFL)
@@ -3123,7 +3154,8 @@ sim:                Dim myStream As System.IO.FileStream
                     kvp.Value.PumpData.cmbboxindex5 = 0
                 End If
                 output5 = kvp.Value.PumpData.cmbboxindex5 - 1
-                generate.WriteLine(kvp.Value.UID & "0301 " & output1 & " " & output2 & " " & output3 & " " & output4 & " " & output5 & " ")
+                output6 = boolto10(kvp.Value.reverseindicator)
+                generate.WriteLine(kvp.Value.UID & "0301 " & output1 & " " & output2 & " " & output3 & " " & output4 & " " & output5 & " " & kvp.Value.pumptripno & " " & output6)
                 generate.WriteLine(kvp.Value.UID & "0302 " & kvp.Value.Ratedpumpvelocity.ToString("F") & " " & kvp.Value.RatioRatedVelocity.ToString("F") & " " & kvp.Value.RatedFlow.ToString("F") & " " & kvp.Value.RatedHead.ToString("F") & " " & kvp.Value.RatedTorque.ToString("F") & " " & kvp.Value.MomentofInertia.ToString("F") & " " & kvp.Value.RatedDensity.ToString("F") & " " & kvp.Value.RatedMotorTorque.ToString("F") & " " & kvp.Value.TF2.ToString("F") & " " & kvp.Value.TF0.ToString("F") & " " & kvp.Value.TF1.ToString("F") & " " & kvp.Value.TF3.ToString("F"))
 
                 If output2 = 0 Then
@@ -3160,7 +3192,7 @@ sim:                Dim myStream As System.IO.FileStream
                 '  MsgBox(kvp.Key)
                 'kvp.Value.FlowArea.cardno()
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component PIPE '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*       Component PIPE '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ pipe")
                 output = kvp.Value.UID & "0001 " & kvp.Value.NumberOfVoulmes
@@ -3297,7 +3329,7 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.EnterVelocityOrMassFlowRate = True Then
                         output1 = kvp2.Value.InitialLiquidMassFlowRate.ToString("F") & " " & kvp2.Value.InitialVaporMassFlowRate.ToString("F")
                     End If
-                    output = kvp.Value.UID & "130" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity.ToString("F") & " " & counter
+                    output = kvp.Value.UID & "130" & counter & " " & output1 & " 0.0" & " " & counter
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3306,7 +3338,7 @@ sim:                Dim myStream As System.IO.FileStream
                 '  MsgBox(kvp.Key)
                 'kvp.Value.FlowArea.cardno()
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Annulus '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*       Component Annulus '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ Annulus")
                 output = kvp.Value.UID & "0001 " & kvp.Value.NumberOfVoulmes
@@ -3452,7 +3484,7 @@ sim:                Dim myStream As System.IO.FileStream
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Branch) In ChildParent.Collections.CLCS_BranchCollection
 
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Branch '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*       Component Branch '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ branch")
 
@@ -3566,10 +3598,122 @@ sim:                Dim myStream As System.IO.FileStream
 
             Next kvp
 
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Turbine) In ChildParent.Collections.CLCS_TurbineCollection
+
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine("*       Component Turbine '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
+                generate.WriteLine("*======================================================================")
+                generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ Turbine")
+
+                generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions & " " & kvp.Value.TurbineJunctionsGeometry.EnterMassorVelocity)
+
+                output = kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " "
+             
+                generate.WriteLine(output & " 10")
+
+                If frmInitialSettings.optDefaultFluid.Checked = True Then
+                    fluidchk = "0"
+                ElseIf frmInitialSettings.optWater.Checked = True Then
+                    fluidchk = "1"
+                ElseIf frmInitialSettings.optHeavyWater.Checked = True Then
+                    fluidchk = "2"
+                End If
+
+                If frmInitialSettings.chklistboxBoron.Checked = False Then
+                    boronchk = "0"
+                Else : boronchk = "1"
+                End If
+
+                If kvp.Value.ThermoDynamicStates.State.Count > 0 Then
+                    output = fluidchk & boronchk & kvp.Value.ThermoDynamicStates.State(1).StateType
+                End If
+
+                For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
+                    generate.WriteLine(kvp.Value.UID & "0200" & " " & output & kvp2.Value.StatesString)
+                Next kvp2
+                
+                output4 = boolto01(kvp.Value.chokingModel)
+                If kvp.Value.AreaChange.ToString = "No_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Smooth_Area_Change" Then
+                    output5 = "0"
+                ElseIf kvp.Value.AreaChange.ToString = "Full_Abrupt_Area_Change" Then
+                    output5 = "1"
+                ElseIf kvp.Value.AreaChange.ToString = "Partial_Abrupt_Area_Change" Then
+                    output5 = "2"
+                End If
+                If kvp.Value.MomentumEquation.ToString = "Two_velocity_Momentum_Equations" Then
+                    output6 = "0"
+                ElseIf kvp.Value.MomentumEquation.ToString = "Single_velocity_Momentum_Equations" Then
+                    output6 = "1"
+                End If
+                If kvp.Value.MomentumFlux.ToString = "To_and_From_Volume" Then
+                    output7 = "0"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_From_Volume" Then
+                    output7 = "1"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Only_To_Volume" Then
+                    output7 = "2"
+                ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
+                    output7 = "3"
+                End If
+                output8 = output4 & output5 & output6 & output7
+                Dim counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, TurbineGeometry) In kvp.Value.TurbineJunctionsGeometry.TurbineGeometry
+                    If kvp2.Value.FromFaceNumber = "inlet x-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "1"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet x-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "2"
+                    ElseIf kvp2.Value.FromFaceNumber = "inlet y-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "3"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet y-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "4"
+                    ElseIf kvp2.Value.FromFaceNumber = "inlet z-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "5"
+                    ElseIf kvp2.Value.FromFaceNumber = "outlet z-coordinate" Then
+                        kvp2.Value.FromFaceNumber = "6"
+                    End If
+                    If kvp2.Value.ToFaceNumber = "inlet x-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "1"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet x-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "2"
+                    ElseIf kvp2.Value.ToFaceNumber = "inlet y-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "3"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet y-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "4"
+                    ElseIf kvp2.Value.ToFaceNumber = "inlet z-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "5"
+                    ElseIf kvp2.Value.ToFaceNumber = "outlet z-coordinate" Then
+                        kvp2.Value.ToFaceNumber = "6"
+                    End If
+                    output9 = RELAP.App.GetUIDFromTag(kvp2.Value.FromComponent)
+                    output10 = RELAP.App.GetUIDFromTag(kvp2.Value.ToComponent)
+                    generate.WriteLine(kvp.Value.UID & counter & "101 " & output9 & CInt(kvp2.Value.FromComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.FromFaceNumber & " " & output10 & CInt(kvp2.Value.ToComponentVolumeNumber).ToString("D2") & "000" & kvp2.Value.ToFaceNumber & " " & kvp2.Value.JunctionArea.ToString("F") & " " & kvp2.Value.FFLossCo.ToString("F") & " " & kvp2.Value.RFlossCo.ToString("F") & " " & output8)
+                    counter = counter + 1
+                Next kvp2
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, TurbineGeometry) In kvp.Value.TurbineJunctionsGeometry.TurbineGeometry
+                    generate.WriteLine(kvp.Value.UID & counter & "201 " & kvp2.Value.LiquidMassFlow.ToString("F") & " " & kvp2.Value.VaporMassFlow.ToString("F") & " 0")
+                    counter = counter + 1
+                Next kvp2
+
+                generate.WriteLine(kvp.Value.UID & "0300 " & kvp.Value.shaftspeed.ToString("F") & " " & kvp.Value.inertia.ToString("F") & " " & kvp.Value.shaftfriction.ToString("F") & " " & kvp.Value.shaftcomponentNo & " " & kvp.Value.dctripno & " 0")
+                If kvp.Value.turbinetype.ToString = "Two_row_impulse_stage_group" Then
+                    output1 = "0"
+                ElseIf kvp.Value.turbinetype.ToString = "General_impulse_reaction_stage_group" Then
+                    output1 = "1"
+                ElseIf kvp.Value.turbinetype.ToString = "Constant_efficiency_stage_group" Then
+                    output1 = "2"
+                End If
+                generate.WriteLine(kvp.Value.UID & "0400 " & output1 & " " & kvp.Value.actualeff.ToString("F") & " " & kvp.Value.designfraction.ToString("F") & " " & kvp.Value.meanradius.ToString("F"))
+
+                univID = univID + 1
+
+            Next kvp
+
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Separator) In ChildParent.Collections.CLCS_SeparatorCollection
 
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Separator '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*       Component Separator '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ separatr")
 
@@ -3689,7 +3833,7 @@ sim:                Dim myStream As System.IO.FileStream
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure) In ChildParent.Collections.CLCS_HeatStructureCollection
                 generate.WriteLine("*======================================================================")
-                generate.WriteLine("*         Component Heat Structure '" & kvp.Value.GraphicObject.Tag & "'")
+                generate.WriteLine("*       Component Heat Structure '" & kvp.Value.GraphicObject.Tag & "'" & "   Component ID: " & kvp.Value.UID)
                 generate.WriteLine("*======================================================================")
                 output1 = kvp.Value.GeometryType.ToString
                 If output1 = "Rectangular" Then
