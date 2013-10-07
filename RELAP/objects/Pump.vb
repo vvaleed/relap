@@ -480,6 +480,28 @@ Namespace RELAP.SimulationObjects.UnitOps
         End Property
 
         'pump description
+
+        Private _pumptripno As Integer
+        Public Property pumptripno() As Integer
+            Get
+                Return _pumptripno
+            End Get
+            Set(ByVal value As Integer)
+                _pumptripno = value
+            End Set
+        End Property
+
+        Private _reverseindicator As Boolean
+        Public Property reverseindicator() As Boolean
+            Get
+                Return _reverseindicator
+            End Get
+            Set(ByVal value As Boolean)
+                _reverseindicator = value
+            End Set
+        End Property
+
+
         Private _Ratedpumpvelocity As Double
         Public Property Ratedpumpvelocity() As Double
             Get
@@ -612,12 +634,13 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me._PumpData = New PumpData
             Me._ToVolume = 1
             Me._FromVolume = 1
-            Me.m_flowarea = 20.0
-            Me.m_LengthofVolume = 0.0
-            Me.m_VolumeofVolume = 1000000.0
+            Me.m_flowarea = 1.0
+            Me.m_LengthofVolume = 2.0
+            Me.m_VolumeofVolume = 0.0
             Me.m_Azimuthalangle = 0.0
-            Me.m_InclinationAngle = -90.0
-            Me.m_ElevationChange = -50000.0
+            Me.m_InclinationAngle = 0.0
+            Me.m_ElevationChange = 0.0
+            Me.reverseindicator = False
             Me.inlet_CCFL = False
             Me.inlet_chokingModel = False
             Me.AreaChange = inletAreaChangeEnum.No_Area_Change
@@ -1145,6 +1168,21 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(PumpData)
                     .CustomEditor = New RELAP.Editors.UIPumpEditor
                 End With
+
+                valor = Format(Me.pumptripno, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Pump Trip Number"), Me, "pumptripno", False, "7.Pump Index and Option Data", "Pump Trip Number", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = Nothing
+                    .DefaultType = GetType(Integer)
+                End With
+
+                .Item.Add(("Reverse Indicator"), Me, "reverseindicator", False, "7.Pump Index and Option Data", "if true, reverse is allowed", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Boolean)
+                End With
+
+               
                 valor = Format(Me.Ratedpumpvelocity, FlowSheet.Options.NumberFormat)
                 .Item.Add("Rated pump velocity", valor, False, "7.Pump Index and Option Data", "Rated pump velocity", True)
                 With .Item(.Item.Count - 1)
