@@ -33,7 +33,31 @@ Namespace RELAP.SimulationObjects.UnitOps
             Inlet = 1
             Outlet = 2
         End Enum
+        Enum StratificationModelEnum
+            Dont_use_this_model
+            upward_oriented_junction
+            downward_oriented_junction
+            centrally_located_junction
+        End Enum
 
+        Enum AreaChangeEnum
+            No_Area_Change
+            Smooth_Area_Change
+            Full_Abrupt_Area_Change
+            Partial_Abrupt_Area_Change
+        End Enum
+
+        Enum MomentumEquationEnum
+            Two_velocity_Momentum_Equations
+            Single_velocity_Momentum_Equations
+        End Enum
+
+        Enum MomentumFluxEnum
+            To_and_From_Volume
+            Only_From_Volume
+            Only_To_Volume
+            Do_not_use_Momentum_Flux
+        End Enum
         Private m_EnterVelocityOrMassFlowRate As Boolean
         Public Property EnterVelocityOrMassFlowRate() As Boolean
             Get
@@ -153,53 +177,73 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private m_ThermalStratificationModel As Boolean
-        Public Property ThermalStratificationModel() As Boolean
+        Private _pvterm As Boolean
+        Public Property pvterm() As Boolean
             Get
-                Return m_ThermalStratificationModel
+                Return _pvterm
             End Get
             Set(ByVal value As Boolean)
-                m_ThermalStratificationModel = value
+                _pvterm = value
             End Set
         End Property
 
-        Private m_LevelTrackingModel As Boolean
-        Public Property LevelTrackingModel() As Boolean
+        Private _CCFL As Boolean
+        Public Property CCFL() As Boolean
             Get
-                Return m_LevelTrackingModel
+                Return _CCFL
             End Get
             Set(ByVal value As Boolean)
-                m_LevelTrackingModel = value
+                _CCFL = value
             End Set
         End Property
 
-        Private m_InterphaseFriction As Boolean
-        Public Property InterphaseFriction() As Boolean
+        Private _StratificationModel As StratificationModelEnum
+        Public Property StratificationModel() As StratificationModelEnum
             Get
-                Return m_InterphaseFriction
+                Return _StratificationModel
             End Get
-            Set(ByVal value As Boolean)
-                m_InterphaseFriction = value
+            Set(ByVal value As StratificationModelEnum)
+                _StratificationModel = value
             End Set
         End Property
 
-        Private m_ComputeWallFriction As Boolean
-        Public Property ComputeWallFriction() As Boolean
+        Private _chokingModel As Boolean
+        Public Property chokingModel() As Boolean
             Get
-                Return m_ComputeWallFriction
+                Return _chokingModel
             End Get
             Set(ByVal value As Boolean)
-                m_ComputeWallFriction = value
+                _chokingModel = value
             End Set
         End Property
 
-        Private m_EquilibriumTemp As Boolean
-        Public Property EquilibriumTemperature() As Boolean
+        Private _AreaChange As AreaChangeEnum
+        Public Property AreaChange() As AreaChangeEnum
             Get
-                Return m_EquilibriumTemp
+                Return _AreaChange
             End Get
-            Set(ByVal value As Boolean)
-                m_EquilibriumTemp = value
+            Set(ByVal value As AreaChangeEnum)
+                _AreaChange = value
+            End Set
+        End Property
+
+        Private _MomentumEquation As MomentumEquationEnum
+        Public Property MomentumEquation() As MomentumEquationEnum
+            Get
+                Return _MomentumEquation
+            End Get
+            Set(ByVal value As MomentumEquationEnum)
+                _MomentumEquation = value
+            End Set
+        End Property
+
+        Private _MomentumFlux As MomentumFluxEnum
+        Public Property MomentumFlux() As MomentumFluxEnum
+            Get
+                Return _MomentumFlux
+            End Get
+            Set(ByVal value As MomentumFluxEnum)
+                _MomentumFlux = value
             End Set
         End Property
 
@@ -278,6 +322,16 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_InitialVaporMassFlowRate = 0.0
             Me.m_InterphaseVelocity = 0.0
             Me.m_EnterVelocityOrMassFlowRate = True
+            Me.m_subdisco = 1.0
+            Me.m_supdisco = 1.0
+            Me.m_tpdisco = 1.0
+            Me._pvterm = False
+            Me._CCFL = False
+            Me.StratificationModel = StratificationModelEnum.Dont_use_this_model
+            Me._chokingModel = False
+            Me.AreaChange = AreaChangeEnum.No_Area_Change
+            Me.MomentumEquation = MomentumEquationEnum.Two_velocity_Momentum_Equations
+            Me.MomentumFlux = MomentumFluxEnum.To_and_From_Volume
             Me.FillNodeItems()
             Me.QTFillNodeItems()
         End Sub
@@ -557,79 +611,80 @@ Namespace RELAP.SimulationObjects.UnitOps
                 'End With
 
                 valor = App.GetTagFromUID(Me.FromComponent)
-                .Item.Add("From Component", valor, True, "Connections", "From Component", True)
+                .Item.Add("From Component", valor, True, "1.Connections", "From Component", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = (Me.FromVolume)
-                .Item.Add("From Volume", valor, False, "Connections", "From Volume", True)
+                .Item.Add("From Volume", valor, False, "1.Connections", "From Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .CustomEditor = New RELAP.Editors.UIVolumeSelector
                 End With
 
-                .Item.Add("From Direction", Me, "FromDirection", False, "Connections", "From Direction", True)
+                .Item.Add("From Direction", Me, "FromDirection", False, "1.Connections", "From Direction", True)
 
 
 
                 valor = App.GetTagFromUID(Me.ToComponent)
-                .Item.Add("To Component", valor, True, "Connections", "To Component", True)
+                .Item.Add("To Component", valor, True, "1.Connections", "To Component", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
                 valor = (Me.ToVolume)
-                .Item.Add("To Volume", valor, False, "Connections", "To Volume", True)
+                .Item.Add("To Volume", valor, False, "1.Connections", "To Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .CustomEditor = New RELAP.Editors.UIVolumeSelector
                 End With
-                .Item.Add("To Direction", Me, "ToDirection", False, "Connections", "To Direction", True)
-                valor = Me.JunctionArea
-                .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
+                .Item.Add("To Direction", Me, "ToDirection", False, "1.Connections", "To Direction", True)
+
+                valor = Format(Me.JunctionArea, FlowSheet.Options.NumberFormat)
+                .Item.Add("Junction Flow Area", valor, False, "2.Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.FflowLossCo
-                .Item.Add(("Forward Flow Energy Loss Coefficient"), valor, False, "Parameters", "Forward Flow Energy Loss Coefficient", True)
+                valor = Format(Me.FflowLossCo, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Forward Flow Energy Loss Coefficient"), valor, False, "2.Parameters", "Forward Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Me.RflowLossCo
-                .Item.Add(("Reverse Flow Energy Loss Coefficient"), valor, False, "Parameters", "Reverse Flow Energy Loss Coefficient", True)
+                valor = Format(Me.RflowLossCo, FlowSheet.Options.NumberFormat)
+                .Item.Add(("Reverse Flow Energy Loss Coefficient"), valor, False, "2.Parameters", "Reverse Flow Energy Loss Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.SubcooledDishargeCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Subcooled Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Subcooled Discharge Coefficient", True)
+                valor = Format(Me.SubcooledDishargeCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Subcooled Discharge Coefficient", valor, False, "2.Parameters", "Subcooled Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.TwoPhaseDischargeCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Two phase Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Two phase Discharge Coefficient", True)
+                valor = Format(Me.TwoPhaseDischargeCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Two phase Discharge Coefficient", valor, False, "2.Parameters", "Two phase Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.SuperheatedDishargeCo), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Superheated Discharge Coefficient", su.no_unit), valor, False, "Parameters", "Superheated Discharge Coefficient", True)
+                valor = Format(Me.SuperheatedDishargeCo, FlowSheet.Options.NumberFormat)
+                .Item.Add("Superheated Discharge Coefficient", valor, False, "2.Parameters", "Superheated Discharge Coefficient", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
 
-                .Item.Add(("True for Mass Flow rate"), Me, "EnterVelocityOrMassFlowRate", False, "Single Junction Initial Conditions", "True for Mass Flow rate", True)
+                .Item.Add(("True for Mass Flow rate"), Me, "EnterVelocityOrMassFlowRate", False, "4.Single Junction Initial Conditions", "True for Mass Flow rate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
@@ -637,66 +692,61 @@ Namespace RELAP.SimulationObjects.UnitOps
 
 
                 valor = Format(Me.InitialLiquidVelocity, FlowSheet.Options.NumberFormat)
-                .Item.Add("Initial Liquid Velocity", valor, False, "Single Junction Initial Conditions", "Initial Liquid Velocity", True)
+                .Item.Add("Initial Liquid Velocity", valor, False, "4.Single Junction Initial Conditions", "Initial Liquid Velocity", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Me.InitialVaporVelocity, FlowSheet.Options.NumberFormat)
-                .Item.Add("Initial Vapor Velocity", valor, False, "Single Junction Initial Conditions", "Initial Vapor Velocity", True)
+                .Item.Add("Initial Vapor Velocity", valor, False, "4.Single Junction Initial Conditions", "Initial Vapor Velocity", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Me.InitialLiquidMassFlowRate, FlowSheet.Options.NumberFormat)
-                .Item.Add("Initial Liquid Mass Flow Rate", valor, False, "Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
+                .Item.Add("Initial Liquid Mass Flow Rate", valor, False, "4.Single Junction Initial Conditions", "Initial Liquid Mass Flow Rate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
                 valor = Format(Me.InitialVaporMassFlowRate, FlowSheet.Options.NumberFormat)
-                .Item.Add("Initial Vapor Mass Flow Rate", valor, False, "Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
+                .Item.Add("Initial Vapor Mass Flow Rate", valor, False, "4.Single Junction Initial Conditions", "Initial Vapor Mass Flow Rate", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Me.InterphaseVelocity, FlowSheet.Options.NumberFormat)
-                .Item.Add("Interphase Velocity", valor, False, "Single Junction Initial Conditions", "Interphase Velocity", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
                 ' valor = Format(Conversor.ConverterDoSI(su.volume, Me.Volume), FlowSheet.Options.NumberFormat)
 
-                .Item.Add(("Thermal Stratification Model"), Me, "ThermalStratificationModel", True, "Volume Control Flags", "Thermal Stratification Model", True)
+
+                .Item.Add(("Modified PV term Applied"), Me, "pvterm", False, "3. Junction Control Flags", "Modified PV term Applied", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Level Tracking Model"), Me, "LevelTrackingModel", True, "Volume Control Flags", "Level Tracking Model", True)
+
+                .Item.Add(("CCFL Model"), Me, "CCFL", False, "3. Junction Control Flags", "CCFL Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Interphase Friction Model"), Me, "InterphaseFriction", False, "Volume Control Flags", "Interphase Friction Model", True)
+
+                .Item.Add("Stratification Entrainment Model", Me, "StratificationModel", False, "3. Junction Control Flags", "Horizontal Stratification Entrainment/Pullthrough Model", True)
+
+                .Item.Add(("Choking Model"), Me, "ChokingModel", False, "3. Junction Control Flags", "Choking Model", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Boolean)
                 End With
-                .Item.Add(("Compute Wall Friction"), Me, "ComputeWallFriction", False, "Volume Control Flags", "Compute Wall Friction", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
-                .Item.Add(("Equilibrium Temperature"), Me, "EquilibriumTemperature", False, "Volume Control Flags", "Equilibrium Temperature", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = False
-                    .DefaultType = GetType(Boolean)
-                End With
+
+                .Item.Add("Area Change", Me, "AreaChange", False, "3. Junction Control Flags", "Area Change Options", True)
+
+                .Item.Add("Momentum Equation", Me, "MomentumEquation", False, "3. Junction Control Flags", "Specify homogenius or nonhomogenius", True)
+
+                .Item.Add("Momentum Flux Options", Me, "MomentumFlux", False, "3. Junction Control Flags", "", True)
 
 
 

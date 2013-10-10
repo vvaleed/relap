@@ -31,7 +31,7 @@ Partial Class frmHeatStructureEditor
         Me.UcHeatStructureEditor1.Location = New System.Drawing.Point(12, 9)
         Me.UcHeatStructureEditor1.Name = "UcHeatStructureEditor1"
         Me.UcHeatStructureEditor1.NumberFormat = Nothing
-        Me.UcHeatStructureEditor1.Size = New System.Drawing.Size(912, 474)
+        Me.UcHeatStructureEditor1.Size = New System.Drawing.Size(1263, 539)
         Me.UcHeatStructureEditor1.SystemOfUnits = Nothing
         Me.UcHeatStructureEditor1.TabIndex = 0
         '
@@ -39,7 +39,7 @@ Partial Class frmHeatStructureEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(939, 484)
+        Me.ClientSize = New System.Drawing.Size(1277, 560)
         Me.Controls.Add(Me.UcHeatStructureEditor1)
         Me.Name = "frmHeatStructureEditor"
         Me.Text = "frmHeatStructureEditor"

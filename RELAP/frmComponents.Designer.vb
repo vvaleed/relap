@@ -71,6 +71,7 @@ Partial Class frmObjListView
         Me.ImageList2.Images.SetKeyName(24, "greyscale_20.gif")
         Me.ImageList2.Images.SetKeyName(25, "colan2.jpg")
         Me.ImageList2.Images.SetKeyName(26, "Red_cylinder.png")
+        Me.ImageList2.Images.SetKeyName(27, "shape_square.png")
         '
         'col0
         '

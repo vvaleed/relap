@@ -193,6 +193,50 @@
             m_collection52 = value
         End Set
     End Property
+    Protected m_collection53 As Generic.SortedDictionary(Of Integer, HSMeshDataComposition3)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property MeshDataComposition3() As Generic.SortedDictionary(Of Integer, HSMeshDataComposition3)
+        Get
+            Return m_collection53
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSMeshDataComposition3))
+            m_collection53 = value
+        End Set
+    End Property
+    Protected m_collection54 As Generic.SortedDictionary(Of Integer, HSMeshDataComposition4)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property MeshDataComposition4() As Generic.SortedDictionary(Of Integer, HSMeshDataComposition4)
+        Get
+            Return m_collection54
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSMeshDataComposition4))
+            m_collection54 = value
+        End Set
+    End Property
+    Protected m_collection55 As Generic.SortedDictionary(Of Integer, HSMeshDataComposition5)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property MeshDataComposition5() As Generic.SortedDictionary(Of Integer, HSMeshDataComposition5)
+        Get
+            Return m_collection55
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSMeshDataComposition5))
+            m_collection55 = value
+        End Set
+    End Property
+    Protected m_collection56 As Generic.SortedDictionary(Of Integer, HSMeshDataComposition6)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property MeshDataComposition6() As Generic.SortedDictionary(Of Integer, HSMeshDataComposition6)
+        Get
+            Return m_collection56
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSMeshDataComposition6))
+            m_collection56 = value
+        End Set
+    End Property
     Protected m_collection6 As Generic.SortedDictionary(Of Integer, HSTemp1)
     ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
 
@@ -216,6 +260,18 @@
         End Set
     End Property
 
+    Protected m_collection8 As Generic.SortedDictionary(Of Integer, HSMat)
+    ' Protected m_status As PipeEditorStatus = PipeEditorStatus.Definir
+
+    Public Property proHSMat() As Generic.SortedDictionary(Of Integer, HSMat)
+        Get
+            Return m_collection8
+        End Get
+        Set(ByVal value As Generic.SortedDictionary(Of Integer, HSMat))
+            m_collection8 = value
+        End Set
+    End Property
+
     Public Sub New()
         m_collection0 = New Generic.SortedDictionary(Of Integer, HSGapDeformation)
         m_collection = New Generic.SortedDictionary(Of Integer, HSMeshDataFormat1)
@@ -224,8 +280,13 @@
         m_collection4 = New Generic.SortedDictionary(Of Integer, HSMeshDataWithDecay)
         m_collection5 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition)
         m_collection52 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition2)
+        m_collection53 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition3)
+        m_collection54 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition4)
+        m_collection55 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition5)
+        m_collection56 = New Generic.SortedDictionary(Of Integer, HSMeshDataComposition6)
         m_collection6 = New Generic.SortedDictionary(Of Integer, HSTemp1)
         m_collection7 = New Generic.SortedDictionary(Of Integer, HSTemp2)
+        m_collection8 = New Generic.SortedDictionary(Of Integer, HSMat)
     End Sub
     Public Overrides Function ToString() As String
         Return "Click to Edit..."
@@ -443,6 +504,102 @@ End Class
         Me._MeshIntervalNumber4 = MeshIntervalNumber4
     End Sub
 End Class
+<System.Serializable()> Public Class HSMeshDataComposition3
+    Private _CompositionNumber3 As Double
+    Public Property CompositionNumber3() As Double
+        Get
+            Return _CompositionNumber3
+        End Get
+        Set(ByVal value As Double)
+            _CompositionNumber3 = value
+        End Set
+    End Property
+    Private _MeshIntervalNumber33 As Double
+    Public Property MeshIntervalNumber33() As Double
+        Get
+            Return _MeshIntervalNumber33
+        End Get
+        Set(ByVal value As Double)
+            _MeshIntervalNumber33 = value
+        End Set
+    End Property
+    Public Sub New(ByVal CompositionNumber3 As Double, ByVal MeshIntervalNumber33 As Double)
+        Me._CompositionNumber3 = CompositionNumber3
+        Me._MeshIntervalNumber33 = MeshIntervalNumber33
+    End Sub
+End Class
+<System.Serializable()> Public Class HSMeshDataComposition4
+    Private _CompositionNumber4 As Double
+    Public Property CompositionNumber4() As Double
+        Get
+            Return _CompositionNumber4
+        End Get
+        Set(ByVal value As Double)
+            _CompositionNumber4 = value
+        End Set
+    End Property
+    Private _MeshIntervalNumber34 As Double
+    Public Property MeshIntervalNumber34() As Double
+        Get
+            Return _MeshIntervalNumber34
+        End Get
+        Set(ByVal value As Double)
+            _MeshIntervalNumber34 = value
+        End Set
+    End Property
+    Public Sub New(ByVal CompositionNumber4 As Double, ByVal MeshIntervalNumber34 As Double)
+        Me._CompositionNumber4 = CompositionNumber4
+        Me._MeshIntervalNumber34 = MeshIntervalNumber34
+    End Sub
+End Class
+<System.Serializable()> Public Class HSMeshDataComposition5
+    Private _CompositionNumber5 As Double
+    Public Property CompositionNumber5() As Double
+        Get
+            Return _CompositionNumber5
+        End Get
+        Set(ByVal value As Double)
+            _CompositionNumber5 = value
+        End Set
+    End Property
+    Private _MeshIntervalNumber35 As Double
+    Public Property MeshIntervalNumber35() As Double
+        Get
+            Return _MeshIntervalNumber35
+        End Get
+        Set(ByVal value As Double)
+            _MeshIntervalNumber35 = value
+        End Set
+    End Property
+    Public Sub New(ByVal CompositionNumber5 As Double, ByVal MeshIntervalNumber35 As Double)
+        Me._CompositionNumber5 = CompositionNumber5
+        Me._MeshIntervalNumber35 = MeshIntervalNumber35
+    End Sub
+End Class
+<System.Serializable()> Public Class HSMeshDataComposition6
+    Private _CompositionNumber6 As Double
+    Public Property CompositionNumber6() As Double
+        Get
+            Return _CompositionNumber6
+        End Get
+        Set(ByVal value As Double)
+            _CompositionNumber6 = value
+        End Set
+    End Property
+    Private _MeshIntervalNumber36 As Double
+    Public Property MeshIntervalNumber36() As Double
+        Get
+            Return _MeshIntervalNumber36
+        End Get
+        Set(ByVal value As Double)
+            _MeshIntervalNumber36 = value
+        End Set
+    End Property
+    Public Sub New(ByVal CompositionNumber6 As Double, ByVal MeshIntervalNumber36 As Double)
+        Me._CompositionNumber6 = CompositionNumber6
+        Me._MeshIntervalNumber36 = MeshIntervalNumber36
+    End Sub
+End Class
 <System.Serializable()> Public Class HSTemp1
     Private _Temp1Temperature As Double
     Public Property Temp1Temperature() As Double
@@ -491,6 +648,67 @@ End Class
     Public Sub New(ByVal Temp2GammaAttenCo As Double, ByVal Temp2MeshIntervalNumber As Double)
         Me._Temp2GammaAttenCo = Temp2GammaAttenCo
         Me._Temp2MeshIntervalNumber = Temp2MeshIntervalNumber
+    End Sub
+
+End Class
+<System.Serializable()> Public Class HSMat
+    Private _CompositionMat As String
+    Public Property CompositionMat() As String
+        Get
+            Return _CompositionMat
+        End Get
+        Set(ByVal value As String)
+            _CompositionMat = value
+        End Set
+    End Property
+    Private _MaterialNumber As Double
+    Public Property MaterialNumber() As Double
+        Get
+            Return _MaterialNumber
+        End Get
+        Set(ByVal value As Double)
+            _MaterialNumber = value
+        End Set
+    End Property
+
+    Private _RegionIncluded As Boolean
+    Public Property RegionIncluded() As Boolean
+        Get
+            Return _RegionIncluded
+        End Get
+        Set(ByVal value As Boolean)
+            _RegionIncluded = value
+        End Set
+    End Property
+
+    Private _gapmodel As Boolean
+    Public Property gapmodel() As Boolean
+        Get
+            Return _gapmodel
+        End Get
+        Set(ByVal value As Boolean)
+            _gapmodel = value
+        End Set
+    End Property
+
+    Private _HSnum As Double
+    Public Property HSnum() As Double
+        Get
+            Return _HSnum
+        End Get
+        Set(ByVal value As Double)
+            _HSnum = value
+        End Set
+    End Property
+
+
+
+    Public Sub New(ByVal CompositionMat As String, ByVal MaterialNumber As Double, ByVal RegionIncluded As Boolean, ByVal gapmodel As Boolean, ByVal HSnum As Double)
+        Me._CompositionMat = CompositionMat
+        Me._MaterialNumber = MaterialNumber
+        Me._RegionIncluded = RegionIncluded
+        Me._gapmodel = gapmodel
+        Me._HSnum = HSnum
     End Sub
 
 End Class

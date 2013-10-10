@@ -995,6 +995,40 @@ Public Class frmSurface
                 myCOTK.GraphicObject = myVolume
                 ChildParent.Collections.ObjectCollection.Add(myVolume.Name, myCOTK)
                 ChildParent.Collections.CLCS_SingleVolumeCollection.Add(myVolume.Name, myCOTK)
+            Case TipoObjeto.Accumulator
+                Dim myVolume As New SubSystemGraphic(mpx, mpy, 50, 40, 0)
+                myVolume.LineWidth = 2
+                myVolume.Fill = True
+                myVolume.FillColor = fillclr
+                myVolume.LineColor = lineclr
+                myVolume.Tag = "ACC" & Format(ChildParent.Collections.ObjectCounter("Accumulator"), "00#")
+                ChildParent.Collections.UpdateCounter("Accumulator")
+                If tag <> "" Then myVolume.Tag = tag
+                gObj = myVolume
+                gObj.Name = "ACCUM-" & Guid.NewGuid.ToString
+                ChildParent.Collections.AccumulatorCollection.Add(gObj.Name, myVolume)
+
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Accumulator = New RELAP.SimulationObjects.UnitOps.Accumulator(myVolume.Name, "Accumulator")
+                myCOTK.GraphicObject = myVolume
+                ChildParent.Collections.ObjectCollection.Add(myVolume.Name, myCOTK)
+                ChildParent.Collections.CLCS_AccumulatorCollection.Add(myVolume.Name, myCOTK)
+            Case TipoObjeto.Turbine
+                Dim myVolume As New TurbineGraphic(mpx, mpy, 50, 40, 0)
+                myVolume.LineWidth = 2
+                myVolume.Fill = True
+                myVolume.FillColor = fillclr
+                myVolume.LineColor = lineclr
+                myVolume.Tag = "TRB" & Format(ChildParent.Collections.ObjectCounter("Turbine"), "00#")
+                ChildParent.Collections.UpdateCounter("Turbine")
+                If tag <> "" Then myVolume.Tag = tag
+                gObj = myVolume
+                gObj.Name = "TURBINE-" & Guid.NewGuid.ToString
+                ChildParent.Collections.TurbineCollection.Add(gObj.Name, myVolume)
+
+                Dim myCOTK As RELAP.SimulationObjects.UnitOps.Turbine = New RELAP.SimulationObjects.UnitOps.Turbine(myVolume.Name, "Turbine")
+                myCOTK.GraphicObject = myVolume
+                ChildParent.Collections.ObjectCollection.Add(myVolume.Name, myCOTK)
+                ChildParent.Collections.CLCS_TurbineCollection.Add(myVolume.Name, myCOTK)
             Case TipoObjeto.Pump
                 Dim myPump As New PumpGraphic(mpx, mpy, 50, 50, 0)
                 myPump.LineWidth = 2
@@ -1272,6 +1306,10 @@ Public Class frmSurface
                     tobj = TipoObjeto.Pump
                 Case "Tanque"
                     tobj = TipoObjeto.Tank
+                Case "Accumulator"
+                    tobj = TipoObjeto.Accumulator
+                Case "Turbinas"
+                    tobj = TipoObjeto.Turbine
                 Case "VasoSeparadorGL"
                     tobj = TipoObjeto.Vessel
                 Case "CorrentedeMatria"
