@@ -46,7 +46,6 @@ Partial Class FormMain
         Me.MostrarBarraDeFerramentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenerateInputFileOnlyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenerateInputFileAndRunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TileVerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -210,7 +209,7 @@ Partial Class FormMain
         Me.CloseAllToolstripMenuItem.Image = Global.RELAP.My.Resources.Resources.cross
         Me.CloseAllToolstripMenuItem.Name = "CloseAllToolstripMenuItem"
         Me.CloseAllToolstripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-                    Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
+            Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
         Me.CloseAllToolstripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.CloseAllToolstripMenuItem.Text = "Close All"
         '
@@ -253,7 +252,7 @@ Partial Class FormMain
         '
         'RunToolStripMenuItem
         '
-        Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem, Me.GenerateInputFileAndRunToolStripMenuItem})
+        Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem})
         Me.RunToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.RunToolStripMenuItem.Name = "RunToolStripMenuItem"
         Me.RunToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
@@ -262,14 +261,8 @@ Partial Class FormMain
         'GenerateInputFileOnlyToolStripMenuItem
         '
         Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
-        Me.GenerateInputFileOnlyToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.GenerateInputFileOnlyToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.GenerateInputFileOnlyToolStripMenuItem.Text = "Generate Input File Only"
-        '
-        'GenerateInputFileAndRunToolStripMenuItem
-        '
-        Me.GenerateInputFileAndRunToolStripMenuItem.Name = "GenerateInputFileAndRunToolStripMenuItem"
-        Me.GenerateInputFileAndRunToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
-        Me.GenerateInputFileAndRunToolStripMenuItem.Text = "Generate Input File and Run"
         '
         'WindowsMenu
         '
@@ -548,8 +541,8 @@ Partial Class FormMain
         '
         Me.OpenFileDialog1.DefaultExt = "RELAP"
         Me.OpenFileDialog1.Filter = "Steady-state Simulation (*.RELAP)|*.RELAP|Compound Creator Study (*.dwcsd)|*.dwcs" & _
-            "d|Data Regression Study (*.dwrsd)|*.dwrsd|All RELAP Files (*.RELAP, *.dwcsd, *.d" & _
-            "wrsd)|*.RELAP;*.dwcsd;*.dwrsd"
+    "d|Data Regression Study (*.dwrsd)|*.dwrsd|All RELAP Files (*.RELAP, *.dwcsd, *.d" & _
+    "wrsd)|*.RELAP;*.dwcsd;*.dwrsd"
         Me.OpenFileDialog1.FilterIndex = 4
         Me.OpenFileDialog1.RestoreDirectory = True
         Me.OpenFileDialog1.Title = "Open existing simulation"
@@ -816,7 +809,6 @@ Partial Class FormMain
     Friend WithEvents SaveRegStudyDlg As System.Windows.Forms.SaveFileDialog
     Friend WithEvents RunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GenerateInputFileOnlyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents GenerateInputFileAndRunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
 
