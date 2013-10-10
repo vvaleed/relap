@@ -41,9 +41,6 @@ Partial Class FormMain
         Me.CloseAllToolstripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PreferênciasDoRELAPToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MostrarBarraDeFerramentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenerateInputFileOnlyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
@@ -54,15 +51,6 @@ Partial Class FormMain
         Me.ContentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.RELAPNaInternetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BlogDeDesenvolvimentoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DownloadsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WikiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ForumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RastreamentoDeBugsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RegistroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RegistrarTiposCOMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DonateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.NewToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -71,14 +59,11 @@ Partial Class FormMain
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.SaveAllToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
         Me.BgLoadComp = New System.ComponentModel.BackgroundWorker()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -107,7 +92,7 @@ Partial Class FormMain
         'MenuStrip1
         '
         Me.MenuStrip1.AllowItemReorder = True
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VerToolStripMenuItem, Me.RunToolStripMenuItem, Me.WindowsMenu, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.RunToolStripMenuItem, Me.WindowsMenu, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -224,31 +209,7 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
-        Me.ExitToolStripMenuItem.Text = "Exi&t RELAP"
-        '
-        'VerToolStripMenuItem
-        '
-        Me.VerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreferênciasDoRELAPToolStripMenuItem, Me.MostrarBarraDeFerramentasToolStripMenuItem})
-        Me.VerToolStripMenuItem.Name = "VerToolStripMenuItem"
-        Me.VerToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
-        Me.VerToolStripMenuItem.Text = "&Settings"
-        '
-        'PreferênciasDoRELAPToolStripMenuItem
-        '
-        Me.PreferênciasDoRELAPToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.application_edit
-        Me.PreferênciasDoRELAPToolStripMenuItem.Name = "PreferênciasDoRELAPToolStripMenuItem"
-        Me.PreferênciasDoRELAPToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
-        Me.PreferênciasDoRELAPToolStripMenuItem.Text = "General Settings"
-        '
-        'MostrarBarraDeFerramentasToolStripMenuItem
-        '
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.Checked = True
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.CheckOnClick = True
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.Name = "MostrarBarraDeFerramentasToolStripMenuItem"
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
-        Me.MostrarBarraDeFerramentasToolStripMenuItem.Text = "Show Toolstrip"
+        Me.ExitToolStripMenuItem.Text = "Exi&t RIFGen"
         '
         'RunToolStripMenuItem
         '
@@ -301,7 +262,7 @@ Partial Class FormMain
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContentsToolStripMenuItem, Me.toolStripSeparator5, Me.RELAPNaInternetToolStripMenuItem, Me.RegistroToolStripMenuItem, Me.DonateToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContentsToolStripMenuItem, Me.toolStripSeparator5, Me.RELAPNaInternetToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert
         Me.HelpToolStripMenuItem.MergeIndex = 102
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
@@ -313,91 +274,31 @@ Partial Class FormMain
         Me.ContentsToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.help
         Me.ContentsToolStripMenuItem.Name = "ContentsToolStripMenuItem"
         Me.ContentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.ContentsToolStripMenuItem.Text = "&Show Help"
         '
         'toolStripSeparator5
         '
         Me.toolStripSeparator5.Name = "toolStripSeparator5"
-        Me.toolStripSeparator5.Size = New System.Drawing.Size(175, 6)
+        Me.toolStripSeparator5.Size = New System.Drawing.Size(178, 6)
         '
         'RELAPNaInternetToolStripMenuItem
         '
-        Me.RELAPNaInternetToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlogDeDesenvolvimentoToolStripMenuItem, Me.DownloadsToolStripMenuItem, Me.WikiToolStripMenuItem, Me.ForumToolStripMenuItem, Me.RastreamentoDeBugsToolStripMenuItem})
         Me.RELAPNaInternetToolStripMenuItem.Name = "RELAPNaInternetToolStripMenuItem"
-        Me.RELAPNaInternetToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.RELAPNaInternetToolStripMenuItem.Text = "RELAP on the Web"
-        '
-        'BlogDeDesenvolvimentoToolStripMenuItem
-        '
-        Me.BlogDeDesenvolvimentoToolStripMenuItem.Image = CType(resources.GetObject("BlogDeDesenvolvimentoToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.BlogDeDesenvolvimentoToolStripMenuItem.Name = "BlogDeDesenvolvimentoToolStripMenuItem"
-        Me.BlogDeDesenvolvimentoToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
-        Me.BlogDeDesenvolvimentoToolStripMenuItem.Text = "Development Blog"
-        '
-        'DownloadsToolStripMenuItem
-        '
-        Me.DownloadsToolStripMenuItem.Image = CType(resources.GetObject("DownloadsToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.DownloadsToolStripMenuItem.Name = "DownloadsToolStripMenuItem"
-        Me.DownloadsToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
-        Me.DownloadsToolStripMenuItem.Text = "Downloads"
-        '
-        'WikiToolStripMenuItem
-        '
-        Me.WikiToolStripMenuItem.Image = CType(resources.GetObject("WikiToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
-        Me.WikiToolStripMenuItem.Text = "Wiki"
-        '
-        'ForumToolStripMenuItem
-        '
-        Me.ForumToolStripMenuItem.Name = "ForumToolStripMenuItem"
-        Me.ForumToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
-        '
-        'RastreamentoDeBugsToolStripMenuItem
-        '
-        Me.RastreamentoDeBugsToolStripMenuItem.Image = CType(resources.GetObject("RastreamentoDeBugsToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.RastreamentoDeBugsToolStripMenuItem.Name = "RastreamentoDeBugsToolStripMenuItem"
-        Me.RastreamentoDeBugsToolStripMenuItem.Size = New System.Drawing.Size(312, 22)
-        Me.RastreamentoDeBugsToolStripMenuItem.Text = "Bug Tracking / Feature and Support Requests"
-        '
-        'RegistroToolStripMenuItem
-        '
-        Me.RegistroToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegistrarTiposCOMToolStripMenuItem, Me.DeToolStripMenuItem})
-        Me.RegistroToolStripMenuItem.Name = "RegistroToolStripMenuItem"
-        Me.RegistroToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.RegistroToolStripMenuItem.Text = "Registry"
-        '
-        'RegistrarTiposCOMToolStripMenuItem
-        '
-        Me.RegistrarTiposCOMToolStripMenuItem.Name = "RegistrarTiposCOMToolStripMenuItem"
-        Me.RegistrarTiposCOMToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
-        Me.RegistrarTiposCOMToolStripMenuItem.Text = "Register types for COM Interop"
-        '
-        'DeToolStripMenuItem
-        '
-        Me.DeToolStripMenuItem.Name = "DeToolStripMenuItem"
-        Me.DeToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
-        Me.DeToolStripMenuItem.Text = "Unregister types"
-        '
-        'DonateToolStripMenuItem
-        '
-        Me.DonateToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.money_add
-        Me.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem"
-        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.DonateToolStripMenuItem.Text = "Donate!"
+        Me.RELAPNaInternetToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.RELAPNaInternetToolStripMenuItem.Text = "RIFGen on the Web"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.information
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.AboutToolStripMenuItem.Text = "&About RELAP..."
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AboutToolStripMenuItem.Text = "&About RIFGen..."
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.OpenToolStripButton, Me.SaveToolStripButton, Me.ToolStripButton1, Me.SaveAllToolStripButton, Me.ToolStripSeparator3, Me.ToolStripButton2, Me.ToolStripSeparator4, Me.ToolStripButton3, Me.ToolStripButton5, Me.ToolStripButton4, Me.ToolStripSeparator6, Me.ToolStripButton6, Me.ToolStripButton7, Me.ToolStripButton8})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.OpenToolStripButton, Me.SaveToolStripButton, Me.ToolStripButton1, Me.SaveAllToolStripButton, Me.ToolStripSeparator3, Me.ToolStripButton3, Me.ToolStripButton5, Me.ToolStripButton4, Me.ToolStripSeparator6, Me.ToolStripButton6, Me.ToolStripButton8})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.HelpProvider1.SetShowHelp(Me.ToolStrip1, True)
@@ -460,20 +361,6 @@ Partial Class FormMain
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = Global.RELAP.My.Resources.Resources.application_edit
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "General Settings"
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
-        '
         'ToolStripButton3
         '
         Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -514,15 +401,6 @@ Partial Class FormMain
         Me.ToolStripButton6.Name = "ToolStripButton6"
         Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton6.Text = "Show Context-Sensitive Help"
-        '
-        'ToolStripButton7
-        '
-        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton7.Image = Global.RELAP.My.Resources.Resources.money_add
-        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton7.Name = "ToolStripButton7"
-        Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton7.Text = "Donate"
         '
         'ToolStripButton8
         '
@@ -648,7 +526,7 @@ Partial Class FormMain
         Me.Name = "FormMain"
         Me.HelpProvider1.SetShowHelp(Me, True)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "RELAP 5"
+        Me.Text = "RIFGen - RELAP5 Input File Generator"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -690,14 +568,12 @@ Partial Class FormMain
     Public WithEvents CascadeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TileVerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TileHorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents VerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents bgLoadNews As System.ComponentModel.BackgroundWorker
     Public WithEvents StatusBarTextProvider1 As EWSoftware.StatusBarText.StatusBarTextProvider
     Public WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Public WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 
 
-    Public WithEvents PreferênciasDoRELAPToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents TimerBackup As System.Windows.Forms.Timer
     Public WithEvents bgSaveBackup As System.ComponentModel.BackgroundWorker
 
@@ -778,28 +654,15 @@ Partial Class FormMain
 
     End Sub
     Public WithEvents RELAPNaInternetToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents BlogDeDesenvolvimentoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents DownloadsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents WikiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents ForumToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents RastreamentoDeBugsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents DonateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Public WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
-    Public WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
     Public WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
-    Public WithEvents ToolStripButton7 As System.Windows.Forms.ToolStripButton
     Public WithEvents ToolStripButton8 As System.Windows.Forms.ToolStripButton
-    Public WithEvents MostrarBarraDeFerramentasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents sfdUpdater As System.Windows.Forms.SaveFileDialog
     Friend WithEvents HelpProvider1 As System.Windows.Forms.HelpProvider
-    Friend WithEvents RegistroToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RegistrarTiposCOMToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tslupd As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents NovoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents NewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
