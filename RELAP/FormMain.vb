@@ -1,13 +1,13 @@
-﻿'    Copyright 2008 Daniel Wagner O. de Medeiros
+﻿'    
 '
-'    This file is part of RELAP.
+'    This file is part of RIFGen.
 '
-'    RELAP is free software: you can redistribute it and/or modify
+'    RIFGen is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
 '    the Free Software Foundation, either version 3 of the License, or
 '    (at your option) any later version.
 '
-'    RELAP is distributed in the hope that it will be useful,
+'    RIFGen is distributed in the hope that it will be useful,
 '    but WITHOUT ANY WARRANTY; without even the implied warranty of
 '    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 '    GNU General Public License for more details.
@@ -2337,39 +2337,11 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Sub
 
-    Private Sub BlogDeDesenvolvimentoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BlogDeDesenvolvimentoToolStripMenuItem.Click
-        'System.Diagnostics.Process.Start("http://RELAP.inforside.com.br")
-    End Sub
+   
 
-    Private Sub DownloadsToolStripMenuItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DownloadsToolStripMenuItem.Click
-        'System.Diagnostics.Process.Start("http://sourceforge.net/project/showfiles.php?group_id=233626")
-    End Sub
+   
 
-    Private Sub WikiToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles WikiToolStripMenuItem.Click
-        ' System.Diagnostics.Process.Start("http://apps.sourceforge.net/mediawiki/RELAP/")
-    End Sub
-
-    Private Sub FórumToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ForumToolStripMenuItem.Click
-        ' System.Diagnostics.Process.Start("http://sourceforge.net/forum/?group_id=233626")
-    End Sub
-
-    Private Sub RastreamentoDeBugsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RastreamentoDeBugsToolStripMenuItem.Click
-        'System.Diagnostics.Process.Start("http://sourceforge.net/tracker/?group_id=233626")
-    End Sub
-
-    Private Sub DonateToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DonateToolStripMenuItem.Click
-        'System.Diagnostics.Process.Start("http://sourceforge.net/project/project_donations.php?group_id=233626")
-    End Sub
-
-    Private Sub MostrarBarraDeFerramentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MostrarBarraDeFerramentasToolStripMenuItem.Click
-        If Me.MostrarBarraDeFerramentasToolStripMenuItem.Checked Then
-            Me.ToolStrip1.Visible = True
-        Else
-            Me.ToolStrip1.Visible = False
-        End If
-    End Sub
-
-    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         '   Me.PreferênciasDoRELAPToolStripMenuItem_Click(sender, e)
     End Sub
 
@@ -2385,9 +2357,7 @@ sim:                Dim myStream As System.IO.FileStream
         Me.TileHorizontalToolStripMenuItem_Click(sender, e)
     End Sub
 
-    Private Sub ToolStripButton7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton7.Click
-        Me.DonateToolStripMenuItem_Click(sender, e)
-    End Sub
+   
 
     Private Sub ToolStripButton8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton8.Click
         Me.AboutToolStripMenuItem_Click(sender, e)
@@ -2397,14 +2367,14 @@ sim:                Dim myStream As System.IO.FileStream
         My.Computer.Keyboard.SendKeys("{F1}", True)
     End Sub
 
-    Private Sub RegistrarTiposCOMToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RegistrarTiposCOMToolStripMenuItem.Click
+    Private Sub RegistrarTiposCOMToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Dim windir As String = Environment.GetEnvironmentVariable("SystemRoot")
         Process.Start(windir & "\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe", "/codebase /silent " & Chr(34) & My.Application.Info.DirectoryPath & " \RELAP.exe" & Chr(34))
 
     End Sub
 
-    Private Sub DeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeToolStripMenuItem.Click
+    Private Sub DeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Dim windir As String = Environment.GetEnvironmentVariable("SystemRoot")
         Process.Start(windir & "\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe", "/u " & Chr(34) & My.Application.Info.DirectoryPath & " \RELAP.exe" & Chr(34))
@@ -4383,4 +4353,7 @@ sim:                Dim myStream As System.IO.FileStream
     End Sub
 
 
+    Private Sub RELAPNaInternetToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RELAPNaInternetToolStripMenuItem.Click
+        System.Diagnostics.Process.Start("https://relap.codeplex.com/")
+    End Sub
 End Class
