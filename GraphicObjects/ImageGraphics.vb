@@ -21,6 +21,10 @@ Namespace GraphicObjects
             Me.TipoObjeto = GraphicObjects.TipoObjeto.GO_Figura
         End Sub
         Public MustOverride Function GetImage() As Image
+
+        Protected Overrides Sub Finalize()
+            MyBase.Finalize()
+        End Sub
     End Class
 
     <Serializable()> Public Class LinkedImageGraphic

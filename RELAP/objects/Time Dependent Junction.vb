@@ -31,8 +31,12 @@ Namespace RELAP.SimulationObjects.UnitOps
         Protected m_vol As Double = 0
         Protected m_tRes As Double = 0
         Enum Direction
-            Inlet = 1
-            Outlet = 2
+            x_Inlet = 1
+            x_Outlet = 2
+            y_inlet = 3
+            y_outlet = 4
+            z_inlet = 5
+            z_oulet = 6
         End Enum
 
 
@@ -433,8 +437,9 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .CustomEditor = New RELAP.Editors.UIVolumeSelector
                 End With
                 .Item.Add("To Direction", Me, "ToDirection", False, "Connections", "To Direction", True)
-                valor = Me.JunctionArea
-                .Item.Add(FT("Junction Flow Area", su.area), valor, False, "Parameters", "Junction Flow Area", True)
+
+                valor = Format(Me.JunctionArea, FlowSheet.Options.NumberFormat)
+                .Item.Add("Junction Flow Area", valor, False, "Parameters", "Junction Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

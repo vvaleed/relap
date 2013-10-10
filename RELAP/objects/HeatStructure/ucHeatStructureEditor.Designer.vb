@@ -69,14 +69,33 @@ Partial Class ucHeatStructureEditor
         Me.Temp2GammaAttenCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Temp2MeshIntervalNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Tab4 = New System.Windows.Forms.TabPage()
-        Me.dgvComposition = New System.Windows.Forms.DataGridView()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.ComboBoxComp = New System.Windows.Forms.ComboBox()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.dgvComposition6 = New System.Windows.Forms.DataGridView()
+        Me.dgvComposition5 = New System.Windows.Forms.DataGridView()
+        Me.dgvComposition4 = New System.Windows.Forms.DataGridView()
+        Me.dgvComposition3 = New System.Windows.Forms.DataGridView()
+        Me.DgvMat = New System.Windows.Forms.DataGridView()
         Me.dgvComposition2 = New System.Windows.Forms.DataGridView()
-        Me.CompositionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MeshIntervalNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CompositionNumber2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MeshIntervalNumber4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvComposition = New System.Windows.Forms.DataGridView()
+        Me.CompositionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompositionNumber3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompositionNumber4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompositionNumber5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompositionNumber6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MeshIntervalNumber36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompositionMat = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.MaterialNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RegionIncluded = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Gapmodel = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.HSnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,8 +108,13 @@ Partial Class ucHeatStructureEditor
         CType(Me.dgvTemp1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTemp2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Tab4.SuspendLayout()
-        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvComposition2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkboxmeshgeometry
@@ -229,7 +253,7 @@ Partial Class ucHeatStructureEditor
         '
         'cmdsave
         '
-        Me.cmdsave.Location = New System.Drawing.Point(738, 438)
+        Me.cmdsave.Location = New System.Drawing.Point(588, 503)
         Me.cmdsave.Name = "cmdsave"
         Me.cmdsave.Size = New System.Drawing.Size(75, 23)
         Me.cmdsave.TabIndex = 13
@@ -245,7 +269,7 @@ Partial Class ucHeatStructureEditor
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(729, 462)
+        Me.TabControl1.Size = New System.Drawing.Size(1258, 494)
         Me.TabControl1.TabIndex = 14
         '
         'Tab1
@@ -264,7 +288,7 @@ Partial Class ucHeatStructureEditor
         Me.Tab1.Location = New System.Drawing.Point(4, 22)
         Me.Tab1.Name = "Tab1"
         Me.Tab1.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab1.Size = New System.Drawing.Size(721, 436)
+        Me.Tab1.Size = New System.Drawing.Size(1250, 468)
         Me.Tab1.TabIndex = 2
         Me.Tab1.Text = "Gap Conductance Model"
         Me.Tab1.UseVisualStyleBackColor = True
@@ -419,7 +443,7 @@ Partial Class ucHeatStructureEditor
         Me.Tab2.Location = New System.Drawing.Point(4, 22)
         Me.Tab2.Name = "Tab2"
         Me.Tab2.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab2.Size = New System.Drawing.Size(721, 436)
+        Me.Tab2.Size = New System.Drawing.Size(1250, 468)
         Me.Tab2.TabIndex = 0
         Me.Tab2.Text = "Mesh Geometry"
         Me.Tab2.UseVisualStyleBackColor = True
@@ -433,7 +457,7 @@ Partial Class ucHeatStructureEditor
         Me.Tab3.Location = New System.Drawing.Point(4, 22)
         Me.Tab3.Name = "Tab3"
         Me.Tab3.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab3.Size = New System.Drawing.Size(721, 436)
+        Me.Tab3.Size = New System.Drawing.Size(1250, 468)
         Me.Tab3.TabIndex = 1
         Me.Tab3.Text = "Initial Temperature Data"
         Me.Tab3.UseVisualStyleBackColor = True
@@ -501,70 +525,125 @@ Partial Class ucHeatStructureEditor
         '
         'Tab4
         '
+        Me.Tab4.Controls.Add(Me.TextBox10)
+        Me.Tab4.Controls.Add(Me.TextBox9)
+        Me.Tab4.Controls.Add(Me.TextBox8)
+        Me.Tab4.Controls.Add(Me.dgvComposition6)
+        Me.Tab4.Controls.Add(Me.dgvComposition5)
+        Me.Tab4.Controls.Add(Me.dgvComposition4)
+        Me.Tab4.Controls.Add(Me.dgvComposition3)
+        Me.Tab4.Controls.Add(Me.DgvMat)
         Me.Tab4.Controls.Add(Me.dgvComposition2)
-        Me.Tab4.Controls.Add(Me.ComboBoxComp)
-        Me.Tab4.Controls.Add(Me.TextBox4)
         Me.Tab4.Controls.Add(Me.dgvComposition)
         Me.Tab4.Location = New System.Drawing.Point(4, 22)
         Me.Tab4.Name = "Tab4"
         Me.Tab4.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab4.Size = New System.Drawing.Size(721, 436)
+        Me.Tab4.Size = New System.Drawing.Size(1250, 468)
         Me.Tab4.TabIndex = 3
         Me.Tab4.Text = "Composition"
         Me.Tab4.UseVisualStyleBackColor = True
         '
-        'dgvComposition
+        'TextBox10
         '
-        Me.dgvComposition.AccessibleDescription = "                            "
-        Me.dgvComposition.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
-        Me.dgvComposition.Location = New System.Drawing.Point(16, 78)
-        Me.dgvComposition.Name = "dgvComposition"
-        Me.dgvComposition.Size = New System.Drawing.Size(264, 352)
-        Me.dgvComposition.TabIndex = 11
+        Me.TextBox10.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox10.Location = New System.Drawing.Point(841, 157)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.ReadOnly = True
+        Me.TextBox10.Size = New System.Drawing.Size(100, 13)
+        Me.TextBox10.TabIndex = 22
+        Me.TextBox10.Text = "Material No. 3"
         '
-        'TextBox4
+        'TextBox9
         '
-        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(16, 19)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(100, 13)
-        Me.TextBox4.TabIndex = 12
-        Me.TextBox4.Text = "Composition Data"
+        Me.TextBox9.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox9.Location = New System.Drawing.Point(430, 157)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.ReadOnly = True
+        Me.TextBox9.Size = New System.Drawing.Size(100, 13)
+        Me.TextBox9.TabIndex = 21
+        Me.TextBox9.Text = "Material No. 2"
         '
-        'ComboBoxComp
+        'TextBox8
         '
-        Me.ComboBoxComp.FormattingEnabled = True
-        Me.ComboBoxComp.Items.AddRange(New Object() {"s-steel", "c-steel", "uo2", "zr", "Insert Table"})
-        Me.ComboBoxComp.Location = New System.Drawing.Point(16, 38)
-        Me.ComboBoxComp.Name = "ComboBoxComp"
-        Me.ComboBoxComp.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBoxComp.TabIndex = 13
+        Me.TextBox8.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox8.Location = New System.Drawing.Point(16, 157)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.ReadOnly = True
+        Me.TextBox8.Size = New System.Drawing.Size(100, 13)
+        Me.TextBox8.TabIndex = 20
+        Me.TextBox8.Text = "Material No. 1"
+        '
+        'dgvComposition6
+        '
+        Me.dgvComposition6.AccessibleDescription = "                            "
+        Me.dgvComposition6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvComposition6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition6.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber6, Me.MeshIntervalNumber36})
+        Me.dgvComposition6.Location = New System.Drawing.Point(1033, 186)
+        Me.dgvComposition6.Name = "dgvComposition6"
+        Me.dgvComposition6.Size = New System.Drawing.Size(184, 276)
+        Me.dgvComposition6.TabIndex = 19
+        '
+        'dgvComposition5
+        '
+        Me.dgvComposition5.AccessibleDescription = "                            "
+        Me.dgvComposition5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvComposition5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition5.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber5, Me.MeshIntervalNumber35})
+        Me.dgvComposition5.Location = New System.Drawing.Point(841, 186)
+        Me.dgvComposition5.Name = "dgvComposition5"
+        Me.dgvComposition5.Size = New System.Drawing.Size(186, 276)
+        Me.dgvComposition5.TabIndex = 18
+        '
+        'dgvComposition4
+        '
+        Me.dgvComposition4.AccessibleDescription = "                            "
+        Me.dgvComposition4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvComposition4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber4, Me.MeshIntervalNumber34})
+        Me.dgvComposition4.Location = New System.Drawing.Point(622, 186)
+        Me.dgvComposition4.Name = "dgvComposition4"
+        Me.dgvComposition4.Size = New System.Drawing.Size(184, 276)
+        Me.dgvComposition4.TabIndex = 17
+        '
+        'dgvComposition3
+        '
+        Me.dgvComposition3.AccessibleDescription = "                            "
+        Me.dgvComposition3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvComposition3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber3, Me.MeshIntervalNumber33})
+        Me.dgvComposition3.Location = New System.Drawing.Point(430, 186)
+        Me.dgvComposition3.Name = "dgvComposition3"
+        Me.dgvComposition3.Size = New System.Drawing.Size(186, 276)
+        Me.dgvComposition3.TabIndex = 16
+        '
+        'DgvMat
+        '
+        Me.DgvMat.AccessibleDescription = "                            "
+        Me.DgvMat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DgvMat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvMat.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionMat, Me.MaterialNumber, Me.RegionIncluded, Me.Gapmodel, Me.HSnum})
+        Me.DgvMat.Location = New System.Drawing.Point(16, 16)
+        Me.DgvMat.Name = "DgvMat"
+        Me.DgvMat.Size = New System.Drawing.Size(477, 124)
+        Me.DgvMat.TabIndex = 15
         '
         'dgvComposition2
         '
         Me.dgvComposition2.AccessibleDescription = "                            "
+        Me.dgvComposition2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvComposition2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvComposition2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber2, Me.MeshIntervalNumber4})
-        Me.dgvComposition2.Location = New System.Drawing.Point(352, 78)
+        Me.dgvComposition2.Location = New System.Drawing.Point(208, 186)
         Me.dgvComposition2.Name = "dgvComposition2"
-        Me.dgvComposition2.Size = New System.Drawing.Size(256, 352)
+        Me.dgvComposition2.Size = New System.Drawing.Size(184, 276)
         Me.dgvComposition2.TabIndex = 14
-        '
-        'CompositionNumber
-        '
-        Me.CompositionNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.CompositionNumber.HeaderText = "Temperature"
-        Me.CompositionNumber.Name = "CompositionNumber"
-        '
-        'MeshIntervalNumber3
-        '
-        Me.MeshIntervalNumber3.HeaderText = "Thermal Conductivity"
-        Me.MeshIntervalNumber3.Name = "MeshIntervalNumber3"
         '
         'CompositionNumber2
         '
@@ -577,14 +656,111 @@ Partial Class ucHeatStructureEditor
         Me.MeshIntervalNumber4.HeaderText = "Heat Capacity"
         Me.MeshIntervalNumber4.Name = "MeshIntervalNumber4"
         '
+        'dgvComposition
+        '
+        Me.dgvComposition.AccessibleDescription = "                            "
+        Me.dgvComposition.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvComposition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvComposition.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompositionNumber, Me.MeshIntervalNumber3})
+        Me.dgvComposition.Location = New System.Drawing.Point(16, 186)
+        Me.dgvComposition.Name = "dgvComposition"
+        Me.dgvComposition.Size = New System.Drawing.Size(186, 276)
+        Me.dgvComposition.TabIndex = 11
+        '
+        'CompositionNumber
+        '
+        Me.CompositionNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber.HeaderText = "Temperature"
+        Me.CompositionNumber.Name = "CompositionNumber"
+        '
+        'MeshIntervalNumber3
+        '
+        Me.MeshIntervalNumber3.HeaderText = "Thermal Conductivity"
+        Me.MeshIntervalNumber3.Name = "MeshIntervalNumber3"
+        '
+        'CompositionNumber3
+        '
+        Me.CompositionNumber3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber3.HeaderText = "Temperature"
+        Me.CompositionNumber3.Name = "CompositionNumber3"
+        '
+        'MeshIntervalNumber33
+        '
+        Me.MeshIntervalNumber33.HeaderText = "Thermal Conductivity"
+        Me.MeshIntervalNumber33.Name = "MeshIntervalNumber33"
+        '
+        'CompositionNumber4
+        '
+        Me.CompositionNumber4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber4.HeaderText = "Temperature"
+        Me.CompositionNumber4.Name = "CompositionNumber4"
+        '
+        'MeshIntervalNumber34
+        '
+        Me.MeshIntervalNumber34.HeaderText = "Heat Capacity"
+        Me.MeshIntervalNumber34.Name = "MeshIntervalNumber34"
+        '
+        'CompositionNumber5
+        '
+        Me.CompositionNumber5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber5.HeaderText = "Temperature"
+        Me.CompositionNumber5.Name = "CompositionNumber5"
+        '
+        'MeshIntervalNumber35
+        '
+        Me.MeshIntervalNumber35.HeaderText = "Thermal Conductivity"
+        Me.MeshIntervalNumber35.Name = "MeshIntervalNumber35"
+        '
+        'CompositionNumber6
+        '
+        Me.CompositionNumber6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionNumber6.HeaderText = "Temperature"
+        Me.CompositionNumber6.Name = "CompositionNumber6"
+        '
+        'MeshIntervalNumber36
+        '
+        Me.MeshIntervalNumber36.HeaderText = "Heat Capacity"
+        Me.MeshIntervalNumber36.Name = "MeshIntervalNumber36"
+        '
+        'CompositionMat
+        '
+        Me.CompositionMat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CompositionMat.HeaderText = "Composition Material"
+        Me.CompositionMat.Items.AddRange(New Object() {"s-steel", "c-steel", "uo2", "zr", "Insert Table"})
+        Me.CompositionMat.Name = "CompositionMat"
+        Me.CompositionMat.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.CompositionMat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'MaterialNumber
+        '
+        Me.MaterialNumber.HeaderText = "Material Number"
+        Me.MaterialNumber.Name = "MaterialNumber"
+        '
+        'RegionIncluded
+        '
+        Me.RegionIncluded.HeaderText = "Region Included"
+        Me.RegionIncluded.Name = "RegionIncluded"
+        Me.RegionIncluded.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.RegionIncluded.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'Gapmodel
+        '
+        Me.Gapmodel.HeaderText = "Gap Model"
+        Me.Gapmodel.Name = "Gapmodel"
+        '
+        'HSnum
+        '
+        Me.HSnum.HeaderText = "Mesh Interval Number"
+        Me.HSnum.Name = "HSnum"
+        '
         'ucHeatStructureEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.cmdsave)
         Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.cmdsave)
         Me.Name = "ucHeatStructureEditor"
-        Me.Size = New System.Drawing.Size(821, 465)
+        Me.Size = New System.Drawing.Size(1273, 533)
         CType(Me.dgvformat1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvformat2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvNoDecay, System.ComponentModel.ISupportInitialize).EndInit()
@@ -601,8 +777,13 @@ Partial Class ucHeatStructureEditor
         CType(Me.dgvTemp2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Tab4.ResumeLayout(False)
         Me.Tab4.PerformLayout()
-        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvComposition2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvComposition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -653,13 +834,32 @@ Partial Class ucHeatStructureEditor
     Friend WithEvents ChkboxGapConductance As System.Windows.Forms.CheckBox
     Friend WithEvents ChkBoxInitialTemp As System.Windows.Forms.CheckBox
     Friend WithEvents Tab4 As System.Windows.Forms.TabPage
-    Friend WithEvents ComboBoxComp As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
     Friend WithEvents dgvComposition As System.Windows.Forms.DataGridView
     Friend WithEvents dgvComposition2 As System.Windows.Forms.DataGridView
     Friend WithEvents CompositionNumber2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshIntervalNumber4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CompositionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MeshIntervalNumber3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DgvMat As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvComposition6 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvComposition5 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvComposition4 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvComposition3 As System.Windows.Forms.DataGridView
+    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
+    Friend WithEvents CompositionNumber6 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MeshIntervalNumber36 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CompositionNumber5 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MeshIntervalNumber35 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CompositionNumber4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MeshIntervalNumber34 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CompositionNumber3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MeshIntervalNumber33 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CompositionMat As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents MaterialNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RegionIncluded As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents Gapmodel As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents HSnum As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

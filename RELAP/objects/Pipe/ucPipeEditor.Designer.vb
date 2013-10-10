@@ -42,6 +42,13 @@ Partial Class ucPipeEditor
         Me.cmdCopy = New System.Windows.Forms.Button()
         Me.cmdPaste = New System.Windows.Forms.Button()
         Me.dgv2 = New System.Windows.Forms.DataGridView()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.cmdSave = New System.Windows.Forms.Button()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.JunctionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -53,19 +60,11 @@ Partial Class ucPipeEditor
         Me.SmoothAreaChange = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.TwoVelocityMomentumEquations = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.MomentumFlux = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.InterphaseVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EnterVelocityOrMassFlowRate = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.InitialLiquidVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialVaporVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialLiquidMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialVaporMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmdCopy2 = New System.Windows.Forms.Button()
-        Me.cmdPaste2 = New System.Windows.Forms.Button()
-        Me.cmdCopytoAll = New System.Windows.Forms.Button()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.cmdSave = New System.Windows.Forms.Button()
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,117 +215,12 @@ Partial Class ucPipeEditor
         Me.dgv2.AllowUserToDeleteRows = False
         Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.InterphaseVelocity, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate})
+        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate})
         Me.dgv2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgv2.Location = New System.Drawing.Point(0, 0)
         Me.dgv2.Name = "dgv2"
         Me.dgv2.Size = New System.Drawing.Size(1052, 280)
         Me.dgv2.TabIndex = 4
-        '
-        'JunctionNumber
-        '
-        Me.JunctionNumber.HeaderText = "Junction Number"
-        Me.JunctionNumber.Name = "JunctionNumber"
-        Me.JunctionNumber.ReadOnly = True
-        '
-        'JunctionFlowArea
-        '
-        Me.JunctionFlowArea.HeaderText = "Junction Flow Area"
-        Me.JunctionFlowArea.Name = "JunctionFlowArea"
-        '
-        'FflowLossCo
-        '
-        Me.FflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
-        Me.FflowLossCo.Name = "FflowLossCo"
-        '
-        'RflowLossCo
-        '
-        Me.RflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
-        Me.RflowLossCo.Name = "RflowLossCo"
-        '
-        'PVterm
-        '
-        Me.PVterm.HeaderText = "PV Term"
-        Me.PVterm.Name = "PVterm"
-        Me.PVterm.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PVterm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'CCFLModel
-        '
-        Me.CCFLModel.HeaderText = "CCFL Model"
-        Me.CCFLModel.Name = "CCFLModel"
-        Me.CCFLModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.CCFLModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'StratificationEntrainmentModel
-        '
-        Me.StratificationEntrainmentModel.HeaderText = "Horizontal Stratification Entrainment Model "
-        Me.StratificationEntrainmentModel.Name = "StratificationEntrainmentModel"
-        Me.StratificationEntrainmentModel.ReadOnly = True
-        Me.StratificationEntrainmentModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.StratificationEntrainmentModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.StratificationEntrainmentModel.Visible = False
-        '
-        'ChokingModel
-        '
-        Me.ChokingModel.HeaderText = "Choking Model "
-        Me.ChokingModel.Name = "ChokingModel"
-        Me.ChokingModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ChokingModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'SmoothAreaChange
-        '
-        Me.SmoothAreaChange.HeaderText = "Area Change "
-        Me.SmoothAreaChange.Items.AddRange(New Object() {"Smooth Area Change", "Full Abrupt Area Change", "Partial Abrupt Area Change"})
-        Me.SmoothAreaChange.Name = "SmoothAreaChange"
-        Me.SmoothAreaChange.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SmoothAreaChange.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'TwoVelocityMomentumEquations
-        '
-        Me.TwoVelocityMomentumEquations.HeaderText = "Velocity Momentum Equations "
-        Me.TwoVelocityMomentumEquations.Items.AddRange(New Object() {"Two velocity Momentum Equations", "Single velocity Momentum Equations"})
-        Me.TwoVelocityMomentumEquations.Name = "TwoVelocityMomentumEquations"
-        Me.TwoVelocityMomentumEquations.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TwoVelocityMomentumEquations.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'MomentumFlux
-        '
-        Me.MomentumFlux.HeaderText = "Momentum Flux"
-        Me.MomentumFlux.Items.AddRange(New Object() {"To and From Volume", "Only From Volume", "Only To Volume", "Do not use Momentum Flux"})
-        Me.MomentumFlux.Name = "MomentumFlux"
-        Me.MomentumFlux.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.MomentumFlux.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'InterphaseVelocity
-        '
-        Me.InterphaseVelocity.HeaderText = "Interphase Velocity"
-        Me.InterphaseVelocity.Name = "InterphaseVelocity"
-        '
-        'EnterVelocityOrMassFlowRate
-        '
-        Me.EnterVelocityOrMassFlowRate.HeaderText = "Check for mass flow rates"
-        Me.EnterVelocityOrMassFlowRate.Name = "EnterVelocityOrMassFlowRate"
-        '
-        'InitialLiquidVelocity
-        '
-        Me.InitialLiquidVelocity.HeaderText = "Initial Liquid Velocity"
-        Me.InitialLiquidVelocity.Name = "InitialLiquidVelocity"
-        '
-        'InitialVaporVelocity
-        '
-        Me.InitialVaporVelocity.HeaderText = "Initial Vapor Velocity"
-        Me.InitialVaporVelocity.Name = "InitialVaporVelocity"
-        '
-        'InitialLiquidMassFlowRate
-        '
-        Me.InitialLiquidMassFlowRate.HeaderText = "Initial Liquid Mass Flow Rate"
-        Me.InitialLiquidMassFlowRate.Name = "InitialLiquidMassFlowRate"
-        '
-        'InitialVaporMassFlowRate
-        '
-        Me.InitialVaporMassFlowRate.HeaderText = "Initial Vapor Mass Flow Rate"
-        Me.InitialVaporMassFlowRate.Name = "InitialVaporMassFlowRate"
         '
         'cmdCopy2
         '
@@ -425,6 +319,106 @@ Partial Class ucPipeEditor
         Me.SplitContainer3.SplitterDistance = 280
         Me.SplitContainer3.TabIndex = 12
         '
+        'JunctionNumber
+        '
+        Me.JunctionNumber.HeaderText = "Junction Number"
+        Me.JunctionNumber.Name = "JunctionNumber"
+        Me.JunctionNumber.ReadOnly = True
+        '
+        'JunctionFlowArea
+        '
+        Me.JunctionFlowArea.HeaderText = "Junction Flow Area"
+        Me.JunctionFlowArea.Name = "JunctionFlowArea"
+        '
+        'FflowLossCo
+        '
+        Me.FflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
+        Me.FflowLossCo.Name = "FflowLossCo"
+        '
+        'RflowLossCo
+        '
+        Me.RflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
+        Me.RflowLossCo.Name = "RflowLossCo"
+        '
+        'PVterm
+        '
+        Me.PVterm.HeaderText = "PV Term"
+        Me.PVterm.Name = "PVterm"
+        Me.PVterm.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PVterm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'CCFLModel
+        '
+        Me.CCFLModel.HeaderText = "CCFL Model"
+        Me.CCFLModel.Name = "CCFLModel"
+        Me.CCFLModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.CCFLModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StratificationEntrainmentModel
+        '
+        Me.StratificationEntrainmentModel.HeaderText = "Horizontal Stratification Entrainment Model "
+        Me.StratificationEntrainmentModel.Name = "StratificationEntrainmentModel"
+        Me.StratificationEntrainmentModel.ReadOnly = True
+        Me.StratificationEntrainmentModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StratificationEntrainmentModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.StratificationEntrainmentModel.Visible = False
+        '
+        'ChokingModel
+        '
+        Me.ChokingModel.HeaderText = "Choking Model "
+        Me.ChokingModel.Name = "ChokingModel"
+        Me.ChokingModel.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ChokingModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'SmoothAreaChange
+        '
+        Me.SmoothAreaChange.HeaderText = "Area Change "
+        Me.SmoothAreaChange.Items.AddRange(New Object() {"Smooth Area Change", "Full Abrupt Area Change", "Partial Abrupt Area Change"})
+        Me.SmoothAreaChange.Name = "SmoothAreaChange"
+        Me.SmoothAreaChange.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SmoothAreaChange.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'TwoVelocityMomentumEquations
+        '
+        Me.TwoVelocityMomentumEquations.HeaderText = "Velocity Momentum Equations "
+        Me.TwoVelocityMomentumEquations.Items.AddRange(New Object() {"Two velocity Momentum Equations", "Single velocity Momentum Equations"})
+        Me.TwoVelocityMomentumEquations.Name = "TwoVelocityMomentumEquations"
+        Me.TwoVelocityMomentumEquations.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TwoVelocityMomentumEquations.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'MomentumFlux
+        '
+        Me.MomentumFlux.HeaderText = "Momentum Flux"
+        Me.MomentumFlux.Items.AddRange(New Object() {"To and From Volume", "Only From Volume", "Only To Volume", "Do not use Momentum Flux"})
+        Me.MomentumFlux.Name = "MomentumFlux"
+        Me.MomentumFlux.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.MomentumFlux.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'EnterVelocityOrMassFlowRate
+        '
+        Me.EnterVelocityOrMassFlowRate.HeaderText = "Check for mass flow rates"
+        Me.EnterVelocityOrMassFlowRate.Name = "EnterVelocityOrMassFlowRate"
+        '
+        'InitialLiquidVelocity
+        '
+        Me.InitialLiquidVelocity.HeaderText = "Initial Liquid Velocity"
+        Me.InitialLiquidVelocity.Name = "InitialLiquidVelocity"
+        '
+        'InitialVaporVelocity
+        '
+        Me.InitialVaporVelocity.HeaderText = "Initial Vapor Velocity"
+        Me.InitialVaporVelocity.Name = "InitialVaporVelocity"
+        '
+        'InitialLiquidMassFlowRate
+        '
+        Me.InitialLiquidMassFlowRate.HeaderText = "Initial Liquid Mass Flow Rate"
+        Me.InitialLiquidMassFlowRate.Name = "InitialLiquidMassFlowRate"
+        '
+        'InitialVaporMassFlowRate
+        '
+        Me.InitialVaporMassFlowRate.HeaderText = "Initial Vapor Mass Flow Rate"
+        Me.InitialVaporMassFlowRate.Name = "InitialVaporMassFlowRate"
+        '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -472,6 +466,10 @@ Partial Class ucPipeEditor
     Friend WithEvents ComputeWallFriction As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents EquilibriumTemperature As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitContainer3 As System.Windows.Forms.SplitContainer
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
     Friend WithEvents JunctionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents JunctionFlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -483,15 +481,10 @@ Partial Class ucPipeEditor
     Friend WithEvents SmoothAreaChange As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents TwoVelocityMomentumEquations As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents MomentumFlux As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents InterphaseVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EnterVelocityOrMassFlowRate As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents InitialLiquidVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialVaporVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialLiquidMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialVaporMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
-    Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
-    Friend WithEvents SplitContainer3 As System.Windows.Forms.SplitContainer
-    Friend WithEvents cmdSave As System.Windows.Forms.Button
 
 End Class

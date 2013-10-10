@@ -41,6 +41,8 @@ Namespace GraphicObjects
         Branch
         Separator
         Valve
+        Accumulator
+        Turbine
         Nenhum
         GO_Tabela
         GO_Texto

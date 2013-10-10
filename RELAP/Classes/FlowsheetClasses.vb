@@ -45,6 +45,8 @@ Namespace RELAP.FormClasses
         Public AnnulusCollection As Dictionary(Of String, AnnulusGraphic)
         Public BranchCollection As Dictionary(Of String, BranchGraphic)
         Public SeparatorCollection As Dictionary(Of String, SeparatorGraphic)
+        Public TurbineCollection As Dictionary(Of String, TurbineGraphic)
+        Public AccumulatorCollection As Dictionary(Of String, SubSystemGraphic)
         Public ValveCollection As Dictionary(Of String, ValveGraphic)
         Public SingleVolumeCollection As Dictionary(Of String, SingleVolumeGraphic)
         Public SingleJunctionCollection As Dictionary(Of String, SingleJunctionGraphic)
@@ -56,7 +58,6 @@ Namespace RELAP.FormClasses
         Public SimulatorCollection As Dictionary(Of String, SimulatorGraphic)
         Public ConnectorCollection As Dictionary(Of String, ConnectorGraphic)
         Public TPSeparatorCollection As Dictionary(Of String, TPVesselGraphic)
-        Public TurbineCollection As Dictionary(Of String, TurbineGraphic)
         Public MixerENCollection As Dictionary(Of String, NodeEnGraphic)
         Public AdjustCollection As Dictionary(Of String, AdjustGraphic)
         Public SpecCollection As Dictionary(Of String, SpecGraphic)
@@ -97,6 +98,8 @@ Namespace RELAP.FormClasses
         Public CLCS_BranchCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Branch)
         Public CLCS_SeparatorCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Separator)
         Public CLCS_ValveCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
+        Public CLCS_TurbineCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Turbine)
+        Public CLCS_AccumulatorCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Accumulator)
         Public CLCS_SimulatorCollection As Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
 
 
@@ -116,6 +119,7 @@ Namespace RELAP.FormClasses
             BranchCollection = New Dictionary(Of String, BranchGraphic)
             SeparatorCollection = New Dictionary(Of String, SeparatorGraphic)
             ValveCollection = New Dictionary(Of String, ValveGraphic)
+            AccumulatorCollection = New Dictionary(Of String, SubSystemGraphic)
             SingleVolumeCollection = New Dictionary(Of String, SingleVolumeGraphic)
             SingleJunctionCollection = New Dictionary(Of String, SingleJunctionGraphic)
             TimeDependentJunctionCollection = New Dictionary(Of String, TimeDependentJunctionGraphic)
@@ -164,6 +168,8 @@ Namespace RELAP.FormClasses
             CLCS_BranchCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Branch)
             CLCS_SeparatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Separator)
             CLCS_ValveCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Valve)
+            CLCS_TurbineCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Turbine)
+            CLCS_AccumulatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Accumulator)
             CLCS_FuelRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.FuelRod)
             CLCS_PWRControlRodCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.PWRControlRod)
             CLCS_SimulatorCollection = New Dictionary(Of String, RELAP.SimulationObjects.UnitOps.Simulator)
@@ -189,6 +195,8 @@ Namespace RELAP.FormClasses
                 .Add("Branch", Me.BranchCollection.Count)
                 .Add("Separator", Me.SeparatorCollection.Count)
                 .Add("Valve", Me.ValveCollection.Count)
+                .Add("Turbine", Me.TurbineCollection.Count)
+                .Add("Accumulator", Me.AccumulatorCollection.Count)
                 .Add("FuelRod", Me.FuelRodCollection.Count)
                 .Add("PCR", Me.PWRControlRodCollection.Count)
                 .Add("Simulator", Me.SimulatorCollection.Count)
@@ -217,6 +225,15 @@ Namespace RELAP.FormClasses
         Public ins_water As Boolean
         Public ins_heavywater As Boolean
 
+        Private _MinorEdit As MinorEdit
+        Public Property MinorEdit() As MinorEdit
+            Get
+                Return _MinorEdit
+            End Get
+            Set(ByVal value As MinorEdit)
+                _MinorEdit = value
+            End Set
+        End Property
         Public SelectedComponents As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
         Public NotSelectedComponents As Dictionary(Of String, RELAP.ClassesBasicasTermodinamica.ConstantProperties)
 

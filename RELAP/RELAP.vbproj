@@ -255,6 +255,7 @@
     <Compile Include="frmTrips.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="objects\Accumulator.vb" />
     <Compile Include="objects\Annulus\Annulus.vb" />
     <Compile Include="objects\Annulus\AnnulusProfile.vb" />
     <Compile Include="objects\Annulus\frmAnnulusEditor.Designer.vb">
@@ -273,6 +274,7 @@
     <Compile Include="objects\Branch\Branch.vb" />
     <Compile Include="objects\Branch\BranchJunctionsGeometry.vb" />
     <Compile Include="objects\Custom Properties\JunctionsData.vb" />
+    <Compile Include="objects\Custom Properties\MinorEdit.vb" />
     <Compile Include="objects\Custom Properties\PumpData.vb" />
     <Compile Include="objects\FuelRod\frmFuelRodEditor.Designer.vb">
       <DependentUpon>frmFuelRodEditor.vb</DependentUpon>
@@ -452,6 +454,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="objects\Time Dependent Junction.vb" />
+    <Compile Include="objects\Turbine\frmTurbineEditor.Designer.vb">
+      <DependentUpon>frmTurbineEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Turbine\frmTurbineEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objects\Turbine\Turbine.vb" />
+    <Compile Include="objects\Turbine\TurbineJunctionsGeometry.vb" />
+    <Compile Include="objects\Turbine\ucTurbineEditor.Designer.vb">
+      <DependentUpon>ucTurbineEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="objects\Turbine\ucTurbineEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="objects\Turbine\UITurbineEditor.vb" />
     <Compile Include="objects\Valve.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SharedFunctions.vb" />
@@ -671,6 +688,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="objects\Separator\ucSeparatorEditor.resx">
       <DependentUpon>ucSeparatorEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Turbine\frmTurbineEditor.resx">
+      <DependentUpon>frmTurbineEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="objects\Turbine\ucTurbineEditor.resx">
+      <DependentUpon>ucTurbineEditor.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

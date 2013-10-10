@@ -725,13 +725,6 @@ Namespace RELAP.SimulationObjects.UnitOps
                     .DefaultType = GetType(Double)
                 End With
 
-                valor = Format(Me.InterphaseVelocity, FlowSheet.Options.NumberFormat)
-                .Item.Add("Interphase Velocity", valor, False, "4.Valve Junction Initial Conditions", "Interphase Velocity", True)
-                With .Item(.Item.Count - 1)
-                    .DefaultValue = Nothing
-                    .DefaultType = GetType(Double)
-                End With
-
                 .Item.Add("Set Valve Type", Me, "ValveType", False, "5. Set Valve Type", "Set Valve Type", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing

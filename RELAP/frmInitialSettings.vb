@@ -21,6 +21,9 @@
 
 
     Public Sub Save()
+        Try
+
+      
         For Each oControl As Control In TabControl1.Controls
             If TypeOf oControl Is TabPage Then
                 Dim otabpage As TabPage = CType(oControl, TabPage)
@@ -47,7 +50,9 @@
         My.Application.ActiveSimulation.Options.ins_defaultfluid = optDefaultFluid.Checked
         My.Application.ActiveSimulation.Options.ins_water = optWater.Checked
         My.Application.ActiveSimulation.Options.ins_heavywater = optHeavyWater.Checked
-       
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Public Sub loadsettings()
@@ -56,7 +61,7 @@
             If TypeOf oControl Is TabPage Then
                 Dim otabpage As TabPage = CType(oControl, TabPage)
                 For Each _control As Control In otabpage.Controls
-                    If TypeOf _control Is TextBox Or TypeOf _control Is DevComponents.Editors.DoubleInput Then
+                    If (TypeOf _control Is TextBox Or TypeOf _control Is DevComponents.Editors.DoubleInput) And My.Application.ActiveSimulation.Options.ins_clcTextboxes.Count > 0 Then
                         'Dim txtbox As TextBox = CType(_control, TextBox)
                         'My.Application.ActiveSimulation.Options.ins_clcTextboxes.Add(_control.Text)
                         _control.Text = My.Application.ActiveSimulation.Options.ins_clcTextboxes(i)

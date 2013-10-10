@@ -1936,6 +1936,188 @@ Namespace GraphicObjects
         End Sub
 
     End Class
+    <Serializable()> Public Class AccumulatorGraphic
+        Inherits ShapeGraphic
+
+#Region "Constructors"
+        Public Sub New()
+            Me.TipoObjeto = GraphicObjects.TipoObjeto.Tank
+            Me.Description = "Tanque"
+        End Sub
+
+        Public Sub New(ByVal graphicPosition As Point)
+            Me.New()
+            Me.SetPosition(graphicPosition)
+        End Sub
+
+        Public Sub New(ByVal posX As Integer, ByVal posY As Integer)
+            Me.New(New Point(posX, posY))
+        End Sub
+
+        Public Sub New(ByVal graphicPosition As Point, ByVal graphicSize As Size)
+            Me.New(graphicPosition)
+            Me.SetSize(graphicSize)
+            Me.AutoSize = False
+        End Sub
+
+        Public Sub New(ByVal posX As Integer, ByVal posY As Integer, ByVal graphicSize As Size)
+            Me.New(New Point(posX, posY), graphicSize)
+        End Sub
+
+        Public Sub New(ByVal posX As Integer, ByVal posY As Integer, ByVal width As Integer, ByVal height As Integer)
+            Me.New(New Point(posX, posY), New Size(width, height))
+        End Sub
+
+        Public Sub New(ByVal graphicPosition As Point, ByVal Rotation As Single)
+            Me.New()
+            Me.SetPosition(graphicPosition)
+            Me.Rotation = Rotation
+        End Sub
+
+        Public Sub New(ByVal posX As Integer, ByVal posY As Integer, ByVal Rotation As Single)
+            Me.New(New Point(posX, posY), Rotation)
+        End Sub
+
+        Public Sub New(ByVal graphicPosition As Point, ByVal graphicSize As Size, ByVal Rotation As Single)
+            Me.New(graphicPosition, Rotation)
+            Me.SetSize(graphicSize)
+            Me.AutoSize = False
+        End Sub
+
+        Public Sub New(ByVal posX As Integer, ByVal posY As Integer, ByVal graphicSize As Size, ByVal Rotation As Single)
+            Me.New(New Point(posX, posY), graphicSize, Rotation)
+        End Sub
+
+        Public Sub New(ByVal posX As Integer, ByVal posY As Integer, ByVal width As Integer, _
+                               ByVal height As Integer, ByVal Rotation As Single)
+            Me.New(New Point(posX, posY), New Size(width, height), Rotation)
+        End Sub
+
+#End Region
+
+        Public Overrides Sub Draw(ByVal g As System.Drawing.Graphics)
+
+            Dim myIC1 As New ConnectionPoint
+            myIC1.Position = New Point(X, Y + 0.5 * Height)
+            myIC1.Type = ConType.ConIn
+
+            Dim myOC1 As New ConnectionPoint
+            myOC1.Position = New Point(X + Width, Y + 0.5 * Height)
+            myOC1.Type = ConType.ConOut
+
+            Me.EnergyConnector.Position = New Point(X + 0.5 * Width, Y + Height)
+            Me.EnergyConnector.Type = ConType.ConEn
+
+            With InputConnectors
+
+                If .Count <> 0 Then
+                    If Me.FlippedH Then
+                        .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+                    Else
+                        .Item(0).Position = New Point(X, Y + 0.5 * Height)
+                    End If
+                Else
+                    .Add(myIC1)
+                End If
+
+            End With
+
+            With OutputConnectors
+
+                If .Count <> 0 Then
+                    If Me.FlippedH Then
+                        .Item(0).Position = New Point(X, Y + 0.5 * Height)
+                    Else
+                        .Item(0).Position = New Point(X + Width, Y + 0.5 * Height)
+                    End If
+                Else
+                    .Add(myOC1)
+                End If
+
+            End With
+
+            UpdateStatus(Me)
+
+            Dim pt As Point
+            Dim raio, angulo As Double
+            Dim con As ConnectionPoint
+            For Each con In Me.InputConnectors
+                pt = con.Position
+                raio = ((pt.X - Me.X) ^ 2 + (pt.Y - Me.Y) ^ 2) ^ 0.5
+                angulo = Math.Atan2(pt.Y - Me.Y, pt.X - Me.X)
+                pt.X = Me.X + raio * Math.Cos(angulo + Me.Rotation / 360 * 2 * Math.PI)
+                pt.Y = Me.Y + raio * Math.Sin(angulo + Me.Rotation / 360 * 2 * Math.PI)
+                con.Position = pt
+            Next
+            For Each con In Me.OutputConnectors
+                pt = con.Position
+                raio = ((pt.X - Me.X) ^ 2 + (pt.Y - Me.Y) ^ 2) ^ 0.5
+                angulo = Math.Atan2(pt.Y - Me.Y, pt.X - Me.X)
+                pt.X = Me.X + raio * Math.Cos(angulo + Me.Rotation / 360 * 2 * Math.PI)
+                pt.Y = Me.Y + raio * Math.Sin(angulo + Me.Rotation / 360 * 2 * Math.PI)
+                con.Position = pt
+            Next
+            With Me.EnergyConnector
+                pt = .Position
+                raio = ((pt.X - Me.X) ^ 2 + (pt.Y - Me.Y) ^ 2) ^ 0.5
+                angulo = Math.Atan2(pt.Y - Me.Y, pt.X - Me.X)
+                pt.X = Me.X + raio * Math.Cos(angulo + Me.Rotation / 360 * 2 * Math.PI)
+                pt.Y = Me.Y + raio * Math.Sin(angulo + Me.Rotation / 360 * 2 * Math.PI)
+                .Position = pt
+            End With
+
+            Dim gContainer As System.Drawing.Drawing2D.GraphicsContainer
+            Dim myMatrix As Drawing2D.Matrix
+            gContainer = g.BeginContainer()
+            myMatrix = g.Transform()
+            If m_Rotation <> 0 Then
+                myMatrix.RotateAt(m_Rotation, New PointF(X, Y), Drawing.Drawing2D.MatrixOrder.Append)
+                g.Transform = myMatrix
+            End If
+
+            Dim rect1 As New Rectangle(X + 0.1 * Width, Y + 0.1 * Height, 0.8 * Width, 0.8 * Height)
+            Dim rect2 As New RectangleF(X + 0.1 * Width, Y, 0.8 * Width, 0.2 * Height)
+            Dim rect3 As New RectangleF(X + 0.1 * Width, Y + 0.8 * Height, 0.8 * Width, 0.2 * Height)
+
+            Dim myPen As New Pen(Me.LineColor, Me.LineWidth)
+
+            Dim myPen2 As New Pen(Color.White, 0)
+
+            Dim rect As New Rectangle(X, Y, Width, Height)
+
+            g.SmoothingMode = SmoothingMode.AntiAlias
+            'g.DrawRectangle(myPen2, rect)
+            g.DrawEllipse(myPen, rect2)
+            g.DrawEllipse(myPen, rect3)
+            g.DrawRectangle(myPen, rect1)
+
+            Dim strdist As SizeF = g.MeasureString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New PointF(0, 0), New StringFormat(StringFormatFlags.NoClip, 0))
+            Dim strx As Single = (Me.Width - strdist.Width) / 2
+            'g.FillRectangle(Brushes.White, X + strx, Y + CSng(Height + 5), strdist.Width, strdist.Height)
+            g.DrawString(Me.Tag, New Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Pixel, 0, False), New SolidBrush(Me.LineColor), X + strx, Y + Height + 5)
+
+            Dim lgb1 As New LinearGradientBrush(rect1, Me.GradientColor1, Me.GradientColor2, LinearGradientMode.Horizontal)
+            lgb1.SetBlendTriangularShape(0.5)
+            Dim lgb2 As New LinearGradientBrush(rect3, Me.GradientColor1, Me.GradientColor2, LinearGradientMode.Horizontal)
+            lgb2.SetBlendTriangularShape(0.5)
+
+            If Me.Fill Then
+                If Me.GradientMode = True Then
+                    g.FillRectangle(lgb1, rect1)
+                    g.FillEllipse(New SolidBrush(Me.FillColor), rect2)
+                    g.FillEllipse(lgb2, rect3)
+                Else
+                    g.FillRectangle(New SolidBrush(Me.FillColor), rect1)
+                    g.FillEllipse(New SolidBrush(Me.FillColor), rect2)
+                    g.FillEllipse(New SolidBrush(Me.FillColor), rect3)
+                End If
+            End If
+
+            g.EndContainer(gContainer)
+
+        End Sub
+
+    End Class
     <Serializable()> Public Class SingleVolumeGraphic
         Inherits ShapeGraphic
 

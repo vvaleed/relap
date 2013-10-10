@@ -34,21 +34,21 @@
     Private Sub ComboBoxEnter_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBoxEnter.SelectedIndexChanged
         If ComboBoxEnter.SelectedIndex = 0 Then
             JunctionsData.EnterMassorVelocity = 0
-            dgvMass.Rows.Clear()
-            dgvMass.Hide()
-            dgvVelocity.Show()
+
+            dgvVelocity.Columns(1).HeaderText = "Liquid Velocity"
+            dgvVelocity.Columns(2).HeaderText = "Vapor Velocity"
+
         ElseIf ComboBoxEnter.SelectedIndex = 1 Then
             JunctionsData.EnterMassorVelocity = 1
-            dgvMass.Show()
-            dgvVelocity.Rows.Clear()
-            dgvVelocity.Hide()
+            dgvVelocity.Columns(1).HeaderText = "Liquid Mass Flow"
+            dgvVelocity.Columns(2).HeaderText = "Vapor Mass Flow"
         End If
     End Sub
  
     Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2, v3, v4 As Object
+        Dim v1, v2, v3 As Object
 
         If Not Me.JunctionsData Is Nothing Then
             Me.JunctionsData.JunctionDatavelocity.Clear()
@@ -59,23 +59,30 @@
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             v3 = row.Cells(2).Value
-            v4 = row.Cells(3).Value
-            Me.JunctionsData.JunctionDatavelocity.Add(row.Index + 1, New JunctionDatavelocity(v1, v2, v3, v4))
-        Next
 
-        If Not Me.JunctionsData Is Nothing Then
-            Me.JunctionsData.JunctionDataMass.Clear()
-        End If
-
-        For i = 0 To dgvMass.Rows.Count - 2
-            row = dgvMass.Rows(i)
-            v1 = row.Cells(0).Value
-            v2 = row.Cells(1).Value
-            v3 = row.Cells(2).Value
-            v4 = row.Cells(3).Value
-            Me.JunctionsData.JunctionDataMass.Add(row.Index + 1, New JunctionDataMass(v1, v2, v3, v4))
+            Me.JunctionsData.JunctionDatavelocity.Add(row.Index + 1, New JunctionDatavelocity(v1, v2, v3))
         Next
     End Sub
 
    
+    Private Sub ucJunctionsEditor_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim gobj As Microsoft.Msdn.Samples.GraphicObjects.TimeDependentJunctionGraphic = My.Application.ActiveSimulation.FormSurface.FlowsheetDesignSurface.SelectedObject
+        Dim myCOTK As RELAP.SimulationObjects.UnitOps.TimeDependentJunction = My.Application.ActiveSimulation.Collections.CLCS_TimeDependentJunctionCollection(gobj.Name)
+
+        If myCOTK.JunctionsData.JunctionDatavelocity.Count = 0 Then
+            dgvVelocity.Rows.Add(1)
+            dgvVelocity.Rows(0).Cells(0).Value = 0.0
+            dgvVelocity.Rows(0).Cells(1).Value = 0.0
+            dgvVelocity.Rows(0).Cells(2).Value = 0.0
+        Else
+            dgvVelocity.Rows.Add(myCOTK.JunctionsData.JunctionDatavelocity.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.JunctionsData.JunctionDatavelocity.Count
+                Dim row As DataGridViewRow = dgvVelocity.Rows(i - 1)
+                row.Cells(0).Value = myCOTK.JunctionsData.JunctionDatavelocity(i).TimeVelocity
+                row.Cells(1).Value = myCOTK.JunctionsData.JunctionDatavelocity(i).LiquidVelocity
+                row.Cells(2).Value = myCOTK.JunctionsData.JunctionDatavelocity(i).VaporVelocity
+            Next
+        End If
+    End Sub
 End Class

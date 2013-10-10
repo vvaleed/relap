@@ -641,7 +641,7 @@ Imports RELAP.RELAP.FormClasses
         If Collections.CompressorCollection Is Nothing Then Collections.CompressorCollection = New Dictionary(Of String, CompressorGraphic)
         If Collections.PipeCollection Is Nothing Then Collections.PipeCollection = New Dictionary(Of String, PipeGraphic)
         If Collections.AnnulusCollection Is Nothing Then Collections.AnnulusCollection = New Dictionary(Of String, AnnulusGraphic)
-
+        If Collections.AccumulatorCollection Is Nothing Then Collections.AccumulatorCollection = New Dictionary(Of String, SubSystemGraphic)
         If Collections.BranchCollection Is Nothing Then Collections.BranchCollection = New Dictionary(Of String, BranchGraphic)
         If Collections.SeparatorCollection Is Nothing Then Collections.SeparatorCollection = New Dictionary(Of String, SeparatorGraphic)
         If Collections.ValveCollection Is Nothing Then Collections.ValveCollection = New Dictionary(Of String, ValveGraphic)
@@ -1241,6 +1241,10 @@ Imports RELAP.RELAP.FormClasses
                                     Me.Collections.CLCS_SimulatorCollection.Remove(namesel)
                                 Case TipoObjeto.Valve
                                     Me.Collections.CLCS_ValveCollection.Remove(namesel)
+                                Case TipoObjeto.turbine
+                                    Me.Collections.CLCS_TurbineCollection.Remove(namesel)
+                                Case TipoObjeto.Accumulator
+                                    Me.Collections.CLCS_AccumulatorCollection.Remove(namesel)
 
                             End Select
 
@@ -1392,6 +1396,17 @@ Imports RELAP.RELAP.FormClasses
                 ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
                 '  gObjTo.
             End If
+
+            If gObjTo.TipoObjeto = TipoObjeto.Accumulator Then
+                Me.Collections.CLCS_AccumulatorCollection(gObjTo.Name).FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                FromComponent = Me.Collections.ObjectCollection(gObjFrom.Name).UID
+                '  gObjTo.
+            End If
+            If gObjFrom.TipoObjeto = TipoObjeto.Accumulator Then
+                Me.Collections.CLCS_AccumulatorCollection(gObjFrom.Name).ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                ToComponent = Me.Collections.ObjectCollection(gObjTo.Name).UID
+                '  gObjTo.
+            End If
             'posicionar pontos nos primeiros slots livres
             Dim StartPos, EndPos As New Point
             Dim InConSlot, OutConSlot As New ConnectionPoint
@@ -1492,6 +1507,10 @@ Imports RELAP.RELAP.FormClasses
                             Case TipoObjeto.Separator
                                 GoTo 100
                             Case TipoObjeto.Tank
+                                GoTo 100
+                            Case TipoObjeto.turbine
+                                GoTo 100
+                            Case TipoObjeto.Accumulator
                                 GoTo 100
 
                             Case TipoObjeto.FuelRod

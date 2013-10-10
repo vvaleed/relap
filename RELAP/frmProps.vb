@@ -313,6 +313,72 @@ Public Class frmProps
                 bb.chokingModel = e.ChangedItem.Value
                 'control flags
             End If
+        ElseIf sobj.TipoObjeto = TipoObjeto.Turbine Then
+
+            Dim bb As RELAP.SimulationObjects.UnitOps.Turbine = ChildParent.Collections.CLCS_TurbineCollection.Item(sobj.Name)
+
+            If e.ChangedItem.Label.Contains("Number of Junctions") Then
+                bb.NumberofJunctions = e.ChangedItem.Value
+
+                Dim gObj As BranchGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
+                gObj.Volumes = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
+                bb.FlowArea = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Length of Volume") Then
+                bb.LengthofVolume = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Volume of Volume") Then
+                bb.VolumeofVolume = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Azimuthal Angle") Then
+                bb.Azimuthalangle = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inclination Angle") Then
+                bb.InclinationAngle = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Elevation Change") Then
+                bb.ElevationChange = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Wall Roughness") Then
+                bb.WallRoughness = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Hydraulic Diameter") Then
+                bb.HydraulicDiameter = e.ChangedItem.Value
+
+                'control flags
+         
+            ElseIf e.ChangedItem.Label.Contains("Choking Model") Then
+                bb.chokingModel = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Turbine Stage Shaft Speed") Then
+                bb.shaftspeed = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Inertia of rotating stages") Then
+                bb.inertia = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Shaft Friction Coefficient") Then
+                bb.shaftfriction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Shaft Component Number") Then
+                bb.shaftcomponentNo = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Disconnect Trip Number") Then
+                bb.dctripno = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Actual Efficiency") Then
+                bb.actualeff = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Design reaction fraction") Then
+                bb.designfraction = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Mean Stage Radius") Then
+                bb.meanradius = e.ChangedItem.Value
+
+            End If
+
+
         ElseIf sobj.TipoObjeto = TipoObjeto.Valve Then
 
             Dim sjn As RELAP.SimulationObjects.UnitOps.Valve = ChildParent.Collections.CLCS_ValveCollection.Item(sobj.Name)
@@ -397,6 +463,13 @@ Public Class frmProps
             ElseIf e.ChangedItem.Label.Contains("Superheated Discharge Coefficient") Then
                 sjn.SuperheatedDishargeCo = e.ChangedItem.Value
 
+            ElseIf e.ChangedItem.Label.Contains("Modified PV term Applied") Then
+                sjn.pvterm = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("CCFL Model") Then
+                sjn.CCFL = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Choking Model") Then
+                sjn.chokingModel = e.ChangedItem.Value
+
             ElseIf e.ChangedItem.Label.Contains("True for Mass Flow rate") Then
                 sjn.EnterVelocityOrMassFlowRate = e.ChangedItem.Value
 
@@ -405,9 +478,6 @@ Public Class frmProps
 
             ElseIf e.ChangedItem.Label.Contains("Initial Vapor Velocity") Then
                 sjn.InitialVaporVelocity = e.ChangedItem.Value
-
-            ElseIf e.ChangedItem.Label.Contains("Interphase Velocity") Then
-                sjn.InterphaseVelocity = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Initial Liquid Mass Flow Rate") Then
                 sjn.InitialLiquidMassFlowRate = e.ChangedItem.Value
@@ -535,6 +605,11 @@ Public Class frmProps
 
             ElseIf e.ChangedItem.Label.Contains("Initial Vapor Mass Flow Rate (discharge)") Then
                 pp.OInitialVaporMassFlowRate = e.ChangedItem.Value
+
+            ElseIf e.ChangedItem.Label.Contains("Pump Trip Number") Then
+                pp.pumptripno = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Reverse Indicator") Then
+                pp.reverseindicator = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Rated pump velocity") Then
                 pp.Ratedpumpvelocity = e.ChangedItem.Value

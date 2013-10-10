@@ -98,10 +98,9 @@
         End If
 
         If myCOTK.HeatStructureMeshData.MeshDataComposition.Count = 0 Then
-            dgvComposition.Rows.Add(1)
-            dgvComposition.Rows(0).Cells(0).Value = 0.0
-            dgvComposition.Rows(0).Cells(1).Value = 0.0
-            dgvComposition.Hide()
+            'dgvComposition.Rows.Add(1)
+            'dgvComposition.Rows(0).Cells(0).Value = 0.0
+            'dgvComposition.Rows(0).Cells(1).Value = 0.0
         Else
             dgvComposition.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition.Count)
             Dim i = 1
@@ -114,10 +113,9 @@
         End If
 
         If myCOTK.HeatStructureMeshData.MeshDataComposition2.Count = 0 Then
-            dgvComposition2.Rows.Add(1)
-            dgvComposition2.Rows(0).Cells(0).Value = 0.0
-            dgvComposition2.Rows(0).Cells(1).Value = 0.0
-            dgvComposition2.Hide()
+            'dgvComposition2.Rows.Add(1)
+            'dgvComposition2.Rows(0).Cells(0).Value = 0.0
+            'dgvComposition2.Rows(0).Cells(1).Value = 0.0
         Else
             dgvComposition2.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition2.Count)
             Dim i = 1
@@ -129,6 +127,65 @@
             Next
         End If
 
+        If myCOTK.HeatStructureMeshData.MeshDataComposition3.Count = 0 Then
+            'dgvComposition3.Rows.Add(1)
+            'dgvComposition3.Rows(0).Cells(0).Value = 0.0
+            'dgvComposition3.Rows(0).Cells(1).Value = 0.0
+        Else
+            dgvComposition3.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition3.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.HeatStructureMeshData.MeshDataComposition3.Count
+                Dim row As DataGridViewRow = dgvComposition3.Rows(i - 1)
+                dgvComposition3.Show()
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataComposition3(i).CompositionNumber3
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataComposition3(i).MeshIntervalNumber33
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataComposition4.Count = 0 Then
+            'dgvComposition4.Rows.Add(1)
+            'dgvComposition4.Rows(0).Cells(0).Value = 0.0
+            'dgvComposition4.Rows(0).Cells(1).Value = 0.0
+        Else
+            dgvComposition4.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition4.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.HeatStructureMeshData.MeshDataComposition4.Count
+                Dim row As DataGridViewRow = dgvComposition4.Rows(i - 1)
+                dgvComposition4.Show()
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataComposition4(i).CompositionNumber4
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataComposition4(i).MeshIntervalNumber34
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataComposition5.Count = 0 Then
+            'dgvComposition5.Rows.Add(1)
+            'dgvComposition5.Rows(0).Cells(0).Value = 0.0
+            'dgvComposition5.Rows(0).Cells(1).Value = 0.0
+        Else
+            dgvComposition5.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition5.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.HeatStructureMeshData.MeshDataComposition5.Count
+                Dim row As DataGridViewRow = dgvComposition5.Rows(i - 1)
+                dgvComposition5.Show()
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataComposition5(i).CompositionNumber5
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataComposition5(i).MeshIntervalNumber35
+            Next
+        End If
+
+        If myCOTK.HeatStructureMeshData.MeshDataComposition6.Count = 0 Then
+            'dgvComposition6.Rows.Add(1)
+            'dgvComposition6.Rows(0).Cells(0).Value = 0.0
+            'dgvComposition6.Rows(0).Cells(1).Value = 0.0
+        Else
+            dgvComposition6.Rows.Add(myCOTK.HeatStructureMeshData.MeshDataComposition6.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.HeatStructureMeshData.MeshDataComposition6.Count
+                Dim row As DataGridViewRow = dgvComposition6.Rows(i - 1)
+                dgvComposition6.Show()
+                row.Cells(0).Value = myCOTK.HeatStructureMeshData.MeshDataComposition6(i).CompositionNumber6
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.MeshDataComposition6(i).MeshIntervalNumber36
+            Next
+        End If
         If myCOTK.HeatStructureMeshData.GapDeformation.Count = 0 Then
             dgvGapDeformation.Rows.Add(1)
             dgvGapDeformation.Rows(0).Cells(0).Value = 0.0
@@ -162,6 +219,70 @@
                 row.Cells(1).Value = myCOTK.HeatStructureMeshData.Temp1(i).Temp1MeshPointNumber
             Next
         End If
+        If DgvMat.Rows.Count = 2 Then
+            TextBox8.Show()
+            TextBox9.Hide()
+            TextBox10.Hide()
+            dgvComposition.Show()
+            dgvComposition2.Show()
+            dgvComposition3.Hide()
+            dgvComposition4.Hide()
+            dgvComposition5.Hide()
+            dgvComposition6.Hide()
+        End If
+        If DgvMat.Rows.Count = 3 Then
+            TextBox9.Show()
+            TextBox8.Show()
+            TextBox10.Hide()
+            dgvComposition3.Show()
+            dgvComposition4.Show()
+            dgvComposition.Show()
+            dgvComposition2.Show()
+            dgvComposition5.Hide()
+            dgvComposition6.Hide()
+        End If
+        If DgvMat.Rows.Count = 4 Then
+            TextBox10.Show()
+            TextBox8.Show()
+            TextBox9.Show()
+            dgvComposition5.Show()
+            dgvComposition6.Show()
+            dgvComposition.Show()
+            dgvComposition2.Show()
+            dgvComposition3.Show()
+            dgvComposition4.Show()
+        End If
+
+        If myCOTK.HeatStructureMeshData.proHSMat.Count = 0 Then
+            TextBox8.Hide()
+            TextBox9.Hide()
+            TextBox10.Hide()
+            dgvComposition.Hide()
+            dgvComposition2.Hide()
+            dgvComposition3.Hide()
+            dgvComposition4.Hide()
+            dgvComposition5.Hide()
+            dgvComposition6.Hide()
+            DgvMat.Rows.Add(1)
+            DgvMat.Rows(0).Cells(1).Value = 1
+            DgvMat.Rows(0).Cells(2).Value = True
+            DgvMat.Rows(0).Cells(3).Value = False
+            DgvMat.Rows(0).Cells(3).Value = myCOTK.NumberOfRadialMP - 1
+        Else
+            DgvMat.Rows.Add(myCOTK.HeatStructureMeshData.proHSMat.Count)
+            Dim i = 1
+            For i = 1 To myCOTK.HeatStructureMeshData.proHSMat.Count
+
+                Dim row As DataGridViewRow = DgvMat.Rows(i - 1)
+                Dim CBox As DataGridViewComboBoxCell = CType(row.Cells(0), DataGridViewComboBoxCell)
+                CBox.Value = myCOTK.HeatStructureMeshData.proHSMat(i).CompositionMat
+                row.Cells(0).Value = CBox.Value
+                row.Cells(1).Value = myCOTK.HeatStructureMeshData.proHSMat(i).MaterialNumber
+                row.Cells(2).Value = myCOTK.HeatStructureMeshData.proHSMat(i).RegionIncluded
+                row.Cells(3).Value = myCOTK.HeatStructureMeshData.proHSMat(i).gapmodel
+                row.Cells(3).Value = myCOTK.HeatStructureMeshData.proHSMat(i).HSnum
+            Next
+        End If
       
 
 
@@ -192,7 +313,6 @@
             dgvWithDecay.Rows.Clear()
             TextBox1.Hide()
             TextBox2.Hide()
-            TextBox4.Hide()
             txtboxDecayHeat.Hide()
         ElseIf HeatStructureMeshData.EnterMeshGeometry = "0" Then
             chkboxmeshgeometry.Checked = True
@@ -203,7 +323,6 @@
             dgvWithDecay.Show()
             TextBox1.Show()
             TextBox2.Show()
-            TextBox4.Show()
             txtboxDecayHeat.Show()
             txtboxDecayHeat.Text = HeatStructureMeshData.DecayHeat
         Else
@@ -289,7 +408,6 @@
                 dgvWithDecay.Rows.Clear()
                 TextBox1.Hide()
                 TextBox2.Hide()
-                TextBox4.Hide()
                 txtboxDecayHeat.Hide()
                 txtboxDecayHeat.Clear()
             ElseIf chkboxmeshgeometry.Checked = True Then
@@ -301,7 +419,6 @@
                 dgvWithDecay.Show()
                 TextBox1.Show()
                 TextBox2.Show()
-                TextBox4.Show()
                 txtboxDecayHeat.Show()
             End If
         Catch ex As Exception
@@ -326,7 +443,7 @@
 
     Private Sub ChkBoxInitialTemp_CheckStateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ChkBoxInitialTemp.CheckStateChanged
         If ChkBoxInitialTemp.Checked = False Then
-            HeatStructureMeshData.EnterInitialTemp = "1"
+            HeatStructureMeshData.EnterInitialTemp = "0"
             ComboBoxTemp.Hide()
             ComboBoxTemp.Enabled = False
             dgvTemp1.Hide()
@@ -334,7 +451,7 @@
             dgvTemp1.Rows.Clear()
             dgvTemp2.Rows.Clear()
         ElseIf ChkBoxInitialTemp.Checked = True Then
-            HeatStructureMeshData.EnterInitialTemp = "0"
+            HeatStructureMeshData.EnterInitialTemp = "1"
             ComboBoxTemp.Show()
             ComboBoxTemp.Enabled = True
             dgvTemp1.Show()
@@ -446,6 +563,19 @@
         Next
 
         If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.proHSMat.Clear()
+        End If
+        For i = 0 To DgvMat.Rows.Count - 2
+            row = DgvMat.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            v3 = row.Cells(2).Value
+            v4 = row.Cells(3).Value
+            v5 = row.Cells(4).Value
+            Me.HeatStructureMeshData.proHSMat.Add(row.Index + 1, New HSMat(v1, v2, v3, v4, v5))
+        Next
+
+        If Not Me.HeatStructureMeshData Is Nothing Then
             Me.HeatStructureMeshData.MeshDataComposition.Clear()
         End If
         For i = 0 To dgvComposition.Rows.Count - 2
@@ -463,6 +593,46 @@
             v1 = row.Cells(0).Value
             v2 = row.Cells(1).Value
             Me.HeatStructureMeshData.MeshDataComposition2.Add(row.Index + 1, New HSMeshDataComposition2(v1, v2))
+        Next
+
+        If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataComposition3.Clear()
+        End If
+        For i = 0 To dgvComposition3.Rows.Count - 2
+            row = dgvComposition3.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataComposition3.Add(row.Index + 1, New HSMeshDataComposition3(v1, v2))
+        Next
+
+        If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataComposition4.Clear()
+        End If
+        For i = 0 To dgvComposition4.Rows.Count - 2
+            row = dgvComposition4.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataComposition4.Add(row.Index + 1, New HSMeshDataComposition4(v1, v2))
+        Next
+
+        If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataComposition5.Clear()
+        End If
+        For i = 0 To dgvComposition5.Rows.Count - 2
+            row = dgvComposition5.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataComposition5.Add(row.Index + 1, New HSMeshDataComposition5(v1, v2))
+        Next
+
+        If Not Me.HeatStructureMeshData Is Nothing Then
+            Me.HeatStructureMeshData.MeshDataComposition6.Clear()
+        End If
+        For i = 0 To dgvComposition6.Rows.Count - 2
+            row = dgvComposition6.Rows(i)
+            v1 = row.Cells(0).Value
+            v2 = row.Cells(1).Value
+            Me.HeatStructureMeshData.MeshDataComposition6.Add(row.Index + 1, New HSMeshDataComposition6(v1, v2))
         Next
 
         If Not Me.HeatStructureMeshData Is Nothing Then
@@ -516,23 +686,41 @@
         ' Me.Controls.Add(dgv)
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBoxComp.SelectedIndexChanged
-        If ComboBoxComp.SelectedIndex = 0 Then
-            dgvComposition.Hide()
-            dgvComposition2.Hide()
-        ElseIf ComboBoxComp.SelectedIndex = 1 Then
-            dgvComposition.Hide()
-            dgvComposition2.Hide()
-        ElseIf ComboBoxComp.SelectedIndex = 2 Then
-            dgvComposition.Hide()
-            dgvComposition2.Hide()
-        ElseIf ComboBoxComp.SelectedIndex = 3 Then
-            dgvComposition.Hide()
-            dgvComposition2.Hide()
-        ElseIf ComboBoxComp.SelectedIndex = 4 Then
+    Private Sub DgvMat_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles DgvMat.RowsAdded
+        If DgvMat.Rows.Count = 2 Then
+            TextBox8.Show()
+            TextBox9.Hide()
+            TextBox10.Hide()
             dgvComposition.Show()
             dgvComposition2.Show()
+            dgvComposition3.Hide()
+            dgvComposition4.Hide()
+            dgvComposition5.Hide()
+            dgvComposition6.Hide()
         End If
+        If DgvMat.Rows.Count = 3 Then
+            TextBox9.Show()
+            TextBox8.Show()
+            TextBox10.Hide()
+            dgvComposition3.Show()
+            dgvComposition4.Show()
+            dgvComposition.Show()
+            dgvComposition2.Show()
+            dgvComposition5.Hide()
+            dgvComposition6.Hide()
+        End If
+        If DgvMat.Rows.Count = 4 Then
+            TextBox10.Show()
+            TextBox8.Show()
+            TextBox9.Show()
+            dgvComposition5.Show()
+            dgvComposition6.Show()
+            dgvComposition.Show()
+            dgvComposition2.Show()
+            dgvComposition3.Show()
+            dgvComposition4.Show()
+        End If
+
     End Sub
 End Class
 

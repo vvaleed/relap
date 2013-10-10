@@ -391,15 +391,6 @@ End Class
         End Set
     End Property
 
-    Private m_InterphaseVelocity As Double
-    Public Property InterphaseVelocity() As Double
-        Get
-            Return m_InterphaseVelocity
-        End Get
-        Set(ByVal value As Double)
-            m_InterphaseVelocity = value
-        End Set
-    End Property
 
     Private m_InitialLiquidMassFlowRate As Double
     Public Property InitialLiquidMassFlowRate() As Double
@@ -421,9 +412,9 @@ End Class
         End Set
     End Property
 
-    Public Sub New(JunctionNumber As Double, JunctionFlowArea As Double, FflowLossCo As Double, RflowLossCo As Double, PVterm As Boolean, CCFLModel As Boolean, StratificationEntrainmentModel As Boolean, _
-                   ChokingModel As Boolean, SmoothAreaChange As String, TwoVelocityMomentumEquations As String, MomentumFlux As String, _
-                   InterphaseVelocity As Double, EnterVelocityOrMassFlowRate As Boolean, InitialLiquidVelocity As Double, InitialVaporVelocity As Double, InitialLiquidMassFlowRate As Double, InitialVaporMassFlowRate As Double)
+    Public Sub New(ByVal JunctionNumber As Double, ByVal JunctionFlowArea As Double, ByVal FflowLossCo As Double, ByVal RflowLossCo As Double, ByVal PVterm As Boolean, ByVal CCFLModel As Boolean, ByVal StratificationEntrainmentModel As Boolean, _
+                   ByVal ChokingModel As Boolean, ByVal SmoothAreaChange As String, ByVal TwoVelocityMomentumEquations As String, ByVal MomentumFlux As String, _
+                    ByVal EnterVelocityOrMassFlowRate As Boolean, ByVal InitialLiquidVelocity As Double, ByVal InitialVaporVelocity As Double, ByVal InitialLiquidMassFlowRate As Double, ByVal InitialVaporMassFlowRate As Double)
         Me.m_JunctionNumber = JunctionNumber
         Me.m_JunctionFlowArea = JunctionFlowArea
         Me.m_ffelc = FflowLossCo
@@ -438,7 +429,6 @@ End Class
         Me.m_EnterVelocityOrMassFlowRate = EnterVelocityOrMassFlowRate
         Me.m_InitialLiquidVelocity = InitialLiquidVelocity
         Me.m_InitialVaporVelocity = InitialVaporVelocity
-        Me.m_InterphaseVelocity = InterphaseVelocity
         Me.m_InitialLiquidMassFlowRate = InitialLiquidMassFlowRate
         Me.m_InitialVaporMassFlowRate = InitialVaporMassFlowRate
 
