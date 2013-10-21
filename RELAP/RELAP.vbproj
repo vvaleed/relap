@@ -34,7 +34,7 @@
     <InstallUrl>http://relap.codeplex.com/releases/clickonce/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -96,7 +96,6 @@
       <HintPath>References\DevComponents.DotNetBar2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevComponents.TreeGX, Version=11.0.0.0, Culture=neutral, PublicKeyToken=cfcbd7476b2389d1, processorArchitecture=MSIL" />
     <Reference Include="EWSoftware.StatusBarText">
       <HintPath>References\EWSoftware.StatusBarText.dll</HintPath>
     </Reference>
