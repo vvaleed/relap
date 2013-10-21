@@ -42,7 +42,6 @@ Partial Class FormMain
         Me.toolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenerateInputFileOnlyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TileVerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -213,17 +212,10 @@ Partial Class FormMain
         '
         'RunToolStripMenuItem
         '
-        Me.RunToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateInputFileOnlyToolStripMenuItem})
         Me.RunToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.RunToolStripMenuItem.Name = "RunToolStripMenuItem"
-        Me.RunToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
-        Me.RunToolStripMenuItem.Text = "Run"
-        '
-        'GenerateInputFileOnlyToolStripMenuItem
-        '
-        Me.GenerateInputFileOnlyToolStripMenuItem.Name = "GenerateInputFileOnlyToolStripMenuItem"
-        Me.GenerateInputFileOnlyToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.GenerateInputFileOnlyToolStripMenuItem.Text = "Generate Input File Only"
+        Me.RunToolStripMenuItem.Size = New System.Drawing.Size(118, 20)
+        Me.RunToolStripMenuItem.Text = "Generate Input File"
         '
         'WindowsMenu
         '
@@ -671,7 +663,6 @@ Partial Class FormMain
     Friend WithEvents SaveStudyDlg As System.Windows.Forms.SaveFileDialog
     Friend WithEvents SaveRegStudyDlg As System.Windows.Forms.SaveFileDialog
     Friend WithEvents RunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents GenerateInputFileOnlyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
 

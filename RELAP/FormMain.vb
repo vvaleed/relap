@@ -129,7 +129,7 @@ Public Class FormMain
             Me.TimerBackup.Enabled = True
         End If
 
-        Me.Text = RELAP.App.GetLocalString("FormParent_FormText") '& My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & " Beta" '& " [" & My.Application.Culture.EnglishName & ", DC " & My.Computer.FileSystem.GetFileInfo(My.Application.Info.DirectoryPath & "\RELAP.exe").LastWriteTimeUtc & " UTC]"
+        Me.Text = "RIFGen - RELAP5 Input File Generator " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & " Beta" '& " [" & My.Application.Culture.EnglishName & ", DC " & My.Computer.FileSystem.GetFileInfo(My.Application.Info.DirectoryPath & "\RELAP.exe").LastWriteTimeUtc & " UTC]"
 
         Global.EWSoftware.StatusBarText.StatusBarTextProvider.ApplicationStatusBar = Me.ToolStripStatusLabel1
 
@@ -2542,7 +2542,7 @@ sim:                Dim myStream As System.IO.FileStream
         Return 0
     End Function
 
-    Private Sub GenerateInputFileToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GenerateInputFileOnlyToolStripMenuItem.Click
+    Private Sub GenerateInputFileToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RunToolStripMenuItem.Click
         Dim collect As New RELAP.FormClasses.ClsObjectCollections
         Dim ChildParent = My.Application.ActiveSimulation
 
@@ -4356,4 +4356,6 @@ sim:                Dim myStream As System.IO.FileStream
     Private Sub RELAPNaInternetToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RELAPNaInternetToolStripMenuItem.Click
         System.Diagnostics.Process.Start("https://relap.codeplex.com/")
     End Sub
+
+
 End Class

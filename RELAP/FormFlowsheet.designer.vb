@@ -380,7 +380,7 @@ Partial Class FormFlowsheet
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.ShowItemToolTips = True
-        Me.MenuStrip1.Size = New System.Drawing.Size(154, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(373, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         Me.MenuStrip1.Visible = False
@@ -401,7 +401,7 @@ Partial Class FormFlowsheet
         Me.ComponentesToolStripMenuItem.MergeIndex = 0
         Me.ComponentesToolStripMenuItem.Name = "ComponentesToolStripMenuItem"
         Me.ComponentesToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-                    Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+            Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
         Me.ComponentesToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.StatusBarTextProvider1.SetStatusBarText(Me.ComponentesToolStripMenuItem, "Opens the configuration window for the active simulation")
         Me.ComponentesToolStripMenuItem.Text = "Simulation Settings"
@@ -414,6 +414,7 @@ Partial Class FormFlowsheet
         Me.InserirToolStripMenuItem.Name = "InserirToolStripMenuItem"
         Me.InserirToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
         Me.InserirToolStripMenuItem.Text = "&Insert"
+        Me.InserirToolStripMenuItem.Visible = False
         '
         'CorrentesToolStripMenuItem
         '
