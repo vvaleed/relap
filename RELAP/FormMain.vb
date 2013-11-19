@@ -2557,9 +2557,9 @@ sim:                Dim myStream As System.IO.FileStream
 
         End If
 
-        SaveFileDialog1.Filter = "RELAP CODE File (*.i)|*.i"
-        If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
-            Dim generate As StreamWriter = File.CreateText(SaveFileDialog1.FileName)
+        SaveFileDialog2.Filter = "RELAP CODE File (*.i)|*.i"
+        If SaveFileDialog2.ShowDialog() = DialogResult.OK Then
+            Dim generate As StreamWriter = File.CreateText(SaveFileDialog2.FileName)
             Dim output As String = Nothing
             Dim output1 As String = Nothing
             Dim output2 As String = Nothing
@@ -2574,7 +2574,7 @@ sim:                Dim myStream As System.IO.FileStream
             Dim mat = 1
             Dim fluidchk As String = Nothing
             Dim boronchk As String = Nothing
-            Dim filename As String() = SaveFileDialog1.FileName.Split("\")
+            Dim filename As String() = SaveFileDialog2.FileName.Split("\")
 
             generate.WriteLine("= " & filename(filename.Length - 1))
             generate.WriteLine("*======================================================================")
@@ -2582,7 +2582,7 @@ sim:                Dim myStream As System.IO.FileStream
             generate.WriteLine("*          COPY RIGHT @ PIEAS PAKISTAN")
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*======================================================================")
-            generate.WriteLine(("*FILE :" & SaveFileDialog1.FileName & "   ") + DateTime.Now)
+            generate.WriteLine(("*FILE :" & SaveFileDialog2.FileName & "   ") + DateTime.Now)
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*======================================================================")
             generate.WriteLine("*          PROBLEM TYPE AND OPTIONS card")
@@ -4165,7 +4165,7 @@ sim:                Dim myStream As System.IO.FileStream
 
                         generate.WriteLine("40002000 " & ChildParent.FormGeneralCoreInput.txtControlVolume1.Value.ToString("D2") & ChildParent.FormGeneralCoreInput.txtControlVolume1.Value.ToString("D2") & "0000 " & RELAP.App.GetUIDFromTag(ChildParent.FormGeneralCoreInput.cboComponentatTopCenter.SelectedItem.Tag) & ChildParent.FormGeneralCoreInput.txtControlVolume2.Value.ToString("D2") & "0000 " & ChildParent.FormGeneralCoreInput.txtMinimumFlowArea.Text)
                     End If
-Catch ex As Exception
+                Catch ex As Exception
 
                 End Try
                 Try

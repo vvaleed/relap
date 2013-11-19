@@ -83,6 +83,7 @@ Partial Class FormMain
         Me.SaveRegStudyDlg = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -420,7 +421,7 @@ Partial Class FormMain
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.DefaultExt = "RELAP"
-        Me.SaveFileDialog1.Filter = "Steady-state Simulation (*.RELAP)|*.RELAP"
+        Me.SaveFileDialog1.Filter = "RIFGen File (*.RELAP)|*.RELAP"
         Me.SaveFileDialog1.RestoreDirectory = True
         Me.SaveFileDialog1.SupportMultiDottedExtensions = True
         Me.SaveFileDialog1.Title = "Save active simulation"
@@ -501,6 +502,12 @@ Partial Class FormMain
         'OpenFileDialog2
         '
         Me.OpenFileDialog2.FileName = "OpenFileDialog2"
+        '
+        'SaveFileDialog2
+        '
+        Me.SaveFileDialog2.DefaultExt = "RELAP"
+        Me.SaveFileDialog2.Filter = "RELAP Input File (*.i)|*.i"
+        Me.SaveFileDialog2.Title = "Save Input File"
         '
         'FormMain
         '
@@ -665,5 +672,6 @@ Partial Class FormMain
     Friend WithEvents RunToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents SaveFileDialog2 As System.Windows.Forms.SaveFileDialog
 
 End Class
