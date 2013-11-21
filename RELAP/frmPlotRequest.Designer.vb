@@ -23,18 +23,18 @@ Partial Class frmPlotRequest
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.cboRestartPlotSettings = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.cboVariableCode = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.txtParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cboParameter = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboObjects = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboPlotVariable = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.txtVolume = New DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn()
         Me.cboPlotScale = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.cboPosition = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.cboRestartPlotSettings = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.cboVariableCode = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.txtParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cboParameter = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -48,63 +48,6 @@ Partial Class frmPlotRequest
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(522, 120)
         Me.DataGridView1.TabIndex = 35
-        '
-        'cboRestartPlotSettings
-        '
-        Me.cboRestartPlotSettings.FormattingEnabled = True
-        Me.cboRestartPlotSettings.Items.AddRange(New Object() {"NONE", "NCMPRESS", "CMPRESS"})
-        Me.cboRestartPlotSettings.Location = New System.Drawing.Point(23, 43)
-        Me.cboRestartPlotSettings.Name = "cboRestartPlotSettings"
-        Me.cboRestartPlotSettings.Size = New System.Drawing.Size(121, 21)
-        Me.cboRestartPlotSettings.TabIndex = 39
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(20, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(124, 13)
-        Me.Label2.TabIndex = 40
-        Me.Label2.Text = "Restart Plot Settings"
-        '
-        'DataGridView2
-        '
-        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode, Me.txtParameter, Me.cboParameter})
-        Me.DataGridView2.Location = New System.Drawing.Point(686, 27)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(346, 120)
-        Me.DataGridView2.TabIndex = 41
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(683, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(145, 13)
-        Me.Label1.TabIndex = 42
-        Me.Label1.Text = "Expanded Plot Variables"
-        '
-        'cboVariableCode
-        '
-        Me.cboVariableCode.HeaderText = "Variable Code"
-        Me.cboVariableCode.Items.AddRange(New Object() {"BRCHV", "DAMLEV", "DZFRCQ", "EFFOXD", "H2OXD2", "HOOP", "OXDEO", "RCI", "RCO", "RNALF", "RNOXD", "ROCRST", "RPEL", "RULIQ", "WFROSR", "WFROUO", "WFROZR", "WREMSR", "WREMUO", "WREMZR"})
-        Me.cboVariableCode.Name = "cboVariableCode"
-        Me.cboVariableCode.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.cboVariableCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'txtParameter
-        '
-        Me.txtParameter.HeaderText = "Parameter"
-        Me.txtParameter.Name = "txtParameter"
-        '
-        'cboParameter
-        '
-        Me.cboParameter.HeaderText = "Parameter"
-        Me.cboParameter.Name = "cboParameter"
         '
         'cboObjects
         '
@@ -142,11 +85,70 @@ Partial Class frmPlotRequest
         Me.cboPosition.Items.AddRange(New Object() {"Left", "Right"})
         Me.cboPosition.Name = "cboPosition"
         '
+        'cboRestartPlotSettings
+        '
+        Me.cboRestartPlotSettings.FormattingEnabled = True
+        Me.cboRestartPlotSettings.Items.AddRange(New Object() {"NONE", "NCMPRESS", "CMPRESS"})
+        Me.cboRestartPlotSettings.Location = New System.Drawing.Point(23, 43)
+        Me.cboRestartPlotSettings.Name = "cboRestartPlotSettings"
+        Me.cboRestartPlotSettings.Size = New System.Drawing.Size(121, 21)
+        Me.cboRestartPlotSettings.TabIndex = 39
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(20, 9)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(124, 13)
+        Me.Label2.TabIndex = 40
+        Me.Label2.Text = "Restart Plot Settings"
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboVariableCode, Me.txtParameter, Me.cboParameter})
+        Me.DataGridView2.Location = New System.Drawing.Point(686, 27)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.Size = New System.Drawing.Size(346, 120)
+        Me.DataGridView2.TabIndex = 41
+        '
+        'cboVariableCode
+        '
+        Me.cboVariableCode.HeaderText = "Variable Code"
+        Me.cboVariableCode.Items.AddRange(New Object() {"BRCHV", "DAMLEV", "DZFRCQ", "EFFOXD", "H2OXD2", "HOOP", "OXDEO", "RCI", "RCO", "RNALF", "RNOXD", "ROCRST", "RPEL", "RULIQ", "WFROSR", "WFROUO", "WFROZR", "WREMSR", "WREMUO", "WREMZR"})
+        Me.cboVariableCode.Name = "cboVariableCode"
+        Me.cboVariableCode.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.cboVariableCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'txtParameter
+        '
+        Me.txtParameter.HeaderText = "Parameter"
+        Me.txtParameter.Name = "txtParameter"
+        '
+        'cboParameter
+        '
+        Me.cboParameter.HeaderText = "Parameter"
+        Me.cboParameter.Name = "cboParameter"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(683, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(145, 13)
+        Me.Label1.TabIndex = 42
+        Me.Label1.Text = "Expanded Plot Variables"
+        '
         'frmPlotRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1054, 159)
+        Me.CloseButton = False
+        Me.CloseButtonVisible = False
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DataGridView2)
         Me.Controls.Add(Me.Label2)

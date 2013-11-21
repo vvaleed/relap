@@ -125,28 +125,28 @@ Partial Class frmSurface
         '
         Me.ToolStripMenuItem1.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(114, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(102, 22)
         Me.ToolStripMenuItem1.Text = "50%"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(114, 22)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(102, 22)
         Me.ToolStripMenuItem4.Text = "100%"
         '
         'ToolStripMenuItem8
         '
         Me.ToolStripMenuItem8.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
-        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(114, 22)
+        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(102, 22)
         Me.ToolStripMenuItem8.Text = "200%"
         '
         'ToolStripMenuItem10
         '
         Me.ToolStripMenuItem10.Image = Global.RELAP.My.Resources.Resources.zoom
         Me.ToolStripMenuItem10.Name = "ToolStripMenuItem10"
-        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(114, 22)
+        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(102, 22)
         Me.ToolStripMenuItem10.Text = "300%"
         '
         'CMS_Sel
@@ -207,21 +207,21 @@ Partial Class frmSurface
         '
         Me.ToolStripMenuItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(111, 22)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(100, 22)
         Me.ToolStripMenuItem6.Text = "90 °"
         '
         'BToolStripMenuItem
         '
         Me.BToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.BToolStripMenuItem.Name = "BToolStripMenuItem"
-        Me.BToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.BToolStripMenuItem.Size = New System.Drawing.Size(100, 22)
         Me.BToolStripMenuItem.Text = "180 °"
         '
         'ToolStripMenuItem7
         '
         Me.ToolStripMenuItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(111, 22)
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(100, 22)
         Me.ToolStripMenuItem7.Text = "270 °"
         '
         'HorizontalmenteToolStripMenuItem
@@ -272,14 +272,14 @@ Partial Class frmSurface
         Me.MostrarToolStripMenuItem.CheckOnClick = True
         Me.MostrarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.table_go
         Me.MostrarToolStripMenuItem.Name = "MostrarToolStripMenuItem"
-        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.MostrarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.MostrarToolStripMenuItem.Text = "Show"
         '
         'ConfigurarToolStripMenuItem
         '
         Me.ConfigurarToolStripMenuItem.Image = Global.RELAP.My.Resources.Resources.cog
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
-        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.ConfigurarToolStripMenuItem.Text = "Configure..."
         '
         'PreviewDialog
@@ -402,7 +402,7 @@ Partial Class frmSurface
         Me.SpinningProgress1.Name = "SpinningProgress1"
         Me.SpinningProgress1.Size = New System.Drawing.Size(38, 35)
         Me.SpinningProgress1.TabIndex = 11
-        Me.SpinningProgress1.TransistionSegment = 10
+        Me.SpinningProgress1.TransistionSegment = 9
         Me.SpinningProgress1.TransistionSegmentColour = System.Drawing.SystemColors.ControlLight
         Me.SpinningProgress1.Visible = False
         '
@@ -481,6 +481,7 @@ Partial Class frmSurface
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(982, 518)
         Me.CloseButton = False
+        Me.CloseButtonVisible = False
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)

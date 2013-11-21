@@ -1234,7 +1234,8 @@ Imports RELAP.RELAP.FormClasses
                                     Me.Collections.CLCS_SeparatorCollection.Remove(namesel)
                                 Case TipoObjeto.Tank
                                     Me.Collections.CLCS_TankCollection.Remove(namesel)
-
+                                Case TipoObjeto.HeatStructure
+                                    Me.Collections.CLCS_HeatStructureCollection.Remove(namesel)
                                 Case TipoObjeto.FuelRod
                                     Me.Collections.CLCS_FuelRodCollection.Remove(namesel)
                                 Case TipoObjeto.Simulator

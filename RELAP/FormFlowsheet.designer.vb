@@ -380,7 +380,7 @@ Partial Class FormFlowsheet
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.ShowItemToolTips = True
-        Me.MenuStrip1.Size = New System.Drawing.Size(373, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(106, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         Me.MenuStrip1.Visible = False

@@ -22,10 +22,10 @@ Partial Class frmCoreInput
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCoreInput))
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtAxialNodes = New DevComponents.Editors.IntegerInput()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -398,14 +398,14 @@ Partial Class frmCoreInput
         Me.dgvAxialNodeHeights.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAxialNodeHeights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAxialNodeHeights.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblNode, Me.txtHeight})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvAxialNodeHeights.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvAxialNodeHeights.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvAxialNodeHeights.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvAxialNodeHeights.Location = New System.Drawing.Point(18, 16)
         Me.dgvAxialNodeHeights.Name = "dgvAxialNodeHeights"
@@ -466,7 +466,7 @@ Partial Class frmCoreInput
         'ComboItem17
         '
         Me.ComboItem17.Text = "cladding oxide shell to only fail where double-sided oxidation and where relocate" & _
-            "d material has not solidified"
+    "d material has not solidified"
         Me.ComboItem17.Value = "0"
         '
         'ComboItem18
@@ -636,7 +636,7 @@ Partial Class frmCoreInput
         Me.Label10.Size = New System.Drawing.Size(380, 13)
         Me.Label10.TabIndex = 0
         Me.Label10.Text = "Surface temperature for freezing of drops of liquefied/slumping fuel rod cladding" & _
-            ""
+    ""
         '
         'Label9
         '
@@ -646,7 +646,7 @@ Partial Class frmCoreInput
         Me.Label9.Size = New System.Drawing.Size(443, 13)
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "Fraction of surface area covered with drops that results in blockage that stops l" & _
-            "ocal oxidation"
+    "ocal oxidation"
         '
         'TabPage3
         '
@@ -686,8 +686,8 @@ Partial Class frmCoreInput
         Me.LabelX1.Size = New System.Drawing.Size(561, 53)
         Me.LabelX1.TabIndex = 2
         Me.LabelX1.Text = "Multiplication factor on fuel pellet diameter that defines minimum thickness that" & _
-            " crust at bottom of molten pool must have in order to support and seal the molte" & _
-            "n pool"
+    " crust at bottom of molten pool must have in order to support and seal the molte" & _
+    "n pool"
         Me.LabelX1.WordWrap = True
         '
         'txtMinimumFractionalFlowArea
@@ -751,13 +751,13 @@ Partial Class frmCoreInput
         'ComboItem19
         '
         Me.ComboItem19.Text = "Criteria does not use maximum fuel temperature at the axial node in period from s" & _
-            "tart of accident to present time"
+    "tart of accident to present time"
         Me.ComboItem19.Value = "1"
         '
         'ComboItem20
         '
         Me.ComboItem20.Text = "Criteria does use maximum fuel temperature at the axial node in period from start" & _
-            " of accident to present time"
+    " of accident to present time"
         Me.ComboItem20.Value = "2"
         '
         'txtTemperatureaboveSaturation
@@ -823,7 +823,7 @@ Partial Class frmCoreInput
         Me.LabelX5.Size = New System.Drawing.Size(477, 35)
         Me.LabelX5.TabIndex = 1
         Me.LabelX5.Text = "Gamma heat fraction. The fraction of power used to directly heat the coolant by g" & _
-            "amma heating."
+    "amma heating."
         '
         'txtGammaHeatingFraction
         '
@@ -971,7 +971,7 @@ Partial Class frmCoreInput
         Me.LabelX7.Size = New System.Drawing.Size(465, 45)
         Me.LabelX7.TabIndex = 0
         Me.LabelX7.Text = "Transition strain. Strain for transition from sausage type deformation to localiz" & _
-            "ed deformation"
+    "ed deformation"
         '
         'LabelX6
         '
@@ -1034,7 +1034,7 @@ Partial Class frmCoreInput
         Me.LabelX11.Size = New System.Drawing.Size(409, 55)
         Me.LabelX11.TabIndex = 0
         Me.LabelX11.Text = "If the ‘kinetics’ option is specified, then the component power is calculated by " & _
-            "the RELAP5 kinetics model."
+    "the RELAP5 kinetics model."
         Me.LabelX11.WordWrap = True
         '
         'LabelX12
@@ -1109,18 +1109,18 @@ Partial Class frmCoreInput
         'dgvGridSpacer
         '
         Me.dgvGridSpacer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvGridSpacer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvGridSpacer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvGridSpacer.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.lblGridSpacerNumber, Me.cboGridSpacerMaterial, Me.txtMassofGridSpacer, Me.txtHeighofGridSpacer, Me.txtPlateThicknessofGridSpacer, Me.txtRadiusofContact, Me.txtGridSpacerElevation2})
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvGridSpacer.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvGridSpacer.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvGridSpacer.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvGridSpacer.Location = New System.Drawing.Point(18, 40)
         Me.dgvGridSpacer.Name = "dgvGridSpacer"
@@ -1299,7 +1299,7 @@ Partial Class frmCoreInput
         Me.LabelX17.Size = New System.Drawing.Size(538, 16)
         Me.LabelX17.TabIndex = 2
         Me.LabelX17.Text = "RELAP5 volume at top center of core. The bottom of this volume should be contiguo" & _
-            "us with the top of the core. "
+    "us with the top of the core. "
         '
         'LabelX16
         '
@@ -1366,14 +1366,14 @@ Partial Class frmCoreInput
         Me.dgvCoreBypassVolumes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvCoreBypassVolumes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCoreBypassVolumes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cboComponent, Me.txtVolume, Me.txtElevation})
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvCoreBypassVolumes.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvCoreBypassVolumes.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvCoreBypassVolumes.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvCoreBypassVolumes.Location = New System.Drawing.Point(42, 66)
         Me.dgvCoreBypassVolumes.Name = "dgvCoreBypassVolumes"
@@ -1425,7 +1425,7 @@ Partial Class frmCoreInput
         Me.LabelX15.Size = New System.Drawing.Size(426, 54)
         Me.LabelX15.TabIndex = 0
         Me.LabelX15.Text = "These cards are used to specify the core bypass hydrodynamic volumes, which are u" & _
-            "sed by model for radial spreading of core melt."
+    "sed by model for radial spreading of core melt."
         Me.LabelX15.WordWrap = True
         '
         'frmCoreInput
@@ -1434,6 +1434,7 @@ Partial Class frmCoreInput
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(870, 361)
         Me.CloseButton = False
+        Me.CloseButtonVisible = False
         Me.Controls.Add(Me.TabControl1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmCoreInput"
