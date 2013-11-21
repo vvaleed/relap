@@ -2606,7 +2606,7 @@ sim:                Dim myStream As System.IO.FileStream
 
             generate.WriteLine("102 " & output)
             generate.WriteLine("104 " & My.Application.ActiveSimulation.FormPlotReqest.cboRestartPlotSettings.SelectedText)
-            generate.WriteLine("105 10.0 40.0 200.0")
+            'generate.WriteLine("105 10.0 40.0 200.0")
             generate.WriteLine("105 " & My.Application.ActiveSimulation.FormInitialSettings.txtCPURemaining1.Text & " " & My.Application.ActiveSimulation.FormInitialSettings.txtCPURemaining2.Text & " " & My.Application.ActiveSimulation.FormInitialSettings.txtCPUTimeAllocated.Text)
 
             ' 110  noncondensible gas

@@ -337,7 +337,7 @@ Partial Class ucPipeEditor
         '
         'RflowLossCo
         '
-        Me.RflowLossCo.HeaderText = "Forward Flow Energy Loss Coefficient"
+        Me.RflowLossCo.HeaderText = "Reverse Flow Energy Loss Coefficient"
         Me.RflowLossCo.Name = "RflowLossCo"
         '
         'PVterm

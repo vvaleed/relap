@@ -160,7 +160,7 @@ Public Class ucThermoDynamicStates
             End If
         End If
         If My.Application.ActiveSimulation.ComponentType = "pipe" Or My.Application.ActiveSimulation.ComponentType = "Annulus" Then
-            DataGridView1.Columns.Add("Volume", "Volume")
+            DataGridView1.Columns.Add("Volume", "Volume Number")
         End If
 
     End Sub

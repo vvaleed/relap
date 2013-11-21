@@ -604,6 +604,8 @@ Partial Class frmInitialSettings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(303, 482)
+        Me.CloseButton = False
+        Me.CloseButtonVisible = False
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.chklistboxBoron)
         Me.Controls.Add(Me.chklistboxFluid)
