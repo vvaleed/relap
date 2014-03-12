@@ -209,12 +209,16 @@ Public Class frmProps
 
             Dim bb As RELAP.SimulationObjects.UnitOps.Branch = ChildParent.Collections.CLCS_BranchCollection.Item(sobj.Name)
 
-            If e.ChangedItem.Label.Contains("Number of Junctions") Then
-                bb.NumberofJunctions = e.ChangedItem.Value
+            If e.ChangedItem.Label.Contains("Number of Input Junctions") Then
+                bb.NumberofInputJunctions = e.ChangedItem.Value
 
                 Dim gObj As BranchGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
-                gObj.Volumes = e.ChangedItem.Value
+                gObj.InputJunctions = e.ChangedItem.Value
+            ElseIf e.ChangedItem.Label.Contains("Number of Output Junctions") Then
+                bb.NumberofOutputJunctions = e.ChangedItem.Value
 
+                Dim gObj As BranchGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
+                gObj.InputJunctions = e.ChangedItem.Value
             ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
                 bb.FlowArea = e.ChangedItem.Value
 
@@ -321,7 +325,7 @@ Public Class frmProps
                 bb.NumberofJunctions = e.ChangedItem.Value
 
                 Dim gObj As BranchGraphic = FormFlowsheet.SearchSurfaceObjectsByTag(LblNomeObj.Text, ChildParent.FormSurface.FlowsheetDesignSurface)
-                gObj.Volumes = e.ChangedItem.Value
+                gObj.OutputJunctions = e.ChangedItem.Value
 
             ElseIf e.ChangedItem.Label.Contains("Volume Flow Area") Then
                 bb.FlowArea = e.ChangedItem.Value

@@ -34,7 +34,7 @@
         Dim myCOTk As RELAP.SimulationObjects.UnitOps.Branch = My.Application.ActiveSimulation.Collections.CLCS_BranchCollection(gobj.Name)
 
         CheckBoxEntermass.Checked = False
-        For i = 1 To myCOTk.NumberofJunctions
+        For i = 1 To myCOTk.NumberofInputJunctions + myCOTk.NumberofOutputJunctions - 1
             dgvBranch.Rows.Add(i.ToString)
         Next
         If myCOTk.BranchJunctionsGeometry.BranchGeometry.Count <> 0 Then

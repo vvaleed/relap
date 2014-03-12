@@ -447,7 +447,8 @@ Namespace RELAP.SimulationObjects.UnitOps
                 ' '''''''''''''
 
                 valor = Format(Conversor.ConverterDoSI(su.no_unit, Me.NumberOfVoulmes), FlowSheet.Options.NumberFormat)
-                .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, "Parameters", "Number of Volumes", True)
+                .Item.Add(FT("Number of Volumes", su.no_unit), valor, False, "Parameters", "Number of Volumes from CARD 0201" &
+                " asasdasdas", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Integer)

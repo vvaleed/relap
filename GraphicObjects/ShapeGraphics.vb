@@ -436,21 +436,30 @@ Namespace GraphicObjects
     <Serializable()> Public Class BranchGraphic
         Inherits ShapeGraphic
 
-        Private _Volumes As Integer
-        Public Property Volumes() As Integer
+        Private _InputJunctions As Integer
+        Public Property InputJunctions() As Integer
             Get
-                Return _Volumes
+                Return _InputJunctions
             End Get
             Set(ByVal value As Integer)
-                _Volumes = value
+                _InputJunctions = value
             End Set
         End Property
-
+        Private _OutputJunctions As Integer
+        Public Property OutputJunctions() As Integer
+            Get
+                Return _OutputJunctions
+            End Get
+            Set(ByVal value As Integer)
+                _OutputJunctions = value
+            End Set
+        End Property
 #Region "Constructors"
         Public Sub New()
             Me.TipoObjeto = GraphicObjects.TipoObjeto.Branch
             Me.Description = "Branch"
-            Me.Volumes = 2
+            Me.InputJunctions = 2
+            Me.OutputJunctions = 2
         End Sub
 
         Public Sub New(ByVal graphicPosition As Point)
@@ -505,15 +514,23 @@ Namespace GraphicObjects
 
         Public Overrides Sub Draw(ByVal g As System.Drawing.Graphics)
 
-            Dim myIC1 As New ConnectionPoint
-            myIC1.Position = New Point(X + 0.125 * Width, Y + 0.5 * Height)
-            myIC1.Type = ConType.ConIn
-            Dim coll As New System.Collections.Generic.List(Of ConnectionPoint)
-            For i As Integer = 0 To Volumes - 1
+            ' Dim myIC1 As New ConnectionPoint
+            ' myIC1.Position = New Point(X + 0.125 * Width, Y + 0.5 * Height)
+            ' myIC1.Type = ConType.ConIn
+            Dim collout As New System.Collections.Generic.List(Of ConnectionPoint)
+            For i As Integer = 0 To OutputJunctions - 1
                 Dim conn As New ConnectionPoint
-                conn.Position = New Point(X + 0.827 * Width, Y + (i / (Volumes - 1)) * Height)
+                conn.Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
                 conn.Type = ConType.ConOut
-                coll.Add(conn)
+                collout.Add(conn)
+
+            Next
+            Dim collin As New System.Collections.Generic.List(Of ConnectionPoint)
+            For i As Integer = 0 To OutputJunctions - 1
+                Dim conn As New ConnectionPoint
+                conn.Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                conn.Type = ConType.ConIn
+                collin.Add(conn)
 
             Next
 
@@ -523,14 +540,14 @@ Namespace GraphicObjects
 
             With InputConnectors
 
-                If .Count <> 0 Then
-                    If Me.FlippedH Then
-                        .Item(0).Position = New Point(X + 0.875 * Width, Y + 0.5 * Height)
-                    Else
-                        .Item(0).Position = New Point(X + 0.125 * Width, Y + 0.5 * Height)
-                    End If
+                If .Count = InputJunctions Then
+                    For i As Integer = 0 To InputJunctions - 1
+                        .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (InputJunctions - 1)) * Height)
+                    Next
                 Else
-                    .Add(myIC1)
+                    For i As Integer = .Count To InputJunctions - 1
+                        .Add(collin(i))
+                    Next
                 End If
 
             End With
@@ -539,13 +556,13 @@ Namespace GraphicObjects
 
                 'If .Count = 2 Then .Add(myOC3)
 
-                If .Count = Volumes Then
-                    For i As Integer = 0 To Volumes - 1
-                        .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (Volumes - 1)) * Height)
+                If .Count = OutputJunctions Then
+                    For i As Integer = 0 To OutputJunctions - 1
+                        .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
                     Next
                 Else
-                    For i As Integer = .Count To Volumes - 1
-                        .Add(coll(i))
+                    For i As Integer = .Count To OutputJunctions - 1
+                        .Add(collout(i))
                     Next
                 End If
 
