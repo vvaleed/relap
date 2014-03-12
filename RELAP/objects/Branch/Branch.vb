@@ -78,13 +78,22 @@ Namespace RELAP.SimulationObjects.UnitOps
             End Set
         End Property
 
-        Private _NumberofJunctions As Integer
-        Public Property NumberofJunctions() As Integer
+        Private _NumberofOutputJunctions As Integer
+        Public Property NumberofOutputJunctions() As Integer
             Get
-                Return _NumberofJunctions
+                Return _NumberofOutputJunctions
             End Get
             Set(ByVal value As Integer)
-                _NumberofJunctions = value
+                _NumberofOutputJunctions = value
+            End Set
+        End Property
+        Private _NumberofInputJunctions As Integer
+        Public Property NumberofInputJunctions() As Integer
+            Get
+                Return _NumberofInputJunctions
+            End Get
+            Set(ByVal value As Integer)
+                _NumberofInputJunctions = value
             End Set
         End Property
 
@@ -355,7 +364,8 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me._BranchJunctionsGeometry = New BranchJunctionsGeometry
             Me._ThermoDynamicStates = New ThermoDynamicStates
-            Me._NumberofJunctions = 2
+            Me._NumberofInputJunctions = 2
+            Me._NumberofOutputJunctions = 2
             Me.m_flowarea = 1.0
             Me.m_LengthofVolume = 2.0
             Me.m_VolumeofVolume = 0.0
@@ -649,7 +659,12 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .DefaultType = GetType(Double)
                 'End With
 
-                .Item.Add(("Number of Junctions"), Me, "NumberofJunctions", False, "1.Parameters", "Number of Junctions", True)
+                .Item.Add(("Number of Input Junctions"), Me, "NumberofInputJunctions", False, "1.Parameters", "Number of Input Junctions", True)
+                With .Item(.Item.Count - 1)
+                    .DefaultValue = False
+                    .DefaultType = GetType(Double)
+                End With
+                .Item.Add(("Number of Output Junctions"), Me, "NumberofOutputJunctions", False, "1.Parameters", "Number of Output Junctions", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = False
                     .DefaultType = GetType(Double)

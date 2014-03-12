@@ -3467,7 +3467,7 @@ sim:                Dim myStream As System.IO.FileStream
                         generate.WriteLine("*======================================================================")
                         generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ branch")
 
-                        generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofJunctions & " " & kvp.Value.BranchJunctionsGeometry.EnterMassorVelocity)
+                        generate.WriteLine(kvp.Value.UID & "0001 " & kvp.Value.NumberofOutputJunctions + kvp.Value.NumberofInputJunctions & " " & kvp.Value.BranchJunctionsGeometry.EnterMassorVelocity)
 
                         output = kvp.Value.UID & "0101 " & kvp.Value.FlowArea.ToString("F") & " " & kvp.Value.LengthofVolume.ToString("F") & " " & kvp.Value.VolumeofVolume.ToString("F") & " " & kvp.Value.Azimuthalangle.ToString("F") & " " & kvp.Value.InclinationAngle.ToString("F") & " " & kvp.Value.ElevationChange.ToString("F") & " " & kvp.Value.WallRoughness.ToString("F") & " " & kvp.Value.HydraulicDiameter.ToString("F") & " "
                         output3 = boolto10(kvp.Value.PipeInterphaseFriction)
