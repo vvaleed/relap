@@ -526,9 +526,9 @@ Namespace GraphicObjects
 
             Next
             Dim collin As New System.Collections.Generic.List(Of ConnectionPoint)
-            For i As Integer = 0 To OutputJunctions - 1
+            For i As Integer = 0 To InputJunctions - 1
                 Dim conn As New ConnectionPoint
-                conn.Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                conn.Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
                 conn.Type = ConType.ConIn
                 collin.Add(conn)
 
@@ -542,7 +542,7 @@ Namespace GraphicObjects
 
                 If .Count = InputJunctions Then
                     For i As Integer = 0 To InputJunctions - 1
-                        .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (InputJunctions - 1)) * Height)
+                        .Item(i).Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
                     Next
                 Else
                     For i As Integer = .Count To InputJunctions - 1

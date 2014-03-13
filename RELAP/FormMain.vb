@@ -2612,7 +2612,7 @@ sim:                Dim myStream As System.IO.FileStream
             ' 110  noncondensible gas
             Dim gascount As Integer = 1
             Dim i = 1
-            If frmInitialSettings.chklistboxCondensibleGases.SelectedItems.Count = 0 Then
+            If frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count = 0 Then
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*          Non condensible gases card")
                 generate.WriteLine("*======================================================================")
