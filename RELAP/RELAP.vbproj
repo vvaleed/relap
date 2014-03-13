@@ -254,188 +254,188 @@
     <Compile Include="frmTrips.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Accumulator.vb" />
-    <Compile Include="objects\Annulus\Annulus.vb" />
-    <Compile Include="objects\Annulus\AnnulusProfile.vb" />
-    <Compile Include="objects\Annulus\frmAnnulusEditor.Designer.vb">
+    <Compile Include="Components\Accumulator.vb" />
+    <Compile Include="Components\Annulus\Annulus.vb" />
+    <Compile Include="Components\Annulus\AnnulusProfile.vb" />
+    <Compile Include="Components\Annulus\frmAnnulusEditor.Designer.vb">
       <DependentUpon>frmAnnulusEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Annulus\frmAnnulusEditor.vb">
+    <Compile Include="Components\Annulus\frmAnnulusEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Annulus\ucAnnulusEditor.Designer.vb">
+    <Compile Include="Components\Annulus\ucAnnulusEditor.Designer.vb">
       <DependentUpon>ucAnnulusEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Annulus\ucAnnulusEditor.vb">
+    <Compile Include="Components\Annulus\ucAnnulusEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Annulus\UIAnnulus.vb" />
-    <Compile Include="objects\Branch\Branch.vb" />
-    <Compile Include="objects\Branch\BranchJunctionsGeometry.vb" />
-    <Compile Include="objects\Custom Properties\JunctionsData.vb" />
-    <Compile Include="objects\Custom Properties\MinorEdit.vb" />
-    <Compile Include="objects\Custom Properties\PumpData.vb" />
-    <Compile Include="objects\FuelRod\frmFuelRodEditor.Designer.vb">
+    <Compile Include="Components\Annulus\UIAnnulus.vb" />
+    <Compile Include="Components\Branch\Branch.vb" />
+    <Compile Include="Components\Branch\BranchJunctionsGeometry.vb" />
+    <Compile Include="Components\Custom Properties\JunctionsData.vb" />
+    <Compile Include="Components\Custom Properties\MinorEdit.vb" />
+    <Compile Include="Components\Custom Properties\PumpData.vb" />
+    <Compile Include="Components\FuelRod\frmFuelRodEditor.Designer.vb">
       <DependentUpon>frmFuelRodEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\FuelRod\frmFuelRodEditor.vb">
+    <Compile Include="Components\FuelRod\frmFuelRodEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\PWRControlRod\frmControlRodEditor.Designer.vb">
+    <Compile Include="Components\PWRControlRod\frmControlRodEditor.Designer.vb">
       <DependentUpon>frmControlRodEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\PWRControlRod\frmControlRodEditor.vb">
+    <Compile Include="Components\PWRControlRod\frmControlRodEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\PWRControlRod\ucControlRodEditor.Designer.vb">
+    <Compile Include="Components\PWRControlRod\ucControlRodEditor.Designer.vb">
       <DependentUpon>ucControlRodEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\PWRControlRod\ucControlRodEditor.vb">
+    <Compile Include="Components\PWRControlRod\ucControlRodEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\PWRControlRod\UIControlRodEditor.vb" />
-    <Compile Include="objects\Separator\formSeparatorEditor.Designer.vb">
+    <Compile Include="Components\PWRControlRod\UIControlRodEditor.vb" />
+    <Compile Include="Components\Separator\formSeparatorEditor.Designer.vb">
       <DependentUpon>formSeparatorEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Separator\formSeparatorEditor.vb">
+    <Compile Include="Components\Separator\formSeparatorEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Separator\SeparatorJunctionsGeometry.vb" />
-    <Compile Include="objects\Custom Properties\ValveType.vb" />
-    <Compile Include="objects\Branch\frmBranchEditor.Designer.vb">
+    <Compile Include="Components\Separator\SeparatorJunctionsGeometry.vb" />
+    <Compile Include="Components\Custom Properties\ValveType.vb" />
+    <Compile Include="Components\Branch\frmBranchEditor.Designer.vb">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Branch\frmBranchEditor.vb">
+    <Compile Include="Components\Branch\frmBranchEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\frmPumpEditor.Designer.vb">
+    <Compile Include="Components\Editors\frmPumpEditor.Designer.vb">
       <DependentUpon>frmPumpEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmPumpEditor.vb">
+    <Compile Include="Components\Editors\frmPumpEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucPump.Designer.vb">
+    <Compile Include="Components\Editors\ucPump.Designer.vb">
       <DependentUpon>ucPump.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucPump.vb">
+    <Compile Include="Components\Editors\ucPump.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\UIPumpEditor.vb" />
-    <Compile Include="objects\Separator\ucSeparatorEditor.Designer.vb">
+    <Compile Include="Components\Editors\UIPumpEditor.vb" />
+    <Compile Include="Components\Separator\ucSeparatorEditor.Designer.vb">
       <DependentUpon>ucSeparatorEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Separator\ucSeparatorEditor.vb">
+    <Compile Include="Components\Separator\ucSeparatorEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Separator\UISeparatorEditor.vb" />
-    <Compile Include="objects\FuelRod\ucFuelRodEditor.Designer.vb">
+    <Compile Include="Components\Separator\UISeparatorEditor.vb" />
+    <Compile Include="Components\FuelRod\ucFuelRodEditor.Designer.vb">
       <DependentUpon>ucFuelRodEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\FuelRod\ucFuelRodEditor.vb">
+    <Compile Include="Components\FuelRod\ucFuelRodEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\FuelRod\UIFuelRodEditor.vb" />
-    <Compile Include="objects\Junction\frmJunctionsEditor.Designer.vb">
+    <Compile Include="Components\FuelRod\UIFuelRodEditor.vb" />
+    <Compile Include="Components\Junction\frmJunctionsEditor.Designer.vb">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Junction\frmJunctionsEditor.vb">
+    <Compile Include="Components\Junction\frmJunctionsEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\frmValveEditor.Designer.vb">
+    <Compile Include="Components\Editors\frmValveEditor.Designer.vb">
       <DependentUpon>frmValveEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmValveEditor.vb">
+    <Compile Include="Components\Editors\frmValveEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Branch\ucBranchEditor.Designer.vb">
+    <Compile Include="Components\Branch\ucBranchEditor.Designer.vb">
       <DependentUpon>ucBranchEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Branch\ucBranchEditor.vb">
+    <Compile Include="Components\Branch\ucBranchEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Junction\ucJunctionsEditor.Designer.vb">
+    <Compile Include="Components\Junction\ucJunctionsEditor.Designer.vb">
       <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Junction\ucJunctionsEditor.vb">
+    <Compile Include="Components\Junction\ucJunctionsEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucValveEditor.Designer.vb">
+    <Compile Include="Components\Editors\ucValveEditor.Designer.vb">
       <DependentUpon>ucValveEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucValveEditor.vb">
+    <Compile Include="Components\Editors\ucValveEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Branch\UIBranchEditor.vb" />
-    <Compile Include="objects\Junction\UIJunctionsEditor.vb" />
-    <Compile Include="objects\Editors\UIValveEditor.vb" />
-    <Compile Include="objects\Separator\Separator.vb" />
-    <Compile Include="objects\Single Volume.vb" />
-    <Compile Include="objects\Subsystem.vb" />
-    <Compile Include="objects\HeatStructure\HeatStructureBoundaryCond.vb" />
-    <Compile Include="objects\HeatStructure\HeatStructureMeshData.vb" />
-    <Compile Include="objects\Custom Properties\ThermoDynamicState.vb" />
-    <Compile Include="objects\HeatStructure\frmHeatStructureEditor.Designer.vb">
+    <Compile Include="Components\Branch\UIBranchEditor.vb" />
+    <Compile Include="Components\Junction\UIJunctionsEditor.vb" />
+    <Compile Include="Components\Editors\UIValveEditor.vb" />
+    <Compile Include="Components\Separator\Separator.vb" />
+    <Compile Include="Components\Single Volume.vb" />
+    <Compile Include="Components\Subsystem.vb" />
+    <Compile Include="Components\HeatStructure\HeatStructureBoundaryCond.vb" />
+    <Compile Include="Components\HeatStructure\HeatStructureMeshData.vb" />
+    <Compile Include="Components\Custom Properties\ThermoDynamicState.vb" />
+    <Compile Include="Components\HeatStructure\frmHeatStructureEditor.Designer.vb">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\HeatStructure\frmHeatStructureEditor.vb">
+    <Compile Include="Components\HeatStructure\frmHeatStructureEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\HeatStructure\frmHeatStructureEditor2.Designer.vb">
+    <Compile Include="Components\HeatStructure\frmHeatStructureEditor2.Designer.vb">
       <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\HeatStructure\frmHeatStructureEditor2.vb">
+    <Compile Include="Components\HeatStructure\frmHeatStructureEditor2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\HeatStructure\ucHeatStructureEditor.Designer.vb">
+    <Compile Include="Components\HeatStructure\ucHeatStructureEditor.Designer.vb">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\HeatStructure\ucHeatStructureEditor.vb">
+    <Compile Include="Components\HeatStructure\ucHeatStructureEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\HeatStructure\ucHeatStructureEditor2.Designer.vb">
+    <Compile Include="Components\HeatStructure\ucHeatStructureEditor2.Designer.vb">
       <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\HeatStructure\ucHeatStructureEditor2.vb">
+    <Compile Include="Components\HeatStructure\ucHeatStructureEditor2.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\HeatStructure\UIHeatStructureEditor.vb" />
-    <Compile Include="objects\HeatStructure\UIHeatStructureEditor2.vb" />
-    <Compile Include="objects\Editors\UIVolumeSelector.vb" />
-    <Compile Include="objects\Editors\UIComponentSelector.vb" />
-    <Compile Include="objects\Editors\frmThermalHydraulicStatesditor.Designer.vb">
+    <Compile Include="Components\HeatStructure\UIHeatStructureEditor.vb" />
+    <Compile Include="Components\HeatStructure\UIHeatStructureEditor2.vb" />
+    <Compile Include="Components\Editors\UIVolumeSelector.vb" />
+    <Compile Include="Components\Editors\UIComponentSelector.vb" />
+    <Compile Include="Components\Editors\frmThermalHydraulicStatesditor.Designer.vb">
       <DependentUpon>frmThermalHydraulicStatesditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\frmThermalHydraulicStatesditor.vb">
+    <Compile Include="Components\Editors\frmThermalHydraulicStatesditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Editors\ucThermoDynamicStates.Designer.vb">
+    <Compile Include="Components\Editors\ucThermoDynamicStates.Designer.vb">
       <DependentUpon>ucThermoDynamicStates.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Editors\ucThermoDynamicStates.vb">
+    <Compile Include="Components\Editors\ucThermoDynamicStates.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Editors\UIThermoDynamicStatesEditor.vb" />
-    <Compile Include="objects\Pipe\frmPipeEditor.Designer.vb">
+    <Compile Include="Components\Editors\UIThermoDynamicStatesEditor.vb" />
+    <Compile Include="Components\Pipe\frmPipeEditor.Designer.vb">
       <DependentUpon>frmPipeEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Pipe\frmPipeEditor.vb">
+    <Compile Include="Components\Pipe\frmPipeEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Pipe\ucPipeEditor.Designer.vb">
+    <Compile Include="Components\Pipe\ucPipeEditor.Designer.vb">
       <DependentUpon>ucPipeEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Pipe\ucPipeEditor.vb">
+    <Compile Include="Components\Pipe\ucPipeEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Pipe\UIPipeEditor.vb" />
-    <Compile Include="objects\Pipe\PipeProfile.vb" />
-    <Compile Include="objects\HeatStructure\heat structure.vb" />
-    <Compile Include="objects\Pump.vb" />
-    <Compile Include="objects\PWRControlRod\PWR Control Rod.vb" />
-    <Compile Include="objects\Shroud.vb" />
-    <Compile Include="objects\Pipe\Pipe.vb" />
-    <Compile Include="objects\SingleJunction.vb" />
-    <Compile Include="objects\FuelRod\FuelRod.vb" />
+    <Compile Include="Components\Pipe\UIPipeEditor.vb" />
+    <Compile Include="Components\Pipe\PipeProfile.vb" />
+    <Compile Include="Components\HeatStructure\heat structure.vb" />
+    <Compile Include="Components\Pump.vb" />
+    <Compile Include="Components\PWRControlRod\PWR Control Rod.vb" />
+    <Compile Include="Components\Shroud.vb" />
+    <Compile Include="Components\Pipe\Pipe.vb" />
+    <Compile Include="Components\SingleJunction.vb" />
+    <Compile Include="Components\FuelRod\FuelRod.vb" />
     <Compile Include="Language\RELAP.Designer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -452,28 +452,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="objects\Time Dependent Junction.vb" />
-    <Compile Include="objects\Turbine\frmTurbineEditor.Designer.vb">
+    <Compile Include="Components\Time Dependent Junction.vb" />
+    <Compile Include="Components\Turbine\frmTurbineEditor.Designer.vb">
       <DependentUpon>frmTurbineEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Turbine\frmTurbineEditor.vb">
+    <Compile Include="Components\Turbine\frmTurbineEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="objects\Turbine\Turbine.vb" />
-    <Compile Include="objects\Turbine\TurbineJunctionsGeometry.vb" />
-    <Compile Include="objects\Turbine\ucTurbineEditor.Designer.vb">
+    <Compile Include="Components\Turbine\Turbine.vb" />
+    <Compile Include="Components\Turbine\TurbineJunctionsGeometry.vb" />
+    <Compile Include="Components\Turbine\ucTurbineEditor.Designer.vb">
       <DependentUpon>ucTurbineEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="objects\Turbine\ucTurbineEditor.vb">
+    <Compile Include="Components\Turbine\ucTurbineEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="objects\Turbine\UITurbineEditor.vb" />
-    <Compile Include="objects\Valve.vb" />
+    <Compile Include="Components\Turbine\UITurbineEditor.vb" />
+    <Compile Include="Components\Valve.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SharedFunctions.vb" />
     <Compile Include="Classes\Unit\SistemasDeUnidades.vb" />
-    <Compile Include="objects\Simulator.vb" />
-    <Compile Include="objects\Tank.vb" />
+    <Compile Include="Components\Simulator.vb" />
+    <Compile Include="Components\Tank.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.de.resx">
@@ -498,52 +498,52 @@
     <EmbeddedResource Include="frmTrips.resx">
       <DependentUpon>frmTrips.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Annulus\frmAnnulusEditor.resx">
+    <EmbeddedResource Include="Components\Annulus\frmAnnulusEditor.resx">
       <DependentUpon>frmAnnulusEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Annulus\ucAnnulusEditor.resx">
+    <EmbeddedResource Include="Components\Annulus\ucAnnulusEditor.resx">
       <DependentUpon>ucAnnulusEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Branch\frmBranchEditor.resx">
+    <EmbeddedResource Include="Components\Branch\frmBranchEditor.resx">
       <DependentUpon>frmBranchEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmPumpEditor.resx">
+    <EmbeddedResource Include="Components\Editors\frmPumpEditor.resx">
       <DependentUpon>frmPumpEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucPump.resx">
+    <EmbeddedResource Include="Components\Editors\ucPump.resx">
       <DependentUpon>ucPump.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\FuelRod\frmFuelRodEditor.resx">
+    <EmbeddedResource Include="Components\FuelRod\frmFuelRodEditor.resx">
       <DependentUpon>frmFuelRodEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\FuelRod\ucFuelRodEditor.resx">
+    <EmbeddedResource Include="Components\FuelRod\ucFuelRodEditor.resx">
       <DependentUpon>ucFuelRodEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\HeatStructure\frmHeatStructureEditor.resx">
+    <EmbeddedResource Include="Components\HeatStructure\frmHeatStructureEditor.resx">
       <DependentUpon>frmHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\HeatStructure\frmHeatStructureEditor2.resx">
+    <EmbeddedResource Include="Components\HeatStructure\frmHeatStructureEditor2.resx">
       <DependentUpon>frmHeatStructureEditor2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Junction\frmJunctionsEditor.resx">
+    <EmbeddedResource Include="Components\Junction\frmJunctionsEditor.resx">
       <DependentUpon>frmJunctionsEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmValveEditor.resx">
+    <EmbeddedResource Include="Components\Editors\frmValveEditor.resx">
       <DependentUpon>frmValveEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Branch\ucBranchEditor.resx">
+    <EmbeddedResource Include="Components\Branch\ucBranchEditor.resx">
       <DependentUpon>ucBranchEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\HeatStructure\ucHeatStructureEditor.resx">
+    <EmbeddedResource Include="Components\HeatStructure\ucHeatStructureEditor.resx">
       <DependentUpon>ucHeatStructureEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\HeatStructure\ucHeatStructureEditor2.resx">
+    <EmbeddedResource Include="Components\HeatStructure\ucHeatStructureEditor2.resx">
       <DependentUpon>ucHeatStructureEditor2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Junction\ucJunctionsEditor.resx">
+    <EmbeddedResource Include="Components\Junction\ucJunctionsEditor.resx">
       <DependentUpon>ucJunctionsEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucThermoDynamicStates.resx">
+    <EmbeddedResource Include="Components\Editors\ucThermoDynamicStates.resx">
       <DependentUpon>ucThermoDynamicStates.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlowsheet.de.resx">
@@ -664,34 +664,34 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\frmThermalHydraulicStatesditor.resx">
+    <EmbeddedResource Include="Components\Editors\frmThermalHydraulicStatesditor.resx">
       <DependentUpon>frmThermalHydraulicStatesditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Pipe\frmPipeEditor.resx">
+    <EmbeddedResource Include="Components\Pipe\frmPipeEditor.resx">
       <DependentUpon>frmPipeEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Pipe\ucPipeEditor.resx">
+    <EmbeddedResource Include="Components\Pipe\ucPipeEditor.resx">
       <DependentUpon>ucPipeEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Editors\ucValveEditor.resx">
+    <EmbeddedResource Include="Components\Editors\ucValveEditor.resx">
       <DependentUpon>ucValveEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\PWRControlRod\frmControlRodEditor.resx">
+    <EmbeddedResource Include="Components\PWRControlRod\frmControlRodEditor.resx">
       <DependentUpon>frmControlRodEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\PWRControlRod\ucControlRodEditor.resx">
+    <EmbeddedResource Include="Components\PWRControlRod\ucControlRodEditor.resx">
       <DependentUpon>ucControlRodEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Separator\formSeparatorEditor.resx">
+    <EmbeddedResource Include="Components\Separator\formSeparatorEditor.resx">
       <DependentUpon>formSeparatorEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Separator\ucSeparatorEditor.resx">
+    <EmbeddedResource Include="Components\Separator\ucSeparatorEditor.resx">
       <DependentUpon>ucSeparatorEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Turbine\frmTurbineEditor.resx">
+    <EmbeddedResource Include="Components\Turbine\frmTurbineEditor.resx">
       <DependentUpon>frmTurbineEditor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="objects\Turbine\ucTurbineEditor.resx">
+    <EmbeddedResource Include="Components\Turbine\ucTurbineEditor.resx">
       <DependentUpon>ucTurbineEditor.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
