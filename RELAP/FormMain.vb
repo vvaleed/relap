@@ -129,7 +129,7 @@ Public Class FormMain
             Me.TimerBackup.Enabled = True
         End If
 
-        Me.Text = "RIFGen - RELAP5 Input File Generator " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & " Beta" '& " [" & My.Application.Culture.EnglishName & ", DC " & My.Computer.FileSystem.GetFileInfo(My.Application.Info.DirectoryPath & "\RELAP.exe").LastWriteTimeUtc & " UTC]"
+        Me.Text = "RIFGen - RELAP5 Input File Generator " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Revision & " Beta" '& " [" & My.Application.Culture.EnglishName & ", DC " & My.Computer.FileSystem.GetFileInfo(My.Application.Info.DirectoryPath & "\RELAP.exe").LastWriteTimeUtc & " UTC]"
 
         Global.EWSoftware.StatusBarText.StatusBarTextProvider.ApplicationStatusBar = Me.ToolStripStatusLabel1
 
@@ -2613,18 +2613,21 @@ sim:                Dim myStream As System.IO.FileStream
             Dim gascount As Integer = 1
             Dim i = 1
             If frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count = 0 Then
+                output = ""
+            Else   '   added     by Dr. Surip Widodo
+                output = ""   '  added   by Dr. Surip Widodo
+                For i = 0 To frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count - 1
+                    output = output & " " & frmInitialSettings.chklistboxCondensibleGases.CheckedItems(i).ToString
+                Next
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*          Non condensible gases card")
                 generate.WriteLine("*======================================================================")
-            End If
-            output = ""
-            For i = 0 To frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count - 1
-                output = output & " " & frmInitialSettings.chklistboxCondensibleGases.CheckedItems(i).ToString
-            Next
-            generate.WriteLine("110 " & output)
-            generate.WriteLine("115 " & "1.0")
-            generate.WriteLine("50000000 couple" & frmInitialSettings.cboCoupleStyle.SelectedText)
-            generate.WriteLine("51010000 1 " & RELAP.App.GetUIDFromTag(frmInitialSettings.cboDebrisVolume.SelectedText) & " " & frmInitialSettings.cboDebrisSource.SelectedValue & " " & frmInitialSettings.cboDebrisBreakup.SelectedValue & " " & frmInitialSettings.txtMaxHydraulicStep.Text & " " & frmInitialSettings.txtCoupleTimeStep.Text)
+
+                generate.WriteLine("110 " & output)
+                generate.WriteLine("115 " & "1.0")
+            End If   ' added  by Dr. Surip Widodo
+            ' generate.WriteLine("50000000 couple" & frmInitialSettings.cboCoupleStyle.SelectedText)
+            ' generate.WriteLine("51010000 1 " & RELAP.App.GetUIDFromTag(frmInitialSettings.cboDebrisVolume.SelectedText) & " " & frmInitialSettings.cboDebrisSource.SelectedValue & " " & frmInitialSettings.cboDebrisBreakup.SelectedValue & " " & frmInitialSettings.txtMaxHydraulicStep.Text & " " & frmInitialSettings.txtCoupleTimeStep.Text)
 
 
 
