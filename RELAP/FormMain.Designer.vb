@@ -269,6 +269,7 @@ Partial Class FormMain
         Me.ContentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
         Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.ContentsToolStripMenuItem.Text = "&Show Help"
+        Me.ContentsToolStripMenuItem.Visible = False
         '
         'toolStripSeparator5
         '
