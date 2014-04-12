@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RELAP", "RELAP\RELAP.vbproj", "{A861C3F7-246D-4CBD-B476-AEEC9CD790E5}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RIFGen", "RELAP\RIFGen.vbproj", "{A861C3F7-246D-4CBD-B476-AEEC9CD790E5}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DesignSurface", "GraphicsSurface\DesignSurface.vbproj", "{9912BB73-AA07-44DE-873E-54483B1B40F0}"
 EndProject
@@ -16,19 +16,19 @@ Global
 		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = RELAP\\RELAP.vbproj
-		SccProjectName1 = RELAP
-		SccLocalPath1 = RELAP
-		SccProjectUniqueName2 = GraphicsSurface\\DesignSurface.vbproj
-		SccProjectName2 = GraphicsSurface
-		SccLocalPath2 = GraphicsSurface
-		SccProjectUniqueName3 = GraphicObjects\\GraphicObjects.vbproj
-		SccProjectName3 = GraphicObjects
-		SccLocalPath3 = GraphicObjects
-		SccProjectUniqueName4 = PropertyGridEx\\PropertyGridEx\\PropertyGridEx.vbproj
-		SccProjectName4 = PropertyGridEx/PropertyGridEx
-		SccLocalPath4 = PropertyGridEx\\PropertyGridEx
+		SccProjectUniqueName0 = GraphicsSurface\\DesignSurface.vbproj
+		SccProjectName0 = GraphicsSurface
+		SccLocalPath0 = GraphicsSurface
+		SccProjectUniqueName1 = GraphicObjects\\GraphicObjects.vbproj
+		SccProjectName1 = GraphicObjects
+		SccLocalPath1 = GraphicObjects
+		SccProjectUniqueName2 = PropertyGridEx\\PropertyGridEx\\PropertyGridEx.vbproj
+		SccProjectName2 = PropertyGridEx/PropertyGridEx
+		SccLocalPath2 = PropertyGridEx\\PropertyGridEx
+		SccLocalPath3 = .
+		SccProjectUniqueName4 = RELAP\\RIFGen.vbproj
+		SccProjectName4 = RELAP
+		SccLocalPath4 = RELAP
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
