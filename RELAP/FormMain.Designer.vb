@@ -84,6 +84,9 @@ Partial Class FormMain
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenOutputFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.AbcToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -103,7 +106,7 @@ Partial Class FormMain
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NovoToolStripMenuItem, Me.OpenToolStripMenuItem, Me.toolStripSeparator, Me.SaveToolStripMenuItem, Me.SaveAllToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripSeparator2, Me.CloseAllToolstripMenuItem, Me.toolStripSeparator1, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NovoToolStripMenuItem, Me.OpenToolStripMenuItem, Me.OpenOutputFileToolStripMenuItem, Me.toolStripSeparator, Me.SaveToolStripMenuItem, Me.SaveAllToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripSeparator2, Me.CloseAllToolstripMenuItem, Me.toolStripSeparator1, Me.ExitToolStripMenuItem, Me.AbcToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
@@ -412,9 +415,8 @@ Partial Class FormMain
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.DefaultExt = "RELAP"
-        Me.OpenFileDialog1.Filter = "Steady-state Simulation (*.RELAP)|*.RELAP|Compound Creator Study (*.dwcsd)|*.dwcs" & _
-    "d|Data Regression Study (*.dwrsd)|*.dwrsd|All RELAP Files (*.RELAP, *.dwcsd, *.d" & _
-    "wrsd)|*.RELAP;*.dwcsd;*.dwrsd"
+        Me.OpenFileDialog1.Filter = "RIFGen Workspace (*.RELAP)|*.RELAP|Output File (*.o)|*.o|All RELAP Files (*.RELAP" & _
+    ",*.o)|*.RELAP;*.o"
         Me.OpenFileDialog1.FilterIndex = 4
         Me.OpenFileDialog1.RestoreDirectory = True
         Me.OpenFileDialog1.Title = "Open existing simulation"
@@ -510,12 +512,33 @@ Partial Class FormMain
         Me.SaveFileDialog2.Filter = "RELAP Input File (*.i)|*.i"
         Me.SaveFileDialog2.Title = "Save Input File"
         '
+        'OpenOutputFileToolStripMenuItem
+        '
+        Me.OpenOutputFileToolStripMenuItem.Name = "OpenOutputFileToolStripMenuItem"
+        Me.OpenOutputFileToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.OpenOutputFileToolStripMenuItem.Text = "Open Output File"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(357, 113)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(487, 136)
+        Me.TextBox1.TabIndex = 24
+        '
+        'AbcToolStripMenuItem
+        '
+        Me.AbcToolStripMenuItem.Name = "AbcToolStripMenuItem"
+        Me.AbcToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.AbcToolStripMenuItem.Text = "abc"
+        '
         'FormMain
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1002, 605)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -674,5 +697,8 @@ Partial Class FormMain
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents SaveFileDialog2 As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents OpenOutputFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents AbcToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

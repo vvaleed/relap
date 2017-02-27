@@ -4365,4 +4365,58 @@ sim:                Dim myStream As System.IO.FileStream
     End Sub
 
 
+    Private Sub OpenOutputFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenOutputFileToolStripMenuItem.Click
+        If Me.OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Try
+                ' Open the file using a stream reader.
+
+                'Add with list(Of T)
+                Dim fStream As New System.IO.FileStream(OpenFileDialog1.FileName, IO.FileMode.Open)
+                Dim sReader As New System.IO.StreamReader(fStream)
+
+                Dim List As New List(Of String)
+                Do While sReader.Peek >= 0
+                    List.Add(sReader.ReadLine)
+                Loop
+
+                'to go back to an array
+                Dim thisArray As String() = List.ToArray
+
+                fStream.Close()
+                sReader.Close()
+
+
+
+
+                Dim line As String
+                Using sr As New StreamReader(OpenFileDialog1.FileName)
+
+                    ' Read the stream to a string and write the string to the console.
+                    line = sr.ReadLine
+
+                End Using
+                Dim getLiteratura As String = line '"'Author 1. Name of book 1. ISBN 978-80-251-2025-5.', 'Author 2. Name of Book 2. ISBN 80-01-01346.', 'Author 3. Name of book. ISBN 80-85849-83.'"
+                Dim list_of_times As New List(Of String)()
+                Dim position As Integer = 0
+                While position <> -1
+                    position = getLiteratura.IndexOf("0MAJOR EDIT !!!time=", position)
+                    If position <> -1 Then
+                        Dim endPosition As Integer = getLiteratura.IndexOf("sec", position + 1)
+                        If endPosition <> -1 Then
+                            list_of_times.Add(getLiteratura.Substring(position + 20, endPosition - position - 20))
+                            TextBox1.Text = TextBox1.Text & "Position: " & position & " t:" & getLiteratura.Substring(position + 20, endPosition - position - 20) & vbCrLf
+                        End If
+                        position = endPosition
+                    End If
+                End While
+
+            Catch
+                Console.WriteLine("The file could not be read:")
+                ' Console.WriteLine(e.Message)
+            End Try
+
+        End If
+    End Sub
+
+   
 End Class
