@@ -25,6 +25,9 @@ Partial Class FormMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -33,6 +36,7 @@ Partial Class FormMain
         Me.NovoEstudoDoCriadorDeComponentesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NovoEstudoDeRegressãoDeDadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenOutputFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -41,6 +45,7 @@ Partial Class FormMain
         Me.CloseAllToolstripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbcToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -84,12 +89,12 @@ Partial Class FormMain
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
-        Me.OpenOutputFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.AbcToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -154,6 +159,12 @@ Partial Class FormMain
         Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
+        'OpenOutputFileToolStripMenuItem
+        '
+        Me.OpenOutputFileToolStripMenuItem.Name = "OpenOutputFileToolStripMenuItem"
+        Me.OpenOutputFileToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.OpenOutputFileToolStripMenuItem.Text = "Open Output File"
+        '
         'toolStripSeparator
         '
         Me.toolStripSeparator.Name = "toolStripSeparator"
@@ -213,6 +224,12 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.ExitToolStripMenuItem.Text = "Exi&t RIFGen"
+        '
+        'AbcToolStripMenuItem
+        '
+        Me.AbcToolStripMenuItem.Name = "AbcToolStripMenuItem"
+        Me.AbcToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
+        Me.AbcToolStripMenuItem.Text = "abc"
         '
         'RunToolStripMenuItem
         '
@@ -512,12 +529,6 @@ Partial Class FormMain
         Me.SaveFileDialog2.Filter = "RELAP Input File (*.i)|*.i"
         Me.SaveFileDialog2.Title = "Save Input File"
         '
-        'OpenOutputFileToolStripMenuItem
-        '
-        Me.OpenOutputFileToolStripMenuItem.Name = "OpenOutputFileToolStripMenuItem"
-        Me.OpenOutputFileToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
-        Me.OpenOutputFileToolStripMenuItem.Text = "Open Output File"
-        '
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(357, 113)
@@ -526,11 +537,21 @@ Partial Class FormMain
         Me.TextBox1.Size = New System.Drawing.Size(487, 136)
         Me.TextBox1.TabIndex = 24
         '
-        'AbcToolStripMenuItem
+        'Chart1
         '
-        Me.AbcToolStripMenuItem.Name = "AbcToolStripMenuItem"
-        Me.AbcToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
-        Me.AbcToolStripMenuItem.Text = "abc"
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend1)
+        Me.Chart1.Location = New System.Drawing.Point(192, 113)
+        Me.Chart1.Name = "Chart1"
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        Me.Chart1.Series.Add(Series1)
+        Me.Chart1.Size = New System.Drawing.Size(300, 300)
+        Me.Chart1.TabIndex = 26
+        Me.Chart1.Text = "Chart1"
         '
         'FormMain
         '
@@ -538,6 +559,7 @@ Partial Class FormMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1002, 605)
+        Me.Controls.Add(Me.Chart1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -557,6 +579,7 @@ Partial Class FormMain
         Me.ToolStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -700,5 +723,6 @@ Partial Class FormMain
     Friend WithEvents OpenOutputFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents AbcToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Chart1 As System.Windows.Forms.DataVisualization.Charting.Chart
 
 End Class
