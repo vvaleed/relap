@@ -4384,10 +4384,50 @@ sim:                Dim myStream As System.IO.FileStream
 
                 fStream.Close()
                 sReader.Close()
+                Dim flgBeginReading As Boolean = False
+                Dim timeArray As New List(Of String)
+                Dim flgBeginDetailReading As Boolean = False
+                Dim listofComponentNames As New List(Of String)
+                Dim listofComponentType As New List(Of String)
+                Dim listofComponentDetails As New List(Of String())
+                Dim listofOutputParameters As New List(Of String())
+                For i = 0 To thisArray.Count
+                    '  For Each singleline As String In thisArray
+                    Dim singleline As String = thisArray(i)
+                    If singleline.Contains("Input processing completed successfully.") Then
+                        flgBeginReading = True
+                    End If
+
+                    If flgBeginReading = True Then
+
+                        If singleline.Contains("0MAJOR EDIT !!!time=") Then
+                            Dim temp As String() = SplitMultiDelims(singleline, " ", True)
+                            timeArray.Add(temp(3))
+                        End If
+
+                        If flgBeginDetailReading Then
+                            Dim temp As String() = SplitMultiDelims(singleline, " ", True)
+                            If temp.Count > 5 Then
+                                listofComponentDetails.Add(temp)
+                            Else
+                                listofComponentNames.Add(temp(0))
+                                listofComponentType.Add(temp(1))
+                            End If
+                        End If
+
+                        If singleline.Contains("Vol.no.") Then
+                            Dim outputparameters As String() = SplitMultiDelims(singleline, " ", True)
+                            listofOutputParameters.Add(outputparameters)
+                            flgBeginDetailReading = True
+                            i = i + 1
+                        End If
 
 
 
-
+                    End If
+                    ' Next
+                Next
+                Chart1.DataSource = listofComponentDetails
                 Dim line As String
                 Using sr As New StreamReader(OpenFileDialog1.FileName)
 
@@ -4418,5 +4458,55 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Sub
 
-   
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    ' SplitMultiDelims by alainbryden
+    ' This function splits Text into an array of substrings, each substring
+    ' delimited by any character in DelimChars. Only a single character
+    ' may be a delimiter between two substrings, but DelimChars may
+    ' contain any number of delimiter characters. It returns a single element
+    ' array containing all of text if DelimChars is empty, or a 1 or greater
+    ' element array if the Text is successfully split into substrings.
+    ' If IgnoreConsecutiveDelimiters is true, empty array elements will not occur.
+    ' If Limit greater than 0, the function will only split Text into 'Limit'
+    ' array elements or less. The last element will contain the rest of Text.
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Function SplitMultiDelims(ByRef Text As String, ByRef DelimChars As String, _
+            Optional ByVal IgnoreConsecutiveDelimiters As Boolean = False, _
+            Optional ByVal Limit As Long = -1) As String()
+        Dim ElemStart As Long, N As Long, M As Long, Elements As Long
+        Dim lDelims As Long, lText As Long
+        Dim Arr() As String
+
+        lText = Len(Text)
+        lDelims = Len(DelimChars)
+        If lDelims = 0 Or lText = 0 Or Limit = 1 Then
+            ReDim Arr(0 To 0)
+            Arr(0) = Text
+            SplitMultiDelims = Arr
+            Exit Function
+        End If
+        ReDim Arr(0 To IIf(Limit = -1, lText - 1, Limit))
+
+        Elements = 0 : ElemStart = 1
+        For N = 1 To lText
+            If InStr(DelimChars, Mid(Text, N, 1)) Then
+                Arr(Elements) = Mid(Text, ElemStart, N - ElemStart)
+                If IgnoreConsecutiveDelimiters Then
+                    If Len(Arr(Elements)) > 0 Then Elements = Elements + 1
+                Else
+                    Elements = Elements + 1
+                End If
+                ElemStart = N + 1
+                If Elements + 1 = Limit Then Exit For
+            End If
+        Next N
+        'Get the last token terminated by the end of the string into the array
+        If ElemStart <= lText Then Arr(Elements) = Mid(Text, ElemStart)
+        'Since the end of string counts as the terminating delimiter, if the last character
+        'was also a delimiter, we treat the two as consecutive, and so ignore the last elemnent
+        If IgnoreConsecutiveDelimiters Then If Len(Arr(Elements)) = 0 Then Elements = Elements - 1
+
+        ReDim Preserve Arr(0 To Elements) 'Chop off unused array elements
+        SplitMultiDelims = Arr
+    End Function
 End Class
