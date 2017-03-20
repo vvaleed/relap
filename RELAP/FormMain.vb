@@ -4391,7 +4391,8 @@ sim:                Dim myStream As System.IO.FileStream
                 Dim listofComponentType As New List(Of String)
                 Dim listofComponentDetails As New List(Of String())
                 Dim listofOutputParameters As New List(Of String())
-                For i = 0 To thisArray.Count
+                Dim file As System.IO.StreamWriter
+                For i = 0 To thisArray.Count - 1
                     '  For Each singleline As String In thisArray
                     Dim singleline As String = thisArray(i)
                     If singleline.Contains("Input processing completed successfully.") Then
@@ -4402,10 +4403,13 @@ sim:                Dim myStream As System.IO.FileStream
 
                         If singleline.Contains("0MAJOR EDIT !!!time=") Then
                             Dim temp As String() = SplitMultiDelims(singleline, " ", True)
+
+
                             timeArray.Add(temp(3))
+
                         End If
 
-                        If flgBeginDetailReading Then
+                        If flgBeginDetailReading And singleline.Substring(0) <> "0" Then
                             Dim temp As String() = SplitMultiDelims(singleline, " ", True)
                             If temp.Count > 5 Then
                                 listofComponentDetails.Add(temp)
@@ -4414,7 +4418,7 @@ sim:                Dim myStream As System.IO.FileStream
                                 listofComponentType.Add(temp(1))
                             End If
                         End If
-
+                        flgBeginDetailReading = False
                         If singleline.Contains("Vol.no.") Then
                             Dim outputparameters As String() = SplitMultiDelims(singleline, " ", True)
                             listofOutputParameters.Add(outputparameters)
@@ -4422,9 +4426,8 @@ sim:                Dim myStream As System.IO.FileStream
                             i = i + 1
                         End If
 
-
-
                     End If
+                    Debug.Print(i)
                     ' Next
                 Next
                 Chart1.DataSource = listofComponentDetails
@@ -4449,13 +4452,18 @@ sim:                Dim myStream As System.IO.FileStream
                         position = endPosition
                     End If
                 End While
+                file = My.Computer.FileSystem.OpenTextFileWriter("D:\temp\test.txt", True)
+                file.WriteLine(thisArray)
+                file.Close()
+            Catch ex As Exception
+                MsgBox(ex.Message)
 
-            Catch
-                Console.WriteLine("The file could not be read:")
                 ' Console.WriteLine(e.Message)
             End Try
 
+            
         End If
+
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -4473,6 +4481,9 @@ sim:                Dim myStream As System.IO.FileStream
     Function SplitMultiDelims(ByRef Text As String, ByRef DelimChars As String, _
             Optional ByVal IgnoreConsecutiveDelimiters As Boolean = False, _
             Optional ByVal Limit As Long = -1) As String()
+        Try
+
+       
         Dim ElemStart As Long, N As Long, M As Long, Elements As Long
         Dim lDelims As Long, lText As Long
         Dim Arr() As String
@@ -4507,6 +4518,9 @@ sim:                Dim myStream As System.IO.FileStream
         If IgnoreConsecutiveDelimiters Then If Len(Arr(Elements)) = 0 Then Elements = Elements - 1
 
         ReDim Preserve Arr(0 To Elements) 'Chop off unused array elements
-        SplitMultiDelims = Arr
+            SplitMultiDelims = Arr
+        Catch ex As Exception
+            MsgBox(ex.InnerException)
+        End Try
     End Function
 End Class
