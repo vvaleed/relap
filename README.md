@@ -1,4 +1,4 @@
-# relap
+# RELAP5 Input File Generator (RIFGen)
 Nuclear Reactor safety analysis is a systematic study to demonstrate the limits and reliability of reactor in normal as well as accidental conditions. Reactor Excursion and Leak Analysis Program (RELAP) or RELAP5 is a tool for analyzing small-break LOCAs and system transients in PWRs or BWRs. It has the capability to model thermal-hydraulic phenomena in 1-D volumes. It is used for the thermal- hydraulic transient analysis in water-cooled nuclear reactors by solving one dimensional, two-phase thermal-hydraulic equations in an arbitrarily connected system of volumes. However, the preparation of the input file and subsequent analysis of results in this code is a tiresome task.
 
 The aim of this work was to develop a Graphical User Interface (GUI) for preparation of the input file for RELAP5. The GUI has been developed in VB.NET using Microsoft Visual Studio 2010.
