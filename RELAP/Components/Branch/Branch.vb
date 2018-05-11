@@ -364,8 +364,8 @@ Namespace RELAP.SimulationObjects.UnitOps
             Me.m_ComponentDescription = descricao
             Me._BranchJunctionsGeometry = New BranchJunctionsGeometry
             Me._ThermoDynamicStates = New ThermoDynamicStates
-            Me._NumberofInputJunctions = 2
-            Me._NumberofOutputJunctions = 2
+            Me._NumberofInputJunctions = 1
+            Me._NumberofOutputJunctions = 1
             Me.m_flowarea = 1.0
             Me.m_LengthofVolume = 2.0
             Me.m_VolumeofVolume = 0.0

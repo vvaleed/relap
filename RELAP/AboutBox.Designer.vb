@@ -102,7 +102,7 @@ Partial Class AboutBox
         Me.LinkLabel2.Size = New System.Drawing.Size(130, 13)
         Me.LinkLabel2.TabIndex = 7
         Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "http://relap.codeplex.com"
+        Me.LinkLabel2.Text = "http://github.com/vvaleed/relap"
         '
         'LabelLicense
         '

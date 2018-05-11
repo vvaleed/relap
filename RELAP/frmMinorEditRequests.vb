@@ -25,7 +25,7 @@
             MsgBox(ex.Message)
         End Try
         If Not My.Application.ActiveSimulation.Options.MinorEdit Is Nothing Then
-            DataGridView1.Rows.Add(My.Application.ActiveSimulation.Options.MinorEdit.ProMinorEdit101.Count)
+            'surip    DataGridView1.Rows.Add(My.Application.ActiveSimulation.Options.MinorEdit.ProMinorEdit101.Count)
             Dim i = 0
             For Each row In My.Application.ActiveSimulation.Options.MinorEdit.ProMinorEdit101
                 DataGridView1.Rows(i).Cells(0).Value = row.Value.cboParameter

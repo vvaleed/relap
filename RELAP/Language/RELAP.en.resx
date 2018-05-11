@@ -1178,7 +1178,7 @@ Liquid Surface Tension: Brock-Bird Method</value>
     <value>Continue the process of adjustment anyway?</value>
   </data>
   <data name="Desejasalvarasaltera" xml:space="preserve">
-    <value>Save current simulation?</value>
+    <value>Save current drawing?</value>
   </data>
   <data name="Destino" xml:space="preserve">
     <value>Target</value>
@@ -1610,7 +1610,7 @@ Liquid Surface Tension: Brock-Bird Method</value>
     <value>There are objects waiting to be calculated. Do you wish to process these items now?</value>
   </data>
   <data name="Existemsimulaesabert" xml:space="preserve">
-    <value>There are open simulations. Are you sure you want to close RELAP?</value>
+    <value>Are you sure you want to close RIFGen?</value>
   </data>
   <data name="Existeumafaselquidan" xml:space="preserve">
     <value>There is a liquid phase at the suction of the compressor.</value>

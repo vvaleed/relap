@@ -96,6 +96,7 @@ Public Class ucPipeEditor
                 row.Cells(13).Value = myPipe.Profile.Junctions(i).InitialVaporVelocity
                 row.Cells(14).Value = myPipe.Profile.Junctions(i).InitialLiquidMassFlowRate
                 row.Cells(15).Value = myPipe.Profile.Junctions(i).InitialVaporMassFlowRate
+                row.Cells(16).Value = myPipe.Profile.Junctions(i).JunctionHidraulicDiameter
                 i = i + 1
             Next
         Else
@@ -117,7 +118,7 @@ Public Class ucPipeEditor
     Private Sub cmdSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdSave.Click
         Dim row As New DataGridViewRow
         Dim cv As New RELAP.SistemasDeUnidades.Conversor
-        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16 As Object
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17 As Object
 
         If Not Me.Profile Is Nothing Then
             Me.Profile.Sections.Clear()
@@ -168,9 +169,10 @@ Public Class ucPipeEditor
             v14 = row.Cells(13).Value
             v15 = row.Cells(14).Value
             v16 = row.Cells(15).Value
+            v17 = row.Cells(16).Value
 
 
-            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16))
+            Me.Profile.Junctions.Add(row.Index + 1, New PipeJunctions(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17))
 
         Next
 
@@ -225,7 +227,7 @@ Public Class ucPipeEditor
 
     Dim selectedcells2 As New List(Of Object)
     Private Sub cmdCopy2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdCopy2.Click
-        If dgv.SelectedRows.Count = 1 Then
+        If dgv2.SelectedRows.Count = 1 Then
             selectedcells.Clear()
             For Each cell As DataGridViewCell In dgv2.SelectedRows(0).Cells
                 selectedcells2.Add(cell.Value)
@@ -235,7 +237,7 @@ Public Class ucPipeEditor
     End Sub
 
     Private Sub cmdPaste2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdPaste2.Click
-        For Each row As DataGridViewRow In dgv.SelectedRows
+        For Each row As DataGridViewRow In dgv2.SelectedRows
             Dim i = 0
 
 

@@ -49,10 +49,12 @@ Public Class FormMain
     Public SairDiretoERRO As Boolean = False
     Public loadedCSDB As Boolean = False
     Public pathsep As Char
-
+    '
+    Public smallestCompNumber As Integer = 0
     Public WithEvents FrmLoadSave As New FormLS
     ' Public FrmOptions As FormOptions
     'Public FrmRec As FormRecoverFiles
+    Public inputfile As String
 
     Private dropdownlist As ArrayList
 
@@ -129,7 +131,7 @@ Public Class FormMain
             Me.TimerBackup.Enabled = True
         End If
 
-        Me.Text = "RIFGen - RELAP5 Input File Generator " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Revision & " Beta" '& " [" & My.Application.Culture.EnglishName & ", DC " & My.Computer.FileSystem.GetFileInfo(My.Application.Info.DirectoryPath & "\RELAP.exe").LastWriteTimeUtc & " UTC]"
+        Me.Text = "RIFGen - RELAP5 Input File Generator " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & " Beta" '& " [" & My.Application.Culture.EnglishName & ", DC " & My.Computer.FileSystem.GetFileInfo(My.Application.Info.DirectoryPath & "\RELAP.exe").LastWriteTimeUtc & " UTC]"
 
         Global.EWSoftware.StatusBarText.StatusBarTextProvider.ApplicationStatusBar = Me.ToolStripStatusLabel1
 
@@ -1034,6 +1036,9 @@ Public Class FormMain
                 '      Return Me.tmpform2.FormObjList
             Case "RELAP.frmPlotRequest"
                 Return Me.tmpform2.FormPlotReqest
+            Case "RELAP.frmControlSystem"
+                Return Me.tmpform2.FormControlSystem
+
             Case "RELAP.frmTrips"
                 Return Me.tmpform2.FormTrips
             Case "RELAP.frmSurface"
@@ -1961,8 +1966,8 @@ sim:                Dim myStream As System.IO.FileStream
     Sub SaveFileDialog_NoBG()
 
         Dim myStream As System.IO.FileStream
-
-        Me.SaveFileDialog1.Filter = RELAP.App.GetLocalString("SimulaesdoRELAPRELAP")
+        'SimulaesdoRELAPRELAP
+        Me.SaveFileDialog1.Filter = RELAP.App.GetLocalString("Simulasi RELAP|*.RELAP")
         Me.SaveFileDialog1.AddExtension = True
         If Me.SaveFileDialog1.FilterIndex = 1 Then
             If Me.SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
@@ -2337,9 +2342,9 @@ sim:                Dim myStream As System.IO.FileStream
         End If
     End Sub
 
-   
 
-   
+
+
 
     Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         '   Me.PreferênciasDoRELAPToolStripMenuItem_Click(sender, e)
@@ -2357,7 +2362,7 @@ sim:                Dim myStream As System.IO.FileStream
         Me.TileHorizontalToolStripMenuItem_Click(sender, e)
     End Sub
 
-   
+
 
     Private Sub ToolStripButton8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton8.Click
         Me.AboutToolStripMenuItem_Click(sender, e)
@@ -2559,6 +2564,7 @@ sim:                Dim myStream As System.IO.FileStream
 
         SaveFileDialog2.Filter = "RELAP CODE File (*.i)|*.i"
         If SaveFileDialog2.ShowDialog() = DialogResult.OK Then
+            inputfile = SaveFileDialog2.FileName
             Dim generate As StreamWriter = File.CreateText(SaveFileDialog2.FileName)
             Dim output As String = Nothing
             Dim output1 As String = Nothing
@@ -2575,6 +2581,7 @@ sim:                Dim myStream As System.IO.FileStream
             Dim fluidchk As String = Nothing
             Dim boronchk As String = Nothing
             Dim filename As String() = SaveFileDialog2.FileName.Split("\")
+
 
             generate.WriteLine("= " & filename(filename.Length - 1))
             generate.WriteLine("*======================================================================")
@@ -2614,8 +2621,8 @@ sim:                Dim myStream As System.IO.FileStream
             Dim i = 1
             If frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count = 0 Then
                 output = ""
-            Else   '   added     by Dr. Surip Widodo
-                output = ""   '  added   by Dr. Surip Widodo
+            Else
+                output = ""
                 For i = 0 To frmInitialSettings.chklistboxCondensibleGases.CheckedItems.Count - 1
                     output = output & " " & frmInitialSettings.chklistboxCondensibleGases.CheckedItems(i).ToString
                 Next
@@ -2625,9 +2632,10 @@ sim:                Dim myStream As System.IO.FileStream
 
                 generate.WriteLine("110 " & output)
                 generate.WriteLine("115 " & "1.0")
-            End If   ' added  by Dr. Surip Widodo
-            ' generate.WriteLine("50000000 couple" & frmInitialSettings.cboCoupleStyle.SelectedText)
-            ' generate.WriteLine("51010000 1 " & RELAP.App.GetUIDFromTag(frmInitialSettings.cboDebrisVolume.SelectedText) & " " & frmInitialSettings.cboDebrisSource.SelectedValue & " " & frmInitialSettings.cboDebrisBreakup.SelectedValue & " " & frmInitialSettings.txtMaxHydraulicStep.Text & " " & frmInitialSettings.txtCoupleTimeStep.Text)
+            End If
+
+            'generate.WriteLine("50000000 couple" & frmInitialSettings.cboCoupleStyle.SelectedText)
+            'generate.WriteLine("51010000 1 " & RELAP.App.GetUIDFromTag(frmInitialSettings.cboDebrisVolume.SelectedText) & " " & frmInitialSettings.cboDebrisSource.SelectedValue & " " & frmInitialSettings.cboDebrisBreakup.SelectedValue & " " & frmInitialSettings.txtMaxHydraulicStep.Text & " " & frmInitialSettings.txtCoupleTimeStep.Text)
 
 
 
@@ -2705,7 +2713,7 @@ sim:                Dim myStream As System.IO.FileStream
                         parameter1 = temprow.Cells(2).Value
                     End If
 
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & parameter1)
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value.ToLower() & " " & parameter1)
                     card = card + 1
 
                 End If
@@ -2725,19 +2733,22 @@ sim:                Dim myStream As System.IO.FileStream
                         latch = "n"
                     End If
                     Dim parameter1, parameter2 As String
-                    If RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) Is Nothing Then
+                    Dim par1, par2 As Integer
+                    If RELAP.App.GetUIDFromTag(temprow.Cells(2).Value) Is Nothing Then
                         parameter1 = "0 "
                     Else
-                        parameter1 = RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) & temprow.Cells(3).Value.ToString("D2") & "0000 "
+                        par1 = Val(temprow.Cells(3).Value)
+                        parameter1 = RELAP.App.GetUIDFromTag(temprow.Cells(2).Value) & par1.ToString("D2") & "0000 "
                     End If
-                    If RELAP.App.GetUIDFromTag(temprow.Cells(11).Value) Is Nothing Then
+                    If RELAP.App.GetUIDFromTag(temprow.Cells(6).Value) Is Nothing Then
                         parameter2 = "0 "
                     Else
-                        parameter2 = RELAP.App.GetUIDFromTag(temprow.Cells(12).Value) & temprow.Cells(7).Value.ToString("D2") & "0000 "
+                        par2 = Val(temprow.Cells(7).Value)
+                        parameter2 = RELAP.App.GetUIDFromTag(temprow.Cells(6).Value) & par2.ToString("D2") & "0000 "
                     End If
-                    generate.WriteLine(card & " " & temprow.Cells(1).Value & " " & parameter1 & temprow.Cells(4).Value & " " & temprow.Cells(5).Value & " " & parameter2 & temprow.Cells(8).Value & " " & latch & " " & temprow.Cells(10).Value)
+                generate.WriteLine(card & " " & temprow.Cells(1).Value.ToLower() & " " & parameter1 & temprow.Cells(4).Value.ToLower() & " " & temprow.Cells(5).Value.ToLower() & " " & parameter2 & temprow.Cells(8).Value & " " & latch & " " & temprow.Cells(10).Value)
 
-                End If
+                    End If
             Next
             card = 601
             For Each temprow As DataGridViewRow In My.Application.ActiveSimulation.FormTrips.DataGridViewX1.Rows
@@ -2748,7 +2759,7 @@ sim:                Dim myStream As System.IO.FileStream
                     Else
                         latch = "n"
                     End If
-                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value) & " " & temprow.Cells(2).Value & " " & latch & " " & temprow.Cells(4).Value)
+                    generate.WriteLine(card & " " & temprow.Cells(0).Value & " " & (temprow.Cells(1).Value.ToLower()) & " " & temprow.Cells(2).Value & " " & latch & " " & temprow.Cells(4).Value)
                 End If
 
                 card = card + 1
@@ -2885,7 +2896,7 @@ sim:                Dim myStream As System.IO.FileStream
                 ElseIf kvp.Value.MomentumFlux.ToString = "Do_not_use_Momentum_Flux" Then
                     output7 = "3"
                 End If
-                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea.ToString("F") & " " & kvp.Value.FflowLossCo.ToString("F") & " " & kvp.Value.RflowLossCo.ToString("F") & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea.ToString("F4") & " " & kvp.Value.FflowLossCo.ToString("F3") & " " & kvp.Value.RflowLossCo.ToString("F3") & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7
                 generate.WriteLine(output)
 
                 If kvp.Value.EnterVelocityOrMassFlowRate = False Then
@@ -2906,7 +2917,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ tmdpjun")
 
-                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea.ToString("F")
+                output = kvp.Value.UID & "0101 " & kvp.Value.FromComponent & CInt(kvp.Value.FromVolume).ToString("D2") & "000" & kvp.Value.FromDirection & " " & kvp.Value.ToComponent & CInt(kvp.Value.ToVolume).ToString("D2") & "000" & kvp.Value.ToDirection & " " & kvp.Value.JunctionArea.ToString("F4")
                 generate.WriteLine(output)
 
                 output = kvp.Value.UID & "0200 " & kvp.Value.JunctionsData.EnterMassorVelocity
@@ -3173,49 +3184,77 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(output)
                 Dim counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "01" & counter & " " & kvp2.Value.FlowArea.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "03" & counter & " " & kvp2.Value.LengthofVolume.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "04" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "05" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "06" & counter & " " & kvp2.Value.VerticalAngle.ToString("F4") & " " & counter
+                    End If
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+                'suripw
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "07" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
-                'counter = 1
-                'For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                '    output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange & " " & vol
-                '    generate.WriteLine(output)
-                '    counter = counter + 1
-                'Next kvp2
-
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness.ToString("F4") & " " & kvp2.Value.HydraulicDiameter.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness.ToString("F5") & " " & kvp2.Value.HydraulicDiameter.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "08" & counter & " " & kvp2.Value.WallRoughness.ToString("F5") & " " & kvp2.Value.HydraulicDiameter.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3229,21 +3268,33 @@ sim:                Dim myStream As System.IO.FileStream
                     output5 = boolto10(kvp2.Value.InterphaseFriction)
                     output6 = boolto10(kvp2.Value.ComputeWallFriction)
                     output7 = boolto10(kvp2.Value.EquilibriumTemperature)
-                    output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    Else
+                        output = kvp.Value.UID & "10" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
-                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "02" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
-                    output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "09" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3253,6 +3304,7 @@ sim:                Dim myStream As System.IO.FileStream
                     output1 = boolto10(kvp2.Value.PVterm)
                     output2 = boolto10(kvp2.Value.CCFLModel)
                     output3 = boolto10(kvp2.Value.ChokingModel)
+                    output4 = "0"
                     If kvp2.Value.SmoothAreaChange = "Smooth Area Change" Then
                         output4 = "0"
                     ElseIf kvp2.Value.SmoothAreaChange = "Full Abrupt Area Change" Then
@@ -3276,8 +3328,11 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.MomentumFlux = "Do not use Momentum Flux" Then
                         output6 = "3"
                     End If
-
-                    output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    Else
+                        output = kvp.Value.UID & "11" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3287,7 +3342,11 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
-                    generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
+                    If (counter < 10) Then
+                        generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
+                    Else
+                        generate.WriteLine(kvp.Value.UID & "12" & counter & " " & output1 & kvp2.Value.StatesString)
+                    End If
                     counter = counter + 1
                 Next kvp2
 
@@ -3303,11 +3362,26 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.EnterVelocityOrMassFlowRate = True Then
                         output1 = kvp2.Value.InitialLiquidMassFlowRate.ToString("F") & " " & kvp2.Value.InitialVaporMassFlowRate.ToString("F")
                     End If
-                    output = kvp.Value.UID & "130" & counter & " " & output1 & " 0.0" & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "130" & counter & " " & output1 & " 0.0" & " " & counter
+                    Else
+                        output = kvp.Value.UID & "13" & counter & " " & output1 & " 0.0" & " " & counter
+                    End If
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, PipeJunctions) In kvp.Value.Profile.Junctions
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "140" & counter & " " & kvp2.Value.JunctionHidraulicDiameter.ToString("F4") & " " & "0.0  1.  1." & " " & counter
+                    Else
+                        output = kvp.Value.UID & "14" & counter & " " & kvp2.Value.JunctionHidraulicDiameter.ToString("F4") & " " & "0.0  1.  1." & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
             Next kvp
+
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Annulus) In ChildParent.Collections.CLCS_AnnulusCollection
                 '  MsgBox(kvp.Key)
                 'kvp.Value.FlowArea.cardno()
@@ -3319,49 +3393,77 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine(output)
                 Dim counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "010" & counter & " " & kvp2.Value.FlowArea.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "01" & counter & " " & kvp2.Value.FlowArea.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "030" & counter & " " & kvp2.Value.LengthofVolume.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "03" & counter & " " & kvp2.Value.LengthofVolume.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "040" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "04" & counter & " " & kvp2.Value.VolumeofVolume.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "050" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "05" & counter & " " & kvp2.Value.Azimuthalangle.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "060" & counter & " " & kvp2.Value.VerticalAngle.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "06" & counter & " " & kvp2.Value.VerticalAngle.ToString("F4") & " " & counter
+                    End If
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+                'surip
+                counter = 1
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "07" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
-                'counter = 1
-                'For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                '    output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange & " " & vol
-                '    generate.WriteLine(output)
-                '    counter = counter + 1
-                'Next kvp2
-
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusSection) In kvp.Value.Profile.Sections
-                    output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness.ToString("F4") & " " & kvp2.Value.HydraulicDiameter.ToString("F4") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "080" & counter & " " & kvp2.Value.WallRoughness.ToString("F5") & " " & kvp2.Value.HydraulicDiameter.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "08" & counter & " " & kvp2.Value.WallRoughness.ToString("F5") & " " & kvp2.Value.HydraulicDiameter.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3375,21 +3477,33 @@ sim:                Dim myStream As System.IO.FileStream
                     output5 = boolto10(kvp2.Value.InterphaseFriction)
                     output6 = boolto10(kvp2.Value.ComputeWallFriction)
                     output7 = boolto10(kvp2.Value.EquilibriumTemperature)
-                    output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "100" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    Else
+                        output = kvp.Value.UID & "10" & counter & " " & output1 & output2 & output3 & output4 & output5 & output6 & output7 & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
-                    output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "020" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F4") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "02" & counter & " " & kvp2.Value.JunctionFlowArea.ToString("F4") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
 
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
-                    output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "090" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "09" & counter & " " & kvp2.Value.FflowLossCo.ToString("F") & " " & kvp2.Value.RflowLossCo.ToString("F") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3422,8 +3536,11 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.MomentumFlux = "Do not use Momentum Flux" Then
                         output6 = "3"
                     End If
-
-                    output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "110" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    Else
+                        output = kvp.Value.UID & "11" & counter & " " & output1 & output2 & "0" & output3 & output4 & output5 & output6 & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
@@ -3433,7 +3550,11 @@ sim:                Dim myStream As System.IO.FileStream
                 End If
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, ThermoDynamicState) In kvp.Value.ThermoDynamicStates.State
-                    generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
+                    If (counter < 10) Then
+                        generate.WriteLine(kvp.Value.UID & "120" & counter & " " & output1 & kvp2.Value.StatesString)
+                    Else
+                        generate.WriteLine(kvp.Value.UID & "12" & counter & " " & output1 & kvp2.Value.StatesString)
+                    End If
                     counter = counter + 1
                 Next kvp2
 
@@ -3449,14 +3570,28 @@ sim:                Dim myStream As System.IO.FileStream
                     ElseIf kvp2.Value.EnterVelocityOrMassFlowRate = True Then
                         output1 = kvp2.Value.InitialLiquidMassFlowRate.ToString("F") & " " & kvp2.Value.InitialVaporMassFlowRate.ToString("F")
                     End If
-                    output = kvp.Value.UID & "130" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity.ToString("F") & " " & counter
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "130" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity.ToString("F") & " " & counter
+                    Else
+                        output = kvp.Value.UID & "13" & counter & " " & output1 & " " & kvp2.Value.InterphaseVelocity.ToString("F") & " " & counter
+                    End If
                     generate.WriteLine(output)
                     counter = counter + 1
                 Next kvp2
+                For Each kvp2 As KeyValuePair(Of Integer, AnnulusJunctions) In kvp.Value.Profile.Junctions
+                    If (counter < 10) Then
+                        output = kvp.Value.UID & "140" & counter & " " & kvp2.Value.JunctionHidraulicDiameter.ToString("F4") & " " & "0.0  1.  1." & " " & counter
+                    Else
+                        output = kvp.Value.UID & "14" & counter & " " & kvp2.Value.JunctionHidraulicDiameter.ToString("F4") & " " & "0.0  1.  1." & " " & counter
+                    End If
+                    generate.WriteLine(output)
+                    counter = counter + 1
+                Next kvp2
+
             Next kvp
 
             For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Branch) In ChildParent.Collections.CLCS_BranchCollection
-                If kvp.Value.GraphicObject.Tag = "BR002" Then
+                If kvp.Value.GraphicObject.Tag = "BRdump" Then
                     generate.WriteLine(kvp.Value.UID & "0000 """ + kvp.Value.GraphicObject.Tag & """ branch")
                     generate.WriteLine("0170001 1 1")
                     generate.WriteLine(" 0170101 0.10 2.00 0.00 0.00 90.00 2.00 0.00 0.00 0")
@@ -3845,7 +3980,7 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSMeshDataFormat1) In kvp.Value.HeatStructureMeshData.MeshDataFormat1
-                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate.ToString("e3")
+                    output = "1" & kvp.Value.UID & "0" & "10" & Counter & " " & kvp2.Value.NumberOfIntervals & " " & kvp2.Value.RightCoordinate.ToString("F4")
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3984,7 +4119,7 @@ sim:                Dim myStream As System.IO.FileStream
 
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab3) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab3
-                    output = "1" & kvp.Value.UID & "0" & "70" & Counter & " " & kvp2.Value.SourceType & " " & kvp2.Value.InternalSourceMultiplier & " " & kvp2.Value.DirectModeratorHeatingMultiplierLeft & " " & kvp2.Value.DirectModeratorHeatingMultiplierRight & " " & kvp2.Value.SourceHeatStructureNumber
+                    output = "1" & kvp.Value.UID & "0" & "70" & Counter & " " & kvp2.Value.SourceType & " " & kvp2.Value.InternalSourceMultiplier.ToString("F") & " " & kvp2.Value.DirectModeratorHeatingMultiplierLeft.ToString("F") & " " & kvp2.Value.DirectModeratorHeatingMultiplierRight.ToString("F") & " " & kvp2.Value.SourceHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -3992,7 +4127,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "800 " & "1")
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab4) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab4
-                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.leftHeatedEquivalentDiameter.ToString("F") & " " & kvp2.Value.LeftHeatedLengthForward.ToString("F") & " " & kvp2.Value.LeftHeatedLengthReverse.ToString("F") & " " & kvp2.Value.leftGridSpacerLengthForward.ToString("F") & " " & kvp2.Value.leftGridSpacerLengthReverse.ToString("F") & " " & kvp2.Value.leftGridLossCoefficientForward.ToString("F") & " " & kvp2.Value.leftGridLossCoefficientReverse.ToString("F") & " " & kvp2.Value.leftLocalBoilingFactor.ToString("F") & " " & kvp2.Value.leftNaturalCirculationLength.ToString("F") & " " & kvp2.Value.leftPitchtoDiameterRatio.ToString("F") & " " & kvp2.Value.leftFoulingFactor.ToString("F") & " " & kvp2.Value.leftAddHeatStructureNumber
+                    output = "1" & kvp.Value.UID & "0" & "80" & Counter & " " & kvp2.Value.leftHeatedEquivalentDiameter.ToString("F4") & " " & kvp2.Value.LeftHeatedLengthForward.ToString("F") & " " & kvp2.Value.LeftHeatedLengthReverse.ToString("F") & " " & kvp2.Value.leftGridSpacerLengthForward.ToString("F") & " " & kvp2.Value.leftGridSpacerLengthReverse.ToString("F") & " " & kvp2.Value.leftGridLossCoefficientForward.ToString("F") & " " & kvp2.Value.leftGridLossCoefficientReverse.ToString("F") & " " & kvp2.Value.leftLocalBoilingFactor.ToString("F") & " " & kvp2.Value.leftNaturalCirculationLength.ToString("F4") & " " & kvp2.Value.leftPitchtoDiameterRatio.ToString("F") & " " & kvp2.Value.leftFoulingFactor.ToString("F") & " " & kvp2.Value.leftAddHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -4000,7 +4135,7 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("1" & kvp.Value.UID & "0" & "900 " & "1")
                 Counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, HSBoundaryCondTab5) In kvp.Value.HeatStructureBoundaryCond.BoundaryCondTab5
-                    output = "1" & kvp.Value.UID & "0" & "90" & Counter & " " & kvp2.Value.rightHeatedEquivalentDiameter.ToString("F") & " " & kvp2.Value.rightHeatedLengthForward.ToString("F") & " " & kvp2.Value.rightHeatedLengthReverse.ToString("F") & " " & kvp2.Value.rightGridSpacerLengthForward.ToString("F") & " " & kvp2.Value.rightGridSpacerLengthReverse.ToString("F") & " " & kvp2.Value.rightGridLossCoefficientForward.ToString("F") & " " & kvp2.Value.rightGridLossCoefficientReverse.ToString("F") & " " & kvp2.Value.rightLocalBoilingFactor.ToString("F") & " " & kvp2.Value.rightNaturalCirculationLength.ToString("F") & " " & kvp2.Value.rightPitchtoDiameterRatio.ToString("F") & " " & kvp2.Value.rightFoulingFactor.ToString("F") & " " & kvp2.Value.rightAddHeatStructureNumber
+                    output = "1" & kvp.Value.UID & "0" & "90" & Counter & " " & kvp2.Value.rightHeatedEquivalentDiameter.ToString("F4") & " " & kvp2.Value.rightHeatedLengthForward.ToString("F") & " " & kvp2.Value.rightHeatedLengthReverse.ToString("F") & " " & kvp2.Value.rightGridSpacerLengthForward.ToString("F") & " " & kvp2.Value.rightGridSpacerLengthReverse.ToString("F") & " " & kvp2.Value.rightGridLossCoefficientForward.ToString("F") & " " & kvp2.Value.rightGridLossCoefficientReverse.ToString("F") & " " & kvp2.Value.rightLocalBoilingFactor.ToString("F") & " " & kvp2.Value.rightNaturalCirculationLength.ToString("F4") & " " & kvp2.Value.rightPitchtoDiameterRatio.ToString("F") & " " & kvp2.Value.rightFoulingFactor.ToString("F") & " " & kvp2.Value.rightAddHeatStructureNumber
                     generate.WriteLine(output)
                     Counter = Counter + 1
                 Next kvp2
@@ -4178,16 +4313,22 @@ sim:                Dim myStream As System.IO.FileStream
                 generate.WriteLine("*======================================================================")
                 generate.WriteLine("*          control components                                          ")
                 generate.WriteLine("*======================================================================")
+                'generate.WriteLine("205000000     9999   ")
+                'generate.WriteLine("*  The card format 205CCCCN allows 9999 control variables, where CCCC ranges from 1 through 9999.")
                 Dim i1 = 1
                 Dim dgvrow As DataGridViewRow
 
                 Dim frm As frmControlSystem = My.Application.ActiveSimulation.FormControlSystem
-
+                Dim cccc As Integer = 0
                 For j = 0 To frm.dgv1.Rows.Count - 2
                     dgvrow = My.Application.ActiveSimulation.FormControlSystem.dgv1.Rows(j)
                     Dim _uid = RELAP.App.GetUIDFromTag(dgvrow.Cells(0).Value)
                     If dgvrow.Cells(5).Value = "Both" Then
-                        output = "2050010" & i & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value & " " & dgvrow.Cells(2).Value & " " & dgvrow.Cells(3).Value & " " & dgvrow.Cells(4).Value & " " & "2" & " " & dgvrow.Cells(6).Value & " " & dgvrow.Cells(7).Value
+                        cccc = j + 1
+                        '        output = "2050010" & i & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value.ToLower() & " " & dgvrow.Cells(2).Value & " " & dgvrow.Cells(3).Value & " " & dgvrow.Cells(4).Value & " " & "2" & " " & dgvrow.Cells(6).Value & " " & dgvrow.Cells(7).Value
+                        output = "205" & cccc.ToString("D4") & "0" & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value.ToLower() & " " & dgvrow.Cells(2).Value.ToString("F") & " " & dgvrow.Cells(3).Value.ToString("F") & " " & dgvrow.Cells(4).Value & " " & "2" & " " & dgvrow.Cells(6).Value & " " & dgvrow.Cells(7).Value
+                        '                    Else
+                        '                       output = "205" & cccc.ToString("D4") & "0" & " " & dgvrow.Cells(0).Value & " " & dgvrow.Cells(1).Value.ToLower() & " " & dgvrow.Cells(2).Value.ToString("F") & " " & dgvrow.Cells(3).Value.ToString("F") & " " & dgvrow.Cells(4).Value & " "
                     End If
                     i = i + 1
                     generate.WriteLine(output)
@@ -4198,7 +4339,7 @@ sim:                Dim myStream As System.IO.FileStream
                         For k = 0 To frm.dgv2.Rows.Count - 2
                             dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value.ToLower() & " " & dgvrow1.Cells(3).Value
 
                             i = i + 1
                             generate.WriteLine(output)
@@ -4209,7 +4350,7 @@ sim:                Dim myStream As System.IO.FileStream
                         For k = 0 To frm.dgv2.Rows.Count - 2
                             dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value.ToLower() & " " & dgvrow1.Cells(1).Value
 
                             i = i + 1
                             generate.WriteLine(output)
@@ -4219,7 +4360,7 @@ sim:                Dim myStream As System.IO.FileStream
                         For k = 0 To frm.dgv2.Rows.Count - 2
                             dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value.ToLower() & " " & dgvrow1.Cells(1).Value
 
                             i = i + 1
                             generate.WriteLine(output)
@@ -4229,7 +4370,7 @@ sim:                Dim myStream As System.IO.FileStream
                         For k = 0 To frm.dgv2.Rows.Count - 2
                             dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value.ToLower() & " " & dgvrow1.Cells(1).Value
 
                             i = i + 1
                             generate.WriteLine(output)
@@ -4240,7 +4381,7 @@ sim:                Dim myStream As System.IO.FileStream
                         For k = 0 To frm.dgv2.Rows.Count - 2
                             dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value.ToLower() & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value.ToLower() & " " & dgvrow1.Cells(3).Value
 
                             i = i + 1
                             generate.WriteLine(output)
@@ -4251,7 +4392,7 @@ sim:                Dim myStream As System.IO.FileStream
                         For k = 0 To frm.dgv2.Rows.Count - 2
                             dgvrow1 = My.Application.ActiveSimulation.FormControlSystem.dgv2.Rows(k)
                             Dim _uid1 = RELAP.App.GetUIDFromTag(dgvrow1.Cells(0).Value)
-                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
+                            output = "2050010" & i & " " & dgvrow1.Cells(0).Value.ToLower() & " " & dgvrow1.Cells(1).Value & " " & dgvrow1.Cells(2).Value & " " & dgvrow1.Cells(3).Value
 
                             i = i + 1
                             generate.WriteLine(output)
@@ -4351,18 +4492,59 @@ sim:                Dim myStream As System.IO.FileStream
             End Try
             generate.WriteLine(".")
             generate.Close()
-            MsgBox("File Saved")
+            MsgBox("RELAP Input File has been saved")
 
             Exit Sub
         End If
-
+        '        End If
 
     End Sub
 
 
     Private Sub RELAPNaInternetToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RELAPNaInternetToolStripMenuItem.Click
-        System.Diagnostics.Process.Start("https://relap.codeplex.com/")
+        System.Diagnostics.Process.Start("http://github.com/vvaleed/relap")
     End Sub
 
 
+    Private Sub RELAPSCADAPSIMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RELAPSCADAPSIMToolStripMenuItem.Click
+       
+
+        If inputfile.Length = 0 Then
+            Exit Sub
+        End If
+        Dim inputfiler As String = inputfile.Substring(0, inputfile.Length - 2) + ".r"
+        Dim inputfileo As String = inputfile.Substring(0, inputfile.Length - 2) + ".o"
+        Dim relapfile As String = ""
+        Dim waterfile As String = ""
+
+        Try
+            Process.Start("delete", inputfiler)
+        Catch ex As Exception
+        End Try
+
+        Try
+            Process.Start("delete", inputfileo)
+        Catch ex As Exception
+        End Try
+        Dim ofd As New OpenFileDialog
+        ofd.Title = "Select the executable RELAP5 to use "
+        If ofd.ShowDialog = Windows.Forms.DialogResult.OK AndAlso ofd.FileName <> "" Then
+            MessageBox.Show(Path.GetFullPath(ofd.FileName))
+            relapfile = Path.GetFullPath(ofd.FileName)
+            waterfile = Path.GetDirectoryName(ofd.FileName) + "\tpfh2o"
+        End If
+        Dim batchrelap As String = ""
+        batchrelap = "  -i " + inputfile + " -o " + inputfileo + " -r " + inputfiler + " -w " + waterfile
+
+        Try
+            MsgBox("Execute RELAP5 with parameter  " + batchrelap)
+
+            Process.Start(relapfile, batchrelap)
+            MsgBox("Execute RELAP5 successful")
+
+        Catch ex As Exception
+            MsgBox("FAILED EXECUTION relap/scdapsim")
+        End Try
+
+    End Sub
 End Class

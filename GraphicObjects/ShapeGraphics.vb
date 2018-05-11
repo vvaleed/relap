@@ -458,8 +458,12 @@ Namespace GraphicObjects
         Public Sub New()
             Me.TipoObjeto = GraphicObjects.TipoObjeto.Branch
             Me.Description = "Branch"
-            Me.InputJunctions = 2
-            Me.OutputJunctions = 2
+            'start suripw
+            'Me.InputJunctions = 2
+            'Me.OutputJunctions = 2
+            'ens suripw
+            Me.InputJunctions = 1
+            Me.OutputJunctions = 1
         End Sub
 
         Public Sub New(ByVal graphicPosition As Point)
@@ -518,17 +522,33 @@ Namespace GraphicObjects
             ' myIC1.Position = New Point(X + 0.125 * Width, Y + 0.5 * Height)
             ' myIC1.Type = ConType.ConIn
             Dim collout As New System.Collections.Generic.List(Of ConnectionPoint)
+            'start suripw
+            collout.Clear()
+            'end suripw
             For i As Integer = 0 To OutputJunctions - 1
                 Dim conn As New ConnectionPoint
-                conn.Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                'start suripw
+                If (OutputJunctions > 1) Then
+                    conn.Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                Else
+                    conn.Position = New Point(X + 0.827 * Width, Y + (1 / (2)) * Height)
+                End If
+                'end suripw
                 conn.Type = ConType.ConOut
                 collout.Add(conn)
 
             Next
             Dim collin As New System.Collections.Generic.List(Of ConnectionPoint)
+            
             For i As Integer = 0 To InputJunctions - 1
                 Dim conn As New ConnectionPoint
-                conn.Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
+                'start suripw
+                If (InputJunctions > 1) Then
+                    conn.Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
+                Else
+                    conn.Position = New Point(X, Y + (1 / (2)) * Height)
+                End If
+                'end suripw
                 conn.Type = ConType.ConIn
                 collin.Add(conn)
 
@@ -542,12 +562,28 @@ Namespace GraphicObjects
 
                 If .Count = InputJunctions Then
                     For i As Integer = 0 To InputJunctions - 1
-                        .Item(i).Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
+                        'start suripw
+                        If (InputJunctions > 1) Then
+                            .Item(i).Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
+                        Else
+                            .Item(i).Position = New Point(X, Y + (1 / (2)) * Height)
+                        End If
                     Next
                 Else
-                    For i As Integer = .Count To InputJunctions - 1
-                        .Add(collin(i))
-                    Next
+                    If (.Count < InputJunctions) Then
+                        For i As Integer = .Count To InputJunctions - 1
+                            .Add(collin(i))
+                        Next
+                    Else
+                        For i As Integer = 0 To InputJunctions - 1
+                            'start suripw
+                            If (InputJunctions > 1) Then
+                                .Item(i).Position = New Point(X, Y + (i / (InputJunctions - 1)) * Height)
+                            Else
+                                .Item(i).Position = New Point(X, Y + (1 / (2)) * Height)
+                            End If
+                        Next
+                    End If
                 End If
 
             End With
@@ -558,12 +594,32 @@ Namespace GraphicObjects
 
                 If .Count = OutputJunctions Then
                     For i As Integer = 0 To OutputJunctions - 1
-                        .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                        'start suriw
+                        If (OutputJunctions > 1) Then
+                            .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                        Else
+                            .Item(i).Position = New Point(X + 0.827 * Width, Y + (1 / (2)) * Height)
+                        End If
+                        'end suripw
                     Next
                 Else
-                    For i As Integer = .Count To OutputJunctions - 1
-                        .Add(collout(i))
-                    Next
+                    If (.Count < OutputJunctions) Then
+                        For i As Integer = .Count To OutputJunctions - 1
+                            .Add(collout(i))
+                        Next
+                    Else
+                        For i As Integer = 0 To OutputJunctions - 1
+                            'start suriw
+                            If (OutputJunctions > 1) Then
+                                .Item(i).Position = New Point(X + 0.827 * Width, Y + (i / (OutputJunctions - 1)) * Height)
+                            Else
+                                .Item(i).Position = New Point(X + 0.827 * Width, Y + (1 / (2)) * Height)
+                            End If
+                            'end suripw
+                        Next
+                    End If
+
+
                 End If
 
             End With

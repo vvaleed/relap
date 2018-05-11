@@ -65,6 +65,7 @@ Partial Class ucPipeEditor
         Me.InitialVaporVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialLiquidMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialVaporMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.JunctionHidraulicDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,7 +216,7 @@ Partial Class ucPipeEditor
         Me.dgv2.AllowUserToDeleteRows = False
         Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate})
+        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate, Me.JunctionHidraulicDiameter})
         Me.dgv2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgv2.Location = New System.Drawing.Point(0, 0)
         Me.dgv2.Name = "dgv2"
@@ -419,6 +420,11 @@ Partial Class ucPipeEditor
         Me.InitialVaporMassFlowRate.HeaderText = "Initial Vapor Mass Flow Rate"
         Me.InitialVaporMassFlowRate.Name = "InitialVaporMassFlowRate"
         '
+        'JunctionHidraulicDiameter
+        '
+        Me.JunctionHidraulicDiameter.HeaderText = "Junction Hydraulic Diameter"
+        Me.JunctionHidraulicDiameter.Name = "JunctionHidraulicDiameter"
+        '
         'ucPipeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -486,5 +492,6 @@ Partial Class ucPipeEditor
     Friend WithEvents InitialVaporVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialLiquidMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialVaporMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents JunctionHidraulicDiameter As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

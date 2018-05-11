@@ -34,7 +34,9 @@
         Dim myCOTk As RELAP.SimulationObjects.UnitOps.Branch = My.Application.ActiveSimulation.Collections.CLCS_BranchCollection(gobj.Name)
 
         CheckBoxEntermass.Checked = False
-        For i = 1 To myCOTk.NumberofInputJunctions + myCOTk.NumberofOutputJunctions - 1
+        'For i = 1 To myCOTk.NumberofInputJunctions + myCOTk.NumberofOutputJunctions - 1
+        ' suripw
+        For i = 0 To myCOTk.NumberofInputJunctions + myCOTk.NumberofOutputJunctions - 1
             dgvBranch.Rows.Add(i.ToString)
         Next
         If myCOTk.BranchJunctionsGeometry.BranchGeometry.Count <> 0 Then
@@ -65,11 +67,14 @@
                 row.Cells(11).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).SuperheatedDischargeCo
                 row.Cells(12).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).LiquidMassFlow
                 row.Cells(13).Value = myCOTk.BranchJunctionsGeometry.BranchGeometry(i).VaporMassFlow
+                'surip
+                i = i + 1
             Next
 
         Else
 
             Dim i = 0
+
             For Each row As DataGridViewRow In dgvBranch.Rows
                 dgvBranch.Rows(i).Cells(1).Value = 1
                 dgvBranch.Rows(i).Cells(2).Value = DirectCast(dgvBranch.Rows(i).Cells(2), DataGridViewComboBoxCell).Items(0)
@@ -87,8 +92,8 @@
                 i = i + 1
             Next
         End If
-        
-       
+
+
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -116,6 +121,7 @@
             v13 = row.Cells(12).Value
             v14 = row.Cells(13).Value
             Me.BranchJunctionsGeometry.BranchGeometry.Add(row.Index + 1, New BranchGeometry(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14))
+
         Next
     End Sub
 

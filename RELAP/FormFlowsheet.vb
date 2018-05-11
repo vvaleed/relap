@@ -358,7 +358,7 @@ Imports RELAP.RELAP.FormClasses
         cboProblemType.SelectedIndex = 0
         cboProblemOption.SelectedIndex = 1
         cboInputCheck.SelectedIndex = 0
-        ToolStripComboBoxUnitSystem.SelectedIndex = 1
+        ToolStripComboBoxUnitSystem.SelectedIndex = 0
         cboOutputUnits.SelectedIndex = 0
         Me.WindowState = FormWindowState.Maximized
         My.Application.ActiveSimulation = Me
@@ -1221,7 +1221,7 @@ Imports RELAP.RELAP.FormClasses
                                 Case TipoObjeto.SingleVolume
                                     Me.Collections.CLCS_SingleVolumeCollection.Remove(namesel)
                                 Case TipoObjeto.SingleJunction
-                                    Me.Collections.CLCS_SingleVolumeCollection.Remove(namesel)
+                                    Me.Collections.CLCS_SingleJunctionCollection.Remove(namesel) 'surip oct 15 2004
                                 Case TipoObjeto.TimeDependentJunction
                                     Me.Collections.CLCS_TimeDependentJunctionCollection.Remove(namesel)
                                 Case TipoObjeto.Pipe

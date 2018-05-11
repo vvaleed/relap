@@ -40,6 +40,12 @@ Partial Class ucAnnulusEditor
         Me.ComputeWallFriction = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.EquilibriumTemperature = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.dgv2 = New System.Windows.Forms.DataGridView()
+        Me.cmdSave = New System.Windows.Forms.Button()
+        Me.cmdCopytoAll = New System.Windows.Forms.Button()
+        Me.cmdCopy = New System.Windows.Forms.Button()
+        Me.cmdPaste = New System.Windows.Forms.Button()
+        Me.cmdPaste2 = New System.Windows.Forms.Button()
+        Me.cmdCopy2 = New System.Windows.Forms.Button()
         Me.JunctionNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.JunctionFlowArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FflowLossCo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -57,12 +63,7 @@ Partial Class ucAnnulusEditor
         Me.InitialVaporVelocity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialLiquidMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InitialVaporMassFlowRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmdSave = New System.Windows.Forms.Button()
-        Me.cmdCopytoAll = New System.Windows.Forms.Button()
-        Me.cmdCopy = New System.Windows.Forms.Button()
-        Me.cmdPaste = New System.Windows.Forms.Button()
-        Me.cmdPaste2 = New System.Windows.Forms.Button()
-        Me.cmdCopy2 = New System.Windows.Forms.Button()
+        Me.JunctionHidraulicDiameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgv2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -180,11 +181,70 @@ Partial Class ucAnnulusEditor
         Me.dgv2.AllowUserToDeleteRows = False
         Me.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.InterphaseVelocity, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate})
+        Me.dgv2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JunctionNumber, Me.JunctionFlowArea, Me.FflowLossCo, Me.RflowLossCo, Me.PVterm, Me.CCFLModel, Me.StratificationEntrainmentModel, Me.ChokingModel, Me.SmoothAreaChange, Me.TwoVelocityMomentumEquations, Me.MomentumFlux, Me.InterphaseVelocity, Me.EnterVelocityOrMassFlowRate, Me.InitialLiquidVelocity, Me.InitialVaporVelocity, Me.InitialLiquidMassFlowRate, Me.InitialVaporMassFlowRate, Me.JunctionHidraulicDiameter})
         Me.dgv2.Location = New System.Drawing.Point(8, 346)
         Me.dgv2.Name = "dgv2"
         Me.dgv2.Size = New System.Drawing.Size(1052, 280)
         Me.dgv2.TabIndex = 6
+        '
+        'cmdSave
+        '
+        Me.cmdSave.Location = New System.Drawing.Point(381, 308)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSave.TabIndex = 14
+        Me.cmdSave.Text = "Save"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
+        'cmdCopytoAll
+        '
+        Me.cmdCopytoAll.Enabled = False
+        Me.cmdCopytoAll.Location = New System.Drawing.Point(288, 308)
+        Me.cmdCopytoAll.Name = "cmdCopytoAll"
+        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopytoAll.TabIndex = 13
+        Me.cmdCopytoAll.Text = "Copy to All"
+        Me.cmdCopytoAll.UseVisualStyleBackColor = True
+        '
+        'cmdCopy
+        '
+        Me.cmdCopy.Enabled = False
+        Me.cmdCopy.Location = New System.Drawing.Point(112, 308)
+        Me.cmdCopy.Name = "cmdCopy"
+        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy.TabIndex = 11
+        Me.cmdCopy.Text = "Copy"
+        Me.cmdCopy.UseVisualStyleBackColor = True
+        '
+        'cmdPaste
+        '
+        Me.cmdPaste.Enabled = False
+        Me.cmdPaste.Location = New System.Drawing.Point(193, 308)
+        Me.cmdPaste.Name = "cmdPaste"
+        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste.TabIndex = 12
+        Me.cmdPaste.Text = "Paste"
+        Me.cmdPaste.UseVisualStyleBackColor = True
+        '
+        'cmdPaste2
+        '
+        Me.cmdPaste2.Enabled = False
+        Me.cmdPaste2.Location = New System.Drawing.Point(214, 645)
+        Me.cmdPaste2.Name = "cmdPaste2"
+        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPaste2.TabIndex = 16
+        Me.cmdPaste2.Text = "Paste"
+        Me.cmdPaste2.UseVisualStyleBackColor = True
+        '
+        'cmdCopy2
+        '
+        Me.cmdCopy2.Enabled = False
+        Me.cmdCopy2.Location = New System.Drawing.Point(112, 645)
+        Me.cmdCopy2.Name = "cmdCopy2"
+        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCopy2.TabIndex = 15
+        Me.cmdCopy2.Text = "Copy"
+        Me.cmdCopy2.UseVisualStyleBackColor = True
         '
         'JunctionNumber
         '
@@ -291,64 +351,10 @@ Partial Class ucAnnulusEditor
         Me.InitialVaporMassFlowRate.HeaderText = "Initial Vapor Mass Flow Rate"
         Me.InitialVaporMassFlowRate.Name = "InitialVaporMassFlowRate"
         '
-        'cmdSave
+        'JunctionHidraulicDiameter
         '
-        Me.cmdSave.Location = New System.Drawing.Point(381, 308)
-        Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(75, 23)
-        Me.cmdSave.TabIndex = 14
-        Me.cmdSave.Text = "Save"
-        Me.cmdSave.UseVisualStyleBackColor = True
-        '
-        'cmdCopytoAll
-        '
-        Me.cmdCopytoAll.Enabled = False
-        Me.cmdCopytoAll.Location = New System.Drawing.Point(288, 308)
-        Me.cmdCopytoAll.Name = "cmdCopytoAll"
-        Me.cmdCopytoAll.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopytoAll.TabIndex = 13
-        Me.cmdCopytoAll.Text = "Copy to All"
-        Me.cmdCopytoAll.UseVisualStyleBackColor = True
-        '
-        'cmdCopy
-        '
-        Me.cmdCopy.Enabled = False
-        Me.cmdCopy.Location = New System.Drawing.Point(112, 308)
-        Me.cmdCopy.Name = "cmdCopy"
-        Me.cmdCopy.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy.TabIndex = 11
-        Me.cmdCopy.Text = "Copy"
-        Me.cmdCopy.UseVisualStyleBackColor = True
-        '
-        'cmdPaste
-        '
-        Me.cmdPaste.Enabled = False
-        Me.cmdPaste.Location = New System.Drawing.Point(193, 308)
-        Me.cmdPaste.Name = "cmdPaste"
-        Me.cmdPaste.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste.TabIndex = 12
-        Me.cmdPaste.Text = "Paste"
-        Me.cmdPaste.UseVisualStyleBackColor = True
-        '
-        'cmdPaste2
-        '
-        Me.cmdPaste2.Enabled = False
-        Me.cmdPaste2.Location = New System.Drawing.Point(214, 645)
-        Me.cmdPaste2.Name = "cmdPaste2"
-        Me.cmdPaste2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPaste2.TabIndex = 16
-        Me.cmdPaste2.Text = "Paste"
-        Me.cmdPaste2.UseVisualStyleBackColor = True
-        '
-        'cmdCopy2
-        '
-        Me.cmdCopy2.Enabled = False
-        Me.cmdCopy2.Location = New System.Drawing.Point(112, 645)
-        Me.cmdCopy2.Name = "cmdCopy2"
-        Me.cmdCopy2.Size = New System.Drawing.Size(75, 23)
-        Me.cmdCopy2.TabIndex = 15
-        Me.cmdCopy2.Text = "Copy"
-        Me.cmdCopy2.UseVisualStyleBackColor = True
+        Me.JunctionHidraulicDiameter.HeaderText = "Junction Hidarulic Diameter"
+        Me.JunctionHidraulicDiameter.Name = "JunctionHidraulicDiameter"
         '
         'ucAnnulusEditor
         '
@@ -387,6 +393,12 @@ Partial Class ucAnnulusEditor
     Friend WithEvents ComputeWallFriction As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents EquilibriumTemperature As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents dgv2 As System.Windows.Forms.DataGridView
+    Friend WithEvents cmdSave As System.Windows.Forms.Button
+    Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
+    Friend WithEvents cmdCopy As System.Windows.Forms.Button
+    Friend WithEvents cmdPaste As System.Windows.Forms.Button
+    Friend WithEvents cmdPaste2 As System.Windows.Forms.Button
+    Friend WithEvents cmdCopy2 As System.Windows.Forms.Button
     Friend WithEvents JunctionNumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents JunctionFlowArea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FflowLossCo As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -404,11 +416,6 @@ Partial Class ucAnnulusEditor
     Friend WithEvents InitialVaporVelocity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialLiquidMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InitialVaporMassFlowRate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents cmdSave As System.Windows.Forms.Button
-    Friend WithEvents cmdCopytoAll As System.Windows.Forms.Button
-    Friend WithEvents cmdCopy As System.Windows.Forms.Button
-    Friend WithEvents cmdPaste As System.Windows.Forms.Button
-    Friend WithEvents cmdPaste2 As System.Windows.Forms.Button
-    Friend WithEvents cmdCopy2 As System.Windows.Forms.Button
+    Friend WithEvents JunctionHidraulicDiameter As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

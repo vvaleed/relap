@@ -84,6 +84,8 @@ Partial Class FormMain
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
+        Me.RunRELAPToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RELAPSCADAPSIMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -92,7 +94,7 @@ Partial Class FormMain
         'MenuStrip1
         '
         Me.MenuStrip1.AllowItemReorder = True
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.RunToolStripMenuItem, Me.WindowsMenu, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.RunToolStripMenuItem, Me.WindowsMenu, Me.HelpToolStripMenuItem, Me.RunRELAPToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -269,7 +271,6 @@ Partial Class FormMain
         Me.ContentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
         Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.ContentsToolStripMenuItem.Text = "&Show Help"
-        Me.ContentsToolStripMenuItem.Visible = False
         '
         'toolStripSeparator5
         '
@@ -510,6 +511,19 @@ Partial Class FormMain
         Me.SaveFileDialog2.Filter = "RELAP Input File (*.i)|*.i"
         Me.SaveFileDialog2.Title = "Save Input File"
         '
+        'RunRELAPToolStripMenuItem
+        '
+        Me.RunRELAPToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RELAPSCADAPSIMToolStripMenuItem})
+        Me.RunRELAPToolStripMenuItem.Name = "RunRELAPToolStripMenuItem"
+        Me.RunRELAPToolStripMenuItem.Size = New System.Drawing.Size(74, 20)
+        Me.RunRELAPToolStripMenuItem.Text = "RunRELAP"
+        '
+        'RELAPSCADAPSIMToolStripMenuItem
+        '
+        Me.RELAPSCADAPSIMToolStripMenuItem.Name = "RELAPSCADAPSIMToolStripMenuItem"
+        Me.RELAPSCADAPSIMToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.RELAPSCADAPSIMToolStripMenuItem.Text = "RELAP/SCADAPSIM"
+        '
         'FormMain
         '
         Me.AllowDrop = True
@@ -674,5 +688,7 @@ Partial Class FormMain
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents SaveFileDialog2 As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents RunRELAPToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RELAPSCADAPSIMToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

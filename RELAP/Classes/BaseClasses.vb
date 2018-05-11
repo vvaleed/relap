@@ -1085,6 +1085,7 @@ Imports System.Runtime.InteropServices
             _uid = value
         End Set
     End Property
+    
 
     Public Property Nome() As String
         Get
@@ -1121,11 +1122,119 @@ Imports System.Runtime.InteropServices
             Me.m_showqtable = value
         End Set
     End Property
+    Public Property MAXUIDS() As String  'surip oct 15 2014
+        'scan for the largesr component number in active simulation
+        'assign the largest componet number to the temp
+        Get
+            Dim collect As New RELAP.FormClasses.ClsObjectCollections
+            Dim ChildParent = My.Application.ActiveSimulation
 
+            Dim myuid As Integer
+            Dim MAXUID As Integer
+            MAXUID = 10     'for ViSA RELAP
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Tank) In ChildParent.Collections.CLCS_TankCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.SingleVolume) In ChildParent.Collections.CLCS_SingleVolumeCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.SingleJunction) In ChildParent.Collections.CLCS_SingleJunctionCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.TimeDependentJunction) In ChildParent.Collections.CLCS_TimeDependentJunctionCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Valve) In ChildParent.Collections.CLCS_ValveCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Pump) In ChildParent.Collections.CLCS_PumpCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.pipe) In ChildParent.Collections.CLCS_PipeCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Annulus) In ChildParent.Collections.CLCS_AnnulusCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Branch) In ChildParent.Collections.CLCS_BranchCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Turbine) In ChildParent.Collections.CLCS_TurbineCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.Separator) In ChildParent.Collections.CLCS_SeparatorCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            For Each kvp As KeyValuePair(Of String, RELAP.SimulationObjects.UnitOps.HeatStructure) In ChildParent.Collections.CLCS_HeatStructureCollection
+                myuid = Integer.Parse(kvp.Value.UID)
+                If (myuid > MAXUID) Then
+                    MAXUID = myuid
+                End If
+            Next kvp
+
+            Return MAXUID.ToString("D3")
+        End Get
+        Set(ByVal value As String)
+            '_uid = value
+        End Set
+    End Property
     Sub CreateNew()
         Me.m_annotation = New RELAP.Outros.Annotation
         Dim temp As Integer
+        ' Dim theLargestComponenNumber As Integer
+        'theLargestComponenNumber = 0
         temp = frmSurface.uid
+
+        If (temp = 0) Then
+            'scan for the largesr component number in active simulation
+            'assign the largest componet number to the temp
+            temp = Integer.Parse(Me.MAXUIDS)
+        End If
+
         temp = temp + 1
         frmSurface.uid = temp
 

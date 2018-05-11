@@ -420,10 +420,20 @@ End Class
             m_InitialVaporMassFlowRate = value
         End Set
     End Property
+    Private m_JunctionHidraulicDiameter As Double
+    Public Property JunctionHidraulicDiameter() As Double
+        Get
+            Return m_JunctionHidraulicDiameter
+        End Get
+        Set(ByVal value As Double)
+            m_JunctionHidraulicDiameter = value
+        End Set
+    End Property
 
     Public Sub New(ByVal JunctionNumber As Double, ByVal JunctionFlowArea As Double, ByVal FflowLossCo As Double, ByVal RflowLossCo As Double, ByVal PVterm As Boolean, ByVal CCFLModel As Boolean, ByVal StratificationEntrainmentModel As Boolean, _
                    ByVal ChokingModel As Boolean, ByVal SmoothAreaChange As String, ByVal TwoVelocityMomentumEquations As String, ByVal MomentumFlux As String, _
-                   ByVal InterphaseVelocity As Double, ByVal EnterVelocityOrMassFlowRate As Boolean, ByVal InitialLiquidVelocity As Double, ByVal InitialVaporVelocity As Double, ByVal InitialLiquidMassFlowRate As Double, ByVal InitialVaporMassFlowRate As Double)
+                   ByVal InterphaseVelocity As Double, ByVal EnterVelocityOrMassFlowRate As Boolean, ByVal InitialLiquidVelocity As Double, ByVal InitialVaporVelocity As Double, ByVal InitialLiquidMassFlowRate As Double, ByVal InitialVaporMassFlowRate As Double, _
+                   ByVal JunctionHidraulicDiameter As Double)
         Me.m_JunctionNumber = JunctionNumber
         Me.m_JunctionFlowArea = JunctionFlowArea
         Me.m_ffelc = FflowLossCo
@@ -441,6 +451,6 @@ End Class
         Me.m_InterphaseVelocity = InterphaseVelocity
         Me.m_InitialLiquidMassFlowRate = InitialLiquidMassFlowRate
         Me.m_InitialVaporMassFlowRate = InitialVaporMassFlowRate
-
+        Me.m_JunctionHidraulicDiameter = JunctionHidraulicDiameter
     End Sub
 End Class
