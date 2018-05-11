@@ -12,3 +12,6 @@ Docs
  [2] https://github.com/vvaleed/relap/files/1961085/RIFGen.pdf
  
  [3] https://github.com/vvaleed/relap/files/1961086/YEC.pdf
+
+Binary
+ [1] https://github.com/vvaleed/relap/blob/master/Binary.zip
