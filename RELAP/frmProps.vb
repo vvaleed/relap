@@ -7,7 +7,7 @@ Imports RELAP.RELAP
 Public Class frmProps
     Inherits DockContent
 
-#Region "    Declaração de eventos "
+#Region "    Delcaration of Events "
 
     Private Event ObjectStatusChanged(ByVal obj As Microsoft.Msdn.Samples.GraphicObjects.GraphicObject)
 

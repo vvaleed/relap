@@ -575,7 +575,7 @@ Namespace RELAP.SimulationObjects.UnitOps
                 '    .CustomEditor = New RELAP.Editors.Streams.UIOutputMSSelector
                 'End With
                 ' pressure drop, Calculation parameters, Pressure drop in the tank
-                Dim valor = Format(Conversor.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault), FlowSheet.Options.NumberFormat)
+                Dim value = Format(Conversor.ConverterDoSI(su.spmp_deltaP, Me.DeltaP.GetValueOrDefault), FlowSheet.Options.NumberFormat)
                 '.Item.Add(FT(RELAP.App.GetLocalString("Quedadepresso"), su.spmp_deltaP), valor, False, "Parameters", RELAP.App.GetLocalString("Quedadepressoaplicad5"), True)
                 'With .Item(.Item.Count - 1)
                 '    .DefaultValue = Nothing
@@ -589,51 +589,51 @@ Namespace RELAP.SimulationObjects.UnitOps
 
                 ' '''''''''''''
 
-                valor = Format(Me.FlowArea, FlowSheet.Options.NumberFormat)
+                value = Format(Me.FlowArea, FlowSheet.Options.NumberFormat)
                 'Tank Volume,Calculation parameters, Tank Volume
-                .Item.Add("Volume Flow Area", valor, False, "1.Parameters", "Volume Flow Area", True)
+                .Item.Add("Volume Flow Area", value, False, "1.Parameters", "Volume Flow Area", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.LengthofVolume, FlowSheet.Options.NumberFormat)
-                .Item.Add("Length of Volume", valor, False, "1.Parameters", "Length of Volume", True)
+                value = Format(Me.LengthofVolume, FlowSheet.Options.NumberFormat)
+                .Item.Add("Length of Volume", value, False, "1.Parameters", "Length of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.VolumeofVolume, FlowSheet.Options.NumberFormat)
-                .Item.Add("Volume of Volume", valor, False, "1.Parameters", "Volume of Volume", True)
+                value = Format(Me.VolumeofVolume, FlowSheet.Options.NumberFormat)
+                .Item.Add("Volume of Volume", value, False, "1.Parameters", "Volume of Volume", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.Azimuthalangle, FlowSheet.Options.NumberFormat)
-                .Item.Add("Azimuthal Angle", valor, False, "1.Parameters", "Azimuthal Angle", True)
+                value = Format(Me.Azimuthalangle, FlowSheet.Options.NumberFormat)
+                .Item.Add("Azimuthal Angle", value, False, "1.Parameters", "Azimuthal Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.InclinationAngle, FlowSheet.Options.NumberFormat)
-                .Item.Add("Inclination Angle", valor, False, "1.Parameters", "Inclination Angle", True)
+                value = Format(Me.InclinationAngle, FlowSheet.Options.NumberFormat)
+                .Item.Add("Inclination Angle", value, False, "1.Parameters", "Inclination Angle", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.ElevationChange, FlowSheet.Options.NumberFormat)
-                .Item.Add("Elevation Change", valor, False, "1.Parameters", "Elevation Change", True)
+                value = Format(Me.ElevationChange, FlowSheet.Options.NumberFormat)
+                .Item.Add("Elevation Change", value, False, "1.Parameters", "Elevation Change", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.WallRoughness, FlowSheet.Options.NumberFormat)
-                .Item.Add("Wall Roughness", valor, False, "1.Parameters", "Wall Roughness", True)
+                value = Format(Me.WallRoughness, FlowSheet.Options.NumberFormat)
+                .Item.Add("Wall Roughness", value, False, "1.Parameters", "Wall Roughness", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)
                 End With
-                valor = Format(Me.HydraulicDiameter, FlowSheet.Options.NumberFormat)
-                .Item.Add("Hydraulic Diameter", valor, False, "1.Parameters", "Hydraulic Diameter", True)
+                value = Format(Me.HydraulicDiameter, FlowSheet.Options.NumberFormat)
+                .Item.Add("Hydraulic Diameter", value, False, "1.Parameters", "Hydraulic Diameter", True)
                 With .Item(.Item.Count - 1)
                     .DefaultValue = Nothing
                     .DefaultType = GetType(Double)

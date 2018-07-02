@@ -2656,15 +2656,15 @@ sim:                Dim myStream As System.IO.FileStream
                 row = My.Application.ActiveSimulation.FormPlotReqest.DataGridView1.Rows(j)
                 Dim _uid = RELAP.App.GetUIDFromTag(row.Cells(0).Value)
                 If row.Cells(0).Value = "HS000" Then
-                    If row.Cells(1).Value = "Linear" Then
-                        If row.Cells(3).Value = "Right" Then
+                    If row.Cells(3).Value = "Linear" Then
+                        If row.Cells(4).Value = "Right" Then
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 2"
                         Else
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 1"
                         End If
 
                     Else
-                        If row.Cells(3).Value = "Right" Then
+                        If row.Cells(4).Value = "Right" Then
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 -2"
                         Else
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000101 -1"
@@ -2672,15 +2672,15 @@ sim:                Dim myStream As System.IO.FileStream
 
                     End If
                 Else
-                    If row.Cells(1).Value = "Linear" Then
-                        If row.Cells(3).Value = "Right" Then
+                    If row.Cells(3).Value = "Linear" Then
+                        If row.Cells(4).Value = "Right" Then
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 2"
                         Else
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 1"
                         End If
 
                     Else
-                        If row.Cells(3).Value = "Right" Then
+                        If row.Cells(4).Value = "Right" Then
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 -2"
                         Else
                             output = "2030001" & i & " " & row.Cells(1).Value.ToLower() & " " & _uid & "000000 -1"
@@ -3239,13 +3239,15 @@ sim:                Dim myStream As System.IO.FileStream
                 'suripw
                 counter = 1
                 For Each kvp2 As KeyValuePair(Of Integer, PipeSection) In kvp.Value.Profile.Sections
-                    If (counter < 10) Then
-                        output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
-                    Else
-                        output = kvp.Value.UID & "07" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                    If (kvp2.Value.ElevationChange > 0) Then
+                        If (counter < 10) Then
+                            output = kvp.Value.UID & "070" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                        Else
+                            output = kvp.Value.UID & "07" & counter & " " & kvp2.Value.ElevationChange.ToString("F4") & " " & counter
+                        End If
+                        generate.WriteLine(output)
+                        counter = counter + 1
                     End If
-                    generate.WriteLine(output)
-                    counter = counter + 1
                 Next kvp2
 
                 counter = 1
