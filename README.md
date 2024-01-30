@@ -5,13 +5,14 @@ The aim of this work was to develop a Graphical User Interface (GUI) for prepara
 
 This project deals with the development of the GUI Environment named as RELAP5 Input File Generator (RIFGen). This GUI generates complete set of cards for Hydrodynamic Components, Core Components, Time Step Control, Minor Edit Requests, Trip Input Data, Heat Structure Input, General Table Data, Plot Request data, Control System Data, Additional Plot variables, General Code Input, Couple Control Cards and other Miscellaneous Cards. These components have been tested and validated individually. RIFGen has been validated as a whole by generating input files for several standard problems.
 
+Download
 
+ [1] https://github.com/vvaleed/relap/blob/master/Binary.zip
+ 
 Docs
+
  [1] https://github.com/vvaleed/relap/files/1961084/User.Guide.pdf
  
  [2] https://github.com/vvaleed/relap/files/1961085/RIFGen.pdf
  
  [3] https://github.com/vvaleed/relap/files/1961086/YEC.pdf
-
-Binary
- [1] https://github.com/vvaleed/relap/blob/master/Binary.zip
