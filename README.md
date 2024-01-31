@@ -11,7 +11,7 @@ Download
  
 Docs
 
- [1] https://github.com/vvaleed/relap/files/1961084/User.Guide.pdf
+ [1] https://github.com/vvaleed/relap/blob/master/UserGuide.pdf
  
  [2] https://github.com/vvaleed/relap/files/1961085/RIFGen.pdf
  
