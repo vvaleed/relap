@@ -301,7 +301,7 @@ Public Class FormMain
 
         'process MRU file list
 
-        If My.Settings.MostRecentFiles.Count > 10 Then
+        If My.Settings.MostRecentFiles?.Count > 10 Then
             My.Settings.MostRecentFiles.RemoveAt(0)
         End If
 
