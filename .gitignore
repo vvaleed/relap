@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GraphicObjects/bin/x86/Debug
+/GraphicObjects/obj/x86/Debug
+/GraphicsSurface/bin/x86/Debug
+/GraphicsSurface/obj/x86/Debug
+/PropertyGridEx/PropertyGridEx/obj/x86/Debug
+/RELAP/bin/Debug
+/RELAP/obj/x86/Debug
+/PropertyGridEx/PropertyGridEx/bin/x86/Debug
