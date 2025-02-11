@@ -7,7 +7,7 @@ This project deals with the development of the GUI Environment named as RELAP5 I
 
 Download
 
- [1] https://github.com/vvaleed/relap/releases/tag/Release-v1
+ [1] https://github.com/vvaleed/relap/releases/tag/Rel-v1
  
 Docs
 
